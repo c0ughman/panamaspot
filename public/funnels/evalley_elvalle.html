@@ -12,15 +12,15 @@
 
 <style>
   :root {
-    --ink: #14201a;
-    --ink-soft: #3b4a42;
-    --muted: #6b7a72;
-    --line: rgba(20, 32, 26, 0.10);
+    --ink: #2F280B;
+    --ink-soft: #5a4d38;
+    --muted: #8b7e6b;
+    --line: rgba(47, 40, 11, 0.10);
     --cream: #f7f5ee;
     --cream-deep: #efece1;
-    --green: #1f5f3a;
-    --green-deep: #154028;
-    --green-soft: #e9efe6;
+    --green: #ea450e;
+    --green-deep: #2F280B;
+    --green-soft: #fff3e6;
     --whatsapp: #25d366;
     --whatsapp-deep: #1ea851;
     --gold: #c79b2c;
@@ -46,7 +46,7 @@
   /* ─── ANNOUNCE BAR ─── */
   .announce {
     background: var(--green-deep);
-    color: #e9efe6;
+    color: #ffede6;
     text-align: center;
     font-size: 13px;
     font-weight: 500;
@@ -85,7 +85,7 @@
     letter-spacing: -0.4px;
     color: #fff;
   }
-  .brand span { color: #cfe5d5; font-weight: 500; }
+  .brand span { color: #ea450e; font-weight: 500; }
   .hero-loc {
     font-size: 12px;
     font-weight: 500;
@@ -99,7 +99,7 @@
   .hero-loc::before {
     content: '';
     width: 6px; height: 6px; border-radius: 50%;
-    background: #6dd29e; box-shadow: 0 0 0 3px rgba(109,210,158,0.25);
+    background: #ea450e; box-shadow: 0 0 0 3px rgba(234,69,14,0.25);
   }
   .hero-content { position: relative; z-index: 2; box-sizing: border-box; }
   @media (min-width: 561px) {
@@ -112,7 +112,7 @@
     font-weight: 600;
     letter-spacing: 2.5px;
     text-transform: uppercase;
-    color: #cfe5d5;
+    color: #ffede6;
     background: rgba(255,255,255,0.10);
     backdrop-filter: blur(8px);
     border: 1px solid rgba(255,255,255,0.18);
@@ -132,7 +132,7 @@
   h1.hero-title em {
     font-style: italic;
     font-weight: 500;
-    color: #d8e8d6;
+    color: #ea450e;
   }
   .hero-sub {
     font-size: clamp(16px, 1.7vw, 19px);
@@ -162,8 +162,8 @@
   .check {
     width: 18px; height: 18px;
     border-radius: 50%;
-    background: rgba(109,210,158,0.20);
-    color: #6dd29e;
+    background: rgba(234,69,14,0.20);
+    color: #ea450e;
     display: inline-flex; align-items: center; justify-content: center;
     font-size: 11px; font-weight: 700;
     flex-shrink: 0;
@@ -193,7 +193,7 @@
   .ta-owl { width: 28px; height: 22px; flex-shrink: 0; }
   .ta-info { display: flex; flex-direction: column; gap: 2px; line-height: 1.1; }
   .ta-bubbles {
-    color: #00aa6c;
+    color: #25d366;
     font-size: 11px;
     letter-spacing: 1.5px;
     line-height: 1;
@@ -268,7 +268,7 @@
     backdrop-filter: blur(8px);
     border: 1px solid rgba(255,255,255,0.18);
     border-radius: 100px;
-    color: #cfe5d5;
+    color: #ffede6;
     font-size: 10px;
     font-weight: 600;
     letter-spacing: 2.5px;
@@ -276,7 +276,7 @@
     white-space: nowrap;
   }
   .ta-inline .ta-bubbles {
-    color: #6dd29e;
+    color: #25d366;
     font-size: 9px;
     letter-spacing: 2px;
   }
@@ -325,8 +325,8 @@
     transition: background 0.15s ease, border-color 0.15s ease;
   }
   .price-card.featured {
-    background: rgba(155, 208, 173, 0.14);
-    border-color: rgba(155, 208, 173, 0.45);
+    background: rgba(234, 69, 14, 0.14);
+    border-color: rgba(234, 69, 14, 0.45);
   }
   .price-card-num {
     font-family: var(--serif);
@@ -339,7 +339,7 @@
   }
   .price-card-label {
     font-size: 11.5px;
-    color: #cfe5d5;
+    color: #ffede6;
     font-weight: 600;
     letter-spacing: 1.2px;
     text-transform: uppercase;
@@ -370,11 +370,11 @@
   }
   .btn:active { transform: translateY(1px); }
   .btn-primary {
-    background: var(--whatsapp);
+    background: #ea450e;
     color: #fff;
-    box-shadow: 0 8px 24px rgba(37,211,102,0.35);
+    box-shadow: 0 8px 24px rgba(234,69,14,0.35);
   }
-  .btn-primary:hover { background: var(--whatsapp-deep); box-shadow: 0 10px 30px rgba(37,211,102,0.45); }
+  .btn-primary:hover { background: #d63c09; box-shadow: 0 10px 30px rgba(234,69,14,0.45); }
   .btn-ghost {
     background: rgba(255,255,255,0.10);
     color: #fff;
@@ -403,7 +403,7 @@
     font-weight: 600;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: var(--green);
+    color: #ea450e;
     margin-bottom: 14px;
   }
   .section-title {
@@ -416,7 +416,7 @@
     margin-bottom: 18px;
     max-width: 22ch;
   }
-  .section-title em { font-style: italic; font-weight: 500; color: var(--green); }
+  .section-title em { font-style: italic; font-weight: 500; color: #ea450e; }
   .section-sub {
     font-size: 17px;
     color: var(--ink-soft);
@@ -467,7 +467,7 @@
     font-family: var(--serif);
     font-size: 24px;
     font-weight: 700;
-    color: var(--green);
+    color: #ea450e;
     letter-spacing: -0.5px;
   }
   .price-amount span { font-size: 13px; color: var(--muted); font-weight: 400; margin-left: 2px; }
@@ -480,8 +480,8 @@
   .include-pill {
     font-size: 13px;
     font-weight: 500;
-    background: var(--green-soft);
-    color: var(--green-deep);
+    background: #fff3e6;
+    color: #2F280B;
     padding: 7px 13px;
     border-radius: 100px;
   }
@@ -513,7 +513,7 @@
     font-weight: 700;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: var(--green);
+    color: #ea450e;
     margin-bottom: 8px;
   }
   .tour-name {
@@ -526,17 +526,17 @@
   .tour-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.5; }
 
   /* ─── PROOF ─── */
-  .proof { background: var(--green-deep); color: #f7f5ee; }
-  .proof .section-eyebrow { color: #9bd0ad; }
+  .proof { background: #2F280B; color: #f7f5ee; }
+  .proof .section-eyebrow { color: #f5a860; }
   .proof .section-title { color: #fff; }
-  .proof .section-title em { color: #9bd0ad; }
+  .proof .section-title em { color: #ea450e; }
   .proof-callout {
     margin-top: 32px;
     padding: 28px 32px;
     background: rgba(255,255,255,0.06);
     border: 1px dashed rgba(255,255,255,0.30);
     border-radius: 14px;
-    color: #d8e8d6;
+    color: #ffede6;
     font-size: 15px;
     line-height: 1.6;
   }
@@ -564,7 +564,7 @@
     letter-spacing: -1px;
     margin-bottom: 6px;
   }
-  .stat-label { font-size: 13px; color: #b9d3c2; letter-spacing: 0.5px; }
+  .stat-label { font-size: 13px; color: #d4a574; letter-spacing: 0.5px; }
 
   /* ─── EXPERIENCE ─── */
   .experience { background: var(--cream); }
@@ -614,7 +614,7 @@
     font-family: var(--serif);
     font-size: 64px;
     font-weight: 700;
-    color: var(--green);
+    color: #ea450e;
     line-height: 1;
     letter-spacing: -2px;
     margin-bottom: 8px;
@@ -646,6 +646,46 @@
   }
   .faq-a { font-size: 15px; color: var(--ink-soft); line-height: 1.65; }
 
+  /* ─── TRIP HELP ─── */
+  .trip-help { background: #fff4e8; padding: 56px 0; }
+  .trip-help-inner { display: flex; align-items: center; gap: 40px; }
+  .trip-help-text { flex: 2; }
+  .trip-help-cta { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; }
+  .trip-help-eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 2.5px;
+    text-transform: uppercase; color: #b35c00; margin-bottom: 10px;
+  }
+  .trip-help-heading {
+    font-family: var(--serif); font-weight: 600;
+    font-size: clamp(24px, 3vw, 34px); line-height: 1.1;
+    letter-spacing: -0.5px; color: var(--ink); margin-bottom: 14px;
+  }
+  .trip-help-body {
+    font-size: 16px; color: var(--ink-soft); line-height: 1.65;
+    max-width: 54ch; margin-bottom: 24px;
+  }
+  .trip-help-body strong { color: var(--ink); font-weight: 600; }
+  .btn-help {
+    display: inline-flex; align-items: center; gap: 9px;
+    padding: 14px 26px; border-radius: 100px; font-family: var(--sans);
+    font-size: 15px; font-weight: 600; background: var(--ink); color: #fff;
+    border: none; cursor: pointer; transition: background 0.2s ease;
+    text-decoration: none; white-space: nowrap;
+  }
+  .btn-help:hover { background: var(--green-deep); }
+  .wa-icon-dark {
+    width: 18px; height: 18px; display: inline-block; flex-shrink: 0;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2314201a'><path d='M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.32 4.95L2 22l5.25-1.38a9.93 9.93 0 0 0 4.79 1.22c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2zm5.85 14.07c-.25.69-1.45 1.32-2 1.4-.51.07-1.16.1-1.87-.12-.43-.13-.99-.32-1.7-.62-3-1.3-4.96-4.32-5.11-4.52-.15-.2-1.22-1.62-1.22-3.1 0-1.47.77-2.2 1.05-2.5.27-.3.6-.37.8-.37.2 0 .4 0 .57.01.18.01.43-.07.67.51.25.6.85 2.07.93 2.22.07.15.13.32.02.52-.1.2-.16.32-.32.5-.16.17-.33.39-.47.52-.15.15-.31.32-.13.62.18.3.78 1.29 1.68 2.09 1.16 1.04 2.14 1.36 2.44 1.51.3.15.47.13.65-.07.18-.2.75-.87.95-1.18.2-.3.4-.25.67-.15.27.1 1.74.82 2.04.97.3.15.5.22.57.35.07.13.07.74-.18 1.43z'/></svg>") no-repeat center / contain;
+  }
+  .trip-help-img {
+    width: 130px; height: 130px; object-fit: cover;
+    border-radius: 14px; flex-shrink: 0; box-shadow: 0 4px 16px rgba(20,32,26,0.15);
+  }
+  @media (max-width: 560px) {
+    .trip-help-inner { flex-direction: column; gap: 20px; align-items: flex-start; }
+    .trip-help-img { width: 80px; height: 80px; }
+  }
+
   /* ─── FINAL CTA ─── */
   .final-cta {
     background: var(--ink);
@@ -663,7 +703,7 @@
     max-width: 18ch;
     margin-inline: auto;
   }
-  .final-cta h2 em { font-style: italic; color: #9bd0ad; }
+  .final-cta h2 em { font-style: italic; color: #ea450e; }
   .final-cta p {
     font-size: 17px;
     color: rgba(255,255,255,0.78);
@@ -781,7 +821,7 @@
 <style>
   .feature-row { display: flex; gap: 14px; align-items: flex-start; padding: 16px 0; border-top: 1px solid var(--line); }
   .feature-row:last-of-type { border-bottom: 1px solid var(--line); margin-bottom: 24px; }
-  .feature-icon { flex-shrink: 0; width: 36px; height: 36px; border-radius: 8px; background: var(--green-soft); color: var(--green-deep); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-weight: 700; font-size: 15px; }
+  .feature-icon { flex-shrink: 0; width: 36px; height: 36px; border-radius: 8px; background: #fff3e6; color: #2F280B; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-weight: 700; font-size: 15px; }
   .feature-text strong { display: block; font-weight: 600; font-size: 15px; margin-bottom: 2px; }
   .feature-text span { font-size: 13.5px; color: var(--muted); line-height: 1.45; }
 </style>
@@ -862,35 +902,35 @@
   <div class="wrap">
     <div class="section-eyebrow">What Riders Say</div>
     <h2 class="section-title">The kind of trip that makes <em>the rest of Panama</em> feel slow.</h2>
-    <p class="section-sub" style="color:#cfe5d5;">Real travelers. Real rides. Quoted directly from our Tripadvisor page.</p>
+    <p class="section-sub" style="color:#ffede6;">Real travelers. Real rides. Quoted directly from our Tripadvisor page.</p>
 
     <div class="reviews-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 44px;">
       <div class="review" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 28px;">
-        <div class="review-stars" style="color: #c79b2c; font-size: 16px; letter-spacing: 2px; margin-bottom: 14px;">★★★★★</div>
+        <div class="review-stars" style="color: #ea450e; font-size: 16px; letter-spacing: 2px; margin-bottom: 14px;">★★★★★</div>
         <p class="review-text" style="font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 19px; line-height: 1.45; color: #fff; margin-bottom: 18px; letter-spacing: -0.3px;">"HIGHLY RECOMMEND! This is the best thing to do in Anton Valle! Carlos is THE MAN! He made the tour — we biked through the jungle, got deep into the mud, then went for a swim afterwards."</p>
-        <div class="review-meta" style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: #b9d3c2; letter-spacing: 0.3px;"><span style="color: #fff; font-weight: 600;">Derek Basch</span><span style="width: 3px; height: 3px; border-radius: 50%; background: #6dd29e; display: inline-block;"></span><span>February 2024</span></div>
+        <div class="review-meta" style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: #f5a860; letter-spacing: 0.3px;"><span style="color: #fff; font-weight: 600;">Derek Basch</span><span style="width: 3px; height: 3px; border-radius: 50%; background: #ea450e; display: inline-block;"></span><span>February 2024</span></div>
       </div>
       <div class="review" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 28px;">
-        <div class="review-stars" style="color: #c79b2c; font-size: 16px; letter-spacing: 2px; margin-bottom: 14px;">★★★★★</div>
+        <div class="review-stars" style="color: #ea450e; font-size: 16px; letter-spacing: 2px; margin-bottom: 14px;">★★★★★</div>
         <p class="review-text" style="font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 19px; line-height: 1.45; color: #fff; margin-bottom: 18px; letter-spacing: -0.3px;">"Carlos was a great guide, tailoring our trip to our interests and skill level. The mechanics custom-fit the well-maintained bikes to our builds. This was one of the highlights of our Panama trip."</p>
-        <div class="review-meta" style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: #b9d3c2; letter-spacing: 0.3px;"><span style="color: #fff; font-weight: 600;">Keith O</span><span style="width: 3px; height: 3px; border-radius: 50%; background: #6dd29e; display: inline-block;"></span><span>January 2025</span></div>
+        <div class="review-meta" style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: #f5a860; letter-spacing: 0.3px;"><span style="color: #fff; font-weight: 600;">Keith O</span><span style="width: 3px; height: 3px; border-radius: 50%; background: #ea450e; display: inline-block;"></span><span>January 2025</span></div>
       </div>
       <div class="review" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 28px;">
-        <div class="review-stars" style="color: #c79b2c; font-size: 16px; letter-spacing: 2px; margin-bottom: 14px;">★★★★★</div>
+        <div class="review-stars" style="color: #ea450e; font-size: 16px; letter-spacing: 2px; margin-bottom: 14px;">★★★★★</div>
         <p class="review-text" style="font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 19px; line-height: 1.45; color: #fff; margin-bottom: 18px; letter-spacing: -0.3px;">"The electric bikes were not only impeccably maintained but also user-friendly, catering to riders of all skill levels. The electric assist let us effortlessly ascend steep inclines while relishing the stunning scenery."</p>
-        <div class="review-meta" style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: #b9d3c2; letter-spacing: 0.3px;"><span style="color: #fff; font-weight: 600;">Emma Z</span><span style="width: 3px; height: 3px; border-radius: 50%; background: #6dd29e; display: inline-block;"></span><span>December 2023</span></div>
+        <div class="review-meta" style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: #f5a860; letter-spacing: 0.3px;"><span style="color: #fff; font-weight: 600;">Emma Z</span><span style="width: 3px; height: 3px; border-radius: 50%; background: #ea450e; display: inline-block;"></span><span>December 2023</span></div>
       </div>
       <div class="review" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 28px;">
-        <div class="review-stars" style="color: #c79b2c; font-size: 16px; letter-spacing: 2px; margin-bottom: 14px;">★★★★★</div>
+        <div class="review-stars" style="color: #ea450e; font-size: 16px; letter-spacing: 2px; margin-bottom: 14px;">★★★★★</div>
         <p class="review-text" style="font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 19px; line-height: 1.45; color: #fff; margin-bottom: 18px; letter-spacing: -0.3px;">"Wonderful way to tour El Valle. We visited several neighborhoods and the waterfalls. Carlos our guide was very informative. The e-bikes were a fun and relaxed way to explore the hilly terrain."</p>
-        <div class="review-meta" style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: #b9d3c2; letter-spacing: 0.3px;"><span style="color: #fff; font-weight: 600;">Nirmal B</span><span style="width: 3px; height: 3px; border-radius: 50%; background: #6dd29e; display: inline-block;"></span><span>May 2024</span></div>
+        <div class="review-meta" style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: #f5a860; letter-spacing: 0.3px;"><span style="color: #fff; font-weight: 600;">Nirmal B</span><span style="width: 3px; height: 3px; border-radius: 50%; background: #ea450e; display: inline-block;"></span><span>May 2024</span></div>
       </div>
     </div>
 
     <div class="reviews-footer" style="margin-top: 48px;">
       <span class="ta-inline" style="background: rgba(255,255,255,0.10); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.18); padding: 6px 10px; border-radius: 100px; display: inline-flex; align-items: center; gap: 6px;">
-        <span class="ta-bubbles" style="color: #6dd29e; font-size: 9px; letter-spacing: 2px;">●●●●●</span>
-        <span style="color: #cfe5d5; font-size: 10px; font-weight: 600; letter-spacing: 0.5px;"><strong style="color: #fff;">5.0</strong> · 35+ reviews on <strong style="color: #fff;">Tripadvisor</strong></span>
+        <span class="ta-bubbles" style="color: #25d366; font-size: 9px; letter-spacing: 2px;">●●●●●</span>
+        <span style="color: #ffede6; font-size: 10px; font-weight: 600; letter-spacing: 0.5px;"><strong style="color: #fff;">5.0</strong> · 35+ reviews on <strong style="color: #fff;">Tripadvisor</strong></span>
       </span>
     </div>
 
@@ -903,15 +943,15 @@
   .mid-cta-img { border-radius: 14px; overflow: hidden; aspect-ratio: 4/5; background: url('https://evalleybikes.com/wp-content/uploads/2025/01/image00022-scaled.jpeg') center/cover no-repeat; box-shadow: 0 30px 80px -20px rgba(0,0,0,0.5); }
   @media (max-width: 760px) { .mid-cta-grid { grid-template-columns: 1fr; } .mid-cta-img { aspect-ratio: 4/3; } }
 </style>
-<section style="background: var(--green-deep); color: #f7f5ee; padding: 72px 0;">
+<section style="background: #2F280B; color: #f7f5ee; padding: 72px 0;">
   <div class="wrap">
     <div class="mid-cta-grid">
       <div>
-        <div style="font-size: 11.5px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #9bd0ad; margin-bottom: 14px;">Ready to Explore?</div>
+        <div style="font-size: 11.5px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #f5a860; margin-bottom: 14px;">Ready to Explore?</div>
         <h2 style="font-family: var(--serif); font-weight: 600; font-size: clamp(30px, 4vw, 44px); line-height: 1.1; letter-spacing: -0.7px; color: #fff; margin-bottom: 18px;">
-          Ride inside a volcano. <em style="font-style: italic; color: #9bd0ad;">Book your crater tour.</em>
+          Ride inside a volcano. <em style="font-style: italic; color: #ea450e;">Book your crater tour.</em>
         </h2>
-        <p style="font-size: 17px; color: #cfe5d5; max-width: 52ch; line-height: 1.6; margin-bottom: 32px;">
+        <p style="font-size: 17px; color: #ffede6; max-width: 52ch; line-height: 1.6; margin-bottom: 32px;">
           Waterfalls, jungle trails, the India Dormida ridge at sunset — all on a bike at your own pace with a GPS audio guide. No tour groups to keep up with. Just you, the crater, and the best light of the day.
         </p>
 
@@ -930,10 +970,10 @@
           </div>
         </div>
 
-        <a href="https://wa.me/50768852907?text=Hi%20E-Valley%20Bikes!%20I'd%20like%20to%20book%20a%20bike%20tour%20in%20El%20Valle." style="display: inline-flex; align-items: center; gap: 9px; padding: 18px 32px; border-radius: 100px; font-family: var(--sans); font-size: 17px; font-weight: 600; letter-spacing: 0.2px; border: none; cursor: pointer; background: #25d366; color: #fff; box-shadow: 0 8px 24px rgba(37,211,102,0.35); transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;">
+        <a href="https://wa.me/50768852907?text=Hi%20E-Valley%20Bikes!%20I'd%20like%20to%20book%20a%20bike%20tour%20in%20El%20Valle." style="display: inline-flex; align-items: center; gap: 9px; padding: 18px 32px; border-radius: 100px; font-family: var(--sans); font-size: 17px; font-weight: 600; letter-spacing: 0.2px; border: none; cursor: pointer; background: #ea450e; color: #fff; box-shadow: 0 8px 24px rgba(234,69,14,0.35); transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;">
           <span class="wa-icon"></span> Book Your Crater Tour
         </a>
-        <p style="font-size: 13px; color: #b9d3c2; margin-top: 16px; letter-spacing: 0.3px;">Message us on WhatsApp · Reply in minutes · Pay when you arrive</p>
+        <p style="font-size: 13px; color: #f5a860; margin-top: 16px; letter-spacing: 0.3px;">Message us on WhatsApp · Reply in minutes · Pay when you arrive</p>
       </div>
       <div class="mid-cta-img"></div>
     </div>
@@ -982,10 +1022,26 @@
       </div>
     </div>
 
-    <div style="text-align:center; margin-top:40px;">
-      <a class="btn btn-dark btn-lg" href="https://wa.me/50768852907?text=Hi%20E-Valley%20Bikes!%20I'd%20like%20to%20book%20a%20bike%20tour%20in%20El%20Valle.">
-        <span class="wa-icon"></span> Ask which tour fits you
-      </a>
+  </div>
+</section>
+
+<!-- TRIP HELP -->
+<section class="trip-help">
+  <div class="wrap">
+    <div class="trip-help-inner">
+      <div class="trip-help-text">
+        <p class="trip-help-eyebrow">While you're planning your visit</p>
+        <h3 class="trip-help-heading">Need a tip about El Valle?</h3>
+        <p class="trip-help-body">
+          Still figuring out <strong>where to stay</strong> — a quiet guesthouse or something with a view? Not sure which <strong>restaurant</strong> is worth a sit-down dinner, or where to grab the best <strong>breakfast</strong> before the ride? Want to know which <strong>local spots</strong> most visitors miss? Drop us a message. We know El Valle well and we're happy to help — no tour required.
+        </p>
+      </div>
+      <div class="trip-help-cta">
+        <a class="btn btn-help" href="https://wa.me/50768852907?text=Hi!%20I%20have%20a%20question%20about%20visiting%20El%20Valle.">
+          <span class="wa-icon"></span> Ask us anything
+        </a>
+      </div>
+      <img class="trip-help-img" src="https://evalleybikes.com/wp-content/uploads/2025/01/image00022-scaled.jpeg" alt="El Valle de Antón" loading="lazy">
     </div>
   </div>
 </section>

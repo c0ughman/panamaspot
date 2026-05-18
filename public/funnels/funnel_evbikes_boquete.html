@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="E-bike tours in Boquete, Panama. Premium Orbea e-bikes, coffee farm tours, and the Lost Waterfalls — all the hills made easy. Book on WhatsApp.">
-<title>Bike Tours in Boquete, Panama — E-Valley Bikes</title>
+<title>Bike Tours in Boquete, Panama — E-Valley Bikes Boquete</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -60,8 +60,8 @@
     position: relative;
     min-height: 92vh;
     background:
-      linear-gradient(180deg, rgba(20,32,26,0.125) 0%, rgba(20,32,26,0.275) 60%, rgba(20,32,26,0.425) 100%),
-      url('https://images.booqablecdn.com/uploads/8979ffef14a1bdb06611230ae9a36a01/photo/photo/2dffc872-6ef2-42ce-9cd9-80704386d81d/1734623947-983444268809418-0021-4065/upload.jpeg') center calc(50% - 100px)/cover no-repeat;
+      linear-gradient(180deg, rgba(20,32,26,0.25) 0%, rgba(20,32,26,0.55) 60%, rgba(20,32,26,0.85) 100%),
+      url('https://images.booqablecdn.com/assets/e3a73f98-a1f6-4362-bdd5-ce70a7f0fc35/cmindhxa6001v3b7mdeu1g285(2).WhatsAppImage20251201at10.58.501-01dc3885b11660bdc0dd241be9bd948396b56bd0eb94b23d5c7e6dac91b2ae4c.jpeg') center/cover no-repeat;
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -101,11 +101,7 @@
     width: 6px; height: 6px; border-radius: 50%;
     background: #6dd29e; box-shadow: 0 0 0 3px rgba(109,210,158,0.25);
   }
-  .hero-content { position: relative; z-index: 2; box-sizing: border-box; }
-  @media (min-width: 561px) {
-    .hero-content { position: absolute; left: 0; right: 0; bottom: 56px; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-    .hero-content > * { max-width: 560px; }
-  }
+  .hero-content { position: relative; z-index: 2; }
   .eyebrow {
     display: inline-block;
     font-size: 12px;
@@ -141,9 +137,8 @@
     max-width: 560px;
     margin-bottom: 28px;
     font-weight: 400;
-    text-align: left;
   }
-  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; justify-content: flex-start; }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
   .hero-meta {
     display: flex;
     gap: 22px;
@@ -168,120 +163,6 @@
     font-size: 11px; font-weight: 700;
     flex-shrink: 0;
   }
-
-  /* ─── HERO BADGES (TripAdvisor + Bilingual) ─── */
-  .hero-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    align-items: center;
-    margin-bottom: 22px;
-  }
-  .ta-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 14px 8px 10px;
-    background: #fff;
-    border-radius: 100px;
-    text-decoration: none;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.18);
-    transition: transform 0.15s ease, box-shadow 0.2s ease;
-    font-family: var(--sans);
-  }
-  .ta-badge:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0,0,0,0.25); }
-  .ta-owl { width: 28px; height: 22px; flex-shrink: 0; }
-  .ta-info { display: flex; flex-direction: column; gap: 2px; line-height: 1.1; }
-  .ta-bubbles {
-    color: #00aa6c;
-    font-size: 11px;
-    letter-spacing: 1.5px;
-    line-height: 1;
-  }
-  .ta-text {
-    color: #1a1a1a;
-    font-size: 11.5px;
-    font-weight: 500;
-    letter-spacing: 0.1px;
-  }
-  .ta-text strong { font-weight: 700; }
-  .lang-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    padding: 9px 14px;
-    background: rgba(255,255,255,0.12);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.25);
-    border-radius: 100px;
-    color: #fff;
-    font-size: 11.5px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-  }
-  .lang-icon { font-size: 10px; }
-
-  /* ─── REVIEWS FOOTER (TripAdvisor link under reviews grid) ─── */
-  .reviews-footer {
-    margin-top: 36px;
-    text-align: center;
-  }
-  .ta-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 22px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.18);
-    border-radius: 100px;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.2px;
-    text-decoration: none;
-    transition: background 0.15s ease, border-color 0.15s ease;
-  }
-  .ta-link:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.35); }
-  .ta-link strong { font-weight: 700; }
-  .ta-link .ta-owl { width: 26px; height: 20px; }
-
-  /* ─── HERO PILLS (eyebrow + Tripadvisor + Bilingual) ─── */
-  .hero-pills-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 10px;
-    align-items: center;
-    justify-content: flex-start;
-  }
-  .hero-pills-row:last-of-type { margin-bottom: 18px; }
-  .hero-pills-row .eyebrow,
-  .hero-pills-row .ta-inline,
-  .hero-pills-row .lang-pill { margin-bottom: 0; }
-  .ta-inline, .lang-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 10px;
-    background: rgba(255,255,255,0.10);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.18);
-    border-radius: 100px;
-    color: #cfe5d5;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
-  .ta-inline .ta-bubbles {
-    color: #6dd29e;
-    font-size: 9px;
-    letter-spacing: 2px;
-  }
-  .ta-inline strong { color: #fff; font-weight: 700; font-size: 10px; }
-  .lang-pill .lang-icon { font-size: 13px; letter-spacing: 0; }
 
   /* ─── BUTTONS ─── */
   .btn {
@@ -341,7 +222,7 @@
   .section-title {
     font-family: var(--serif);
     font-weight: 600;
-    font-size: clamp(36px, 5.5vw, 56px);
+    font-size: clamp(30px, 4vw, 44px);
     line-height: 1.1;
     letter-spacing: -0.7px;
     color: var(--ink);
@@ -556,7 +437,7 @@
   .xp-tall { grid-row: span 2; aspect-ratio: 1/2; }
 
   /* ─── HOW ─── */
-  .how { background: #fff; }
+  .how { background: var(--cream-deep); }
   .how-steps {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -719,10 +600,8 @@
     section { padding: 56px 0; }
     .hero { min-height: 88vh; padding: 24px 0 40px; }
     .hero-meta { gap: 14px; margin-top: 22px; }
-    .hero-ctas { flex-direction: column; align-items: stretch; justify-content: center; }
+    .hero-ctas { flex-direction: column; align-items: stretch; }
     .hero-ctas .btn { width: 100%; }
-    .hero-pills-row { justify-content: center; }
-    .hero-sub { text-align: center; }
     .tour-body { padding: 20px 20px 22px; }
     .offer-card { padding: 24px; }
     .review { padding: 22px 20px; }
@@ -747,16 +626,10 @@
   </div>
 
   <div class="wrap hero-content">
-    <div class="hero-pills-row">
-      <span class="ta-inline">
-        <span class="ta-bubbles">●●●●●</span>
-        <span><strong>5.0</strong> · 80+ reviews on <strong>Tripadvisor</strong></span>
-      </span>
-      <span class="lang-pill"><span class="lang-icon">🌐</span>English &amp; Spanish spoken</span>
-    </div>
-    <h1 class="hero-title">Bike tours in <em>Boquete.</em></h1>
+    <span class="eyebrow">E-Bike Tours · Boquete</span>
+    <h1 class="hero-title">The hills of Boquete, <em>made easy.</em></h1>
     <p class="hero-sub">
-      The real Boquete at your pace. E-bikes flatten every climb — stop wherever you want, ride further than you thought you could. <strong>Coffee farms, cloud forest, the Lost Waterfalls.</strong>
+      Premium Orbea e-bikes that flatten every climb. Coffee farms, cloud forest, the Lost Waterfalls — all the views, none of the burn. Built for travelers who want the real Boquete in a single morning.
     </p>
     <div class="hero-ctas">
       <a class="btn btn-primary btn-lg" href="https://wa.me/50769833141?text=Hi%20E-Valley%20Bikes%20Boquete!%20I'd%20like%20to%20book%20a%20bike%20tour.">
@@ -775,39 +648,43 @@
 <!-- OFFER -->
 <section class="offer">
   <div class="wrap">
-    <div class="section-eyebrow">A Better Kind of Tour</div>
-    <h2 class="section-title" style="max-width: none;">A bike tour is the most <em>dynamic</em> way to see Boquete.</h2>
-    <p class="section-sub" style="max-width: none;">Coffee farms, cloud forest, valley roads — all at your own pace, with an e-bike that does the climbing for you. Stop where the light catches your eye, linger as long as you want, and ride up to corners of Boquete most visitors never see.</p>
+    <div class="section-eyebrow">The Offer</div>
+    <h2 class="section-title">Top-tier e-bikes. <em>Top-tier views.</em></h2>
+    <p class="section-sub">A premium Orbea e-bike, fully charged, with all the gear that matters. Pick a guided tour or build your own ride. Pay at the end — no deadlines, no pressure.</p>
 
     <div class="offer-grid">
       <div class="offer-img" role="img" aria-label="Orbea e-bike on a Boquete trail"></div>
 
       <div class="offer-card">
-        <h3>Why riders pick the bike</h3>
-        <p class="card-sub">Four reasons travelers keep choosing the bike.</p>
+        <h3>What's in every ride</h3>
+        <p class="card-sub">No upcharges, no surprises. Just bike + gear + a route worth showing.</p>
 
         <div class="feature-row">
-          <div class="feature-icon">💪</div>
+          <div class="feature-icon">⚡</div>
           <div class="feature-text">
-            <strong>Three hours on a bike = a full day on foot.</strong>
+            <strong>Premium Orbea e-bike</strong>
+            <span>Fully charged, dialed in for Boquete's hills.</span>
           </div>
         </div>
         <div class="feature-row">
-          <div class="feature-icon">🚲</div>
+          <div class="feature-icon">⛑</div>
           <div class="feature-text">
-            <strong>Farm tracks and valley shortcuts no car can reach.</strong>
+            <strong>Full safety kit</strong>
+            <span>Helmet, glasses, gloves, water bottle.</span>
           </div>
         </div>
         <div class="feature-row">
-          <div class="feature-icon">🎯</div>
+          <div class="feature-icon">📍</div>
           <div class="feature-text">
-            <strong>Geisha coffee from the source. Routes only locals take.</strong>
+            <strong>Pre-designed routes</strong>
+            <span>Hand-picked rides — scenic, safe, easy to follow.</span>
           </div>
         </div>
         <div class="feature-row">
-          <div class="feature-icon">⏱</div>
+          <div class="feature-icon">🤝</div>
           <div class="feature-text">
-            <strong>Stop for photos as long as you want. The bike waits.</strong>
+            <strong>Team support on call</strong>
+            <span>Quick coaching session before you roll, help on the line if you need it.</span>
           </div>
         </div>
 
@@ -820,28 +697,43 @@
   </div>
 </section>
 
-<!-- HOW -->
-<section class="how">
+<!-- TOURS -->
+<section id="tours">
   <div class="wrap">
-    <h2 class="section-title">How it Works</h2>
+    <div class="section-eyebrow">Pick Your Tour</div>
+    <h2 class="section-title">Three rides. <em>One unforgettable Boquete.</em></h2>
+    <p class="section-sub">Coffee, panoramic viewpoints, or a self-paced explore — all on a premium e-bike that does the climbing for you.</p>
 
-    <div class="how-steps">
-      <div>
-        <div class="step-num">01</div>
-        <div class="step-title">Message us on WhatsApp</div>
-        <div class="step-desc">Tell us the day, the headcount, and the tour. We confirm in minutes.</div>
+    <div class="tours-grid">
+      <div class="tour-card">
+        <div class="tour-img" style="background-image:url('https://images.booqablecdn.com/uploads/8979ffef14a1bdb06611230ae9a36a01/photo/photo/666becca-f5a4-495c-ad7b-aab2f3302809/1734624084-457447415407503-0032-7472/upload.jpeg');"></div>
+        <div class="tour-body">
+          <div class="tour-tag">Most Loved · Guided</div>
+          <div class="tour-name">Coffee Tasting Tour</div>
+          <p class="tour-desc">Ride out to a working coffee farm. Learn how the world's best beans get made. Finish with a tasting at Altieri Specialty Coffee — yes, the geisha ice cream included.</p>
+          <span class="tour-link">Book this tour</span>
+        </div>
       </div>
-      <div>
-        <div class="step-num">02</div>
-        <div class="step-title">Show up in Boquete</div>
-        <div class="step-desc">Quick coaching session, gear on, e-bike charged and ready to roll.</div>
+      <div class="tour-card">
+        <div class="tour-img" style="background-image:url('https://images.booqablecdn.com/uploads/8979ffef14a1bdb06611230ae9a36a01/photo/photo/2dffc872-6ef2-42ce-9cd9-80704386d81d/1734623947-983444268809418-0021-4065/upload.jpeg');"></div>
+        <div class="tour-body">
+          <div class="tour-tag">Scenic · Guided</div>
+          <div class="tour-name">Panoramic Viewpoint Tour</div>
+          <p class="tour-desc">Lost Waterfalls, Library Park, the highland viewpoints locals actually love. A guided ride to the spots most visitors never find.</p>
+          <span class="tour-link">Book this tour</span>
+        </div>
       </div>
-      <div>
-        <div class="step-num">03</div>
-        <div class="step-title">Ride. Then pay.</div>
-        <div class="step-desc">Settle up at the end of the ride. No deposit, no deadlines, no pressure.</div>
+      <div class="tour-card">
+        <div class="tour-img" style="background-image:url('https://images.booqablecdn.com/uploads/8979ffef14a1bdb06611230ae9a36a01/photo/photo/62cece85-3522-4c34-a359-2caee822b3aa/1734623566-85798898189466-0018-7594/upload.jpeg');"></div>
+        <div class="tour-body">
+          <div class="tour-tag">Freestyle · Self-Guided</div>
+          <div class="tour-name">E-Bike Rental, Your Route</div>
+          <p class="tour-desc">Hourly or full-day. Take a recommended route or wander. Come back when you're done. The e-bike means hills don't decide your day.</p>
+          <span class="tour-link">Reserve a bike</span>
+        </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -850,7 +742,7 @@
   <div class="wrap">
     <div class="section-eyebrow">From Real Riders</div>
     <h2 class="section-title">Travelers <em>keep saying the same thing.</em></h2>
-    <p class="section-sub">Real people, real rides. Quoted directly from our Tripadvisor page.</p>
+    <p class="section-sub">Quoted from reviewers on our booking page. Real people, real rides — Boquete 2025.</p>
 
     <div class="reviews-grid">
       <div class="review">
@@ -875,73 +767,72 @@
       </div>
     </div>
 
-  </div>
-</section>
-
-<!-- READY TO RIDE? -->
-<style>
-  .mid-cta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
-  .mid-cta-img { border-radius: 14px; overflow: hidden; aspect-ratio: 4/5; background: url('https://images.booqablecdn.com/uploads/8979ffef14a1bdb06611230ae9a36a01/photo/photo/666becca-f5a4-495c-ad7b-aab2f3302809/1734624084-457447415407503-0032-7472/upload.jpeg') center/cover no-repeat; box-shadow: 0 30px 80px -20px rgba(0,0,0,0.5); }
-  @media (max-width: 760px) { .mid-cta-grid { grid-template-columns: 1fr; } .mid-cta-img { aspect-ratio: 4/3; } }
-</style>
-<section style="background: var(--green-deep); color: #f7f5ee; padding: 72px 0;">
-  <div class="wrap">
-    <div class="mid-cta-grid">
+    <div class="proof-stat-row">
       <div>
-        <div style="font-size: 11.5px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #9bd0ad; margin-bottom: 14px;">Ready to Ride?</div>
-        <h2 style="font-family: var(--serif); font-weight: 600; font-size: clamp(30px, 4vw, 44px); line-height: 1.1; letter-spacing: -0.7px; color: #fff; margin-bottom: 18px;">
-          E-bikes that flatten every hill. <em style="font-style: italic; color: #9bd0ad;">Book now.</em>
-        </h2>
-        <p style="font-size: 17px; color: #cfe5d5; max-width: 52ch; line-height: 1.6; margin-bottom: 32px;">
-          Don't spend your morning fighting climbs. Spend it riding through coffee farms, cloud forests, and viewpoints that make every traveler stop and stare. Premium Orbea e-bikes, helmet, gloves — everything's included.
-        </p>
-        <a href="https://wa.me/50769833141?text=Hi%20E-Valley%20Bikes%20Boquete!%20I'd%20like%20to%20book%20a%20bike%20tour." style="display: inline-flex; align-items: center; gap: 9px; padding: 18px 32px; border-radius: 100px; font-family: var(--sans); font-size: 17px; font-weight: 600; letter-spacing: 0.2px; border: none; cursor: pointer; background: #25d366; color: #fff; box-shadow: 0 8px 24px rgba(37,211,102,0.35); transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;">
-          <span class="wa-icon"></span> Book Your E-Bike Tour
-        </a>
-        <p style="font-size: 13px; color: #b9d3c2; margin-top: 16px; letter-spacing: 0.3px;">Message us on WhatsApp · Reply in minutes · Pay when you arrive</p>
+        <div class="stat-num">Orbea</div>
+        <div class="stat-label">Premium e-bike fleet — top-tier components</div>
       </div>
-      <div class="mid-cta-img"></div>
+      <div>
+        <div class="stat-num">8AM–5PM</div>
+        <div class="stat-label">Wednesday through Monday — easy to book around</div>
+      </div>
+      <div>
+        <div class="stat-num">Pay later</div>
+        <div class="stat-label">No deposit. Pay when you arrive.</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- TOURS -->
-<section id="tours">
+<!-- EXPERIENCE -->
+<section class="experience">
   <div class="wrap">
-    <div class="section-eyebrow">Pick Your Tour</div>
-    <h2 class="section-title">Three rides. <em>One unforgettable Boquete.</em></h2>
-    <p class="section-sub">Coffee, panoramic viewpoints, or a self-paced explore — all on a premium e-bike that does the climbing for you.</p>
+    <div class="section-eyebrow">What You'll See</div>
+    <h2 class="section-title">Coffee country. <em>Cloud forest. Real Boquete.</em></h2>
 
-    <div class="tours-grid">
-      <div class="tour-card">
-        <div class="tour-img" style="background-image:url('https://images.booqablecdn.com/uploads/8979ffef14a1bdb06611230ae9a36a01/photo/photo/666becca-f5a4-495c-ad7b-aab2f3302809/1734624084-457447415407503-0032-7472/upload.jpeg');"></div>
-        <div class="tour-body">
-          <div class="tour-tag">Most Loved · Guided</div>
-          <div class="tour-name">Coffee Tasting Tour</div>
-          <p class="tour-desc">Ride to a working coffee farm. Learn how <strong>Geisha — the most expensive coffee in the world</strong> — gets made. Tasting at Altieri Specialty Coffee, geisha ice cream included. ~3 hours.</p>
-          <span class="tour-link">Book this tour</span>
-        </div>
+    <div class="xp-grid">
+      <div class="xp-card xp-tall" style="background-image:url('https://images.booqablecdn.com/uploads/8979ffef14a1bdb06611230ae9a36a01/photo/photo/2dffc872-6ef2-42ce-9cd9-80704386d81d/1734623947-983444268809418-0021-4065/upload.jpeg');">
+        <div class="xp-card-label">Highland viewpoints</div>
       </div>
-      <div class="tour-card">
-        <div class="tour-img" style="background-image:url('https://images.booqablecdn.com/uploads/8979ffef14a1bdb06611230ae9a36a01/photo/photo/2dffc872-6ef2-42ce-9cd9-80704386d81d/1734623947-983444268809418-0021-4065/upload.jpeg');"></div>
-        <div class="tour-body">
-          <div class="tour-tag">Scenic · Guided</div>
-          <div class="tour-name">Panoramic Viewpoint Tour</div>
-          <p class="tour-desc">Lost Waterfalls, Library Park, the highland viewpoints locals actually love. A guided ride to the spots most visitors never find.</p>
-          <span class="tour-link">Book this tour</span>
-        </div>
+      <div class="xp-card" style="background-image:url('https://images.booqablecdn.com/uploads/8979ffef14a1bdb06611230ae9a36a01/photo/photo/666becca-f5a4-495c-ad7b-aab2f3302809/1734624084-457447415407503-0032-7472/upload.jpeg');">
+        <div class="xp-card-label">Coffee farm tasting</div>
       </div>
-      <div class="tour-card">
-        <div class="tour-img" style="background-image:url('https://images.booqablecdn.com/uploads/8979ffef14a1bdb06611230ae9a36a01/photo/photo/62cece85-3522-4c34-a359-2caee822b3aa/1734623566-85798898189466-0018-7594/upload.jpeg');"></div>
-        <div class="tour-body">
-          <div class="tour-tag">Freestyle · Self-Guided</div>
-          <div class="tour-name">E-Bike Rental, Your Route</div>
-          <p class="tour-desc">Hourly or full-day. Take a recommended route or wander. Come back when you're done. The e-bike means hills don't decide your day.</p>
-          <span class="tour-link">Reserve a bike</span>
-        </div>
+      <div class="xp-card" style="background-image:url('https://images.booqablecdn.com/uploads/8979ffef14a1bdb06611230ae9a36a01/photo/photo/62cece85-3522-4c34-a359-2caee822b3aa/1734623566-85798898189466-0018-7594/upload.jpeg');">
+        <div class="xp-card-label">The Lost Waterfalls</div>
+      </div>
+      <div class="xp-card" style="background-image:url('https://images.booqablecdn.com/uploads/8979ffef14a1bdb06611230ae9a36a01/photo/photo/8a169759-c918-490c-a241-32a65889a45a/1758465924-82972077680553-0022-7452/upload.png');">
+        <div class="xp-card-label">Boquete Library Park</div>
+      </div>
+      <div class="xp-card" style="background-image:url('https://images.booqablecdn.com/assets/e3a73f98-a1f6-4362-bdd5-ce70a7f0fc35/cmgchxnl4026m3b87enyxgemg(2).image-a94b270fb4050e0ab1227fa35c705488bb2d832de6525ea8914dd661cf7321c8.webp');">
+        <div class="xp-card-label">Top-tier Orbea fleet</div>
       </div>
     </div>
+  </div>
+</section>
 
+<!-- HOW -->
+<section class="how">
+  <div class="wrap">
+    <div class="section-eyebrow">How It Works</div>
+    <h2 class="section-title">Three steps. <em>That's the whole thing.</em></h2>
+
+    <div class="how-steps">
+      <div>
+        <div class="step-num">01</div>
+        <div class="step-title">Message us on WhatsApp</div>
+        <div class="step-desc">Tell us the day, the headcount, and the tour. We confirm in minutes.</div>
+      </div>
+      <div>
+        <div class="step-num">02</div>
+        <div class="step-title">Show up in Boquete</div>
+        <div class="step-desc">Quick coaching session, gear on, e-bike charged and ready to roll.</div>
+      </div>
+      <div>
+        <div class="step-num">03</div>
+        <div class="step-title">Ride. Then pay.</div>
+        <div class="step-desc">Settle up at the end of the ride. No deposit, no deadlines, no pressure.</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -993,18 +884,6 @@
         <div class="faq-q">Is it safe to go solo?</div>
         <div class="faq-a">Yes — and it's something travelers actually mention in reviews. Routes are pre-designed, gear is included, and our team is reachable while you ride.</div>
       </div>
-      <div class="faq-item">
-        <div class="faq-q">How fit do I need to be?</div>
-        <div class="faq-a">If you can ride a regular bike on flat ground, you're set. The e-bike does the climbing — Rick (5★, July 2025) said "the e-bike makes it doable." For the coffee tour, that's all you need. The panoramic ride asks a bit more, but never to the point of hurting.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">What if it rains?</div>
-        <div class="faq-a">If the weather is dangerous to ride, we cancel and refund you in full — or reschedule for any day that works for you, no questions. Light rain doesn't stop us, but the call is yours: if you'd rather wait it out, we'll move the ride. Message us on WhatsApp the morning of and we'll sort it.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">Do you speak English?</div>
-        <div class="faq-a">Yes. Our team is bilingual — English and Spanish. The safety briefing, the routes, and everything you need to know are in English.</div>
-      </div>
     </div>
   </div>
 </section>
@@ -1039,21 +918,6 @@
     <span class="wa-icon"></span>
   </a>
 </div>
-
-<script>
-  const words = ['exciting', 'dynamic', 'fun', 'unforgettable', 'thrilling'];
-  let currentIndex = 0;
-  const emTag = document.querySelector('.offer .section-title em');
-
-  if (emTag) {
-    function cycleWord() {
-      emTag.textContent = words[currentIndex];
-      currentIndex = (currentIndex + 1) % words.length;
-    }
-    cycleWord();
-    setInterval(cycleWord, 2500);
-  }
-</script>
 
 </body>
 </html>
