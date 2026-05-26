@@ -2,9 +2,21 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { HomeHeader } from "@/components/home-header";
+import { HomeHeader, type Locale } from "@/components/home-header";
 
-export function HeroParallax({ bgImage }: { bgImage: string }) {
+export function HeroParallax({
+  bgImage,
+  locale = "en",
+  subtitle = "The complete guide to traveling in Panama — nine provinces, three coasts, written by people who live here.",
+  ctaLabel = "Start exploring →",
+  ctaHref = "#cat-regions",
+}: {
+  bgImage: string;
+  locale?: Locale;
+  subtitle?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+}) {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const [hasBackground, setHasBackground] = useState(false);
@@ -38,19 +50,16 @@ export function HeroParallax({ bgImage }: { bgImage: string }) {
         ref={headerRef}
         className={`header-wrapper ${hasBackground ? "has-background" : ""}`}
       >
-        <HomeHeader />
+        <HomeHeader locale={locale} />
       </div>
       <div className="home-hero-content container">
         <h1 className="home-hero-title">
           Panam<em>á</em>
           <span className="hero-accent">.</span>
         </h1>
-        <p className="home-hero-sub">
-          The complete guide to traveling in Panama — nine provinces, three
-          coasts, written by people who live here.
-        </p>
-        <Link href="#cat-regions" className="home-hero-btn">
-          Start exploring →
+        <p className="home-hero-sub">{subtitle}</p>
+        <Link href={ctaHref} className="home-hero-btn">
+          {ctaLabel}
         </Link>
       </div>
     </section>

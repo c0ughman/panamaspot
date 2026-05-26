@@ -1,18 +1,55 @@
 import Link from "next/link";
+import { LangToggle } from "@/components/lang-toggle";
 
-export function HomeHeader() {
+export type Locale = "en" | "es";
+
+/* Header nav, localized per language. English points at the root tree,
+   Spanish at the /es tree. Add new nav items in both maps. */
+const NAV: Record<Locale, { label: string; href: string }[]> = {
+  en: [
+    { label: "Destinations", href: "/#cat-regions" },
+    { label: "Eco-tourism", href: "/#cat-activities" },
+    { label: "Guides", href: "/articles/sendero-los-quetzales" },
+    { label: "Plan a trip", href: "/#cat-destinations" },
+  ],
+  es: [
+    { label: "Destinos", href: "/es#cat-regions" },
+    { label: "Ecoturismo", href: "/es#cat-activities" },
+    { label: "Guías", href: "/es#cat-destinations" },
+    { label: "Planifica tu viaje", href: "/es#cat-destinations" },
+  ],
+};
+
+const SEARCH_LABEL: Record<Locale, string> = {
+  en: "Search guides",
+  es: "Buscar guías",
+};
+
+export function HomeHeader({
+  locale = "en",
+  enHref,
+  esHref,
+}: {
+  locale?: Locale;
+  /* Optional explicit language-switch targets (for pages without a simple
+     prefix counterpart, e.g. articles). Defaults to prefix mapping. */
+  enHref?: string;
+  esHref?: string;
+}) {
+  const home = locale === "es" ? "/es" : "/";
   return (
     <header className="home-header">
       <div className="home-header-inner container">
-        <Link href="/" className="home-brand">
+        <Link href={home} className="home-brand">
           <span className="brand-mark" />
           Panama<span style={{ color: "var(--terra)" }}>spot</span>
         </Link>
         <nav className="home-nav">
-          <Link href="/#cat-regions">Destinations</Link>
-          <Link href="/#cat-activities">Eco-tourism</Link>
-          <Link href="/articles/sendero-los-quetzales">Guides</Link>
-          <Link href="/#cat-destinations">Plan a trip</Link>
+          {NAV[locale].map((item) => (
+            <Link key={item.label} href={item.href}>
+              {item.label}
+            </Link>
+          ))}
         </nav>
         <div className="home-header-right">
           <div className="home-search" role="search" aria-hidden="true">
@@ -28,10 +65,10 @@ export function HomeHeader() {
               <circle cx="11" cy="11" r="7" />
               <path d="m21 21-4.3-4.3" />
             </svg>
-            <span className="home-search-label">Search guides</span>
+            <span className="home-search-label">{SEARCH_LABEL[locale]}</span>
             <kbd>⌘K</kbd>
           </div>
-          <span className="home-lang home-lang--static">EN / ES</span>
+          <LangToggle enHref={enHref} esHref={esHref} />
         </div>
       </div>
     </header>

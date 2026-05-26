@@ -1,7 +1,9 @@
 import Link from "next/link";
+import { SiteFooter } from "@/components/site-footer";
 
 export default function NotFound() {
   return (
+    <>
     <main className="container" style={{ padding: "120px 0 160px" }}>
       <p
         className="mono"
@@ -32,5 +34,7 @@ export default function NotFound() {
         </Link>
       </div>
     </main>
+    <SiteFooter locale="en" />
+    </>
   );
 }

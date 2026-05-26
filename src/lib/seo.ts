@@ -12,6 +12,9 @@ type BuildMetadataInput = {
   publishedTime?: string;
   modifiedTime?: string;
   authors?: string[];
+  ogLocale?: string;
+  /* hreflang alternates, e.g. { "en": "/", "es": "/es" } — values are paths. */
+  languages?: Record<string, string>;
 };
 
 export function buildMetadata({
@@ -25,14 +28,26 @@ export function buildMetadata({
   publishedTime,
   modifiedTime,
   authors,
+  ogLocale,
+  languages,
 }: BuildMetadataInput): Metadata {
   const url = `${siteConfig.url}${path.startsWith("/") ? path : `/${path}`}`;
   const image = ogImage || siteConfig.defaultOgImage;
+  const abs = (p: string) => `${siteConfig.url}${p.startsWith("/") ? p : `/${p}`}`;
 
   return {
     title: absoluteTitle ? { absolute: title } : title,
     description,
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      ...(languages
+        ? {
+            languages: Object.fromEntries(
+              Object.entries(languages).map(([lang, p]) => [lang, abs(p)]),
+            ),
+          }
+        : {}),
+    },
     robots: noindex
       ? { index: false, follow: false }
       : { index: true, follow: true },
@@ -42,7 +57,7 @@ export function buildMetadata({
       title,
       description,
       siteName: siteConfig.name,
-      locale: siteConfig.locale,
+      locale: ogLocale || siteConfig.locale,
       images: [{ url: image }],
       ...(type === "article" && publishedTime ? { publishedTime } : {}),
       ...(type === "article" && modifiedTime ? { modifiedTime } : {}),

@@ -17,8 +17,14 @@
   /* Backgrounds */
   --bg: #ffffff;
   --bg-warm: #ffffff;
+  --cream: #fef9f9;
   --paper: #ffffff;
   --paper-deep: #ffffff;
+  --border-light: #e8e8e8;
+
+  /* Green theme tokens — used by the green page template (data-theme="green") */
+  --green: #15663f;
+  --green-deep: #0e4d2f;
 
   /* Navy ink — primary text and dark surfaces (footer, CTA) */
   --ink: #072357;
@@ -48,8 +54,10 @@
   --serif: var(--font-instrument-serif), "Cormorant Garamond", Georgia, serif;
   --sans: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
   --mono: var(--font-jetbrains-mono), "IBM Plex Mono", ui-monospace, monospace;
+  --font-display: var(--font-instrument-serif), "Cormorant Garamond", Georgia, serif;
 
   --maxw: 1320px;
+  --art-sidebar: 216px;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -494,6 +502,23 @@ img { display: block; max-width: 100%; }
   cursor: default;
   opacity: 0.75;
 }
+/* EN / ES toggle: two links + a separator inside the pill. The current
+   locale is shown solid; the other is dimmed until hover. */
+.home-lang--toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.home-lang--toggle .lang-opt {
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 500;
+  transition: color 0.15s;
+}
+.home-lang--toggle .lang-opt:hover,
+.home-lang--toggle .lang-opt.active {
+  color: #fff;
+}
+.home-lang--toggle .lang-sep { color: rgba(255, 255, 255, 0.4); }
 @media (max-width: 1080px) {
   .home-search { min-width: 0; padding: 8px 10px; }
   .home-search-label,
@@ -548,6 +573,10 @@ img { display: block; max-width: 100%; }
   border-color: var(--rule);
   color: var(--ink-soft);
 }
+.header-wrapper.has-background .lang-opt { color: var(--ink-mute); }
+.header-wrapper.has-background .lang-opt:hover,
+.header-wrapper.has-background .lang-opt.active { color: var(--ink); }
+.header-wrapper.has-background .lang-sep { color: var(--ink-mute); }
 .header-wrapper.has-background .home-lang:hover {
   background: var(--rule-soft);
   color: var(--ink);
@@ -782,7 +811,7 @@ img { display: block; max-width: 100%; }
 /* ===== BENTO — varied card types ===== */
 .home-bento {
   padding: 96px 0;
-  background: #f7f5ee;
+  background: var(--cream);
 }
 .home-bento-head {
   display: flex;
@@ -1098,12 +1127,53 @@ img { display: block; max-width: 100%; }
    ARTICLE PAGE
    ======================================================================== */
 
+.article-page {
+  --serif: var(--sans);
+  --mono: var(--sans);
+  --ink: #000000;
+  --ink-soft: #000000;
+  --ink-mute: #000000;
+
+  /* ── PER-PAGE THEME TOKENS ──────────────────────────────────────────────
+     Override these with a data-theme on <main> to re-skin a whole page.
+       --accent      primary brand color: headings, callout rule, section tints
+       --pop         lively secondary: section numbers, links, progress bar, FAQ
+       --accent-tint faint wash used as an alternating section background
+     The blue page (default) leaves these as navy + red.
+     The green page sets <main className="article-page" data-theme="green">. */
+  --accent: #072357;
+  --accent-deep: #03133a;
+  --accent-tint: rgba(7, 35, 87, 0.05);
+  --pop: var(--terra);
+  --title-color: var(--accent);
+
+  background: linear-gradient(to bottom, var(--bg) 0%, var(--cream) 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+/* GREEN THEME — green accent + pop, plain "cream" background (the same
+   pinkish beige used on the home page). All-green, no secondary color. */
+.article-page[data-theme="green"] {
+  --accent: var(--green);
+  --accent-deep: var(--green-deep);
+  --accent-tint: rgba(21, 102, 63, 0.06);
+  --pop: var(--green);
+  background: var(--cream);
+}
+
+.article-page .prose h2,
+.article-page .prose h3,
+.article-page .faq-q {
+  color: var(--title-color);
+}
+
 .read-progress {
   position: fixed;
-  top: 64px;
+  top: 72px; /* sits exactly on the bottom edge of the 72px fixed header */
   left: 0;
-  height: 2px;
-  background: var(--terra);
+  height: 3px;
+  background: var(--pop);
   width: 0%;
   z-index: 101;
   transition: width .1s;
@@ -1136,21 +1206,21 @@ img { display: block; max-width: 100%; }
   flex-wrap: wrap;
 }
 .art-title {
-  font-family: var(--serif);
+  font-family: var(--font-display);
   font-weight: 400;
+  color: var(--title-color, #072357);
   font-size: clamp(48px, 6vw, 88px);
   line-height: 0.95;
   letter-spacing: -0.025em;
   margin-bottom: 28px;
   text-wrap: pretty;
 }
-.art-title em { font-style: italic; color: var(--terra); }
+.art-title em { font-style: italic; color: var(--pop); }
 .art-dek {
-  font-family: var(--serif);
-  font-style: italic;
+  font-family: var(--sans);
   font-size: 22px;
   line-height: 1.4;
-  color: var(--ink-soft);
+  color: #7a7a7a;
   max-width: 720px;
   margin-bottom: 32px;
 }
@@ -1184,10 +1254,10 @@ img { display: block; max-width: 100%; }
 .byline-stats strong { color: var(--ink); font-weight: 500; }
 
 .fact-card {
-  background: var(--paper);
+  background: var(--bg);
   padding: 28px;
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+  border: 1px solid var(--border-light);
   position: sticky;
   top: 90px;
 }
@@ -1222,7 +1292,7 @@ img { display: block; max-width: 100%; }
   background: var(--rule);
   display: inline-block;
 }
-.bar i.on { background: var(--terra); }
+.bar i.on { background: var(--pop); }
 
 /* ===== ARTICLE HERO (full-bleed overlay style) ===== */
 .art-hero-section {
@@ -1296,7 +1366,8 @@ img { display: block; max-width: 100%; }
 /* ── scrolled state: white bar, dark text ── */
 .art-header-bar.scrolled {
   background: white;
-  height: 64px;
+  height: 72px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.07);
 }
 .art-header-bar.scrolled .home-brand { color: var(--ink); }
 .art-header-bar.scrolled .home-brand .brand-mark {
@@ -1317,6 +1388,10 @@ img { display: block; max-width: 100%; }
   color: var(--ink-soft);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
+.art-header-bar.scrolled .lang-opt { color: var(--ink-mute); }
+.art-header-bar.scrolled .lang-opt:hover,
+.art-header-bar.scrolled .lang-opt.active { color: var(--ink); }
+.art-header-bar.scrolled .lang-sep { color: var(--ink-mute); }
 .art-header-bar.scrolled .home-lang:hover {
   background: rgba(0, 0, 0, 0.05);
   color: var(--ink);
@@ -1346,9 +1421,10 @@ img { display: block; max-width: 100%; }
 
 .art-body {
   display: grid;
-  grid-template-columns: 220px minmax(0, 1fr) 280px;
+  grid-template-columns: var(--art-sidebar) minmax(0, 1fr) var(--art-sidebar);
   gap: 56px;
   padding: 80px 0 60px;
+  align-items: start;
 }
 
 .toc {
@@ -1381,7 +1457,7 @@ img { display: block; max-width: 100%; }
 .toc a:hover { color: var(--ink); }
 .toc a.active {
   color: var(--ink); font-weight: 500;
-  border-left-color: var(--terra);
+  border-left-color: var(--pop);
 }
 .toc a .n {
   font-family: var(--mono);
@@ -1405,16 +1481,17 @@ img { display: block; max-width: 100%; }
   display: flex; align-items: center; gap: 8px;
   color: var(--ink-soft);
   transition: all .15s;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  border: none;
+  border: 1px solid var(--border-light);
 }
-.toc-share button:hover { color: var(--ink); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12); }
+.toc-share button:hover { color: var(--ink); }
 
 .prose {
   font-size: 18px;
   line-height: 1.65;
   color: var(--ink);
-  max-width: 680px;
+  max-width: 768px;
+  width: 100%;
+  margin: 0 auto;
 }
 .prose h2 {
   font-family: var(--serif);
@@ -1430,7 +1507,7 @@ img { display: block; max-width: 100%; }
   font-size: 12px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--terra);
+  color: var(--pop);
   display: block;
   margin-bottom: 10px;
 }
@@ -1442,21 +1519,13 @@ img { display: block; max-width: 100%; }
   margin: 36px 0 14px;
 }
 .prose p { margin-bottom: 22px; text-wrap: pretty; }
-.prose p.lede::first-letter {
-  font-family: var(--serif);
-  font-size: 76px;
-  float: left;
-  line-height: 0.85;
-  margin: 6px 12px 0 0;
-  color: var(--terra);
-}
 .prose a {
   text-decoration: underline;
-  text-decoration-color: var(--terra);
+  text-decoration-color: var(--pop);
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
 }
-.prose a:hover { color: var(--terra); }
+.prose a:hover { color: var(--pop); }
 .prose ul, .prose ol { margin: 0 0 22px 24px; }
 .prose li { margin-bottom: 10px; }
 .prose strong { font-weight: 600; }
@@ -1476,7 +1545,7 @@ img { display: block; max-width: 100%; }
   content: "“";
   font-size: 80px;
   line-height: 0.5;
-  color: var(--terra);
+  color: var(--pop);
   display: block;
   margin-bottom: 8px;
 }
@@ -1493,7 +1562,7 @@ img { display: block; max-width: 100%; }
 
 .callout {
   background: var(--paper);
-  border-left: 3px solid var(--jungle);
+  border-left: 3px solid var(--accent);
   padding: 24px 28px;
   margin: 32px 0;
   border-radius: 0 4px 4px 0;
@@ -1506,12 +1575,133 @@ img { display: block; max-width: 100%; }
   font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--jungle-deep);
+  color: var(--accent);
   display: block;
   margin-bottom: 8px;
   font-weight: 500;
 }
 .callout.warning .label { color: var(--terra-deep); }
+
+/* ── IN-COLUMN BREAKERS ─────────────────────────────────────────────────────
+   Drop-in blocks that live INSIDE the prose column (not full width). Use them
+   to break up long stretches of text. Both lean on the page accent color.
+
+   .prose-bento — a compact 3-tile mosaic: a photo tile (.pb-img, add .pb-tall
+                  to span both rows), a solid-accent tile (.pb-accent, for a
+                  stat or short statement), and an outlined tile (.pb-outline).
+   .prose-panel — an accent-tinted panel with a heading + checklist. Good for
+                  key takeaways, essentials, do/don't lists. */
+.prose-bento {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 150px;
+  gap: 12px;
+  margin: 44px 0;
+}
+.prose-bento .pb-tile {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.prose-bento .pb-tall { grid-row: span 2; }
+.prose-bento .pb-img .imgph {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  border-radius: 14px;
+  z-index: 0;
+  transition: transform 0.6s ease;
+}
+.prose-bento .pb-img:hover .imgph { transform: scale(1.05); }
+.prose-bento .pb-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(transparent 45%, rgba(0, 0, 0, 0.6));
+}
+.prose-bento .pb-img .pb-cap {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+}
+.prose-bento .pb-accent { background: var(--accent); color: #fff; }
+.prose-bento .pb-accent .pb-stat {
+  font-family: var(--font-display);
+  font-size: 40px;
+  line-height: 1;
+}
+.prose-bento .pb-accent .pb-label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.78);
+  margin-top: 8px;
+}
+.prose-bento .pb-outline {
+  background: var(--bg);
+  border: 1px solid var(--border-light);
+  border-top: 3px solid var(--accent);
+}
+.prose-bento .pb-outline h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 20px;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.prose-bento .pb-outline p {
+  font-size: 13px;
+  line-height: 1.45;
+  color: #555;
+  margin: 0;
+}
+
+.prose-panel {
+  margin: 44px 0;
+  background: var(--accent-tint);
+  border-radius: 14px;
+  padding: 28px 30px;
+}
+.prose-panel h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 24px;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.prose-panel ul {
+  list-style: none;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+.prose-panel li {
+  position: relative;
+  padding-left: 30px;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.prose-panel li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .prose-bento { grid-template-columns: 1fr; }
+  .prose-bento .pb-tall { grid-row: span 1; }
+}
 
 .fig { margin: 40px 0; }
 .fig .imgph { height: 420px; border-radius: 4px; }
@@ -1593,10 +1783,10 @@ img { display: block; max-width: 100%; }
   display: flex; flex-direction: column; gap: 32px;
 }
 .aside-card {
-  background: var(--paper);
+  background: var(--bg);
   padding: 22px;
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+  border: 1px solid var(--border-light);
 }
 .aside-card h5 {
   font-family: var(--mono);
@@ -1632,7 +1822,7 @@ img { display: block; max-width: 100%; }
 .weather-row .dot {
   width: 10px; height: 10px; border-radius: 50%; background: var(--rule);
 }
-.weather-row .dot.go { background: var(--jungle); }
+.weather-row .dot.go { background: var(--accent); }
 .weather-row .dot.maybe { background: oklch(70% 0.12 80); }
 .weather-row .dot.skip { background: var(--terra); }
 
@@ -1693,7 +1883,7 @@ img { display: block; max-width: 100%; }
   font-family: var(--sans);
   font-size: 28px;
   line-height: 1;
-  color: var(--terra);
+  color: var(--pop);
   font-weight: 300;
   flex-shrink: 0;
   transition: transform .2s;
@@ -1791,9 +1981,183 @@ img { display: block; max-width: 100%; }
   letter-spacing: -0.01em;
   margin-bottom: 8px;
 }
-.related-card:hover h4 { color: var(--terra); }
+.related-card:hover h4 { color: var(--pop); }
 .related-card p {
   font-size: 13px;
   color: var(--ink-soft);
   line-height: 1.5;
+}
+
+/* ========================================================================
+   REUSABLE FULL-WIDTH SECTIONS  (gallery, highlights, bento, faq)
+   These live OUTSIDE the .art-body 3-column grid so they span full width.
+   Drop them into any page in any order. Add `.tint` to alternate the
+   background with a faint accent wash so the page never feels flat.
+   ======================================================================== */
+.art-section { padding: 72px 0; }
+.art-section.tint { background: var(--accent-tint); }
+
+/* Section header — shared by every full-width section. */
+.art-section-head { max-width: 720px; margin-bottom: 36px; }
+.art-section-head .eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--pop);
+  display: block;
+  margin-bottom: 14px;
+}
+.art-section-head h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+}
+.art-section-head p {
+  margin-top: 14px;
+  font-size: 17px;
+  line-height: 1.5;
+  color: #555;
+}
+
+/* ── GALLERY ──────────────────────────────────────────────────────────────
+   A photo grid. The first figure is the hero tile (spans 2×2); the rest fill
+   in around it. Feed it real photos — each is a <figure> with an .imgph.photo
+   (backgroundImage) and an optional <figcaption>. */
+.art-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 188px;
+  gap: 12px;
+}
+.art-gallery-grid figure {
+  position: relative;
+  margin: 0;
+  border-radius: 14px;
+  overflow: hidden;
+}
+.art-gallery-grid .imgph {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  border-radius: 14px;
+  transition: transform 0.6s ease;
+}
+.art-gallery-grid figure:hover .imgph { transform: scale(1.05); }
+.art-gallery-grid .feature { grid-column: span 2; grid-row: span 2; }
+.art-gallery-grid figcaption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  z-index: 2;
+  padding: 28px 16px 14px;
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.62));
+}
+
+/* ── HIGHLIGHT CARDS ──────────────────────────────────────────────────────
+   A row of informative cards — the same idea as the right-rail aside cards,
+   but full width. Use for "good to know" facts, big numbers, or short tips.
+   Each card: optional .stat (big number), an h3, and a paragraph. */
+.art-highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.art-highlight-card {
+  background: var(--bg);
+  border: 1px solid var(--border-light);
+  border-top: 3px solid var(--accent);
+  border-radius: 14px;
+  padding: 28px 26px;
+}
+.art-highlight-card .kicker {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pop);
+  font-weight: 600;
+}
+.art-highlight-card .stat {
+  font-family: var(--font-display);
+  font-size: 46px;
+  line-height: 1;
+  color: var(--accent);
+  margin: 14px 0 6px;
+}
+.art-highlight-card h3 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--accent);
+  margin: 12px 0 8px;
+}
+.art-highlight-card p {
+  font-size: 14px;
+  line-height: 1.55;
+  color: #555;
+}
+
+/* ── BENTO (in-article) ───────────────────────────────────────────────────
+   Reuses the homepage .home-bento-grid / .bento-card markup. We only retint
+   it so the tags/accents follow the page theme and the panel sits flat on the
+   page background instead of the homepage's cream block. */
+.article-page .home-bento { background: transparent; padding: 0; }
+.article-page .bento-card .b-tag { color: var(--pop); }
+.article-page .bento-card.b2 blockquote::before { color: var(--pop); }
+.article-page .bento-card.b4 .bento-arrow {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ── STATEMENT ────────────────────────────────────────────────────────────
+   A full-bleed "rich text" band — one big quote or statement on a solid
+   accent background. Use it the same way as the gallery (a full-screen beat
+   between the narrow prose columns) so the page alternates column / full
+   width. Swap its position with any other full-width section freely. */
+.art-statement {
+  background: var(--accent);
+  color: #fff;
+  padding: 104px 0;
+}
+.art-statement-inner { max-width: 920px; }
+.art-statement blockquote {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(30px, 4.2vw, 56px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-wrap: pretty;
+}
+.art-statement blockquote::before {
+  content: "“";
+  font-family: var(--font-display);
+  display: block;
+  font-size: 90px;
+  line-height: 0.35;
+  margin-bottom: 22px;
+  color: rgba(255, 255, 255, 0.4);
+}
+.art-statement cite {
+  display: block;
+  margin-top: 30px;
+  font-style: normal;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+@media (max-width: 900px) {
+  .art-highlights-grid { grid-template-columns: 1fr; }
+  .art-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 160px;
+  }
+  .art-gallery-grid .feature { grid-column: span 2; grid-row: span 1; }
 }

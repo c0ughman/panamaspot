@@ -7,7 +7,6 @@ import {
   organizationJsonLd,
   websiteJsonLd,
 } from "@/lib/jsonld";
-import { SiteFooter } from "@/components/site-footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -77,6 +76,9 @@ export default function RootLayout({
       className={`${inter.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
     >
       <head>
+        {/* Image CDN — connect early to cut LCP latency on the hero photos. */}
+        <link rel="preconnect" href="https://images.pexels.com" crossOrigin="" />
+        <link rel="dns-prefetch" href="https://images.pexels.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={jsonLdScript(organizationJsonLd())}
@@ -86,10 +88,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={jsonLdScript(websiteJsonLd())}
         />
       </head>
-      <body>
-        {children}
-        <SiteFooter />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

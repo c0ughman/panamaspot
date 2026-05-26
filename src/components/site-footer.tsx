@@ -1,21 +1,103 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import type { Locale } from "@/components/home-header";
 
 function FooterText({ children }: { children: ReactNode }) {
   return <span className="footer-link-muted">{children}</span>;
 }
 
-export function SiteFooter() {
+/* Footer copy, localized. Rendered per-page (not in the root layout) so each
+   locale's pages get the matching language — pass locale="es" on /es pages. */
+const COPY = {
+  en: {
+    home: "/",
+    cta: (
+      <>
+        Every corner of the <em>isthmus</em>, written by people who live here.
+      </>
+    ),
+    ctaBtn: "Start exploring →",
+    tagline:
+      "Independent travel journalism, written and edited by people who live in Panama. Eight provinces, three indigenous comarcas, one obsession.",
+    destinations: "Destinations",
+    destinationItems: [
+      "Panama City",
+      "Bocas del Toro",
+      "San Blas / Guna Yala",
+      "Boquete & Chiriquí",
+      "Azuero Peninsula",
+      "Coiba & the Pacific",
+      "The Darién",
+    ],
+    topic: "By topic",
+    topicItems: [
+      "Eco-tourism",
+      "Itineraries",
+      "Wildlife & birding",
+      "Food & coffee",
+      "Surf & dive",
+      "Practical info",
+    ],
+    about: "About",
+    aboutItems: [
+      "Our writers",
+      "Editorial standards",
+      "Work with us",
+      "Press & partners",
+      "Contact",
+    ],
+    rights: "© 2026 Panamaspot · Panamá City, RP",
+  },
+  es: {
+    home: "/es",
+    cta: (
+      <>
+        Cada rincón del <em>istmo</em>, escrito por quienes vivimos aquí.
+      </>
+    ),
+    ctaBtn: "Empieza a explorar →",
+    tagline:
+      "Periodismo de viajes independiente, escrito y editado por quienes vivimos en Panamá. Ocho provincias, tres comarcas indígenas, una obsesión.",
+    destinations: "Destinos",
+    destinationItems: [
+      "Ciudad de Panamá",
+      "Bocas del Toro",
+      "San Blas / Guna Yala",
+      "Boquete y Chiriquí",
+      "Península de Azuero",
+      "Coiba y el Pacífico",
+      "El Darién",
+    ],
+    topic: "Por tema",
+    topicItems: [
+      "Ecoturismo",
+      "Itinerarios",
+      "Fauna y aves",
+      "Comida y café",
+      "Surf y buceo",
+      "Información práctica",
+    ],
+    about: "Nosotros",
+    aboutItems: [
+      "Nuestros autores",
+      "Estándares editoriales",
+      "Trabaja con nosotros",
+      "Prensa y socios",
+      "Contacto",
+    ],
+    rights: "© 2026 Panamaspot · Ciudad de Panamá, RP",
+  },
+} as const;
+
+export function SiteFooter({ locale = "en" }: { locale?: Locale }) {
+  const t = COPY[locale];
   return (
     <footer className="footer">
       <div className="container">
         <div className="home-cta-inner-merged">
-          <h2>
-            Every corner of the <em>isthmus</em>, written by people who live
-            here.
-          </h2>
-          <Link href="/#cat-regions" className="home-cta-btn">
-            Start exploring →
+          <h2>{t.cta}</h2>
+          <Link href={`${t.home}#cat-regions`} className="home-cta-btn">
+            {t.ctaBtn}
           </Link>
         </div>
         <div className="footer-cta-rule" />
@@ -27,48 +109,41 @@ export function SiteFooter() {
             <div className="footer-brand">
               Panama<span style={{ color: "var(--terra)" }}>spot</span>
             </div>
-            <p className="footer-tag">
-              Independent travel journalism, written and edited by people who
-              live in Panama. Eight provinces, three indigenous comarcas, one
-              obsession.
-            </p>
+            <p className="footer-tag">{t.tagline}</p>
           </div>
           <div>
-            <h4>Destinations</h4>
+            <h4>{t.destinations}</h4>
             <ul>
-              <li><FooterText>Panama City</FooterText></li>
-              <li><FooterText>Bocas del Toro</FooterText></li>
-              <li><FooterText>San Blas / Guna Yala</FooterText></li>
-              <li><FooterText>Boquete &amp; Chiriquí</FooterText></li>
-              <li><FooterText>Azuero Peninsula</FooterText></li>
-              <li><FooterText>Coiba &amp; the Pacific</FooterText></li>
-              <li><FooterText>The Darién</FooterText></li>
+              {t.destinationItems.map((item) => (
+                <li key={item}>
+                  <FooterText>{item}</FooterText>
+                </li>
+              ))}
             </ul>
           </div>
           <div>
-            <h4>By topic</h4>
+            <h4>{t.topic}</h4>
             <ul>
-              <li><FooterText>Eco-tourism</FooterText></li>
-              <li><FooterText>Itineraries</FooterText></li>
-              <li><FooterText>Wildlife &amp; birding</FooterText></li>
-              <li><FooterText>Food &amp; coffee</FooterText></li>
-              <li><FooterText>Surf &amp; dive</FooterText></li>
-              <li><FooterText>Practical info</FooterText></li>
+              {t.topicItems.map((item) => (
+                <li key={item}>
+                  <FooterText>{item}</FooterText>
+                </li>
+              ))}
             </ul>
           </div>
           <div>
-            <h4>About</h4>
+            <h4>{t.about}</h4>
             <ul>
-              <li><FooterText>Our writers</FooterText></li>
-              <li><FooterText>Editorial standards</FooterText></li>
-              <li><FooterText>Work with us</FooterText></li>
-              <li><FooterText>Press &amp; partners</FooterText></li>
-              <li><FooterText>Contact</FooterText></li>
+              {t.aboutItems.map((item) => (
+                <li key={item}>
+                  <FooterText>{item}</FooterText>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
         <div className="footer-bottom">
-          <span>© 2026 Panamaspot · Panamá City, RP</span>
+          <span>{t.rights}</span>
           <span>Hecho en el istmo · Made on the isthmus</span>
         </div>
       </div>

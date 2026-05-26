@@ -1,38 +1,27 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { buildMetadata } from "@/lib/seo";
-import { siteConfig } from "@/lib/site-config";
+import { webPageJsonLd, jsonLdScript } from "@/lib/jsonld";
 import { HeroParallax } from "@/components/hero-parallax";
-
-export const metadata: Metadata = buildMetadata({
-  title: `${siteConfig.name} — The complete guide to traveling in Panama`,
-  description:
-    "In-depth guides, itineraries, and local insight for tourism, eco-tourism, and internal travel across Panama. Cloud forests, Caribbean islands, colonial cities and beyond.",
-  path: "/",
-  absoluteTitle: true,
-});
-
-// ── Pexels photo helpers ─────────────────────────────────────────────────────
-const pexels = (id: number, w = 1200) =>
-  `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${w}`;
+import { SiteFooter } from "@/components/site-footer";
+import { CategorySection, pexels, type Card } from "@/components/home-sections";
 
 const HERO_BG = pexels(2474690, 2400);
+
+export const metadata: Metadata = buildMetadata({
+  title: "Panama Travel Guide: Destinations, Things to Do & Local Tips",
+  description:
+    "Plan your trip to Panama with in-depth guides to its beaches, cloud forests, islands and cities — where to go, when to visit, and what to do, from people who live here.",
+  path: "/",
+  absoluteTitle: true,
+  ogImage: HERO_BG,
+  languages: { en: "/", es: "/es", "x-default": "/" },
+});
 const BOCAS_PHOTO = pexels(2038744);
 const GUNA_PHOTO = pexels(31416948);
 const QUETZAL_TRAIL = "/articles/sendero-los-quetzales";
 
 // ── Data ─────────────────────────────────────────────────────────────────────
-
-type Tint = "jungle" | "terra" | "sky" | "sand" | "ink";
-type CardImg = { kind: "photo"; src: string } | { kind: "tint"; cls: Tint };
-type IconKey = "region" | "activity" | "destination";
-
-type Card = {
-  title: string;
-  tag: string;
-  img: CardImg;
-  href?: string;
-};
 
 const REGIONS: Card[] = [
   { title: "Caribbean Coast", tag: "Coming soon", img: { kind: "photo", src: pexels(14185535) } },
@@ -67,7 +56,21 @@ const DESTINATIONS: Card[] = [
 export default function Home() {
   return (
     <>
-      <HeroParallax bgImage={HERO_BG} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLdScript(
+          webPageJsonLd({
+            path: "/",
+            name: "Panama Travel Guide",
+            description:
+              "In-depth guides, itineraries and local insight for travel across Panama — beaches, cloud forests, islands and cities.",
+            locale: "en",
+            primaryImage: HERO_BG,
+          }),
+        )}
+      />
+
+      <HeroParallax bgImage={HERO_BG} locale="en" />
 
       <CategorySection
         id="cat-regions"
@@ -168,138 +171,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <SiteFooter locale="en" />
     </>
   );
-}
-
-function CategorySection({
-  id,
-  title,
-  link,
-  icon,
-  cards,
-}: {
-  id: string;
-  title: string;
-  link: string;
-  icon: IconKey;
-  cards: Card[];
-}) {
-  return (
-    <section className="cat-section" id={id}>
-      <div className="container">
-        <div className="cat-section-head">
-          <h2>{title}</h2>
-          <span className="cat-section-link cat-section-link--muted">{link}</span>
-        </div>
-
-        <div className="cat-row-wrap">
-          <button type="button" className="cat-arrow prev" aria-label="Previous">
-            ‹
-          </button>
-          <div className="cat-row">
-            {cards.map((card) => (
-              <CategoryCard key={card.title} icon={icon} {...card} />
-            ))}
-          </div>
-          <button type="button" className="cat-arrow next" aria-label="Next">
-            ›
-          </button>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function CategoryCard({
-  title,
-  tag,
-  img,
-  href,
-  icon,
-}: Card & { icon: IconKey }) {
-  const content = (
-    <>
-      {img.kind === "photo" ? (
-        <div
-          className="imgph photo"
-          style={{ backgroundImage: `url('${img.src}')` }}
-        />
-      ) : (
-        <div className={`imgph ${img.cls}`} />
-      )}
-      <div className="cat-card-body">
-        <span className="cat-card-title">{title}</span>
-        <span className="cat-card-tag">
-          <CardIcon kind={icon} />
-          {tag}
-        </span>
-      </div>
-    </>
-  );
-
-  if (href) {
-    return (
-      <Link href={href} className="cat-card">
-        {content}
-      </Link>
-    );
-  }
-
-  return (
-    <div className="cat-card cat-card--static" aria-label={`${title} — coming soon`}>
-      {content}
-    </div>
-  );
-}
-
-function CardIcon({ kind }: { kind: IconKey }) {
-  switch (kind) {
-    case "region":
-      return (
-        <svg
-          viewBox="0 0 12 12"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.2"
-          strokeLinejoin="round"
-          aria-hidden="true"
-          width="11"
-          height="11"
-        >
-          <path d="M6 1.4 C 3.6 1.4, 2.2 3.2, 2.2 5 C 2.2 7.4, 6 10.6, 6 10.6 C 6 10.6, 9.8 7.4, 9.8 5 C 9.8 3.2, 8.4 1.4, 6 1.4 Z" />
-          <circle cx="6" cy="5" r="1.4" />
-        </svg>
-      );
-    case "activity":
-      return (
-        <svg
-          viewBox="0 0 12 12"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.2"
-          strokeLinejoin="round"
-          aria-hidden="true"
-          width="11"
-          height="11"
-        >
-          <path d="M1.5 9.6 L4.2 4.4 L6.4 6.8 L9 3 L10.5 9.6 Z" />
-        </svg>
-      );
-    case "destination":
-      return (
-        <svg
-          viewBox="0 0 12 12"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.2"
-          aria-hidden="true"
-          width="11"
-          height="11"
-        >
-          <circle cx="6" cy="6" r="3.6" />
-          <circle cx="6" cy="6" r="1" fill="currentColor" stroke="none" />
-        </svg>
-      );
-  }
 }

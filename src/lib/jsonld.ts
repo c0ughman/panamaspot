@@ -1,12 +1,26 @@
 import { siteConfig } from "./site-config";
 
+const langTag = (locale?: string) => (locale === "es" ? "es-PA" : "en-US");
+const abs = (p: string) =>
+  p.startsWith("http") ? p : `${siteConfig.url}${p.startsWith("/") ? p : `/${p}`}`;
+
+const ORG_ID = `${siteConfig.url}/#organization`;
+const SITE_ID = `${siteConfig.url}/#website`;
+
 export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": ORG_ID,
     name: siteConfig.name,
     url: siteConfig.url,
-    logo: `${siteConfig.url}/logo.png`,
+    logo: {
+      "@type": "ImageObject",
+      url: abs(siteConfig.logo),
+      width: 512,
+      height: 512,
+    },
+    ...(siteConfig.sameAs?.length ? { sameAs: siteConfig.sameAs } : {}),
   };
 }
 
@@ -14,8 +28,46 @@ export function websiteJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": SITE_ID,
     name: siteConfig.name,
     url: siteConfig.url,
+    publisher: { "@id": ORG_ID },
+  };
+}
+
+type WebPageInput = {
+  path: string;
+  name: string;
+  description: string;
+  locale?: string;
+  primaryImage?: string;
+};
+
+export function webPageJsonLd({
+  path,
+  name,
+  description,
+  locale,
+  primaryImage,
+}: WebPageInput) {
+  const url = abs(path);
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${url}#webpage`,
+    url,
+    name,
+    description,
+    inLanguage: langTag(locale),
+    isPartOf: { "@id": SITE_ID },
+    ...(primaryImage
+      ? {
+          primaryImageOfPage: {
+            "@type": "ImageObject",
+            url: abs(primaryImage),
+          },
+        }
+      : {}),
   };
 }
 
@@ -29,7 +81,7 @@ export function breadcrumbJsonLd(items: BreadcrumbItem[]) {
       "@type": "ListItem",
       position: i + 1,
       name: item.name,
-      item: `${siteConfig.url}${item.path}`,
+      item: abs(item.path),
     })),
   };
 }
@@ -42,6 +94,8 @@ type ArticleJsonLdInput = {
   datePublished: string;
   dateModified?: string;
   authorName?: string;
+  locale?: string;
+  section?: string;
 };
 
 export function articleJsonLd({
@@ -52,24 +106,25 @@ export function articleJsonLd({
   datePublished,
   dateModified,
   authorName = siteConfig.name,
+  locale,
+  section,
 }: ArticleJsonLdInput) {
+  const url = abs(path);
   return {
     "@context": "https://schema.org",
     "@type": "Article",
+    "@id": `${url}#article`,
     headline,
     description,
-    image: image
-      ? [image.startsWith("http") ? image : `${siteConfig.url}${image}`]
-      : undefined,
+    image: image ? [abs(image)] : undefined,
     datePublished,
     dateModified: dateModified || datePublished,
+    inLanguage: langTag(locale),
+    isAccessibleForFree: true,
+    ...(section ? { articleSection: section } : {}),
     author: { "@type": "Person", name: authorName },
-    publisher: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      logo: { "@type": "ImageObject", url: `${siteConfig.url}/logo.png` },
-    },
-    mainEntityOfPage: { "@type": "WebPage", "@id": `${siteConfig.url}${path}` },
+    publisher: { "@id": ORG_ID },
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${url}#webpage` },
   };
 }
 
