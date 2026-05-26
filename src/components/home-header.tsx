@@ -9,13 +9,13 @@ export function HomeHeader() {
           Panama<span style={{ color: "var(--terra)" }}>spot</span>
         </Link>
         <nav className="home-nav">
-          <Link href="#cat-regions">Destinations</Link>
-          <Link href="#cat-activities">Eco-tourism</Link>
+          <Link href="/#cat-regions">Destinations</Link>
+          <Link href="/#cat-activities">Eco-tourism</Link>
           <Link href="/articles/sendero-los-quetzales">Guides</Link>
-          <Link href="#cta">Plan a trip</Link>
+          <Link href="/#cat-destinations">Plan a trip</Link>
         </nav>
         <div className="home-header-right">
-          <div className="home-search" role="search">
+          <div className="home-search" role="search" aria-hidden="true">
             <svg
               width="14"
               height="14"
@@ -31,7 +31,7 @@ export function HomeHeader() {
             <span className="home-search-label">Search guides</span>
             <kbd>⌘K</kbd>
           </div>
-          <Link href="#" className="home-lang">EN / ES</Link>
+          <span className="home-lang home-lang--static">EN / ES</span>
         </div>
       </div>
     </header>

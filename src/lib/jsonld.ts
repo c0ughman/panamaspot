@@ -16,11 +16,6 @@ export function websiteJsonLd() {
     "@type": "WebSite",
     name: siteConfig.name,
     url: siteConfig.url,
-    potentialAction: {
-      "@type": "SearchAction",
-      target: `${siteConfig.url}/search?q={search_term_string}`,
-      "query-input": "required name=search_term_string",
-    },
   };
 }
 
@@ -63,16 +58,35 @@ export function articleJsonLd({
     "@type": "Article",
     headline,
     description,
-    image: image ? [`${siteConfig.url}${image}`] : undefined,
+    image: image
+      ? [image.startsWith("http") ? image : `${siteConfig.url}${image}`]
+      : undefined,
     datePublished,
     dateModified: dateModified || datePublished,
-    author: { "@type": "Organization", name: authorName },
+    author: { "@type": "Person", name: authorName },
     publisher: {
       "@type": "Organization",
       name: siteConfig.name,
       logo: { "@type": "ImageObject", url: `${siteConfig.url}/logo.png` },
     },
     mainEntityOfPage: { "@type": "WebPage", "@id": `${siteConfig.url}${path}` },
+  };
+}
+
+type FaqItem = { question: string; answer: string };
+
+export function faqPageJsonLd(items: FaqItem[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map(({ question, answer }) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: answer,
+      },
+    })),
   };
 }
 

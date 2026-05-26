@@ -3,13 +3,16 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
-import { articleJsonLd, breadcrumbJsonLd, jsonLdScript } from "@/lib/jsonld";
+import { articleJsonLd, breadcrumbJsonLd, faqPageJsonLd, jsonLdScript } from "@/lib/jsonld";
 import { ReadingProgress } from "@/components/reading-progress";
 import { ArticleHero } from "@/components/article-hero";
 import { ArticleToc } from "@/components/article-toc";
 import { FaqItem } from "@/components/faq-item";
 
 const SLUG = "sendero-los-quetzales";
+
+const HERO_IMAGE =
+  "https://images.pexels.com/photos/2380342/pexels-photo-2380342.jpeg?auto=compress&cs=tinysrgb&w=2000";
 
 const ARTICLE = {
   slug: SLUG,
@@ -32,6 +35,39 @@ const TOC_ITEMS = [
   { id: "s8", n: "08", label: "FAQ" },
 ];
 
+const FAQ_ITEMS = [
+  {
+    question: "Can I do the Quetzal Trail without a guide?",
+    answer:
+      "Yes — and most experienced hikers do. The trail is signposted in both Spanish and English, and the second river crossing has a cable. That said: if it's your first multi-hour hike in cloud forest, hire a guide for the first two kilometers (~$25) just to see how the trail markers work. After the saddle the path is obvious.",
+  },
+  {
+    question: "Is the trail open in rainy season?",
+    answer:
+      "Officially yes, practically no. From mid-May to mid-November the second river crossing becomes unpredictable, and the upper trail fogs in by 8 a.m. We don't recommend it.",
+  },
+  {
+    question: "How fit do I need to be?",
+    answer:
+      "If you can walk for six hours with a small pack and 1,420 m of net descent, you can walk this trail. The first 2.4 km is the only sustained climb — after that it's gradually downhill, with two short uphill sections.",
+  },
+  {
+    question: "Is there cell service?",
+    answer:
+      "No. Download the offline map from the AllTrails app or the Maps.me Panama bundle before you start. There is sporadic Movistar signal in the first kilometer and at the very end near Bajo Mono — nothing in between.",
+  },
+  {
+    question: "What's the permit and how do I get it?",
+    answer:
+      "$5 per person, paid in cash at the Las Nubes ranger station the morning of your hike. You don't need to reserve. The station opens at 5:30 a.m. in dry season.",
+  },
+  {
+    question: "Can I hike with kids?",
+    answer:
+      "Yes, with caveats. Kids 10+ who are comfortable walking for six hours will be fine in dry season. Below that age, do the shorter Las Nubes loop instead — same forest, two hours, no river crossings.",
+  },
+] as const;
+
 export function generateStaticParams() {
   return [{ slug: SLUG }];
 }
@@ -42,11 +78,19 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  if (slug !== SLUG) return {};
+  if (slug !== SLUG) {
+    return buildMetadata({
+      title: "Article not found",
+      description: "This guide could not be found.",
+      path: `/articles/${slug}`,
+      noindex: true,
+    });
+  }
   return buildMetadata({
     title: ARTICLE.title,
     description: ARTICLE.description,
     path: `/articles/${ARTICLE.slug}`,
+    ogImage: HERO_IMAGE,
     type: "article",
     publishedTime: ARTICLE.publishedAt,
     modifiedTime: ARTICLE.modifiedAt,
@@ -67,18 +111,18 @@ export default async function ArticlePage({
   const jsonLd = [
     breadcrumbJsonLd([
       { name: "Home", path: "/" },
-      { name: "Chiriquí", path: path },
-      { name: "Hiking guides", path: path },
-      { name: "Sendero Los Quetzales", path: path },
+      { name: "Sendero Los Quetzales", path },
     ]),
     articleJsonLd({
       headline: ARTICLE.title,
       description: ARTICLE.description,
       path,
+      image: HERO_IMAGE,
       datePublished: ARTICLE.publishedAt,
       dateModified: ARTICLE.modifiedAt,
       authorName: ARTICLE.author,
     }),
+    faqPageJsonLd([...FAQ_ITEMS]),
   ];
 
   return (
@@ -94,7 +138,7 @@ export default async function ArticlePage({
       <ReadingProgress />
 
       {/* ===== HERO ===== */}
-      <ArticleHero bgImage="https://images.pexels.com/photos/2380342/pexels-photo-2380342.jpeg?auto=compress&cs=tinysrgb&w=2000">
+      <ArticleHero bgImage={HERO_IMAGE}>
         <div className="art-hero-pills">
           <span className="art-hero-tag">Eco-tourism</span>
           <span className="art-hero-tag">Field report</span>
@@ -109,9 +153,9 @@ export default async function ArticlePage({
           <nav className="breadcrumb" aria-label="Breadcrumb">
             <Link href="/">Home</Link>
             <span className="sep">/</span>
-            <Link href="/#">Chiriquí</Link>
+            <span>Chiriquí</span>
             <span className="sep">/</span>
-            <Link href="/#">Hiking guides</Link>
+            <span>Hiking guides</span>
             <span className="sep">/</span>
             <span>Sendero Los Quetzales</span>
           </nav>
@@ -141,7 +185,9 @@ export default async function ArticlePage({
                     <strong>14 min</strong> read
                   </span>
                   <span>
-                    <strong>May 03</strong> · 2026
+                    <time dateTime="2026-05-03">
+                      <strong>May 03</strong> · 2026
+                    </time>
                   </span>
                   <span>
                     <strong>Cerro Punta → Boquete</strong>
@@ -231,8 +277,8 @@ export default async function ArticlePage({
             </h2>
 
             <p>
-              Panama&rsquo;s protected areas cover roughly{" "}
-              <Link href="/#">30% of the country&rsquo;s land</Link>, but most
+              Panama&rsquo;s protected areas cover roughly 30% of the
+              country&rsquo;s land, but most of it is functionally inaccessible
               of it is functionally inaccessible without a guide and a permit.
               The Quetzal Trail is the rare exception: a well-marked,
               day-walkable corridor through primary cloud forest, with two real
@@ -570,8 +616,8 @@ export default async function ArticlePage({
               <strong>Boquete</strong> the night after. Two beds, one trail.
               Cerro Punta is small and quiet — Hostal Cielito Sur ($45) and
               Cabañas Los Quetzales ($120) are the two we&rsquo;d recommend.
-              Boquete is larger and louder — see our{" "}
-              <Link href="/#">full Boquete sleeping guide</Link>.
+              Boquete is larger and louder — a full Boquete sleeping guide is
+              coming soon.
             </p>
 
             <figure className="fig">
@@ -695,24 +741,15 @@ export default async function ArticlePage({
               <p
                 style={{
                   color: "oklch(85% 0.03 75)",
-                  marginBottom: 16,
+                  marginBottom: 0,
+                  fontFamily: "var(--mono)",
+                  fontSize: 11,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
                 }}
               >
-                Want this hike inside a 7-day Chiriquí itinerary? We&rsquo;ve
-                already mapped it.
+                7-day Chiriquí itineraries coming soon
               </p>
-              <Link
-                href="/#itineraries"
-                className="btn"
-                style={{
-                  background: "var(--terra)",
-                  borderColor: "var(--terra)",
-                  width: "100%",
-                  justifyContent: "center",
-                }}
-              >
-                View 7-day itinerary →
-              </Link>
             </div>
 
             <div className="aside-card">
@@ -733,64 +770,6 @@ export default async function ArticlePage({
           </aside>
         </div>
       </div>
-
-      {/* Related */}
-      <section className="related">
-        <div className="container">
-          <div className="section-head">
-            <div>
-              <div className="mono" style={{ marginBottom: 8 }}>
-                Continue reading
-              </div>
-              <h2>
-                Three more from
-                <br />
-                Chiriquí.
-              </h2>
-            </div>
-            <Link href="/" className="section-link">
-              Back to home →
-            </Link>
-          </div>
-          <div className="related-grid">
-            <Link
-              href={`/articles/${SLUG}`}
-              className="related-card"
-            >
-              <div className="imgph terra">
-                <div className="label">Coffee · Geisha tasting</div>
-              </div>
-              <div className="meta">Coffee · 11 min read</div>
-              <h4>
-                Geisha at the source — six farms that change how you taste
-              </h4>
-              <p>Tours, cuppings and the $1,500/lb auction lots, explained.</p>
-            </Link>
-            <Link href={`/articles/${SLUG}`} className="related-card">
-              <div className="imgph jungle">
-                <div className="label">Volcán Barú · summit</div>
-              </div>
-              <div className="meta">Hiking · 9 min read</div>
-              <h4>Climbing Volcán Barú — both oceans in one morning</h4>
-              <p>The jeep, the foot trail, and why most people pick wrong.</p>
-            </Link>
-            <Link href={`/articles/${SLUG}`} className="related-card">
-              <div className="imgph sky">
-                <div className="label">Boca Chica · gulf</div>
-              </div>
-              <div className="meta">Coast · 7 min read</div>
-              <h4>
-                Boca Chica is the highlands&rsquo; best escape — but only for
-                two days
-              </h4>
-              <p>
-                The Gulf of Chiriquí beach worth the detour, and when not to
-                bother.
-              </p>
-            </Link>
-          </div>
-        </div>
-      </section>
     </>
   );
 }

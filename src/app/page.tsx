@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
-import { HomeHeader } from "@/components/home-header";
 import { HeroParallax } from "@/components/hero-parallax";
 
 export const metadata: Metadata = buildMetadata({
@@ -10,21 +9,17 @@ export const metadata: Metadata = buildMetadata({
   description:
     "In-depth guides, itineraries, and local insight for tourism, eco-tourism, and internal travel across Panama. Cloud forests, Caribbean islands, colonial cities and beyond.",
   path: "/",
+  absoluteTitle: true,
 });
 
 // ── Pexels photo helpers ─────────────────────────────────────────────────────
-// All photos sourced from Pexels and selected to be Panama-specific where
-// possible (or close-match tropical/jungle imagery where no exact Panama photo
-// was available).
 const pexels = (id: number, w = 1200) =>
   `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${w}`;
 
-// Placeholder — replace with video later
-const HERO_BG = pexels(2474690, 2400); // Coastline
-
-// Reused across bento + various cards
-const BOCAS_PHOTO = pexels(2038744); // Bocas — beach house on stilts at sunset
-const GUNA_PHOTO = pexels(31416948); // Guna Yala — secluded island in clear Caribbean
+const HERO_BG = pexels(2474690, 2400);
+const BOCAS_PHOTO = pexels(2038744);
+const GUNA_PHOTO = pexels(31416948);
+const QUETZAL_TRAIL = "/articles/sendero-los-quetzales";
 
 // ── Data ─────────────────────────────────────────────────────────────────────
 
@@ -36,82 +31,81 @@ type Card = {
   title: string;
   tag: string;
   img: CardImg;
-  href: string;
+  href?: string;
 };
 
 const REGIONS: Card[] = [
-  { title: "Caribbean Coast", tag: "28 guides", img: { kind: "photo", src: pexels(14185535) }, href: "#" }, // Bocas wooden houses
-  { title: "Pacific Side", tag: "22 guides", img: { kind: "photo", src: pexels(34205250) }, href: "#" }, // Panama Bay aerial
-  { title: "Chiriquí Highlands", tag: "31 guides", img: { kind: "photo", src: pexels(2918139) }, href: "#" }, // mountain valley with river
-  { title: "Panama City", tag: "19 guides", img: { kind: "photo", src: pexels(2666249) }, href: "#" }, // Panama City skyline + waterfront
-  { title: "Azuero Peninsula", tag: "14 guides", img: { kind: "photo", src: pexels(36601635) }, href: "#" }, // beach with palms + sailboats
-  { title: "Pacific Islands", tag: "11 guides", img: { kind: "photo", src: pexels(4766708) }, href: "#" }, // Contadora Island Panama
-  { title: "Comarca Territories", tag: "9 guides", img: { kind: "photo", src: pexels(9122911) }, href: "#" }, // Guna Yala palms
+  { title: "Caribbean Coast", tag: "Coming soon", img: { kind: "photo", src: pexels(14185535) } },
+  { title: "Pacific Side", tag: "Coming soon", img: { kind: "photo", src: pexels(34205250) } },
+  { title: "Chiriquí Highlands", tag: "Coming soon", img: { kind: "photo", src: pexels(2918139) } },
+  { title: "Panama City", tag: "Coming soon", img: { kind: "photo", src: pexels(2666249) } },
+  { title: "Azuero Peninsula", tag: "Coming soon", img: { kind: "photo", src: pexels(36601635) } },
+  { title: "Pacific Islands", tag: "Coming soon", img: { kind: "photo", src: pexels(4766708) } },
+  { title: "Comarca Territories", tag: "Coming soon", img: { kind: "photo", src: pexels(9122911) } },
 ];
 
 const ACTIVITIES: Card[] = [
-  { title: "Hiking & Trails", tag: "31 guides", img: { kind: "photo", src: pexels(10343761) }, href: "#" }, // jungle path Panama rainforest
-  { title: "Wildlife & Birding", tag: "28 guides", img: { kind: "photo", src: pexels(9566563) }, href: "#" }, // sloth in green leaves
-  { title: "Surf & Dive", tag: "19 guides", img: { kind: "photo", src: pexels(33757647) }, href: "#" }, // surfers with forest backdrop
-  { title: "Food & Coffee", tag: "22 guides", img: { kind: "photo", src: pexels(30658818) }, href: "#" }, // ripe red coffee cherries on Arabica plant
-  { title: "Eco-tourism", tag: "34 guides", img: { kind: "photo", src: pexels(3603874) }, href: "#" }, // vibrant tropical rainforest vegetation
-  { title: "Cities & Culture", tag: "18 guides", img: { kind: "photo", src: pexels(23910182) }, href: "#" }, // colorful hats Casco Viejo street
-  { title: "Islands & Beaches", tag: "26 guides", img: { kind: "photo", src: pexels(8951333) }, href: "#" }, // palm trees on shore with clear waters
+  { title: "Hiking & Trails", tag: "1 guide", img: { kind: "photo", src: pexels(10343761) }, href: QUETZAL_TRAIL },
+  { title: "Wildlife & Birding", tag: "Coming soon", img: { kind: "photo", src: pexels(9566563) } },
+  { title: "Surf & Dive", tag: "Coming soon", img: { kind: "photo", src: pexels(33757647) } },
+  { title: "Food & Coffee", tag: "Coming soon", img: { kind: "photo", src: pexels(30658818) } },
+  { title: "Eco-tourism", tag: "1 guide", img: { kind: "photo", src: pexels(3603874) }, href: QUETZAL_TRAIL },
+  { title: "Cities & Culture", tag: "Coming soon", img: { kind: "photo", src: pexels(23910182) } },
+  { title: "Islands & Beaches", tag: "Coming soon", img: { kind: "photo", src: pexels(8951333) } },
 ];
 
 const DESTINATIONS: Card[] = [
-  { title: "Bocas del Toro", tag: "Caribbean · 14 guides", img: { kind: "photo", src: BOCAS_PHOTO }, href: "/articles/sendero-los-quetzales" },
-  { title: "Guna Yala", tag: "Comarca · 11 guides", img: { kind: "photo", src: GUNA_PHOTO }, href: "/articles/sendero-los-quetzales" },
-  { title: "Boquete", tag: "Highlands · 18 guides", img: { kind: "photo", src: pexels(2380342) }, href: "/articles/sendero-los-quetzales" }, // rainforest stream Panama
-  { title: "Casco Viejo", tag: "UNESCO · 22 guides", img: { kind: "photo", src: pexels(19620790) }, href: "#" }, // colonial street with cars
-  { title: "Pedasí", tag: "Azuero · 9 guides", img: { kind: "photo", src: pexels(18976053) }, href: "#" }, // aerial island town in sea
-  { title: "Coiba", tag: "Marine · 8 guides", img: { kind: "photo", src: pexels(4171716) }, href: "#" }, // small house with palms turquoise island
-  { title: "The Darién", tag: "Wild · 7 guides", img: { kind: "photo", src: pexels(36105293) }, href: "#" }, // dense jungle with sunlit foliage
+  { title: "Bocas del Toro", tag: "Coming soon", img: { kind: "photo", src: BOCAS_PHOTO } },
+  { title: "Guna Yala", tag: "Coming soon", img: { kind: "photo", src: GUNA_PHOTO } },
+  { title: "Boquete", tag: "Featured guide", img: { kind: "photo", src: pexels(2380342) }, href: QUETZAL_TRAIL },
+  { title: "Casco Viejo", tag: "Coming soon", img: { kind: "photo", src: pexels(19620790) } },
+  { title: "Pedasí", tag: "Coming soon", img: { kind: "photo", src: pexels(18976053) } },
+  { title: "Coiba", tag: "Coming soon", img: { kind: "photo", src: pexels(4171716) } },
+  { title: "The Darién", tag: "Coming soon", img: { kind: "photo", src: pexels(36105293) } },
 ];
-
-// ── Component ────────────────────────────────────────────────────────────────
 
 export default function Home() {
   return (
     <>
-      {/* ===== HERO ===== */}
       <HeroParallax bgImage={HERO_BG} />
 
-
-      {/* ===== CATEGORIES ===== */}
       <CategorySection
         id="cat-regions"
         title="Where in Panama?"
-        link="All 9 provinces →"
+        link="Browse by region"
         icon="region"
         cards={REGIONS}
       />
       <CategorySection
         id="cat-activities"
         title="What will you do?"
-        link="All 14 activities →"
+        link="Browse by activity"
         icon="activity"
         cards={ACTIVITIES}
       />
       <CategorySection
         id="cat-destinations"
         title="Where to go first?"
-        link="All 47 spots →"
+        link="Browse destinations"
         icon="destination"
         cards={DESTINATIONS}
       />
 
-      {/* ===== BENTO ===== */}
       <section className="home-bento">
         <div className="container">
           <div className="home-bento-head">
-            <h2>Seven Panamas,<br />one isthmus.</h2>
-            <Link href="#" className="cat-section-link">Explore all →</Link>
+            <h2>
+              Seven Panamas,
+              <br />
+              one isthmus.
+            </h2>
+            <span className="cat-section-link cat-section-link--muted">
+              More guides coming soon
+            </span>
           </div>
 
           <div className="home-bento-grid">
-            {/* B1 — image hero with text BELOW */}
-            <Link href="/articles/sendero-los-quetzales" className="bento-card b1">
+            <div className="bento-card b1">
               <div className="bento-img-top">
                 <div
                   className="imgph photo"
@@ -119,17 +113,15 @@ export default function Home() {
                 />
               </div>
               <div className="bento-body">
-                <span className="b-tag">Caribbean · 14 guides</span>
+                <span className="b-tag">Caribbean · Coming soon</span>
                 <h3>Bocas del Toro — nine islands, slow boats, sloths</h3>
                 <p>
                   Surfers&rsquo; capital of the Caribbean coast, Afro-Antillean kitchens,
-                  and the country&rsquo;s easiest place to wake up on the water. Where
-                  to stay, which islands to skip, and how to read the weather.
+                  and the country&rsquo;s easiest place to wake up on the water.
                 </p>
               </div>
-            </Link>
+            </div>
 
-            {/* B2 — text-only quote */}
             <div className="bento-card b2">
               <span className="b-tag">From the country</span>
               <blockquote>
@@ -140,27 +132,24 @@ export default function Home() {
               <cite>— Iván Bethancourt · Almirante</cite>
             </div>
 
-            {/* B3 — pure image with overlay */}
-            <Link href="/articles/sendero-los-quetzales" className="bento-card b3">
+            <div className="bento-card b3">
               <div
                 className="imgph photo"
                 style={{ backgroundImage: `url('${pexels(5374189)}')` }}
               />
               <div className="bento-overlay">
-                <span className="b-tag">Indigenous · Sea</span>
+                <span className="b-tag">Indigenous · Coming soon</span>
                 <h3>Guna Yala</h3>
               </div>
-            </Link>
+            </div>
 
-            {/* B4 — text-only dark CTA */}
-            <Link href="#cta" className="bento-card b4">
-              <span className="b-tag">→ Plan a trip</span>
+            <div className="bento-card b4">
+              <span className="b-tag">Itineraries · Coming soon</span>
               <h3>Build a custom Panama itinerary in 10 minutes.</h3>
-              <span className="bento-arrow">Get started</span>
-            </Link>
+              <span className="bento-arrow">Coming soon</span>
+            </div>
 
-            {/* B5 — split: image left, text right */}
-            <Link href="/articles/sendero-los-quetzales" className="bento-card b5">
+            <Link href={QUETZAL_TRAIL} className="bento-card b5">
               <div className="bento-split-img">
                 <div
                   className="imgph photo"
@@ -168,23 +157,20 @@ export default function Home() {
                 />
               </div>
               <div className="bento-split-body">
-                <span className="b-tag">Highlands · 31 guides</span>
+                <span className="b-tag">Highlands · Featured guide</span>
                 <h3>Chiriquí — cloud forest, coffee, Volcán Barú</h3>
                 <p>
-                  The country&rsquo;s only summit you can climb in a day, plus the
-                  Geisha farms that change how you taste coffee.
+                  Start with our field report on Sendero Los Quetzales — the
+                  country&rsquo;s most famous day hike.
                 </p>
               </div>
             </Link>
           </div>
         </div>
       </section>
-
     </>
   );
 }
-
-// ─────────────────────────────────────────────────────────────────────────────
 
 function CategorySection({
   id,
@@ -204,17 +190,21 @@ function CategorySection({
       <div className="container">
         <div className="cat-section-head">
           <h2>{title}</h2>
-          <Link href="#" className="cat-section-link">{link}</Link>
+          <span className="cat-section-link cat-section-link--muted">{link}</span>
         </div>
 
         <div className="cat-row-wrap">
-          <button type="button" className="cat-arrow prev" aria-label="Previous">‹</button>
+          <button type="button" className="cat-arrow prev" aria-label="Previous">
+            ‹
+          </button>
           <div className="cat-row">
             {cards.map((card) => (
               <CategoryCard key={card.title} icon={icon} {...card} />
             ))}
           </div>
-          <button type="button" className="cat-arrow next" aria-label="Next">›</button>
+          <button type="button" className="cat-arrow next" aria-label="Next">
+            ›
+          </button>
         </div>
       </div>
     </section>
@@ -228,8 +218,8 @@ function CategoryCard({
   href,
   icon,
 }: Card & { icon: IconKey }) {
-  return (
-    <Link href={href} className="cat-card">
+  const content = (
+    <>
       {img.kind === "photo" ? (
         <div
           className="imgph photo"
@@ -245,7 +235,21 @@ function CategoryCard({
           {tag}
         </span>
       </div>
-    </Link>
+    </>
+  );
+
+  if (href) {
+    return (
+      <Link href={href} className="cat-card">
+        {content}
+      </Link>
+    );
+  }
+
+  return (
+    <div className="cat-card cat-card--static" aria-label={`${title} — coming soon`}>
+      {content}
+    </div>
   );
 }
 

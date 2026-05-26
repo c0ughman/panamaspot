@@ -1,4 +1,9 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
+
+function FooterText({ children }: { children: ReactNode }) {
+  return <span className="footer-link-muted">{children}</span>;
+}
 
 export function SiteFooter() {
   return (
@@ -9,7 +14,7 @@ export function SiteFooter() {
             Every corner of the <em>isthmus</em>, written by people who live
             here.
           </h2>
-          <Link href="#cat-regions" className="home-cta-btn">
+          <Link href="/#cat-regions" className="home-cta-btn">
             Start exploring →
           </Link>
         </div>
@@ -31,34 +36,34 @@ export function SiteFooter() {
           <div>
             <h4>Destinations</h4>
             <ul>
-              <li><Link href="/#">Panama City</Link></li>
-              <li><Link href="/#">Bocas del Toro</Link></li>
-              <li><Link href="/#">San Blas / Guna Yala</Link></li>
-              <li><Link href="/#">Boquete &amp; Chiriquí</Link></li>
-              <li><Link href="/#">Azuero Peninsula</Link></li>
-              <li><Link href="/#">Coiba &amp; the Pacific</Link></li>
-              <li><Link href="/#">The Darién</Link></li>
+              <li><FooterText>Panama City</FooterText></li>
+              <li><FooterText>Bocas del Toro</FooterText></li>
+              <li><FooterText>San Blas / Guna Yala</FooterText></li>
+              <li><FooterText>Boquete &amp; Chiriquí</FooterText></li>
+              <li><FooterText>Azuero Peninsula</FooterText></li>
+              <li><FooterText>Coiba &amp; the Pacific</FooterText></li>
+              <li><FooterText>The Darién</FooterText></li>
             </ul>
           </div>
           <div>
             <h4>By topic</h4>
             <ul>
-              <li><Link href="/#eco">Eco-tourism</Link></li>
-              <li><Link href="/#itineraries">Itineraries</Link></li>
-              <li><Link href="/#">Wildlife &amp; birding</Link></li>
-              <li><Link href="/#">Food &amp; coffee</Link></li>
-              <li><Link href="/#">Surf &amp; dive</Link></li>
-              <li><Link href="/#">Practical info</Link></li>
+              <li><FooterText>Eco-tourism</FooterText></li>
+              <li><FooterText>Itineraries</FooterText></li>
+              <li><FooterText>Wildlife &amp; birding</FooterText></li>
+              <li><FooterText>Food &amp; coffee</FooterText></li>
+              <li><FooterText>Surf &amp; dive</FooterText></li>
+              <li><FooterText>Practical info</FooterText></li>
             </ul>
           </div>
           <div>
             <h4>About</h4>
             <ul>
-              <li><Link href="/#">Our writers</Link></li>
-              <li><Link href="/#">Editorial standards</Link></li>
-              <li><Link href="/#">Work with us</Link></li>
-              <li><Link href="/#">Press &amp; partners</Link></li>
-              <li><Link href="/#">Contact</Link></li>
+              <li><FooterText>Our writers</FooterText></li>
+              <li><FooterText>Editorial standards</FooterText></li>
+              <li><FooterText>Work with us</FooterText></li>
+              <li><FooterText>Press &amp; partners</FooterText></li>
+              <li><FooterText>Contact</FooterText></li>
             </ul>
           </div>
         </div>

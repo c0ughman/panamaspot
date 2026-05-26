@@ -7,6 +7,7 @@ type BuildMetadataInput = {
   path?: string;
   ogImage?: string;
   noindex?: boolean;
+  absoluteTitle?: boolean;
   type?: "website" | "article";
   publishedTime?: string;
   modifiedTime?: string;
@@ -19,6 +20,7 @@ export function buildMetadata({
   path = "/",
   ogImage,
   noindex = false,
+  absoluteTitle = false,
   type = "website",
   publishedTime,
   modifiedTime,
@@ -28,7 +30,7 @@ export function buildMetadata({
   const image = ogImage || siteConfig.defaultOgImage;
 
   return {
-    title,
+    title: absoluteTitle ? { absolute: title } : title,
     description,
     alternates: { canonical: url },
     robots: noindex
