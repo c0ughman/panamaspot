@@ -482,42 +482,68 @@
 
   /* ─── TRIP HELP ─── */
   .trip-help { background: #edf7ec; padding: 56px 0; }
-  .trip-help-inner { display: flex; align-items: center; gap: 40px; }
-  .trip-help-text { flex: 2; }
-  .trip-help-cta { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; }
+  .trip-help-inner {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+  }
+  .trip-help-text { flex: 1; }
   .trip-help-eyebrow {
-    font-size: 11px; font-weight: 600; letter-spacing: 2.5px;
-    text-transform: uppercase; color: var(--green); margin-bottom: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 10px;
   }
   .trip-help-heading {
-    font-family: var(--serif); font-weight: 600;
-    font-size: clamp(24px, 3vw, 34px); line-height: 1.1;
-    letter-spacing: -0.5px; color: var(--ink); margin-bottom: 14px;
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(24px, 3vw, 34px);
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    color: var(--ink);
+    margin-bottom: 14px;
   }
   .trip-help-body {
-    font-size: 16px; color: var(--ink-soft); line-height: 1.65;
-    max-width: 54ch; margin-bottom: 24px;
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    max-width: 54ch;
+    margin-bottom: 24px;
   }
   .trip-help-body strong { color: var(--ink); font-weight: 600; }
   .btn-help {
-    display: inline-flex; align-items: center; gap: 9px;
-    padding: 14px 26px; border-radius: 100px; font-family: var(--sans);
-    font-size: 15px; font-weight: 600; background: var(--ink); color: #fff;
-    border: none; cursor: pointer; transition: background 0.2s ease;
-    text-decoration: none; white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 12px 22px;
+    border-radius: 100px;
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 600;
+    background: #fff;
+    color: var(--ink);
+    border: 1.5px solid rgba(20,32,26,0.15);
+    box-shadow: 0 1px 3px rgba(20,32,26,0.08);
+    cursor: pointer;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    text-decoration: none;
   }
-  .btn-help:hover { background: var(--green-deep); }
+  .btn-help:hover { box-shadow: 0 3px 10px rgba(20,32,26,0.14); border-color: rgba(20,32,26,0.25); }
   .wa-icon-dark {
-    width: 18px; height: 18px; display: inline-block; flex-shrink: 0;
+    width: 18px; height: 18px;
+    display: inline-block;
+    flex-shrink: 0;
     background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2314201a'><path d='M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.32 4.95L2 22l5.25-1.38a9.93 9.93 0 0 0 4.79 1.22c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2zm5.85 14.07c-.25.69-1.45 1.32-2 1.4-.51.07-1.16.1-1.87-.12-.43-.13-.99-.32-1.7-.62-3-1.3-4.96-4.32-5.11-4.52-.15-.2-1.22-1.62-1.22-3.1 0-1.47.77-2.2 1.05-2.5.27-.3.6-.37.8-.37.2 0 .4 0 .57.01.18.01.43-.07.67.51.25.6.85 2.07.93 2.22.07.15.13.32.02.52-.1.2-.16.32-.32.5-.16.17-.33.39-.47.52-.15.15-.31.32-.13.62.18.3.78 1.29 1.68 2.09 1.16 1.04 2.14 1.36 2.44 1.51.3.15.47.13.65-.07.18-.2.75-.87.95-1.18.2-.3.4-.25.67-.15.27.1 1.74.82 2.04.97.3.15.5.22.57.35.07.13.07.74-.18 1.43z'/></svg>") no-repeat center / contain;
   }
   .trip-help-img {
-    width: 130px; height: 130px; object-fit: cover;
-    border-radius: 14px; flex-shrink: 0; box-shadow: 0 4px 16px rgba(20,32,26,0.15);
-  }
-  @media (max-width: 560px) {
-    .trip-help-inner { flex-direction: column; gap: 20px; align-items: flex-start; }
-    .trip-help-img { width: 80px; height: 80px; }
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 14px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(20,32,26,0.15);
   }
 
   /* ─── FINAL CTA ─── */
@@ -606,6 +632,8 @@
     .offer-card { padding: 24px; }
     .review { padding: 22px 20px; }
     .review-text { font-size: 17px; }
+    .trip-help-inner { flex-direction: column; gap: 20px; align-items: flex-start; }
+    .trip-help-img { width: 80px; height: 80px; }
   }
 </style>
 </head>
@@ -734,6 +762,11 @@
       </div>
     </div>
 
+    <div style="text-align:center; margin-top:40px;">
+      <a class="btn btn-dark btn-lg" href="https://wa.me/50769833141?text=Hi%20E-Valley%20Bikes%20Boquete!%20I'd%20like%20to%20book%20a%20bike%20tour.">
+        <span class="wa-icon"></span> Ask which tour fits you
+      </a>
+    </div>
   </div>
 </section>
 
@@ -836,27 +869,6 @@
   </div>
 </section>
 
-<!-- TRIP HELP -->
-<section class="trip-help">
-  <div class="wrap">
-    <div class="trip-help-inner">
-      <div class="trip-help-text">
-        <p class="trip-help-eyebrow">While you're planning your visit</p>
-        <h3 class="trip-help-heading">Need a tip about Boquete?</h3>
-        <p class="trip-help-body">
-          Still figuring out <strong>where to stay</strong>? Want to know which <strong>coffee shop</strong> is actually worth your morning — beyond the one on every tourist list? Looking for a <strong>good restaurant</strong> for dinner, a solid <strong>breakfast spot</strong>, or just some honest <strong>trip planning advice</strong> from people who are here every day? Send us a message. We're happy to help.
-        </p>
-      </div>
-      <div class="trip-help-cta">
-        <a class="btn btn-help" href="https://wa.me/50769833141?text=Hi!%20I%20have%20a%20question%20about%20visiting%20Boquete.">
-          <span class="wa-icon"></span> Ask us anything
-        </a>
-      </div>
-      <img class="trip-help-img" src="https://images.booqablecdn.com/uploads/8979ffef14a1bdb06611230ae9a36a01/photo/photo/666becca-f5a4-495c-ad7b-aab2f3302809/1734624084-457447415407503-0032-7472/upload.jpeg" alt="Boquete, Panama" loading="lazy">
-    </div>
-  </div>
-</section>
-
 <!-- FAQ -->
 <section class="faq">
   <div class="wrap">
@@ -884,6 +896,25 @@
         <div class="faq-q">Is it safe to go solo?</div>
         <div class="faq-a">Yes — and it's something travelers actually mention in reviews. Routes are pre-designed, gear is included, and our team is reachable while you ride.</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRIP HELP -->
+<section class="trip-help">
+  <div class="wrap">
+    <div class="trip-help-inner">
+      <div class="trip-help-text">
+        <p class="trip-help-eyebrow">While you're planning your visit</p>
+        <h3 class="trip-help-heading">Need a tip about Boquete?</h3>
+        <p class="trip-help-body">
+          Still figuring out <strong>where to stay</strong>? Want to know which <strong>coffee shop</strong> is actually worth your morning — beyond the one on every tourist list? Looking for a <strong>good restaurant</strong> for dinner, a solid <strong>breakfast spot</strong>, or just some honest <strong>trip planning advice</strong> from people who are here every day? Send us a message. We're happy to help.
+        </p>
+        <a class="btn btn-help" href="https://wa.me/50769833141?text=Hi!%20I%20have%20a%20question%20about%20visiting%20Boquete.">
+          <span class="wa-icon-dark"></span> Ask us anything
+        </a>
+      </div>
+      <img class="trip-help-img" src="https://images.booqablecdn.com/uploads/8979ffef14a1bdb06611230ae9a36a01/photo/photo/666becca-f5a4-495c-ad7b-aab2f3302809/1734624084-457447415407503-0032-7472/upload.jpeg" alt="Boquete, Panama" loading="lazy">
     </div>
   </div>
 </section>

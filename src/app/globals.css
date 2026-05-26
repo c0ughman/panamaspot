@@ -58,6 +58,12 @@
 
   --maxw: 1320px;
   --art-sidebar: 216px;
+
+  /* Frosted glass surfaces (header search, hero tag pills) */
+  --glass-bg: rgba(255, 255, 255, 0.22);
+  --glass-blur: 20px;
+  --glass-text: rgba(255, 255, 255, 0.88);
+  --glass-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -414,7 +420,9 @@ img { display: block; max-width: 100%; }
   display: flex;
   align-items: baseline;
   gap: 10px;
-  font-family: var(--serif);
+  /* Use --font-display so article pages keep Instrument Serif even though
+     .article-page remaps --serif to sans for body copy. */
+  font-family: var(--font-display);
   font-size: 26px;
   letter-spacing: -0.01em;
   color: white;
@@ -444,21 +452,23 @@ img { display: block; max-width: 100%; }
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(8px);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: none;
   border-radius: 999px;
   padding: 8px 14px;
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.82);
+  color: var(--glass-text);
   cursor: text;
   min-width: 220px;
   white-space: nowrap;
   line-height: 1;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--glass-shadow);
   transition: background 0.15s, box-shadow 0.15s;
 }
 .home-search:hover {
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.28);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 .home-search svg {
@@ -1329,25 +1339,33 @@ img { display: block; max-width: 100%; }
 .art-hero-pills {
   position: absolute;
   bottom: 28px;
-  left: 28px;
+  right: 32px;
   z-index: 10;
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 8px;
+  max-width: calc(100% - 64px);
 }
+/* Match .home-search glass styling — shared tokens, no border, lighter blur. */
 .art-hero-tag {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: white;
-  background: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  display: inline-flex;
+  align-items: center;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: none;
   border-radius: 999px;
-  padding: 6px 14px;
+  padding: 8px 14px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--glass-text);
   white-space: nowrap;
+  line-height: 1;
+  box-shadow: var(--glass-shadow);
 }
 
 /* ===== ARTICLE FIXED HEADER ===== */
