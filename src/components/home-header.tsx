@@ -9,14 +9,14 @@ const NAV: Record<Locale, { label: string; href: string }[]> = {
   en: [
     { label: "Destinations", href: "/#cat-regions" },
     { label: "Eco-tourism", href: "/#cat-activities" },
-    { label: "Guides", href: "/articles/sendero-los-quetzales" },
-    { label: "Plan a trip", href: "/#cat-destinations" },
+    { label: "Guides", href: "/#cat-regions" },
+    { label: "Plan a trip", href: "/#cat-regions" },
   ],
   es: [
     { label: "Destinos", href: "/es#cat-regions" },
     { label: "Ecoturismo", href: "/es#cat-activities" },
-    { label: "Guías", href: "/es#cat-destinations" },
-    { label: "Planifica tu viaje", href: "/es#cat-destinations" },
+    { label: "Guías", href: "/es#cat-regions" },
+    { label: "Planifica tu viaje", href: "/es#cat-regions" },
   ],
 };
 

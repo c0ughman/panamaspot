@@ -17,40 +17,41 @@ export const metadata: Metadata = buildMetadata({
   ogImage: HERO_BG,
   languages: { en: "/", es: "/es", "x-default": "/" },
 });
+
+const BOCAS = "/articles/bocas-del-toro";
+const BOQUETE = "/articles/sendero-los-quetzales";
+const PANAMA_CITY = "/articles/panama-city";
+const EL_VALLE = "/articles/el-valle-de-anton";
+
 const BOCAS_PHOTO = pexels(2038744);
+const BOQUETE_PHOTO = pexels(2380342);
+const PANAMA_CITY_PHOTO = pexels(14840814);
+const EL_VALLE_PHOTO = pexels(30774416);
 const GUNA_PHOTO = pexels(31416948);
-const QUETZAL_TRAIL = "/articles/sendero-los-quetzales";
 
 // ── Data ─────────────────────────────────────────────────────────────────────
 
 const REGIONS: Card[] = [
-  { title: "Caribbean Coast", tag: "Coming soon", img: { kind: "photo", src: pexels(14185535) } },
-  { title: "Pacific Side", tag: "Coming soon", img: { kind: "photo", src: pexels(34205250) } },
-  { title: "Chiriquí Highlands", tag: "Coming soon", img: { kind: "photo", src: pexels(2918139) } },
-  { title: "Panama City", tag: "Coming soon", img: { kind: "photo", src: pexels(2666249) } },
-  { title: "Azuero Peninsula", tag: "Coming soon", img: { kind: "photo", src: pexels(36601635) } },
-  { title: "Pacific Islands", tag: "Coming soon", img: { kind: "photo", src: pexels(4766708) } },
-  { title: "Comarca Territories", tag: "Coming soon", img: { kind: "photo", src: pexels(9122911) } },
+  { title: "Bocas del Toro", tag: "Guide", img: { kind: "photo", src: BOCAS_PHOTO }, href: BOCAS },
+  { title: "Boquete", tag: "Guide", img: { kind: "photo", src: BOQUETE_PHOTO }, href: BOQUETE },
+  { title: "Panama City", tag: "Guide", img: { kind: "photo", src: PANAMA_CITY_PHOTO }, href: PANAMA_CITY },
+  { title: "El Valle de Antón", tag: "Guide", img: { kind: "photo", src: EL_VALLE_PHOTO }, href: EL_VALLE },
+  { title: "Guna Yala", tag: "Coming soon", img: { kind: "photo", src: GUNA_PHOTO }, comingSoon: true },
+  { title: "Casco Viejo", tag: "Coming soon", img: { kind: "photo", src: pexels(19620790) }, comingSoon: true },
+  { title: "Pedasí", tag: "Coming soon", img: { kind: "photo", src: pexels(18976053) }, comingSoon: true },
+  { title: "Coiba", tag: "Coming soon", img: { kind: "photo", src: pexels(4171716) }, comingSoon: true },
+  { title: "The Darién", tag: "Coming soon", img: { kind: "photo", src: pexels(36105293) }, comingSoon: true },
 ];
 
 const ACTIVITIES: Card[] = [
-  { title: "Hiking & Trails", tag: "1 guide", img: { kind: "photo", src: pexels(10343761) }, href: QUETZAL_TRAIL },
-  { title: "Wildlife & Birding", tag: "Coming soon", img: { kind: "photo", src: pexels(9566563) } },
-  { title: "Surf & Dive", tag: "Coming soon", img: { kind: "photo", src: pexels(33757647) } },
-  { title: "Food & Coffee", tag: "Coming soon", img: { kind: "photo", src: pexels(30658818) } },
-  { title: "Eco-tourism", tag: "1 guide", img: { kind: "photo", src: pexels(3603874) }, href: QUETZAL_TRAIL },
-  { title: "Cities & Culture", tag: "Coming soon", img: { kind: "photo", src: pexels(23910182) } },
-  { title: "Islands & Beaches", tag: "Coming soon", img: { kind: "photo", src: pexels(8951333) } },
-];
-
-const DESTINATIONS: Card[] = [
-  { title: "Bocas del Toro", tag: "Coming soon", img: { kind: "photo", src: BOCAS_PHOTO } },
-  { title: "Guna Yala", tag: "Coming soon", img: { kind: "photo", src: GUNA_PHOTO } },
-  { title: "Boquete", tag: "Featured guide", img: { kind: "photo", src: pexels(2380342) }, href: QUETZAL_TRAIL },
-  { title: "Casco Viejo", tag: "Coming soon", img: { kind: "photo", src: pexels(19620790) } },
-  { title: "Pedasí", tag: "Coming soon", img: { kind: "photo", src: pexels(18976053) } },
-  { title: "Coiba", tag: "Coming soon", img: { kind: "photo", src: pexels(4171716) } },
-  { title: "The Darién", tag: "Coming soon", img: { kind: "photo", src: pexels(36105293) } },
+  { title: "Hiking & Trails", tag: "Guide", img: { kind: "photo", src: pexels(10343761) }, href: BOQUETE },
+  { title: "Wildlife & Birding", tag: "Guide", img: { kind: "photo", src: pexels(9566563) }, href: EL_VALLE },
+  { title: "Surf & Dive", tag: "Guide", img: { kind: "photo", src: pexels(33757647) }, href: BOCAS },
+  { title: "Food & Coffee", tag: "Guide", img: { kind: "photo", src: pexels(30658818) }, href: BOQUETE },
+  { title: "Eco-tourism", tag: "Guide", img: { kind: "photo", src: pexels(3603874) }, href: EL_VALLE },
+  { title: "Cities & Culture", tag: "Guide", img: { kind: "photo", src: pexels(23910182) }, href: PANAMA_CITY },
+  { title: "Islands & Beaches", tag: "Guide", img: { kind: "photo", src: pexels(8951333) }, href: BOCAS },
+  { title: "Markets & Town Life", tag: "Coming soon", img: { kind: "photo", src: pexels(7823008) }, comingSoon: true },
 ];
 
 export default function Home() {
@@ -75,7 +76,7 @@ export default function Home() {
       <CategorySection
         id="cat-regions"
         title="Where in Panama?"
-        link="Browse by region"
+        link="Browse destinations"
         icon="region"
         cards={REGIONS}
       />
@@ -85,13 +86,6 @@ export default function Home() {
         link="Browse by activity"
         icon="activity"
         cards={ACTIVITIES}
-      />
-      <CategorySection
-        id="cat-destinations"
-        title="Where to go first?"
-        link="Browse destinations"
-        icon="destination"
-        cards={DESTINATIONS}
       />
 
       <section className="home-bento">
@@ -103,12 +97,12 @@ export default function Home() {
               one isthmus.
             </h2>
             <span className="cat-section-link cat-section-link--muted">
-              More guides coming soon
+              Field reports from the ground
             </span>
           </div>
 
           <div className="home-bento-grid">
-            <div className="bento-card b1">
+            <Link href={BOCAS} className="bento-card b1">
               <div className="bento-img-top">
                 <div
                   className="imgph photo"
@@ -116,14 +110,14 @@ export default function Home() {
                 />
               </div>
               <div className="bento-body">
-                <span className="b-tag">Caribbean · Coming soon</span>
+                <span className="b-tag">Caribbean · Guide</span>
                 <h3>Bocas del Toro — nine islands, slow boats, sloths</h3>
                 <p>
                   Surfers&rsquo; capital of the Caribbean coast, Afro-Antillean kitchens,
                   and the country&rsquo;s easiest place to wake up on the water.
                 </p>
               </div>
-            </div>
+            </Link>
 
             <div className="bento-card b2">
               <span className="b-tag">From the country</span>
@@ -135,36 +129,36 @@ export default function Home() {
               <cite>— Iván Bethancourt · Almirante</cite>
             </div>
 
-            <div className="bento-card b3">
+            <Link href={PANAMA_CITY} className="bento-card b3">
               <div
                 className="imgph photo"
-                style={{ backgroundImage: `url('${pexels(5374189)}')` }}
+                style={{ backgroundImage: `url('${PANAMA_CITY_PHOTO}')` }}
               />
               <div className="bento-overlay">
-                <span className="b-tag">Indigenous · Coming soon</span>
-                <h3>Guna Yala</h3>
+                <span className="b-tag">Capital · Guide</span>
+                <h3>Panama City</h3>
               </div>
-            </div>
+            </Link>
 
-            <div className="bento-card b4">
-              <span className="b-tag">Itineraries · Coming soon</span>
-              <h3>Build a custom Panama itinerary in 10 minutes.</h3>
-              <span className="bento-arrow">Coming soon</span>
-            </div>
+            <Link href={EL_VALLE} className="bento-card b4">
+              <span className="b-tag">Highlands · Guide</span>
+              <h3>El Valle de Antón — a town inside an extinct volcano.</h3>
+              <span className="bento-arrow">Read the guide →</span>
+            </Link>
 
-            <Link href={QUETZAL_TRAIL} className="bento-card b5">
+            <Link href={BOQUETE} className="bento-card b5">
               <div className="bento-split-img">
                 <div
                   className="imgph photo"
-                  style={{ backgroundImage: `url('${pexels(9246451)}')` }}
+                  style={{ backgroundImage: `url('${BOQUETE_PHOTO}')` }}
                 />
               </div>
               <div className="bento-split-body">
-                <span className="b-tag">Highlands · Featured guide</span>
-                <h3>Chiriquí — cloud forest, coffee, Volcán Barú</h3>
+                <span className="b-tag">Highlands · Guide</span>
+                <h3>Boquete — cloud forest, coffee, Volcán Barú</h3>
                 <p>
-                  Start with our field report on Sendero Los Quetzales — the
-                  country&rsquo;s most famous day hike.
+                  The highland town that runs on coffee, rivers, and fog — plus
+                  the country&rsquo;s best day hikes from town.
                 </p>
               </div>
             </Link>

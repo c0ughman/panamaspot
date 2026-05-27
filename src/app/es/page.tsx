@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { buildMetadata } from "@/lib/seo";
 import { webPageJsonLd, jsonLdScript } from "@/lib/jsonld";
 import { HeroParallax } from "@/components/hero-parallax";
@@ -18,42 +19,38 @@ export const metadata: Metadata = buildMetadata({
   ogImage: HERO_BG,
   languages: { en: "/", es: "/es", "x-default": "/" },
 });
+
+const PANAMA_CITY = "/es/articles/panama-city";
+const EL_VALLE = "/es/articles/el-valle-de-anton";
+
 const BOCAS_PHOTO = pexels(2038744);
+const BOQUETE_PHOTO = pexels(2380342);
+const PANAMA_CITY_PHOTO = pexels(14840814);
+const EL_VALLE_PHOTO = pexels(30774416);
 const GUNA_PHOTO = pexels(31416948);
 
 // ── Datos ──────────────────────────────────────────────────────────────────
-// Aún no hay artículos en español, así que todas las tarjetas van como
-// "Próximamente" (sin enlace). Cuando existan guías en /es/articles/…,
-// añade el href correspondiente, igual que en la home en inglés.
 
 const REGIONS: Card[] = [
-  { title: "Costa Caribe", tag: "Próximamente", img: { kind: "photo", src: pexels(14185535) } },
-  { title: "Lado Pacífico", tag: "Próximamente", img: { kind: "photo", src: pexels(34205250) } },
-  { title: "Tierras Altas de Chiriquí", tag: "Próximamente", img: { kind: "photo", src: pexels(2918139) } },
-  { title: "Ciudad de Panamá", tag: "Próximamente", img: { kind: "photo", src: pexels(2666249) } },
-  { title: "Península de Azuero", tag: "Próximamente", img: { kind: "photo", src: pexels(36601635) } },
-  { title: "Islas del Pacífico", tag: "Próximamente", img: { kind: "photo", src: pexels(4766708) } },
-  { title: "Comarcas Indígenas", tag: "Próximamente", img: { kind: "photo", src: pexels(9122911) } },
+  { title: "Ciudad de Panamá", tag: "Guía", img: { kind: "photo", src: PANAMA_CITY_PHOTO }, href: PANAMA_CITY },
+  { title: "El Valle de Antón", tag: "Guía", img: { kind: "photo", src: EL_VALLE_PHOTO }, href: EL_VALLE },
+  { title: "Bocas del Toro", tag: "Próximamente", img: { kind: "photo", src: BOCAS_PHOTO }, comingSoon: true },
+  { title: "Boquete", tag: "Próximamente", img: { kind: "photo", src: BOQUETE_PHOTO }, comingSoon: true },
+  { title: "Guna Yala", tag: "Próximamente", img: { kind: "photo", src: GUNA_PHOTO }, comingSoon: true },
+  { title: "Casco Viejo", tag: "Próximamente", img: { kind: "photo", src: pexels(19620790) }, comingSoon: true },
+  { title: "Pedasí", tag: "Próximamente", img: { kind: "photo", src: pexels(18976053) }, comingSoon: true },
+  { title: "Coiba", tag: "Próximamente", img: { kind: "photo", src: pexels(4171716) }, comingSoon: true },
+  { title: "El Darién", tag: "Próximamente", img: { kind: "photo", src: pexels(36105293) }, comingSoon: true },
 ];
 
 const ACTIVITIES: Card[] = [
-  { title: "Senderismo", tag: "Próximamente", img: { kind: "photo", src: pexels(10343761) } },
-  { title: "Fauna y Aves", tag: "Próximamente", img: { kind: "photo", src: pexels(9566563) } },
-  { title: "Surf y Buceo", tag: "Próximamente", img: { kind: "photo", src: pexels(33757647) } },
-  { title: "Comida y Café", tag: "Próximamente", img: { kind: "photo", src: pexels(30658818) } },
-  { title: "Ecoturismo", tag: "Próximamente", img: { kind: "photo", src: pexels(3603874) } },
-  { title: "Ciudades y Cultura", tag: "Próximamente", img: { kind: "photo", src: pexels(23910182) } },
-  { title: "Islas y Playas", tag: "Próximamente", img: { kind: "photo", src: pexels(8951333) } },
-];
-
-const DESTINATIONS: Card[] = [
-  { title: "Bocas del Toro", tag: "Próximamente", img: { kind: "photo", src: BOCAS_PHOTO } },
-  { title: "Guna Yala", tag: "Próximamente", img: { kind: "photo", src: GUNA_PHOTO } },
-  { title: "Boquete", tag: "Próximamente", img: { kind: "photo", src: pexels(2380342) } },
-  { title: "Casco Viejo", tag: "Próximamente", img: { kind: "photo", src: pexels(19620790) } },
-  { title: "Pedasí", tag: "Próximamente", img: { kind: "photo", src: pexels(18976053) } },
-  { title: "Coiba", tag: "Próximamente", img: { kind: "photo", src: pexels(4171716) } },
-  { title: "El Darién", tag: "Próximamente", img: { kind: "photo", src: pexels(36105293) } },
+  { title: "Ciudades y Cultura", tag: "Guía", img: { kind: "photo", src: pexels(23910182) }, href: PANAMA_CITY },
+  { title: "Senderismo", tag: "Guía", img: { kind: "photo", src: pexels(10343761) }, href: EL_VALLE },
+  { title: "Ecoturismo", tag: "Guía", img: { kind: "photo", src: pexels(3603874) }, href: EL_VALLE },
+  { title: "Fauna y Aves", tag: "Próximamente", img: { kind: "photo", src: pexels(9566563) }, comingSoon: true },
+  { title: "Surf y Buceo", tag: "Próximamente", img: { kind: "photo", src: pexels(33757647) }, comingSoon: true },
+  { title: "Comida y Café", tag: "Próximamente", img: { kind: "photo", src: pexels(30658818) }, comingSoon: true },
+  { title: "Islas y Playas", tag: "Próximamente", img: { kind: "photo", src: pexels(8951333) }, comingSoon: true },
 ];
 
 export default function HomeEs() {
@@ -85,7 +82,7 @@ export default function HomeEs() {
       <CategorySection
         id="cat-regions"
         title="¿En qué parte de Panamá?"
-        link="Explora por región"
+        link="Explora destinos"
         icon="region"
         cards={REGIONS}
       />
@@ -95,13 +92,6 @@ export default function HomeEs() {
         link="Explora por actividad"
         icon="activity"
         cards={ACTIVITIES}
-      />
-      <CategorySection
-        id="cat-destinations"
-        title="¿Por dónde empezar?"
-        link="Explora destinos"
-        icon="destination"
-        cards={DESTINATIONS}
       />
 
       <section className="home-bento">
@@ -113,12 +103,12 @@ export default function HomeEs() {
               un istmo.
             </h2>
             <span className="cat-section-link cat-section-link--muted">
-              Más guías próximamente
+              Reportajes desde el terreno
             </span>
           </div>
 
           <div className="home-bento-grid">
-            <div className="bento-card b1">
+            <div className="bento-card b1 bento-card--soon">
               <div className="bento-img-top">
                 <div
                   className="imgph photo"
@@ -145,36 +135,36 @@ export default function HomeEs() {
               <cite>— Iván Bethancourt · Almirante</cite>
             </div>
 
-            <div className="bento-card b3">
+            <Link href={PANAMA_CITY} className="bento-card b3">
               <div
                 className="imgph photo"
-                style={{ backgroundImage: `url('${pexels(5374189)}')` }}
+                style={{ backgroundImage: `url('${PANAMA_CITY_PHOTO}')` }}
               />
               <div className="bento-overlay">
-                <span className="b-tag">Indígena · Próximamente</span>
-                <h3>Guna Yala</h3>
+                <span className="b-tag">Capital · Guía</span>
+                <h3>Ciudad de Panamá</h3>
               </div>
-            </div>
+            </Link>
 
-            <div className="bento-card b4">
-              <span className="b-tag">Itinerarios · Próximamente</span>
-              <h3>Crea un itinerario de Panamá en 10 minutos.</h3>
-              <span className="bento-arrow">Próximamente</span>
-            </div>
+            <Link href={EL_VALLE} className="bento-card b4">
+              <span className="b-tag">Tierras altas · Guía</span>
+              <h3>El Valle de Antón — un pueblo dentro de un volcán extinto.</h3>
+              <span className="bento-arrow">Leer la guía →</span>
+            </Link>
 
-            <div className="bento-card b5">
+            <div className="bento-card b5 bento-card--soon">
               <div className="bento-split-img">
                 <div
                   className="imgph photo"
-                  style={{ backgroundImage: `url('${pexels(9246451)}')` }}
+                  style={{ backgroundImage: `url('${BOQUETE_PHOTO}')` }}
                 />
               </div>
               <div className="bento-split-body">
                 <span className="b-tag">Tierras altas · Próximamente</span>
-                <h3>Chiriquí — bosque nuboso, café, Volcán Barú</h3>
+                <h3>Boquete — bosque nuboso, café, Volcán Barú</h3>
                 <p>
-                  El bosque nuboso, el café de altura y el Volcán Barú — nuestra
-                  guía de Chiriquí llega pronto.
+                  El pueblo de montaña que vive del café, los ríos y la neblina —
+                  la guía en español llega pronto.
                 </p>
               </div>
             </div>

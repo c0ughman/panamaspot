@@ -759,19 +759,17 @@ img { display: block; max-width: 100%; }
   display: flex;
   flex-direction: column;
   gap: 12px;
-  transition: transform 0.2s ease;
 }
-.cat-card:hover { transform: translateY(-3px); }
 .cat-card:hover .cat-card-title { color: var(--terra); }
 .cat-card--static {
   cursor: default;
-  opacity: 0.88;
-}
-.cat-card--static:hover {
-  transform: none;
 }
 .cat-card--static:hover .cat-card-title {
   color: var(--ink);
+}
+.cat-card--soon .imgph {
+  filter: grayscale(1);
+  opacity: 0.72;
 }
 .cat-card .imgph {
   height: 160px;
@@ -851,9 +849,11 @@ img { display: block; max-width: 100%; }
   text-decoration: none;
   color: var(--ink);
   display: flex;
-  transition: transform 0.25s ease;
 }
-.bento-card:hover { transform: translateY(-4px); }
+.bento-card--soon .imgph {
+  filter: grayscale(1);
+  opacity: 0.72;
+}
 
 /* B1 — image hero with text BELOW (not overlaid) */
 .bento-card.b1 {

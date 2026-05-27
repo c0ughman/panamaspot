@@ -18,6 +18,8 @@ export type Card = {
   tag: string;
   img: CardImg;
   href?: string;
+  /** Grayscale image + non-interactive card (no lift hover). */
+  comingSoon?: boolean;
 };
 
 export function CategorySection({
@@ -59,7 +61,15 @@ export function CategorySection({
   );
 }
 
-function CategoryCard({ title, tag, img, href, icon }: Card & { icon: IconKey }) {
+function CategoryCard({
+  title,
+  tag,
+  img,
+  href,
+  comingSoon,
+  icon,
+}: Card & { icon: IconKey }) {
+  const isSoon = comingSoon ?? !href;
   const content = (
     <>
       {img.kind === "photo" ? (
@@ -80,7 +90,7 @@ function CategoryCard({ title, tag, img, href, icon }: Card & { icon: IconKey })
     </>
   );
 
-  if (href) {
+  if (href && !isSoon) {
     return (
       <Link href={href} className="cat-card">
         {content}
@@ -89,7 +99,10 @@ function CategoryCard({ title, tag, img, href, icon }: Card & { icon: IconKey })
   }
 
   return (
-    <div className="cat-card cat-card--static" aria-label={`${title} — ${tag}`}>
+    <div
+      className={`cat-card cat-card--static${isSoon ? " cat-card--soon" : ""}`}
+      aria-label={`${title} — ${tag}`}
+    >
       {content}
     </div>
   );
