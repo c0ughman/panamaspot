@@ -7,16 +7,20 @@ export function ArticleHero({
   bgImage,
   children,
   locale = "en",
+  enHref: enHrefProp,
+  esHref: esHrefProp,
 }: {
   bgImage: string;
   children?: ReactNode;
   locale?: Locale;
+  /* Explicit language-switch targets. Pass the counterpart article URL when a
+     translation exists; otherwise the toggle falls back to the other locale's
+     home page. */
+  enHref?: string;
+  esHref?: string;
 }) {
-  // Articles are written separately per language (not translated), so the
-  // language toggle can't map article→article. Point the other locale at its
-  // home page instead.
-  const enHref = locale === "es" ? "/" : undefined;
-  const esHref = locale === "en" ? "/es" : undefined;
+  const enHref = enHrefProp ?? (locale === "es" ? "/" : undefined);
+  const esHref = esHrefProp ?? (locale === "en" ? "/es" : undefined);
   const sectionRef = useRef<HTMLElement>(null);
   const imgRef = useRef<HTMLDivElement>(null);
   const [scrolled, setScrolled] = useState(false);

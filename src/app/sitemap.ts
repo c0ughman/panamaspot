@@ -39,5 +39,53 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    {
+      url: `${siteConfig.url}/articles/panama-city`,
+      lastModified: new Date("2026-05-26"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          en: `${siteConfig.url}/articles/panama-city`,
+          es: `${siteConfig.url}/es/articles/panama-city`,
+        },
+      },
+    },
+    {
+      url: `${siteConfig.url}/articles/el-valle-de-anton`,
+      lastModified: new Date("2026-05-26"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          en: `${siteConfig.url}/articles/el-valle-de-anton`,
+          es: `${siteConfig.url}/es/articles/el-valle-de-anton`,
+        },
+      },
+    },
+    {
+      url: `${siteConfig.url}/es/articles/panama-city`,
+      lastModified: new Date("2026-05-26"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          en: `${siteConfig.url}/articles/panama-city`,
+          es: `${siteConfig.url}/es/articles/panama-city`,
+        },
+      },
+    },
+    {
+      url: `${siteConfig.url}/es/articles/el-valle-de-anton`,
+      lastModified: new Date("2026-05-26"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          en: `${siteConfig.url}/articles/el-valle-de-anton`,
+          es: `${siteConfig.url}/es/articles/el-valle-de-anton`,
+        },
+      },
+    },
   ];
 }
