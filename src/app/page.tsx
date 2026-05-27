@@ -126,7 +126,7 @@ export default function Home() {
                 Cuba, a coast that faces Ecuador, and a mountain range between
                 them that hides whatever it wants to hide.
               </blockquote>
-              <cite>— Iván Bethancourt · Almirante</cite>
+              <cite>— Almirante, Bocas del Toro</cite>
             </div>
 
             <Link href={PANAMA_CITY} className="bento-card b3">

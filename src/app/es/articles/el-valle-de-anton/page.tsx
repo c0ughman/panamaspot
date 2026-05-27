@@ -7,6 +7,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { buildMetadata } from "@/lib/seo";
+import { siteConfig } from "@/lib/site-config";
 import { articleJsonLd, breadcrumbJsonLd, faqPageJsonLd, jsonLdScript } from "@/lib/jsonld";
 import { ReadingProgress } from "@/components/reading-progress";
 import { ArticleHero } from "@/components/article-hero";
@@ -31,7 +32,6 @@ const ARTICLE = {
   section: "Destinos",
   publishedAt: "2026-05-26",
   modifiedAt: "2026-05-26",
-  author: "Mariela Ortiz-Saavedra",
   breadcrumb: ["Coclé", "Pueblos de montaña", "El Valle de Antón"],
   heroTags: ["Montañas", "Excursión de un día", "Actualizado · Mayo 2026"],
 } as const;
@@ -91,7 +91,7 @@ export const metadata: Metadata = buildMetadata({
   type: "article",
   publishedTime: ARTICLE.publishedAt,
   modifiedTime: ARTICLE.modifiedAt,
-  authors: [ARTICLE.author],
+  authors: [siteConfig.name],
   ogLocale: "es_PA",
   languages: {
     en: `/articles/${ARTICLE.slug}`,
@@ -114,7 +114,6 @@ export default function ArticlePage() {
       image: HERO_IMAGE,
       datePublished: ARTICLE.publishedAt,
       dateModified: ARTICLE.modifiedAt,
-      authorName: ARTICLE.author,
       locale: ARTICLE.locale,
       section: ARTICLE.section,
     }),
@@ -178,11 +177,11 @@ export default function ArticlePage() {
                 </p>
 
                 <div className="art-byline">
-                  <div className="byline-photo">M</div>
+                  <div className="byline-photo">P</div>
                   <div className="byline-meta">
-                    <div className="name">{ARTICLE.author}</div>
+                    <div className="name">{siteConfig.name}</div>
                     <div className="role">
-                      Reportera de campo · Coclé · 14 años sobre el terreno
+                      Editorial · Tierras altas de Coclé
                     </div>
                   </div>
                   <div className="byline-stats">
@@ -496,10 +495,9 @@ export default function ArticlePage() {
               </div>
 
               <div className="aside-card">
-                <h5>Verificado localmente por</h5>
+                <h5>Revisado en el terreno</h5>
                 <p style={{ fontSize: 18, lineHeight: 1.3, marginBottom: 12 }}>
-                  Lía Smith, guía naturalista y residente de muchos años de El
-                  Valle
+                  Guías naturalistas y residentes de muchos años en El Valle
                 </p>
                 <p style={{ fontSize: 12 }}>Revisado: 12 de mayo de 2026</p>
               </div>
@@ -594,7 +592,7 @@ export default function ArticlePage() {
                   La gente sube por el día y empieza a preguntar cuánto costaría
                   una casita en el fondo del cráter. Es esa clase de lugar.
                 </blockquote>
-                <cite>— Lía Smith · El Valle</cite>
+                <cite>— El Valle</cite>
               </div>
 
               <div className="bento-card b3">

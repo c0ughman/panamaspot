@@ -19,6 +19,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { buildMetadata } from "@/lib/seo";
+import { siteConfig } from "@/lib/site-config";
 import { articleJsonLd, breadcrumbJsonLd, faqPageJsonLd, jsonLdScript } from "@/lib/jsonld";
 import { ReadingProgress } from "@/components/reading-progress";
 import { ArticleHero } from "@/components/article-hero";
@@ -51,7 +52,6 @@ const ARTICLE = {
   section: "Destinations",
   publishedAt: "2026-05-26",
   modifiedAt: "2026-05-26",
-  author: "Mariela Ortiz-Saavedra",
   breadcrumb: ["Caribbean", "Islands", "Bocas del Toro"],
   heroTags: ["Caribbean", "Destination guide", "Updated · May 2026"],
 } as const;
@@ -111,7 +111,7 @@ export const metadata: Metadata = buildMetadata({
   type: "article",
   publishedTime: ARTICLE.publishedAt,
   modifiedTime: ARTICLE.modifiedAt,
-  authors: [ARTICLE.author],
+  authors: [siteConfig.name],
   ogLocale: ARTICLE.locale === "es" ? "es_PA" : undefined,
 });
 
@@ -130,7 +130,6 @@ export default function ArticlePage() {
       image: HERO_IMAGE,
       datePublished: ARTICLE.publishedAt,
       dateModified: ARTICLE.modifiedAt,
-      authorName: ARTICLE.author,
       locale: ARTICLE.locale,
       section: ARTICLE.section,
     }),
@@ -190,11 +189,11 @@ export default function ArticlePage() {
                 </p>
 
                 <div className="art-byline">
-                  <div className="byline-photo">M</div>
+                  <div className="byline-photo">P</div>
                   <div className="byline-meta">
-                    <div className="name">{ARTICLE.author}</div>
+                    <div className="name">{siteConfig.name}</div>
                     <div className="role">
-                      Field reporter · Caribbean coast · 14 years on the ground
+                      Editorial · Caribbean coast
                     </div>
                   </div>
                   <div className="byline-stats">
@@ -501,9 +500,9 @@ export default function ArticlePage() {
 
               {/* CREDIBILITY CARD */}
               <div className="aside-card">
-                <h5>Locally vetted by</h5>
+                <h5>Reviewed on the ground</h5>
                 <p style={{ fontSize: 18, lineHeight: 1.3, marginBottom: 12 }}>
-                  Lía Smith, boat captain &amp; lifelong Isla Colón resident
+                  Boat captains and longtime residents on Isla Colón
                 </p>
                 <p style={{ fontSize: 12 }}>Reviewed: May 12, 2026</p>
               </div>
@@ -598,7 +597,7 @@ export default function ArticlePage() {
                   The boat leaves when the boat is full. You can fight it for a
                   day, and then you join everyone else and slow down.
                 </blockquote>
-                <cite>— Lía Smith · Isla Colón</cite>
+                <cite>— Isla Colón</cite>
               </div>
 
               <div className="bento-card b3">

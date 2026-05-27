@@ -7,6 +7,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { buildMetadata } from "@/lib/seo";
+import { siteConfig } from "@/lib/site-config";
 import { articleJsonLd, breadcrumbJsonLd, faqPageJsonLd, jsonLdScript } from "@/lib/jsonld";
 import { ReadingProgress } from "@/components/reading-progress";
 import { ArticleHero } from "@/components/article-hero";
@@ -31,7 +32,6 @@ const ARTICLE = {
   section: "Destinos",
   publishedAt: "2026-05-26",
   modifiedAt: "2026-05-26",
-  author: "Mariela Ortiz-Saavedra",
   breadcrumb: ["Provincia de Panamá", "Capital", "Ciudad de Panamá"],
   heroTags: ["Capital", "Guía de ciudad", "Actualizado · Mayo 2026"],
 } as const;
@@ -91,7 +91,7 @@ export const metadata: Metadata = buildMetadata({
   type: "article",
   publishedTime: ARTICLE.publishedAt,
   modifiedTime: ARTICLE.modifiedAt,
-  authors: [ARTICLE.author],
+  authors: [siteConfig.name],
   ogLocale: "es_PA",
   languages: {
     en: `/articles/${ARTICLE.slug}`,
@@ -114,7 +114,6 @@ export default function ArticlePage() {
       image: HERO_IMAGE,
       datePublished: ARTICLE.publishedAt,
       dateModified: ARTICLE.modifiedAt,
-      authorName: ARTICLE.author,
       locale: ARTICLE.locale,
       section: ARTICLE.section,
     }),
@@ -178,11 +177,11 @@ export default function ArticlePage() {
                 </p>
 
                 <div className="art-byline">
-                  <div className="byline-photo">M</div>
+                  <div className="byline-photo">P</div>
                   <div className="byline-meta">
-                    <div className="name">{ARTICLE.author}</div>
+                    <div className="name">{siteConfig.name}</div>
                     <div className="role">
-                      Reportera de campo · Panamá · 14 años sobre el terreno
+                      Editorial · Ciudad de Panamá
                     </div>
                   </div>
                   <div className="byline-stats">
@@ -494,10 +493,9 @@ export default function ArticlePage() {
               </div>
 
               <div className="aside-card">
-                <h5>Verificado localmente por</h5>
+                <h5>Revisado en el terreno</h5>
                 <p style={{ fontSize: 18, lineHeight: 1.3, marginBottom: 12 }}>
-                  Carlos Mendoza, guía de ciudad con licencia y residente de toda
-                  la vida de la capital
+                  Guías con licencia y residentes de toda la vida en la capital
                 </p>
                 <p style={{ fontSize: 12 }}>Revisado: 18 de mayo de 2026</p>
               </div>
@@ -592,7 +590,7 @@ export default function ArticlePage() {
                   Todos dicen que vienen por el canal. Se quedan por el casco
                   antiguo, el ceviche y las azoteas.
                 </blockquote>
-                <cite>— Iván Bethancourt · Casco Viejo</cite>
+                <cite>— Casco Viejo</cite>
               </div>
 
               <div className="bento-card b3">

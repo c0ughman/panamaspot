@@ -93,7 +93,6 @@ type ArticleJsonLdInput = {
   image?: string;
   datePublished: string;
   dateModified?: string;
-  authorName?: string;
   locale?: string;
   section?: string;
 };
@@ -105,7 +104,6 @@ export function articleJsonLd({
   image,
   datePublished,
   dateModified,
-  authorName = siteConfig.name,
   locale,
   section,
 }: ArticleJsonLdInput) {
@@ -122,7 +120,7 @@ export function articleJsonLd({
     inLanguage: langTag(locale),
     isAccessibleForFree: true,
     ...(section ? { articleSection: section } : {}),
-    author: { "@type": "Person", name: authorName },
+    author: { "@id": ORG_ID },
     publisher: { "@id": ORG_ID },
     mainEntityOfPage: { "@type": "WebPage", "@id": `${url}#webpage` },
   };

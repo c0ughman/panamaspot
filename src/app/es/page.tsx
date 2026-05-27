@@ -132,7 +132,7 @@ export default function HomeEs() {
                 una costa que mira a Ecuador, y una cordillera en medio que
                 esconde lo que le da la gana.
               </blockquote>
-              <cite>— Iván Bethancourt · Almirante</cite>
+              <cite>— Almirante, Bocas del Toro</cite>
             </div>
 
             <Link href={PANAMA_CITY} className="bento-card b3">

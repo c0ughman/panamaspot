@@ -8,6 +8,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { buildMetadata } from "@/lib/seo";
+import { siteConfig } from "@/lib/site-config";
 import { articleJsonLd, breadcrumbJsonLd, faqPageJsonLd, jsonLdScript } from "@/lib/jsonld";
 import { ReadingProgress } from "@/components/reading-progress";
 import { ArticleHero } from "@/components/article-hero";
@@ -32,7 +33,6 @@ const ARTICLE = {
   section: "Destinations",
   publishedAt: "2026-05-26",
   modifiedAt: "2026-05-26",
-  author: "Mariela Ortiz-Saavedra",
   breadcrumb: ["Panamá Province", "Capital", "Panama City"],
   heroTags: ["Capital", "City guide", "Updated · May 2026"],
 } as const;
@@ -92,7 +92,7 @@ export const metadata: Metadata = buildMetadata({
   type: "article",
   publishedTime: ARTICLE.publishedAt,
   modifiedTime: ARTICLE.modifiedAt,
-  authors: [ARTICLE.author],
+  authors: [siteConfig.name],
   ogLocale: ARTICLE.locale === "es" ? "es_PA" : undefined,
   languages: {
     en: `/articles/${ARTICLE.slug}`,
@@ -115,7 +115,6 @@ export default function ArticlePage() {
       image: HERO_IMAGE,
       datePublished: ARTICLE.publishedAt,
       dateModified: ARTICLE.modifiedAt,
-      authorName: ARTICLE.author,
       locale: ARTICLE.locale,
       section: ARTICLE.section,
     }),
@@ -178,11 +177,11 @@ export default function ArticlePage() {
                 </p>
 
                 <div className="art-byline">
-                  <div className="byline-photo">M</div>
+                  <div className="byline-photo">P</div>
                   <div className="byline-meta">
-                    <div className="name">{ARTICLE.author}</div>
+                    <div className="name">{siteConfig.name}</div>
                     <div className="role">
-                      Field reporter · Panamá · 14 years on the ground
+                      Editorial · Panama City
                     </div>
                   </div>
                   <div className="byline-stats">
@@ -490,10 +489,9 @@ export default function ArticlePage() {
               </div>
 
               <div className="aside-card">
-                <h5>Locally vetted by</h5>
+                <h5>Reviewed on the ground</h5>
                 <p style={{ fontSize: 18, lineHeight: 1.3, marginBottom: 12 }}>
-                  Carlos Mendoza, licensed city guide &amp; lifelong capital
-                  resident
+                  Licensed city guides and longtime residents in the capital
                 </p>
                 <p style={{ fontSize: 12 }}>Reviewed: May 18, 2026</p>
               </div>
@@ -588,7 +586,7 @@ export default function ArticlePage() {
                   Everyone says they&rsquo;re here for the canal. They stay for the
                   old town, the ceviche, and the rooftops.
                 </blockquote>
-                <cite>— Iván Bethancourt · Casco Viejo</cite>
+                <cite>— Casco Viejo</cite>
               </div>
 
               <div className="bento-card b3">

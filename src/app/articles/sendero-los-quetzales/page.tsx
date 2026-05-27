@@ -27,6 +27,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { buildMetadata } from "@/lib/seo";
+import { siteConfig } from "@/lib/site-config";
 import { articleJsonLd, breadcrumbJsonLd, faqPageJsonLd, jsonLdScript } from "@/lib/jsonld";
 import { ReadingProgress } from "@/components/reading-progress";
 import { ArticleHero } from "@/components/article-hero";
@@ -60,7 +61,6 @@ const ARTICLE = {
   section: "Destinations",
   publishedAt: "2026-05-03",
   modifiedAt: "2026-05-26",
-  author: "Mariela Ortiz-Saavedra",
   breadcrumb: ["Chiriquí", "Highland towns", "Boquete"],
   heroTags: ["Highlands", "Destination guide", "Updated · May 2026"],
 } as const;
@@ -124,7 +124,7 @@ export const metadata: Metadata = buildMetadata({
   type: "article",
   publishedTime: ARTICLE.publishedAt,
   modifiedTime: ARTICLE.modifiedAt,
-  authors: [ARTICLE.author],
+  authors: [siteConfig.name],
   ogLocale: ARTICLE.locale === "es" ? "es_PA" : undefined,
 });
 
@@ -143,7 +143,6 @@ export default function ArticlePage() {
       image: HERO_IMAGE,
       datePublished: ARTICLE.publishedAt,
       dateModified: ARTICLE.modifiedAt,
-      authorName: ARTICLE.author,
       locale: ARTICLE.locale,
       section: ARTICLE.section,
     }),
@@ -208,11 +207,11 @@ export default function ArticlePage() {
                 </p>
 
                 <div className="art-byline">
-                  <div className="byline-photo">M</div>
+                  <div className="byline-photo">P</div>
                   <div className="byline-meta">
-                    <div className="name">{ARTICLE.author}</div>
+                    <div className="name">{siteConfig.name}</div>
                     <div className="role">
-                      Field reporter · Chiriquí · 14 years on the ground
+                      Editorial · Chiriquí highlands
                     </div>
                   </div>
                   <div className="byline-stats">
@@ -545,9 +544,9 @@ export default function ArticlePage() {
 
               {/* CREDIBILITY CARD — who checked this. Good for E-E-A-T / trust. */}
               <div className="aside-card">
-                <h5>Locally vetted by</h5>
+                <h5>Reviewed on the ground</h5>
                 <p style={{ fontSize: 18, lineHeight: 1.3, marginBottom: 12 }}>
-                  Carlos Mendoza, certified guide &amp; 22-year Boquete resident
+                  Certified guides and longtime residents in Boquete
                 </p>
                 <p style={{ fontSize: 12 }}>Reviewed: April 28, 2026</p>
               </div>
@@ -654,7 +653,7 @@ export default function ArticlePage() {
                   You come for a weekend and start pricing the cost of staying.
                   Everyone here did exactly that once.
                 </blockquote>
-                <cite>— Iván Bethancourt · Bajo Boquete</cite>
+                <cite>— Bajo Boquete</cite>
               </div>
 
               {/* b3 — image tile with overlay caption */}
