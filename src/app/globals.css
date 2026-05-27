@@ -676,6 +676,7 @@ img { display: block; max-width: 100%; }
 }
 .cat-section .container {
   max-width: 1520px;
+  overflow: visible;
 }
 
 .cat-section-head {
@@ -709,10 +710,10 @@ img { display: block; max-width: 100%; }
 }
 .cat-section-link--muted:hover { color: var(--ink-soft); }
 
-/* Row wrapper — relative for absolute-positioned arrows */
+/* Row wrapper — arrows sit outside the scroll track */
 .cat-row-wrap {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* Single horizontal row — seven cards visible; overflow scrolls via arrows */
@@ -750,7 +751,7 @@ img { display: block; max-width: 100%; }
   line-height: 1;
   font-family: var(--sans);
   cursor: pointer;
-  z-index: 5;
+  z-index: 10;
   padding: 0;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.10);
   transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
