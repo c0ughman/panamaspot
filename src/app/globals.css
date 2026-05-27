@@ -712,13 +712,25 @@ img { display: block; max-width: 100%; }
 /* Row wrapper — relative for absolute-positioned arrows */
 .cat-row-wrap {
   position: relative;
+  overflow: hidden;
 }
 
-/* The 7-card grid — full row width */
+/* Single horizontal row — seven cards visible; overflow scrolls via arrows */
 .cat-row {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  display: flex;
+  flex-wrap: nowrap;
   gap: 14px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.cat-row::-webkit-scrollbar {
+  display: none;
+}
+.cat-row > .cat-card {
+  flex: 0 0 calc((100% - 6 * 14px) / 7);
+  min-width: 140px;
 }
 
 /* Arrows overlaid on cards, vertically centered on the image */
@@ -809,11 +821,15 @@ img { display: block; max-width: 100%; }
 }
 
 @media (max-width: 1100px) {
-  .cat-row { grid-template-columns: repeat(4, 1fr); }
+  .cat-row > .cat-card {
+    flex: 0 0 calc((100% - 3 * 14px) / 4);
+  }
 }
 @media (max-width: 720px) {
   .cat-arrow { display: none; }
-  .cat-row { grid-template-columns: repeat(2, 1fr); }
+  .cat-row > .cat-card {
+    flex: 0 0 calc((100% - 1 * 14px) / 2);
+  }
 }
 
 /* ===== BENTO — varied card types ===== */
@@ -850,9 +866,8 @@ img { display: block; max-width: 100%; }
   color: var(--ink);
   display: flex;
 }
-.bento-card--soon .imgph {
-  filter: grayscale(1);
-  opacity: 0.72;
+.bento-card--soon {
+  cursor: default;
 }
 
 /* B1 — image hero with text BELOW (not overlaid) */

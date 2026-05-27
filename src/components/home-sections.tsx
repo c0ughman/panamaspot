@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CategoryRow } from "@/components/category-row";
 
 /* Shared, locale-agnostic building blocks for the home pages.
    The English home (src/app/page.tsx) and the Spanish home
@@ -43,19 +44,11 @@ export function CategorySection({
           <span className="cat-section-link cat-section-link--muted">{link}</span>
         </div>
 
-        <div className="cat-row-wrap">
-          <button type="button" className="cat-arrow prev" aria-label="Previous">
-            ‹
-          </button>
-          <div className="cat-row">
+        <CategoryRow>
             {cards.map((card) => (
               <CategoryCard key={card.title} icon={icon} {...card} />
             ))}
-          </div>
-          <button type="button" className="cat-arrow next" aria-label="Next">
-            ›
-          </button>
-        </div>
+        </CategoryRow>
       </div>
     </section>
   );
