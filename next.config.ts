@@ -1,18 +1,12 @@
 import type { NextConfig } from "next";
 
+/* Static export: `next build` writes plain HTML/CSS/JS to `out/`.
+   The post-build script (scripts/build-static.mjs) then strips the
+   Next.js runtime so the output is pure static HTML. */
 const nextConfig: NextConfig = {
-  // Ready for next/image with the Pexels CDN (used by the home + templates).
-  images: {
-    remotePatterns: [{ protocol: "https", hostname: "images.pexels.com" }],
-  },
-  async rewrites() {
-    return [
-      {
-        source: "/funnels/:slug",
-        destination: "/funnels/:slug.html",
-      },
-    ];
-  },
+  output: "export",
+  trailingSlash: true,
+  images: { unoptimized: true },
 };
 
 export default nextConfig;

@@ -1,6 +1,12 @@
 [build]
   command = "npm run build"
-  publish = ".next"
+  publish = "out"
 
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+# Preserve the old /funnels/:slug → /funnels/:slug.html rewrite
+# (the old next.config rewrite is gone because static export
+# does not support rewrites).
+[[redirects]]
+  from = "/funnels/:slug"
+  to = "/funnels/:slug.html"
+  status = 200
+  force = false

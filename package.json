@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "build": "next build && node scripts/build-static.mjs",
+    "build:next": "next build",
+    "build:clean": "node scripts/build-static.mjs",
+    "start": "npx serve out",
     "lint": "eslint"
   },
   "dependencies": {
