@@ -2331,11 +2331,31 @@ img { display: block; max-width: 100%; }
     margin-bottom: 14px;
   }
 
+  /* Bento grid: collapse to single column. */
+  .home-bento-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .bento-card.b1,
+  .bento-card.b2,
+  .bento-card.b3,
+  .bento-card.b4,
+  .bento-card.b5 {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+    height: auto;
+  }
+  .bento-card.b5 { grid-template-columns: 1fr; }
+  .bento-card.b5 .bento-split-img { height: 200px; }
+
   /* Bento cards: prevent text overflow and keep titles readable on small screens. */
   .bento-card .b-tag { font-size: 9px; }
   .bento-card.b1 h3 { font-size: 18px; }
   .bento-card.b1 p { font-size: 12px; -webkit-line-clamp: 2; }
   .bento-card.b2 blockquote { font-size: clamp(20px, 4vw, 28px); }
+  .bento-card.b2 { padding: 28px 24px; }
+  .bento-card.b3 { height: 200px; }
+  .bento-card.b4 { padding: 22px 20px; }
   .bento-card.b5 .bento-split-body { padding: 18px 20px; }
   .bento-card.b5 h3 { font-size: 18px; }
 
