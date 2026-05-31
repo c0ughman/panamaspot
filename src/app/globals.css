@@ -2310,10 +2310,36 @@ img { display: block; max-width: 100%; }
     gap: 10px;
   }
 
+  /* Hero: remove the white band at the top by reducing padding-top and
+     ensuring the image fills. Add more bottom margin to the button so it's
+     not touching the bottom edge of the hero section. */
+  .home-hero { min-height: 420px; }
+  .home-hero-content { padding-top: 52px; padding-bottom: 72px; }
+  .home-hero-btn { margin-bottom: 12px; }
+  .home-hero-sub { font-size: 15px; }
+
+  /* Category rows: on phone, switch from 1-row × 2-cards to a 2×2 grid
+     that scrolls horizontally. This shows 4 cards at once (2 rows of 2)
+     instead of just 2, making better use of the screen. */
+  .cat-row {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    height: auto;
+  }
+  .cat-row > .cat-card {
+    flex: 0 0 calc((100% - 1 * 14px) / 2);
+    margin-bottom: 14px;
+  }
+
+  /* Bento cards: prevent text overflow and keep titles readable on small screens. */
+  .bento-card .b-tag { font-size: 9px; }
+  .bento-card.b1 h3 { font-size: 18px; }
+  .bento-card.b1 p { font-size: 12px; -webkit-line-clamp: 2; }
+  .bento-card.b2 blockquote { font-size: clamp(20px, 4vw, 28px); }
+  .bento-card.b5 .bento-split-body { padding: 18px 20px; }
+  .bento-card.b5 h3 { font-size: 18px; }
+
   /* Author block: portrait above text. */
   .author-block { grid-template-columns: 1fr; gap: 18px; padding: 26px; }
-
-  .home-hero { min-height: 420px; }
-  .home-hero-sub { font-size: 15px; }
   .fact-card { padding: 22px; }
 }
