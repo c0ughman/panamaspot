@@ -1,7 +1,16 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm --version)"
+      "Bash(npm --version)",
+      "Bash(npm run *)",
+      "WebFetch(domain:evalleybikes.com)",
+      "Bash(netlify --version)",
+      "Bash(cd /Users/coughman/Desktop/panamaspot *)",
+      "Read(//Applications/Google Chrome.app/Contents/MacOS/**)",
+      "Bash(npm i *)",
+      "Bash(git -C /Users/coughman/Desktop/panamaspot fetch origin main)",
+      "Bash(git -C /Users/coughman/Desktop/panamaspot log --oneline HEAD..origin/main)",
+      "Bash(git -C /Users/coughman/Desktop/panamaspot log --oneline origin/main..HEAD)"
     ]
   }
 }
