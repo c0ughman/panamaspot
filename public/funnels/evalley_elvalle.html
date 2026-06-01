@@ -20,7 +20,7 @@
     --cream-deep: #efece1;
     --green: #ea450e;
     --green-deep: #2F280B;
-    --green-soft: #fff3e6;
+    --green-soft: #ea450e;
     --whatsapp: #25d366;
     --whatsapp-deep: #1ea851;
     --gold: #c79b2c;
@@ -46,7 +46,7 @@
   /* ─── ANNOUNCE BAR ─── */
   .announce {
     background: var(--green-deep);
-    color: #fff3e6;
+    color: #ea450e;
     text-align: center;
     font-size: 13px;
     font-weight: 500;
@@ -60,7 +60,7 @@
     position: relative;
     min-height: 92vh;
     background:
-      linear-gradient(180deg, rgba(47,40,11,0.25) 0%, rgba(47,40,11,0.55) 60%, rgba(47,40,11,0.85) 100%),
+      linear-gradient(180deg, rgba(47,40,11,0.35) 0%, rgba(47,40,11,0.65) 60%, rgba(47,40,11,0.92) 100%),
       url('https://evalleybikes.com/wp-content/uploads/2025/01/image00012-scaled.jpeg') center/cover no-repeat;
     color: #fff;
     display: flex;
@@ -85,7 +85,7 @@
     letter-spacing: -0.4px;
     color: #fff;
   }
-  .brand span { color: #ffd8bf; font-weight: 500; }
+  .brand span { color: #ea450e; font-weight: 500; }
   .hero-loc {
     font-size: 12px;
     font-weight: 500;
@@ -108,7 +108,7 @@
     font-weight: 600;
     letter-spacing: 2.5px;
     text-transform: uppercase;
-    color: #ffd8bf;
+    color: #ea450e;
     background: rgba(255,255,255,0.10);
     backdrop-filter: blur(8px);
     border: 1px solid rgba(255,255,255,0.18);
@@ -128,7 +128,7 @@
   h1.hero-title em {
     font-style: italic;
     font-weight: 500;
-    color: #ffe2cf;
+    color: #ea450e;
   }
   .hero-sub {
     font-size: clamp(16px, 1.7vw, 19px);
@@ -294,7 +294,7 @@
     font-size: 13px;
     font-weight: 500;
     background: var(--green-soft);
-    color: var(--green-deep);
+    color: #fff;
     padding: 7px 13px;
     border-radius: 100px;
   }
@@ -340,16 +340,16 @@
 
   /* ─── PROOF ─── */
   .proof { background: var(--green-deep); color: #f7f5ee; }
-  .proof .section-eyebrow { color: #ffb088; }
+  .proof .section-eyebrow { color: #ea450e; }
   .proof .section-title { color: #fff; }
-  .proof .section-title em { color: #ffb088; }
+  .proof .section-title em { color: #ea450e; }
   .proof-callout {
     margin-top: 32px;
     padding: 28px 32px;
     background: rgba(255,255,255,0.06);
     border: 1px dashed rgba(255,255,255,0.30);
     border-radius: 14px;
-    color: #ffe2cf;
+    color: #ea450e;
     font-size: 15px;
     line-height: 1.6;
   }
@@ -377,7 +377,7 @@
     letter-spacing: -1px;
     margin-bottom: 6px;
   }
-  .stat-label { font-size: 13px; color: #ffd8bf; letter-spacing: 0.5px; }
+  .stat-label { font-size: 13px; color: #ea450e; letter-spacing: 0.5px; }
 
   /* ─── EXPERIENCE ─── */
   .experience { background: var(--cream); }
@@ -542,7 +542,7 @@
     max-width: 18ch;
     margin-inline: auto;
   }
-  .final-cta h2 em { font-style: italic; color: #ffb088; }
+  .final-cta h2 em { font-style: italic; color: #ea450e; }
   .final-cta p {
     font-size: 17px;
     color: rgba(255,255,255,0.78);
@@ -605,8 +605,12 @@
   }
   @media (max-width: 560px) {
     section { padding: 56px 0; }
-    .hero { min-height: 88vh; padding: 24px 0 40px; }
-    .hero-meta { gap: 14px; margin-top: 22px; }
+    .announce { display: none; }
+    .hero { min-height: 82vh; padding: 24px 0 40px; }
+    .hero-loc,
+    .hero .eyebrow,
+    .hero .hero-meta { display: none; }
+    .hero-top { padding: 18px 0; }
     .hero-ctas { flex-direction: column; align-items: stretch; }
     .hero-ctas .btn { width: 100%; }
     .tour-body { padding: 18px 18px 20px; }
@@ -751,7 +755,7 @@
   <div class="wrap">
     <div class="section-eyebrow">What Riders Say</div>
     <h2 class="section-title">The kind of trip that makes <em>the rest of Panama</em> feel slow.</h2>
-    <p class="section-sub" style="color:#ffd8bf;">Real travelers. Real rides. From the crater floor to the ridgeline.</p>
+    <p class="section-sub" style="color:#ea450e;">Real travelers. Real rides. From the crater floor to the ridgeline.</p>
 
     <div class="proof-callout">
       <strong>⚠ Reviews to be added:</strong> The El Valle homepage doesn't display customer reviews — they live on TripAdvisor. Drop in 3 of your strongest TripAdvisor quotes here (with reviewer first name + month/year). Replace this block before going live.
