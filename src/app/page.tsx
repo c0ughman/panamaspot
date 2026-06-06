@@ -23,6 +23,13 @@ const BOQUETE = "/articles/sendero-los-quetzales";
 const PANAMA_CITY = "/articles/panama-city";
 const EL_VALLE = "/articles/el-valle-de-anton";
 
+const BOQUETE_HIKES = "/articles/hikes-in-boquete.html";
+const BOQUETE_TODO = "/articles/things-to-do-in-boquete-panama.html";
+const BOQUETE_TOURS = "/articles/tours-in-boquete-panama.html";
+const EV_HIKES = "/articles/hikes-el-valle-de-anton.html";
+const EV_TODO = "/articles/things-to-do-el-valle-de-anton.html";
+const EV_TOURS = "/articles/tours-en-el-valle-de-anton.html";
+
 const BOCAS_PHOTO = pexels(2038744);
 const BOQUETE_PHOTO = pexels(2380342);
 const PANAMA_CITY_PHOTO = pexels(14840814);
@@ -52,6 +59,18 @@ const ACTIVITIES: Card[] = [
   { title: "Cities & Culture", tag: "Guide", img: { kind: "photo", src: pexels(23910182) }, href: PANAMA_CITY },
   { title: "Islands & Beaches", tag: "Guide", img: { kind: "photo", src: pexels(8951333) }, href: BOCAS },
   { title: "Markets & Town Life", tag: "Coming soon", img: { kind: "photo", src: pexels(7823008) }, comingSoon: true },
+];
+
+const BOQUETE_GUIDES: Card[] = [
+  { title: "Best Hikes in Boquete", tag: "Hiking", img: { kind: "photo", src: "/images/hikes-boquete.jpg" }, href: BOQUETE_HIKES },
+  { title: "Things to Do in Boquete", tag: "Guide", img: { kind: "photo", src: "/images/things-to-do-boquete.HEIC" }, href: BOQUETE_TODO },
+  { title: "Tours in Boquete", tag: "Tours", img: { kind: "photo", src: "/images/tours-boquete.jpeg.webp" }, href: BOQUETE_TOURS },
+];
+
+const EL_VALLE_GUIDES: Card[] = [
+  { title: "Best Hikes in El Valle", tag: "Hiking", img: { kind: "photo", src: "/images/hikes-el-valle.jpg" }, href: EV_HIKES },
+  { title: "Things to Do in El Valle", tag: "Guide", img: { kind: "photo", src: "/images/things-to-do-el-valle.jpg" }, href: EV_TODO },
+  { title: "Tours in El Valle", tag: "Tours", img: { kind: "photo", src: "/images/tours-el-valle.jpg" }, href: EV_TOURS },
 ];
 
 export default function Home() {
@@ -86,6 +105,20 @@ export default function Home() {
         link="Browse by activity"
         icon="activity"
         cards={ACTIVITIES}
+      />
+      <CategorySection
+        id="cat-boquete"
+        title="Explore Boquete"
+        link="All Boquete guides"
+        icon="activity"
+        cards={BOQUETE_GUIDES}
+      />
+      <CategorySection
+        id="cat-el-valle"
+        title="Explore El Valle de Antón"
+        link="All El Valle guides"
+        icon="activity"
+        cards={EL_VALLE_GUIDES}
       />
 
       <section className="home-bento">

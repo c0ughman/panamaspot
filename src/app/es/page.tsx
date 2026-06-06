@@ -23,6 +23,13 @@ export const metadata: Metadata = buildMetadata({
 const PANAMA_CITY = "/es/articles/panama-city";
 const EL_VALLE = "/es/articles/el-valle-de-anton";
 
+const BOQUETE_SENDEROS = "/es/articles/senderos-en-boquete-guia-completa.html";
+const BOQUETE_QH = "/es/articles/que-hacer-en-boquete-guia-completa.html";
+const BOQUETE_TOURS_ES = "/es/articles/tours-en-boquete-panama.html";
+const EV_SENDEROS = "/es/articles/senderos-el-valle-de-anton.html";
+const EV_QH = "/es/articles/que-hacer-el-valle-de-anton.html";
+const EV_TOURS_ES = "/es/articles/tours-el-valle-de-anton.html";
+
 const BOCAS_PHOTO = pexels(2038744);
 const BOQUETE_PHOTO = pexels(2380342);
 const PANAMA_CITY_PHOTO = pexels(14840814);
@@ -51,6 +58,18 @@ const ACTIVITIES: Card[] = [
   { title: "Surf y Buceo", tag: "Próximamente", img: { kind: "photo", src: pexels(33757647) }, comingSoon: true },
   { title: "Comida y Café", tag: "Próximamente", img: { kind: "photo", src: pexels(30658818) }, comingSoon: true },
   { title: "Islas y Playas", tag: "Próximamente", img: { kind: "photo", src: pexels(8951333) }, comingSoon: true },
+];
+
+const BOQUETE_GUIAS: Card[] = [
+  { title: "Mejores Senderos en Boquete", tag: "Senderismo", img: { kind: "photo", src: "/images/hikes-boquete.jpg" }, href: BOQUETE_SENDEROS },
+  { title: "Qué Hacer en Boquete", tag: "Guía", img: { kind: "photo", src: "/images/things-to-do-boquete.HEIC" }, href: BOQUETE_QH },
+  { title: "Tours en Boquete", tag: "Tours", img: { kind: "photo", src: "/images/tours-boquete.jpeg.webp" }, href: BOQUETE_TOURS_ES },
+];
+
+const EL_VALLE_GUIAS: Card[] = [
+  { title: "Senderos en El Valle", tag: "Senderismo", img: { kind: "photo", src: "/images/hikes-el-valle.jpg" }, href: EV_SENDEROS },
+  { title: "Qué Hacer en El Valle", tag: "Guía", img: { kind: "photo", src: "/images/things-to-do-el-valle.jpg" }, href: EV_QH },
+  { title: "Tours en El Valle", tag: "Tours", img: { kind: "photo", src: "/images/tours-el-valle.jpg" }, href: EV_TOURS_ES },
 ];
 
 export default function HomeEs() {
@@ -92,6 +111,20 @@ export default function HomeEs() {
         link="Explora por actividad"
         icon="activity"
         cards={ACTIVITIES}
+      />
+      <CategorySection
+        id="cat-boquete"
+        title="Explora Boquete"
+        link="Todas las guías de Boquete"
+        icon="activity"
+        cards={BOQUETE_GUIAS}
+      />
+      <CategorySection
+        id="cat-el-valle"
+        title="Explora El Valle de Antón"
+        link="Todas las guías de El Valle"
+        icon="activity"
+        cards={EL_VALLE_GUIAS}
       />
 
       <section className="home-bento">

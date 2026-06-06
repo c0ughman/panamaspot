@@ -89,5 +89,165 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     },
+
+    // ── Boquete deep-dive articles (EN ↔ ES pairs) ───────────────────────────
+    {
+      url: `${siteConfig.url}/articles/hikes-in-boquete`,
+      lastModified: new Date("2026-06-01"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          en: `${siteConfig.url}/articles/hikes-in-boquete`,
+          es: `${siteConfig.url}/es/articles/senderos-en-boquete-guia-completa`,
+          "x-default": `${siteConfig.url}/articles/hikes-in-boquete`,
+        },
+      },
+    },
+    {
+      url: `${siteConfig.url}/es/articles/senderos-en-boquete-guia-completa`,
+      lastModified: new Date("2026-06-01"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          en: `${siteConfig.url}/articles/hikes-in-boquete`,
+          es: `${siteConfig.url}/es/articles/senderos-en-boquete-guia-completa`,
+          "x-default": `${siteConfig.url}/articles/hikes-in-boquete`,
+        },
+      },
+    },
+    {
+      url: `${siteConfig.url}/articles/things-to-do-in-boquete-panama`,
+      lastModified: new Date("2026-06-01"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          en: `${siteConfig.url}/articles/things-to-do-in-boquete-panama`,
+          es: `${siteConfig.url}/es/articles/que-hacer-en-boquete-guia-completa`,
+          "x-default": `${siteConfig.url}/articles/things-to-do-in-boquete-panama`,
+        },
+      },
+    },
+    {
+      url: `${siteConfig.url}/es/articles/que-hacer-en-boquete-guia-completa`,
+      lastModified: new Date("2026-06-01"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          en: `${siteConfig.url}/articles/things-to-do-in-boquete-panama`,
+          es: `${siteConfig.url}/es/articles/que-hacer-en-boquete-guia-completa`,
+          "x-default": `${siteConfig.url}/articles/things-to-do-in-boquete-panama`,
+        },
+      },
+    },
+    {
+      url: `${siteConfig.url}/articles/tours-in-boquete-panama`,
+      lastModified: new Date("2026-06-01"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          en: `${siteConfig.url}/articles/tours-in-boquete-panama`,
+          es: `${siteConfig.url}/es/articles/tours-en-boquete-panama`,
+          "x-default": `${siteConfig.url}/articles/tours-in-boquete-panama`,
+        },
+      },
+    },
+    {
+      url: `${siteConfig.url}/es/articles/tours-en-boquete-panama`,
+      lastModified: new Date("2026-06-01"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          en: `${siteConfig.url}/articles/tours-in-boquete-panama`,
+          es: `${siteConfig.url}/es/articles/tours-en-boquete-panama`,
+          "x-default": `${siteConfig.url}/articles/tours-in-boquete-panama`,
+        },
+      },
+    },
+
+    // ── El Valle deep-dive articles (EN ↔ ES pairs) ──────────────────────────
+    {
+      url: `${siteConfig.url}/articles/hikes-el-valle-de-anton`,
+      lastModified: new Date("2026-06-02"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          en: `${siteConfig.url}/articles/hikes-el-valle-de-anton`,
+          es: `${siteConfig.url}/es/articles/senderos-el-valle-de-anton`,
+          "x-default": `${siteConfig.url}/articles/hikes-el-valle-de-anton`,
+        },
+      },
+    },
+    {
+      url: `${siteConfig.url}/es/articles/senderos-el-valle-de-anton`,
+      lastModified: new Date("2026-06-02"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          en: `${siteConfig.url}/articles/hikes-el-valle-de-anton`,
+          es: `${siteConfig.url}/es/articles/senderos-el-valle-de-anton`,
+          "x-default": `${siteConfig.url}/articles/hikes-el-valle-de-anton`,
+        },
+      },
+    },
+    {
+      url: `${siteConfig.url}/articles/things-to-do-el-valle-de-anton`,
+      lastModified: new Date("2026-06-02"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          en: `${siteConfig.url}/articles/things-to-do-el-valle-de-anton`,
+          es: `${siteConfig.url}/es/articles/que-hacer-el-valle-de-anton`,
+          "x-default": `${siteConfig.url}/articles/things-to-do-el-valle-de-anton`,
+        },
+      },
+    },
+    {
+      url: `${siteConfig.url}/es/articles/que-hacer-el-valle-de-anton`,
+      lastModified: new Date("2026-06-02"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          en: `${siteConfig.url}/articles/things-to-do-el-valle-de-anton`,
+          es: `${siteConfig.url}/es/articles/que-hacer-el-valle-de-anton`,
+          "x-default": `${siteConfig.url}/articles/things-to-do-el-valle-de-anton`,
+        },
+      },
+    },
+    {
+      url: `${siteConfig.url}/articles/tours-en-el-valle-de-anton`,
+      lastModified: new Date("2026-06-02"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          en: `${siteConfig.url}/articles/tours-en-el-valle-de-anton`,
+          es: `${siteConfig.url}/es/articles/tours-el-valle-de-anton`,
+          "x-default": `${siteConfig.url}/articles/tours-en-el-valle-de-anton`,
+        },
+      },
+    },
+    {
+      url: `${siteConfig.url}/es/articles/tours-el-valle-de-anton`,
+      lastModified: new Date("2026-06-02"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          en: `${siteConfig.url}/articles/tours-en-el-valle-de-anton`,
+          es: `${siteConfig.url}/es/articles/tours-el-valle-de-anton`,
+          "x-default": `${siteConfig.url}/articles/tours-en-el-valle-de-anton`,
+        },
+      },
+    },
   ];
 }
