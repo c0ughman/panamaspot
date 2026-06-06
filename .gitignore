@@ -66,3 +66,6 @@ public/images/el-valle/IMG_*
 # Example / draft HTML files
 public/articles/*-EXAMPLE.html
 public/es/articles/*-EXAMPLE.html
+
+# Raw source images dropped in for the El Valle funnel (working folder)
+/evalley el valle/
