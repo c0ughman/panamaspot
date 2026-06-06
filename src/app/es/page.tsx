@@ -61,15 +61,15 @@ const ACTIVITIES: Card[] = [
 ];
 
 const BOQUETE_GUIAS: Card[] = [
-  { title: "Mejores Senderos en Boquete", tag: "Senderismo", img: { kind: "photo", src: "/images/hikes-boquete.jpg" }, href: BOQUETE_SENDEROS },
-  { title: "Qué Hacer en Boquete", tag: "Guía", img: { kind: "photo", src: "/images/things-to-do-boquete.HEIC" }, href: BOQUETE_QH },
-  { title: "Tours en Boquete", tag: "Tours", img: { kind: "photo", src: "/images/tours-boquete.jpeg.webp" }, href: BOQUETE_TOURS_ES },
+  { title: "Mejores Senderos en Boquete", tag: "Senderismo", img: { kind: "photo", src: "/images/hikes-boquete.webp" }, href: BOQUETE_SENDEROS },
+  { title: "Qué Hacer en Boquete", tag: "Guía", img: { kind: "photo", src: "/images/things-to-do-boquete.webp" }, href: BOQUETE_QH },
+  { title: "Tours en Boquete", tag: "Tours", img: { kind: "photo", src: "/images/tours-boquete.webp" }, href: BOQUETE_TOURS_ES },
 ];
 
 const EL_VALLE_GUIAS: Card[] = [
-  { title: "Senderos en El Valle", tag: "Senderismo", img: { kind: "photo", src: "/images/hikes-el-valle.jpg" }, href: EV_SENDEROS },
-  { title: "Qué Hacer en El Valle", tag: "Guía", img: { kind: "photo", src: "/images/things-to-do-el-valle.jpg" }, href: EV_QH },
-  { title: "Tours en El Valle", tag: "Tours", img: { kind: "photo", src: "/images/tours-el-valle.jpg" }, href: EV_TOURS_ES },
+  { title: "Senderos en El Valle", tag: "Senderismo", img: { kind: "photo", src: "/images/hikes-el-valle.webp" }, href: EV_SENDEROS },
+  { title: "Qué Hacer en El Valle", tag: "Guía", img: { kind: "photo", src: "/images/things-to-do-el-valle.webp" }, href: EV_QH },
+  { title: "Tours en El Valle", tag: "Tours", img: { kind: "photo", src: "/images/tours-el-valle.webp" }, href: EV_TOURS_ES },
 ];
 
 export default function HomeEs() {

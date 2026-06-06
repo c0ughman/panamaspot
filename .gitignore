@@ -42,3 +42,27 @@ next-env.d.ts
 
 # Local Netlify folder
 .netlify
+
+# Raw / source image assets — only optimised .webp files are committed.
+# These originals stay on disk for re-running scripts but are never deployed.
+# Note: negation (!*.webp) only works because we target files, not whole dirs.
+public/images/**/*.jpg
+public/images/**/*.JPG
+public/images/**/*.jpeg
+public/images/**/*.HEIC
+public/images/**/*.heic
+public/images/**/*.png
+public/images/**/*.PNG
+public/images/*.jpg
+public/images/*.JPG
+public/images/*.jpeg
+public/images/*.HEIC
+public/images/*.heic
+# Raw camera rolls
+public/images/boquete/IMG_*
+public/images/el-valle/IMG_*
+# Scratch / stray directory at repo root (the video)
+/boquete/
+# Example / draft HTML files
+public/articles/*-EXAMPLE.html
+public/es/articles/*-EXAMPLE.html

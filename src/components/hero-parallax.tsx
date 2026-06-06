@@ -46,6 +46,10 @@ export function HeroParallax({
         backgroundImage: `url('${bgImage}')`,
       }}
     >
+      {/* Hidden img so the browser preloader discovers and prioritises the hero LCP image */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={bgImage} alt="" aria-hidden="true" fetchPriority="high"
+        style={{ position: "absolute", width: 1, height: 1, opacity: 0, pointerEvents: "none" }} />
       <div
         ref={headerRef}
         className={`header-wrapper ${hasBackground ? "has-background" : ""}`}

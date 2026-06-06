@@ -1,9 +1,35 @@
-import re
+import re, json, os
 
 D = {'boquete':'/images/boquete/', 'elvalle':'/images/el-valle/'}
 D_ROOT = '/images/'
 
-# ── Gallery / inline captions (basename -> EN / ES) ───────────────────────────
+# ── WebP manifest (written by optimize-images.sh) ─────────────────────────────
+_HERE = os.path.dirname(os.path.abspath(__file__))
+DIMS = json.load(open(os.path.join(_HERE, 'img-manifest.json')))
+
+def webp_of(basename):
+    """Strip up to two extensions and add .webp (handles .jpeg.webp, .HEIC, etc.)."""
+    stem = basename
+    for _ in range(2):
+        root, ext = os.path.splitext(stem)
+        if ext: stem = root
+        else: break
+    return stem + '.webp'
+
+def img_dims(webp_web_path):
+    """Return (w, h) from the manifest; (0, 0) if not found."""
+    e = DIMS.get(webp_web_path, {})
+    return e.get('w', 0), e.get('h', 0)
+
+def make_img(src, alt, w, h, priority=False, extra_style=''):
+    dim = f' width="{w}" height="{h}"' if w else ''
+    lp  = ' fetchpriority="high" loading="eager"' if priority else ' loading="lazy"'
+    st  = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block'
+    if extra_style: st += ';' + extra_style
+    return f'<img src="{src}" alt="{alt}"{dim}{lp} style="{st}">'
+
+# ── Gallery / inline captions ─────────────────────────────────────────────────
+# Keys use the ORIGINAL basenames (jpg/JPG) so ALLOC/THEME references stay unchanged.
 CAP_EN = {
  'boquete-volcanbaru.jpg':"Volcán Barú, Panama's highest peak at 3,475 m",
  'boquete-forest.jpg':"Cloud forest in the hills above Boquete",
@@ -81,7 +107,7 @@ ALLOC = {
  ('elvalle',2):('tours-el-valle.jpg',    ['elvalle-town.jpg','elvalle-flowermarket.jpg','elvalle-drums.jpg','elvalle-shrine.jpg','elvalle-church.jpg']),
 }
 
-# ── "Across the region" trio per (loc,t). Middle entry maps to b3 (no <p>). ────
+# ── "Across the region" bento trio ───────────────────────────────────────────
 def E(img,tag_en,h3_en,p_en,tag_es,h3_es,p_es):
     return {'img':img,'en':(tag_en,h3_en,p_en),'es':(tag_es,h3_es,p_es)}
 
@@ -106,8 +132,7 @@ BENTO = {
  ('elvalle',2):[INDIA, PANO, ELMACHO],
 }
 
-# ── Inline (between-section) images: chosen from the page's UNUSED pool,
-#    scored contextually against the section heading. ───────────────────────────
+# ── Inline image pool + scoring ───────────────────────────────────────────────
 ALLIMG = {
  'boquete':['boquete-aerial.jpg','boquete-aerial2.jpg','boquete-bird.jpg','boquete-bridge.jpg',
    'boquete-clouds.jpg','boquete-forest.jpg','boquete-hills.jpg','boquete-losquetzales.JPG',
@@ -119,7 +144,6 @@ ALLIMG = {
    'elvalle-indiadormida.jpg','elvalle-market.JPG','elvalle-panorama.jpg','elvalle-petroglifo.jpg',
    'elvalle-shrine.jpg','elvalle-town.jpg','elvalle-waterfall.jpg'],
 }
-# never use inline: the man-made waterfall and the thin rainbow strip
 INLINE_BAN = {'boquete-manmadewaterfall.jpg','boquete-rainbow.png'}
 THEME = {
  'boquete-volcanbaru.jpg':'baru volcán volcano summit cumbre peak highest',
@@ -162,6 +186,9 @@ PREF = {'boquete':['boquete-aerial2.jpg','boquete-clouds.jpg','boquete-river2.jp
         'elvalle':['elvalle-panorama.jpg','elvalle-bird2.jpg','elvalle-elmachowaterfall2.jpg',
                    'elvalle-shrine.jpg','elvalle-bird3.jpg','elvalle-market.JPG','elvalle-drums.jpg']}
 
+# CSS injected once per article to ensure <img> fills .imgph + .art-hero-img-full
+IMG_CSS = '.art-hero-img-full img,.imgph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}'
+
 def block_bounds(s, start):
     pos=start; depth=1
     while pos<len(s) and depth>0:
@@ -172,7 +199,6 @@ def block_bounds(s, start):
     return start,pos
 
 def inline_pick(heading, loc, pool):
-    """pool = list of still-available basenames for this page. Returns best match."""
     words=set(re.findall(r'[a-záéíóúñ]+', heading.lower()))
     best=None; best_score=-1
     for img in pool:
@@ -196,29 +222,52 @@ def process(path):
     s=open(path,encoding='utf-8').read()
     hero,gal=ALLOC[(loc,t)]
 
-    # 0. Strip any previously-inserted inline figures (idempotent re-runs)
+    # ── 0. Inject IMG_CSS once (idempotent) ──────────────────────────────────
+    if IMG_CSS not in s:
+        s=s.replace('</style>', IMG_CSS+'</style>', 1)
+
+    # ── 0b. Strip previously-inserted inline figures (idempotent) ────────────
     s=re.sub(r'<figure class="fig">.*?</figure>','',s,flags=re.DOTALL)
 
-    # 1. HERO
-    s=re.sub(r'(<div class="art-hero-img-full" style="background-image:url\(\')[^\']*(\'\)"></div>)',
-             lambda m:m.group(1)+D_ROOT+hero+m.group(2), s, count=1)
+    # ── Helper: extract H1 text for hero alt ─────────────────────────────────
+    h1m=re.search(r'<h1[^>]*>(.*?)</h1>',s,re.DOTALL)
+    hero_alt=re.sub(r'<[^>]+>','',h1m.group(1)).strip() if h1m else ''
 
-    # 2. GALLERY images + captions
+    # ── 1. HERO → <img fetchpriority="high"> ─────────────────────────────────
+    hero_webp = webp_of(hero)
+    hero_path = D_ROOT + hero_webp
+    hw, hh = img_dims(hero_path)
+    hero_img_tag = make_img(hero_path, hero_alt, hw, hh, priority=True)
+    s=re.sub(
+        r'<div class="art-hero-img-full"[^>]*>(?:<img[^>]*>)?</div>',
+        f'<div class="art-hero-img-full">{hero_img_tag}</div>',
+        s, count=1)
+
+    # ── 2. GALLERY: <div class="imgph photo" style="background-image:...">
+    #      → <div class="imgph photo"><img loading=lazy ...></div> ────────────
     m=re.search(r'class="art-gallery-grid">',s)
     if m:
         gs,ge=block_bounds(s,m.end()); grid=s[gs:ge]; idx=[0]
         def rf(fm):
             fig=fm.group(0); k=idx[0]; idx[0]+=1
             if k>=len(gal): return fig
-            img=gal[k]; c=cap.get(img,'')
-            fig=re.sub(r"background-image:url\('[^']*'\)",f"background-image:url('{d}{img}')",fig)
-            if '<figcaption>' in fig:
-                fig=re.sub(r'<figcaption>.*?</figcaption>',f'<figcaption>{c}</figcaption>',fig,flags=re.DOTALL) if c else re.sub(r'<figcaption>.*?</figcaption>','',fig,flags=re.DOTALL)
+            img_base=gal[k]
+            alt_text=cap.get(img_base,'')
+            webp_name=webp_of(img_base)
+            webp_path=d+webp_name
+            iw,ih=img_dims(webp_path)
+            itag=make_img(webp_path,alt_text,iw,ih)
+            # Replace the whole <div class="imgph photo" ...></div> (with or without bg-image style)
+            fig=re.sub(r'<div class="imgph photo"[^>]*>(?:<img[^>]*>)?</div>',
+                       f'<div class="imgph photo">{itag}</div>', fig, count=1)
+            # Update figcaption
+            if alt_text and '<figcaption>' in fig:
+                fig=re.sub(r'<figcaption>.*?</figcaption>',f'<figcaption>{alt_text}</figcaption>',fig,flags=re.DOTALL)
             return fig
         grid=re.sub(r'<figure[^>]*>.*?</figure>',rf,grid,flags=re.DOTALL)
         s=s[:gs]+grid+s[ge:]
 
-    # 3. BENTO trio (image + text authored together)
+    # ── 3. BENTO: same replacement inside .home-bento-grid ───────────────────
     m=re.search(r'class="home-bento-grid">',s)
     if m:
         bs,be=block_bounds(s,m.end()); block=s[bs:be]
@@ -228,7 +277,13 @@ def process(path):
             chunk='<div class="bento-card'+chunk
             if ci<len(trio):
                 e=trio[ci]; tag,h3,p=e[lang]
-                chunk=re.sub(r"background-image:url\('[^']*'\)",f"background-image:url('{d}{e['img']}')",chunk,count=1)
+                img_base=e['img']
+                webp_name=webp_of(img_base)
+                webp_path=d+webp_name
+                bw,bh=img_dims(webp_path)
+                itag=make_img(webp_path,h3,bw,bh)
+                chunk=re.sub(r'<div class="imgph photo"[^>]*>(?:<img[^>]*>)?</div>',
+                             f'<div class="imgph photo">{itag}</div>', chunk, count=1)
                 chunk=re.sub(r'<span class="b-tag">[^<]*</span>',f'<span class="b-tag">{tag}</span>',chunk,count=1)
                 chunk=re.sub(r'<h3>.*?</h3>',f'<h3>{h3}</h3>',chunk,count=1,flags=re.DOTALL)
                 if '<p>' in chunk:
@@ -237,7 +292,7 @@ def process(path):
             out.append(chunk)
         s=s[:bs]+''.join(out)+s[be:]
 
-    # 4. INLINE between-section images at s2,s4,s6,s8 — from the UNUSED pool only
+    # ── 4. INLINE figures between sections ───────────────────────────────────
     page_used=set([hero]+gal+[e['img'] for e in BENTO[(loc,t)]])
     pool=[i for i in ALLIMG[loc] if i not in page_used and i not in INLINE_BAN]
     added=0
@@ -245,21 +300,25 @@ def process(path):
         mh=re.search(r'<h2 id="'+sec+r'"[^>]*>(.*?)</h2>', s, re.DOTALL)
         if not mh or not pool: continue
         heading=re.sub(r'<[^>]+>','',mh.group(1))
-        img=inline_pick(heading, loc, pool); pool.remove(img)
-        c=cap.get(img,'')
-        caphtml=f'<figcaption><strong>{c}</strong></figcaption>' if c else ''
-        fig=(f'<figure class="fig"><div class="imgph photo" style="background-image:url(\'{d}{img}\')">'
-             f'</div>{caphtml}</figure>')
+        img_base=inline_pick(heading, loc, pool); pool.remove(img_base)
+        alt_text=cap.get(img_base,'')
+        webp_name=webp_of(img_base)
+        webp_path=d+webp_name
+        iw,ih=img_dims(webp_path)
+        itag=make_img(webp_path,alt_text,iw,ih)
+        caphtml=f'<figcaption><strong>{alt_text}</strong></figcaption>' if alt_text else ''
+        fig=f'<figure class="fig"><div class="imgph photo">{itag}</div>{caphtml}</figure>'
         pos=mh.start()
         s=s[:pos]+fig+s[pos:]
         added+=1
 
-    # 5. og/twitter/schema image -> hero (absolute)
-    abs_hero=f"https://panamaspot.com{D_ROOT}{hero}"
-    s=re.sub(r'https://panamaspot\.com/images/(?:boquete|el-valle)/[^"\')\s]+',abs_hero,s)
+    # ── 5. og/twitter/schema image → hero webp (absolute URL) ────────────────
+    abs_hero = f'https://panamaspot.com{D_ROOT}{hero_webp}'
+    # Replace any absolute panamaspot image URL (old jpg, heic, or webp)
+    s=re.sub(r'https://panamaspot\.com/images/[^"\')\s]+', abs_hero, s)
 
     open(path,'w',encoding='utf-8').write(s)
-    print(f"  ✓ {fn:<40} hero={hero:<26} inline+={added}")
+    print(f"  ✓ {fn:<40} hero={hero_webp:<30} inline+={added}")
 
 FILES=[
  "public/articles/hikes-in-boquete.html","public/articles/things-to-do-in-boquete-panama.html",
@@ -269,6 +328,6 @@ FILES=[
  "public/articles/tours-en-el-valle-de-anton.html","public/es/articles/senderos-el-valle-de-anton.html",
  "public/es/articles/que-hacer-el-valle-de-anton.html","public/es/articles/tours-el-valle-de-anton.html",
 ]
-print("Image pass: heroes, swaps, bento, inline section images...")
+print("Image pass: heroes→<img fetchpriority=high>, gallery/inline/bento→<img loading=lazy>, WebP…")
 for f in FILES: process(f)
 print("Done.")

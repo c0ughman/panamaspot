@@ -66,10 +66,15 @@ function CategoryCard({
   const content = (
     <>
       {img.kind === "photo" ? (
-        <div
-          className="imgph photo"
-          style={{ backgroundImage: `url('${img.src}')` }}
-        />
+        <div className="imgph photo">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={img.src}
+            alt={title}
+            loading="lazy"
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+          />
+        </div>
       ) : (
         <div className={`imgph ${img.cls}`} />
       )}
