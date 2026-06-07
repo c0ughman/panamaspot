@@ -10,13 +10,13 @@
 .evb-banner{margin:46px auto;background:#fff;border:1px solid var(--evb-line);border-radius:20px;overflow:hidden;display:grid;grid-template-columns:42% 1fr;box-shadow:0 14px 40px rgba(47,40,11,.10)}
 .evb-banner-img{background-position:center;background-size:cover;background-repeat:no-repeat;min-height:240px}
 .evb-banner-body{padding:32px 34px}
-.evb-banner-body h3{font-family:'Fraunces',Georgia,serif;font-size:30px;font-weight:600;letter-spacing:-.6px;line-height:1.05;color:var(--evb-accent);margin:12px 0 10px}
+.evb-banner-body h3{font-family:'Fraunces',Georgia,serif;font-size:30px;font-weight:600;letter-spacing:-.6px;line-height:1.05;color:var(--evb-accent)!important;margin:12px 0 10px}
 .evb-banner-body p{margin:0;color:var(--evb-ink-soft);font-size:15.5px;line-height:1.55;max-width:46ch}
 .evb-banner-body .evb-btn{margin-top:20px}
 .evb-micro{margin-top:14px;font-size:12.5px;color:var(--evb-muted);letter-spacing:.02em}
 .evb-offer{margin:52px auto;background:var(--evb-cream);border:1px solid var(--evb-line);border-radius:22px;padding:40px 34px 34px}
 .evb-offer-head{text-align:center;max-width:60ch;margin:0 auto}
-.evb-offer h3{font-family:'Fraunces',Georgia,serif;font-size:clamp(30px,4.6vw,44px);font-weight:600;letter-spacing:-1px;line-height:1.02;color:var(--evb-accent);margin:12px 0 12px}
+.evb-offer h3{font-family:'Fraunces',Georgia,serif;font-size:clamp(30px,4.6vw,44px);font-weight:600;letter-spacing:-1px;line-height:1.02;color:var(--evb-accent)!important;margin:12px 0 12px}
 .evb-offer-sub{color:var(--evb-ink-soft);font-size:16.5px;line-height:1.6;margin:0 auto;max-width:54ch}
 .evb-feat{width:100%;height:180px;border-radius:14px;background-position:center;background-size:cover;background-repeat:no-repeat;margin:24px 0 18px;box-shadow:0 10px 26px rgba(47,40,11,.16)}
 .evb-pricestrip{display:flex;justify-content:center;flex-wrap:wrap;margin:0 auto 6px;border:1px solid var(--evb-line);border-radius:14px;overflow:hidden;background:#fff;max-width:480px}
