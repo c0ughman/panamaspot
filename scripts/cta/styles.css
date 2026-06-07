@@ -18,7 +18,7 @@
 .evb-offer-head{text-align:center;max-width:60ch;margin:0 auto}
 .evb-offer h3{font-family:'Fraunces',Georgia,serif;font-size:clamp(30px,4.6vw,44px);font-weight:600;letter-spacing:-1px;line-height:1.02;color:var(--evb-ink);margin:12px 0 12px}
 .evb-offer-sub{color:var(--evb-ink-soft);font-size:16.5px;line-height:1.6;margin:0 auto;max-width:54ch}
-.evb-feat{width:100%;height:180px;border-radius:14px;background-position:center;background-size:cover;background-repeat:no-repeat;margin:24px 0 18px;box-shadow:0 10px 26px rgba(47,40,11,.16)}
+.evb-feat{width:100%;height:180px;border-radius:14px;background-position:center bottom;background-size:cover;background-repeat:no-repeat;margin:24px 0 18px;box-shadow:0 10px 26px rgba(47,40,11,.16)}
 .evb-pricestrip{display:flex;justify-content:center;flex-wrap:wrap;margin:0 auto 6px;border:1px solid var(--evb-line);border-radius:14px;overflow:hidden;background:#fff;max-width:480px}
 .evb-pricestrip div{flex:1;padding:14px 18px;text-align:center;border-right:1px solid var(--evb-line)}
 .evb-pricestrip div:last-child{border-right:0}
@@ -47,7 +47,7 @@
 .evb-closer-trust{margin-top:20px;font-size:12.5px;color:rgba(255,255,255,.72);letter-spacing:.02em}
 /* sticky right rail */
 .evb-rail{align-self:start;position:sticky;top:90px}
-.evb-rail-card{background:#fff;border:1px solid var(--evb-line);border-radius:16px;padding:16px;box-shadow:0 12px 30px rgba(47,40,11,.10)}
+.evb-rail-card{background:#fff;border:1px solid rgba(47,40,11,.06);border-radius:16px;padding:16px;box-shadow:0 4px 12px rgba(47,40,11,.06)}
 .evb-rail-img{height:118px;border-radius:11px;background-position:center;background-size:cover;background-repeat:no-repeat;margin-bottom:14px}
 .evb-rail-card .evb-eyebrow{font-size:10px;letter-spacing:2px}
 .evb-rail-card h4{font-family:'Fraunces',Georgia,serif;font-size:19px;font-weight:600;letter-spacing:-.3px;line-height:1.08;color:var(--evb-ink);margin:8px 0 7px}
