@@ -23,12 +23,12 @@ export const metadata: Metadata = buildMetadata({
 const PANAMA_CITY = "/es/articles/panama-city";
 const EL_VALLE = "/es/articles/el-valle-de-anton";
 
-const BOQUETE_SENDEROS = "/es/articles/senderos-en-boquete-guia-completa.html";
-const BOQUETE_QH = "/es/articles/que-hacer-en-boquete-guia-completa.html";
-const BOQUETE_TOURS_ES = "/es/articles/tours-en-boquete-panama.html";
-const EV_SENDEROS = "/es/articles/senderos-el-valle-de-anton.html";
-const EV_QH = "/es/articles/que-hacer-el-valle-de-anton.html";
-const EV_TOURS_ES = "/es/articles/tours-el-valle-de-anton.html";
+const BOQUETE_SENDEROS = "/es/articles/senderos-en-boquete-guia-completa";
+const BOQUETE_QH = "/es/articles/que-hacer-en-boquete-guia-completa";
+const BOQUETE_TOURS_ES = "/es/articles/tours-en-boquete-panama";
+const EV_SENDEROS = "/es/articles/senderos-el-valle-de-anton";
+const EV_QH = "/es/articles/que-hacer-el-valle-de-anton";
+const EV_TOURS_ES = "/es/articles/tours-el-valle-de-anton";
 
 const BOCAS_PHOTO = pexels(2038744);
 const BOQUETE_PHOTO = pexels(2380342);

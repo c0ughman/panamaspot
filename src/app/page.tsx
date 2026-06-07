@@ -23,12 +23,12 @@ const BOQUETE = "/articles/sendero-los-quetzales";
 const PANAMA_CITY = "/articles/panama-city";
 const EL_VALLE = "/articles/el-valle-de-anton";
 
-const BOQUETE_HIKES = "/articles/hikes-in-boquete.html";
-const BOQUETE_TODO = "/articles/things-to-do-in-boquete-panama.html";
-const BOQUETE_TOURS = "/articles/tours-in-boquete-panama.html";
-const EV_HIKES = "/articles/hikes-el-valle-de-anton.html";
-const EV_TODO = "/articles/things-to-do-el-valle-de-anton.html";
-const EV_TOURS = "/articles/tours-en-el-valle-de-anton.html";
+const BOQUETE_HIKES = "/articles/hikes-in-boquete";
+const BOQUETE_TODO = "/articles/things-to-do-in-boquete-panama";
+const BOQUETE_TOURS = "/articles/tours-in-boquete-panama";
+const EV_HIKES = "/articles/hikes-el-valle-de-anton";
+const EV_TODO = "/articles/things-to-do-el-valle-de-anton";
+const EV_TOURS = "/articles/tours-en-el-valle-de-anton";
 
 const BOCAS_PHOTO = pexels(2038744);
 const BOQUETE_PHOTO = pexels(2380342);

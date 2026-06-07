@@ -167,7 +167,7 @@ def inject(path):
         "banner": ('<h2 id="s2"',    wrap("banner", banner) + '<h2 id="s2"'),
         "offer":  ('<h2 id="s4"',    wrap("offer", offer)   + '<h2 id="s4"'),
         "rail":   ("</article>",     "</article>" + wrap("rail", rail)),
-        "closer": ("</main>",        wrap("closer", closer) + "</main>"),
+        "closer": ('<section class="art-section tint"><div class="container"><div class="art-section-head"><span class="eyebrow">The short version</span><h2>Three things to know</h2>', wrap("closer", closer) + '<section class="art-section tint"><div class="container"><div class="art-section-head"><span class="eyebrow">The short version</span><h2>Three things to know</h2>'),
     }
     for key, (anchor, repl) in anchors.items():
         if s.count(anchor) < 1:
