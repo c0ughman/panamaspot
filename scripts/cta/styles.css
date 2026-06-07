@@ -39,7 +39,7 @@
 .evb-closer-in{max-width:720px;margin:0 auto;padding:0 28px;text-align:center;color:#fff}
 .evb-closer .evb-eyebrow{color:var(--evb-gold)}
 .evb-stars{font-size:13px;letter-spacing:.06em;color:#ffe2a8;margin-bottom:8px}
-.evb-closer h3{font-family:'Fraunces',Georgia,serif;font-size:clamp(34px,5.4vw,56px);font-weight:600;letter-spacing:-1px;line-height:1;margin:12px 0 16px;color:#fff!important;text-wrap:balance}
+.evb-closer h3{font-family:'Fraunces',Georgia,serif;font-size:clamp(34px,5.4vw,56px);font-weight:600;letter-spacing:-1px;line-height:1;margin:12px 0 16px;color:var(--evb-accent);text-wrap:balance}
 .evb-closer-sub{color:rgba(255,255,255,.86);font-size:18px;line-height:1.55;margin:0 auto 6px;max-width:50ch}
 .evb-quote{margin:24px auto;max-width:54ch;font-family:'Fraunces',Georgia,serif;font-size:21px;font-style:italic;line-height:1.4;color:#fff}
 .evb-quote cite{display:block;margin-top:12px;font-family:'Inter',sans-serif;font-style:normal;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#ffe2a8}
