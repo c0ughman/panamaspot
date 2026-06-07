@@ -644,18 +644,22 @@
   }
   @media (max-width: 560px) {
     section { padding: 56px 0; }
-    .announce { display: none; }
+    .announce { display: block; }
     .hero { min-height: 82vh; padding: 24px 0 40px; }
-    .hero-loc,
+    .hero-loc { display: none; }
     .hero .eyebrow { display: none; }
     .hero-top { padding: 18px 0; }
+    .hero-content { padding-top: 50px !important; }
     .hero-ctas { flex-direction: column; align-items: stretch; }
     .hero-ctas .btn { width: 100%; }
+    .hero-meta { margin-top: 24px; }
+    .hero-pills-row { justify-content: flex-start; margin-bottom: 24px; }
     .tour-body { padding: 18px 18px 20px; }
     .offer-card { padding: 24px; }
     .proof-callout { padding: 22px 20px; }
     .trip-help-inner { flex-direction: column; gap: 20px; align-items: flex-start; }
     .trip-help-img { width: 80px; height: 80px; }
+    .ev-mid-cta-grid { gap: 24px; }
   }
 </style>
 </head>
@@ -822,10 +826,6 @@
       </div>
     </div>
 
-    <div style="text-align:center; margin-top:28px;">
-      <a class="btn btn-ghost" href="https://www.tripadvisor.com/Attraction_Review-g635545-d26557480-Reviews-E_Valley_Bikes_Electric_Bike_Rental_Tours-El_Valle_de_Anton_Cocle_Province.html" target="_blank" rel="noopener" style="border-color:rgba(255,255,255,0.3);">Read all 71 reviews on TripAdvisor →</a>
-    </div>
-
     <div class="proof-stat-row">
       <div>
         <div class="stat-num">7+ yrs</div>
@@ -839,6 +839,33 @@
         <div class="stat-num">All levels</div>
         <div class="stat-label">From first-time riders to mountain climbers</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- READY TO BOOK? -->
+<style>
+  .ev-mid-cta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .ev-mid-cta-img { border-radius: 14px; overflow: hidden; aspect-ratio: 4/5; background: url('/images/el-valle/evbike-crater-view.webp') center/cover no-repeat; box-shadow: 0 30px 80px -20px rgba(47,40,11,0.5); }
+  @media (max-width: 760px) { .ev-mid-cta-grid { grid-template-columns: 1fr; } .ev-mid-cta-img { aspect-ratio: 4/3; } }
+</style>
+<section style="background: #f7f5ee; padding: 72px 0;">
+  <div class="wrap">
+    <div class="ev-mid-cta-grid">
+      <div>
+        <div style="font-size: 11.5px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #ea450e; margin-bottom: 14px;">Ready to Book?</div>
+        <h2 style="font-family: var(--serif); font-weight: 600; font-size: clamp(30px, 4vw, 44px); line-height: 1.1; letter-spacing: -0.7px; color: var(--ink); margin-bottom: 18px;">
+          Self-guided e-bike tours. <em style="font-style: italic; color: #ea450e;">Your pace, your route.</em>
+        </h2>
+        <p style="font-size: 17px; color: var(--ink-soft); max-width: 52ch; line-height: 1.6; margin-bottom: 32px;">
+          Pick your hours, grab your bike, and the GPS audio guide does the talking. No tour group to keep up with, no itinerary to argue about. Just you, the crater, and as much daylight as you want.
+        </p>
+        <a href="https://wa.me/50768852907?text=Hi%20E-Valley%20Bikes!%20I'd%20like%20to%20book%20a%20bike%20tour%20in%20El%20Valle." style="display: inline-flex; align-items: center; gap: 9px; padding: 18px 32px; border-radius: 100px; font-family: var(--sans); font-size: 17px; font-weight: 600; letter-spacing: 0.2px; border: none; cursor: pointer; background: #25d366; color: #fff; box-shadow: 0 8px 24px rgba(37,211,102,0.35); transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;">
+          <span class="wa-icon"></span> Book Your Bike Tour
+        </a>
+        <p style="font-size: 13px; color: var(--muted); margin-top: 16px; letter-spacing: 0.3px;">Message us on WhatsApp · Reply in minutes · Cancel free up to 24h</p>
+      </div>
+      <div class="ev-mid-cta-img"></div>
     </div>
   </div>
 </section>
