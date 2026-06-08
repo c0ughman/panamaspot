@@ -4,6 +4,42 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, follow">
+
+<!-- Google tag (gtag.js) — Google Ads: AW-18171913785 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18171913785"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18171913785');
+</script>
+<script>
+  /* Google Ads conversion — fires when any WhatsApp button is clicked.
+     One delegated listener covers every wa.me button on the page. The links
+     navigate in the same tab, so for a plain left-click we hold navigation
+     just long enough to send the conversion (event_callback), with a 1s
+     fallback so the visitor is never blocked even if the tag is slow/blocked.
+     New-tab or modified clicks just fire and let the browser proceed. */
+  (function () {
+    var SEND_TO = 'AW-18171913785/JYe8CO_D7bocELnMhdlD'; // WhatsApp – Boquete
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest && e.target.closest('a[href^="https://wa.me/"]');
+      if (!link) return;
+
+      if (link.target === '_blank' || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) {
+        gtag('event', 'conversion', { send_to: SEND_TO });
+        return;
+      }
+
+      e.preventDefault();
+      var url = link.href, done = false;
+      var go = function () { if (!done) { done = true; window.location = url; } };
+      gtag('event', 'conversion', { send_to: SEND_TO, event_callback: go });
+      setTimeout(go, 1000);
+    }, false);
+  })();
+</script>
+
 <meta name="description" content="E-bike tours in Boquete, Panama. Premium Orbea e-bikes, coffee farm tours, and the Lost Waterfalls — all the hills made easy. Book on WhatsApp.">
 <title>Bike Tours in Boquete, Panama — E-Valley Bikes</title>
 
