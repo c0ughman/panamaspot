@@ -12,7 +12,7 @@ export function SiteHeader() {
           <Link href="/#destinations">Destinations</Link>
           <Link href="/#eco">Eco-tourism</Link>
           <Link href="/#itineraries">Itineraries</Link>
-          <Link href="/articles/sendero-los-quetzales">Guides</Link>
+          <Link href="/#cat-boquete">Guides</Link>
           <Link href="/#">Plan a trip</Link>
         </nav>
         <div style={{ display: "flex", gap: 12, alignItems: "center" }}>

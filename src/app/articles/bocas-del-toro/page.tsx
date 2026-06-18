@@ -1,9 +1,10 @@
 /* ============================================================================
    PAGE TEMPLATE — "Destination guide"  (GREEN theme)
    ----------------------------------------------------------------------------
-   This is the blue template (src/app/articles/sendero-los-quetzales/page.tsx)
-   duplicated and re-skinned green, on a different subject (Bocas del Toro). It
-   proves the same skeleton handles a totally different place + palette.
+   This is the blue "destination guide" template (see the sibling blue page
+   src/app/articles/panama-city/page.tsx) re-skinned green, on a different
+   subject (Bocas del Toro). It proves the same skeleton handles a totally
+   different place + palette.
 
    The ONLY structural difference from the blue page is on <main>:
        <main className="article-page" data-theme="green">

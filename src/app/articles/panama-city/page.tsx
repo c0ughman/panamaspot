@@ -1,8 +1,8 @@
 /* ============================================================================
    Panama City — destination guide (BLUE theme)
-   Built from the blue template (articles/sendero-los-quetzales). Same layout
-   and sections; different subject + photos. See the template for full
-   per-section documentation.
+   Built from the blue "destination guide" template. Same layout and sections;
+   different subject + photos. The green sibling (articles/bocas-del-toro)
+   documents the shared section structure.
    ========================================================================== */
 
 import type { Metadata } from "next";

@@ -19,9 +19,9 @@ export const metadata: Metadata = buildMetadata({
 });
 
 const BOCAS = "/articles/bocas-del-toro";
-const BOQUETE = "/articles/sendero-los-quetzales";
+const BOQUETE = "/articles/things-to-do-in-boquete-panama";
 const PANAMA_CITY = "/articles/panama-city";
-const EL_VALLE = "/articles/el-valle-de-anton";
+const EL_VALLE = "/articles/things-to-do-el-valle-de-anton";
 
 const BOQUETE_HIKES = "/articles/hikes-in-boquete";
 const BOQUETE_TODO = "/articles/things-to-do-in-boquete-panama";

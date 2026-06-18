@@ -29,8 +29,8 @@ export default function NotFound() {
         <Link href="/" className="home-hero-btn">
           Back to home →
         </Link>
-        <Link href="/articles/sendero-los-quetzales" className="cat-section-link">
-          Read the Quetzal Trail guide →
+        <Link href="/articles/hikes-in-boquete" className="cat-section-link">
+          Read our Boquete hiking guide →
         </Link>
       </div>
     </main>

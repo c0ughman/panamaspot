@@ -21,7 +21,7 @@ export const metadata: Metadata = buildMetadata({
 });
 
 const PANAMA_CITY = "/es/articles/panama-city";
-const EL_VALLE = "/es/articles/el-valle-de-anton";
+const EL_VALLE = "/es/articles/que-hacer-el-valle-de-anton";
 
 const BOQUETE_SENDEROS = "/es/articles/senderos-en-boquete-guia-completa";
 const BOQUETE_QH = "/es/articles/que-hacer-en-boquete-guia-completa";
