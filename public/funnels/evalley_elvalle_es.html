@@ -4,6 +4,42 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, follow">
+
+<!-- Google tag (gtag.js) — Google Ads: AW-18171913785 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18171913785"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18171913785');
+</script>
+<script>
+  /* Google Ads conversion — fires when any WhatsApp button is clicked.
+     One delegated listener covers every wa.me button on the page. The links
+     navigate in the same tab, so for a plain left-click we hold navigation
+     just long enough to send the conversion (event_callback), with a 1s
+     fallback so the visitor is never blocked even if the tag is slow/blocked.
+     New-tab or modified clicks just fire and let the browser proceed. */
+  (function () {
+    var SEND_TO = 'AW-18171913785/CT2QCOa97bocELnMhdlD'; // WhatsApp – El Valle
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest && e.target.closest('a[href^="https://wa.me/"]');
+      if (!link) return;
+
+      if (link.target === '_blank' || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) {
+        gtag('event', 'conversion', { send_to: SEND_TO });
+        return;
+      }
+
+      e.preventDefault();
+      var url = link.href, done = false;
+      var go = function () { if (!done) { done = true; window.location = url; } };
+      gtag('event', 'conversion', { send_to: SEND_TO, event_callback: go });
+      setTimeout(go, 1000);
+    }, false);
+  })();
+</script>
+
 <meta name="description" content="Tours en bicicleta por El Valle de Antón. Recorre el cráter volcánico de Panamá: cascadas, selva y atardeceres. Casco, audioguía GPS y canasta incluidos. Reserva por WhatsApp.">
 <title>Tours en Bicicleta en El Valle de Antón, Panamá — E-Valley Bikes</title>
 
@@ -67,7 +103,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 32px 0 56px;
+    padding: 88px 0 56px;
   }
   .hero-top {
     position: absolute;
@@ -102,7 +138,10 @@
     width: 6px; height: 6px; border-radius: 50%;
     background: #ea450e; box-shadow: 0 0 0 3px rgba(234,69,14,0.25);
   }
-  .hero-content { position: relative; z-index: 2; }
+  .hero-content { position: relative; z-index: 2; box-sizing: border-box; }
+  @media (min-width: 561px) {
+    .hero-content > * { max-width: 680px; }
+  }
   .eyebrow {
     display: inline-block;
     font-size: 12px;
@@ -125,19 +164,25 @@
     letter-spacing: -1.2px;
     margin-bottom: 18px;
     max-width: 18ch;
+    text-shadow: 0 2px 18px rgba(10,8,2,0.32), 0 1px 3px rgba(10,8,2,0.25);
+  }
+  .hero-title-lead {
+    display: block;
+    font-size: clamp(28px, 5.5vw, 55px);
   }
   h1.hero-title em {
-    font-style: italic;
+    font-style: normal;
     font-weight: 500;
     color: #ea450e;
   }
   .hero-sub {
-    font-size: clamp(16px, 1.7vw, 19px);
+    font-size: clamp(16px, 1.63vw, 18px);
     line-height: 1.55;
     color: rgba(255,255,255,0.92);
     max-width: 560px;
     margin-bottom: 28px;
     font-weight: 400;
+    text-shadow: 0 1px 10px rgba(10,8,2,0.32), 0 1px 2px rgba(10,8,2,0.22);
   }
   .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
   .hero-meta {
@@ -646,15 +691,17 @@
   @media (max-width: 560px) {
     section { padding: 56px 0; }
     .announce { display: block; }
-    .hero { min-height: 82vh; padding: 24px 0 40px; }
+    .hero { min-height: 82vh; padding: 96px 0 40px; }
     .hero-loc { display: none; }
     .hero .eyebrow { display: none; }
     .hero-top { padding: 18px 0; }
-    .hero-content { padding-top: 50px !important; }
     .hero-ctas { flex-direction: column; align-items: stretch; }
     .hero-ctas .btn { width: 100%; }
     .hero-meta { margin-top: 24px; }
-    .hero-pills-row { justify-content: flex-start; margin-bottom: 24px; }
+    .hero-pills-row { justify-content: flex-start; margin-bottom: 18px; }
+    .ta-inline, .lang-pill { font-size: 8px; letter-spacing: 1.5px; padding: 5px 8px; gap: 5px; }
+    .ta-inline .ta-bubbles { font-size: 7px; }
+    .lang-pill .lang-icon { font-size: 11px; }
     .tour-body { padding: 18px 18px 20px; }
     .offer-card { padding: 24px; }
     .proof-callout { padding: 22px 20px; }
@@ -691,9 +738,9 @@
       </span>
       <span class="lang-pill"><span class="lang-icon">🌐</span>Hablamos español e inglés</span>
     </div>
-    <h1 class="hero-title">Tours en bici por <em>El Valle.</em></h1>
+    <h1 class="hero-title"><span class="hero-title-lead">Lo #1 que hacer en El Valle...</span><em>Recórrelo en Bici.</em></h1>
     <p class="hero-sub">
-      Cascadas. Senderos entre la selva. El mirador de La India Dormida al atardecer. La forma más fácil de conocer el verdadero El Valle: sobre dos ruedas, a tu ritmo, con una audioguía GPS que te lo cuenta todo.
+      La forma más fácil de ver el verdadero El Valle: a tu ritmo y parando donde quieras, con una audioguía GPS que te lo cuenta todo. <strong>Cascadas, selva y el mirador de La India Dormida.</strong> Tours y alquileres.
     </p>
     <div class="hero-ctas">
       <a class="btn btn-primary btn-lg" href="https://wa.me/50768852907?text=%C2%A1Hola!%20Quiero%20reservar%20un%20tour%20o%20alquiler%20de%20bicicleta.%20%C2%BFCu%C3%A1les%20son%20los%20siguientes%20pasos%3F">
