@@ -70,18 +70,18 @@ const BOQUETE_GUIAS: Card[] = [
   { title: "Mejores Senderos en Boquete", tag: "Senderismo", img: { kind: "photo", src: "/images/hikes-boquete.webp" }, href: BOQUETE_SENDEROS },
   { title: "Qué Hacer en Boquete", tag: "Guía", img: { kind: "photo", src: "/images/things-to-do-boquete.webp" }, href: BOQUETE_QH },
   { title: "Tours en Boquete", tag: "Tours", img: { kind: "photo", src: "/images/tours-boquete.webp" }, href: BOQUETE_TOURS_ES },
-  { title: "Aguas Termales de Caldera", tag: "Guía", img: { kind: "photo", src: pexels(920270) }, href: BOQUETE_AGUAS },
-  { title: "Alquiler de Bicicletas", tag: "Tours", img: { kind: "photo", src: pexels(30774401) }, href: BOQUETE_ALQUILER },
-  { title: "Cómo Llegar a Boquete", tag: "Guía", img: { kind: "photo", src: pexels(33803477) }, href: BOQUETE_COMO_LLEGAR },
+  { title: "Aguas Termales de Caldera", tag: "Guía", img: { kind: "photo", src: "/images/boquete/boquete-forest.webp" }, href: BOQUETE_AGUAS },
+  { title: "Alquiler de Bicicletas", tag: "Tours", img: { kind: "photo", src: "/images/boquete/boquete-ebike-trail.webp" }, href: BOQUETE_ALQUILER },
+  { title: "Cómo Llegar a Boquete", tag: "Guía", img: { kind: "photo", src: "/images/boquete/boquete-hills.webp" }, href: BOQUETE_COMO_LLEGAR },
 ];
 
 const EL_VALLE_GUIAS: Card[] = [
   { title: "Senderos en El Valle", tag: "Senderismo", img: { kind: "photo", src: "/images/hikes-el-valle.webp" }, href: EV_SENDEROS },
   { title: "Qué Hacer en El Valle", tag: "Guía", img: { kind: "photo", src: "/images/things-to-do-el-valle.webp" }, href: EV_QH },
   { title: "Tours en El Valle", tag: "Tours", img: { kind: "photo", src: "/images/tours-el-valle.webp" }, href: EV_TOURS_ES },
-  { title: "Cascada Chorro El Macho", tag: "Guía", img: { kind: "photo", src: pexels(18117999) }, href: EV_CASCADA },
-  { title: "El Valle desde Ciudad de Panamá", tag: "Guía", img: { kind: "photo", src: pexels(30774409) }, href: EV_DESDE_CIUDAD },
-  { title: "Sendero India Dormida", tag: "Senderismo", img: { kind: "photo", src: pexels(30774416) }, href: EV_INDIA_ES },
+  { title: "Cascada Chorro El Macho", tag: "Guía", img: { kind: "photo", src: "/images/el-valle/elvalle-elmachowaterfall.webp" }, href: EV_CASCADA },
+  { title: "El Valle desde Ciudad de Panamá", tag: "Guía", img: { kind: "photo", src: "/images/el-valle/elvalle-panorama.webp" }, href: EV_DESDE_CIUDAD },
+  { title: "Sendero India Dormida", tag: "Senderismo", img: { kind: "photo", src: "/images/el-valle/elvalle-indiadormida.webp" }, href: EV_INDIA_ES },
 ];
 
 export default function HomeEs() {

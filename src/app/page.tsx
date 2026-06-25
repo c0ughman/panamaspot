@@ -71,18 +71,18 @@ const BOQUETE_GUIDES: Card[] = [
   { title: "Best Hikes in Boquete", tag: "Hiking", img: { kind: "photo", src: "/images/hikes-boquete.webp" }, href: BOQUETE_HIKES },
   { title: "Things to Do in Boquete", tag: "Guide", img: { kind: "photo", src: "/images/things-to-do-boquete.webp" }, href: BOQUETE_TODO },
   { title: "Tours in Boquete", tag: "Tours", img: { kind: "photo", src: "/images/tours-boquete.webp" }, href: BOQUETE_TOURS },
-  { title: "Lost Waterfalls", tag: "Hiking", img: { kind: "photo", src: pexels(2024457) }, href: BOQUETE_WATERFALLS },
+  { title: "Lost Waterfalls", tag: "Hiking", img: { kind: "photo", src: "/images/boquete/boquete-manmadewaterfall.webp" }, href: BOQUETE_WATERFALLS },
   { title: "Coffee Farm Tours", tag: "Guide", img: { kind: "photo", src: pexels(7761601) }, href: BOQUETE_COFFEE },
-  { title: "Caldera Hot Springs", tag: "Guide", img: { kind: "photo", src: pexels(920270) }, href: BOQUETE_CALDERA },
+  { title: "Caldera Hot Springs", tag: "Guide", img: { kind: "photo", src: "/images/boquete/boquete-forest.webp" }, href: BOQUETE_CALDERA },
 ];
 
 const EL_VALLE_GUIDES: Card[] = [
   { title: "Best Hikes in El Valle", tag: "Hiking", img: { kind: "photo", src: "/images/hikes-el-valle.webp" }, href: EV_HIKES },
   { title: "Things to Do in El Valle", tag: "Guide", img: { kind: "photo", src: "/images/things-to-do-el-valle.webp" }, href: EV_TODO },
   { title: "Tours in El Valle", tag: "Tours", img: { kind: "photo", src: "/images/tours-el-valle.webp" }, href: EV_TOURS },
-  { title: "Chorro El Macho Waterfall", tag: "Guide", img: { kind: "photo", src: pexels(18117999) }, href: EV_CHORRO },
-  { title: "El Valle Day Trip", tag: "Guide", img: { kind: "photo", src: pexels(30774409) }, href: EV_DAY_TRIP },
-  { title: "India Dormida Hike", tag: "Hiking", img: { kind: "photo", src: pexels(30774416) }, href: EV_INDIA },
+  { title: "Chorro El Macho Waterfall", tag: "Guide", img: { kind: "photo", src: "/images/el-valle/elvalle-elmachowaterfall.webp" }, href: EV_CHORRO },
+  { title: "El Valle Day Trip", tag: "Guide", img: { kind: "photo", src: "/images/el-valle/elvalle-panorama.webp" }, href: EV_DAY_TRIP },
+  { title: "India Dormida Hike", tag: "Hiking", img: { kind: "photo", src: "/images/el-valle/elvalle-indiadormida.webp" }, href: EV_INDIA },
 ];
 
 export default function Home() {
