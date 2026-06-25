@@ -26,9 +26,15 @@ const EL_VALLE = "/es/articles/que-hacer-el-valle-de-anton";
 const BOQUETE_SENDEROS = "/es/articles/senderos-en-boquete-guia-completa";
 const BOQUETE_QH = "/es/articles/que-hacer-en-boquete-guia-completa";
 const BOQUETE_TOURS_ES = "/es/articles/tours-en-boquete-panama";
+const BOQUETE_AGUAS = "/es/articles/aguas-termales-caldera-boquete";
+const BOQUETE_ALQUILER = "/es/articles/alquiler-de-bicicletas-boquete";
+const BOQUETE_COMO_LLEGAR = "/es/articles/como-llegar-a-boquete-sin-carro";
 const EV_SENDEROS = "/es/articles/senderos-el-valle-de-anton";
 const EV_QH = "/es/articles/que-hacer-el-valle-de-anton";
 const EV_TOURS_ES = "/es/articles/tours-el-valle-de-anton";
+const EV_CASCADA = "/es/articles/cascada-chorro-el-macho-el-valle-de-anton";
+const EV_DESDE_CIUDAD = "/es/articles/el-valle-de-anton-desde-ciudad-de-panama";
+const EV_INDIA_ES = "/es/articles/sendero-india-dormida-el-valle-de-anton";
 
 const BOCAS_PHOTO = pexels(2038744);
 const BOQUETE_PHOTO = pexels(2380342);
@@ -42,7 +48,7 @@ const REGIONS: Card[] = [
   { title: "Ciudad de Panamá", tag: "Guía", img: { kind: "photo", src: PANAMA_CITY_PHOTO }, href: PANAMA_CITY },
   { title: "El Valle de Antón", tag: "Guía", img: { kind: "photo", src: EL_VALLE_PHOTO }, href: EL_VALLE },
   { title: "Bocas del Toro", tag: "Próximamente", img: { kind: "photo", src: BOCAS_PHOTO }, comingSoon: true },
-  { title: "Boquete", tag: "Próximamente", img: { kind: "photo", src: BOQUETE_PHOTO }, comingSoon: true },
+  { title: "Boquete", tag: "Guía", img: { kind: "photo", src: BOQUETE_PHOTO }, href: BOQUETE_QH },
   { title: "Guna Yala", tag: "Próximamente", img: { kind: "photo", src: GUNA_PHOTO }, comingSoon: true },
   { title: "Casco Viejo", tag: "Próximamente", img: { kind: "photo", src: pexels(19620790) }, comingSoon: true },
   { title: "Pedasí", tag: "Próximamente", img: { kind: "photo", src: pexels(18976053) }, comingSoon: true },
@@ -64,12 +70,18 @@ const BOQUETE_GUIAS: Card[] = [
   { title: "Mejores Senderos en Boquete", tag: "Senderismo", img: { kind: "photo", src: "/images/hikes-boquete.webp" }, href: BOQUETE_SENDEROS },
   { title: "Qué Hacer en Boquete", tag: "Guía", img: { kind: "photo", src: "/images/things-to-do-boquete.webp" }, href: BOQUETE_QH },
   { title: "Tours en Boquete", tag: "Tours", img: { kind: "photo", src: "/images/tours-boquete.webp" }, href: BOQUETE_TOURS_ES },
+  { title: "Aguas Termales de Caldera", tag: "Guía", img: { kind: "photo", src: pexels(920270) }, href: BOQUETE_AGUAS },
+  { title: "Alquiler de Bicicletas", tag: "Tours", img: { kind: "photo", src: pexels(30774401) }, href: BOQUETE_ALQUILER },
+  { title: "Cómo Llegar a Boquete", tag: "Guía", img: { kind: "photo", src: pexels(33803477) }, href: BOQUETE_COMO_LLEGAR },
 ];
 
 const EL_VALLE_GUIAS: Card[] = [
   { title: "Senderos en El Valle", tag: "Senderismo", img: { kind: "photo", src: "/images/hikes-el-valle.webp" }, href: EV_SENDEROS },
   { title: "Qué Hacer en El Valle", tag: "Guía", img: { kind: "photo", src: "/images/things-to-do-el-valle.webp" }, href: EV_QH },
   { title: "Tours en El Valle", tag: "Tours", img: { kind: "photo", src: "/images/tours-el-valle.webp" }, href: EV_TOURS_ES },
+  { title: "Cascada Chorro El Macho", tag: "Guía", img: { kind: "photo", src: pexels(18117999) }, href: EV_CASCADA },
+  { title: "El Valle desde Ciudad de Panamá", tag: "Guía", img: { kind: "photo", src: pexels(30774409) }, href: EV_DESDE_CIUDAD },
+  { title: "Sendero India Dormida", tag: "Senderismo", img: { kind: "photo", src: pexels(30774416) }, href: EV_INDIA_ES },
 ];
 
 export default function HomeEs() {

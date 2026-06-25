@@ -26,9 +26,15 @@ const EL_VALLE = "/articles/things-to-do-el-valle-de-anton";
 const BOQUETE_HIKES = "/articles/hikes-in-boquete";
 const BOQUETE_TODO = "/articles/things-to-do-in-boquete-panama";
 const BOQUETE_TOURS = "/articles/tours-in-boquete-panama";
+const BOQUETE_COFFEE = "/articles/boquete-coffee-farm-tour";
+const BOQUETE_CALDERA = "/articles/caldera-hot-springs-boquete";
+const BOQUETE_WATERFALLS = "/articles/lost-waterfalls-boquete-hiking-guide";
 const EV_HIKES = "/articles/hikes-el-valle-de-anton";
 const EV_TODO = "/articles/things-to-do-el-valle-de-anton";
 const EV_TOURS = "/articles/tours-en-el-valle-de-anton";
+const EV_CHORRO = "/articles/chorro-el-macho-waterfall-el-valle-de-anton";
+const EV_DAY_TRIP = "/articles/el-valle-day-trip-from-panama-city";
+const EV_INDIA = "/articles/india-dormida-hike-el-valle-de-anton";
 
 const BOCAS_PHOTO = pexels(2038744);
 const BOQUETE_PHOTO = pexels(2380342);
@@ -65,12 +71,18 @@ const BOQUETE_GUIDES: Card[] = [
   { title: "Best Hikes in Boquete", tag: "Hiking", img: { kind: "photo", src: "/images/hikes-boquete.webp" }, href: BOQUETE_HIKES },
   { title: "Things to Do in Boquete", tag: "Guide", img: { kind: "photo", src: "/images/things-to-do-boquete.webp" }, href: BOQUETE_TODO },
   { title: "Tours in Boquete", tag: "Tours", img: { kind: "photo", src: "/images/tours-boquete.webp" }, href: BOQUETE_TOURS },
+  { title: "Lost Waterfalls", tag: "Hiking", img: { kind: "photo", src: pexels(2024457) }, href: BOQUETE_WATERFALLS },
+  { title: "Coffee Farm Tours", tag: "Guide", img: { kind: "photo", src: pexels(7761601) }, href: BOQUETE_COFFEE },
+  { title: "Caldera Hot Springs", tag: "Guide", img: { kind: "photo", src: pexels(920270) }, href: BOQUETE_CALDERA },
 ];
 
 const EL_VALLE_GUIDES: Card[] = [
   { title: "Best Hikes in El Valle", tag: "Hiking", img: { kind: "photo", src: "/images/hikes-el-valle.webp" }, href: EV_HIKES },
   { title: "Things to Do in El Valle", tag: "Guide", img: { kind: "photo", src: "/images/things-to-do-el-valle.webp" }, href: EV_TODO },
   { title: "Tours in El Valle", tag: "Tours", img: { kind: "photo", src: "/images/tours-el-valle.webp" }, href: EV_TOURS },
+  { title: "Chorro El Macho Waterfall", tag: "Guide", img: { kind: "photo", src: pexels(18117999) }, href: EV_CHORRO },
+  { title: "El Valle Day Trip", tag: "Guide", img: { kind: "photo", src: pexels(30774409) }, href: EV_DAY_TRIP },
+  { title: "India Dormida Hike", tag: "Hiking", img: { kind: "photo", src: pexels(30774416) }, href: EV_INDIA },
 ];
 
 export default function Home() {

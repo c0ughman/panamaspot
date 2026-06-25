@@ -1339,6 +1339,9 @@ img { display: block; max-width: 100%; }
   background-repeat: no-repeat;
   will-change: transform;
 }
+.art-hero-img-full > img {
+  display: none !important;
+}
 .art-hero-img-full::after {
   content: "";
   position: absolute;
