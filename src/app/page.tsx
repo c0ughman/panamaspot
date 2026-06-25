@@ -70,10 +70,10 @@ const ACTIVITIES: Card[] = [
 const BOQUETE_GUIDES: Card[] = [
   { title: "Best Hikes in Boquete", tag: "Hiking", img: { kind: "photo", src: "/images/hikes-boquete.webp" }, href: BOQUETE_HIKES },
   { title: "Things to Do in Boquete", tag: "Guide", img: { kind: "photo", src: "/images/things-to-do-boquete.webp" }, href: BOQUETE_TODO },
-  { title: "Tours in Boquete", tag: "Tours", img: { kind: "photo", src: "/images/tours-boquete.webp" }, href: BOQUETE_TOURS },
+  { title: "Tours in Boquete", tag: "Tours", img: { kind: "photo", src: "/images/boquete/boquete-clouds.webp" }, href: BOQUETE_TOURS },
   { title: "Lost Waterfalls", tag: "Hiking", img: { kind: "photo", src: "/images/boquete/boquete-manmadewaterfall.webp" }, href: BOQUETE_WATERFALLS },
   { title: "Coffee Farm Tours", tag: "Guide", img: { kind: "photo", src: pexels(7761601) }, href: BOQUETE_COFFEE },
-  { title: "Caldera Hot Springs", tag: "Guide", img: { kind: "photo", src: "/images/boquete/boquete-forest.webp" }, href: BOQUETE_CALDERA },
+  { title: "Caldera Hot Springs", tag: "Guide", img: { kind: "photo", src: "/images/boquete/boquete-river2.webp" }, href: BOQUETE_CALDERA },
 ];
 
 const EL_VALLE_GUIDES: Card[] = [

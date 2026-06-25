@@ -69,14 +69,14 @@ const ACTIVITIES: Card[] = [
 const BOQUETE_GUIAS: Card[] = [
   { title: "Mejores Senderos en Boquete", tag: "Senderismo", img: { kind: "photo", src: "/images/hikes-boquete.webp" }, href: BOQUETE_SENDEROS },
   { title: "Qué Hacer en Boquete", tag: "Guía", img: { kind: "photo", src: "/images/things-to-do-boquete.webp" }, href: BOQUETE_QH },
-  { title: "Tours en Boquete", tag: "Tours", img: { kind: "photo", src: "/images/tours-boquete.webp" }, href: BOQUETE_TOURS_ES },
-  { title: "Aguas Termales de Caldera", tag: "Guía", img: { kind: "photo", src: "/images/boquete/boquete-forest.webp" }, href: BOQUETE_AGUAS },
+  { title: "Tours en Boquete", tag: "Tours", img: { kind: "photo", src: "/images/boquete/boquete-clouds.webp" }, href: BOQUETE_TOURS_ES },
+  { title: "Aguas Termales de Caldera", tag: "Guía", img: { kind: "photo", src: "/images/boquete/boquete-river2.webp" }, href: BOQUETE_AGUAS },
   { title: "Alquiler de Bicicletas", tag: "Tours", img: { kind: "photo", src: "/images/boquete/boquete-ebike-trail.webp" }, href: BOQUETE_ALQUILER },
   { title: "Cómo Llegar a Boquete", tag: "Guía", img: { kind: "photo", src: "/images/boquete/boquete-hills.webp" }, href: BOQUETE_COMO_LLEGAR },
 ];
 
 const EL_VALLE_GUIAS: Card[] = [
-  { title: "Senderos en El Valle", tag: "Senderismo", img: { kind: "photo", src: "/images/hikes-el-valle.webp" }, href: EV_SENDEROS },
+  { title: "Senderos en El Valle", tag: "Senderismo", img: { kind: "photo", src: "/images/el-valle/elvalle-shrine.webp" }, href: EV_SENDEROS },
   { title: "Qué Hacer en El Valle", tag: "Guía", img: { kind: "photo", src: "/images/things-to-do-el-valle.webp" }, href: EV_QH },
   { title: "Tours en El Valle", tag: "Tours", img: { kind: "photo", src: "/images/tours-el-valle.webp" }, href: EV_TOURS_ES },
   { title: "Cascada Chorro El Macho", tag: "Guía", img: { kind: "photo", src: "/images/el-valle/elvalle-elmachowaterfall.webp" }, href: EV_CASCADA },
