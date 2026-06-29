@@ -219,5 +219,143 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     },
+
+    // ── Caldera Hot Springs (EN ↔ ES pair) ───────────────────────────────────
+    {
+      url: `${siteConfig.url}/articles/caldera-hot-springs-boquete`,
+      lastModified: new Date("2026-06-24"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          en: `${siteConfig.url}/articles/caldera-hot-springs-boquete`,
+          es: `${siteConfig.url}/es/articles/aguas-termales-caldera-boquete`,
+          "x-default": `${siteConfig.url}/articles/caldera-hot-springs-boquete`,
+        },
+      },
+    },
+    {
+      url: `${siteConfig.url}/es/articles/aguas-termales-caldera-boquete`,
+      lastModified: new Date("2026-06-24"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          en: `${siteConfig.url}/articles/caldera-hot-springs-boquete`,
+          es: `${siteConfig.url}/es/articles/aguas-termales-caldera-boquete`,
+          "x-default": `${siteConfig.url}/articles/caldera-hot-springs-boquete`,
+        },
+      },
+    },
+
+    // ── Chorro El Macho Waterfall (EN ↔ ES pair) ─────────────────────────────
+    {
+      url: `${siteConfig.url}/articles/chorro-el-macho-waterfall-el-valle-de-anton`,
+      lastModified: new Date("2026-06-21"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          en: `${siteConfig.url}/articles/chorro-el-macho-waterfall-el-valle-de-anton`,
+          es: `${siteConfig.url}/es/articles/cascada-chorro-el-macho-el-valle-de-anton`,
+          "x-default": `${siteConfig.url}/articles/chorro-el-macho-waterfall-el-valle-de-anton`,
+        },
+      },
+    },
+    {
+      url: `${siteConfig.url}/es/articles/cascada-chorro-el-macho-el-valle-de-anton`,
+      lastModified: new Date("2026-06-23"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          en: `${siteConfig.url}/articles/chorro-el-macho-waterfall-el-valle-de-anton`,
+          es: `${siteConfig.url}/es/articles/cascada-chorro-el-macho-el-valle-de-anton`,
+          "x-default": `${siteConfig.url}/articles/chorro-el-macho-waterfall-el-valle-de-anton`,
+        },
+      },
+    },
+
+    // ── El Valle Day Trip from Panama City (EN ↔ ES pair) ────────────────────
+    {
+      url: `${siteConfig.url}/articles/el-valle-day-trip-from-panama-city`,
+      lastModified: new Date("2026-06-23"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          en: `${siteConfig.url}/articles/el-valle-day-trip-from-panama-city`,
+          es: `${siteConfig.url}/es/articles/el-valle-de-anton-desde-ciudad-de-panama`,
+          "x-default": `${siteConfig.url}/articles/el-valle-day-trip-from-panama-city`,
+        },
+      },
+    },
+    {
+      url: `${siteConfig.url}/es/articles/el-valle-de-anton-desde-ciudad-de-panama`,
+      lastModified: new Date("2026-06-24"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          en: `${siteConfig.url}/articles/el-valle-day-trip-from-panama-city`,
+          es: `${siteConfig.url}/es/articles/el-valle-de-anton-desde-ciudad-de-panama`,
+          "x-default": `${siteConfig.url}/articles/el-valle-day-trip-from-panama-city`,
+        },
+      },
+    },
+
+    // ── India Dormida Hike (EN ↔ ES pair) ────────────────────────────────────
+    {
+      url: `${siteConfig.url}/articles/india-dormida-hike-el-valle-de-anton`,
+      lastModified: new Date("2026-06-19"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          en: `${siteConfig.url}/articles/india-dormida-hike-el-valle-de-anton`,
+          es: `${siteConfig.url}/es/articles/sendero-india-dormida-el-valle-de-anton`,
+          "x-default": `${siteConfig.url}/articles/india-dormida-hike-el-valle-de-anton`,
+        },
+      },
+    },
+    {
+      url: `${siteConfig.url}/es/articles/sendero-india-dormida-el-valle-de-anton`,
+      lastModified: new Date("2026-06-20"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          en: `${siteConfig.url}/articles/india-dormida-hike-el-valle-de-anton`,
+          es: `${siteConfig.url}/es/articles/sendero-india-dormida-el-valle-de-anton`,
+          "x-default": `${siteConfig.url}/articles/india-dormida-hike-el-valle-de-anton`,
+        },
+      },
+    },
+
+    // ── Single-language guides (no translation pair) ─────────────────────────
+    {
+      url: `${siteConfig.url}/articles/boquete-coffee-farm-tour`,
+      lastModified: new Date("2026-06-24"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteConfig.url}/articles/lost-waterfalls-boquete-hiking-guide`,
+      lastModified: new Date("2026-06-24"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteConfig.url}/es/articles/alquiler-de-bicicletas-boquete`,
+      lastModified: new Date("2026-06-24"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteConfig.url}/es/articles/como-llegar-a-boquete-sin-carro`,
+      lastModified: new Date("2026-06-24"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
   ];
 }
