@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reporte de Posicionamiento en Google — Boquete y El Valle de Antón</title>
+<style>
+  .viz-root{
+    --surface-1:#fcfcfb; --plane:#f4f2ec; --card:#ffffff;
+    --ink:#161512; --ink-2:#57544d; --muted:#8b887f;
+    --grid:#e7e4dc; --baseline:#cfccc2; --border:rgba(20,20,16,.09);
+    --boq:#2a78d6; --val:#eb6834; --good:#0a8f18; --good-ink:#0a7a15; --warn:#c98500;
+    --boq-soft:#eaf2fc; --val-soft:#fdeee6; --good-soft:#e7f5e8;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--plane);color:var(--ink);
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.6;
+    -webkit-font-smoothing:antialiased;padding:0 0 90px}
+  .wrap{max-width:820px;margin:0 auto;padding:0 24px}
+
+  header{padding:60px 0 6px}
+  .eyebrow{color:var(--val);font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:11.5px}
+  h1{margin:.3em 0 .2em;font-size:40px;letter-spacing:-1.1px;line-height:1.06;font-weight:800}
+  .dek{color:var(--ink-2);font-size:17px;max-width:620px;margin:0}
+  .window{display:inline-flex;gap:8px;align-items:center;margin-top:20px;font-size:13px;color:var(--muted);
+    background:var(--card);border:1px solid var(--border);border-radius:20px;padding:6px 15px}
+  .window b{color:var(--ink)}
+
+  h2{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--val);
+    margin:60px 0 4px;font-weight:700}
+  .lead{font-size:26px;letter-spacing:-.6px;font-weight:800;margin:2px 0 8px;line-height:1.15}
+  p.body{font-size:16.5px;color:var(--ink-2);max-width:660px;margin:14px 0}
+  p.body b{color:var(--ink)}
+
+  .card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px 26px;margin:18px 0;
+    box-shadow:0 1px 3px rgba(20,20,16,.04)}
+
+  .hero{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
+  .h{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px 24px;box-shadow:0 1px 3px rgba(20,20,16,.04)}
+  .h .big{font-size:44px;font-weight:800;letter-spacing:-1.5px;line-height:1;color:var(--good-ink)}
+  .h .big.boq{color:var(--boq)} .h .big.val{color:var(--val)} .h .big.ink{color:var(--ink)}
+  .h .cap{font-size:15px;font-weight:700;margin:8px 0 2px}
+  .h .exp{font-size:13.5px;color:var(--ink-2)}
+  .h .from{font-size:12.5px;color:var(--muted);margin-top:6px}
+  @media(max-width:680px){.hero{grid-template-columns:1fr}}
+
+  /* page-count growth bar */
+  .grow{display:grid;grid-template-columns:90px 1fr;gap:12px;align-items:center;margin:9px 0}
+  .grow .tag{font-size:11px;color:var(--muted);text-align:right;font-weight:700;letter-spacing:.03em}
+  .gtrack{background:var(--plane);border-radius:8px;height:38px;overflow:hidden}
+  .gfill{height:100%;border-radius:7px;display:flex;align-items:center;padding:0 14px;font-size:15px;font-weight:800;color:#fff;white-space:nowrap}
+  .gfill.before{background:#c9c6bd;color:#4a4842}
+  .gfill.after{background:var(--good)}
+
+  .metric{margin:20px 0}
+  .metric .mt{font-size:16px;font-weight:700;margin-bottom:2px}
+  .metric .mm{font-size:13.5px;color:var(--muted);margin-bottom:12px}
+
+  /* ranked page bars */
+  .row{display:grid;grid-template-columns:1fr;gap:5px;margin:13px 0}
+  .row .lab{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:14.5px}
+  .row .lab .nm{font-weight:700;color:var(--ink)}
+  .row .lab .nm .loc{font-weight:800;font-size:11px;letter-spacing:.04em;text-transform:uppercase;margin-right:8px;padding:1px 7px;border-radius:5px;vertical-align:middle}
+  .loc.boq{color:var(--boq);background:var(--boq-soft)}
+  .loc.val{color:var(--val);background:var(--val-soft)}
+  .row .lab .val-n{font-weight:800;color:var(--ink);white-space:nowrap}
+  .row .lab .val-n span{color:var(--muted);font-weight:600;font-size:12.5px}
+  .rtrack{background:var(--plane);border-radius:7px;height:22px;overflow:hidden}
+  .rfill{height:100%;border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding:0 9px;font-size:12px;font-weight:800;color:#fff}
+  .rfill.boq{background:var(--boq)} .rfill.val{background:var(--val)}
+
+  .means{background:var(--good-soft);border-radius:10px;padding:12px 16px;font-size:14.5px;color:var(--ink);margin-top:16px}
+  .means b{font-weight:800}
+  .means.boq{background:var(--boq-soft)} .means.val{background:var(--val-soft)}
+
+  .legend{display:flex;gap:18px;font-size:13px;color:var(--ink-2);margin:2px 0 18px;flex-wrap:wrap}
+  .dot{width:11px;height:11px;border-radius:3px;display:inline-block;margin-right:7px;vertical-align:middle}
+
+  /* position "page 1" visual */
+  .serp{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:20px 0}
+  .pos{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 18px;box-shadow:0 1px 2px rgba(20,20,16,.03)}
+  .pos .rank{font-size:30px;font-weight:800;letter-spacing:-1px;line-height:1}
+  .pos .rank.boq{color:var(--boq)} .pos .rank.val{color:var(--val)}
+  .pos .rank small{font-size:14px;font-weight:700;color:var(--muted);letter-spacing:0}
+  .pos .nm{font-size:13.5px;font-weight:700;margin-top:7px;line-height:1.3}
+  .pos .loc2{font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;margin-top:5px}
+  .loc2.boq{color:var(--boq)} .loc2.val{color:var(--val)}
+
+  /* search terms list */
+  .terms{margin:14px 0}
+  .term{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:12px 4px;border-bottom:1px solid var(--border)}
+  .term:last-child{border-bottom:none}
+  .term .q{font-size:15.5px;font-weight:600;color:var(--ink)}
+  .term .q .mag{color:var(--muted);font-weight:400;margin-right:8px}
+  .term .meta{display:flex;gap:10px;align-items:center;white-space:nowrap}
+  .pill{font-size:12px;font-weight:800;padding:3px 10px;border-radius:20px}
+  .pill.p1{color:var(--good-ink);background:var(--good-soft)}
+  .pill.pg{color:var(--ink-2);background:var(--plane)}
+  .term .imp{font-size:13.5px;color:var(--muted);font-weight:700;min-width:78px;text-align:right}
+  .term .imp b{color:var(--ink);font-weight:800}
+
+  .quote{border-left:4px solid var(--val);padding:6px 0 6px 20px;margin:26px 0;font-size:20px;font-weight:600;letter-spacing:-.3px;line-height:1.4}
+  .callout{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px 24px;margin:20px 0;box-shadow:0 1px 3px rgba(20,20,16,.04)}
+  .callout.good{border-left:4px solid var(--good)}
+  .callout .ct{font-weight:800;font-size:17px;margin-bottom:6px}
+  .callout p{font-size:15.5px;color:var(--ink-2);margin:6px 0 0}
+  .callout p b{color:var(--ink)}
+
+  ul.next{list-style:none;padding:0;margin:16px 0}
+  ul.next li{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 20px 16px 52px;position:relative;margin:11px 0;box-shadow:0 1px 2px rgba(20,20,16,.03)}
+  ul.next li::before{content:"→";position:absolute;left:18px;top:15px;color:var(--val);font-weight:800;font-size:18px}
+  ul.next b{font-weight:700}
+  ul.next .d{font-size:14px;color:var(--ink-2);margin-top:3px}
+
+  footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--border);color:var(--muted);font-size:12.5px;text-align:center}
+
+  @media (prefers-color-scheme: dark){
+    .viz-root{--surface-1:#1a1a19;--plane:#0e0e0d;--card:#1a1a19;--ink:#f6f5f0;--ink-2:#c3c2b7;
+      --muted:#8f8d84;--grid:#2c2c2a;--baseline:#3a3a37;--border:rgba(255,255,255,.10);
+      --boq:#3987e5;--val:#f0883e;--good:#0ca30c;--good-ink:#43d13f;--warn:#e3b341;
+      --boq-soft:#12233a;--val-soft:#33210f;--good-soft:#10331c;}
+    .gfill.before{background:#4a4842;color:#e8e5dc}
+    body{background:var(--plane)}
+  }
+  :root[data-theme="dark"] .viz-root{--surface-1:#1a1a19;--plane:#0e0e0d;--card:#1a1a19;--ink:#f6f5f0;--ink-2:#c3c2b7;--muted:#8f8d84;--grid:#2c2c2a;--baseline:#3a3a37;--border:rgba(255,255,255,.10);--boq:#3987e5;--val:#f0883e;--good:#0ca30c;--good-ink:#43d13f;--boq-soft:#12233a;--val-soft:#33210f;--good-soft:#10331c;}
+  :root[data-theme="dark"] .gfill.before{background:#4a4842;color:#e8e5dc}
+  :root[data-theme="light"] .viz-root{--surface-1:#fcfcfb;--plane:#f4f2ec;--card:#fff;--ink:#161512;--ink-2:#57544d;--muted:#8b887f;--grid:#e7e4dc;--baseline:#cfccc2;--border:rgba(20,20,16,.09);--boq:#2a78d6;--val:#eb6834;--good:#0a8f18;--good-ink:#0a7a15;--boq-soft:#eaf2fc;--val-soft:#fdeee6;--good-soft:#e7f5e8;}
+</style>
+</head>
+<body class="viz-root">
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Reporte de Posicionamiento · Evalley Bikes</div>
+  <h1>Cómo está apareciendo su negocio en las búsquedas de Google.</h1>
+  <p class="dek">Un vistazo claro a cómo las páginas ligadas a Evalley Bikes en El Valle y Boquete se están posicionando en Google, cuántas personas ya las están viendo, y qué significa esto para las reservas.</p>
+  <div class="window">📅 Corte al <b>6 de julio de 2026</b> · datos de <b>Google Search Console</b></div>
+</header>
+
+<!-- EL CRECIMIENTO -->
+<h2>El crecimiento</h2>
+<div class="lead">La curva ya empezó a subir — y esto apenas comienza.</div>
+<p class="body">Esto es lo más importante que hay que entender sobre el posicionamiento en Google: normalmente, un sitio nuevo pasa sus <b>primeros tres meses prácticamente sin resultados</b> mientras Google aprende a confiar en él. Es lo esperado, y es normal. Por eso lo que están viendo aquí es notable — <b>en las primeras semanas ya hay apariciones, posiciones de primera página y visitas reales.</b> Son resultados que uno normalmente espera hasta el tercer mes, y están llegando desde el primero.</p>
+
+<div class="card">
+  <div class="mt" style="font-size:17px;margin-bottom:2px">Crecimiento en Google, día a día</div>
+  <div class="mm" style="margin-bottom:6px">Apariciones (cuántas veces se mostraron las páginas) y visitas (clics) cada día del período</div>
+  <div class="legend">
+    <span><span class="dot" style="background:var(--boq)"></span>Apariciones en Google</span>
+    <span><span class="dot" style="background:var(--good)"></span>Visitas (clics)</span>
+  </div>
+  <svg class="lc" viewBox="0 0 720 430" role="img" aria-label="Apariciones diarias subiendo de cerca de 0 a 300, y visitas diarias subiendo de 0 a 5, ambas con tendencia clara hacia arriba durante el período.">
+    <!-- gridlines (impressions scale, left) -->
+    <line x1="95" y1="51"  x2="672" y2="51"  stroke="var(--grid)" stroke-width="1"/>
+    <line x1="95" y1="161" x2="672" y2="161" stroke="var(--grid)" stroke-width="1"/>
+    <line x1="95" y1="270" x2="672" y2="270" stroke="var(--grid)" stroke-width="1"/>
+    <line x1="95" y1="380" x2="672" y2="380" stroke="var(--baseline)" stroke-width="1.5"/>
+    <!-- left axis: impressions (blue) -->
+    <text x="86" y="55"  text-anchor="end" fill="var(--boq)" font-size="12.5" font-weight="700">300</text>
+    <text x="86" y="165" text-anchor="end" fill="var(--boq)" font-size="12.5" font-weight="700">200</text>
+    <text x="86" y="274" text-anchor="end" fill="var(--boq)" font-size="12.5" font-weight="700">100</text>
+    <text x="86" y="384" text-anchor="end" fill="var(--boq)" font-size="12.5" font-weight="700">0</text>
+    <!-- right axis: clicks (green) -->
+    <text x="681" y="55"  text-anchor="start" fill="var(--good-ink)" font-size="12.5" font-weight="700">5</text>
+    <text x="681" y="195" text-anchor="start" fill="var(--good-ink)" font-size="12.5" font-weight="700">3</text>
+    <text x="681" y="384" text-anchor="start" fill="var(--good-ink)" font-size="12.5" font-weight="700">0</text>
+    <!-- Apariciones (blue) -->
+    <path d="M 95.0,380.0 L 116.4,369.0 L 137.7,285.7 L 159.1,308.7 L 180.5,286.8 L 201.9,247.3 L 223.2,292.3 L 244.6,239.6 L 266.0,216.6 L 287.3,273.6 L 308.7,269.2 L 330.1,274.7 L 351.4,223.2 L 372.8,260.5 L 394.2,302.1 L 415.6,315.3 L 436.9,269.2 L 458.3,219.9 L 479.7,289.0 L 501.0,284.6 L 522.4,171.6 L 543.8,92.6 L 565.1,148.6 L 586.5,173.8 L 607.9,54.3 L 629.3,176.0 L 650.6,109.1 L 672.0,49.9" fill="none" stroke="var(--boq)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+    <!-- Visitas (green) -->
+    <path d="M 95.0,380.0 L 116.4,380.0 L 137.7,380.0 L 159.1,380.0 L 180.5,380.0 L 201.9,380.0 L 223.2,380.0 L 244.6,380.0 L 266.0,380.0 L 287.3,380.0 L 308.7,380.0 L 330.1,317.0 L 351.4,317.0 L 372.8,380.0 L 394.2,317.0 L 415.6,380.0 L 436.9,380.0 L 458.3,380.0 L 479.7,254.1 L 501.0,380.0 L 522.4,380.0 L 543.8,128.1 L 565.1,128.1 L 586.5,191.1 L 607.9,128.1 L 629.3,65.2 L 650.6,191.1 L 672.0,254.1" fill="none" stroke="var(--good)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+    <!-- endpoint markers -->
+    <circle cx="672" cy="49.9" r="6" fill="var(--boq)"/>
+    <circle cx="672" cy="254.1" r="6" fill="var(--good)"/>
+    <!-- x-axis date labels -->
+    <text x="95"  y="404" text-anchor="middle" fill="var(--ink-2)" font-size="11.5" font-weight="600">7 jun</text>
+    <text x="180" y="404" text-anchor="middle" fill="var(--ink-2)" font-size="11.5" font-weight="600">11 jun</text>
+    <text x="266" y="404" text-anchor="middle" fill="var(--ink-2)" font-size="11.5" font-weight="600">15 jun</text>
+    <text x="351" y="404" text-anchor="middle" fill="var(--ink-2)" font-size="11.5" font-weight="600">19 jun</text>
+    <text x="437" y="404" text-anchor="middle" fill="var(--ink-2)" font-size="11.5" font-weight="600">23 jun</text>
+    <text x="522" y="404" text-anchor="middle" fill="var(--ink-2)" font-size="11.5" font-weight="600">27 jun</text>
+    <text x="608" y="404" text-anchor="middle" fill="var(--ink-2)" font-size="11.5" font-weight="600">1 jul</text>
+    <text x="672" y="404" text-anchor="middle" fill="var(--ink-2)" font-size="11.5" font-weight="600">4 jul</text>
+  </svg>
+  <div class="means">📈 <b>En simple:</b> ambas líneas suben con claridad, sobre todo en la última semana — Google empezó a mostrar las páginas mucho más (línea azul) y las visitas despegaron detrás (línea verde). Así se ve un sitio que empieza a ganar terreno.</div>
+</div>
+
+<div class="hero">
+  <div class="h">
+    <div class="big">3,699</div>
+    <div class="cap">Veces que aparecieron en Google</div>
+    <div class="exp">Cuántas veces las páginas se mostraron a alguien buscando.</div>
+    <div class="from">en este período</div>
+  </div>
+  <div class="h">
+    <div class="big">×14</div>
+    <div class="cap">Crecimiento en visitas</div>
+    <div class="exp">De 2 clics en la primera mitad del período a 28 en la segunda.</div>
+    <div class="from">y acelerando</div>
+  </div>
+  <div class="h">
+    <div class="big">30</div>
+    <div class="cap">Visitantes que ya llegaron</div>
+    <div class="exp">Personas reales que entraron a las páginas desde Google.</div>
+    <div class="from">21 solo en la última semana</div>
+  </div>
+  <div class="h">
+    <div class="big ink">Mes 1</div>
+    <div class="cap">Con resultados de "mes 3"</div>
+    <div class="exp">Lo normal es no ver nada aún. Ya están viendo tracción.</div>
+    <div class="from">adelantados a lo esperado</div>
+  </div>
+</div>
+
+<div class="callout good">
+  <div class="ct">Por qué esto es tan buena señal</div>
+  <p>En SEO, <b>los primeros meses suelen ser de silencio</b> — Google tarda en confiar en un sitio nuevo. Ver apariciones, rankings de primera página y visitas <b>ya en el primer mes</b> indica que las páginas están bien construidas y que Google las está tomando en serio rápido. Incluso la <b>posición promedio mejoró de ~35 a ~23</b> en el período — es decir, Google está subiendo las páginas hacia la primera página. La curva de crecimiento acaba de arrancar, y en SEO esa curva se <b>acelera</b> con el tiempo, no al revés.</p>
+</div>
+
+<!-- YA EN PRIMERA PÁGINA -->
+<h2>Ya en la primera página</h2>
+<div class="lead">Siete páginas llegaron a la primera página de Google — en semanas.</div>
+<p class="body">Posicionar contenido nuevo normalmente toma meses. Estas páginas <b>ya están en la primera página</b> de Google para lo que los viajeros buscan. La posición es el promedio en que Google las muestra — mientras más bajo el número, más arriba aparecen.</p>
+
+<div class="serp">
+  <div class="pos"><div class="rank boq">#6<small>.0</small></div><div class="nm">Senderos en Boquete</div><div class="loc2 boq">Boquete</div></div>
+  <div class="pos"><div class="rank val">#7<small>.9</small></div><div class="nm">Cascada Chorro El Macho</div><div class="loc2 val">El Valle</div></div>
+  <div class="pos"><div class="rank val">#7<small>.9</small></div><div class="nm">Senderos El Valle</div><div class="loc2 val">El Valle</div></div>
+  <div class="pos"><div class="rank val">#8<small>.0</small></div><div class="nm">Sendero India Dormida</div><div class="loc2 val">El Valle</div></div>
+  <div class="pos"><div class="rank val">#9<small>.0</small></div><div class="nm">Tours en El Valle</div><div class="loc2 val">El Valle</div></div>
+  <div class="pos"><div class="rank boq">#9<small>.7</small></div><div class="nm">Aguas Termales de Caldera</div><div class="loc2 boq">Boquete</div></div>
+  <div class="pos"><div class="rank boq">#10<small>.2</small></div><div class="nm">Caldera Hot Springs</div><div class="loc2 boq">Boquete</div></div>
+</div>
+<div class="means boq" style="margin-top:8px">💡 <b>Por qué importa:</b> la primera página de Google se lleva casi todos los clics. Estar ahí para "senderos en Boquete", "aguas termales" o "tours en El Valle" pone estas páginas frente a viajeros que están decidiendo qué hacer — justo el momento en que buscan bicicletas y tours.</div>
+
+<!-- QUÉ BUSCA LA GENTE -->
+<h2>Lo que la gente busca</h2>
+<div class="lead">Las páginas están apareciendo justo para lo que buscan los viajeros.</div>
+<p class="body">Estas son búsquedas reales de personas en Google durante el período — y las páginas aparecieron en los resultados. Varias ya están en <b>primera página</b>. Cada una es un viajero interesado en Boquete o El Valle, exactamente el público para bicicletas y tours.</p>
+
+<div class="card">
+  <div class="terms">
+    <div class="term"><div class="q"><span class="mag">🔍</span>chorro el macho</div><div class="meta"><span class="pill p1">Página 1 · #8</span><span class="imp"><b>19</b> apar.</span></div></div>
+    <div class="term"><div class="q"><span class="mag">🔍</span>caldera hot springs</div><div class="meta"><span class="pill p1">Página 1–2 · #10</span><span class="imp"><b>10+</b> apar.</span></div></div>
+    <div class="term"><div class="q"><span class="mag">🔍</span>chorro el macho waterfall</div><div class="meta"><span class="pill p1">Página 1 · #7</span><span class="imp"><b>8</b> apar.</span></div></div>
+    <div class="term"><div class="q"><span class="mag">🔍</span>hot springs boquete panama</div><div class="meta"><span class="pill p1">Página 1 · #9</span><span class="imp"><b>3</b> apar.</span></div></div>
+    <div class="term"><div class="q"><span class="mag">🔍</span>things to do in el valle</div><div class="meta"><span class="pill pg">Subiendo</span><span class="imp"><b>26</b> apar.</span></div></div>
+    <div class="term"><div class="q"><span class="mag">🔍</span>valle de anton travel guide</div><div class="meta"><span class="pill pg">Subiendo</span><span class="imp"><b>25</b> apar.</span></div></div>
+    <div class="term"><div class="q"><span class="mag">🔍</span>chiriqui boquete tours</div><div class="meta"><span class="pill pg">Subiendo</span><span class="imp"><b>25</b> apar.</span></div></div>
+    <div class="term"><div class="q"><span class="mag">🔍</span>boquete travel guide</div><div class="meta"><span class="pill pg">Subiendo</span><span class="imp"><b>22</b> apar.</span></div></div>
+  </div>
+  <div class="means">✅ <b>En simple:</b> la gente busca cosas concretas —"chorro el macho", "caldera hot springs", "qué hacer en El Valle"— y las páginas ya salen en Google. Las marcadas en verde están en primera página; el resto viene subiendo detrás.</div>
+</div>
+
+<!-- TRÁFICO POR PÁGINA -->
+<h2>Dónde están llegando los clics</h2>
+<div class="lead">Así se reparte el tráfico entre las páginas ahora mismo.</div>
+<p class="body">Estas son las páginas que <b>ya recibieron clics reales</b> desde Google en este período. Cada barra es una página de Boquete o El Valle trayendo visitantes interesados directamente a los servicios de bicicletas y tours.</p>
+
+<div class="card">
+  <div class="legend">
+    <span><span class="dot" style="background:var(--boq)"></span>Boquete</span>
+    <span><span class="dot" style="background:var(--val)"></span>El Valle de Antón</span>
+  </div>
+
+  <div class="row"><div class="lab"><span class="nm"><span class="loc val">El Valle</span>Senderos El Valle</span><span class="val-n">5 <span>visitas</span></span></div><div class="rtrack"><div class="rfill val" style="width:100%"></div></div></div>
+  <div class="row"><div class="lab"><span class="nm"><span class="loc boq">Boquete</span>Tour de Finca de Café</span><span class="val-n">4 <span>visitas</span></span></div><div class="rtrack"><div class="rfill boq" style="width:80%"></div></div></div>
+  <div class="row"><div class="lab"><span class="nm"><span class="loc boq">Boquete</span>Aguas Termales de Caldera</span><span class="val-n">4 <span>visitas</span></span></div><div class="rtrack"><div class="rfill boq" style="width:80%"></div></div></div>
+  <div class="row"><div class="lab"><span class="nm"><span class="loc boq">Boquete</span>Caldera Hot Springs</span><span class="val-n">3 <span>visitas</span></span></div><div class="rtrack"><div class="rfill boq" style="width:60%"></div></div></div>
+  <div class="row"><div class="lab"><span class="nm"><span class="loc boq">Boquete</span>Lost Waterfalls</span><span class="val-n">3 <span>visitas</span></span></div><div class="rtrack"><div class="rfill boq" style="width:60%"></div></div></div>
+  <div class="row"><div class="lab"><span class="nm"><span class="loc val">El Valle</span>Sendero India Dormida</span><span class="val-n">2 <span>visitas</span></span></div><div class="rtrack"><div class="rfill val" style="width:40%"></div></div></div>
+  <div class="row"><div class="lab"><span class="nm"><span class="loc val">El Valle</span>Cascada Chorro El Macho</span><span class="val-n">2 <span>visitas</span></span></div><div class="rtrack"><div class="rfill val" style="width:40%"></div></div></div>
+
+  <div class="means">✅ <b>En simple:</b> el tráfico ya está repartido entre varias páginas distintas — no depende de una sola. Cada una de estas visitas es una persona que llegó mientras planeaba su viaje a Boquete o El Valle.</div>
+</div>
+
+<!-- LO QUE VIENE -->
+<h2>Lo que viene</h2>
+<div class="lead">Este es el comienzo de la curva, no el techo.</div>
+<p class="body">El posicionamiento orgánico crece de forma acumulativa: mientras más tiempo llevan las páginas publicadas y más las visita la gente, más confía Google en ellas y más arriba las coloca. Esto es lo que sigue.</p>
+
+<ul class="next">
+  <li><b>Dejar madurar las páginas nuevas.</b>
+    <div class="d">Las 12 páginas recién publicadas apenas llevan semanas. El posicionamiento sigue subiendo con el tiempo — lo mejor está por venir sin trabajo adicional.</div></li>
+  <li><b>Empujar las que ya tienen visibilidad.</b>
+    <div class="d">Páginas como "Tours en El Valle" ya aparecen cientos de veces y están en primera página. Vamos a reforzar estas y las que aún están subiendo para que esas apariciones se conviertan en visitas.</div></li>
+  <li><b>Más páginas, más puertas de entrada.</b>
+    <div class="d">Cada página nueva sobre Boquete y El Valle es otra forma de que un viajero llegue a los servicios de bicicletas y tours. Seguiremos ampliando la cobertura de estos destinos.</div></li>
+  <li><b>Todo apunta al negocio.</b>
+    <div class="d">Cada página menciona y dirige hacia los servicios de bicicletas y tours en Boquete y El Valle — así que todo este tráfico creciente llega a viajeros que pueden volverse clientes.</div></li>
+</ul>
+
+<div class="callout good">
+  <div class="ct">En resumen</div>
+  <p>En este período las páginas <b>multiplicaron por 14 las visitas</b>, con <b>7 de ellas ya en la primera página de Google</b> y una posición promedio que sigue subiendo — todo enfocado en Boquete y El Valle de Antón, donde operan los tours y las bicicletas. Y lo más importante: estos son resultados que normalmente no se ven hasta el tercer mes, y están llegando desde el primero. Páginas con cientos de apariciones están listas para convertirse en más tráfico conforme maduran. <b>La base está construida y creciendo. La dirección es claramente hacia arriba.</b></p>
+</div>
+
+<footer>
+  Reporte de Posicionamiento Orgánico (SEO) · Boquete y El Valle de Antón<br>
+  Datos de Google Search Console · corte al 6 de julio de 2026.
+</footer>
+
+</div>
+</body>
+</html>

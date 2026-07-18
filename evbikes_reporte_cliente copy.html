@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EV Bikes — Tu primer mes en Google</title>
+<style>
+  .viz-root{
+    --surface-1:#fcfcfb; --plane:#f4f2ec; --card:#ffffff;
+    --ink:#161512; --ink-2:#57544d; --muted:#8b887f;
+    --grid:#e7e4dc; --baseline:#cfccc2; --border:rgba(20,20,16,.09);
+    --boq:#2a78d6; --val:#eb6834; --good:#0a8f18; --good-ink:#0a7a15; --warn:#c98500;
+    --boq-soft:#eaf2fc; --val-soft:#fdeee6; --good-soft:#e7f5e8;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--plane);color:var(--ink);
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.6;
+    -webkit-font-smoothing:antialiased;padding:0 0 90px}
+  .wrap{max-width:820px;margin:0 auto;padding:0 24px}
+
+  header{padding:60px 0 6px}
+  .eyebrow{color:var(--val);font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:11.5px}
+  h1{margin:.3em 0 .2em;font-size:40px;letter-spacing:-1.1px;line-height:1.06;font-weight:800}
+  .dek{color:var(--ink-2);font-size:17px;max-width:600px;margin:0}
+  .window{display:inline-flex;gap:8px;align-items:center;margin-top:20px;font-size:13px;color:var(--muted);
+    background:var(--card);border:1px solid var(--border);border-radius:20px;padding:6px 15px}
+  .window b{color:var(--ink)}
+
+  h2{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--val);
+    margin:60px 0 4px;font-weight:700}
+  .lead{font-size:26px;letter-spacing:-.6px;font-weight:800;margin:2px 0 8px;line-height:1.15}
+  p.body{font-size:16.5px;color:var(--ink-2);max-width:640px;margin:14px 0}
+  p.body b{color:var(--ink)}
+
+  .card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px 26px;margin:18px 0;
+    box-shadow:0 1px 3px rgba(20,20,16,.04)}
+
+  .hero{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
+  .h{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px 24px;box-shadow:0 1px 3px rgba(20,20,16,.04)}
+  .h .big{font-size:44px;font-weight:800;letter-spacing:-1.5px;line-height:1;color:var(--good-ink)}
+  .h .cap{font-size:15px;font-weight:700;margin:8px 0 2px}
+  .h .exp{font-size:13.5px;color:var(--ink-2)}
+  .h .from{font-size:12.5px;color:var(--muted);margin-top:6px}
+  @media(max-width:680px){.hero{grid-template-columns:1fr}}
+
+  .changes{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+  .ch{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:18px 20px}
+  .ch .n{font-size:12px;font-weight:800;color:var(--val);letter-spacing:.05em}
+  .ch .t{font-size:16px;font-weight:700;margin:6px 0 4px}
+  .ch .d{font-size:14px;color:var(--ink-2)}
+  @media(max-width:680px){.changes{grid-template-columns:1fr}}
+
+  .metric{margin:20px 0}
+  .metric .mt{font-size:16px;font-weight:700;margin-bottom:2px}
+  .metric .mm{font-size:13.5px;color:var(--muted);margin-bottom:12px}
+  .pair{display:grid;grid-template-columns:80px 1fr;gap:11px;align-items:center;margin:7px 0}
+  .pair .tag{font-size:11px;color:var(--muted);text-align:right;font-weight:700;letter-spacing:.03em}
+  .track{background:var(--plane);border-radius:7px;height:30px;overflow:hidden}
+  .fill{height:100%;border-radius:6px;display:flex;align-items:center;padding:0 12px;font-size:14px;font-weight:800;color:#fff;white-space:nowrap;justify-content:flex-end}
+  .fill.before{background:#c9c6bd;color:#4a4842}
+  .fill.after{background:var(--good)} .fill.boq{background:var(--boq)} .fill.val{background:var(--val)}
+  .means{background:var(--good-soft);border-radius:10px;padding:11px 15px;font-size:14px;color:var(--ink);margin-top:14px}
+  .means b{font-weight:800}
+
+  .legend{display:flex;gap:18px;font-size:13px;color:var(--ink-2);margin:2px 0 16px;flex-wrap:wrap}
+  .dot{width:11px;height:11px;border-radius:3px;display:inline-block;margin-right:7px;vertical-align:middle}
+  .dash{width:16px;height:0;border-top:2px dashed var(--muted);display:inline-block;margin-right:7px;vertical-align:middle}
+
+  /* line charts */
+  .lc{width:100%;height:auto;display:block;margin:6px 0 2px}
+  .lc text{font-family:system-ui,-apple-system,sans-serif}
+
+  .quote{border-left:4px solid var(--val);padding:6px 0 6px 20px;margin:24px 0;font-size:20px;font-weight:600;letter-spacing:-.3px;line-height:1.4}
+  .callout{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px 24px;margin:20px 0;box-shadow:0 1px 3px rgba(20,20,16,.04)}
+  .callout.good{border-left:4px solid var(--good)}
+  .callout .ct{font-weight:800;font-size:17px;margin-bottom:6px}
+  .callout p{font-size:15.5px;color:var(--ink-2);margin:6px 0 0}
+  .callout p b{color:var(--ink)}
+
+  ul.next{list-style:none;padding:0;margin:16px 0}
+  ul.next li{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 20px 16px 52px;position:relative;margin:11px 0;box-shadow:0 1px 2px rgba(20,20,16,.03)}
+  ul.next li::before{content:"→";position:absolute;left:18px;top:15px;color:var(--val);font-weight:800;font-size:18px}
+  ul.next b{font-weight:700}
+  ul.next .d{font-size:14px;color:var(--ink-2);margin-top:3px}
+
+  footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--border);color:var(--muted);font-size:12.5px;text-align:center}
+
+  @media (prefers-color-scheme: dark){
+    .viz-root{--surface-1:#1a1a19;--plane:#0e0e0d;--card:#1a1a19;--ink:#f6f5f0;--ink-2:#c3c2b7;
+      --muted:#8f8d84;--grid:#2c2c2a;--baseline:#3a3a37;--border:rgba(255,255,255,.10);
+      --boq:#3987e5;--val:#f0883e;--good:#0ca30c;--good-ink:#43d13f;--warn:#e3b341;
+      --boq-soft:#12233a;--val-soft:#33210f;--good-soft:#10331c;}
+    .fill.before{background:#4a4842;color:#e8e5dc}
+    body{background:var(--plane)}
+  }
+  :root[data-theme="dark"] .viz-root{--surface-1:#1a1a19;--plane:#0e0e0d;--card:#1a1a19;--ink:#f6f5f0;--ink-2:#c3c2b7;--muted:#8f8d84;--grid:#2c2c2a;--baseline:#3a3a37;--border:rgba(255,255,255,.10);--boq:#3987e5;--val:#f0883e;--good:#0ca30c;--good-ink:#43d13f;--boq-soft:#12233a;--val-soft:#33210f;--good-soft:#10331c;}
+  :root[data-theme="dark"] .fill.before{background:#4a4842;color:#e8e5dc}
+  :root[data-theme="light"] .viz-root{--surface-1:#fcfcfb;--plane:#f4f2ec;--card:#fff;--ink:#161512;--ink-2:#57544d;--muted:#8b887f;--grid:#e7e4dc;--baseline:#cfccc2;--border:rgba(20,20,16,.09);--boq:#2a78d6;--val:#eb6834;--good:#0a8f18;--good-ink:#0a7a15;--boq-soft:#eaf2fc;--val-soft:#fdeee6;--good-soft:#e7f5e8;}
+</style>
+</head>
+<body class="viz-root">
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">EV Bikes · Reporte de Google Ads</div>
+  <h1>Tu primer mes en Google — y está funcionando.</h1>
+  <p class="dek">Un vistazo sencillo a dónde empezaron tus anuncios, qué cambiamos, la diferencia que hizo y lo que viene.</p>
+  <div class="window">📅 Comparamos tus <b>primeras dos semanas</b> con las <b>dos semanas desde que hicimos los cambios</b></div>
+</header>
+
+<!-- EL PUNTO DE PARTIDA -->
+<h2>El punto de partida</h2>
+<div class="lead">Los anuncios ya corrían — pero el dinero trabajaba de más.</div>
+<p class="body">Cuando revisamos la cuenta por primera vez, los anuncios estaban activos y la gente los veía, pero el presupuesto se estiraba demasiado. <b>Cada clic salía caro</b>, y buena parte del gasto se iba en búsquedas que en realidad no encajaban. Una de tus dos ubicaciones —<b>El Valle de Antón</b>— gastaba su presupuesto sin traer una sola consulta.</p>
+<p class="body">La buena noticia: la demanda estaba ahí. La gente <i>sí</i> buscaba. Solo había que apuntar tu presupuesto a las personas correctas, en el idioma correcto y con el mensaje correcto — y dejar de pagar por lo demás.</p>
+
+<!-- LO QUE CAMBIAMOS -->
+<h2>Lo que cambiamos</h2>
+<div class="lead">Cuatro cambios prácticos, en palabras simples.</div>
+<div class="changes">
+  <div class="ch">
+    <div class="n">01</div>
+    <div class="t">Les hablamos en su idioma — literalmente</div>
+    <div class="d">La mayoría de quienes visitan El Valle son panameños planeando un paseo de un día. Reconstruimos esa campaña completamente en español, pensada para ese público local.</div>
+  </div>
+  <div class="ch">
+    <div class="n">02</div>
+    <div class="t">Empezamos por lo que la gente busca</div>
+    <div class="d">Las personas buscan "qué hacer" antes de buscar "tours en bicicleta". Así que ahora los anuncios arrancan por ahí — y presentan la e-bike como la respuesta.</div>
+  </div>
+  <div class="ch">
+    <div class="n">03</div>
+    <div class="t">Dejamos de pagar por los clics equivocados</div>
+    <div class="d">Bloqueamos decenas de búsquedas que no tenían nada que ver (canopy, hoteles, bienes raíces) para que tu presupuesto solo vaya a personas que sí podrían volverse clientes.</div>
+  </div>
+  <div class="ch">
+    <div class="n">04</div>
+    <div class="t">Hicimos que cada clic costara menos</div>
+    <div class="d">Ajustamos límites más inteligentes para que el mismo presupuesto compre más visitas — estirando tu dinero mucho más cada día.</div>
+  </div>
+</div>
+
+<!-- LA DIFERENCIA -->
+<h2>La diferencia que hizo</h2>
+<div class="lead">El mismo presupuesto. Resultados mucho mejores.</div>
+<p class="body">Aquí está lo esencial. Gastamos prácticamente lo mismo — y obtuvimos más de todo lo que importa, por menos.</p>
+
+<div class="hero">
+  <div class="h">
+    <div class="big">−57%</div>
+    <div class="cap">Costo por traer a alguien a tu sitio</div>
+    <div class="exp">Ahora pagamos menos de la mitad que antes por cada visitante.</div>
+    <div class="from">$2.68 → $1.14 por visita</div>
+  </div>
+  <div class="h">
+    <div class="big">+71%</div>
+    <div class="cap">Visitantes que llegan a tus páginas</div>
+    <div class="exp">Casi el doble de posibles clientes llegaron a tu sitio.</div>
+    <div class="from">52 → 89 visitas</div>
+  </div>
+  <div class="h">
+    <div class="big">+62%</div>
+    <div class="cap">Qué tanto la gente hace clic en tu anuncio</div>
+    <div class="exp">Tus anuncios son mucho más atractivos para quienes los ven.</div>
+    <div class="from">3.5% → 5.7% hacen clic</div>
+  </div>
+  <div class="h">
+    <div class="big">−45%</div>
+    <div class="cap">Costo por cada nueva consulta</div>
+    <div class="exp">Cada persona que te escribe ahora cuesta casi la mitad.</div>
+    <div class="from">$46 → $25 por consulta</div>
+  </div>
+</div>
+
+<!-- LINE CHART 1: COSTOS EN CAÍDA -->
+<div class="card">
+  <div class="mt" style="font-size:17px;margin-bottom:2px">Tus costos van en caída</div>
+  <div class="mm" style="margin-bottom:6px">Tomando tus costos al inicio como 100% — mientras más baja la línea, más barato te sale</div>
+  <div class="legend">
+    <span><span class="dot" style="background:var(--boq)"></span>Costo por visita</span>
+    <span><span class="dot" style="background:var(--val)"></span>Costo por consulta</span>
+    <span><span class="dash"></span>Proyección</span>
+  </div>
+  <svg class="lc" viewBox="0 0 720 300" role="img" aria-label="Tus costos por visita y por consulta cayendo desde 100% al inicio hasta cerca de 43% y 55% ahora, con una proyección de que sigan bajando.">
+    <!-- gridlines -->
+    <line x1="90" y1="58"  x2="670" y2="58"  stroke="var(--grid)" stroke-width="1"/>
+    <line x1="90" y1="149" x2="670" y2="149" stroke="var(--grid)" stroke-width="1"/>
+    <line x1="90" y1="240" x2="670" y2="240" stroke="var(--baseline)" stroke-width="1.5"/>
+    <text x="78" y="62"  text-anchor="end" fill="var(--muted)" font-size="13">100%</text>
+    <text x="78" y="153" text-anchor="end" fill="var(--muted)" font-size="13">50%</text>
+    <text x="78" y="244" text-anchor="end" fill="var(--muted)" font-size="13">0%</text>
+    <!-- Costo por visita (blue) -->
+    <polyline points="150,58 410,163" fill="none" stroke="var(--boq)" stroke-width="3"/>
+    <polyline points="410,163 620,171" fill="none" stroke="var(--boq)" stroke-width="3" stroke-dasharray="6 5" opacity="0.75"/>
+    <!-- Costo por consulta (orange) -->
+    <polyline points="150,58 410,140" fill="none" stroke="var(--val)" stroke-width="3"/>
+    <polyline points="410,140 620,153" fill="none" stroke="var(--val)" stroke-width="3" stroke-dasharray="6 5" opacity="0.75"/>
+    <!-- markers -->
+    <circle cx="150" cy="58" r="6" fill="var(--ink)"/>
+    <circle cx="410" cy="163" r="6" fill="var(--boq)"/>
+    <circle cx="410" cy="140" r="6" fill="var(--val)"/>
+    <circle cx="620" cy="171" r="5.5" fill="#fff" stroke="var(--boq)" stroke-width="3"/>
+    <circle cx="620" cy="153" r="5.5" fill="#fff" stroke="var(--val)" stroke-width="3"/>
+    <!-- value labels -->
+    <text x="150" y="44"  text-anchor="middle" fill="var(--ink)"  font-size="14" font-weight="700">100%</text>
+    <text x="410" y="184" text-anchor="middle" fill="var(--boq)" font-size="14" font-weight="800">43%</text>
+    <text x="410" y="128" text-anchor="middle" fill="var(--val)" font-size="14" font-weight="800">55%</text>
+    <text x="630" y="190" text-anchor="start"  fill="var(--boq)" font-size="13" font-weight="700">~38%</text>
+    <text x="630" y="148" text-anchor="start"  fill="var(--val)" font-size="13" font-weight="700">~48%</text>
+    <!-- x labels -->
+    <text x="150" y="266" text-anchor="middle" fill="var(--ink-2)" font-size="13" font-weight="600">Inicio</text>
+    <text x="410" y="266" text-anchor="middle" fill="var(--ink-2)" font-size="13" font-weight="600">Ahora</text>
+    <text x="620" y="266" text-anchor="middle" fill="var(--muted)" font-size="13" font-weight="600">Próximo mes</text>
+    <text x="620" y="282" text-anchor="middle" fill="var(--muted)" font-size="11">estimado</text>
+  </svg>
+  <div class="means">💡 <b>En simple:</b> ambos costos ya están muy por debajo de donde empezaron — y con las campañas madurando, la tendencia es que sigan bajando.</div>
+</div>
+
+<div class="card">
+  <div class="metric" style="margin-top:0">
+    <div class="mt">Lo que cuesta traer a alguien a tu sitio</div>
+    <div class="mm">Más corto es mejor — este es el precio de un solo visitante</div>
+    <div class="pair"><span class="tag">ANTES</span><div class="track"><div class="fill before" style="width:100%">$2.68</div></div></div>
+    <div class="pair"><span class="tag">AHORA</span><div class="track"><div class="fill after" style="width:42.5%">$1.14</div></div></div>
+  </div>
+  <div class="metric">
+    <div class="mt">Personas que llegan a tu sitio web</div>
+    <div class="mm">Más largo es mejor — más visitantes, mismo presupuesto</div>
+    <div class="pair"><span class="tag">ANTES</span><div class="track"><div class="fill before" style="width:58.4%">52</div></div></div>
+    <div class="pair"><span class="tag">AHORA</span><div class="track"><div class="fill after" style="width:100%">89</div></div></div>
+  </div>
+  <div class="metric">
+    <div class="mt">Costo por cada nueva consulta</div>
+    <div class="mm">Más corto es mejor — lo que pagamos para que alguien te escriba</div>
+    <div class="pair"><span class="tag">ANTES</span><div class="track"><div class="fill before" style="width:100%">$46.45</div></div></div>
+    <div class="pair"><span class="tag">AHORA</span><div class="track"><div class="fill after" style="width:54.8%">$25.47</div></div></div>
+  </div>
+  <div class="means">💡 <b>En simple:</b> por el mismo presupuesto diario, tus anuncios ahora llegan a mucha más gente, cuestan menos y se convierten en consultas a casi la mitad de precio que hace dos semanas.</div>
+</div>
+
+<!-- LA HISTORIA DESTACADA -->
+<h2>La historia destacada</h2>
+<div class="lead">El Valle de Antón pasó de cero a tener vida.</div>
+<p class="body">Este es el cambio del que estamos más orgullosos. En las primeras dos semanas, El Valle gastó su presupuesto y no trajo <b>nada</b> — los anuncios estaban en inglés, apuntados a turistas internacionales, cuando quienes de verdad visitan El Valle son locales planeando una escapada de fin de semana.</p>
+<p class="body">Así que la reconstruimos desde cero, en español, para ese público. El giro fue inmediato:</p>
+
+<div class="card">
+  <div class="legend">
+    <span><span class="dot" style="background:#c9c6bd"></span>Antes (inglés)</span>
+    <span><span class="dot" style="background:var(--val)"></span>Ahora (español)</span>
+  </div>
+  <div class="metric" style="margin-top:0">
+    <div class="mt">Costo de cada visitante a la página de El Valle</div>
+    <div class="mm">Más corto es mejor</div>
+    <div class="pair"><span class="tag">ANTES</span><div class="track"><div class="fill before" style="width:100%">$4.43</div></div></div>
+    <div class="pair"><span class="tag">AHORA</span><div class="track"><div class="fill val" style="width:22.3%">$0.99</div></div></div>
+  </div>
+  <div class="metric">
+    <div class="mt">Personas que llegan a la página de El Valle</div>
+    <div class="mm">Más largo es mejor</div>
+    <div class="pair"><span class="tag">ANTES</span><div class="track"><div class="fill before" style="width:29.6%">16</div></div></div>
+    <div class="pair"><span class="tag">AHORA</span><div class="track"><div class="fill val" style="width:100%">54</div></div></div>
+  </div>
+  <div class="metric">
+    <div class="mt">Consultas</div>
+    <div class="mm">Más largo es mejor</div>
+    <div class="pair"><span class="tag">ANTES</span><div class="track"><div class="fill before" style="width:6%;min-width:34px;color:#4a4842;background:#e2ded4">0</div></div></div>
+    <div class="pair"><span class="tag">AHORA</span><div class="track"><div class="fill val" style="width:40%">2</div></div></div>
+  </div>
+  <div class="means" style="background:var(--val-soft)">🚲 Cada visitante a El Valle ahora cuesta cerca de <b>$1 en lugar de $4.40</b>, llega más del triple de gente, y — por primera vez — está generando consultas reales.</div>
+</div>
+
+<div class="quote">"Mismo presupuesto, pero ahora llega a las personas correctas, en su idioma — y están respondiendo."</div>
+
+<!-- LO QUE VIENE -->
+<h2>Lo que viene</h2>
+<div class="lead">Esto es apenas el primer mes. De aquí en adelante mejora.</div>
+<p class="body">El sistema de Google sigue aprendiendo y premiando a los anuncios que funcionan bien — así que los costos tienden a seguir bajando y los resultados a subir a medida que las campañas se asientan. Además, tenemos una lista clara de mejoras por implementar.</p>
+
+<!-- LINE CHART 2: CONSULTAS EN AUMENTO -->
+<div class="card">
+  <div class="mt" style="font-size:17px;margin-bottom:2px">Las consultas van en aumento</div>
+  <div class="mm" style="margin-bottom:14px">Tu ritmo de nuevas consultas por mes — y hacia dónde esperamos que siga</div>
+  <svg class="lc" viewBox="0 0 720 300" role="img" aria-label="Ritmo de consultas por mes subiendo de cerca de 6 con el setup viejo, a 8 ahora, con una proyección de 14 a 18 el próximo mes.">
+    <!-- gridlines -->
+    <line x1="90" y1="40"  x2="670" y2="40"  stroke="var(--grid)" stroke-width="1"/>
+    <line x1="90" y1="90"  x2="670" y2="90"  stroke="var(--grid)" stroke-width="1"/>
+    <line x1="90" y1="140" x2="670" y2="140" stroke="var(--grid)" stroke-width="1"/>
+    <line x1="90" y1="190" x2="670" y2="190" stroke="var(--grid)" stroke-width="1"/>
+    <line x1="90" y1="240" x2="670" y2="240" stroke="var(--baseline)" stroke-width="1.5"/>
+    <text x="78" y="44"  text-anchor="end" fill="var(--muted)" font-size="13">20</text>
+    <text x="78" y="94"  text-anchor="end" fill="var(--muted)" font-size="13">15</text>
+    <text x="78" y="144" text-anchor="end" fill="var(--muted)" font-size="13">10</text>
+    <text x="78" y="194" text-anchor="end" fill="var(--muted)" font-size="13">5</text>
+    <text x="78" y="244" text-anchor="end" fill="var(--muted)" font-size="13">0</text>
+    <!-- target band 14-18 at right -->
+    <rect x="588" y="60" width="64" height="40" rx="6" fill="var(--boq-soft)"/>
+    <!-- line -->
+    <polyline points="150,180 410,160" fill="none" stroke="var(--good)" stroke-width="3.5"/>
+    <polyline points="410,160 620,80" fill="none" stroke="var(--boq)" stroke-width="3.5" stroke-dasharray="7 5" opacity="0.85"/>
+    <!-- markers -->
+    <circle cx="150" cy="180" r="6" fill="#c9c6bd"/>
+    <circle cx="410" cy="160" r="6.5" fill="var(--good)"/>
+    <circle cx="620" cy="80" r="6" fill="#fff" stroke="var(--boq)" stroke-width="3"/>
+    <!-- value labels -->
+    <text x="150" y="166" text-anchor="middle" fill="var(--muted)"    font-size="14" font-weight="700">~6</text>
+    <text x="410" y="146" text-anchor="middle" fill="var(--good-ink)" font-size="15" font-weight="800">~8</text>
+    <text x="620" y="66"  text-anchor="middle" fill="var(--boq)"      font-size="15" font-weight="800">14–18</text>
+    <!-- x labels -->
+    <text x="150" y="266" text-anchor="middle" fill="var(--ink-2)" font-size="13" font-weight="600">Setup viejo</text>
+    <text x="410" y="266" text-anchor="middle" fill="var(--ink-2)" font-size="13" font-weight="600">Ahora</text>
+    <text x="620" y="266" text-anchor="middle" fill="var(--muted)" font-size="13" font-weight="600">Próximo mes</text>
+    <text x="620" y="282" text-anchor="middle" fill="var(--muted)" font-size="11">estimado</text>
+  </svg>
+  <div class="means">💡 <b>En simple:</b> cada punto es tu ritmo de consultas al mes. La parte punteada es hacia dónde esperamos que siga a medida que las campañas maduran y aplicamos las mejoras de abajo. Son estimaciones, no garantías — pero la dirección es claramente hacia arriba.</div>
+</div>
+
+<ul class="next">
+  <li><b>Hacer los anuncios aún más completos.</b>
+    <div class="d">Vamos a agregar enlaces y detalles extra (como precios, qué incluye, reseñas) — lo que los vuelve más atractivos y más baratos de mostrar.</div></li>
+  <li><b>Convertir más visitantes en reservas.</b>
+    <div class="d">Ahora traemos muchos visitantes curiosos a bajo costo. El siguiente foco son las páginas de destino — hacer que les resulte facilísimo escribirte y reservar, para que más de esas visitas se vuelvan clientes.</div></li>
+  <li><b>Darle más espacio a Boquete para crecer.</b>
+    <div class="d">Boquete va tan bien que Google lo está frenando para no pasarse del presupuesto. Hay espacio claro para llegar a más gente ahí.</div></li>
+  <li><b>Seguir dejando crecer El Valle.</b>
+    <div class="d">La campaña en español es nueva y todavía agarra impulso. Vamos a seguir alimentándola con las búsquedas que funcionan y dejarla crecer.</div></li>
+</ul>
+
+<div class="callout good">
+  <div class="ct">En resumen</div>
+  <p>En un mes, tus anuncios pasaron de ser <b>caros y dispersos</b> a ser <b>económicos, precisos y apuntados a las personas correctas</b> — con el mismo presupuesto que ya estabas gastando. Una ubicación que no producía nada ahora tiene vida, y toda la cuenta está lista para seguir mejorando. <b>La base está construida. Ahora la hacemos crecer.</b></p>
+</div>
+
+<footer>
+  EV Bikes · Google Ads · Tours en e-bike por Boquete y El Valle de Antón<br>
+  Comparación: primeras dos semanas (8–22 junio) vs. dos semanas después de los cambios (23 junio – 5 julio 2026).
+</footer>
+
+</div>
+</body>
+</html>
