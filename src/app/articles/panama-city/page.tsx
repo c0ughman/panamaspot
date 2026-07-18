@@ -392,10 +392,17 @@ export default function ArticlePage() {
               </h2>
 
               <p>
-                Walk the four plazas of Casco Viejo and duck into Iglesia de San
-                José to see its golden altar; watch a ship rise through the
-                Miraflores Locks; stroll or cycle the Cinta Costera at sunset; and
-                end the night on a rooftop bar above the old town.
+                Walk the four plazas of{" "}
+                <Link href="/articles/casco-viejo-panama-walking-guide">
+                  Casco Viejo
+                </Link>{" "}
+                and duck into Iglesia de San José to see its golden altar;
+                watch a ship rise through the{" "}
+                <Link href="/articles/panama-canal-tour-miraflores-locks-visitor-guide">
+                  Miraflores Locks
+                </Link>
+                ; stroll or cycle the Cinta Costera at sunset; and end the
+                night on a rooftop bar above the old town.
               </p>
 
               {/* IN-COLUMN BENTO */}
@@ -600,13 +607,13 @@ export default function ArticlePage() {
                 </div>
               </div>
 
-              <div className="bento-card b4">
+              <Link href="/articles/panama-city-itinerary-3-days" className="bento-card b4">
                 <span className="b-tag">Plan</span>
                 <h3>Build a 3-day Panama City itinerary.</h3>
-                <span className="bento-arrow">Coming soon</span>
-              </div>
+                <span className="bento-arrow">Read the itinerary →</span>
+              </Link>
 
-              <div className="bento-card b5">
+              <Link href="/articles/panama-canal-tour-miraflores-locks-visitor-guide" className="bento-card b5">
                 <div className="bento-split-img">
                   <div
                     className="imgph photo"
@@ -621,7 +628,7 @@ export default function ArticlePage() {
                     visitor decks, a short trip from downtown.
                   </p>
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
         </section>

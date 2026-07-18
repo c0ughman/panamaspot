@@ -395,10 +395,18 @@ export default function ArticlePage() {
               </h2>
 
               <p>
-                Recorre las cuatro plazas de Casco Viejo y entra a la Iglesia de
-                San José a ver su altar de oro; mira un barco subir por las
-                Esclusas de Miraflores; pasea o pedalea por la Cinta Costera al
-                atardecer; y cierra la noche en una azotea sobre el casco antiguo.
+                Recorre las cuatro plazas de{" "}
+                <Link href="/es/articles/casco-viejo-restaurantes-donde-comer-beber-hospedarse">
+                  Casco Viejo
+                </Link>{" "}
+                y entra a la Iglesia de San José a ver su altar de oro; mira un
+                barco subir por las Esclusas de Miraflores; pasea o pedalea por
+                la{" "}
+                <Link href="/es/articles/cinta-costera-panama-mercado-mariscos-panama-viejo">
+                  Cinta Costera
+                </Link>{" "}
+                al atardecer; y cierra la noche en una azotea sobre el casco
+                antiguo.
               </p>
 
               {/* BENTO EN COLUMNA */}
@@ -604,13 +612,13 @@ export default function ArticlePage() {
                 </div>
               </div>
 
-              <div className="bento-card b4">
+              <Link href="/es/articles/que-hacer-en-ciudad-de-panama" className="bento-card b4">
                 <span className="b-tag">Planifica</span>
                 <h3>Arma un itinerario de 3 días por la Ciudad de Panamá.</h3>
-                <span className="bento-arrow">Próximamente</span>
-              </div>
+                <span className="bento-arrow">Ver la guía completa →</span>
+              </Link>
 
-              <div className="bento-card b5">
+              <Link href="/es/articles/que-hacer-en-ciudad-de-panama" className="bento-card b5">
                 <div className="bento-split-img">
                   <div
                     className="imgph photo"
@@ -625,7 +633,7 @@ export default function ArticlePage() {
                     esclusas desde los miradores, a poco trayecto del centro.
                   </p>
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
         </section>

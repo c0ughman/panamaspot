@@ -306,10 +306,11 @@ export default function ArticlePage() {
               </h2>
 
               <p>
-                The quick way is to fly: small planes from Panama City land on
-                Isla Colón in well under an hour. The overland route is cheaper
-                but long — a bus across the country to Almirante, then a short
-                boat across the lagoon.
+                The quick way is to fly: small planes from{" "}
+                <Link href="/articles/panama-city">Panama City</Link> land on
+                Isla Colón in well under an hour. The overland route is
+                cheaper but long — a bus across the country to Almirante,
+                then a short boat across the lagoon.
               </p>
 
               <table className="compare">
@@ -403,9 +404,13 @@ export default function ArticlePage() {
               </h2>
 
               <p>
-                Snorkel the reefs, surf the breaks, kayak the mangroves, or just
-                island-hop with no fixed plan. The gallery below is a quick taste;
-                the highlight cards under it cover the logistics.
+                Snorkel the reefs, surf the breaks, kayak the mangroves, or
+                just{" "}
+                <Link href="/articles/bocas-del-toro-island-hopping-guide">
+                  island-hop
+                </Link>{" "}
+                with no fixed plan. The gallery below is a quick taste; the
+                highlight cards under it cover the logistics.
               </p>
 
               {/* IN-COLUMN BENTO — compact accent mosaic (see blue template). */}
@@ -612,11 +617,11 @@ export default function ArticlePage() {
                 </div>
               </div>
 
-              <div className="bento-card b4">
+              <Link href="/articles/bocas-del-toro-island-hopping-guide" className="bento-card b4">
                 <span className="b-tag">Plan</span>
                 <h3>Map a 4-day island-hop.</h3>
-                <span className="bento-arrow">Coming soon</span>
-              </div>
+                <span className="bento-arrow">Read the guide →</span>
+              </Link>
 
               <div className="bento-card b5">
                 <div className="bento-split-img">
