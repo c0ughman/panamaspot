@@ -1,0 +1,358 @@
+{
+ "generated": "2026-07-20T14:59:03.275Z",
+ "selections": {
+  "Volcán Barú (summit / sunrise / trail)": {
+   "pages": ["public/articles/volcan-baru-hike-sunrise-summit-guide.html", "public/es/articles/volcan-baru-como-subir-cima-panama.html"],
+   "hero": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Volcan_Baru_up_close_and_clouded.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Volcan_Baru_up_close_and_clouded.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "Wikimedia Commons",
+    "caption_en": "Volcán Barú emerging through clouds",
+    "caption_es": "Volcán Barú emergiendo entre las nubes"
+   },
+   "use": [
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/4/46/Summit_of_Volcan_Baru_visible_from_the_town_of_Volcan.JPG", "license": "CC BY-SA 3.0", "caption_en": "Volcán Barú summit visible from the town of Volcán", "caption_es": "Cumbre del Volcán Barú vista desde el pueblo de Volcán"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Volcan_Baru%2C_Quetzal_Trail_-_Flickr_-_gailhampshire.jpg", "license": "CC BY 2.0", "caption_en": "The Quetzal Trail on Volcán Barú", "caption_es": "La Ruta del Quetzal en el Volcán Barú"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/4/48/Volcan_Baru_-_Flickr_-_gailhampshire.jpg", "license": "CC BY 2.0", "caption_en": "Volcán Barú from a distance", "caption_es": "El Volcán Barú a la distancia"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/3/31/Volcan_Baru_in_a_cloud_shroud.jpg", "license": "CC BY-SA 4.0", "caption_en": "Volcán Barú shrouded in clouds", "caption_es": "El Volcán Barú envuelto en nubes"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Volcan_baru.jpg", "license": "Public domain", "caption_en": "Volcán Barú landscape", "caption_es": "Paisaje del Volcán Barú"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/3/30/Volc%C3%A1n_Bar%C3%BA_desde_Volc%C3%A1n.JPG", "license": "CC BY-SA 3.0", "caption_en": "Volcán Barú as seen from the town of Volcán", "caption_es": "Volcán Barú visto desde el pueblo de Volcán"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/f/f3/La_Amistad_Panama_Biosphere_Reserve_-_Bocas_del_Toro_Province_42_-_Core_Zone_-_Summit_of_Volcan_Baru%2C_Volcan_Baru_National_Park.jpg", "license": "CC BY-SA 3.0", "caption_en": "Summit of Volcán Barú in the national park", "caption_es": "Cumbre del Volcán Barú en el parque nacional"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/0/0d/La_Amistad_Panama_Biosphere_Reserve_-_Parque_Nacional_Volcan_Baru_%28a_core_zone%29_09.JPG", "license": "CC BY-SA 3.0", "caption_en": "Cloud forest zone of Volcán Barú", "caption_es": "Zona de bosque nuboso del Volcán Barú"}
+   ]
+  },
+  "Aguas Termales — El Valle de Antón": {
+   "pages": ["public/es/articles/aguas-termales-el-valle-de-anton.html"],
+   "hero": {
+    "url": "https://images.pexels.com/photos/920270/pexels-photo-920270.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "source_page": "https://www.pexels.com/photo/920270/",
+    "license": "Pexels",
+    "caption_en": "Hot springs pool",
+    "caption_es": "Piscina de aguas termales"
+   },
+   "use": [
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/4/49/Atardecer_en_El_Valle_de_Ant%C3%B3n.jpg", "license": "CC BY-SA 4.0", "caption_es": "Atardecer en El Valle de Antón"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/3/3a/El_Valle_%281%29.jpg", "license": "CC BY-SA 2.0", "caption_es": "Paisaje de El Valle de Antón"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/0/02/Scenery_in_El_Valle_de_Anton.jpg", "license": "CC BY-SA 2.0", "caption_es": "Paisaje en El Valle de Antón"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Scenery_in_El_Valle_de_Anton_%2802%29.jpg", "license": "CC BY-SA 2.0", "caption_es": "Vista del valle de Antón"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Street_Scene_-_El_Valle_de_Anton.jpg", "license": "CC BY-SA 2.0", "caption_es": "Calle en El Valle de Antón"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Street_Scene_-_El_Valle_de_Anton_-_Cocle_Province_-_Panama_-_03_%2811503415213%29.jpg", "license": "CC BY-SA 2.0", "caption_es": "Escena callejera en El Valle de Antón"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/8/82/El_valle2.jpg", "license": "CC BY-SA 3.0", "caption_es": "El Valle de Antón"}
+   ]
+  },
+  "El Valle waterfalls — Chorro El Macho / Las Mozas": {
+   "pages": ["public/articles/el-valle-de-anton-waterfalls.html", "public/es/articles/cascada-chorro-el-macho-el-valle-de-anton.html"],
+   "hero": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/5/5b/ChorroMachoElValle.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:ChorroMachoElValle.jpg",
+    "license": "CC BY-SA 3.0",
+    "caption_en": "Chorro El Macho waterfall",
+    "caption_es": "Cascada Chorro El Macho"
+   },
+   "use": [
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/5/5b/ChorroMachoElValle.jpg", "license": "CC BY-SA 3.0", "caption_en": "Chorro El Macho waterfall", "caption_es": "Cascada Chorro El Macho"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/d/db/Chorro_Marcho_EL_Valle_Panama_01.jpg", "license": "CC BY-SA 3.0", "caption_en": "Chorro Macho waterfall cascade", "caption_es": "Cascada del Chorro Macho"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/EL_MACHO_FALLS_-_panoramio.jpg", "license": "CC BY-SA 3.0", "caption_en": "El Macho Falls", "caption_es": "Las Cataratas El Macho"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/2/22/El_Chorro_Macho_La_Mochila.jpg", "license": "CC BY-SA 3.0", "caption_en": "El Chorro Macho waterfall", "caption_es": "El Chorro Macho"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Rope_Bridge_Near_Cerro_El_Macho_Waterfall.jpg", "license": "CC BY-SA 2.0", "caption_en": "Rope bridge near Cerro El Macho waterfall", "caption_es": "Puente de cuerda cerca de la cascada Cerro El Macho"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Waterfall_at_Cerro_El_Macho_%2802%29.jpg", "license": "CC BY-SA 2.0", "caption_en": "Waterfall at Cerro El Macho", "caption_es": "Cascada en Cerro El Macho"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Waterfall_at_Cerro_El_Macho_%2803%29.jpg", "license": "CC BY-SA 2.0", "caption_en": "Waterfall scene at Cerro El Macho", "caption_es": "Vista de cascada en Cerro El Macho"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/4/42/WetRapel_Abseiling.jpg", "license": "CC BY-SA 3.0", "caption_en": "Rope activities near waterfalls", "caption_es": "Actividades de rappel en las cascadas"}
+   ]
+  },
+  "Boquete — town, highlands, coffee": {
+   "pages": ["public/articles/boquete-travel-guide.html", "public/es/articles/boquete-panama-guia-completa-itinerario.html"],
+   "hero": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Aerial_view_of_Boquete%2C_Panama.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Aerial_view_of_Boquete,_Panama.jpg",
+    "license": "CC BY-SA 4.0",
+    "caption_en": "Aerial view of Boquete, Panama",
+    "caption_es": "Vista aérea de Boquete, Panamá"
+   },
+   "use": [
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Boquete_Cloud_Forest_2.jpg", "license": "CC BY-SA 4.0", "caption_en": "Boquete cloud forest", "caption_es": "Bosque nuboso de Boquete"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Elementary_School_in_Boquete_Panama_11.jpg", "license": "CC BY-SA 4.0", "caption_en": "Building in Boquete", "caption_es": "Edificio en Boquete"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/4/44/RVN06957.jpg", "license": "CC BY-SA 4.0", "caption_en": "Boquete landscape", "caption_es": "Paisaje de Boquete"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Boquete%2C_Alto_Jaramillo%2C_Chiriqu%C3%AD%2C_Rep%C3%BAblica_de_Panam%C3%A1.png", "license": "CC BY-SA 4.0", "caption_en": "Boquete mountains", "caption_es": "Montañas de Boquete"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Boquete_RioCaldera.jpg", "license": "CC BY-SA 3.0", "caption_en": "Río Caldera in Boquete", "caption_es": "Río Caldera en Boquete"}
+   ]
+  },
+  "Rafting — Río Chiriquí Viejo": {
+   "pages": ["public/es/articles/rafting-boquete-rio-chiriqui.html"],
+   "hero": {
+    "url": "https://images.pexels.com/photos/36791113/pexels-photo-36791113.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "source_page": "https://www.pexels.com/photo/36791113/",
+    "license": "Pexels",
+    "caption_es": "Grupo disfrutando de aguas rápidas emocionantes"
+   },
+   "use": [
+    {"url": "https://images.pexels.com/photos/35125836/pexels-photo-35125836.jpeg?auto=compress&cs=tinysrgb&w=1600", "license": "Pexels", "caption_es": "Balsa de bambú en aguas tranquilas"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/f/f4/ISS015-E-27703_-_View_of_Panama.jpg", "license": "Public domain", "caption_es": "Vista de Panamá desde el espacio"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Laguna_La_Mochila.jpg", "license": "CC BY-SA 3.0", "caption_es": "Laguna La Mochila"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Aerial_view_of_the_Province_of_Chiriqui%2C_Republic_of_Panama_02.jpg", "license": "CC BY-SA 4.0", "caption_es": "Vista aérea de la Provincia de Chiriquí"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Aerial_view_of_the_Province_of_Chiriqui%2C_Republic_of_Panama_06.jpg", "license": "CC BY-SA 4.0", "caption_es": "Paisaje de Chiriquí desde el aire"}
+   ]
+  },
+  "Finca Lérida / Resplendent Quetzal": {
+   "pages": ["public/articles/finca-lerida-los-quetzales-trail-birdwatching-boquete.html"],
+   "hero": {
+    "url": "https://images.pexels.com/photos/16017280/pexels-photo-16017280.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "source_page": "https://www.pexels.com/photo/16017280/",
+    "license": "Pexels",
+    "caption_en": "Mist in the cloud forest at dawn"
+   },
+   "use": [
+    {"url": "https://images.pexels.com/photos/36345390/pexels-photo-36345390.jpeg?auto=compress&cs=tinysrgb&w=1600", "license": "Pexels", "caption_en": "Mist drifts through the cloud forest canopy at dawn"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/d/db/Colibri-thalassinus-001-edit.jpg", "license": "CC BY-SA 3.0", "caption_en": "Green Hermit hummingbird"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Finca_Lerida%2C_Boquete%2C_Panama.jpg", "license": "CC BY 2.0", "caption_en": "Finca Lérida in Boquete"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/4/48/View_from_Finca_Lerida_coffee_plantation_-_Flickr_-_gailhampshire.jpg", "license": "CC BY 2.0", "caption_en": "View from Finca Lérida coffee plantation"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/6/64/Pharomachrus_mocinno_294535167.jpg", "license": "CC BY 4.0", "caption_en": "Resplendent Quetzal"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Resplendent_Quetzal_%28Pharomachrus_mocinno%29_-_Flickr_-_gailhampshire_%281%29.jpg", "license": "CC BY 2.0", "caption_en": "Resplendent Quetzal in the cloud forest"}
+   ]
+  },
+  "Amador Causeway / Biomuseo": {
+   "pages": ["public/articles/amador-causeway-biomuseo-guide.html"],
+   "hero": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/2/20/Causeway_de_Amador_17-12-14.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Causeway_de_Amador_17-12-14.jpg",
+    "license": "CC BY-SA 4.0",
+    "caption_en": "Calzada de Amador"
+   },
+   "use": [
+    {"url": "https://images.pexels.com/photos/33803472/pexels-photo-33803472.jpeg?auto=compress&cs=tinysrgb&w=1600", "license": "Pexels", "caption_en": "Panama City skyline at night from the waterfront"},
+    {"url": "https://images.pexels.com/photos/5005136/pexels-photo-5005136.jpeg?auto=compress&cs=tinysrgb&w=1600", "license": "Pexels", "caption_en": "Sailboats anchored in the bay with the city skyline"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/2/29/Amador_Causeway_-_22929854980.jpg", "license": "CC BY 2.0", "caption_en": "Amador Causeway waterfront"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/8/86/Causeway_de_Amador.jpg", "license": "CC BY 3.0", "caption_en": "Calzada de Amador promenade"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/IslaPerico_Causeway_Amador.JPG", "license": "CC BY 3.0", "caption_en": "Isla Perico from the Causeway"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/9/99/Isla_Naos_e_Isla_Perico.jpg", "license": "CC BY 3.0", "caption_en": "Islands of the Amador Causeway"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/4/42/Panama_city_Amador_Causeway-9673_-_Flickr_-_Ragnhild_%26_Neil_Crawford.jpg", "license": "CC BY-SA 2.0", "caption_en": "View of Amador Causeway"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Calzada_de_Amador_%28Vista_A%C3%A9rea_desde_Isla_Naos%29.jpg", "license": "CC BY-SA 4.0", "caption_en": "Aerial view of the Causeway from Isla Naos"}
+   ]
+  },
+  "Panama Canal / Miraflores Locks": {
+   "pages": ["public/articles/panama-canal-tour-miraflores-locks-visitor-guide.html"],
+   "hero": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Panama_Canal_Gatun_Locks.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Panama_Canal_Gatun_Locks.jpg",
+    "license": "CC BY-SA 3.0",
+    "caption_en": "Gatun Locks of the Panama Canal"
+   },
+   "use": [
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Esclusas_de_Miraflores_Panam%C3%A1.JPG", "license": "CC BY-SA 3.0", "caption_en": "Miraflores Locks"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Main_Building_of_the_Miraflores_Locks.jpg", "license": "CC BY-SA 3.0", "caption_en": "Main Building of the Miraflores Locks"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Miraflores_Locks_-_49953155947.jpg", "license": "CC BY-SA 2.0", "caption_en": "Miraflores Locks detail"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/06._Canal_de_Panama_%2817%29.JPG", "license": "CC BY 3.0", "caption_en": "Panama Canal waterway"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Canal_de_Panama._Exclusas_de_miraflores._-_Flickr_-_MaxiV4.jpg", "license": "CC BY 2.0", "caption_en": "Canal de Panamá - Miraflores Locks"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Canal_de_Panama_-_Miraflores_-_Detalle_de_Remolcador_-_CJRD.jpg", "license": "CC BY-SA 3.0", "caption_en": "Tug assisting ships through Miraflores"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Panama_Canal_-_Pacific_Side_Entrance.jpg", "license": "CC BY-SA 2.0", "caption_en": "Pacific entrance to the Panama Canal"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Panama_Canal_Trip_1994_01.jpg", "license": "CC BY-SA 4.0", "caption_en": "Ship transiting the Panama Canal"}
+   ]
+  },
+  "Casco Viejo (San Felipe)": {
+   "pages": ["public/articles/casco-viejo-panama-walking-guide.html", "public/es/articles/casco-viejo-restaurantes-donde-comer-beber-hospedarse.html"],
+   "hero": {
+    "url": "https://images.pexels.com/photos/18049699/pexels-photo-18049699.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "source_page": "https://www.pexels.com/photo/18049699/",
+    "license": "Pexels",
+    "caption_en": "Narrow street in Casco Viejo with colonial facades",
+    "caption_es": "Calle angosta en Casco Viejo con fachadas coloniales"
+   },
+   "use": [
+    {"url": "https://images.pexels.com/photos/18183895/pexels-photo-18183895.jpeg?auto=compress&cs=tinysrgb&w=1600", "license": "Pexels", "caption_en": "Colonial building with ornate windows in Casco Viejo", "caption_es": "Edificio colonial con ventanas ornamentadas en Casco Viejo"},
+    {"url": "https://images.pexels.com/photos/1867024/pexels-photo-1867024.jpeg?auto=compress&cs=tinysrgb&w=1600", "license": "Pexels", "caption_en": "Terracotta rooftops of Casco Viejo", "caption_es": "Tejados de terracota de Casco Viejo"},
+    {"url": "https://images.pexels.com/photos/18184146/pexels-photo-18184146.jpeg?auto=compress&cs=tinysrgb&w=1600", "license": "Pexels", "caption_en": "Pastel facades and ironwork balconies", "caption_es": "Fachadas pastel y balcones de herrería"},
+    {"url": "https://images.pexels.com/photos/2564872/pexels-photo-2564872.jpeg?auto=compress&cs=tinysrgb&w=1600", "license": "Pexels", "caption_en": "String lights between balconies in Casco Viejo", "caption_es": "Luces decorativas entre balcones en Casco Viejo"},
+    {"url": "https://images.pexels.com/photos/33803474/pexels-photo-33803474.jpeg?auto=compress&cs=tinysrgb&w=1600", "license": "Pexels", "caption_en": "Casco Viejo at night with city skyline", "caption_es": "Casco Viejo de noche con el horizonte de la ciudad"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/5/51/Calle_Casco_Viejo.jpg", "license": "Public domain", "caption_en": "Street in Casco Viejo", "caption_es": "Calle en Casco Viejo"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/d/db/Casco_Viejo%2C_Panama_City_%2823652555433%29.jpg", "license": "CC BY-SA 2.0", "caption_en": "Casco Viejo historic quarter", "caption_es": "Barrio histórico de Casco Viejo"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/0/05/Old_Panama_City_-_Casco_Viejo_-_Panama_-_panoramio_%2813%29.jpg", "license": "CC BY 3.0", "caption_en": "Panoramic view of Casco Viejo", "caption_es": "Vista panorámica de Casco Viejo"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Old_Panama_City_-_Casco_Viejo_-_Panama_-_panoramio_%285%29.jpg", "license": "CC BY 3.0", "caption_en": "Colonial architecture in Casco Viejo", "caption_es": "Arquitectura colonial en Casco Viejo"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/5/53/Panama_City_-_Casco_Viejo.jpg", "license": "CC BY-SA 4.0", "caption_en": "Panama City - Casco Viejo", "caption_es": "Ciudad de Panamá - Casco Viejo"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Panama_City_Casco_Viejo.jpg", "license": "CC BY-SA 4.0", "caption_en": "Casco Viejo district", "caption_es": "Distrito de Casco Viejo"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/1/17/Casco_Antiguo_%28San_Felipe%29_-_Pamama.jpg", "license": "CC BY-SA 4.0", "caption_en": "Casco Antiguo (San Felipe)", "caption_es": "Casco Antiguo (San Felipe)"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/1/13/Casco_Viejo%2C_Panama_City%2C_Panama.jpg", "license": "CC BY 2.0", "caption_en": "Casco Viejo streets", "caption_es": "Calles de Casco Viejo"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Casco_Viejo%2C_Panama_City%2C_Panama_-_54301629817.jpg", "license": "CC BY 2.0", "caption_en": "Evening in Casco Viejo", "caption_es": "Atardecer en Casco Viejo"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Kids_on_Street_-_Casco_Viejo_%28Old_City%29_-_Panama_City_-_Panama_%2811427353396%29.jpg", "license": "CC BY-SA 2.0", "caption_en": "Life in Casco Viejo", "caption_es": "Vida en Casco Viejo"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Altar_de_Oro_Iglesia_San_Jos%C3%A9_de_Panam%C3%A1.jpg", "license": "CC BY-SA 3.0", "caption_en": "Golden altar of Iglesia San José", "caption_es": "Altar dorado de la Iglesia San José"}
+   ]
+  },
+  "Panamá Viejo ruins": {
+   "pages": ["public/es/articles/cinta-costera-panama-mercado-mariscos-panama-viejo.html"],
+   "hero": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Catedral_Panam%C3%A1_Viejo.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Catedral_Panam%C3%A1_Viejo.jpg",
+    "license": "CC BY-SA 2.0",
+    "caption_es": "Torre de la Catedral de Panamá Viejo"
+   },
+   "use": [
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/0/02/Torre_Catedral_%28Panam%C3%A1_Viejo%29.JPG", "license": "CC BY-SA 3.0", "caption_es": "Torre Catedral de Panamá Viejo"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Torre_Catedral_PANAM%C3%81_VIEJO..jpg", "license": "CC BY-SA 3.0", "caption_es": "Ruinas de la Torre Catedral"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/9/96/Torre_Panam%C3%A1_Viejo_y_Plaza.JPG", "license": "CC BY-SA 3.0", "caption_es": "Torre de Panamá Viejo y plaza"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Torre_de_Panama_Viejo.jpg", "license": "CC BY-SA 3.0", "caption_es": "Torre de Panamá Viejo"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/d/df/Torre_de_la_Catedral_Panam%C3%A1_Viejo_Panam%C3%A1.jpg", "license": "CC BY-SA 2.0", "caption_es": "Torre de la Catedral"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/8/87/Torre_de_la_Catedral_Panam%C3%A1_Viejo_desde_adentro.jpg", "license": "CC BY-SA 2.0", "caption_es": "Torre desde adentro"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Vista_desde_Torre_en_Panam%C3%A1_Viejo_.jpg", "license": "CC BY-SA 4.0", "caption_es": "Vista desde la Torre"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/1/13/Panam%C3%A1_Viejo_%282005%29_01.jpg", "license": "CC BY-SA 4.0", "caption_es": "Ruinas de Panamá Viejo"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Iv-Ruins_of_the_Cathedral_Tower-_Old_Panama.jpg", "license": "Public domain", "caption_es": "Ruinas de la Torre de la Catedral"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Torre_de_la_Catedral_Panam%C3%A1_Viejo.jpg", "license": "CC BY-SA 2.0", "caption_es": "Torre de Panamá Viejo"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Tower_of_the_Cathedral_at_Old_Panama_City_ruins.jpg", "license": "CC BY-SA 3.0", "caption_es": "Torre de la Catedral de Panamá Viejo"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/5-Torre_Panama_Vieja-08-099-DCMHN.jpg", "license": "CC BY-SA 4.0", "caption_es": "Ruinas de Panamá Vieja"}
+   ]
+  },
+  "Cinta Costera / Mercado de Mariscos": {
+   "pages": ["public/es/articles/cinta-costera-panama-mercado-mariscos-panama-viejo.html"],
+   "hero": {
+    "url": "https://images.pexels.com/photos/5005136/pexels-photo-5005136.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "source_page": "https://www.pexels.com/photo/5005136/",
+    "license": "Pexels",
+    "caption_es": "Veleros anclados en la bahía"
+   },
+   "use": [
+    {"url": "https://images.pexels.com/photos/2666249/pexels-photo-2666249.jpeg?auto=compress&cs=tinysrgb&w=1600", "license": "Pexels", "caption_es": "Skyline de Ciudad de Panamá desde la Cinta Costera"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Along_the_Cinta_Costera_at_Nightfall_%2805%29.jpg", "license": "CC BY-SA 2.0", "caption_es": "Cinta Costera al atardecer"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Cinta_Costera_Paitilla1.JPG", "license": "CC BY-SA 4.0", "caption_es": "Cinta Costera Paitilla"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/7/73/Cinta_Costera_Panama_Agosto20019.jpg", "license": "CC BY-SA 2.0", "caption_es": "Cinta Costera de Panamá"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Cinta_Costera_Pma.jpg", "license": "CC BY-SA 3.0", "caption_es": "Paseo de la Cinta Costera"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Cinta_Costera_de_Panam%C3%A1.jpg", "license": "CC BY-SA 4.0", "caption_es": "Cinta Costera de Panamá"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/8/88/Cinta_costera%2C_Panam%C3%A1.jpg", "license": "CC BY-SA 2.0", "caption_es": "Cinta costera"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Cinta_costera%2C_que_rodea_exteriormente_el_centro_hist%C3%B3rico_de_la_ciudad_de_Panam%C3%A1.jpg", "license": "CC BY-SA 4.0", "caption_es": "Cinta costera alrededor del centro histórico"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Sport_courts_in_Cinta_Costera_-_Panama_City_%28DSCF5759%29.jpg", "license": "CC BY 2.0", "caption_es": "Canchas deportivas en la Cinta Costera"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Arroz_con_coco%2C_pescado_frito_y_patacones.jpg", "license": "CC BY-SA 4.0", "caption_es": "Comida panameña - Arroz con coco y pescado frito"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/5/53/Mercado_de_Mariscos_%28Ciudad_de_Panam%C3%A1%2C_Panam%C3%A1%29.jpg", "license": "CC0", "caption_es": "Mercado de Mariscos de Ciudad de Panamá"}
+   ]
+  },
+  "Taboga Island": {
+   "pages": ["public/articles/day-trips-from-panama-city.html"],
+   "hero": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/TabogaBeach.JPG",
+    "source_page": "https://commons.wikimedia.org/wiki/File:TabogaBeach.JPG",
+    "license": "CC BY 3.0",
+    "caption_en": "Taboga Island beach"
+   },
+   "use": [
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Calle_en_Isla_Taboga_-_Panam%C3%A1.jpg", "license": "CC BY-SA 4.0", "caption_en": "Street in Isla Taboga"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/5/55/Panama_-_Taboga_-_panoramio.jpg", "license": "CC BY 3.0", "caption_en": "Panoramic view of Taboga"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Panama_-_Taboga_-_panoramio_%281%29.jpg", "license": "CC BY 3.0", "caption_en": "Taboga Island landscape"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Taboga_Insel.jpg", "license": "CC BY-SA 3.0", "caption_en": "Taboga Island"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Taboga_island.jpg", "license": "CC BY 3.0", "caption_en": "Taboga island"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/ISS065-E-31000_-_View_of_Panama_-_Taboga_Island_-_island_Isla_de_Urab%C3%A1_%28cropped%29.jpg", "license": "Public domain", "caption_en": "Taboga Island from space"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/e/e8/IslaTaboga.JPG", "license": "CC BY 3.0", "caption_en": "Isla Taboga"}
+   ]
+  },
+  "Portobelo": {
+   "pages": ["public/articles/day-trips-from-panama-city.html"],
+   "hero": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Panama_-_Porto_Bello_ruins.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Panama_-_Porto_Bello_ruins.jpg",
+    "license": "Public domain",
+    "caption_en": "Portobelo ruins"
+   },
+   "use": [
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Facade_-_Portobelo_-_Caribbean_Coast_-_Panama_%2811457833485%29.jpg", "license": "CC BY-SA 2.0", "caption_en": "Colonial facade in Portobelo"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Harbourt_Scene_-_Portobelo_-_Caribbean_Coast_-_Panama_-_02_%2811457888296%29.jpg", "license": "CC BY-SA 2.0", "caption_en": "Harbor scene in Portobelo"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Lunch_near_Portobelo%2C_Panama_%283777588022%29.jpg", "license": "CC BY 2.0", "caption_en": "Local food near Portobelo"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Portobelo%2C_Colon._Panam%C3%A1_2.jpg", "license": "CC BY 2.0", "caption_en": "Portobelo, Colón"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Portobelo%2C_Colon.jpg", "license": "CC BY 2.0", "caption_en": "Portobelo town"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/3/30/Spanish_Cannon_at_Portobelo%2C_Panama_%283777622546%29.jpg", "license": "CC BY 2.0", "caption_en": "Spanish cannon at Portobelo"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Casa_Fuerte_de_Bater%C3%ADas_dec_San_Fernando_-_Fortificaciones_de_Portobelo%2C_Panama.jpg", "license": "CC BY-SA 4.0", "caption_en": "Fortifications of Portobelo"}
+   ]
+  },
+  "Gatún Lake / Monkey Island": {
+   "pages": ["public/articles/day-trips-from-panama-city.html"],
+   "hero": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/7/72/Gatun_Lake_-_50088345977.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Gatun_Lake_-_50088345977.jpg",
+    "license": "CC BY-SA 2.0",
+    "caption_en": "Gatun Lake"
+   },
+   "use": [
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/1/18/Bradypus.jpg", "license": "Public domain", "caption_en": "Three-toed sloth"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/0/00/Canal_-_Lake_Gatun_-_panoramio.jpg", "license": "CC BY 3.0", "caption_en": "Canal and Lake Gatun"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/7/70/Container_Vessel_HS_Mozart_Gatun_Lake_Panama_Canal_0682.jpg", "license": "CC BY 4.0", "caption_en": "Container ship on Gatun Lake"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Gatun_Lake.jpg", "license": "CC BY-SA 3.0", "caption_en": "Gatun Lake view"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Gatun_Panama.png", "license": "CC BY-SA 3.0", "caption_en": "Gatun area"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Panama%2C_Gatun_Lake_1.jpg", "license": "CC BY-SA 4.0", "caption_en": "Panama Gatun Lake"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/7/70/Panama%2C_Gatun_Lake_2.jpg", "license": "CC BY-SA 4.0", "caption_en": "Gatun Lake landscape"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/d/df/Geoffroy%27s_tamarin_%28Saguinus_geoffroyi%29_2.jpg", "license": "CC BY-SA 4.0", "caption_en": "Geoffroy's tamarin monkey"}
+   ]
+  },
+  "Bocas del Toro — town/streets": {
+   "pages": ["public/articles/bocas-del-toro-island-hopping-guide.html"],
+   "hero": {
+    "url": "https://images.pexels.com/photos/30826590/pexels-photo-30826590.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "source_page": "https://www.pexels.com/photo/30826590/",
+    "license": "Pexels",
+    "caption_en": "Bocas Town street scene"
+   },
+   "use": [
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/4/49/...a_reflection_of_life..._-_panoramio.jpg", "license": "CC BY-SA 3.0", "caption_en": "Bocas del Toro reflection"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Bocas1.jpg", "license": "CC BY-SA 4.0", "caption_en": "Bocas scene"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Bocas_Town_--_Isla_Colon.jpg", "license": "CC BY 2.0", "caption_en": "Bocas Town on Isla Colón"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bocas_del_Toro_Panama.jpg", "license": "CC BY 3.0", "caption_en": "Bocas del Toro"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bocas_del_Toro_Panama_6.jpg", "license": "CC BY 3.0", "caption_en": "Bocas del Toro landscape"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Bocas_del_Toro%2C_Changuinola%2C_Panama_%28Unsplash%29.jpg", "license": "CC0", "caption_en": "Bocas del Toro town"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Bocas_del_Toro_Province%2C_Panama_-_panoramio_%2813%29.jpg", "license": "CC BY 3.0", "caption_en": "Bocas del Toro Province"}
+   ]
+  },
+  "Cerro Gaital": {
+   "pages": ["public/articles/cerro-gaital-cara-iguana-hike-el-valle.html"],
+   "hero": {
+    "url": "https://images.pexels.com/photos/4996401/pexels-photo-4996401.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "source_page": "https://www.pexels.com/photo/4996401/",
+    "license": "Pexels",
+    "caption_en": "Green iguana"
+   },
+   "use": [
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/c/cf/El_valle.jpg", "license": "Public domain", "caption_en": "El Valle landscape"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/8/82/El_valle2.jpg", "license": "CC BY-SA 3.0", "caption_en": "El Valle de Antón view"}
+   ]
+  },
+  "El Níspero animals / golden frog": {
+   "pages": ["public/es/articles/zoologico-el-nispero-el-valle-de-anton.html", "public/articles/el-valle-de-anton-with-kids.html"],
+   "hero": {
+    "url": "https://images.pexels.com/photos/12861718/pexels-photo-12861718.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "source_page": "https://www.pexels.com/photo/12861718/",
+    "license": "Pexels",
+    "caption_en": "Jaguar at El Níspero",
+    "caption_es": "Jaguar en El Níspero"
+   },
+   "use": [
+    {"url": "https://images.pexels.com/photos/25489812/pexels-photo-25489812.jpeg?auto=compress&cs=tinysrgb&w=1600", "license": "Pexels", "caption_en": "Wild boar at El Níspero", "caption_es": "Pecarí en El Níspero"},
+    {"url": "https://images.pexels.com/photos/33161290/pexels-photo-33161290.jpeg?auto=compress&cs=tinysrgb&w=1600", "license": "Pexels", "caption_en": "Butterfly at the Mariposario", "caption_es": "Mariposa en el Mariposario"},
+    {"url": "https://images.pexels.com/photos/32791312/pexels-photo-32791312.jpeg?auto=compress&cs=tinysrgb&w=1600", "license": "Pexels", "caption_en": "Butterfly feeding at the butterfly house", "caption_es": "Mariposa alimentándose en la casa de mariposas"},
+    {"url": "https://images.pexels.com/photos/17254453/pexels-photo-17254453.jpeg?auto=compress&cs=tinysrgb&w=1600", "license": "Pexels", "caption_en": "Wildlife at El Níspero", "caption_es": "Fauna en El Níspero"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Atelopus_zeteki.jpg", "license": "CC BY-SA 2.0", "caption_en": "Panamanian golden frog", "caption_es": "Rana dorada de Panamá"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/1/17/Atelopus_zeteki_VA.jpg", "license": "CC BY-SA 4.0", "caption_en": "Golden frog species", "caption_es": "Especie de rana dorada"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Jard%C3%ADn_Zool%C3%B3gico_El_Nispero.jpg", "license": "CC BY-SA 4.0", "caption_en": "El Níspero Zoo", "caption_es": "Jardín Zoológico El Níspero"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Baird%27s_tapir_mother_with_baby_%2892151%29.jpg", "license": "CC BY-SA 4.0", "caption_en": "Baird's tapir mother and baby", "caption_es": "Madre y bebé de tapir de Baird"}
+   ]
+  },
+  "Panama City — sights & variety": {
+   "pages": ["public/articles/panama-city-itinerary-3-days.html", "public/es/articles/que-hacer-en-ciudad-de-panama.html", "public/articles/day-trips-from-panama-city.html"],
+   "hero": {
+    "url": "https://images.pexels.com/photos/17477516/pexels-photo-17477516.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "source_page": "https://www.pexels.com/photo/17477516/",
+    "license": "Pexels",
+    "caption_en": "Panama City skyline from the waterfront",
+    "caption_es": "Skyline de Ciudad de Panamá desde la costa"
+   },
+   "use": [
+    {"url": "https://images.pexels.com/photos/11962310/pexels-photo-11962310.jpeg?auto=compress&cs=tinysrgb&w=1600", "license": "Pexels", "caption_en": "Bridge of the Americas and Panama City", "caption_es": "Puente de las Américas y Ciudad de Panamá"},
+    {"url": "https://images.pexels.com/photos/13110362/pexels-photo-13110362.jpeg?auto=compress&cs=tinysrgb&w=1600", "license": "Pexels", "caption_en": "Marina near Panama City", "caption_es": "Marina cerca de Ciudad de Panamá"},
+    {"url": "https://images.pexels.com/photos/33803472/pexels-photo-33803472.jpeg?auto=compress&cs=tinysrgb&w=1600", "license": "Pexels", "caption_en": "Panama City skyline at night", "caption_es": "Skyline de Ciudad de Panamá de noche"},
+    {"url": "https://images.pexels.com/photos/33803476/pexels-photo-33803476.jpeg?auto=compress&cs=tinysrgb&w=1600", "license": "Pexels", "caption_en": "Panama City skyline", "caption_es": "Skyline de Ciudad de Panamá"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/7/78/Ancon_Hill_-_14095325320.jpg", "license": "CC BY-SA 2.0", "caption_en": "Ancón Hill in Panama City", "caption_es": "Cerro Ancón en Ciudad de Panamá"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/d/df/Ancon_Hill_-_2014.JPG", "license": "CC BY-SA 3.0", "caption_en": "Ancón Hill view", "caption_es": "Vista del Cerro Ancón"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Ancon_Hill_in_Panama_01.jpg", "license": "CC BY-SA 3.0", "caption_en": "Ancón Hill landscape", "caption_es": "Paisaje del Cerro Ancón"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Three-toed_Sloth_-_Cerro_Ancon_-_Panama_City_%2848454787316%29.jpg", "license": "CC BY-SA 2.0", "caption_en": "Three-toed sloth on Ancón Hill", "caption_es": "Perezoso de tres dedos en el Cerro Ancón"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/6/64/Catedral_Metropolitana_Panam%C3%A1.jpg", "license": "CC BY-SA 3.0", "caption_en": "Metropolitan Cathedral of Panama City", "caption_es": "Catedral Metropolitana de Ciudad de Panamá"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/GOLF_COURSE_AND_PANAMA_CITY_SKYLINE_-_panoramio.jpg", "license": "CC BY-SA 3.0", "caption_en": "Golf course with Panama City skyline", "caption_es": "Campo de golf con skyline de Ciudad de Panamá"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Panama_City_Skyline_1.jpg", "license": "CC BY-SA 4.0", "caption_en": "Panama City Skyline", "caption_es": "Skyline de Ciudad de Panamá"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Panama_City_Skyline_180107.jpg", "license": "CC BY 2.0", "caption_en": "Panama City skyline view", "caption_es": "Vista del skyline de Ciudad de Panamá"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/3/39/Panama_city_Skyline.jpg", "license": "CC BY 2.0", "caption_en": "Panama city Skyline", "caption_es": "Skyline de Panamá"},
+    {"url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Panama_skyline.jpg", "license": "CC BY-SA 4.0", "caption_en": "Panama skyline", "caption_es": "Skyline de Panamá"}
+   ]
+  }
+ }
+}
