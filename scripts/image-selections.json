@@ -863,21 +863,60 @@
     "public/articles/cerro-gaital-cara-iguana-hike-el-valle.html"
    ],
    "hero": {
-    "url": "https://images.pexels.com/photos/4996401/pexels-photo-4996401.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "source_page": "https://www.pexels.com/photo/4996401/",
-    "license": "Pexels",
-    "caption_en": "Green iguana"
+    "url": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Anton_Valle_foothills_-_Flickr_-_gailhampshire.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Anton_Valle_foothills_-_Flickr_-_gailhampshire.jpg",
+    "license": "CC BY 2.0",
+    "caption_en": "Forested foothills rising toward the Cerro Gaital cloud forest",
+    "caption_es": "Las laderas boscosas que suben hacia el bosque nuboso del Cerro Gaital"
    },
    "use": [
     {
-     "url": "https://upload.wikimedia.org/wikipedia/commons/c/cf/El_valle.jpg",
-     "license": "Public domain",
-     "caption_en": "El Valle landscape"
+     "url": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Anton_Valle_foothills_-_Flickr_-_gailhampshire.jpg",
+     "license": "CC BY 2.0",
+     "caption_en": "Forested foothills rising toward the Cerro Gaital cloud forest",
+     "caption_es": "Las laderas boscosas que suben hacia el bosque nuboso del Cerro Gaital"
     },
     {
      "url": "https://upload.wikimedia.org/wikipedia/commons/8/82/El_valle2.jpg",
      "license": "CC BY-SA 3.0",
-     "caption_en": "El Valle de Antón view"
+     "caption_en": "The El Valle de Antón crater valley ringed by green peaks",
+     "caption_es": "El valle del cráter de El Valle de Antón rodeado de cerros verdes"
+    },
+    {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/4/4e/El_Valle_%284242926674%29.jpg",
+     "license": "CC BY-SA 2.0",
+     "caption_en": "Green mountains above El Valle de Antón",
+     "caption_es": "Montañas verdes sobre El Valle de Antón"
+    },
+    {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/c/cd/El_Valle_%284242157981%29.jpg",
+     "license": "CC BY-SA 2.0",
+     "caption_en": "The valley floor and ridgelines of El Valle de Antón",
+     "caption_es": "El fondo del valle y las cumbres de El Valle de Antón"
+    },
+    {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/7/76/Countryside_around_El_Valle_%2803%29.jpg",
+     "license": "CC BY-SA 2.0",
+     "caption_en": "Countryside beneath the peaks around El Valle",
+     "caption_es": "Campiña al pie de los cerros de El Valle"
+    },
+    {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Countryside_around_El_Valle_%2804%29.jpg",
+     "license": "CC BY-SA 2.0",
+     "caption_en": "Rolling green country around El Valle de Antón",
+     "caption_es": "Campos verdes alrededor de El Valle de Antón"
+    },
+    {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Horses_and_Bougainvillea_-_El_Valle.jpg",
+     "license": "CC BY-SA 2.0",
+     "caption_en": "Horses and bougainvillea in the El Valle countryside",
+     "caption_es": "Caballos y buganvilias en la campiña de El Valle"
+    },
+    {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Scenery_in_El_Valle_de_Anton_%2802%29.jpg",
+     "license": "CC BY-SA 2.0",
+     "caption_en": "Valley scenery beneath the Cerro Gaital ridge",
+     "caption_es": "Paisaje del valle bajo la cresta del Cerro Gaital"
     }
    ]
   },
