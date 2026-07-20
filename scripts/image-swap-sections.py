@@ -28,19 +28,27 @@ ARTIST = json.loads(pathlib.Path("/tmp/artist_map.json").read_text()) if pathlib
 # page -> list of (section-id, category-name, lang, count) placements.
 # category-name must match a key in image-selections.json; count caps how many
 # of that category's images land in the section (they stack, so keep it tidy).
+# One image per section (never stacked); spread across as many sections as we
+# have topical categories for. HERO per page set separately below.
 PLACEMENTS = {
     "public/articles/day-trips-from-panama-city.html": [
-        ("s1", "Panama City — sights & variety", "en", 2),
-        ("s3", "El Valle waterfalls — Chorro El Macho / Las Mozas", "en", 2),
-        ("s4", "Taboga Island", "en", 3),
-        ("s5", "Portobelo", "en", 3),
-        ("s7", "Gatún Lake / Monkey Island", "en", 3),
+        ("s1", "Panama City — sights & variety", "en", 1),
+        ("s3", "El Valle waterfalls — Chorro El Macho / Las Mozas", "en", 1),
+        ("s4", "Taboga Island", "en", 1),
+        ("s5", "Portobelo", "en", 1),
+        ("s7", "Gatún Lake / Monkey Island", "en", 1),
     ],
     "public/es/articles/cinta-costera-panama-mercado-mariscos-panama-viejo.html": [
-        ("s2", "Cinta Costera / Mercado de Mariscos", "es", 3),
-        ("s4", "Cinta Costera / Mercado de Mariscos", "es", 2),  # Mercado shots (tail of set)
-        ("s5", "Panamá Viejo ruins", "es", 3),
+        ("s2", "Cinta Costera / Mercado de Mariscos", "es", 1),
+        ("s4", "Cinta Costera / Mercado de Mariscos", "es", 1),  # Mercado shot (tail of set)
+        ("s5", "Panamá Viejo ruins", "es", 1),
     ],
+}
+
+# Optional hero override per section page (replaces the leftover old hero).
+PAGE_HERO = {
+    "public/articles/day-trips-from-panama-city.html":
+        ("https://images.pexels.com/photos/17477516/pexels-photo-17477516.jpeg?auto=compress&cs=tinysrgb&w=1600", "en"),
 }
 
 def seckey(page, sid, cat):
@@ -73,6 +81,18 @@ def images_for(cat, section_index, count):
     start = 0 if section_index == 0 else max(0, len(pool) - count)
     return pool[start:start+count] if section_index == 0 else pool[start:start+count]
 
+def fill_slots(s, items):
+    """Overwrite the gallery-grid + bento imgph backgrounds (old generic photos)
+    with this page's selected images, cycling. Run after inline figures are
+    stripped so only gallery/bento slots remain."""
+    if not items:
+        return s, 0
+    box = {"i": 0}
+    def repl(m):
+        it = items[box["i"] % len(items)]; box["i"] += 1
+        return m.group(1) + it["url"].replace("&", "&amp;") + m.group(2)
+    return re.subn(r'(<div class="imgph photo" style="background-image:url\(\')[^\']+(\'\))', repl, s)
+
 def process(page, placements):
     p = ROOT/page
     s = p.read_text(encoding="utf-8")
@@ -80,6 +100,14 @@ def process(page, placements):
     s = re.sub(r"<figure class=\"art-inline-img\" data-imgsec=\"[^\"]*\">.*?</figure>", "", s)
     # 2) first run: remove the page's original generic inline figures
     s = re.sub(r"<figure class=\"art-inline-img\">.*?</figure>", "", s)
+    # 2b) refill the gallery-grid + bento slots (old wrong images) with a mix of
+    #     this page's category images — done before inserting section figures so
+    #     it only touches the gallery/bento containers.
+    pool = []
+    for cat in dict.fromkeys(c for _, c, _, _ in placements):
+        d = SEL[cat]; hero = d["hero"]["url"] if d.get("hero") else None
+        pool += [it for it in d["use"] if it["url"] != hero]
+    s, ng = fill_slots(s, pool)
     # 3) insert per section
     # track how many times each category has been placed, to vary the slice
     seen = {}
@@ -94,8 +122,17 @@ def process(page, placements):
             print(f"    ! {page}: section {sid} not found"); continue
         s = s[:m.end()] + block + s[m.end():]
         total += len(imgs)
+    # 4) hero override if configured
+    if page in PAGE_HERO:
+        url, _ = PAGE_HERO[page]
+        s = re.sub(r'(<div class="art-hero-img-full" style="background-image:url\(\')[^\']+(\'\))',
+                   lambda m: m.group(1)+url.replace("&", "&amp;")+m.group(2), s)
+        for pat in (r'(<meta content=")[^"]+(" property="og:image"/>)',
+                    r'(<meta content=")[^"]+(" name="twitter:image"/>)',
+                    r'("image": \[\s*")[^"]+(")'):
+            s = re.sub(pat, lambda m: m.group(1)+url+m.group(2), s)
     p.write_text(s, encoding="utf-8")
-    print(f"  ✓ {page}  inserted {total} figures across {len(placements)} sections")
+    print(f"  ✓ {page}  gallery/bento={ng}  section-figures={total} across {len(placements)} sections")
 
 def main():
     for page, placements in PLACEMENTS.items():

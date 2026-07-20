@@ -91,36 +91,36 @@ def set_hero(s, new_url):
         print(f"    ! hero: only {hits}/4 locations updated")
     return s, hits
 
-def _chunk(items, n):
-    """Split items into n ordered groups as evenly as possible (front-loaded)."""
-    if n <= 0:
-        return []
-    groups = [[] for _ in range(n)]
-    base, extra = divmod(len(items), n)
-    idx = 0
-    for g in range(n):
-        take = base + (1 if g < extra else 0)
-        groups[g] = items[idx:idx+take]
-        idx += take
-    return groups
+def strip_inline(s):
+    """Remove every inline figure (this script's and the page's originals) so we
+    start each run from a clean body."""
+    return re.sub(r'<figure class="art-inline-img"[^>]*>.*?</figure>', '', s)
 
-def rebuild_gallery(s, key, items, lang):
-    figs_new = [build_figure(it, key, lang) for it in items]
-    # prior run's tagged figures anchor the rebuild; else the page's scattered inline figures
-    anchors = list(re.finditer(r'<figure[^>]*data-imgset="'+re.escape(key)+r'"[^>]*>.*?</figure>', s))
-    if not anchors:
-        anchors = list(re.finditer(r'<figure class="art-inline-img">.*?</figure>', s))
-    if not anchors:
-        print("    ! no gallery figures found to anchor"); return s, 0
-    spans = [(m.start(), m.end()) for m in anchors]
-    # Distribute the selected figures across the anchor positions so images stay
-    # spread through the article (one-per-section design) instead of clustering.
-    groups = _chunk(figs_new, len(spans))
-    for i in range(len(spans)-1, -1, -1):
-        st, en = spans[i]
-        repl = "".join(groups[i]) if i < len(groups) else ""
-        s = s[:st] + repl + s[en:]
-    return s, len(figs_new)
+def fill_slots(s, items):
+    """Overwrite every remaining imgph-photo background (the art-gallery-grid and
+    bento cards) with the selected images, cycling. Must run AFTER strip_inline so
+    only gallery/bento slots remain. Removes the old wrong-location images that
+    lived only in these containers. Captions/headings in those blocks are topical
+    and left intact."""
+    if not items:
+        return s, 0
+    box = {"i": 0}
+    def repl(m):
+        it = items[box["i"] % len(items)]; box["i"] += 1
+        return m.group(1) + esc_bg(it["url"]) + m.group(2)
+    s, n = re.subn(r'(<div class="imgph photo" style="background-image:url\(\')[^\']+(\'\))', repl, s)
+    return s, n
+
+def place_inline(s, key, items, lang):
+    """Insert ONE figure after each section <h2>, spread through the article to
+    break up the text (never stacked)."""
+    secs = list(re.finditer(r'<h2[^>]*id="s\d+"[^>]*>.*?</h2>', s))
+    n = min(len(items), len(secs))
+    for i in range(n-1, -1, -1):           # end-to-start keeps offsets valid
+        fig = build_figure(items[i], key, lang)
+        pos = secs[i].end()
+        s = s[:pos] + fig + s[pos:]
+    return s, n
 
 def process(cat_name, data):
     key = cat_key(cat_name)
@@ -132,15 +132,17 @@ def process(cat_name, data):
             print(f"  ! missing {page}"); continue
         lang = "es" if "/es/" in page else "en"
         s = p.read_text(encoding="utf-8")
-        # gallery = the 'use' list, minus any entry identical to the hero (avoid dup)
+        # image pool = the 'use' list, minus any entry identical to the hero
         hero = data.get("hero")
         hero_url = hero["url"] if hero else None
-        gallery = [it for it in data["use"] if it["url"] != hero_url]
+        pool = [it for it in data["use"] if it["url"] != hero_url]
+        s = strip_inline(s)                       # 1. clear old/previous inline figures
+        s, ng = fill_slots(s, pool)               # 2. new images into gallery + bento
+        s, ni = place_inline(s, key, pool, lang)  # 3. one image per section, spread
         if hero:
-            s, _ = set_hero(s, hero["url"])
-        s, n = rebuild_gallery(s, key, gallery, lang)
+            s, _ = set_hero(s, hero["url"])       # 4. hero + og/twitter/jsonld
         p.write_text(s, encoding="utf-8")
-        print(f"  ✓ {page}  hero={'set' if hero else '—'}  figures={n}  [{lang}]")
+        print(f"  ✓ {page}  hero={'set' if hero else '—'}  gallery/bento={ng}  inline={ni}  [{lang}]")
 
 def main():
     only = None
