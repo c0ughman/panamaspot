@@ -81,17 +81,49 @@ def images_for(cat, section_index, count):
     start = 0 if section_index == 0 else max(0, len(pool) - count)
     return pool[start:start+count] if section_index == 0 else pool[start:start+count]
 
+def _end_of_div(s, i):
+    depth = 0; j = i
+    while j < len(s):
+        nd = s.find('<div', j); cd = s.find('</div>', j)
+        if cd == -1: return -1
+        if nd != -1 and nd < cd: depth += 1; j = nd + 4
+        else:
+            depth -= 1; j = cd + 6
+            if depth == 0: return j
+    return -1
+
 def fill_slots(s, items):
-    """Overwrite the gallery-grid + bento imgph backgrounds (old generic photos)
-    with this page's selected images, cycling. Run after inline figures are
-    stripped so only gallery/bento slots remain."""
-    if not items:
-        return s, 0
-    box = {"i": 0}
-    def repl(m):
-        it = items[box["i"] % len(items)]; box["i"] += 1
-        return m.group(1) + it["url"].replace("&", "&amp;") + m.group(2)
-    return re.subn(r'(<div class="imgph photo" style="background-image:url\(\')[^\']+(\'\))', repl, s)
+    """Put DISTINCT images into the gallery-grid + bento (no cycling), strip their
+    text, full-bleed the bento cards. Same behaviour as image-swap.py. Returns
+    (s, n_used). These pages have large pools, so the bento stays filled."""
+    def esc(u): return u.replace("&", "&amp;")
+    used = 0
+    gm = re.search(r'<div class="art-gallery-grid">', s)
+    if gm:
+        gstart = gm.end(); gend = _end_of_div(s, gm.start())
+        figs = re.findall(r'<figure.*?</figure>', s[gstart:gend-6])
+        newfigs = []
+        for fig in figs:
+            if used >= len(items): break
+            feat = ' class="feature"' if 'class="feature"' in fig else ''
+            newfigs.append(f'<figure{feat}><div class="imgph photo" style="background-image:url(\'{esc(items[used]["url"])}\')"></div></figure>')
+            used += 1
+        s = s[:gstart] + "".join(newfigs) + s[gend-6:]
+    cards = list(re.finditer(r'<div class="(bento-card[^"]*)">', s))
+    remaining = items[used:]
+    if cards and len(remaining) >= len(cards):
+        spans = [(m.start(), _end_of_div(s, m.start()), m.group(1)) for m in cards]
+        for k in range(len(spans)-1, -1, -1):
+            st, en, cls = spans[k]
+            s = s[:st] + f'<div class="{cls}"><div class="imgph photo" style="position:absolute;inset:0;background-image:url(\'{esc(remaining[k]["url"])}\')"></div></div>' + s[en:]
+        used += len(cards)
+    elif cards:
+        gm2 = re.search(r'<div class="home-bento-grid">', s)
+        if gm2:
+            gend2 = _end_of_div(s, gm2.start())
+            ss = s.rfind('<section', 0, gm2.start()); se = s.find('</section>', gend2)
+            s = s[:ss] + s[se+len('</section>'):] if ss != -1 and se != -1 else s[:gm2.start()] + s[gend2:]
+    return s, used
 
 def process(page, placements):
     p = ROOT/page

@@ -96,30 +96,87 @@ def strip_inline(s):
     start each run from a clean body."""
     return re.sub(r'<figure class="art-inline-img"[^>]*>.*?</figure>', '', s)
 
-def fill_slots(s, items):
-    """Overwrite every remaining imgph-photo background (the art-gallery-grid and
-    bento cards) with the selected images, cycling. Must run AFTER strip_inline so
-    only gallery/bento slots remain. Removes the old wrong-location images that
-    lived only in these containers. Captions/headings in those blocks are topical
-    and left intact."""
-    if not items:
-        return s, 0
-    box = {"i": 0}
-    def repl(m):
-        it = items[box["i"] % len(items)]; box["i"] += 1
-        return m.group(1) + esc_bg(it["url"]) + m.group(2)
-    s, n = re.subn(r'(<div class="imgph photo" style="background-image:url\(\')[^\']+(\'\))', repl, s)
-    return s, n
+def _end_of_div(s, i):
+    """Given index i at a '<div', return the index just past its matching </div>."""
+    depth = 0; j = i
+    while j < len(s):
+        nd = s.find('<div', j); cd = s.find('</div>', j)
+        if cd == -1:
+            return -1
+        if nd != -1 and nd < cd:
+            depth += 1; j = nd + 4
+        else:
+            depth -= 1; j = cd + 6
+            if depth == 0:
+                return j
+    return -1
+
+def fill_showcase(s, items):
+    """Put DISTINCT selected images into the art-gallery-grid and bento cards —
+    no cycling/repeats — and strip all their text (captions/headings), since that
+    text was written for the old images. Extra gallery figures are dropped; the
+    bento block is filled full-bleed only when there are enough unique images for
+    all its cards, otherwise the whole bento (heading + grid) is removed rather
+    than shown half-empty. Must run AFTER strip_inline. Returns (s, n_used)."""
+    used = 0
+    imgs = list(items)
+    # --- gallery-grid: rebuild figures, image-only (no figcaption), no repeats ---
+    gm = re.search(r'<div class="art-gallery-grid">', s)
+    if gm:
+        gstart = gm.end()
+        gend = _end_of_div(s, gm.start())
+        inner = s[gstart:gend-6]
+        figs = re.findall(r'<figure.*?</figure>', inner)
+        newfigs = []
+        for fig in figs:
+            if used >= len(imgs):
+                break
+            feat = ' class="feature"' if 'class="feature"' in fig else ''
+            newfigs.append(f'<figure{feat}><div class="imgph photo" '
+                           f'style="background-image:url(\'{esc_bg(imgs[used]["url"])}\')"></div></figure>')
+            used += 1
+        s = s[:gstart] + "".join(newfigs) + s[gend-6:]
+    # --- bento: all-or-nothing ---
+    cards = list(re.finditer(r'<div class="(bento-card[^"]*)">', s))
+    remaining = imgs[used:]
+    if cards and len(remaining) >= len(cards):
+        spans = [(m.start(), _end_of_div(s, m.start()), m.group(1)) for m in cards]
+        for k in range(len(spans)-1, -1, -1):        # end-to-start keeps offsets valid
+            st, en, cls = spans[k]
+            url = esc_bg(remaining[k]["url"])
+            card = (f'<div class="{cls}"><div class="imgph photo" '
+                    f'style="position:absolute;inset:0;background-image:url(\'{url}\')"></div></div>')
+            s = s[:st] + card + s[en:]
+        used += len(cards)
+    elif cards:
+        # not enough unique images — remove the whole "More to see" bento section
+        gm2 = re.search(r'<div class="home-bento-grid">', s)
+        if gm2:
+            gend2 = _end_of_div(s, gm2.start())
+            sec_start = s.rfind('<section', 0, gm2.start())
+            sec_end = s.find('</section>', gend2)
+            if sec_start != -1 and sec_end != -1:
+                s = s[:sec_start] + s[sec_end+len('</section>'):]
+            else:
+                s = s[:gm2.start()] + s[gend2:]
+    return s, used
 
 def place_inline(s, key, items, lang):
-    """Insert ONE figure after each section <h2>, spread through the article to
-    break up the text (never stacked)."""
+    """Insert ONE figure per section, after that section's first paragraph so it
+    sits inside the body text (and never lands adjacent to the next heading)."""
     secs = list(re.finditer(r'<h2[^>]*id="s\d+"[^>]*>.*?</h2>', s))
     n = min(len(items), len(secs))
+    # compute an insertion point per section: first </p> after the h2, before the
+    # next section starts; fall back to just after the h2.
+    points = []
+    for i in range(n):
+        start = secs[i].end()
+        nxt = secs[i+1].start() if i+1 < len(secs) else len(s)
+        pm = re.search(r'</p>', s[start:nxt])
+        points.append(start + pm.end() if pm else start)
     for i in range(n-1, -1, -1):           # end-to-start keeps offsets valid
         fig = build_figure(items[i], key, lang)
-        pos = secs[i].end()
-        s = s[:pos] + fig + s[pos:]
+        s = s[:points[i]] + fig + s[points[i]:]
     return s, n
 
 def process(cat_name, data):
@@ -136,11 +193,11 @@ def process(cat_name, data):
         hero = data.get("hero")
         hero_url = hero["url"] if hero else None
         pool = [it for it in data["use"] if it["url"] != hero_url]
-        s = strip_inline(s)                       # 1. clear old/previous inline figures
-        s, ng = fill_slots(s, pool)               # 2. new images into gallery + bento
-        s, ni = place_inline(s, key, pool, lang)  # 3. one image per section, spread
+        s = strip_inline(s)                                    # 1. clear inline figures
+        s, ng = fill_showcase(s, list(reversed(pool)))         # 2. distinct images, no text
+        s, ni = place_inline(s, key, pool, lang)               # 3. one image per section
         if hero:
-            s, _ = set_hero(s, hero["url"])       # 4. hero + og/twitter/jsonld
+            s, _ = set_hero(s, hero["url"])                    # 4. hero + og/twitter/jsonld
         p.write_text(s, encoding="utf-8")
         print(f"  ✓ {page}  hero={'set' if hero else '—'}  gallery/bento={ng}  inline={ni}  [{lang}]")
 
