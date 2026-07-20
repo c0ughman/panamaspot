@@ -1087,6 +1087,92 @@
      "caption_es": "Paisaje del valle en El Valle de Antón"
     }
    ]
+  },
+  "Isla Coiba": {
+   "pages": [
+    "public/es/articles/isla-coiba-buceo-parque-nacional.html"
+   ],
+   "hero": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/8/83/Gnathanodon_speciosus.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Gnathanodon_speciosus.jpg",
+    "license": "CC BY 2.0",
+    "caption_en": "A golden trevally cruising the reefs of Coiba National Park",
+    "caption_es": "Un jurel dorado recorriendo los arrecifes del Parque Nacional Coiba"
+   },
+   "use": [
+    {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/7/77/Coibita_Island_Panorama.jpg",
+     "license": "CC0",
+     "caption_en": "Panorama of Rancheria islet off Isla Coiba",
+     "caption_es": "Panorámica del islote Ranchería frente a Isla Coiba"
+    },
+    {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Coiba_Panama_%2826822070175%29.jpg",
+     "license": "CC BY 2.0",
+     "caption_en": "The forested coastline of Isla Coiba",
+     "caption_es": "La costa selvática de Isla Coiba"
+    },
+    {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Insel_Coiba_Rangerstation_%2826549648040%29.jpg",
+     "license": "CC BY 2.0",
+     "caption_en": "The ranger station on Isla Coiba",
+     "caption_es": "La estación de guardaparques en Isla Coiba"
+    },
+    {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/8/88/Insel_Coiba_Strand_%2826217559123%29.jpg",
+     "license": "CC BY 2.0",
+     "caption_en": "A quiet beach on Isla Coiba",
+     "caption_es": "Una playa tranquila en Isla Coiba"
+    },
+    {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Kristallklares_Wasser_Coiba_Panama_%2826549517610%29.jpg",
+     "license": "CC BY 2.0",
+     "caption_en": "Crystal-clear water off Isla Coiba",
+     "caption_es": "Aguas cristalinas frente a Isla Coiba"
+    },
+    {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Coiba_Panama_%2826216765884%29.jpg",
+     "license": "CC BY 2.0",
+     "caption_en": "Jungle meets sea along the Coiba shore",
+     "caption_es": "La selva se encuentra con el mar en la costa de Coiba"
+    },
+    {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Coiba_Sunset_%282071282152%29.jpg",
+     "license": "CC BY 2.0",
+     "caption_en": "Sunset over Coiba National Park",
+     "caption_es": "Atardecer sobre el Parque Nacional Coiba"
+    },
+    {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Isla_Canales_de_Afuera_Shallows_%282063365818%29.jpg",
+     "license": "CC BY 2.0",
+     "caption_en": "Shallow reef flats at Isla Canales de Afuera",
+     "caption_es": "Bajos de arrecife en Isla Canales de Afuera"
+    },
+    {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Antennarius_commerson.jpg",
+     "license": "CC BY 2.0",
+     "caption_en": "A giant frogfish camouflaged on the reef",
+     "caption_es": "Un pez rana gigante camuflado en el arrecife"
+    },
+    {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/9/94/Arothron_meleagris.jpg",
+     "license": "CC BY 2.0",
+     "caption_en": "A guineafowl pufferfish over the reef",
+     "caption_es": "Un pez globo guinea sobre el arrecife"
+    },
+    {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/8/83/Gnathanodon_speciosus.jpg",
+     "license": "CC BY 2.0",
+     "caption_en": "A golden trevally cruising the reefs of Coiba National Park",
+     "caption_es": "Un jurel dorado recorriendo los arrecifes del Parque Nacional Coiba"
+    },
+    {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Isla_de_Coiba_-_Granite_de_Oro_-_Pacific_Ocean_Islands_off_Panama_-_panoramio_%2810%29.jpg",
+     "license": "CC BY 3.0",
+     "caption_en": "Granito de Oro, the snorkelling islet in Coiba National Park",
+     "caption_es": "Granito de Oro, el islote de snorkel del Parque Nacional Coiba"
+    }
+   ]
   }
  }
 }
