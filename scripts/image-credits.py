@@ -15,7 +15,9 @@ inserted right before </main>; a re-run strips the old block and rebuilds it.
 Run after image-swap.py / image-swap-sections.py:
     python3 scripts/image-credits.py
 """
-import re, json, pathlib, html, urllib.parse
+import re, json, pathlib, html, urllib.parse, sys
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from img_cap import wm_original
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SEL  = json.loads((ROOT/"scripts"/"image-selections.json").read_text())["selections"]
@@ -87,11 +89,13 @@ def collect(s):
     document order (hero first, then body/gallery/bento)."""
     seen, out = set(), []
     for u in re.findall(r"https://upload\.wikimedia\.org/[^'\"]+", s):
-        key = u.replace("&amp;", "&")
+        # pages now carry width-capped thumb URLs; resolve back to the original
+        # file URL for licence lookup and Commons filename derivation.
+        key = wm_original(u)
         if key in seen:
             continue
         if needs_credit(LICENSE.get(key, "")):
-            seen.add(key); out.append(u)
+            seen.add(key); out.append(key)
     return out
 
 def process(page):

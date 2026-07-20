@@ -19,7 +19,9 @@ existing page set it (both pages already carry an appropriate hero).
 
 Usage:  python3 scripts/image-swap-sections.py
 """
-import re, json, pathlib, html
+import re, json, pathlib, html, sys
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from img_cap import cap, HERO, GALLERY
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SEL  = json.loads((ROOT/"scripts"/"image-selections.json").read_text(encoding="utf-8"))["selections"]
@@ -61,10 +63,11 @@ def caption(item, lang):
     return html.escape(item.get(f"caption_{lang}") or item.get("caption_en") or item.get("caption_es") or "")
 
 def figure(item, key, lang):
-    url = item["url"].replace("&", "&amp;")
+    url = cap(item["url"], GALLERY).replace("&", "&amp;")
+    capt = caption(item, lang)
     return (f'<figure class="art-inline-img" data-imgsec="{key}">'
-            f'<div class="imgph photo" style="background-image:url(\'{url}\')"></div>'
-            f'<figcaption>{caption(item, lang)}</figcaption></figure>')
+            f'<div class="imgph photo" role="img" aria-label="{capt}" style="background-image:url(\'{url}\')"></div>'
+            f'<figcaption>{capt}</figcaption></figure>')
 
 def images_for(cat, section_index, count):
     """Pick `count` images for a section; for a category used in two sections,
@@ -86,11 +89,11 @@ def _end_of_div(s, i):
             if depth == 0: return j
     return -1
 
-def fill_slots(s, items):
+def fill_slots(s, items, lang):
     """Put DISTINCT images into the gallery-grid + bento (no cycling), strip their
     text, full-bleed the bento cards. Same behaviour as image-swap.py. Returns
     (s, n_used). These pages have large pools, so the bento stays filled."""
-    def esc(u): return u.replace("&", "&amp;")
+    def esc(u): return cap(u, GALLERY).replace("&", "&amp;")
     used = 0
     gm = re.search(r'<div class="art-gallery-grid">', s)
     if gm:
@@ -100,7 +103,8 @@ def fill_slots(s, items):
         for fig in figs:
             if used >= len(items): break
             feat = ' class="feature"' if 'class="feature"' in fig else ''
-            newfigs.append(f'<figure{feat}><div class="imgph photo" style="background-image:url(\'{esc(items[used]["url"])}\')"></div></figure>')
+            alt = caption(items[used], lang)
+            newfigs.append(f'<figure{feat}><div class="imgph photo" role="img" aria-label="{alt}" style="background-image:url(\'{esc(items[used]["url"])}\')"></div></figure>')
             used += 1
         s = s[:gstart] + "".join(newfigs) + s[gend-6:]
     cards = list(re.finditer(r'<div class="(bento-card[^"]*)">', s))
@@ -109,7 +113,8 @@ def fill_slots(s, items):
         spans = [(m.start(), _end_of_div(s, m.start()), m.group(1)) for m in cards]
         for k in range(len(spans)-1, -1, -1):
             st, en, cls = spans[k]
-            s = s[:st] + f'<div class="{cls}"><div class="imgph photo" style="position:absolute;inset:0;background-image:url(\'{esc(remaining[k]["url"])}\')"></div></div>' + s[en:]
+            alt = caption(remaining[k], lang)
+            s = s[:st] + f'<div class="{cls}"><div class="imgph photo" role="img" aria-label="{alt}" style="position:absolute;inset:0;background-image:url(\'{esc(remaining[k]["url"])}\')"></div></div>' + s[en:]
         used += len(cards)
     elif cards:
         gm2 = re.search(r'<div class="home-bento-grid">', s)
@@ -121,6 +126,7 @@ def fill_slots(s, items):
 
 def process(page, placements):
     p = ROOT/page
+    lang = "es" if "/es/" in page else "en"
     s = p.read_text(encoding="utf-8")
     # 1) strip prior IMGSEC blocks (idempotent re-run)
     s = re.sub(r"<figure class=\"art-inline-img\" data-imgsec=\"[^\"]*\">.*?</figure>", "", s, flags=re.S)
@@ -133,7 +139,7 @@ def process(page, placements):
     for cat in dict.fromkeys(c for _, c, _, _ in placements):
         d = SEL[cat]; hero = d["hero"]["url"] if d.get("hero") else None
         pool += [it for it in d["use"] if it["url"] != hero]
-    s, ng = fill_slots(s, pool)
+    s, ng = fill_slots(s, pool, lang)
     # 3) insert per section
     # track how many times each category has been placed, to vary the slice
     seen = {}
@@ -151,7 +157,8 @@ def process(page, placements):
     # 4) hero override if configured
     if page in PAGE_HERO:
         url, _ = PAGE_HERO[page]
-        s = re.sub(r'(<div class="art-hero-img-full" style="background-image:url\(\')[^\']+(\'\))',
+        url = cap(url, HERO)
+        s = re.sub(r'(<div class="art-hero-img-full"[^>]*background-image:url\(\')[^\']+(\'\))',
                    lambda m: m.group(1)+url.replace("&", "&amp;")+m.group(2), s)
         for pat in (r'(<meta content=")[^"]+(" property="og:image"/>)',
                     r'(<meta content=")[^"]+(" name="twitter:image"/>)',

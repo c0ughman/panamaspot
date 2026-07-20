@@ -26,6 +26,8 @@ This handles the 1:1 category→page pages. The two multi-category pages
 Usage:  python3 scripts/image-swap.py [--only SUBSTR]
 """
 import re, json, sys, pathlib, html
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from img_cap import cap, HERO, GALLERY
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SEL  = json.loads((ROOT/"scripts"/"image-selections.json").read_text(encoding="utf-8"))["selections"]
@@ -58,19 +60,19 @@ def esc_bg(url):
     return url.replace("&", "&amp;")
 
 def build_figure(item, key, lang):
-    url = esc_bg(item["url"])
-    cap = build_caption(item, lang)
+    url = esc_bg(cap(item["url"], GALLERY))
+    capt = build_caption(item, lang)
     return (f'<figure class="art-inline-img" data-imgset="{key}">'
-            f'<div class="imgph photo" style="background-image:url(\'{url}\')"></div>'
-            f'<figcaption>{cap}</figcaption></figure>')
+            f'<div class="imgph photo" role="img" aria-label="{capt}" style="background-image:url(\'{url}\')"></div>'
+            f'<figcaption>{capt}</figcaption></figure>')
 
 def set_hero(s, new_url):
     """Update all four hero-URL locations independently so pages whose
     div/og/twitter/jsonld URLs disagree still end up consistent."""
-    new_plain = new_url
-    new_bg = esc_bg(new_url)
+    new_plain = cap(new_url, HERO)
+    new_bg = esc_bg(new_plain)
     hits = 0
-    s, n = re.subn(r'(<div class="art-hero-img-full" style="background-image:url\(\')[^\']+(\'\))',
+    s, n = re.subn(r'(<div class="art-hero-img-full"[^>]*background-image:url\(\')[^\']+(\'\))',
                    lambda m: m.group(1)+new_bg+m.group(2), s); hits += n
     s, n = re.subn(r'(<meta content=")[^"]+(" property="og:image"/>)',
                    lambda m: m.group(1)+new_plain+m.group(2), s); hits += n
@@ -102,7 +104,7 @@ def _end_of_div(s, i):
                 return j
     return -1
 
-def fill_showcase(s, items):
+def fill_showcase(s, items, lang):
     """Put DISTINCT selected images into the art-gallery-grid and bento cards —
     no cycling/repeats — and strip all their text (captions/headings), since that
     text was written for the old images. Extra gallery figures are dropped; the
@@ -123,8 +125,9 @@ def fill_showcase(s, items):
             if used >= len(imgs):
                 break
             feat = ' class="feature"' if 'class="feature"' in fig else ''
-            newfigs.append(f'<figure{feat}><div class="imgph photo" '
-                           f'style="background-image:url(\'{esc_bg(imgs[used]["url"])}\')"></div></figure>')
+            alt = build_caption(imgs[used], lang)
+            newfigs.append(f'<figure{feat}><div class="imgph photo" role="img" aria-label="{alt}" '
+                           f'style="background-image:url(\'{esc_bg(cap(imgs[used]["url"], GALLERY))}\')"></div></figure>')
             used += 1
         s = s[:gstart] + "".join(newfigs) + s[gend-6:]
     # --- bento: all-or-nothing ---
@@ -134,8 +137,9 @@ def fill_showcase(s, items):
         spans = [(m.start(), _end_of_div(s, m.start()), m.group(1)) for m in cards]
         for k in range(len(spans)-1, -1, -1):        # end-to-start keeps offsets valid
             st, en, cls = spans[k]
-            url = esc_bg(remaining[k]["url"])
-            card = (f'<div class="{cls}"><div class="imgph photo" '
+            url = esc_bg(cap(remaining[k]["url"], GALLERY))
+            alt = build_caption(remaining[k], lang)
+            card = (f'<div class="{cls}"><div class="imgph photo" role="img" aria-label="{alt}" '
                     f'style="position:absolute;inset:0;background-image:url(\'{url}\')"></div></div>')
             s = s[:st] + card + s[en:]
         used += len(cards)
@@ -185,7 +189,7 @@ def process(cat_name, data):
         hero_url = hero["url"] if hero else None
         pool = [it for it in data["use"] if it["url"] != hero_url]
         s = strip_inline(s)                                    # 1. clear inline figures
-        s, ng = fill_showcase(s, list(reversed(pool)))         # 2. distinct images, no text
+        s, ng = fill_showcase(s, list(reversed(pool)), lang)   # 2. distinct images, no text
         s, ni = place_inline(s, key, pool, lang)               # 3. one image per section
         if hero:
             s, _ = set_hero(s, hero["url"])                    # 4. hero + og/twitter/jsonld

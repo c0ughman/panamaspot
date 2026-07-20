@@ -1,0 +1,722 @@
+{
+ "https://upload.wikimedia.org/wikipedia/commons/c/cb/Aerial_view_of_Boquete%2C_Panama.jpg": {
+  "w": 4000,
+  "h": 2628
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/ed/Aerial_view_of_the_Province_of_Chiriqui%2C_Republic_of_Panama_02.jpg": {
+  "w": 3417,
+  "h": 2189
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/c/c3/Aerial_view_of_the_Province_of_Chiriqui%2C_Republic_of_Panama_06.jpg": {
+  "w": 3796,
+  "h": 2847
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/49/Atardecer_en_El_Valle_de_Ant%C3%B3n.jpg": {
+  "w": 2000,
+  "h": 1335
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/a/a8/Boquete%2C_Alto_Jaramillo%2C_Chiriqu%C3%AD%2C_Rep%C3%BAblica_de_Panam%C3%A1.png": {
+  "w": 7128,
+  "h": 2429
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/2/2c/Boquete_Cloud_Forest_2.jpg": {
+  "w": 1600,
+  "h": 1200
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/6/68/Boquete_RioCaldera.jpg": {
+  "w": 5198,
+  "h": 3462
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/2/20/Causeway_de_Amador_17-12-14.jpg": {
+  "w": 3974,
+  "h": 2235
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/5/5b/ChorroMachoElValle.jpg": {
+  "w": 1930,
+  "h": 2898
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/db/Chorro_Marcho_EL_Valle_Panama_01.jpg": {
+  "w": 3462,
+  "h": 5198
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/db/Colibri-thalassinus-001-edit.jpg": {
+  "w": 2112,
+  "h": 1320
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/e1/EL_MACHO_FALLS_-_panoramio.jpg": {
+  "w": 2072,
+  "h": 2576
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/2/22/El_Chorro_Macho_La_Mochila.jpg": {
+  "w": 3168,
+  "h": 4752
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/3/3a/El_Valle_%281%29.jpg": {
+  "w": 3072,
+  "h": 2040
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/82/El_valle2.jpg": {
+  "w": 5652,
+  "h": 2476
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/8f/Elementary_School_in_Boquete_Panama_11.jpg": {
+  "w": 1200,
+  "h": 800
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/4e/Finca_Lerida%2C_Boquete%2C_Panama.jpg": {
+  "w": 3072,
+  "h": 2304
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/f/f4/ISS015-E-27703_-_View_of_Panama.jpg": {
+  "w": 3032,
+  "h": 2008
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/f/f3/La_Amistad_Panama_Biosphere_Reserve_-_Bocas_del_Toro_Province_42_-_Core_Zone_-_Summit_of_Volcan_Baru%2C_Volcan_Baru_National_Park.jpg": {
+  "w": 1968,
+  "h": 1312
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/0/0d/La_Amistad_Panama_Biosphere_Reserve_-_Parque_Nacional_Volcan_Baru_%28a_core_zone%29_09.JPG": {
+  "w": 4320,
+  "h": 3240
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/7f/Laguna_La_Mochila.jpg": {
+  "w": 2816,
+  "h": 2112
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/6/64/Pharomachrus_mocinno_294535167.jpg": {
+  "w": 2048,
+  "h": 1366
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/44/RVN06957.jpg": {
+  "w": 6000,
+  "h": 4000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/0/0a/Resplendent_Quetzal_%28Pharomachrus_mocinno%29_-_Flickr_-_gailhampshire_%281%29.jpg": {
+  "w": 2938,
+  "h": 2499
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/c/cd/Rope_Bridge_Near_Cerro_El_Macho_Waterfall.jpg": {
+  "w": 3648,
+  "h": 2736
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/0/02/Scenery_in_El_Valle_de_Anton.jpg": {
+  "w": 2736,
+  "h": 3648
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/4b/Scenery_in_El_Valle_de_Anton_%2802%29.jpg": {
+  "w": 3648,
+  "h": 2736
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/b/b3/Street_Scene_-_El_Valle_de_Anton.jpg": {
+  "w": 3648,
+  "h": 2736
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/7f/Street_Scene_-_El_Valle_de_Anton_-_Cocle_Province_-_Panama_-_03_%2811503415213%29.jpg": {
+  "w": 2736,
+  "h": 3648
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/46/Summit_of_Volcan_Baru_visible_from_the_town_of_Volcan.JPG": {
+  "w": 5616,
+  "h": 3744
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/48/View_from_Finca_Lerida_coffee_plantation_-_Flickr_-_gailhampshire.jpg": {
+  "w": 4467,
+  "h": 2916
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/c/ca/Volcan_Baru%2C_Quetzal_Trail_-_Flickr_-_gailhampshire.jpg": {
+  "w": 4608,
+  "h": 3072
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/48/Volcan_Baru_-_Flickr_-_gailhampshire.jpg": {
+  "w": 4344,
+  "h": 3072
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/3/31/Volcan_Baru_in_a_cloud_shroud.jpg": {
+  "w": 2400,
+  "h": 1349
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/d3/Volcan_Baru_up_close_and_clouded.jpg": {
+  "w": 4000,
+  "h": 3000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/7a/Volcan_baru.jpg": {
+  "w": 825,
+  "h": 528
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/3/30/Volc%C3%A1n_Bar%C3%BA_desde_Volc%C3%A1n.JPG": {
+  "w": 3264,
+  "h": 2448
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/3/3d/Waterfall_at_Cerro_El_Macho_%2802%29.jpg": {
+  "w": 2736,
+  "h": 3648
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/f/f0/Waterfall_at_Cerro_El_Macho_%2803%29.jpg": {
+  "w": 2736,
+  "h": 3648
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/42/WetRapel_Abseiling.jpg": {
+  "w": 2304,
+  "h": 3456
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/2/2e/06._Canal_de_Panama_%2817%29.JPG": {
+  "w": 2592,
+  "h": 1944
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/4a/5-Torre_Panama_Vieja-08-099-DCMHN.jpg": {
+  "w": 2000,
+  "h": 2667
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/4c/Along_the_Cinta_Costera_at_Nightfall_%2805%29.jpg": {
+  "w": 3648,
+  "h": 2736
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/5/5f/Altar_de_Oro_Iglesia_San_Jos%C3%A9_de_Panam%C3%A1.jpg": {
+  "w": 540,
+  "h": 720
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/2/29/Amador_Causeway_-_22929854980.jpg": {
+  "w": 3731,
+  "h": 2498
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/5/51/Calle_Casco_Viejo.jpg": {
+  "w": 1946,
+  "h": 2629
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/e7/Calzada_de_Amador_%28Vista_A%C3%A9rea_desde_Isla_Naos%29.jpg": {
+  "w": 3375,
+  "h": 2250
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/b/b7/Canal_de_Panama._Exclusas_de_miraflores._-_Flickr_-_MaxiV4.jpg": {
+  "w": 1365,
+  "h": 2048
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/8c/Canal_de_Panama_-_Miraflores_-_Detalle_de_Remolcador_-_CJRD.jpg": {
+  "w": 4290,
+  "h": 2856
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/1/17/Casco_Antiguo_%28San_Felipe%29_-_Pamama.jpg": {
+  "w": 3968,
+  "h": 2976
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/1/13/Casco_Viejo%2C_Panama_City%2C_Panama.jpg": {
+  "w": 7160,
+  "h": 4734
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/d1/Casco_Viejo%2C_Panama_City%2C_Panama_-_54301629817.jpg": {
+  "w": 4032,
+  "h": 3024
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/db/Casco_Viejo%2C_Panama_City_%2823652555433%29.jpg": {
+  "w": 3053,
+  "h": 2037
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/4d/Catedral_Panam%C3%A1_Viejo.jpg": {
+  "w": 2048,
+  "h": 1446
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/86/Causeway_de_Amador.jpg": {
+  "w": 1024,
+  "h": 768
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/2/2b/Esclusas_de_Miraflores_Panam%C3%A1.JPG": {
+  "w": 5184,
+  "h": 3456
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/f/fd/IslaPerico_Causeway_Amador.JPG": {
+  "w": 5184,
+  "h": 3456
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/9/99/Isla_Naos_e_Isla_Perico.jpg": {
+  "w": 5184,
+  "h": 3456
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/6/6f/Iv-Ruins_of_the_Cathedral_Tower-_Old_Panama.jpg": {
+  "w": 869,
+  "h": 1319
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/f/fb/Kids_on_Street_-_Casco_Viejo_%28Old_City%29_-_Panama_City_-_Panama_%2811427353396%29.jpg": {
+  "w": 3648,
+  "h": 2736
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/f/fd/Main_Building_of_the_Miraflores_Locks.jpg": {
+  "w": 2592,
+  "h": 1936
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/2/2f/Miraflores_Locks_-_49953155947.jpg": {
+  "w": 5562,
+  "h": 3708
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/0/05/Old_Panama_City_-_Casco_Viejo_-_Panama_-_panoramio_%2813%29.jpg": {
+  "w": 2848,
+  "h": 4288
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/89/Old_Panama_City_-_Casco_Viejo_-_Panama_-_panoramio_%285%29.jpg": {
+  "w": 4288,
+  "h": 2848
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/a/a2/Panama_Canal_-_Pacific_Side_Entrance.jpg": {
+  "w": 831,
+  "h": 686
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/f/f7/Panama_Canal_Gatun_Locks.jpg": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/f/f6/Panama_Canal_Trip_1994_01.jpg": {
+  "w": 2958,
+  "h": 2016
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/5/53/Panama_City_-_Casco_Viejo.jpg": {
+  "w": 5184,
+  "h": 2916
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/4d/Panama_City_Casco_Viejo.jpg": {
+  "w": 3264,
+  "h": 2448
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/42/Panama_city_Amador_Causeway-9673_-_Flickr_-_Ragnhild_%26_Neil_Crawford.jpg": {
+  "w": 1400,
+  "h": 528
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/1/13/Panam%C3%A1_Viejo_%282005%29_01.jpg": {
+  "w": 717,
+  "h": 1071
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/0/02/Torre_Catedral_%28Panam%C3%A1_Viejo%29.JPG": {
+  "w": 4272,
+  "h": 2848
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/0/0f/Torre_Catedral_PANAM%C3%81_VIEJO..jpg": {
+  "w": 3456,
+  "h": 5184
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/9/96/Torre_Panam%C3%A1_Viejo_y_Plaza.JPG": {
+  "w": 4608,
+  "h": 3456
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/c/c4/Torre_de_Panama_Viejo.jpg": {
+  "w": 2498,
+  "h": 1691
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/e3/Torre_de_la_Catedral_Panam%C3%A1_Viejo.jpg": {
+  "w": 3500,
+  "h": 2333
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/df/Torre_de_la_Catedral_Panam%C3%A1_Viejo_Panam%C3%A1.jpg": {
+  "w": 1750,
+  "h": 2625
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/87/Torre_de_la_Catedral_Panam%C3%A1_Viejo_desde_adentro.jpg": {
+  "w": 3500,
+  "h": 2063
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/74/Tower_of_the_Cathedral_at_Old_Panama_City_ruins.jpg": {
+  "w": 6000,
+  "h": 4000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/74/Vista_desde_Torre_en_Panam%C3%A1_Viejo_.jpg": {
+  "w": 2389,
+  "h": 2985
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/49/...a_reflection_of_life..._-_panoramio.jpg": {
+  "w": 1800,
+  "h": 1200
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/b/b0/Arroz_con_coco%2C_pescado_frito_y_patacones.jpg": {
+  "w": 4000,
+  "h": 3000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/ef/Bocas1.jpg": {
+  "w": 945,
+  "h": 707
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/e5/Bocas_Town_--_Isla_Colon.jpg": {
+  "w": 4032,
+  "h": 3024
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/a/a7/Bocas_del_Toro%2C_Changuinola%2C_Panama_%28Unsplash%29.jpg": {
+  "w": 2361,
+  "h": 3148
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bocas_del_Toro_Panama.jpg": {
+  "w": 3992,
+  "h": 2242
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/de/Bocas_del_Toro_Panama_6.jpg": {
+  "w": 3992,
+  "h": 2992
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/1/18/Bradypus.jpg": {
+  "w": 1536,
+  "h": 2048
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/c/c0/Calle_en_Isla_Taboga_-_Panam%C3%A1.jpg": {
+  "w": 2976,
+  "h": 3968
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/0/00/Canal_-_Lake_Gatun_-_panoramio.jpg": {
+  "w": 3072,
+  "h": 2304
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/5/52/Casa_Fuerte_de_Bater%C3%ADas_dec_San_Fernando_-_Fortificaciones_de_Portobelo%2C_Panama.jpg": {
+  "w": 640,
+  "h": 480
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/2/2c/Cinta_Costera_Paitilla1.JPG": {
+  "w": 3648,
+  "h": 2736
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/73/Cinta_Costera_Panama_Agosto20019.jpg": {
+  "w": 3992,
+  "h": 2242
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/5/5c/Cinta_Costera_Pma.jpg": {
+  "w": 1930,
+  "h": 2898
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/d3/Cinta_Costera_de_Panam%C3%A1.jpg": {
+  "w": 2048,
+  "h": 1536
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/88/Cinta_costera%2C_Panam%C3%A1.jpg": {
+  "w": 4000,
+  "h": 2248
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/2/26/Cinta_costera%2C_que_rodea_exteriormente_el_centro_hist%C3%B3rico_de_la_ciudad_de_Panam%C3%A1.jpg": {
+  "w": 3642,
+  "h": 1841
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/70/Container_Vessel_HS_Mozart_Gatun_Lake_Panama_Canal_0682.jpg": {
+  "w": 5621,
+  "h": 3426
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/a/a0/Facade_-_Portobelo_-_Caribbean_Coast_-_Panama_%2811457833485%29.jpg": {
+  "w": 3648,
+  "h": 2736
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/d1/Gatun_Lake.jpg": {
+  "w": 1500,
+  "h": 1000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/72/Gatun_Lake_-_50088345977.jpg": {
+  "w": 5500,
+  "h": 3094
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/3/3d/Gatun_Panama.png": {
+  "w": 796,
+  "h": 724
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/df/Geoffroy%27s_tamarin_%28Saguinus_geoffroyi%29_2.jpg": {
+  "w": 3993,
+  "h": 3993
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/9/9d/Harbourt_Scene_-_Portobelo_-_Caribbean_Coast_-_Panama_-_02_%2811457888296%29.jpg": {
+  "w": 2736,
+  "h": 3648
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/f/f2/ISS065-E-31000_-_View_of_Panama_-_Taboga_Island_-_island_Isla_de_Urab%C3%A1_%28cropped%29.jpg": {
+  "w": 2491,
+  "h": 1868
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/e8/IslaTaboga.JPG": {
+  "w": 5184,
+  "h": 3456
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/e0/Lunch_near_Portobelo%2C_Panama_%283777588022%29.jpg": {
+  "w": 3648,
+  "h": 2736
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/5/53/Mercado_de_Mariscos_%28Ciudad_de_Panam%C3%A1%2C_Panam%C3%A1%29.jpg": {
+  "w": 3264,
+  "h": 2448
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/4f/Panama%2C_Gatun_Lake_1.jpg": {
+  "w": 5184,
+  "h": 2916
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/70/Panama%2C_Gatun_Lake_2.jpg": {
+  "w": 4994,
+  "h": 2809
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/9/9d/Panama_-_Porto_Bello_ruins.jpg": {
+  "w": 1600,
+  "h": 990
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/5/55/Panama_-_Taboga_-_panoramio.jpg": {
+  "w": 5117,
+  "h": 2799
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/2/26/Panama_-_Taboga_-_panoramio_%281%29.jpg": {
+  "w": 5184,
+  "h": 2920
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/f/f8/Portobelo%2C_Colon._Panam%C3%A1_2.jpg": {
+  "w": 2592,
+  "h": 1944
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/3/3a/Portobelo%2C_Colon.jpg": {
+  "w": 2592,
+  "h": 1944
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/3/30/Spanish_Cannon_at_Portobelo%2C_Panama_%283777622546%29.jpg": {
+  "w": 3648,
+  "h": 2736
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/9/9c/Sport_courts_in_Cinta_Costera_-_Panama_City_%28DSCF5759%29.jpg": {
+  "w": 3653,
+  "h": 2426
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/d9/TabogaBeach.JPG": {
+  "w": 5184,
+  "h": 3456
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/a/ae/Taboga_Insel.jpg": {
+  "w": 932,
+  "h": 700
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/74/Taboga_island.jpg": {
+  "w": 933,
+  "h": 700
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/78/Ancon_Hill_-_14095325320.jpg": {
+  "w": 2000,
+  "h": 3008
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/df/Ancon_Hill_-_2014.JPG": {
+  "w": 1944,
+  "h": 2592
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/6/6d/Ancon_Hill_in_Panama_01.jpg": {
+  "w": 2048,
+  "h": 1536
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/eb/Antennarius_commerson.jpg": {
+  "w": 4368,
+  "h": 2912
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/c/c2/Anton_Valle_foothills_-_Flickr_-_gailhampshire.jpg": {
+  "w": 4608,
+  "h": 3072
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/9/94/Arothron_meleagris.jpg": {
+  "w": 4368,
+  "h": 2912
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/8b/Atelopus_zeteki.jpg": {
+  "w": 1024,
+  "h": 681
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/1/17/Atelopus_zeteki_VA.jpg": {
+  "w": 4032,
+  "h": 3024
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/b/b1/Baird%27s_tapir_mother_with_baby_%2892151%29.jpg": {
+  "w": 3920,
+  "h": 2768
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/8c/Bocas_del_Toro_Province%2C_Panama_-_panoramio_%2813%29.jpg": {
+  "w": 3774,
+  "h": 2829
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/6/64/Catedral_Metropolitana_Panam%C3%A1.jpg": {
+  "w": 2872,
+  "h": 2872
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/5/52/Coiba_Panama_%2826216765884%29.jpg": {
+  "w": 6000,
+  "h": 4000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/8c/Coiba_Panama_%2826822070175%29.jpg": {
+  "w": 6000,
+  "h": 4000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/c/cc/Coiba_Sunset_%282071282152%29.jpg": {
+  "w": 4368,
+  "h": 2912
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/77/Coibita_Island_Panorama.jpg": {
+  "w": 11722,
+  "h": 3902
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/76/Countryside_around_El_Valle_%2803%29.jpg": {
+  "w": 3648,
+  "h": 2736
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/b/b0/Countryside_around_El_Valle_%2804%29.jpg": {
+  "w": 3648,
+  "h": 2736
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/c/cd/El_Valle_%284242157981%29.jpg": {
+  "w": 3968,
+  "h": 2976
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/4e/El_Valle_%284242926674%29.jpg": {
+  "w": 4032,
+  "h": 3024
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/ed/GOLF_COURSE_AND_PANAMA_CITY_SKYLINE_-_panoramio.jpg": {
+  "w": 3872,
+  "h": 2592
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/83/Gnathanodon_speciosus.jpg": {
+  "w": 4368,
+  "h": 2912
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/a/a2/Horses_and_Bougainvillea_-_El_Valle.jpg": {
+  "w": 3648,
+  "h": 2736
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/1/1f/Insel_Coiba_Rangerstation_%2826549648040%29.jpg": {
+  "w": 6000,
+  "h": 4000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/88/Insel_Coiba_Strand_%2826217559123%29.jpg": {
+  "w": 6000,
+  "h": 4000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/89/Isla_Canales_de_Afuera_Shallows_%282063365818%29.jpg": {
+  "w": 4368,
+  "h": 2912
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/9/9e/Isla_de_Coiba_-_Granite_de_Oro_-_Pacific_Ocean_Islands_off_Panama_-_panoramio_%2810%29.jpg": {
+  "w": 4288,
+  "h": 2848
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/5/52/Jard%C3%ADn_Zool%C3%B3gico_El_Nispero.jpg": {
+  "w": 4320,
+  "h": 2880
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/1/1f/Kristallklares_Wasser_Coiba_Panama_%2826549517610%29.jpg": {
+  "w": 6000,
+  "h": 4000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/6/61/LaIndiaDormida.jpg": {
+  "w": 5184,
+  "h": 3456
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/d1/Panama_City_Skyline_1.jpg": {
+  "w": 5184,
+  "h": 2916
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/c/c2/Panama_City_Skyline_180107.jpg": {
+  "w": 4000,
+  "h": 2246
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/3/39/Panama_city_Skyline.jpg": {
+  "w": 2592,
+  "h": 1944
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/5/52/Panama_skyline.jpg": {
+  "w": 750,
+  "h": 1334
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/c/c4/Three-toed_Sloth_-_Cerro_Ancon_-_Panama_City_%2848454787316%29.jpg": {
+  "w": 1200,
+  "h": 800
+ },
+ "https://images.pexels.com/photos/920270/pexels-photo-920270.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1068
+ },
+ "https://images.pexels.com/photos/36791113/pexels-photo-36791113.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/35125836/pexels-photo-35125836.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/16017280/pexels-photo-16017280.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/36345390/pexels-photo-36345390.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/33803472/pexels-photo-33803472.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 900
+ },
+ "https://images.pexels.com/photos/5005136/pexels-photo-5005136.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/18049699/pexels-photo-18049699.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/18183895/pexels-photo-18183895.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/1867024/pexels-photo-1867024.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/18184146/pexels-photo-18184146.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/2564872/pexels-photo-2564872.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/33803474/pexels-photo-33803474.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 900
+ },
+ "https://images.pexels.com/photos/2666249/pexels-photo-2666249.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/30826590/pexels-photo-30826590.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1068
+ },
+ "https://images.pexels.com/photos/12861718/pexels-photo-12861718.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1068
+ },
+ "https://images.pexels.com/photos/25489812/pexels-photo-25489812.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1068
+ },
+ "https://images.pexels.com/photos/33161290/pexels-photo-33161290.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/32791312/pexels-photo-32791312.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1066
+ },
+ "https://images.pexels.com/photos/17254453/pexels-photo-17254453.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/17477516/pexels-photo-17477516.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/11962310/pexels-photo-11962310.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/13110362/pexels-photo-13110362.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/33803476/pexels-photo-33803476.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 900
+ },
+ "https://images.pexels.com/photos/28518788/pexels-photo-28518788.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/33452256/pexels-photo-33452256.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 900
+ }
+}

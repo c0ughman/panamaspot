@@ -14,6 +14,35 @@ export default function sitemap(): MetadataRoute.Sitemap {
       "x-default": siteConfig.url,
     },
   };
+
+  // The 2026-07 batch of guide pages (image + SEO refresh). `hero` is the
+  // width-capped LCP image, surfaced as an <image:image> entry for image SEO.
+  // `pair` sets reciprocal hreflang alternates for the true EN↔ES translations;
+  // single-language guides list only themselves (self + x-default).
+  const guidesLastMod = new Date("2026-07-20");
+  const guide = (
+    path: string,
+    hero: string,
+    pair?: { en: string; es: string },
+  ): MetadataRoute.Sitemap[number] => ({
+    url: `${siteConfig.url}/${path}`,
+    lastModified: guidesLastMod,
+    changeFrequency: "monthly",
+    priority: 0.8,
+    images: [hero],
+    ...(pair
+      ? {
+          alternates: {
+            languages: {
+              en: `${siteConfig.url}/${pair.en}`,
+              es: `${siteConfig.url}/${pair.es}`,
+              "x-default": `${siteConfig.url}/${pair.en}`,
+            },
+          },
+        }
+      : {}),
+  });
+
   return [
     {
       url: siteConfig.url,
@@ -357,5 +386,101 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+
+    // ── Overhauled guide pages (2026-07 image + SEO refresh) ─────────────────
+    guide(
+      "articles/volcan-baru-hike-sunrise-summit-guide",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Volcan_Baru_up_close_and_clouded.jpg/1280px-Volcan_Baru_up_close_and_clouded.jpg",
+      { en: "articles/volcan-baru-hike-sunrise-summit-guide", es: "es/articles/volcan-baru-como-subir-cima-panama" },
+    ),
+    guide(
+      "es/articles/volcan-baru-como-subir-cima-panama",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Volcan_Baru_up_close_and_clouded.jpg/1280px-Volcan_Baru_up_close_and_clouded.jpg",
+      { en: "articles/volcan-baru-hike-sunrise-summit-guide", es: "es/articles/volcan-baru-como-subir-cima-panama" },
+    ),
+    guide(
+      "articles/boquete-travel-guide",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Aerial_view_of_Boquete%2C_Panama.jpg/1280px-Aerial_view_of_Boquete%2C_Panama.jpg",
+      { en: "articles/boquete-travel-guide", es: "es/articles/boquete-panama-guia-completa-itinerario" },
+    ),
+    guide(
+      "es/articles/boquete-panama-guia-completa-itinerario",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Aerial_view_of_Boquete%2C_Panama.jpg/1280px-Aerial_view_of_Boquete%2C_Panama.jpg",
+      { en: "articles/boquete-travel-guide", es: "es/articles/boquete-panama-guia-completa-itinerario" },
+    ),
+    guide(
+      "articles/el-valle-de-anton-with-kids",
+      "https://images.pexels.com/photos/12861718/pexels-photo-12861718.jpeg?auto=compress&cs=tinysrgb&w=1280",
+      { en: "articles/el-valle-de-anton-with-kids", es: "es/articles/zoologico-el-nispero-el-valle-de-anton" },
+    ),
+    guide(
+      "es/articles/zoologico-el-nispero-el-valle-de-anton",
+      "https://images.pexels.com/photos/12861718/pexels-photo-12861718.jpeg?auto=compress&cs=tinysrgb&w=1280",
+      { en: "articles/el-valle-de-anton-with-kids", es: "es/articles/zoologico-el-nispero-el-valle-de-anton" },
+    ),
+    guide(
+      "articles/amador-causeway-biomuseo-guide",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Causeway_de_Amador_17-12-14.jpg/1280px-Causeway_de_Amador_17-12-14.jpg",
+    ),
+    guide(
+      "articles/bocas-del-toro-island-hopping-guide",
+      "https://images.pexels.com/photos/30826590/pexels-photo-30826590.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    guide(
+      "articles/casco-viejo-panama-walking-guide",
+      "https://images.pexels.com/photos/18049699/pexels-photo-18049699.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    guide(
+      "articles/cerro-gaital-cara-iguana-hike-el-valle",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Anton_Valle_foothills_-_Flickr_-_gailhampshire.jpg/1280px-Anton_Valle_foothills_-_Flickr_-_gailhampshire.jpg",
+    ),
+    guide(
+      "articles/day-trips-from-panama-city",
+      "https://images.pexels.com/photos/17477516/pexels-photo-17477516.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    guide(
+      "articles/el-valle-de-anton-waterfalls",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/ChorroMachoElValle.jpg/1280px-ChorroMachoElValle.jpg",
+    ),
+    guide(
+      "articles/finca-lerida-los-quetzales-trail-birdwatching-boquete",
+      "https://images.pexels.com/photos/16017280/pexels-photo-16017280.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    guide(
+      "articles/panama-canal-tour-miraflores-locks-visitor-guide",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Panama_Canal_Gatun_Locks.jpg/1280px-Panama_Canal_Gatun_Locks.jpg",
+    ),
+    guide(
+      "articles/panama-city-itinerary-3-days",
+      "https://images.pexels.com/photos/17477516/pexels-photo-17477516.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    guide(
+      "es/articles/aguas-termales-el-valle-de-anton",
+      "https://images.pexels.com/photos/920270/pexels-photo-920270.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    guide(
+      "es/articles/canopy-el-valle-de-anton-cabalgatas-aventura",
+      "https://images.pexels.com/photos/28518788/pexels-photo-28518788.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    guide(
+      "es/articles/casco-viejo-restaurantes-donde-comer-beber-hospedarse",
+      "https://images.pexels.com/photos/18049699/pexels-photo-18049699.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    guide(
+      "es/articles/cinta-costera-panama-mercado-mariscos-panama-viejo",
+      "https://images.pexels.com/photos/5005136/pexels-photo-5005136.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    ),
+    guide(
+      "es/articles/isla-coiba-buceo-parque-nacional",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Gnathanodon_speciosus.jpg/1280px-Gnathanodon_speciosus.jpg",
+    ),
+    guide(
+      "es/articles/que-hacer-en-ciudad-de-panama",
+      "https://images.pexels.com/photos/17477516/pexels-photo-17477516.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    guide(
+      "es/articles/rafting-boquete-rio-chiriqui",
+      "https://images.pexels.com/photos/36791113/pexels-photo-36791113.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
   ];
 }

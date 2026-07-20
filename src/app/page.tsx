@@ -40,7 +40,6 @@ const BOCAS_PHOTO = pexels(2038744);
 const BOQUETE_PHOTO = pexels(2380342);
 const PANAMA_CITY_PHOTO = pexels(14840814);
 const EL_VALLE_PHOTO = pexels(30774416);
-const GUNA_PHOTO = pexels(31416948);
 
 // ── Data ─────────────────────────────────────────────────────────────────────
 
@@ -49,11 +48,7 @@ const REGIONS: Card[] = [
   { title: "Boquete", tag: "Guide", img: { kind: "photo", src: BOQUETE_PHOTO }, href: BOQUETE },
   { title: "Panama City", tag: "Guide", img: { kind: "photo", src: PANAMA_CITY_PHOTO }, href: PANAMA_CITY },
   { title: "El Valle de Antón", tag: "Guide", img: { kind: "photo", src: EL_VALLE_PHOTO }, href: EL_VALLE },
-  { title: "Guna Yala", tag: "Coming soon", img: { kind: "photo", src: GUNA_PHOTO }, comingSoon: true },
-  { title: "Casco Viejo", tag: "Coming soon", img: { kind: "photo", src: pexels(19620790) }, comingSoon: true },
-  { title: "Pedasí", tag: "Coming soon", img: { kind: "photo", src: pexels(18976053) }, comingSoon: true },
-  { title: "Coiba", tag: "Coming soon", img: { kind: "photo", src: pexels(4171716) }, comingSoon: true },
-  { title: "The Darién", tag: "Coming soon", img: { kind: "photo", src: pexels(36105293) }, comingSoon: true },
+  { title: "Casco Viejo", tag: "Guide", img: { kind: "photo", src: "https://images.pexels.com/photos/18049699/pexels-photo-18049699.jpeg?auto=compress&cs=tinysrgb&w=700" }, href: "/articles/casco-viejo-panama-walking-guide" },
 ];
 
 const ACTIVITIES: Card[] = [
@@ -63,8 +58,7 @@ const ACTIVITIES: Card[] = [
   { title: "Food & Coffee", tag: "Guide", img: { kind: "photo", src: pexels(30658818) }, href: BOQUETE },
   { title: "Eco-tourism", tag: "Guide", img: { kind: "photo", src: pexels(3603874) }, href: EL_VALLE },
   { title: "Cities & Culture", tag: "Guide", img: { kind: "photo", src: pexels(23910182) }, href: PANAMA_CITY },
-  { title: "Islands & Beaches", tag: "Guide", img: { kind: "photo", src: pexels(8951333) }, href: BOCAS },
-  { title: "Markets & Town Life", tag: "Coming soon", img: { kind: "photo", src: pexels(7823008) }, comingSoon: true },
+  { title: "Islands & Beaches", tag: "Guide", img: { kind: "photo", src: "https://images.pexels.com/photos/30826590/pexels-photo-30826590.jpeg?auto=compress&cs=tinysrgb&w=700" }, href: "/articles/bocas-del-toro-island-hopping-guide" },
 ];
 
 const BOQUETE_GUIDES: Card[] = [
@@ -74,6 +68,9 @@ const BOQUETE_GUIDES: Card[] = [
   { title: "Lost Waterfalls", tag: "Hiking", img: { kind: "photo", src: "/images/boquete/boquete-manmadewaterfall.webp" }, href: BOQUETE_WATERFALLS },
   { title: "Coffee Farm Tours", tag: "Guide", img: { kind: "photo", src: pexels(7761601) }, href: BOQUETE_COFFEE },
   { title: "Caldera Hot Springs", tag: "Guide", img: { kind: "photo", src: "/images/boquete/boquete-river2.webp" }, href: BOQUETE_CALDERA },
+  { title: "Volcán Barú Sunrise Hike", tag: "Hiking", img: { kind: "photo", src: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Volcan_Baru_up_close_and_clouded.jpg/500px-Volcan_Baru_up_close_and_clouded.jpg" }, href: "/articles/volcan-baru-hike-sunrise-summit-guide" },
+  { title: "Boquete Travel Guide", tag: "Guide", img: { kind: "photo", src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Aerial_view_of_Boquete%2C_Panama.jpg/500px-Aerial_view_of_Boquete%2C_Panama.jpg" }, href: "/articles/boquete-travel-guide" },
+  { title: "Finca Lérida Birdwatching", tag: "Wildlife", img: { kind: "photo", src: "https://images.pexels.com/photos/16017280/pexels-photo-16017280.jpeg?auto=compress&cs=tinysrgb&w=700" }, href: "/articles/finca-lerida-los-quetzales-trail-birdwatching-boquete" },
 ];
 
 const EL_VALLE_GUIDES: Card[] = [
@@ -83,6 +80,17 @@ const EL_VALLE_GUIDES: Card[] = [
   { title: "Chorro El Macho Waterfall", tag: "Guide", img: { kind: "photo", src: "/images/el-valle/elvalle-elmachowaterfall.webp" }, href: EV_CHORRO },
   { title: "El Valle Day Trip", tag: "Guide", img: { kind: "photo", src: "/images/el-valle/elvalle-panorama.webp" }, href: EV_DAY_TRIP },
   { title: "India Dormida Hike", tag: "Hiking", img: { kind: "photo", src: "/images/el-valle/elvalle-indiadormida.webp" }, href: EV_INDIA },
+  { title: "El Valle Waterfalls", tag: "Guide", img: { kind: "photo", src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/ChorroMachoElValle.jpg/500px-ChorroMachoElValle.jpg" }, href: "/articles/el-valle-de-anton-waterfalls" },
+  { title: "Cerro Gaital & Cara Iguana", tag: "Hiking", img: { kind: "photo", src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Anton_Valle_foothills_-_Flickr_-_gailhampshire.jpg/500px-Anton_Valle_foothills_-_Flickr_-_gailhampshire.jpg" }, href: "/articles/cerro-gaital-cara-iguana-hike-el-valle" },
+  { title: "El Valle With Kids", tag: "Family", img: { kind: "photo", src: "https://images.pexels.com/photos/12861718/pexels-photo-12861718.jpeg?auto=compress&cs=tinysrgb&w=700" }, href: "/articles/el-valle-de-anton-with-kids" },
+];
+
+const PANAMA_CITY_GUIDES: Card[] = [
+  { title: "Panama City in 3 Days", tag: "Itinerary", img: { kind: "photo", src: "https://images.pexels.com/photos/17477516/pexels-photo-17477516.jpeg?auto=compress&cs=tinysrgb&w=700" }, href: "/articles/panama-city-itinerary-3-days" },
+  { title: "Casco Viejo Walking Guide", tag: "Guide", img: { kind: "photo", src: "https://images.pexels.com/photos/18049699/pexels-photo-18049699.jpeg?auto=compress&cs=tinysrgb&w=700" }, href: "/articles/casco-viejo-panama-walking-guide" },
+  { title: "Panama Canal & Miraflores", tag: "Guide", img: { kind: "photo", src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Panama_Canal_Gatun_Locks.jpg/500px-Panama_Canal_Gatun_Locks.jpg" }, href: "/articles/panama-canal-tour-miraflores-locks-visitor-guide" },
+  { title: "Amador Causeway & Biomuseo", tag: "Guide", img: { kind: "photo", src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Causeway_de_Amador_17-12-14.jpg/500px-Causeway_de_Amador_17-12-14.jpg" }, href: "/articles/amador-causeway-biomuseo-guide" },
+  { title: "Best Day Trips From the City", tag: "Day trips", img: { kind: "photo", src: "https://images.pexels.com/photos/17477516/pexels-photo-17477516.jpeg?auto=compress&cs=tinysrgb&w=700" }, href: "/articles/day-trips-from-panama-city" },
 ];
 
 export default function Home() {
@@ -117,6 +125,13 @@ export default function Home() {
         link="Browse by activity"
         icon="activity"
         cards={ACTIVITIES}
+      />
+      <CategorySection
+        id="cat-panama-city"
+        title="Explore Panama City"
+        link="All Panama City guides"
+        icon="activity"
+        cards={PANAMA_CITY_GUIDES}
       />
       <CategorySection
         id="cat-boquete"

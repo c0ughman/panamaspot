@@ -40,30 +40,27 @@ const BOCAS_PHOTO = pexels(2038744);
 const BOQUETE_PHOTO = pexels(2380342);
 const PANAMA_CITY_PHOTO = pexels(14840814);
 const EL_VALLE_PHOTO = pexels(30774416);
-const GUNA_PHOTO = pexels(31416948);
 
 // ── Datos ──────────────────────────────────────────────────────────────────
 
 const REGIONS: Card[] = [
   { title: "Ciudad de Panamá", tag: "Guía", img: { kind: "photo", src: PANAMA_CITY_PHOTO }, href: PANAMA_CITY },
   { title: "El Valle de Antón", tag: "Guía", img: { kind: "photo", src: EL_VALLE_PHOTO }, href: EL_VALLE },
-  { title: "Bocas del Toro", tag: "Próximamente", img: { kind: "photo", src: BOCAS_PHOTO }, comingSoon: true },
+  { title: "Bocas del Toro", tag: "Guía", img: { kind: "photo", src: "https://images.pexels.com/photos/16146741/pexels-photo-16146741.jpeg?auto=compress&cs=tinysrgb&w=700" }, href: "/es/articles/como-llegar-a-bocas-del-toro-desde-ciudad-de-panama" },
   { title: "Boquete", tag: "Guía", img: { kind: "photo", src: BOQUETE_PHOTO }, href: BOQUETE_QH },
-  { title: "Guna Yala", tag: "Próximamente", img: { kind: "photo", src: GUNA_PHOTO }, comingSoon: true },
-  { title: "Casco Viejo", tag: "Próximamente", img: { kind: "photo", src: pexels(19620790) }, comingSoon: true },
-  { title: "Pedasí", tag: "Próximamente", img: { kind: "photo", src: pexels(18976053) }, comingSoon: true },
-  { title: "Coiba", tag: "Próximamente", img: { kind: "photo", src: pexels(4171716) }, comingSoon: true },
-  { title: "El Darién", tag: "Próximamente", img: { kind: "photo", src: pexels(36105293) }, comingSoon: true },
+  { title: "Guna Yala", tag: "Guía", img: { kind: "photo", src: "https://images.pexels.com/photos/30271300/pexels-photo-30271300.jpeg?auto=compress&cs=tinysrgb&w=700" }, href: "/es/articles/san-blas-guna-yala-guia-tours-islas" },
+  { title: "Casco Viejo", tag: "Guía", img: { kind: "photo", src: "https://images.pexels.com/photos/18049699/pexels-photo-18049699.jpeg?auto=compress&cs=tinysrgb&w=700" }, href: "/es/articles/casco-viejo-restaurantes-donde-comer-beber-hospedarse" },
+  { title: "Coiba", tag: "Guía", img: { kind: "photo", src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Gnathanodon_speciosus.jpg/500px-Gnathanodon_speciosus.jpg" }, href: "/es/articles/isla-coiba-buceo-parque-nacional" },
 ];
 
 const ACTIVITIES: Card[] = [
   { title: "Ciudades y Cultura", tag: "Guía", img: { kind: "photo", src: pexels(23910182) }, href: PANAMA_CITY },
   { title: "Senderismo", tag: "Guía", img: { kind: "photo", src: pexels(10343761) }, href: EL_VALLE },
   { title: "Ecoturismo", tag: "Guía", img: { kind: "photo", src: pexels(3603874) }, href: EL_VALLE },
-  { title: "Fauna y Aves", tag: "Próximamente", img: { kind: "photo", src: pexels(9566563) }, comingSoon: true },
-  { title: "Surf y Buceo", tag: "Próximamente", img: { kind: "photo", src: pexels(33757647) }, comingSoon: true },
-  { title: "Comida y Café", tag: "Próximamente", img: { kind: "photo", src: pexels(30658818) }, comingSoon: true },
-  { title: "Islas y Playas", tag: "Próximamente", img: { kind: "photo", src: pexels(8951333) }, comingSoon: true },
+  { title: "Fauna y Aves", tag: "Guía", img: { kind: "photo", src: "https://images.pexels.com/photos/12861718/pexels-photo-12861718.jpeg?auto=compress&cs=tinysrgb&w=700" }, href: "/es/articles/zoologico-el-nispero-el-valle-de-anton" },
+  { title: "Surf y Buceo", tag: "Guía", img: { kind: "photo", src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Gnathanodon_speciosus.jpg/500px-Gnathanodon_speciosus.jpg" }, href: "/es/articles/isla-coiba-buceo-parque-nacional" },
+  { title: "Comida y Café", tag: "Guía", img: { kind: "photo", src: "https://images.pexels.com/photos/18049699/pexels-photo-18049699.jpeg?auto=compress&cs=tinysrgb&w=700" }, href: "/es/articles/casco-viejo-restaurantes-donde-comer-beber-hospedarse" },
+  { title: "Islas y Playas", tag: "Guía", img: { kind: "photo", src: "https://images.pexels.com/photos/30271300/pexels-photo-30271300.jpeg?auto=compress&cs=tinysrgb&w=700" }, href: "/es/articles/san-blas-guna-yala-guia-tours-islas" },
 ];
 
 const BOQUETE_GUIAS: Card[] = [
@@ -73,6 +70,9 @@ const BOQUETE_GUIAS: Card[] = [
   { title: "Aguas Termales de Caldera", tag: "Guía", img: { kind: "photo", src: "/images/boquete/boquete-river2.webp" }, href: BOQUETE_AGUAS },
   { title: "Alquiler de Bicicletas", tag: "Tours", img: { kind: "photo", src: "/images/boquete/boquete-ebike-trail.webp" }, href: BOQUETE_ALQUILER },
   { title: "Cómo Llegar a Boquete", tag: "Guía", img: { kind: "photo", src: "/images/boquete/boquete-hills.webp" }, href: BOQUETE_COMO_LLEGAR },
+  { title: "Subir al Volcán Barú", tag: "Senderismo", img: { kind: "photo", src: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Volcan_Baru_up_close_and_clouded.jpg/500px-Volcan_Baru_up_close_and_clouded.jpg" }, href: "/es/articles/volcan-baru-como-subir-cima-panama" },
+  { title: "Guía Completa de Boquete", tag: "Guía", img: { kind: "photo", src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Aerial_view_of_Boquete%2C_Panama.jpg/500px-Aerial_view_of_Boquete%2C_Panama.jpg" }, href: "/es/articles/boquete-panama-guia-completa-itinerario" },
+  { title: "Rafting Río Chiriquí", tag: "Tours", img: { kind: "photo", src: "https://images.pexels.com/photos/36791113/pexels-photo-36791113.jpeg?auto=compress&cs=tinysrgb&w=700" }, href: "/es/articles/rafting-boquete-rio-chiriqui" },
 ];
 
 const EL_VALLE_GUIAS: Card[] = [
@@ -82,6 +82,15 @@ const EL_VALLE_GUIAS: Card[] = [
   { title: "Cascada Chorro El Macho", tag: "Guía", img: { kind: "photo", src: "/images/el-valle/elvalle-elmachowaterfall.webp" }, href: EV_CASCADA },
   { title: "El Valle desde Ciudad de Panamá", tag: "Guía", img: { kind: "photo", src: "/images/el-valle/elvalle-panorama.webp" }, href: EV_DESDE_CIUDAD },
   { title: "Sendero India Dormida", tag: "Senderismo", img: { kind: "photo", src: "/images/el-valle/elvalle-indiadormida.webp" }, href: EV_INDIA_ES },
+  { title: "Aguas Termales de El Valle", tag: "Guía", img: { kind: "photo", src: "https://images.pexels.com/photos/920270/pexels-photo-920270.jpeg?auto=compress&cs=tinysrgb&w=700" }, href: "/es/articles/aguas-termales-el-valle-de-anton" },
+  { title: "Canopy y Aventura", tag: "Tours", img: { kind: "photo", src: "https://images.pexels.com/photos/28518788/pexels-photo-28518788.jpeg?auto=compress&cs=tinysrgb&w=700" }, href: "/es/articles/canopy-el-valle-de-anton-cabalgatas-aventura" },
+  { title: "Zoológico El Níspero", tag: "Familia", img: { kind: "photo", src: "https://images.pexels.com/photos/12861718/pexels-photo-12861718.jpeg?auto=compress&cs=tinysrgb&w=700" }, href: "/es/articles/zoologico-el-nispero-el-valle-de-anton" },
+];
+
+const PANAMA_CITY_GUIAS: Card[] = [
+  { title: "Qué Hacer en la Ciudad", tag: "Guía", img: { kind: "photo", src: "https://images.pexels.com/photos/17477516/pexels-photo-17477516.jpeg?auto=compress&cs=tinysrgb&w=700" }, href: "/es/articles/que-hacer-en-ciudad-de-panama" },
+  { title: "Casco Viejo: Restaurantes", tag: "Guía", img: { kind: "photo", src: "https://images.pexels.com/photos/18049699/pexels-photo-18049699.jpeg?auto=compress&cs=tinysrgb&w=700" }, href: "/es/articles/casco-viejo-restaurantes-donde-comer-beber-hospedarse" },
+  { title: "Cinta Costera y Mercado", tag: "Guía", img: { kind: "photo", src: "https://images.pexels.com/photos/5005136/pexels-photo-5005136.jpeg?auto=compress&cs=tinysrgb&w=700" }, href: "/es/articles/cinta-costera-panama-mercado-mariscos-panama-viejo" },
 ];
 
 export default function HomeEs() {
@@ -123,6 +132,13 @@ export default function HomeEs() {
         link="Explora por actividad"
         icon="activity"
         cards={ACTIVITIES}
+      />
+      <CategorySection
+        id="cat-ciudad-panama"
+        title="Explora Ciudad de Panamá"
+        link="Todas las guías de la ciudad"
+        icon="activity"
+        cards={PANAMA_CITY_GUIAS}
       />
       <CategorySection
         id="cat-boquete"
