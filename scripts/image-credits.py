@@ -42,26 +42,45 @@ def pretty_name(url):
     fname = urllib.parse.unquote(url.split("/")[-1])
     return re.sub(r"\.(jpe?g|png|gif)$", "", fname, flags=re.I).replace("_", " ")
 
+CSS = ('<style id="img-credits-css">'
+       '.img-credits{padding:52px 24px;border-top:1px solid var(--border-light);background:var(--cream)}'
+       '.img-credits-wrap{max-width:1040px;margin:0 auto}'
+       '.img-credits .ic-eyebrow{letter-spacing:.14em;text-transform:uppercase;color:var(--terra);'
+       'font-size:11px;font-weight:600;font-family:var(--mono);display:block;margin-bottom:10px}'
+       '.img-credits h2{font-family:var(--sans);color:var(--ink);font-size:23px;font-weight:600;'
+       'letter-spacing:-.01em;margin:0 0 4px;line-height:1.15}'
+       '.img-credits .ic-sub{color:var(--ink-mute);font-size:14px;margin:0 0 22px;max-width:60ch}'
+       '.img-credits ul{list-style:none;margin:0;padding:0;display:grid;'
+       'grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0 48px}'
+       '.img-credits li{padding:13px 0;border-top:1px solid var(--border-light);font-size:13px;line-height:1.45}'
+       '.img-credits li a{color:var(--ink);text-decoration:none;font-weight:500}'
+       '.img-credits li a:hover{text-decoration:underline}'
+       '.img-credits .ic-meta{display:block;color:var(--ink-mute);font-family:var(--mono);'
+       'font-size:11px;letter-spacing:.01em;margin-top:3px}'
+       '@media(max-width:600px){.img-credits{padding:40px 20px}.img-credits h2{font-size:20px}}'
+       '</style>')
+
 def build_block(urls, lang):
     title = "Créditos de imágenes" if lang == "es" else "Image credits"
-    intro = ("Fotografías bajo licencia Creative Commons vía Wikimedia Commons."
+    eyebrow = "Créditos" if lang == "es" else "Credits"
+    intro = ("Fotografías bajo licencia Creative Commons, vía Wikimedia Commons. "
+             "Toca cualquier título para ver la fuente original."
              if lang == "es" else
-             "Photographs licensed under Creative Commons via Wikimedia Commons.")
-    photo = "Foto" if lang == "es" else "Photo"
+             "Photographs licensed under Creative Commons, via Wikimedia Commons. "
+             "Tap any title to view the original source.")
     items = []
     for u in urls:
-        lic = LICENSE.get(u.replace("&amp;", "&"), "")
-        who = html.escape(artist_of(u.replace("&amp;", "&")))
+        key = u.replace("&amp;", "&")
+        lic  = html.escape(LICENSE.get(key, ""))
+        who  = html.escape(artist_of(key))
         name = html.escape(pretty_name(u))
         page = html.escape(commons_page(u))
-        items.append(f'<li>{photo}: {who} — <a href="{page}" target="_blank" rel="noopener nofollow">{name}</a>, {html.escape(lic)}</li>')
-    css = ('<style id="img-credits-css">.img-credits{border-top:1px solid rgba(0,0,0,.12);'
-           'margin-top:40px;padding-top:20px;font-size:13px;opacity:.75}'
-           '.img-credits h2{font-size:15px;margin:0 0 6px}.img-credits p{margin:0 0 10px}'
-           '.img-credits ul{margin:0;padding-left:18px;line-height:1.6}'
-           '.img-credits a{color:inherit}</style>')
-    return (f'<!--IMGCREDITS-->{css}<section class="img-credits"><div class="container">'
-            f'<h2>{title}</h2><p>{intro}</p><ul>{"".join(items)}</ul></div></section><!--/IMGCREDITS-->')
+        items.append(f'<li><a href="{page}" target="_blank" rel="noopener nofollow">{name}</a>'
+                     f'<span class="ic-meta">{who} · {lic}</span></li>')
+    return (f'<!--IMGCREDITS-->{CSS}<section class="img-credits"><div class="img-credits-wrap">'
+            f'<span class="ic-eyebrow">{eyebrow}</span><h2>{title}</h2>'
+            f'<p class="ic-sub">{intro}</p><ul>{"".join(items)}</ul>'
+            f'</div></section><!--/IMGCREDITS-->')
 
 def collect(s):
     """All CC-BY* Wikimedia image URLs present on the page, de-duplicated, in
