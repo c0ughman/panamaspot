@@ -48,19 +48,10 @@ def needs_credit(license):
     return l.startswith("cc by")  # CC BY and CC BY-SA; not CC0 / public domain / pexels
 
 def build_caption(item, lang):
+    # Captions are description-only. Photographer credit for CC BY / CC BY-SA
+    # images lives in the per-page "Image credits" block (see image-credits.py).
     cap = item.get(f"caption_{lang}") or item.get("caption_en") or item.get("caption_es") or ""
-    cap = html.escape(cap)
-    if needs_credit(item.get("license")):
-        artist = ARTIST.get(item["url"], "").strip()
-        artist = re.split(r"\s+from\s+", artist)[0].strip()  # drop Flickr "… from Town, Country"
-        if len(artist) > 45:
-            artist = artist[:45].rsplit(" ", 1)[0] + "…"
-        artist = html.escape(artist) if artist else "Wikimedia Commons"
-        photo = "Foto" if lang == "es" else "Photo"
-        who = f"{photo}: {artist}, {item['license']} · Wikimedia Commons" if artist != "Wikimedia Commons" else f"{item['license']} · Wikimedia Commons"
-        credit = f'<span class="img-credit" style="display:block;opacity:.55;font-size:.82em;margin-top:2px">— {who}</span>'
-        cap = f"{cap} {credit}" if cap else credit
-    return cap
+    return html.escape(cap)
 
 def esc_bg(url):
     # background-image urls in these files HTML-escape the & as &amp;
@@ -94,7 +85,7 @@ def set_hero(s, new_url):
 def strip_inline(s):
     """Remove every inline figure (this script's and the page's originals) so we
     start each run from a clean body."""
-    return re.sub(r'<figure class="art-inline-img"[^>]*>.*?</figure>', '', s)
+    return re.sub(r'<figure class="art-inline-img"[^>]*>.*?</figure>', '', s, flags=re.S)
 
 def _end_of_div(s, i):
     """Given index i at a '<div', return the index just past its matching </div>."""
@@ -126,7 +117,7 @@ def fill_showcase(s, items):
         gstart = gm.end()
         gend = _end_of_div(s, gm.start())
         inner = s[gstart:gend-6]
-        figs = re.findall(r'<figure.*?</figure>', inner)
+        figs = re.findall(r'<figure.*?</figure>', inner, re.S)
         newfigs = []
         for fig in figs:
             if used >= len(imgs):

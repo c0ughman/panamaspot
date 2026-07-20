@@ -57,14 +57,8 @@ def seckey(page, sid, cat):
 def needs_credit(lic): return (lic or "").lower().startswith("cc by")
 
 def caption(item, lang):
-    cap = html.escape(item.get(f"caption_{lang}") or item.get("caption_en") or item.get("caption_es") or "")
-    if needs_credit(item.get("license")):
-        artist = re.split(r"\s+from\s+", ARTIST.get(item["url"], "").strip())[0].strip()
-        if len(artist) > 45: artist = artist[:45].rsplit(" ", 1)[0] + "…"
-        photo = "Foto" if lang == "es" else "Photo"
-        who = f"{photo}: {html.escape(artist)}, {item['license']} · Wikimedia Commons" if artist else f"{item['license']} · Wikimedia Commons"
-        cap += f'<span class="img-credit" style="display:block;opacity:.55;font-size:.82em;margin-top:2px">— {who}</span>'
-    return cap
+    # description-only; credits live in the per-page "Image credits" block.
+    return html.escape(item.get(f"caption_{lang}") or item.get("caption_en") or item.get("caption_es") or "")
 
 def figure(item, key, lang):
     url = item["url"].replace("&", "&amp;")
@@ -101,7 +95,7 @@ def fill_slots(s, items):
     gm = re.search(r'<div class="art-gallery-grid">', s)
     if gm:
         gstart = gm.end(); gend = _end_of_div(s, gm.start())
-        figs = re.findall(r'<figure.*?</figure>', s[gstart:gend-6])
+        figs = re.findall(r'<figure.*?</figure>', s[gstart:gend-6], re.S)
         newfigs = []
         for fig in figs:
             if used >= len(items): break
@@ -129,9 +123,9 @@ def process(page, placements):
     p = ROOT/page
     s = p.read_text(encoding="utf-8")
     # 1) strip prior IMGSEC blocks (idempotent re-run)
-    s = re.sub(r"<figure class=\"art-inline-img\" data-imgsec=\"[^\"]*\">.*?</figure>", "", s)
+    s = re.sub(r"<figure class=\"art-inline-img\" data-imgsec=\"[^\"]*\">.*?</figure>", "", s, flags=re.S)
     # 2) first run: remove the page's original generic inline figures
-    s = re.sub(r"<figure class=\"art-inline-img\">.*?</figure>", "", s)
+    s = re.sub(r"<figure class=\"art-inline-img\">.*?</figure>", "", s, flags=re.S)
     # 2b) refill the gallery-grid + bento slots (old wrong images) with a mix of
     #     this page's category images — done before inserting section figures so
     #     it only touches the gallery/bento containers.
