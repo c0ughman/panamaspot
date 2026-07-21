@@ -191,34 +191,52 @@
    },
    "use": [
     {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/4/48/View_from_Finca_Lerida_coffee_plantation_-_Flickr_-_gailhampshire.jpg",
+     "license": "CC BY 2.0",
+     "caption_en": "The view from Finca Lérida, one of Boquete's historic coffee estates, looks out over rows of shade-grown coffee tumbling down the misty highland valley.",
+     "caption_es": "La vista desde Finca Lérida, una de las fincas cafetaleras históricas de Boquete, se abre sobre hileras de café de sombra que descienden por el brumoso valle de altura."
+    },
+    {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/b/bb/VistaBoquete.jpg",
+     "license": "CC BY-SA 3.0",
+     "caption_en": "An elevated panorama takes in the whole of Boquete town spread along the Río Caldera on the green valley floor of the Chiriquí highlands.",
+     "caption_es": "Un panorama en altura abarca todo el pueblo de Boquete extendido a lo largo del Río Caldera en el verde fondo del valle de las tierras altas de Chiriquí."
+    },
+    {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Boquete%2C_Panama.jpg",
+     "license": "CC BY 2.0",
+     "caption_en": "The town of Boquete sits amid lush jungle and coffee fincas in Panama's cool mountain highlands, a place whose name and flower-filled streets earn its reputation as a garden town.",
+     "caption_es": "El pueblo de Boquete se asienta entre la exuberante selva y las fincas de café en las frescas tierras altas de Panamá, un lugar cuyas calles llenas de flores le dan fama de pueblo jardín."
+    },
+    {
      "url": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Boquete_Cloud_Forest_2.jpg",
      "license": "CC BY-SA 4.0",
-     "caption_en": "Boquete cloud forest",
-     "caption_es": "Bosque nuboso de Boquete"
+     "caption_en": "Mist drifts through the cloud-forest slopes above Boquete, where cool highland fog settles over the dense green canopy.",
+     "caption_es": "La neblina se desliza por las laderas del bosque nuboso sobre Boquete, donde la fría bruma de altura se posa sobre el denso dosel verde."
     },
     {
      "url": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Elementary_School_in_Boquete_Panama_11.jpg",
      "license": "CC BY-SA 4.0",
-     "caption_en": "Building in Boquete",
-     "caption_es": "Edificio en Boquete"
+     "caption_en": "Inside a primary-school classroom in Boquete, a glimpse of everyday community life in the Chiriquí highland town.",
+     "caption_es": "Dentro de un aula de escuela primaria en Boquete, un vistazo a la vida cotidiana de la comunidad en el pueblo de las tierras altas de Chiriquí."
     },
     {
      "url": "https://upload.wikimedia.org/wikipedia/commons/4/44/RVN06957.jpg",
      "license": "CC BY-SA 4.0",
-     "caption_en": "Boquete landscape",
-     "caption_es": "Paisaje de Boquete"
+     "caption_en": "The Río Caldera runs beside Boquete's riverside flower gardens by the town bridge, where the highland current spills over rounded boulders.",
+     "caption_es": "El Río Caldera corre junto a los jardines de flores ribereños de Boquete cerca del puente del pueblo, donde la corriente de altura se desliza sobre cantos rodados."
     },
     {
      "url": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Boquete%2C_Alto_Jaramillo%2C_Chiriqu%C3%AD%2C_Rep%C3%BAblica_de_Panam%C3%A1.png",
      "license": "CC BY-SA 4.0",
-     "caption_en": "Boquete mountains",
-     "caption_es": "Montañas de Boquete"
+     "caption_en": "A sweeping panorama of the forested mountains above Alto Jaramillo, on the highland ridges that ring Boquete in Chiriquí province.",
+     "caption_es": "Un amplio panorama de las montañas boscosas sobre Alto Jaramillo, en las crestas de las tierras altas que rodean a Boquete en la provincia de Chiriquí."
     },
     {
      "url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Boquete_RioCaldera.jpg",
      "license": "CC BY-SA 3.0",
-     "caption_en": "Río Caldera in Boquete",
-     "caption_es": "Río Caldera en Boquete"
+     "caption_en": "The Río Caldera threads through the town of Boquete on the floor of the Chiriquí highlands, its clear mountain water flanked by rooftops and greenery.",
+     "caption_es": "El Río Caldera atraviesa el poblado de Boquete en el fondo de las tierras altas de Chiriquí, con sus aguas cristalinas de montaña bordeadas de techos y vegetación."
     }
    ]
   },
@@ -673,6 +691,12 @@
    },
    "use": [
     {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/IglesiasanpedroTaboga.JPG",
+     "license": "CC BY-SA 3.0",
+     "caption_en": "The whitewashed Iglesia San Pedro, one of the oldest churches in the Americas, anchors Taboga's flower-filled village.",
+     "caption_es": "La encalada Iglesia San Pedro, una de las más antiguas de América, es el corazón del florido pueblo de Taboga."
+    },
+    {
      "url": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Calle_en_Isla_Taboga_-_Panam%C3%A1.jpg",
      "license": "CC BY-SA 4.0",
      "caption_en": "Street in Isla Taboga"
@@ -721,6 +745,24 @@
    },
    "use": [
     {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Portobelo_Ruins_and_bay.jpg",
+     "license": "CC BY 3.0",
+     "caption_en": "Weathered colonial cannon and fort ruins overlook the sheltered waters of Portobelo Bay on Panama's Caribbean coast.",
+     "caption_es": "Cañones coloniales y ruinas de fortaleza dominan las aguas resguardadas de la bahía de Portobelo, en la costa caribeña de Panamá."
+    },
+    {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/7/76/Castillo_San_Jer%C3%B3nimo_Portobelo_09_2019_0505.jpg",
+     "license": "CC BY-SA 4.0",
+     "caption_en": "The stone ramparts of Fuerte San Jerónimo, a UNESCO-listed Spanish colonial fort, guard the Caribbean bay at Portobelo.",
+     "caption_es": "Las murallas de piedra del Fuerte San Jerónimo, fortaleza colonial española declarada Patrimonio de la Humanidad, custodian la bahía caribeña de Portobelo."
+    },
+    {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Custom_House_at_Portobelo_Panama.jpg",
+     "license": "CC BY-SA 3.0",
+     "caption_en": "The restored Real Aduana, Portobelo's royal customs house, once weighed the Spanish silver and gold shipped through this port.",
+     "caption_es": "La restaurada Real Aduana de Portobelo pesaba la plata y el oro españoles que se embarcaban por este puerto colonial."
+    },
+    {
      "url": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Facade_-_Portobelo_-_Caribbean_Coast_-_Panama_%2811457833485%29.jpg",
      "license": "CC BY-SA 2.0",
      "caption_en": "Colonial facade in Portobelo"
@@ -768,6 +810,18 @@
     "caption_en": "Gatun Lake"
    },
    "use": [
+    {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Island_In_Gatun_Lake_-_panoramio.jpg",
+     "license": "CC BY 3.0",
+     "caption_en": "A jungle-covered islet rises from Gatún Lake, one of the rainforest islands visited on boat tours to spot capuchins and howler monkeys.",
+     "caption_es": "Un islote cubierto de selva emerge del lago Gatún, una de las islas de bosque tropical que se visitan en tours en bote para ver capuchinos y monos aulladores."
+    },
+    {
+     "url": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Mantled_Howler_Monkey._Alouatta_palliata_%2842253693155%29.jpg",
+     "license": "CC BY 2.0",
+     "caption_en": "A mantled howler monkey peers from the canopy of Panama's canal-zone rainforest, a common sight on Soberanía and Monkey Island tours.",
+     "caption_es": "Un mono aullador se asoma entre el dosel de la selva de la zona del canal de Panamá, un avistamiento habitual en los tours por Soberanía y la Isla de los Monos."
+    },
     {
      "url": "https://upload.wikimedia.org/wikipedia/commons/1/18/Bradypus.jpg",
      "license": "Public domain",

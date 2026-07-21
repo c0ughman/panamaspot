@@ -718,5 +718,37 @@
  "https://images.pexels.com/photos/33452256/pexels-photo-33452256.jpeg?auto=compress&cs=tinysrgb&w=1600": {
   "w": 1600,
   "h": 900
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/1/1c/Boquete%2C_Panama.jpg": {
+  "w": 2732,
+  "h": 2320
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/76/Castillo_San_Jer%C3%B3nimo_Portobelo_09_2019_0505.jpg": {
+  "w": 3000,
+  "h": 2000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/0/0f/Custom_House_at_Portobelo_Panama.jpg": {
+  "w": 5902,
+  "h": 3824
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/e1/IglesiasanpedroTaboga.JPG": {
+  "w": 2707,
+  "h": 2275
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/0/0f/Island_In_Gatun_Lake_-_panoramio.jpg": {
+  "w": 3072,
+  "h": 2304
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/e0/Mantled_Howler_Monkey._Alouatta_palliata_%2842253693155%29.jpg": {
+  "w": 3638,
+  "h": 2709
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/4f/Portobelo_Ruins_and_bay.jpg": {
+  "w": 1200,
+  "h": 900
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/b/bb/VistaBoquete.jpg": {
+  "w": 2898,
+  "h": 1930
  }
 }

@@ -36,9 +36,9 @@ PLACEMENTS = {
     "public/articles/day-trips-from-panama-city.html": [
         ("s1", "Panama City — sights & variety", "en", 1),
         ("s3", "El Valle waterfalls — Chorro El Macho / Las Mozas", "en", 1),
-        ("s4", "Taboga Island", "en", 1),
-        ("s5", "Portobelo", "en", 1),
-        ("s7", "Gatún Lake / Monkey Island", "en", 1),
+        ("s4", "Taboga Island", "en", 2),
+        ("s5", "Portobelo", "en", 2),
+        ("s7", "Gatún Lake / Monkey Island", "en", 2),
     ],
     "public/es/articles/cinta-costera-panama-mercado-mariscos-panama-viejo.html": [
         ("s2", "Cinta Costera / Mercado de Mariscos", "es", 1),
@@ -104,7 +104,8 @@ def fill_slots(s, items, lang):
             if used >= len(items): break
             feat = ' class="feature"' if 'class="feature"' in fig else ''
             alt = caption(items[used], lang)
-            newfigs.append(f'<figure{feat}><div class="imgph photo" role="img" aria-label="{alt}" style="background-image:url(\'{esc(items[used]["url"])}\')"></div></figure>')
+            capfig = f'<figcaption>{alt}</figcaption>' if alt else ''
+            newfigs.append(f'<figure{feat}><div class="imgph photo" role="img" aria-label="{alt}" style="background-image:url(\'{esc(items[used]["url"])}\')"></div>{capfig}</figure>')
             used += 1
         s = s[:gstart] + "".join(newfigs) + s[gend-6:]
     cards = list(re.finditer(r'<div class="(bento-card[^"]*)">', s))

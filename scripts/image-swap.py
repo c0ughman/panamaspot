@@ -126,8 +126,9 @@ def fill_showcase(s, items, lang):
                 break
             feat = ' class="feature"' if 'class="feature"' in fig else ''
             alt = build_caption(imgs[used], lang)
+            capfig = f'<figcaption>{alt}</figcaption>' if alt else ''
             newfigs.append(f'<figure{feat}><div class="imgph photo" role="img" aria-label="{alt}" '
-                           f'style="background-image:url(\'{esc_bg(cap(imgs[used]["url"], GALLERY))}\')"></div></figure>')
+                           f'style="background-image:url(\'{esc_bg(cap(imgs[used]["url"], GALLERY))}\')"></div>{capfig}</figure>')
             used += 1
         s = s[:gstart] + "".join(newfigs) + s[gend-6:]
     # --- bento: all-or-nothing ---
