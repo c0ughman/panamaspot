@@ -149,8 +149,16 @@ def wrap(key, html):
 def strip_old(s):
     return re.sub(r"<!--EVB-CTA:(\w+)-->.*?<!--/EVB-CTA:\1-->", "", s, flags=re.S)
 
+# Chiriquí / Boquete-adjacent pages whose filename doesn't contain "boquete"
+# but which should still carry the Boquete (green) e-bike CTA — Volcán Barú is
+# right above Boquete and its hikers base themselves there.
+BQ_EXTRA = {
+    "volcan-baru-hike-sunrise-summit-guide.html",
+    "volcan-baru-como-subir-cima-panama.html",
+}
+
 def inject(path):
-    loc  = "bq" if "boquete" in path.name else "ev"
+    loc  = "bq" if ("boquete" in path.name or path.name in BQ_EXTRA) else "ev"
     lang = "es" if "/es/" in path.as_posix() else "en"
     s = path.read_text(encoding="utf-8")
     s = strip_old(s)
@@ -178,8 +186,12 @@ def inject(path):
     return loc, lang
 
 def main():
-    print(f"Injecting CTAs into {len(ARTICLES)} articles\n")
-    for p in ARTICLES:
+    # Optional CLI filters: only process articles whose filename contains any of
+    # the given substrings (e.g. `cta-pass.py volcan-baru`). No args = all.
+    filters = [a.lower() for a in sys.argv[1:]]
+    targets = [p for p in ARTICLES if not filters or any(f in p.name.lower() for f in filters)]
+    print(f"Injecting CTAs into {len(targets)} articles\n")
+    for p in targets:
         loc, lang = inject(p)
         print(f"  ✓ {p.relative_to(ROOT)}  [{loc} · {lang}]")
     print("\nDone.")

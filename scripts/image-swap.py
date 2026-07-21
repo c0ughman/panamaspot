@@ -59,6 +59,15 @@ def esc_bg(url):
     # background-image urls in these files HTML-escape the & as &amp;
     return url.replace("&", "&amp;")
 
+def bento_overlay(cap):
+    """A legible caption overlay for a bento image card (matches the gallery
+    caption look): gradient scrim + the image's caption text."""
+    if not cap:
+        return ""
+    return ('<div class="bento-overlay" style="background:linear-gradient('
+            'transparent,rgba(0,0,0,.72));padding:44px 22px 18px;font-size:13px;'
+            f'line-height:1.42;font-weight:500">{cap}</div>')
+
 def build_figure(item, key, lang):
     url = esc_bg(cap(item["url"], GALLERY))
     capt = build_caption(item, lang)
@@ -141,7 +150,8 @@ def fill_showcase(s, items, lang):
             url = esc_bg(cap(remaining[k]["url"], GALLERY))
             alt = build_caption(remaining[k], lang)
             card = (f'<div class="{cls}"><div class="imgph photo" role="img" aria-label="{alt}" '
-                    f'style="position:absolute;inset:0;background-image:url(\'{url}\')"></div></div>')
+                    f'style="position:absolute;inset:0;background-image:url(\'{url}\')"></div>'
+                    f'{bento_overlay(alt)}</div>')
             s = s[:st] + card + s[en:]
         used += len(cards)
     elif cards:

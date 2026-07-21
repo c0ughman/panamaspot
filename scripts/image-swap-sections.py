@@ -49,8 +49,9 @@ PLACEMENTS = {
 
 # Optional hero override per section page (replaces the leftover old hero).
 PAGE_HERO = {
+    # Taboga Island beach — the iconic day-trip image, not the church.
     "public/articles/day-trips-from-panama-city.html":
-        ("https://images.pexels.com/photos/17477516/pexels-photo-17477516.jpeg?auto=compress&cs=tinysrgb&w=1600", "en"),
+        ("https://upload.wikimedia.org/wikipedia/commons/d/d9/TabogaBeach.JPG", "en"),
 }
 
 def seckey(page, sid, cat):
@@ -115,7 +116,9 @@ def fill_slots(s, items, lang):
         for k in range(len(spans)-1, -1, -1):
             st, en, cls = spans[k]
             alt = caption(remaining[k], lang)
-            s = s[:st] + f'<div class="{cls}"><div class="imgph photo" role="img" aria-label="{alt}" style="position:absolute;inset:0;background-image:url(\'{esc(remaining[k]["url"])}\')"></div></div>' + s[en:]
+            overlay = (f'<div class="bento-overlay" style="background:linear-gradient(transparent,rgba(0,0,0,.72));'
+                       f'padding:44px 22px 18px;font-size:13px;line-height:1.42;font-weight:500">{alt}</div>') if alt else ''
+            s = s[:st] + f'<div class="{cls}"><div class="imgph photo" role="img" aria-label="{alt}" style="position:absolute;inset:0;background-image:url(\'{esc(remaining[k]["url"])}\')"></div>{overlay}</div>' + s[en:]
         used += len(cards)
     elif cards:
         gm2 = re.search(r'<div class="home-bento-grid">', s)
@@ -133,28 +136,73 @@ def process(page, placements):
     s = re.sub(r"<figure class=\"art-inline-img\" data-imgsec=\"[^\"]*\">.*?</figure>", "", s, flags=re.S)
     # 2) first run: remove the page's original generic inline figures
     s = re.sub(r"<figure class=\"art-inline-img\">.*?</figure>", "", s, flags=re.S)
-    # 2b) refill the gallery-grid + bento slots (old wrong images) with a mix of
-    #     this page's category images — done before inserting section figures so
-    #     it only touches the gallery/bento containers.
-    pool = []
-    for cat in dict.fromkeys(c for _, c, _, _ in placements):
+    # 2b) Reserve the inline images per section (front of each category's pool,
+    #     no reuse across sections), THEN build the gallery/bento pool from what
+    #     is left, round-robin across categories — so the showcase is a real MIX
+    #     of the destinations the page talks about, not a wall of one topic, and
+    #     never duplicates an image already used inline.
+    used_urls = set()
+    inline_plan = []                      # (sid, cat, plang, [items])
+    for sid, cat, plang, count in placements:
         d = SEL[cat]; hero = d["hero"]["url"] if d.get("hero") else None
-        pool += [it for it in d["use"] if it["url"] != hero]
-    s, ng = fill_slots(s, pool, lang)
-    # 3) insert per section
-    # track how many times each category has been placed, to vary the slice
-    seen = {}
-    total = 0
-    for sid, cat, lang, count in placements:
-        idx = seen.get(cat, 0); seen[cat] = idx + 1
-        imgs = images_for(cat, idx, count)
+        chosen = []
+        for it in d["use"]:
+            if len(chosen) >= count: break
+            if it["url"] == hero or it["url"] in used_urls: continue
+            chosen.append(it); used_urls.add(it["url"])
+        inline_plan.append((sid, cat, plang, chosen))
+
+    cats = list(dict.fromkeys(c for _, c, _, _ in placements))
+    leftover = {c: [it for it in SEL[c]["use"]
+                    if it["url"] not in used_urls
+                    and (not SEL[c].get("hero") or it["url"] != SEL[c]["hero"]["url"])]
+                for c in cats}
+    gallery_pool, i = [], 0
+    while any(leftover.values()) and i < 999:
+        c = cats[i % len(cats)]
+        if leftover[c]:
+            gallery_pool.append(leftover[c].pop(0))
+        i += 1
+    s, ng = fill_slots(s, gallery_pool, lang)
+
+    # 3) Intersperse each section's inline images THROUGH its body — one per
+    #    paragraph break, spread out (never two in a row, never on the heading).
+    #    Collect absolute insert points first, apply back-to-front.
+    heads = list(re.finditer(r'<h2[^>]*id="s\d+"[^>]*>.*?</h2>', s))
+    starts = {re.search(r'id="(s\d+)"', h.group(0)).group(1): h for h in heads}
+    art_end = s.find("</article>")
+    # never place a figure inside an injected CTA block (its <p> tags would
+    # otherwise skew the paragraph count and break idempotency).
+    cta_ranges = [(mm.start(), mm.end()) for mm in
+                  re.finditer(r"<!--EVB-CTA:\w+-->.*?<!--/EVB-CTA:\w+-->", s, re.S)]
+    def in_cta(pos):
+        return any(a <= pos <= b for a, b in cta_ranges)
+    inserts, total = [], 0
+    for sid, cat, plang, items in inline_plan:
+        m = starts.get(sid)
+        if not m or not items:
+            if items: print(f"    ! {page}: section {sid} not found")
+            continue
+        nxt = [h for h in heads if h.start() > m.start()]
+        sec_end = nxt[0].start() if nxt else len(s)
+        if art_end != -1:
+            sec_end = min(sec_end, art_end)
+        pend = [m.end() + mm.end() for mm in re.finditer(r'</p>', s[m.end():sec_end])]
+        pend = [p for p in pend if not in_cta(p)]
         key = seckey(page, sid, cat)
-        block = "".join(figure(it, key, lang) for it in imgs)
-        m = re.search(r'(<h2[^>]*id="'+sid+r'"[^>]*>.*?</h2>)', s)
-        if not m:
-            print(f"    ! {page}: section {sid} not found"); continue
-        s = s[:m.end()] + block + s[m.end():]
-        total += len(imgs)
+        n = len(items); used_pi = set()
+        for j, it in enumerate(items):
+            if pend:
+                pi = min(len(pend) - 1, max(0, round((j + 1) * len(pend) / (n + 1)) - 1))
+                while pi in used_pi and pi < len(pend) - 1: pi += 1
+                while pi in used_pi and pi > 0: pi -= 1
+                used_pi.add(pi); pos = pend[pi]
+            else:
+                pos = m.end()
+            inserts.append((pos, figure(it, key, plang)))
+            total += 1
+    for pos, block in sorted(inserts, key=lambda x: -x[0]):
+        s = s[:pos] + block + s[pos:]
     # 4) hero override if configured
     if page in PAGE_HERO:
         url, _ = PAGE_HERO[page]
