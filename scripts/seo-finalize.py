@@ -49,11 +49,16 @@ def caption_for(url, lang):
     return cap, orig
 
 def page_images(s):
-    """All rendered image URLs in document order (hero first), de-duplicated,
-    plain-& for JSON."""
+    """The article's own images — hero + gallery/inline <figure> images — in
+    document order (hero first), de-duplicated, plain-& for JSON. Excludes the
+    related-guides module (those are other articles' heroes)."""
     out, seen = [], set()
-    m = re.search(r'art-hero-img-full"[^>]*background-image:url\(\'([^\']+)\'', s)
-    urls = ([m.group(1)] if m else []) + re.findall(r'imgph photo"[^>]*background-image:url\(\'([^\']+)\'', s)
+    hm = re.search(r'art-hero-img-full">\s*<img[^>]*\bsrc="([^"]+)"', s)
+    urls = [hm.group(1)] if hm else []
+    for fm in re.finditer(r'<figure[^>]*>.*?</figure>', s, re.S):
+        im = re.search(r'<img[^>]*\bsrc="([^"]+)"', fm.group(0))
+        if im:
+            urls.append(im.group(1))
     for u in urls:
         u = u.replace("&amp;", "&")
         if u not in seen:
@@ -73,8 +78,8 @@ def process(page):
     s = p.read_text(encoding="utf-8")
     lang = "es" if "/es/" in page else "en"
 
-    # hero URL + caption
-    hm = re.search(r'art-hero-img-full"[^>]*background-image:url\(\'([^\']+)\'', s)
+    # hero URL + caption (hero is now a real <img>)
+    hm = re.search(r'art-hero-img-full">\s*<img[^>]*\bsrc="([^"]+)"', s)
     hero_url = hm.group(1) if hm else None
     hero_alt, hero_orig = (caption_for(hero_url, lang) if hero_url else (None, None))
     hero_alt = hero_alt or ""
@@ -103,14 +108,10 @@ def process(page):
         f'<meta content="{alt_esc}" name="twitter:image:alt"/>',
         [r'<meta content="[^"]*" name="twitter:image:alt"/>'])
 
-    # ── a11y: hero div role + aria-label (set OR update if already present) ───
+    # ── a11y: set the hero <img>'s alt authoritatively from the caption ───────
     if hero_alt:
-        if re.search(r'art-hero-img-full" role="img" aria-label="', s):
-            s = re.sub(r'(art-hero-img-full" role="img" aria-label=")[^"]*(")',
-                       lambda m: m.group(1) + alt_esc + m.group(2), s, count=1)
-        else:
-            s = s.replace('<div class="art-hero-img-full" style=',
-                          f'<div class="art-hero-img-full" role="img" aria-label="{alt_esc}" style=', 1)
+        s = re.sub(r'(<div class="art-hero-img-full"><img[^>]*\balt=")[^"]*(")',
+                   lambda m: m.group(1) + alt_esc + m.group(2), s, count=1)
 
     # ── P1: enrich Article JSON-LD image array with every page image ─────────
     imgs = page_images(s)

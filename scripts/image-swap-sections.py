@@ -21,7 +21,12 @@ Usage:  python3 scripts/image-swap-sections.py
 """
 import re, json, pathlib, html, sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from img_cap import cap, HERO, GALLERY
+from img_cap import cap, img_html, HERO, GALLERY
+
+SIZES_HERO    = "100vw"
+SIZES_GALLERY = "(max-width: 900px) 50vw, 25vw"
+SIZES_FEATURE = "(max-width: 900px) 100vw, 50vw"
+SIZES_INLINE  = "(max-width: 768px) 100vw, 768px"
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SEL  = json.loads((ROOT/"scripts"/"image-selections.json").read_text(encoding="utf-8"))["selections"]
@@ -65,10 +70,10 @@ def caption(item, lang):
     return html.escape(item.get(f"caption_{lang}") or item.get("caption_en") or item.get("caption_es") or "")
 
 def figure(item, key, lang):
-    url = cap(item["url"], GALLERY).replace("&", "&amp;")
     capt = caption(item, lang)
+    img = img_html(item["url"], capt, GALLERY, SIZES_INLINE)
     return (f'<figure class="art-inline-img" data-imgsec="{key}">'
-            f'<div class="imgph photo" role="img" aria-label="{capt}" style="background-image:url(\'{url}\')"></div>'
+            f'<div class="imgph photo">{img}</div>'
             f'<figcaption>{capt}</figcaption></figure>')
 
 def images_for(cat, section_index, count):
@@ -107,7 +112,8 @@ def fill_slots(s, items, lang):
             feat = ' class="feature"' if 'class="feature"' in fig else ''
             alt = caption(items[used], lang)
             capfig = f'<figcaption>{alt}</figcaption>' if alt else ''
-            newfigs.append(f'<figure{feat}><div class="imgph photo" role="img" aria-label="{alt}" style="background-image:url(\'{esc(items[used]["url"])}\')"></div>{capfig}</figure>')
+            img = img_html(items[used]["url"], alt, GALLERY, SIZES_FEATURE if feat else SIZES_GALLERY)
+            newfigs.append(f'<figure{feat}><div class="imgph photo">{img}</div>{capfig}</figure>')
             used += 1
         s = s[:gstart] + "".join(newfigs) + s[gend-6:]
     # Leave the hand-authored "More to see" bento untouched (see image-swap.py).
@@ -188,17 +194,16 @@ def process(page, placements):
             total += 1
     for pos, block in sorted(inserts, key=lambda x: -x[0]):
         s = s[:pos] + block + s[pos:]
-    # 4) hero override if configured
+    # 4) hero override if configured (now a real <img>; alt is set by finalize)
     if page in PAGE_HERO:
         entry = PAGE_HERO[page]
         url = cap(entry[0], HERO)
         pos = entry[2] if len(entry) > 2 else None
-        s = re.sub(r'(<div class="art-hero-img-full"[^>]*background-image:url\(\')[^\']+(\'\))',
-                   lambda m: m.group(1)+url.replace("&", "&amp;")+m.group(2), s)
-        if pos:
-            # set/replace the hero div's background-position (idempotent)
-            s = re.sub(r"(<div class=\"art-hero-img-full\"[^>]*?background-image:url\('[^']+'\))(?:;background-position:[^\"]*)?",
-                       lambda m: m.group(1)+f";background-position:{pos}", s, count=1)
+        objpos = f";object-position:{pos}" if pos else ""
+        hero_img = img_html(entry[0], "", HERO, SIZES_HERO, eager=True,
+                            style=f"width:100%;height:100%;object-fit:cover;display:block{objpos}")
+        s = re.sub(r'<div class="art-hero-img-full"[^>]*>(?:<img[^>]*>)?</div>',
+                   lambda m: f'<div class="art-hero-img-full">{hero_img}</div>', s, count=1)
         for pat in (r'(<meta content=")[^"]+(" property="og:image"/>)',
                     r'(<meta content=")[^"]+(" name="twitter:image"/>)',
                     r'("image": \[\s*")[^"]+(")'):

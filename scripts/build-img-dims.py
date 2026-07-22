@@ -15,7 +15,7 @@ Idempotent + incremental: existing entries are kept; only missing URLs are
 fetched. Re-run any time image-selections.json changes:
     python3 scripts/build-img-dims.py
 """
-import json, re, pathlib, urllib.parse, urllib.request, struct, sys
+import json, re, glob, pathlib, urllib.parse, urllib.request, struct, sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SEL  = json.loads((ROOT/"scripts"/"image-selections.json").read_text())["selections"]
@@ -27,6 +27,15 @@ def all_urls():
     for c in SEL.values():
         if c.get("hero"): urls.append(c["hero"]["url"])
         for it in c["use"]: urls.append(it["url"])
+    # Also every Pexels image actually rendered on a page (the older non-SEL
+    # pages), normalized to the ?w=1600 key that img_cap's srcset/dims use.
+    for p in glob.glob(str(ROOT/"public"/"articles"/"*.html")) + glob.glob(str(ROOT/"public"/"es"/"articles"/"*.html")):
+        s = pathlib.Path(p).read_text()
+        found = re.findall(r"background-image:url\('([^']+)'\)", s) + re.findall(r'<img[^>]*\bsrc="([^"]+)"', s)
+        for u in found:
+            u = u.replace("&amp;", "&")
+            if "images.pexels.com" in u:
+                urls.append(re.sub(r"([?&]w=)\d+", r"\g<1>1600", u))
     return list(dict.fromkeys(u.replace("&amp;", "&") for u in urls))
 
 def wm_filename(url):

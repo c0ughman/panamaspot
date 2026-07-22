@@ -55,6 +55,48 @@ def wm_original(url):
         return f"{m.group(1)}{m.group(2)}/{m.group(3)}"
     return u
 
+def _esc(u):
+    return u.replace("&", "&amp;")
+
+def srcset(url):
+    """A responsive srcset string offering every safe width below the original
+    (Wikimedia buckets / Pexels ?w=). Empty string if we can't build one."""
+    u = url.replace("&amp;", "&")
+    if "images.pexels.com" in u:
+        base1600 = re.sub(r"([?&]w=)\d+", r"\g<1>1600", u)
+        d = _DIMS.get(base1600) or _DIMS.get(u)
+        ow = d["w"] if d else 1600
+        widths = [w for w in (400, 700, 960, 1280, 1600) if w <= ow]
+        if len(widths) < 2:
+            return ""
+        return ", ".join(f"{_esc(re.sub(r'([?&]w=)[0-9]+', lambda m: m.group(1)+str(w), u))} {w}w"
+                         for w in widths)
+    orig = wm_original(u)
+    mo = _WM_ORIG.match(orig)
+    if not mo:
+        return ""
+    base, hashpath, fname = mo.groups()
+    d = _DIMS.get(orig)
+    if not d:
+        return ""
+    widths = [b for b in BUCKETS if b < d["w"]]
+    if len(widths) < 2:
+        return ""
+    return ", ".join(f"{base}thumb/{hashpath}/{fname}/{w}px-{fname} {w}w" for w in widths)
+
+def img_html(url, alt, target, sizes, eager=False, style="width:100%;height:100%;object-fit:cover;display:block"):
+    """A complete responsive <img> element: capped src, srcset+sizes, intrinsic
+    width/height (no CLS), lazy/eager loading. `alt` is used verbatim (already
+    HTML-escaped by the caller when it comes from a caption)."""
+    src = cap(url, target)
+    ss = srcset(url)
+    dims = capped_dims(url, target)
+    wh = f' width="{dims[0]}" height="{dims[1]}"' if dims else ""
+    ssattr = f' srcset="{ss}" sizes="{sizes}"' if ss else ""
+    load = 'loading="eager" fetchpriority="high"' if eager else 'loading="lazy"'
+    return (f'<img src="{_esc(src)}" alt="{alt}"{wh}{ssattr} {load} decoding="async" '
+            f'style="{style}">')
+
 def capped_dims(url, target):
     """Return (w, h) the image will render at once capped to `target`, or None."""
     u = url.replace("&amp;", "&")

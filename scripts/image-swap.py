@@ -27,7 +27,13 @@ Usage:  python3 scripts/image-swap.py [--only SUBSTR]
 """
 import re, json, sys, pathlib, html
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from img_cap import cap, HERO, GALLERY
+from img_cap import cap, img_html, HERO, GALLERY
+
+# responsive `sizes` hints per context (how wide the image renders)
+SIZES_HERO     = "100vw"
+SIZES_GALLERY  = "(max-width: 900px) 50vw, 25vw"
+SIZES_FEATURE  = "(max-width: 900px) 100vw, 50vw"
+SIZES_INLINE   = "(max-width: 768px) 100vw, 768px"
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SEL  = json.loads((ROOT/"scripts"/"image-selections.json").read_text(encoding="utf-8"))["selections"]
@@ -69,20 +75,23 @@ def bento_overlay(cap):
             f'line-height:1.42;font-weight:500">{cap}</div>')
 
 def build_figure(item, key, lang):
-    url = esc_bg(cap(item["url"], GALLERY))
     capt = build_caption(item, lang)
+    img = img_html(item["url"], capt, GALLERY, SIZES_INLINE)
     return (f'<figure class="art-inline-img" data-imgset="{key}">'
-            f'<div class="imgph photo" role="img" aria-label="{capt}" style="background-image:url(\'{url}\')"></div>'
+            f'<div class="imgph photo">{img}</div>'
             f'<figcaption>{capt}</figcaption></figure>')
 
-def set_hero(s, new_url):
-    """Update all four hero-URL locations independently so pages whose
-    div/og/twitter/jsonld URLs disagree still end up consistent."""
-    new_plain = cap(new_url, HERO)
-    new_bg = esc_bg(new_plain)
+def set_hero(s, item, lang):
+    """Update all four hero locations: the .art-hero-img-full div (now a real
+    <img>), og:image, twitter:image, and the JSON-LD "image" array."""
+    new_plain = cap(item["url"], HERO)
+    alt = build_caption(item, lang)
+    hero_img = img_html(item["url"], alt, HERO, SIZES_HERO, eager=True)
+    div = f'<div class="art-hero-img-full">{hero_img}</div>'
     hits = 0
-    s, n = re.subn(r'(<div class="art-hero-img-full"[^>]*background-image:url\(\')[^\']+(\'\))',
-                   lambda m: m.group(1)+new_bg+m.group(2), s); hits += n
+    # matches the templated bg-form div OR a previously-converted <img> div
+    s, n = re.subn(r'<div class="art-hero-img-full"[^>]*>(?:<img[^>]*>)?</div>',
+                   lambda m: div, s, count=1); hits += n
     s, n = re.subn(r'(<meta content=")[^"]+(" property="og:image"/>)',
                    lambda m: m.group(1)+new_plain+m.group(2), s); hits += n
     s, n = re.subn(r'(<meta content=")[^"]+(" name="twitter:image"/>)',
@@ -136,8 +145,8 @@ def fill_showcase(s, items, lang):
             feat = ' class="feature"' if 'class="feature"' in fig else ''
             alt = build_caption(imgs[used], lang)
             capfig = f'<figcaption>{alt}</figcaption>' if alt else ''
-            newfigs.append(f'<figure{feat}><div class="imgph photo" role="img" aria-label="{alt}" '
-                           f'style="background-image:url(\'{esc_bg(cap(imgs[used]["url"], GALLERY))}\')"></div>{capfig}</figure>')
+            img = img_html(imgs[used]["url"], alt, GALLERY, SIZES_FEATURE if feat else SIZES_GALLERY)
+            newfigs.append(f'<figure{feat}><div class="imgph photo">{img}</div>{capfig}</figure>')
             used += 1
         s = s[:gstart] + "".join(newfigs) + s[gend-6:]
     # The "More to see / Across the region" bento is a hand-authored editorial
@@ -182,7 +191,7 @@ def process(cat_name, data):
         s, ng = fill_showcase(s, list(reversed(pool)), lang)   # 2. distinct images, no text
         s, ni = place_inline(s, key, pool, lang)               # 3. one image per section
         if hero:
-            s, _ = set_hero(s, hero["url"])                    # 4. hero + og/twitter/jsonld
+            s, _ = set_hero(s, hero, lang)                     # 4. hero + og/twitter/jsonld
         p.write_text(s, encoding="utf-8")
         print(f"  ✓ {page}  hero={'set' if hero else '—'}  gallery/bento={ng}  inline={ni}  [{lang}]")
 
