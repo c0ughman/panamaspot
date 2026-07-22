@@ -45,13 +45,15 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap"></noscript>
+<link rel="preload" as="image" href="/images/el-valle/evbike-group-lp.webp" fetchpriority="high">
 
 <style>
   :root {
     --ink:      #1b2621;
     --ink-soft: #40504a;
-    --muted:    #74827b;
+    --muted:    #5c665f;
     --paper:    #F4F2EA;
     --cloud:    #EFE3D6;
     --spruce:   #352d10;
@@ -73,6 +75,7 @@
   body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.6; font-size: 17px; -webkit-font-smoothing: antialiased; }
   img { max-width: 100%; display: block; }
   a { color: inherit; text-decoration: none; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--terra); outline-offset: 2px; }
   .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
   .serif { font-family: var(--serif); font-weight: 400; letter-spacing: -0.01em; line-height: 1.0; }
   .serif em { font-style: italic; color: var(--terra); }
@@ -205,7 +208,7 @@
 
   /* ─── FOOTER ─── */
   .footer { background: #241d0a; color: rgba(255,255,255,0.55); text-align: center; padding: 30px 20px; font-size: 13px; }
-  .footer a { color: rgba(255,255,255,0.82); }
+  .footer a { color: rgba(255,255,255,0.82); text-decoration: underline; }
 
   /* ─── STICKY CTA ─── */
   .sticky-cta { position: fixed; bottom: 24px; right: 20px; z-index: 50; }
@@ -273,10 +276,11 @@
   <span class="stars">★★★★★</span> <b>4.9</b> · 71 reseñas en Tripadvisor · la actividad #1 entre las cosas que hacer en El Valle
 </div>
 
+<main>
 <!-- HERO -->
 <header class="hero">
-  <div class="hero-photo left"><img src="/images/el-valle/evbike-group.webp" alt="Un grupo recorriendo El Valle de Antón en bicis eléctricas E-Valley"></div>
-  <div class="hero-photo right"><img src="/images/el-valle/evbike-trail.webp" alt="Pedaleando un sendero de El Valle en una bici eléctrica E-Valley"></div>
+  <div class="hero-photo left"><img src="/images/el-valle/evbike-group-lp.webp" alt="Un grupo recorriendo El Valle de Antón en bicis eléctricas E-Valley" fetchpriority="high" width="540" height="540"></div>
+  <div class="hero-photo right"><img src="/images/el-valle/evbike-trail-lp.webp" alt="Pedaleando un sendero de El Valle en una bici eléctrica E-Valley" fetchpriority="high" width="540" height="540"></div>
   <div class="wrap">
     <div class="hero-eyebrow">¿Buscando Cosas que Hacer en El Valle?</div>
     <h1 class="hero-title">La Actividad #1 que Hacer<br>en El Valle<br><em>Recórrelo en Bici Eléctrica</em></h1>
@@ -397,7 +401,7 @@
     <div class="plan-top">
       <!-- LEFT: image only -->
       <div class="plan-left">
-        <div class="plan-left-img" role="img" aria-label="Ciclistas E-Valley con vista a El Valle de Antón" style="background-image:url('/images/el-valle/evbike-crater-view.webp');"></div>
+        <div class="plan-left-img" role="img" aria-label="Ciclistas E-Valley con vista a El Valle de Antón" style="background-image:url('/images/el-valle/evbike-crater-view-lp.webp');"></div>
       </div>
 
       <!-- RIGHT: the three steps, then book button (right) + trust line -->
@@ -520,6 +524,8 @@
   </div>
 </section>
 
+</main>
+
 <!-- FOOTER -->
 <footer class="footer">
   <div class="wrap">
@@ -530,7 +536,7 @@
 
 <!-- STICKY CTA -->
 <div class="sticky-cta">
-  <a href="https://wa.me/50768852907?text=%C2%A1Hola!%20Quisiera%20reservar%20un%20tour%20o%20alquiler%20de%20bici%20el%C3%A9ctrica.%20%C2%BFCu%C3%A1les%20son%20los%20siguientes%20pasos%3F">
+  <a aria-label="Reserva por WhatsApp" href="https://wa.me/50768852907?text=%C2%A1Hola!%20Quisiera%20reservar%20un%20tour%20o%20alquiler%20de%20bici%20el%C3%A9ctrica.%20%C2%BFCu%C3%A1les%20son%20los%20siguientes%20pasos%3F">
     <span class="wa-icon"></span><span>Reserva por WhatsApp</span>
   </a>
 </div>
