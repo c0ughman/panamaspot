@@ -140,31 +140,10 @@ def fill_showcase(s, items, lang):
                            f'style="background-image:url(\'{esc_bg(cap(imgs[used]["url"], GALLERY))}\')"></div>{capfig}</figure>')
             used += 1
         s = s[:gstart] + "".join(newfigs) + s[gend-6:]
-    # --- bento: all-or-nothing ---
-    cards = list(re.finditer(r'<div class="(bento-card[^"]*)">', s))
-    remaining = imgs[used:]
-    if cards and len(remaining) >= len(cards):
-        spans = [(m.start(), _end_of_div(s, m.start()), m.group(1)) for m in cards]
-        for k in range(len(spans)-1, -1, -1):        # end-to-start keeps offsets valid
-            st, en, cls = spans[k]
-            url = esc_bg(cap(remaining[k]["url"], GALLERY))
-            alt = build_caption(remaining[k], lang)
-            card = (f'<div class="{cls}"><div class="imgph photo" role="img" aria-label="{alt}" '
-                    f'style="position:absolute;inset:0;background-image:url(\'{url}\')"></div>'
-                    f'{bento_overlay(alt)}</div>')
-            s = s[:st] + card + s[en:]
-        used += len(cards)
-    elif cards:
-        # not enough unique images — remove the whole "More to see" bento section
-        gm2 = re.search(r'<div class="home-bento-grid">', s)
-        if gm2:
-            gend2 = _end_of_div(s, gm2.start())
-            sec_start = s.rfind('<section', 0, gm2.start())
-            sec_end = s.find('</section>', gend2)
-            if sec_start != -1 and sec_end != -1:
-                s = s[:sec_start] + s[sec_end+len('</section>'):]
-            else:
-                s = s[:gm2.start()] + s[gend2:]
+    # The "More to see / Across the region" bento is a hand-authored editorial
+    # section (structured cards: bento-body / bento-split-body / bento-overlay
+    # with tag + h3 + paragraph). We deliberately DO NOT touch it — flattening it
+    # into bare images destroyed that layout. Leave it exactly as templated.
     return s, used
 
 def place_inline(s, key, items, lang):

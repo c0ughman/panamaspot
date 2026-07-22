@@ -49,9 +49,9 @@ PLACEMENTS = {
 
 # Optional hero override per section page (replaces the leftover old hero).
 PAGE_HERO = {
-    # Taboga Island beach — the iconic day-trip image, not the church.
+    # Taboga Island street scene (user's pick for the day-trips hero).
     "public/articles/day-trips-from-panama-city.html":
-        ("https://upload.wikimedia.org/wikipedia/commons/d/d9/TabogaBeach.JPG", "en"),
+        ("https://upload.wikimedia.org/wikipedia/commons/c/c0/Calle_en_Isla_Taboga_-_Panam%C3%A1.jpg", "en"),
 }
 
 def seckey(page, sid, cat):
@@ -109,23 +109,7 @@ def fill_slots(s, items, lang):
             newfigs.append(f'<figure{feat}><div class="imgph photo" role="img" aria-label="{alt}" style="background-image:url(\'{esc(items[used]["url"])}\')"></div>{capfig}</figure>')
             used += 1
         s = s[:gstart] + "".join(newfigs) + s[gend-6:]
-    cards = list(re.finditer(r'<div class="(bento-card[^"]*)">', s))
-    remaining = items[used:]
-    if cards and len(remaining) >= len(cards):
-        spans = [(m.start(), _end_of_div(s, m.start()), m.group(1)) for m in cards]
-        for k in range(len(spans)-1, -1, -1):
-            st, en, cls = spans[k]
-            alt = caption(remaining[k], lang)
-            overlay = (f'<div class="bento-overlay" style="background:linear-gradient(transparent,rgba(0,0,0,.72));'
-                       f'padding:44px 22px 18px;font-size:13px;line-height:1.42;font-weight:500">{alt}</div>') if alt else ''
-            s = s[:st] + f'<div class="{cls}"><div class="imgph photo" role="img" aria-label="{alt}" style="position:absolute;inset:0;background-image:url(\'{esc(remaining[k]["url"])}\')"></div>{overlay}</div>' + s[en:]
-        used += len(cards)
-    elif cards:
-        gm2 = re.search(r'<div class="home-bento-grid">', s)
-        if gm2:
-            gend2 = _end_of_div(s, gm2.start())
-            ss = s.rfind('<section', 0, gm2.start()); se = s.find('</section>', gend2)
-            s = s[:ss] + s[se+len('</section>'):] if ss != -1 and se != -1 else s[:gm2.start()] + s[gend2:]
+    # Leave the hand-authored "More to see" bento untouched (see image-swap.py).
     return s, used
 
 def process(page, placements):
