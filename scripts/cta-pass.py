@@ -149,16 +149,22 @@ def wrap(key, html):
 def strip_old(s):
     return re.sub(r"<!--EVB-CTA:(\w+)-->.*?<!--/EVB-CTA:\1-->", "", s, flags=re.S)
 
-# Chiriquí / Boquete-adjacent pages whose filename doesn't contain "boquete"
-# but which should still carry the Boquete (green) e-bike CTA — Volcán Barú is
-# right above Boquete and its hikers base themselves there.
-BQ_EXTRA = {
-    "volcan-baru-hike-sunrise-summit-guide.html",
-    "volcan-baru-como-subir-cima-panama.html",
-}
+def cta_region(name):
+    """Which e-bike funnel a page should carry, by topic:
+      'ev' -> El Valle,  'bq' -> Boquete / Chiriquí,  None -> no CTA at all.
+    Only El Valle and Boquete-area pages get a funnel; everything else (Panama
+    City, Casco Viejo, Coiba, Bocas, San Blas, …) gets nothing."""
+    n = name.lower()
+    if "el-valle" in n or "valle-de-anton" in n:
+        return "ev"
+    if any(k in n for k in ("boquete", "volcan-baru", "caldera", "lerida", "chiriqui")):
+        return "bq"
+    return None
 
 def inject(path):
-    loc  = "bq" if ("boquete" in path.name or path.name in BQ_EXTRA) else "ev"
+    loc = cta_region(path.name)
+    if loc is None:
+        return None, None            # not a Boquete/El Valle page → no CTA
     lang = "es" if "/es/" in path.as_posix() else "en"
     s = path.read_text(encoding="utf-8")
     s = strip_old(s)
@@ -190,11 +196,14 @@ def main():
     # the given substrings (e.g. `cta-pass.py volcan-baru`). No args = all.
     filters = [a.lower() for a in sys.argv[1:]]
     targets = [p for p in ARTICLES if not filters or any(f in p.name.lower() for f in filters)]
-    print(f"Injecting CTAs into {len(targets)} articles\n")
+    done = skipped = 0
     for p in targets:
         loc, lang = inject(p)
+        if loc is None:
+            skipped += 1; continue
+        done += 1
         print(f"  ✓ {p.relative_to(ROOT)}  [{loc} · {lang}]")
-    print("\nDone.")
+    print(f"\nDone. Injected {done}, skipped {skipped} (non-Boquete/El-Valle).")
 
 if __name__ == "__main__":
     main()

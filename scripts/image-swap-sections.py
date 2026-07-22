@@ -49,9 +49,10 @@ PLACEMENTS = {
 
 # Optional hero override per section page (replaces the leftover old hero).
 PAGE_HERO = {
-    # Taboga Island street scene (user's pick for the day-trips hero).
+    # Taboga Island street scene (user's pick), anchored to the bottom so the
+    # foreground/street shows instead of a centered crop.
     "public/articles/day-trips-from-panama-city.html":
-        ("https://upload.wikimedia.org/wikipedia/commons/c/c0/Calle_en_Isla_Taboga_-_Panam%C3%A1.jpg", "en"),
+        ("https://upload.wikimedia.org/wikipedia/commons/c/c0/Calle_en_Isla_Taboga_-_Panam%C3%A1.jpg", "en", "center bottom"),
 }
 
 def seckey(page, sid, cat):
@@ -189,10 +190,14 @@ def process(page, placements):
         s = s[:pos] + block + s[pos:]
     # 4) hero override if configured
     if page in PAGE_HERO:
-        url, _ = PAGE_HERO[page]
-        url = cap(url, HERO)
+        entry = PAGE_HERO[page]
+        url = cap(entry[0], HERO)
+        pos = entry[2] if len(entry) > 2 else None
         s = re.sub(r'(<div class="art-hero-img-full"[^>]*background-image:url\(\')[^\']+(\'\))',
                    lambda m: m.group(1)+url.replace("&", "&amp;")+m.group(2), s)
+        if pos:
+            s = re.sub(r"(<div class=\"art-hero-img-full\"[^>]*background-image:url\('[^']+'\))(?!;background-position)",
+                       lambda m: m.group(1)+f";background-position:{pos}", s, count=1)
         for pat in (r'(<meta content=")[^"]+(" property="og:image"/>)',
                     r'(<meta content=")[^"]+(" name="twitter:image"/>)',
                     r'("image": \[\s*")[^"]+(")'):

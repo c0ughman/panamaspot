@@ -103,10 +103,14 @@ def process(page):
         f'<meta content="{alt_esc}" name="twitter:image:alt"/>',
         [r'<meta content="[^"]*" name="twitter:image:alt"/>'])
 
-    # ── a11y: hero div role + aria-label ─────────────────────────────────────
-    if hero_alt and 'art-hero-img-full" role="img"' not in s:
-        s = s.replace('<div class="art-hero-img-full" style=',
-                      f'<div class="art-hero-img-full" role="img" aria-label="{alt_esc}" style=', 1)
+    # ── a11y: hero div role + aria-label (set OR update if already present) ───
+    if hero_alt:
+        if re.search(r'art-hero-img-full" role="img" aria-label="', s):
+            s = re.sub(r'(art-hero-img-full" role="img" aria-label=")[^"]*(")',
+                       lambda m: m.group(1) + alt_esc + m.group(2), s, count=1)
+        else:
+            s = s.replace('<div class="art-hero-img-full" style=',
+                          f'<div class="art-hero-img-full" role="img" aria-label="{alt_esc}" style=', 1)
 
     # ── P1: enrich Article JSON-LD image array with every page image ─────────
     imgs = page_images(s)
