@@ -97,7 +97,7 @@ def related_for(path):
 GRID_CSS = ('<style>.rel-grid{display:grid;gap:14px;grid-template-columns:1.55fr 1fr;'
             'grid-template-rows:236px 236px}.rel-grid .rb-lg{grid-row:1/3}'
             '.rel-grid .rb-a{grid-column:2;grid-row:1}.rel-grid .rb-b{grid-column:2;grid-row:2}'
-            '.rel-grid .bento-card{align-items:flex-start}.rel-grid .b-tag{color:#fff!important;opacity:.85}'
+            '.rel-grid .b-tag{color:#fff!important;opacity:.85}'
             '.rel-grid h3{color:#fff;font-family:var(--serif);font-weight:400;line-height:1.14;margin:3px 0 0}'
             '@media(max-width:760px){.rel-grid{grid-template-columns:1fr;grid-template-rows:none}'
             '.rel-grid .rb-lg,.rel-grid .rb-a,.rel-grid .rb-b{grid-row:auto;grid-column:auto;min-height:220px}}</style>')
@@ -110,8 +110,9 @@ def card(m, cls, lang):
     title = html.escape(short_title(m["title"], 58 if big else 46))
     tag = html.escape(CN[m["cluster"]][1 if lang == "es" else 0])
     alt = html.escape(m["title"])
-    img = (f'<div class="imgph photo"><img src="{src}" alt="{alt}" loading="lazy"{wh} '
-           f'style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></div>')
+    img = (f'<div class="imgph photo" style="position:absolute;inset:0;border-radius:0">'
+           f'<img src="{src}" alt="{alt}" loading="lazy"{wh} '
+           f'style="width:100%;height:100%;object-fit:cover;display:block"></div>')
     dek = (f'<p style="color:#fff;opacity:.9;font-size:13.5px;line-height:1.45;margin:7px 0 0">'
            f'{html.escape(short_dek(m["dek"]))}</p>') if big else ""
     h3size = "23px" if big else "18px"
