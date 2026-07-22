@@ -482,5 +482,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       "es/articles/rafting-boquete-rio-chiriqui",
       "https://images.pexels.com/photos/36791113/pexels-photo-36791113.jpeg?auto=compress&cs=tinysrgb&w=1280",
     ),
+    guide(
+      "es/articles/san-blas-guna-yala-guia-tours-islas",
+      "https://images.pexels.com/photos/30271300/pexels-photo-30271300.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    guide(
+      "es/articles/como-llegar-a-bocas-del-toro-desde-ciudad-de-panama",
+      "https://images.pexels.com/photos/16146741/pexels-photo-16146741.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
   ];
 }

@@ -162,12 +162,7 @@ def process(page):
         s = re.sub(r'(<div class="art-hero-img-full"><img[^>]*\balt=")[^"]*(")',
                    lambda m: m.group(1) + alt_esc + m.group(2), s, count=1)
 
-    # ── P1: Article JSON-LD image array → full ImageObjects (licence+creator) ─
-    imgs = page_images(s)
-    if imgs:
-        arr = ", ".join(json.dumps(image_object(u, lang), ensure_ascii=False) for u in imgs)
-        s = re.sub(r'("image": \[)[^\]]*(\])',
-                   lambda m: m.group(1) + arr + m.group(2), s, count=1)
+    # (Article JSON-LD "image" ImageObjects are set site-wide by enrich-images.py)
 
     p.write_text(s, encoding="utf-8")
     print(f"  ✓ {page}  images={len(imgs)}  hero_alt={'y' if hero_alt else 'N'}  dims={dims}")
