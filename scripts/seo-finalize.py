@@ -19,11 +19,35 @@ scripts/image-selections.json; dimensions from scripts/img-dims.json.
 """
 import re, json, pathlib, html, sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from img_cap import wm_original, capped_dims, HERO
+from img_cap import wm_original, capped_dims, rendered_dims, HERO
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SEL  = json.loads((ROOT/"scripts"/"image-selections.json").read_text())["selections"]
+ARTIST = json.loads((ROOT/"scripts"/"image-artists.json").read_text()) if (ROOT/"scripts"/"image-artists.json").exists() else {}
 EDIT_DATE = "2026-07-20"
+
+def license_url(lic):
+    """schema.org license: map a licence string to its canonical deed URL."""
+    l = (lic or "").strip().lower()
+    if not l:
+        return None
+    if l in ("cc0", "cc0 1.0"):
+        return "https://creativecommons.org/publicdomain/zero/1.0/"
+    if l in ("public domain", "pd"):
+        return "https://en.wikipedia.org/wiki/Public_domain"
+    m = re.match(r"cc by(-sa)?\s*([0-9]\.[0-9])", l)
+    if m:
+        return f"https://creativecommons.org/licenses/by{m.group(1) or ''}/{m.group(2)}/"
+    if l.startswith("cc by-sa"):
+        return "https://creativecommons.org/licenses/by-sa/4.0/"
+    if l.startswith("cc by"):
+        return "https://creativecommons.org/licenses/by/4.0/"
+    return None
+
+def commons_page(orig_url):
+    m = re.match(r"^https://upload\.wikimedia\.org/wikipedia/commons/[0-9a-f]/[0-9a-f]{2}/([^/?#]+)$",
+                 (orig_url or "").replace("&amp;", "&"))
+    return f"https://commons.wikimedia.org/wiki/File:{m.group(1)}" if m else None
 
 def norm(url):
     """Normalize any (capped or original, escaped or not) image URL to a key that
@@ -33,20 +57,45 @@ def norm(url):
         return re.sub(r"([?&]w=)\d+", r"\g<1>", u)  # drop the width number
     return wm_original(u)
 
-# normalized-url -> (caption_en, caption_es, original_url)
+# normalized-url -> (caption_en, caption_es, original_url, license)
 CAPT = {}
 for c in SEL.values():
     items = list(c["use"])
     if c.get("hero"): items.append(c["hero"])
     for it in items:
-        CAPT[norm(it["url"])] = (it.get("caption_en", ""), it.get("caption_es", ""), it["url"])
+        CAPT[norm(it["url"])] = (it.get("caption_en", ""), it.get("caption_es", ""), it["url"], it.get("license", ""))
 
 def caption_for(url, lang):
     e = CAPT.get(norm(url))
     if not e: return None, None
-    en, es, orig = e
+    en, es, orig = e[0], e[1], e[2]
     cap = (es if lang == "es" else en) or en or es
     return cap, orig
+
+def image_object(url, lang):
+    """A schema.org ImageObject for one rendered image: contentUrl + dims, and
+    (for Commons images) licence + creator so it can earn the Licensable badge."""
+    node = {"@type": "ImageObject", "contentUrl": url, "url": url}
+    dims = rendered_dims(url)
+    if dims:
+        node["width"], node["height"] = dims[0], dims[1]
+    e = CAPT.get(norm(url))
+    if e:
+        cap = (e[1] if lang == "es" else e[0]) or e[0] or e[1]
+        if cap:
+            node["caption"] = cap
+        lu = license_url(e[3])
+        if lu:
+            node["license"] = lu
+            node["acquireLicensePage"] = commons_page(e[2]) or lu
+        artist = ARTIST.get(e[2]) or ARTIST.get(e[2].replace("&", "&amp;"))
+        if artist:
+            node["creditText"] = artist
+            node["creator"] = {"@type": "Person", "name": artist}
+            node["copyrightNotice"] = artist
+    if "license" not in node and "images.pexels.com" in url:
+        node["license"] = "https://www.pexels.com/license/"
+    return node
 
 def page_images(s):
     """The article's own images — hero + gallery/inline <figure> images — in
@@ -113,10 +162,10 @@ def process(page):
         s = re.sub(r'(<div class="art-hero-img-full"><img[^>]*\balt=")[^"]*(")',
                    lambda m: m.group(1) + alt_esc + m.group(2), s, count=1)
 
-    # ── P1: enrich Article JSON-LD image array with every page image ─────────
+    # ── P1: Article JSON-LD image array → full ImageObjects (licence+creator) ─
     imgs = page_images(s)
     if imgs:
-        arr = ", ".join(json.dumps(u, ensure_ascii=False) for u in imgs)
+        arr = ", ".join(json.dumps(image_object(u, lang), ensure_ascii=False) for u in imgs)
         s = re.sub(r'("image": \[)[^\]]*(\])',
                    lambda m: m.group(1) + arr + m.group(2), s, count=1)
 

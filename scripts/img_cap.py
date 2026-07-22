@@ -58,6 +58,21 @@ def wm_original(url):
 def _esc(u):
     return u.replace("&", "&amp;")
 
+def rendered_dims(url):
+    """Actual (width, height) of the *rendered* (capped) image at `url`, for
+    ImageObject width/height. None if unknown."""
+    u = url.replace("&amp;", "&")
+    m = re.search(r"/(\d+)px-[^/]+$", u)          # Wikimedia thumb: width in the path
+    if m:
+        w = int(m.group(1)); d = _DIMS.get(wm_original(u))
+        return (w, round(d["h"] * w / d["w"])) if d else None
+    if "images.pexels.com" in u:
+        wm = re.search(r"[?&]w=(\d+)", u); w = int(wm.group(1)) if wm else None
+        d = _DIMS.get(re.sub(r"([?&]w=)\d+", r"\g<1>1600", u))
+        return (w, round(d["h"] * w / d["w"])) if (w and d) else None
+    d = _DIMS.get(u)                               # original / local
+    return (d["w"], d["h"]) if d else None
+
 def srcset(url):
     """A responsive srcset string offering every safe width below the original
     (Wikimedia buckets / Pexels ?w=). Empty string if we can't build one."""
