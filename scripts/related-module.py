@@ -91,24 +91,34 @@ def related_for(path):
     same.sort(key=lambda m: (score(m), m["path"]))
     return same[:3]
 
-def card(m, cls, lang, with_dek):
+# Self-contained grid: one big card on the left spanning both rows, two stacked
+# on the right — fills the space with no empty cells (the old b1/b3/b5 layout
+# left the top-right + a middle cell blank). Stacks on mobile.
+GRID_CSS = ('<style>.rel-grid{display:grid;gap:14px;grid-template-columns:1.55fr 1fr;'
+            'grid-template-rows:236px 236px}.rel-grid .rb-lg{grid-row:1/3}'
+            '.rel-grid .rb-a{grid-column:2;grid-row:1}.rel-grid .rb-b{grid-column:2;grid-row:2}'
+            '.rel-grid .bento-card{align-items:flex-start}.rel-grid .b-tag{color:#fff!important;opacity:.85}'
+            '.rel-grid h3{color:#fff;font-family:var(--serif);font-weight:400;line-height:1.14;margin:3px 0 0}'
+            '@media(max-width:760px){.rel-grid{grid-template-columns:1fr;grid-template-rows:none}'
+            '.rel-grid .rb-lg,.rel-grid .rb-a,.rel-grid .rb-b{grid-row:auto;grid-column:auto;min-height:220px}}</style>')
+
+def card(m, cls, lang):
     hero, dims = card_hero(m["hero"])
     src = hero.replace("&", "&amp;")
     wh = f' width="{dims[0]}" height="{dims[1]}"' if dims else ""
-    title = html.escape(short_title(m["title"]))
+    big = cls == "rb-lg"
+    title = html.escape(short_title(m["title"], 58 if big else 46))
     tag = html.escape(CN[m["cluster"]][1 if lang == "es" else 0])
     alt = html.escape(m["title"])
     img = (f'<div class="imgph photo"><img src="{src}" alt="{alt}" loading="lazy"{wh} '
            f'style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></div>')
-    dek = f'<p>{html.escape(short_dek(m["dek"]))}</p>' if with_dek else ""
-    if cls == "b1":
-        return (f'<a class="bento-card b1" href="{m["url"]}"><div class="bento-img-top">{img}</div>'
-                f'<div class="bento-body"><span class="b-tag">{tag}</span><h3>{title}</h3>{dek}</div></a>')
-    if cls == "b3":
-        return (f'<a class="bento-card b3" href="{m["url"]}">{img}'
-                f'<div class="bento-overlay"><span class="b-tag">{tag}</span><h3>{title}</h3></div></a>')
-    return (f'<a class="bento-card b5" href="{m["url"]}"><div class="bento-split-img">{img}</div>'
-            f'<div class="bento-split-body"><span class="b-tag">{tag}</span><h3>{title}</h3>{dek}</div></a>')
+    dek = (f'<p style="color:#fff;opacity:.9;font-size:13.5px;line-height:1.45;margin:7px 0 0">'
+           f'{html.escape(short_dek(m["dek"]))}</p>') if big else ""
+    h3size = "23px" if big else "18px"
+    ov = (f'<div class="bento-overlay" style="background:linear-gradient(transparent,rgba(0,0,0,.82));'
+          f'padding:70px 22px 20px"><span class="b-tag">{tag}</span>'
+          f'<h3 style="font-size:{h3size}">{title}</h3>{dek}</div>')
+    return f'<a class="bento-card {cls}" href="{m["url"]}">{img}{ov}</a>'
 
 def build_section(path):
     lang = META[path]["lang"]
@@ -117,25 +127,30 @@ def build_section(path):
         return None
     eyebrow = "Sigue explorando" if lang == "es" else "Keep exploring"
     heading = "Guías relacionadas" if lang == "es" else "Related guides"
-    cards = card(rel[0], "b1", lang, True) + card(rel[1], "b3", lang, False) + card(rel[2], "b5", lang, True)
-    return (f'<section class="art-section"><div class="container"><div class="art-section-head">'
+    cards = card(rel[0], "rb-lg", lang) + card(rel[1], "rb-a", lang) + card(rel[2], "rb-b", lang)
+    return (f'<section class="art-section"><div class="container">{GRID_CSS}<div class="art-section-head">'
             f'<span class="eyebrow">{eyebrow}</span><h2>{heading}</h2></div>'
-            f'<div class="home-bento-grid">{cards}</div></div></section>')
+            f'<div class="rel-grid">{cards}</div></div></section>')
 
 def process(path):
     s = pathlib.Path(path).read_text()
-    m = re.search(r'<div class="home-bento-grid">', s)
-    if not m:
-        print(f"  – no bento: {path}"); return
-    sec_start = s.rfind("<section", 0, m.start())
-    sec_end = s.find("</section>", m.start()) + len("</section>")
     new_sec = build_section(path)
     if not new_sec:
         print(f"  ! <3 related: {path}"); return
-    s = s[:sec_start] + new_sec + s[sec_end:]
+    wrapped = "<!--RELATED-MODULE-->" + new_sec + "<!--/RELATED-MODULE-->"
+    rm = re.search(r"<!--RELATED-MODULE-->.*?<!--/RELATED-MODULE-->", s, re.S)
+    if rm:                                   # re-run: replace the existing module
+        s = s[:rm.start()] + wrapped + s[rm.end():]
+    else:                                    # first run: replace the old bento section
+        m = re.search(r'<div class="home-bento-grid">', s)
+        if not m:
+            print(f"  – no bento: {path}"); return
+        sec_start = s.rfind("<section", 0, m.start())
+        sec_end = s.find("</section>", m.start()) + len("</section>")
+        s = s[:sec_start] + wrapped + s[sec_end:]
     pathlib.Path(path).write_text(s)
     r = related_for(path)
-    print(f"  ✓ {pathlib.Path(path).name}  → {[pathlib.Path(x['path']).name[:22] for x in r]}")
+    print(f"  ✓ {pathlib.Path(path).name}  → {[pathlib.Path(x['path']).name[:20] for x in r]}")
 
 def main():
     for p in sorted(NEW):
