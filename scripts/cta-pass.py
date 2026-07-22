@@ -149,6 +149,36 @@ def wrap(key, html):
 def strip_old(s):
     return re.sub(r"<!--EVB-CTA:(\w+)-->.*?<!--/EVB-CTA:\1-->", "", s, flags=re.S)
 
+def _remove_balanced(s, open_re, tag):
+    """Remove every element matching `open_re` up to its depth-matched closing
+    </tag>, including nested same-tag children."""
+    opn, cls = f"<{tag}", f"</{tag}>"
+    while True:
+        m = re.search(open_re, s)
+        if not m:
+            return s
+        i, depth = m.end(), 1
+        while i < len(s) and depth:
+            no, nc = s.find(opn, i), s.find(cls, i)
+            if nc == -1:
+                break
+            if no != -1 and no < nc:
+                depth += 1; i = no + len(opn)
+            else:
+                depth -= 1; i = nc + len(cls)
+        s = s[:m.start()] + s[i:]
+
+def strip_evb_blocks(s):
+    """Remove ANY e-bike CTA blocks, marker-wrapped or hardcoded into the page
+    template. The new-page templates shipped with stray/inconsistent hardcoded
+    CTAs (e.g. an El Valle rail on a Boquete page, or a CTA on a non-region
+    page); strip them all so injection is the single source of truth."""
+    s = re.sub(r'<style id="evb-cta-styles">.*?</style>', "", s, flags=re.S)
+    s = _remove_balanced(s, r'<section class="evb-cta evb-closer"', "section")
+    s = _remove_balanced(s, r'<aside class="evb-rail"', "aside")
+    s = _remove_balanced(s, r'<div class="evb-cta"', "div")
+    return s
+
 def cta_region(name):
     """Which e-bike funnel a page should carry, by topic:
       'ev' -> El Valle,  'bq' -> Boquete / Chiriquí,  None -> no CTA at all.
@@ -163,11 +193,12 @@ def cta_region(name):
 
 def inject(path):
     loc = cta_region(path.name)
-    if loc is None:
-        return None, None            # not a Boquete/El Valle page → no CTA
     lang = "es" if "/es/" in path.as_posix() else "en"
     s = path.read_text(encoding="utf-8")
-    s = strip_old(s)
+    s = strip_evb_blocks(strip_old(s))   # always clean every CTA first
+    if loc is None:
+        path.write_text(s, encoding="utf-8")   # non-region page → cleaned, no CTA
+        return None, None
 
     css    = (CTA / "styles.css").read_text(encoding="utf-8").strip()
     css    = f'<style id="evb-cta-styles">{css}</style>'
