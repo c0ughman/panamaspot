@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, follow">
+
+<!-- Google tag (gtag.js) — Google Ads: AW-18171913785 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18171913785"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18171913785');
+</script>
+<script>
+  /* Google Ads conversion — fires when any WhatsApp button is clicked.
+     One delegated listener covers every wa.me button on the page. The links
+     navigate in the same tab, so for a plain left-click we hold navigation
+     just long enough to send the conversion (event_callback), with a 1s
+     fallback so the visitor is never blocked even if the tag is slow/blocked.
+     New-tab or modified clicks just fire and let the browser proceed. */
+  (function () {
+    var SEND_TO = 'AW-18171913785/CT2QCOa97bocELnMhdlD'; // WhatsApp – El Valle
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest && e.target.closest('a[href^="https://wa.me/"]');
+      if (!link) return;
+
+      if (link.target === '_blank' || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) {
+        gtag('event', 'conversion', { send_to: SEND_TO });
+        return;
+      }
+
+      e.preventDefault();
+      var url = link.href, done = false;
+      var go = function () { if (!done) { done = true; window.location = url; } };
+      gtag('event', 'conversion', { send_to: SEND_TO, event_callback: go });
+      setTimeout(go, 1000);
+    }, false);
+  })();
+</script>
+
+<meta name="description" content="Tours en bicicleta por El Valle de Antón. Recorre el cráter volcánico de Panamá: cascadas, selva y atardeceres. Casco, audioguía GPS y canasta incluidos. Reserva por WhatsApp.">
+<title>Tours en Bicicleta en El Valle de Antón, Panamá — E-Valley Bikes</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #2F280B;
+    --ink-soft: #5a4d38;
+    --muted: #8b7e6b;
+    --line: rgba(47, 40, 11, 0.10);
+    --cream: #f7f5ee;
+    --cream-deep: #efece1;
+    --green: #ea450e;
+    --green-deep: #2F280B;
+    --green-soft: #ea450e;
+    --whatsapp: #25d366;
+    --whatsapp-deep: #1ea851;
+    --gold: #c79b2c;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: var(--sans);
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.55;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+  /* ─── ANNOUNCE BAR ─── */
+  .announce {
+    background: var(--green-deep);
+    color: #ea450e;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    padding: 9px 16px;
+  }
+  .announce strong { color: #fff; font-weight: 600; }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    min-height: 92vh;
+    background:
+      linear-gradient(180deg, rgba(47,40,11,0.35) 0%, rgba(47,40,11,0.65) 60%, rgba(47,40,11,0.92) 100%),
+      url('/images/el-valle/evbike-crater-view.webp') center/cover no-repeat;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 88px 0 56px;
+  }
+  .hero-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    padding: 22px 0;
+  }
+  .hero-top .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .brand {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+    color: #fff;
+  }
+  .brand span { color: #ea450e; font-weight: 500; }
+  .hero-loc {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .hero-loc::before {
+    content: '';
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #ea450e; box-shadow: 0 0 0 3px rgba(234,69,14,0.25);
+  }
+  .hero-content { position: relative; z-index: 2; box-sizing: border-box; }
+  @media (min-width: 561px) {
+    .hero-content > * { max-width: 680px; }
+  }
+  .eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #ea450e;
+    background: rgba(255,255,255,0.10);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.18);
+    padding: 7px 13px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+  h1.hero-title {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(38px, 6.8vw, 72px);
+    line-height: 1.02;
+    letter-spacing: -1.2px;
+    margin-bottom: 18px;
+    max-width: 18ch;
+    text-shadow: 0 2px 18px rgba(10,8,2,0.32), 0 1px 3px rgba(10,8,2,0.25);
+  }
+  .hero-title-lead {
+    display: block;
+    font-size: clamp(28px, 5.5vw, 55px);
+  }
+  h1.hero-title em {
+    font-style: normal;
+    font-weight: 500;
+    color: #ea450e;
+  }
+  .hero-sub {
+    font-size: clamp(16px, 1.63vw, 18px);
+    line-height: 1.55;
+    color: rgba(255,255,255,0.92);
+    max-width: 560px;
+    margin-bottom: 28px;
+    font-weight: 400;
+    text-shadow: 0 1px 10px rgba(10,8,2,0.32), 0 1px 2px rgba(10,8,2,0.22);
+  }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .hero-meta {
+    display: flex;
+    gap: 22px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+  .hero-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.92);
+    letter-spacing: 0.3px;
+  }
+  .check {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: rgba(234,69,14,0.20);
+    color: #ea450e;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* ─── HERO PILLS (TripAdvisor + bilingual) ─── */
+  .hero-pills-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 16px;
+    align-items: center;
+  }
+  .ta-inline, .lang-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 11px;
+    background: rgba(255,255,255,0.10);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.20);
+    border-radius: 100px;
+    color: #fff3e6;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .ta-inline .ta-bubbles { color: #ffb38f; font-size: 9px; letter-spacing: 2px; }
+  .ta-inline strong { color: #fff; font-weight: 700; font-size: 10px; }
+  .lang-pill .lang-icon { font-size: 13px; letter-spacing: 0; }
+
+  /* ─── LANGUAGE TOGGLE ─── */
+  .hero-top-right { display: flex; align-items: center; gap: 14px; }
+  .lang-toggle {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 6px 13px; border: 1px solid rgba(255,255,255,0.32);
+    border-radius: 100px; color: #fff; font-size: 12px; font-weight: 600;
+    letter-spacing: 0.5px; backdrop-filter: blur(6px);
+    transition: background 0.15s ease;
+  }
+  .lang-toggle:hover { background: rgba(255,255,255,0.16); }
+
+  /* ─── BUTTONS ─── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 16px 26px;
+    border-radius: 100px;
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+    text-align: center;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary {
+    background: var(--whatsapp);
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(37,211,102,0.35);
+  }
+  .btn-primary:hover { background: var(--whatsapp-deep); box-shadow: 0 10px 30px rgba(37,211,102,0.45); }
+  .btn-ghost {
+    background: rgba(255,255,255,0.10);
+    color: #fff;
+    border: 1.5px solid rgba(255,255,255,0.30);
+    backdrop-filter: blur(6px);
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.18); }
+  .btn-dark {
+    background: var(--ink);
+    color: #fff;
+  }
+  .btn-dark:hover { background: var(--green-deep); }
+  .btn-block { width: 100%; }
+  .btn-lg { padding: 18px 32px; font-size: 17px; }
+
+  .wa-icon {
+    width: 20px; height: 20px;
+    display: inline-block;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.32 4.95L2 22l5.25-1.38a9.93 9.93 0 0 0 4.79 1.22c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2zm5.85 14.07c-.25.69-1.45 1.32-2 1.4-.51.07-1.16.1-1.87-.12-.43-.13-.99-.32-1.7-.62-3-1.3-4.96-4.32-5.11-4.52-.15-.2-1.22-1.62-1.22-3.1 0-1.47.77-2.2 1.05-2.5.27-.3.6-.37.8-.37.2 0 .4 0 .57.01.18.01.43-.07.67.51.25.6.85 2.07.93 2.22.07.15.13.32.02.52-.1.2-.16.32-.32.5-.16.17-.33.39-.47.52-.15.15-.31.32-.13.62.18.3.78 1.29 1.68 2.09 1.16 1.04 2.14 1.36 2.44 1.51.3.15.47.13.65-.07.18-.2.75-.87.95-1.18.2-.3.4-.25.67-.15.27.1 1.74.82 2.04.97.3.15.5.22.57.35.07.13.07.74-.18 1.43z'/></svg>") no-repeat center / contain;
+  }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 72px 0; }
+  .section-eyebrow {
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 14px;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(30px, 4vw, 44px);
+    line-height: 1.1;
+    letter-spacing: -0.7px;
+    color: var(--ink);
+    margin-bottom: 18px;
+    max-width: 22ch;
+  }
+  .section-title em { font-style: italic; font-weight: 500; color: var(--green); }
+  .section-sub {
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 56ch;
+    line-height: 1.6;
+  }
+
+  /* ─── OFFER ─── */
+  .offer { background: var(--cream-deep); }
+  .offer-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 56px;
+    align-items: center;
+    margin-top: 44px;
+  }
+  .offer-img {
+    aspect-ratio: 4/5;
+    background: url('/images/el-valle/evbike-bike-crater.webp') center/cover no-repeat;
+    border-radius: 14px;
+    box-shadow: 0 30px 80px -30px rgba(47,40,11,0.45);
+  }
+  .offer-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 1px 0 rgba(47,40,11,0.04);
+  }
+  .offer-card h3 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .offer-card p.card-sub { color: var(--muted); font-size: 14.5px; margin-bottom: 22px; }
+  .price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 18px 0;
+    border-top: 1px solid var(--line);
+  }
+  .price-row:last-of-type { border-bottom: 1px solid var(--line); margin-bottom: 24px; }
+  .price-label { flex: 1; font-weight: 500; font-size: 15px; }
+  .price-amount {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--green);
+    letter-spacing: -0.5px;
+  }
+  .price-amount span { font-size: 13px; color: var(--muted); font-weight: 400; margin-left: 2px; }
+  .includes-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  .include-pill {
+    font-size: 13px;
+    font-weight: 500;
+    background: var(--green-soft);
+    color: #fff;
+    padding: 7px 13px;
+    border-radius: 100px;
+  }
+
+  /* ─── TOURS ─── */
+  .tours-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 44px;
+  }
+  .tour-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .tour-card:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -20px rgba(47,40,11,0.25); }
+  .tour-img {
+    aspect-ratio: 4/3;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .tour-body { padding: 20px 22px 24px; }
+  .tour-tag {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+  .tour-name {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 21px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .tour-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.5; }
+
+  /* ─── PROOF ─── */
+  .proof { background: var(--green-deep); color: #f7f5ee; }
+  .proof .section-eyebrow { color: #ea450e; }
+  .proof .section-title { color: #fff; }
+  .proof .section-title em { color: #ea450e; }
+  .proof-callout {
+    margin-top: 32px;
+    padding: 28px 32px;
+    background: rgba(255,255,255,0.06);
+    border: 1px dashed rgba(255,255,255,0.30);
+    border-radius: 14px;
+    color: #ea450e;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .proof-callout strong { color: #fff; font-weight: 600; }
+  .proof-stars {
+    color: var(--gold);
+    font-size: 18px;
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+  }
+  .proof-stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 44px;
+    padding-top: 36px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+  }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    letter-spacing: -1px;
+    margin-bottom: 6px;
+  }
+  .stat-label { font-size: 13px; color: #ea450e; letter-spacing: 0.5px; }
+
+  /* ─── EXPERIENCE ─── */
+  .experience { background: var(--cream); }
+  .xp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 44px;
+  }
+  .xp-card {
+    aspect-ratio: 1;
+    border-radius: 12px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+  }
+  .xp-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(47,40,11,0.85));
+  }
+  .xp-card-label {
+    position: absolute;
+    bottom: 18px; left: 20px; right: 20px;
+    z-index: 2;
+    color: #fff;
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    line-height: 1.15;
+  }
+  .xp-tall { grid-row: span 2; aspect-ratio: 1/2; }
+
+  /* ─── HOW ─── */
+  .how { background: #fff; }
+  .how-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 44px;
+  }
+  .step-num {
+    font-family: var(--serif);
+    font-size: 64px;
+    font-weight: 700;
+    color: var(--green);
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+    opacity: 0.92;
+  }
+  .step-title {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 22px;
+    margin-bottom: 6px;
+    letter-spacing: -0.3px;
+  }
+  .step-desc { font-size: 15px; color: var(--ink-soft); line-height: 1.55; }
+
+  /* ─── FAQ ─── */
+  .faq { background: var(--cream); }
+  .faq-list { margin-top: 36px; max-width: 760px; }
+  .faq-item {
+    border-bottom: 1px solid var(--line);
+    padding: 22px 0;
+  }
+  .faq-q {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 19px;
+    margin-bottom: 8px;
+    letter-spacing: -0.3px;
+    color: var(--ink);
+  }
+  .faq-a { font-size: 15px; color: var(--ink-soft); line-height: 1.65; }
+
+  /* ─── TRIP HELP ─── */
+  .trip-help { background: #fff4e8; padding: 56px 0; }
+  .trip-help-inner {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+  }
+  .trip-help-text { flex: 1; }
+  .trip-help-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #b35c00;
+    margin-bottom: 10px;
+  }
+  .trip-help-heading {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(24px, 3vw, 34px);
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+  .trip-help-body {
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    max-width: 54ch;
+    margin-bottom: 24px;
+  }
+  .trip-help-body strong { color: var(--ink); font-weight: 600; }
+  .btn-help {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 12px 22px;
+    border-radius: 100px;
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 600;
+    background: #fff;
+    color: var(--ink);
+    border: 1.5px solid rgba(47,40,11,0.15);
+    box-shadow: 0 1px 3px rgba(47,40,11,0.08);
+    cursor: pointer;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    text-decoration: none;
+  }
+  .btn-help:hover { box-shadow: 0 3px 10px rgba(47,40,11,0.14); border-color: rgba(47,40,11,0.25); }
+  .wa-icon-dark {
+    width: 18px; height: 18px;
+    display: inline-block;
+    flex-shrink: 0;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232F280B'><path d='M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.32 4.95L2 22l5.25-1.38a9.93 9.93 0 0 0 4.79 1.22c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2zm5.85 14.07c-.25.69-1.45 1.32-2 1.4-.51.07-1.16.1-1.87-.12-.43-.13-.99-.32-1.7-.62-3-1.3-4.96-4.32-5.11-4.52-.15-.2-1.22-1.62-1.22-3.1 0-1.47.77-2.2 1.05-2.5.27-.3.6-.37.8-.37.2 0 .4 0 .57.01.18.01.43-.07.67.51.25.6.85 2.07.93 2.22.07.15.13.32.02.52-.1.2-.16.32-.32.5-.16.17-.33.39-.47.52-.15.15-.31.32-.13.62.18.3.78 1.29 1.68 2.09 1.16 1.04 2.14 1.36 2.44 1.51.3.15.47.13.65-.07.18-.2.75-.87.95-1.18.2-.3.4-.25.67-.15.27.1 1.74.82 2.04.97.3.15.5.22.57.35.07.13.07.74-.18 1.43z'/></svg>") no-repeat center / contain;
+  }
+  .trip-help-img {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 14px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(47,40,11,0.15);
+  }
+
+  /* ─── FINAL CTA ─── */
+  .final-cta {
+    background: var(--ink);
+    color: #fff;
+    text-align: center;
+    padding: 96px 0;
+  }
+  .final-cta h2 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(34px, 5vw, 54px);
+    line-height: 1.05;
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+    max-width: 18ch;
+    margin-inline: auto;
+  }
+  .final-cta h2 em { font-style: italic; color: #ea450e; }
+  .final-cta p {
+    font-size: 17px;
+    color: rgba(255,255,255,0.78);
+    max-width: 50ch;
+    margin: 0 auto 36px;
+    line-height: 1.55;
+  }
+  .final-cta .hero-meta { justify-content: center; margin-top: 28px; }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.55);
+    text-align: center;
+    padding: 28px 20px;
+    font-size: 12.5px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .footer a { color: rgba(255,255,255,0.78); }
+
+  /* ─── FLOATING CTA CIRCLE ─── */
+  .sticky-cta {
+    position: fixed;
+    bottom: 28px; right: 20px;
+    z-index: 50;
+    width: 72px;
+    height: 72px;
+  }
+  .sticky-cta .btn {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border-radius: 50%;
+    background: var(--whatsapp);
+    box-shadow: 0 4px 16px rgba(37,211,102,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sticky-cta .btn:hover {
+    background: var(--whatsapp-deep);
+    box-shadow: 0 6px 20px rgba(37,211,102,0.45);
+  }
+  .sticky-cta .wa-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .offer-grid { grid-template-columns: 1fr; gap: 32px; }
+    .tours-grid { grid-template-columns: repeat(2, 1fr); }
+    .proof-stat-row { grid-template-columns: 1fr; gap: 20px; text-align: left; }
+    .xp-grid { grid-template-columns: repeat(2, 1fr); }
+    .xp-tall { grid-row: auto; aspect-ratio: 1; }
+    .how-steps { grid-template-columns: 1fr; gap: 24px; }
+  }
+  @media (max-width: 900px) {
+    .trip-help-inner { flex-direction: row; gap: 32px; }
+  }
+  @media (max-width: 560px) {
+    section { padding: 56px 0; }
+    .announce { display: block; }
+    .hero { min-height: 82vh; padding: 96px 0 40px; }
+    .hero-loc { display: none; }
+    .hero .eyebrow { display: none; }
+    .hero-top { padding: 18px 0; }
+    .hero-ctas { flex-direction: column; align-items: stretch; }
+    .hero-ctas .btn { width: 100%; }
+    .hero-meta { margin-top: 24px; }
+    .hero-pills-row { justify-content: flex-start; margin-bottom: 18px; }
+    .ta-inline, .lang-pill { font-size: 8px; letter-spacing: 1.5px; padding: 5px 8px; gap: 5px; }
+    .ta-inline .ta-bubbles { font-size: 7px; }
+    .lang-pill .lang-icon { font-size: 11px; }
+    .tour-body { padding: 18px 18px 20px; }
+    .offer-card { padding: 24px; }
+    .proof-callout { padding: 22px 20px; }
+    .trip-help-inner { flex-direction: column; gap: 20px; align-items: flex-start; }
+    .trip-help-img { width: 80px; height: 80px; }
+    .ev-mid-cta-grid { gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCE -->
+<div class="announce">
+  Abierto todos los días · <strong>Plaza Paseo El Valle</strong> · Casco, audioguía GPS y candado incluidos
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-top">
+    <div class="wrap">
+      <div class="brand">E-Valley <span>Bikes</span></div>
+      <div class="hero-top-right">
+        <div class="hero-loc">El Valle de Antón · Panamá</div>
+        <a class="lang-toggle" href="/funnels/evalley_elvalle" hreflang="en">EN</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap hero-content">
+    <div class="hero-pills-row">
+      <span class="ta-inline">
+        <span class="ta-bubbles">●●●●●</span>
+        <span><strong>4.9</strong> · 71 reseñas en <strong>Tripadvisor</strong></span>
+      </span>
+      <span class="lang-pill"><span class="lang-icon">🌐</span>Hablamos español e inglés</span>
+    </div>
+    <h1 class="hero-title"><span class="hero-title-lead">Lo #1 que hacer en El Valle...</span><em>Recórrelo en Bici.</em></h1>
+    <p class="hero-sub">
+      La forma más fácil de ver el verdadero El Valle: a tu ritmo y parando donde quieras, con una audioguía GPS que te lo cuenta todo. <strong>Cascadas, selva y el mirador de La India Dormida.</strong> Tours y alquileres.
+    </p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary btn-lg" href="https://wa.me/50768852907?text=%C2%A1Hola!%20Quiero%20reservar%20un%20tour%20o%20alquiler%20de%20bicicleta.%20%C2%BFCu%C3%A1les%20son%20los%20siguientes%20pasos%3F">
+        <span class="wa-icon"></span> Reserva por WhatsApp
+      </a>
+      <a class="btn btn-ghost btn-lg" href="#tours">Ver los tours</a>
+    </div>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><span class="check">✓</span> Casco y candado incluidos</div>
+      <div class="hero-meta-item"><span class="check">✓</span> Audioguía GPS</div>
+      <div class="hero-meta-item"><span class="check">✓</span> Ideal para principiantes y familias</div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFER -->
+<section class="offer">
+  <div class="wrap">
+    <div class="section-eyebrow">La Oferta</div>
+    <h2 class="section-title">Agarra una bici. Toma la ruta. <em>Y arranca.</em></h2>
+    <p class="section-sub">Elige tu horario, agarra tu equipo y la audioguía se encarga del resto. Sin grupo al que seguirle el paso. Sin itinerario que discutir. Solo tú, el cráter y toda la luz del día que quieras.</p>
+
+    <div class="offer-grid">
+      <div class="offer-img" role="img" aria-label="Ciclista con una bici E-Valley sobre el cráter de El Valle" style="background-image:url('/images/el-valle/evbike-bike-crater.webp');"></div>
+
+      <div class="offer-card">
+        <h3>Tour en Bici Autoguiado</h3>
+        <p class="card-sub">El más popular — la mejor relación precio-libertad.</p>
+
+        <div class="price-row">
+          <div class="price-label">2 horas</div>
+          <div class="price-amount">$30<span>/bici</span></div>
+        </div>
+        <div class="price-row">
+          <div class="price-label">4 horas</div>
+          <div class="price-amount">$40<span>/bici</span></div>
+        </div>
+        <div class="price-row">
+          <div class="price-label">Día completo</div>
+          <div class="price-amount">$50<span>/bici</span></div>
+        </div>
+
+        <div class="includes-row">
+          <span class="include-pill">Casco</span>
+          <span class="include-pill">Audioguía GPS</span>
+          <span class="include-pill">Candado</span>
+          <span class="include-pill">Canasta</span>
+        </div>
+
+        <a class="btn btn-primary btn-block btn-lg" href="https://wa.me/50768852907?text=%C2%A1Hola!%20Quiero%20reservar%20un%20tour%20o%20alquiler%20de%20bicicleta.%20%C2%BFCu%C3%A1les%20son%20los%20siguientes%20pasos%3F">
+          <span class="wa-icon"></span> Reserva tu bici
+        </a>
+        <p style="text-align:center; font-size:13px; color:var(--muted); margin-top:12px;">Solemos responder en minutos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="how">
+  <div class="wrap">
+    <div class="section-eyebrow">Cómo Funciona</div>
+    <h2 class="section-title">Tres pasos. <em>Eso es todo.</em></h2>
+
+    <div class="how-steps">
+      <div>
+        <div class="step-num">01</div>
+        <div class="step-title">Escríbenos por WhatsApp</div>
+        <div class="step-desc">Dinos qué día, cuántas bicis y cuántas horas. Te confirmamos en minutos.</div>
+      </div>
+      <div>
+        <div class="step-num">02</div>
+        <div class="step-title">Llega a Plaza Paseo</div>
+        <div class="step-desc">Avenida Principal, El Valle de Antón. Ajuste rápido, casco puesto y audioguía lista.</div>
+      </div>
+      <div>
+        <div class="step-num">03</div>
+        <div class="step-title">Recorre el cráter</div>
+        <div class="step-desc">Sigue la ruta, párate donde quieras, toma las fotos. Devuelve la bici cuando termines.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF — placeholder for real reviews -->
+<section class="proof">
+  <div class="wrap">
+    <div class="section-eyebrow">Lo Que Dicen los Ciclistas</div>
+    <h2 class="section-title">El tipo de paseo que hace que <em>el resto de Panamá</em> se sienta lento.</h2>
+    <p class="section-sub" style="color:#fff3e6;">Calificado <strong style="color:#fff;">4.9 / 5</strong> en <strong style="color:#fff;">71 reseñas</strong> en TripAdvisor — <strong style="color:#fff;">#1 de 17</strong> cosas que hacer en El Valle de Antón.</p>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:20px; margin-top:36px;">
+      <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14); border-radius:14px; padding:26px 26px 24px;">
+        <div class="proof-stars">★★★★★</div>
+        <p style="color:#fff; font-size:15px; line-height:1.6; margin-bottom:16px;">"La mejor forma de conocer el Valle de Antón. La experiencia alquilando las bicicletas eléctricas de E-Valley Bikes fue excelente: personal atento y las bicicletas en muy buen estado."</p>
+        <div style="font-size:13px; color:#fff3e6; letter-spacing:0.3px;"><strong style="color:#fff;">Fernando R.</strong> · TripAdvisor · Mayo 2023</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14); border-radius:14px; padding:26px 26px 24px;">
+        <div class="proof-stars">★★★★★</div>
+        <p style="color:#fff; font-size:15px; line-height:1.6; margin-bottom:16px;">"Carlos fue un guía excelente; adaptó el recorrido a nuestros intereses y a nuestro nivel. Sin duda, uno de los mejores momentos de todo nuestro viaje por Panamá."</p>
+        <div style="font-size:13px; color:#fff3e6; letter-spacing:0.3px;"><strong style="color:#fff;">Keith O.</strong> · TripAdvisor · Enero 2025</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14); border-radius:14px; padding:26px 26px 24px;">
+        <div class="proof-stars">★★★★★</div>
+        <p style="color:#fff; font-size:15px; line-height:1.6; margin-bottom:16px;">"Las bicicletas eléctricas estaban impecables y son muy fáciles de usar, ideales para cualquier nivel. Un recorrido emocionante por El Valle de Antón."</p>
+        <div style="font-size:13px; color:#fff3e6; letter-spacing:0.3px;"><strong style="color:#fff;">Emma Z.</strong> · TripAdvisor · Diciembre 2023</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- READY TO BOOK? -->
+<style>
+  .ev-mid-cta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .ev-mid-cta-img { border-radius: 14px; overflow: hidden; aspect-ratio: 4/5; background: url('/images/el-valle/evbike-crater-view.webp') center/cover no-repeat; box-shadow: 0 30px 80px -20px rgba(47,40,11,0.5); }
+  @media (max-width: 760px) { .ev-mid-cta-grid { grid-template-columns: 1fr; } .ev-mid-cta-img { aspect-ratio: 4/3; } }
+</style>
+<section style="background: var(--green-deep); color: #fff3e6; padding: 72px 0 40px;">
+  <div class="wrap">
+    <div class="ev-mid-cta-grid">
+      <div>
+        <div style="font-size: 11.5px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #ea450e; margin-bottom: 14px;">¿Listo para Reservar?</div>
+        <h2 style="font-family: var(--serif); font-weight: 600; font-size: clamp(30px, 4vw, 44px); line-height: 1.1; letter-spacing: -0.7px; color: #fff; margin-bottom: 18px;">
+          Tours en e-bike autoguiados. <em style="font-style: italic; color: #ea450e;">Tu ritmo, tu ruta.</em>
+        </h2>
+        <p style="font-size: 17px; color: #cfe5d5; max-width: 52ch; line-height: 1.6; margin-bottom: 32px;">
+          Elige tus horas, toma tu bici y la audioguía GPS te lo cuenta todo. Sin grupo de tour, sin itinerario fijo. Solo tú, el cráter, y todo el tiempo que quieras.
+        </p>
+        <a href="https://wa.me/50768852907?text=%C2%A1Hola!%20Quiero%20reservar%20un%20tour%20o%20alquiler%20de%20bicicleta.%20%C2%BFCu%C3%A1les%20son%20los%20siguientes%20pasos%3F" style="display: inline-flex; align-items: center; gap: 9px; padding: 18px 32px; border-radius: 100px; font-family: var(--sans); font-size: 17px; font-weight: 600; letter-spacing: 0.2px; border: none; cursor: pointer; background: #25d366; color: #fff; box-shadow: 0 8px 24px rgba(37,211,102,0.35); transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;">
+          <span class="wa-icon"></span> Reserva Tu Tour en Bici
+        </a>
+        <p style="font-size: 13px; color: #b9d3c2; margin-top: 16px; letter-spacing: 0.3px;">Escríbenos por WhatsApp · Respondemos en minutos · Cancela gratis hasta 24h</p>
+      </div>
+      <div class="ev-mid-cta-img"></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section style="background: var(--green-deep); color: #fff3e6; padding: 0 0 64px;">
+  <div class="wrap">
+    <div class="proof-stat-row" style="margin-top: 0; padding-top: 0; border-top: none;">
+      <div>
+        <div class="stat-num">7+ yrs</div>
+        <div class="stat-label">Renting bikes in El Valle de Antón</div>
+      </div>
+      <div>
+        <div class="stat-num">2 locations</div>
+        <div class="stat-label">El Valle &amp; Boquete — same trusted team</div>
+      </div>
+      <div>
+        <div class="stat-num">All levels</div>
+        <div class="stat-label">From first-time riders to mountain climbers</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOURS -->
+<section id="tours">
+  <div class="wrap">
+    <div class="section-eyebrow">Elige tu Ruta</div>
+    <h2 class="section-title">Cuatro formas de recorrer El Valle <em>en bici.</em></h2>
+    <p class="section-sub">Desde una vuelta tranquila por el pueblo entre arte y café hasta la subida al mirador más alto: hay un tour para cada nivel y cada par de piernas.</p>
+
+    <div class="tours-grid">
+      <div class="tour-card">
+        <div class="tour-img" style="background-image:url('/images/el-valle/evbike-plaza.webp');"></div>
+        <div class="tour-body">
+          <div class="tour-tag">Tranquilo · 1–2 h</div>
+          <div class="tour-name">Tour del Pueblo y Arte</div>
+          <p class="tour-desc">Centro histórico, mercado artesanal y la iglesia. Plano, fácil, perfecto para estrenarte.</p>
+        </div>
+      </div>
+      <div class="tour-card">
+        <div class="tour-img" style="background-image:url('/images/el-valle/elvalle-elmachowaterfall.webp');"></div>
+        <div class="tour-body">
+          <div class="tour-tag">Familiar · 2 h</div>
+          <div class="tour-name">Tour de Cascadas</div>
+          <p class="tour-desc">La cascada del Chorro El Macho, el Mariposario y el Zoo El Níspero. Pensado para ir con niños.</p>
+        </div>
+      </div>
+      <div class="tour-card">
+        <div class="tour-img" style="background-image:url('/images/el-valle/evbike-trail.webp');"></div>
+        <div class="tour-body">
+          <div class="tour-tag">Avanzado · 3–4 h</div>
+          <div class="tour-name">Tour India Dormida</div>
+          <p class="tour-desc">Hasta la cima panorámica sobre el cráter. El turno del atardecer es el que hay que reservar.</p>
+        </div>
+      </div>
+      <div class="tour-card">
+        <div class="tour-img" style="background-image:url('/images/el-valle/evbike-forest.webp');"></div>
+        <div class="tour-body">
+          <div class="tour-tag">Extremo · Medio día</div>
+          <div class="tour-name">Tour de Montaña</div>
+          <p class="tour-desc">Fuera de ruta, desnivel de verdad, vistas de verdad. Para ciclistas con experiencia que quieren ganárselas.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:40px;">
+      <a class="btn btn-dark btn-lg" href="https://wa.me/50768852907?text=%C2%A1Hola!%20Quiero%20reservar%20un%20tour%20o%20alquiler%20de%20bicicleta.%20%C2%BFCu%C3%A1les%20son%20los%20siguientes%20pasos%3F">
+        <span class="wa-icon"></span> Pregúntanos cuál tour es para ti
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TRIP HELP -->
+<section class="trip-help">
+  <div class="wrap">
+    <div class="trip-help-inner">
+      <div class="trip-help-text">
+        <p class="trip-help-eyebrow">Mientras planeas tu visita</p>
+        <h3 class="trip-help-heading">¿Necesitas un dato sobre El Valle?</h3>
+        <p class="trip-help-body">
+          ¿Todavía no sabes <strong>dónde quedarte</strong> — una posada tranquila o algo con vista? ¿No estás seguro de qué <strong>restaurante</strong> vale la pena para una buena cena, o dónde tomar el mejor <strong>desayuno</strong> antes del paseo? ¿Quieres saber qué <strong>rincones locales</strong> se pierde la mayoría? Escríbenos. Conocemos bien El Valle y con gusto te ayudamos — sin necesidad de tomar un tour.
+        </p>
+        <a class="btn btn-help" href="https://wa.me/50768852907?text=%C2%A1Hola!%20Tengo%20una%20pregunta%20sobre%20visitar%20El%20Valle.">
+          <span class="wa-icon-dark"></span> Pregúntanos lo que sea
+        </a>
+      </div>
+      <img class="trip-help-img" src="/images/el-valle/evbike-group.webp" alt="Un grupo recorriendo El Valle de Antón en bicis E-Valley" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="wrap">
+    <div class="section-eyebrow">Preguntas Rápidas</div>
+    <h2 class="section-title">Antes de <em>reservar.</em></h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">¿Necesito ser ciclista con experiencia?</div>
+        <div class="faq-a">No. La mayoría de las rutas son planas o con subidas suaves, perfectas para principiantes. Si alguna vez has montado en bici, estás listo. Los tours de montaña y La India Dormida piden un poco más de pierna; nosotros te recomendamos el adecuado.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Es seguro para niños y familias?</div>
+        <div class="faq-a">Sí. Tenemos tours pensados para niños y bicicletas para los más pequeños. Las vueltas por el pueblo y las cascadas están hechas justo para esto.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Qué incluye el precio exactamente?</div>
+        <div class="faq-a">La bici, un casco, un candado, una canasta y la audioguía GPS. Sin cargos ocultos. Tú solo traes agua y buenos zapatos.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Dónde recojo la bici?</div>
+        <div class="faq-a">En Plaza Paseo El Valle, sobre la Avenida Principal — la calle principal de El Valle de Antón. Fácil de encontrar y con estacionamiento.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Puedo reservar para un grupo?</div>
+        <div class="faq-a">Claro que sí. Mándanos cuántos son por WhatsApp y apartamos las bicis para tu horario.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="wrap">
+    <h2>Tu próxima gran foto está <em>en algún lugar del camino.</em></h2>
+    <p>Mándanos un mensaje, aparta tus bicis y el resto se acomoda solo. Los turnos del atardecer se llenan primero — reserva con tiempo.</p>
+    <a class="btn btn-primary btn-lg" href="https://wa.me/50768852907?text=%C2%A1Hola!%20Quiero%20reservar%20un%20tour%20o%20alquiler%20de%20bicicleta.%20%C2%BFCu%C3%A1les%20son%20los%20siguientes%20pasos%3F">
+      <span class="wa-icon"></span> Reserva tu bici ahora
+    </a>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><span class="check">✓</span> Respondemos en minutos</div>
+      <div class="hero-meta-item"><span class="check">✓</span> Pagas al llegar</div>
+      <div class="hero-meta-item"><span class="check">✓</span> Cancela gratis hasta 24 h antes</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    E-Valley Bikes · Plaza Paseo El Valle, Avenida Principal, El Valle de Antón ·
+    <a href="https://wa.me/50768852907">+507 6885-2907</a>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-cta">
+  <a class="btn btn-primary" href="https://wa.me/50768852907?text=%C2%A1Hola!%20Quiero%20reservar%20un%20tour%20o%20alquiler%20de%20bicicleta.%20%C2%BFCu%C3%A1les%20son%20los%20siguientes%20pasos%3F">
+    <span class="wa-icon"></span>
+  </a>
+</div>
+
+</body>
+</html>
