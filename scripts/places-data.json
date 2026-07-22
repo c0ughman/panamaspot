@@ -1,0 +1,167 @@
+{
+  "volcan-baru": {
+    "qid": "Q594726",
+    "name_en": "Volcán Barú",
+    "name_es": "Volcán Barú",
+    "lat": 8.808,
+    "lng": -82.543,
+    "type": "TouristAttraction",
+    "region": "Chiriquí Province",
+    "wikipedia_en": "https://en.wikipedia.org/wiki/Volc%C3%A1n_Bar%C3%BA",
+    "wikipedia_es": "https://es.wikipedia.org/wiki/Volc%C3%A1n_Bar%C3%BA"
+  },
+  "boquete": {
+    "qid": "Q804144",
+    "name_en": "Boquete",
+    "name_es": "Bajo Boquete (corregimiento de Boquete)",
+    "lat": 8.78,
+    "lng": -82.432778,
+    "type": "TouristDestination",
+    "region": "Chiriquí Province",
+    "wikipedia_en": "https://en.wikipedia.org/wiki/Boquete,_Chiriqu%C3%AD",
+    "wikipedia_es": "https://es.wikipedia.org/wiki/Bajo_Boquete"
+  },
+  "el-valle": {
+    "qid": "Q4845114",
+    "name_en": "El Valle de Antón",
+    "name_es": "El Valle de Antón",
+    "lat": 8.6008,
+    "lng": -80.1303,
+    "type": "TouristDestination",
+    "region": "Coclé Province",
+    "wikipedia_en": "https://en.wikipedia.org/wiki/El_Valle_de_Ant%C3%B3n",
+    "wikipedia_es": "https://es.wikipedia.org/wiki/El_Valle_de_Ant%C3%B3n"
+  },
+  "panama-city": {
+    "qid": "Q3306",
+    "name_en": "Panama City",
+    "name_es": "Ciudad de Panamá",
+    "lat": 8.971111,
+    "lng": -79.534722,
+    "type": "TouristDestination",
+    "region": "Panamá Province",
+    "wikipedia_en": "https://en.wikipedia.org/wiki/Panama_City",
+    "wikipedia_es": "https://es.wikipedia.org/wiki/Ciudad_de_Panam%C3%A1"
+  },
+  "casco-viejo": {
+    "qid": "Q2945651",
+    "name_en": "Casco Viejo",
+    "name_es": "Casco Antiguo de Panamá",
+    "lat": 8.9525,
+    "lng": -79.535,
+    "type": "TouristAttraction",
+    "region": "Panamá Province",
+    "wikipedia_en": "https://en.wikipedia.org/wiki/Casco_Viejo,_Panama",
+    "wikipedia_es": "https://es.wikipedia.org/wiki/Casco_Antiguo_de_Panam%C3%A1"
+  },
+  "panama-canal": {
+    "qid": "Q7350",
+    "name_en": "Panama Canal",
+    "name_es": "Canal de Panamá",
+    "lat": 9.12,
+    "lng": -79.75,
+    "type": "TouristAttraction",
+    "region": "Panamá Province",
+    "wikipedia_en": "https://en.wikipedia.org/wiki/Panama_Canal",
+    "wikipedia_es": "https://es.wikipedia.org/wiki/Canal_de_Panam%C3%A1"
+  },
+  "amador": {
+    "qid": "Q722823",
+    "name_en": "Causeway Islands",
+    "name_es": "Calzada de Amador",
+    "lat": 8.913,
+    "lng": -79.525,
+    "type": "TouristAttraction",
+    "region": "Panamá Province",
+    "wikipedia_en": "https://en.wikipedia.org/wiki/Causeway_Islands",
+    "wikipedia_es": "https://es.wikipedia.org/wiki/Calzada_de_Amador"
+  },
+  "bocas-del-toro": {
+    "qid": "Q888971",
+    "name_en": "Bocas del Toro",
+    "name_es": "Bocas del Toro",
+    "lat": 9.333333,
+    "lng": -82.25,
+    "type": "TouristDestination",
+    "region": "Bocas del Toro Province",
+    "wikipedia_en": "https://en.wikipedia.org/wiki/Bocas_Town,_Bocas_del_Toro",
+    "wikipedia_es": "https://es.wikipedia.org/wiki/Bocas_del_Toro_(ciudad)"
+  },
+  "coiba": {
+    "qid": "Q741636",
+    "name_en": "Coiba",
+    "name_es": "Parque Nacional Coiba",
+    "lat": 7.48,
+    "lng": -81.79,
+    "type": "TouristAttraction",
+    "region": "Veraguas Province",
+    "wikipedia_en": "https://en.wikipedia.org/wiki/Coiba",
+    "wikipedia_es": "https://es.wikipedia.org/wiki/Parque_nacional_Coiba"
+  },
+  "guna-yala": {
+    "qid": "Q919017",
+    "name_en": "Guna Yala",
+    "name_es": "Guna Yala",
+    "lat": 9.296111,
+    "lng": -78.344167,
+    "type": "TouristDestination",
+    "region": "Guna Yala",
+    "wikipedia_en": "https://en.wikipedia.org/wiki/Guna_Yala",
+    "wikipedia_es": "https://es.wikipedia.org/wiki/Comarca_Guna_Yala"
+  },
+  "cerro-gaital": {
+    "qid": "Q31733254",
+    "name_en": "Cerro Gaital",
+    "name_es": "Cerro Gaital",
+    "lat": 8.61667,
+    "lng": -80.11667,
+    "type": "TouristAttraction",
+    "region": "Coclé Province",
+    "wikipedia_en": "",
+    "wikipedia_es": ""
+  },
+  "chorro-el-macho": {
+    "qid": "Q126693560",
+    "name_en": "El Chorro Macho",
+    "name_es": "El Chorro Macho",
+    "lat": 8.62602,
+    "lng": -80.13876,
+    "type": "TouristAttraction",
+    "region": "Coclé Province",
+    "wikipedia_en": "",
+    "wikipedia_es": ""
+  },
+  "india-dormida": {
+    "qid": "Q126689867",
+    "name_en": "La India Dormida",
+    "name_es": "La India Dormida",
+    "lat": 8.6128,
+    "lng": -80.1512,
+    "type": "TouristAttraction",
+    "region": "Coclé Province",
+    "wikipedia_en": "",
+    "wikipedia_es": ""
+  },
+  "caldera": {
+    "qid": "Q19360364",
+    "name_en": "Caldera",
+    "name_es": "Caldera",
+    "lat": 8.661667,
+    "lng": -82.370833,
+    "type": "TouristAttraction",
+    "region": "Chiriquí Province",
+    "wikipedia_en": "https://en.wikipedia.org/wiki/Caldera,_Chiriqu%C3%AD",
+    "wikipedia_es": "https://es.wikipedia.org/wiki/Caldera_(Chiriqu%C3%AD)"
+  },
+  "panama-viejo": {
+    "qid": "Q712335",
+    "name_en": "Panamá Viejo",
+    "name_es": "Panamá Viejo",
+    "lat": 9.0068286,
+    "lng": -79.485149,
+    "type": "TouristAttraction",
+    "region": "Panamá Province",
+    "wikipedia_en": "https://en.wikipedia.org/wiki/Panam%C3%A1_Viejo",
+    "wikipedia_es": "https://es.wikipedia.org/wiki/Panam%C3%A1_Viejo"
+  }
+}
