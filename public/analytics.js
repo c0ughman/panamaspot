@@ -26,6 +26,12 @@
     if (typeof window.gtag !== "function") return; // analytics disabled or blocked
     params.content_lang = page.lang;
     params.page_type = page.type;
+    // gtag serialises null as an empty string, which GA4 stores as a real
+    // (blank) dimension value — a stray empty row in every breakdown. Drop
+    // the key instead so the parameter is simply absent.
+    for (var k in params) {
+      if (params[k] === null || params[k] === undefined || params[k] === "") delete params[k];
+    }
     window.gtag("event", name, params);
   }
 
