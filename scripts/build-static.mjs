@@ -11,15 +11,57 @@
         but the runtime is now gone).
      4. Injects <script src="/app.js" defer></script> for the vanilla-JS
         interactivity bundle.
+     5. Injects the GA4 tag + <script src="/analytics.js" defer>, and then
+        asserts that every page got it. This is the only place analytics is
+        installed — Next-rendered pages, the raw article HTML copied from
+        public/, and the funnels all pass through here, so coverage is
+        structural rather than something anyone has to remember.
 
    Run with: node scripts/build-static.mjs
 */
 
 import { readdir, readFile, writeFile, stat, rm, unlink } from "node:fs/promises";
-import { join, relative, basename, dirname } from "node:path";
+import { readFileSync } from "node:fs";
+import { join, relative, basename } from "node:path";
 
 const ROOT = new URL("../out/", import.meta.url).pathname;
 const APP_JS_TAG = '<script src="/app.js" defer></script>';
+const ANALYTICS_JS_TAG = '<script src="/analytics.js" defer></script>';
+const GA_MARKER = "PS-ANALYTICS";
+
+/* `next build` loads .env.local itself, but this is a separate node process,
+   so it has to do the same. Real environment variables always win — that is
+   what Netlify and CI supply. */
+function loadDotEnv() {
+  for (const file of [".env.local", ".env"]) {
+    let raw;
+    try {
+      raw = readFileSync(new URL(`../${file}`, import.meta.url), "utf8");
+    } catch {
+      continue;
+    }
+    for (const line of raw.split("\n")) {
+      const m = line.match(/^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*?)\s*$/);
+      if (!m) continue;
+      const [, key, rawVal] = m;
+      if (key in process.env) continue;
+      const quoted = /^(["'])(.*)\1$/.exec(rawVal);
+      process.env[key] = quoted ? quoted[2] : rawVal.replace(/\s+#.*$/, "");
+    }
+  }
+}
+
+loadDotEnv();
+
+const GA_ID = (process.env.NEXT_PUBLIC_GA_ID || "").trim();
+
+if (GA_ID && !/^G-[A-Z0-9]+$/i.test(GA_ID)) {
+  console.error(
+    `NEXT_PUBLIC_GA_ID is set to "${GA_ID}", which is not a GA4 measurement ID.\n` +
+      `Expected the G-XXXXXXXXXX form (a Google Ads AW- id or a GTM- container id will not work here).`,
+  );
+  process.exit(1);
+}
 
 async function* walkHtml(dir) {
   for (const entry of await readdir(dir, { withFileTypes: true })) {
@@ -75,6 +117,83 @@ function injectAppJs(html) {
   return html + APP_JS_TAG;
 }
 
+/* Everything GA4 needs to know about a page, derived once from its output
+   path so the gtag config and analytics.js read the same values instead of
+   each re-parsing the URL at runtime. */
+function pageIdentity(relPath) {
+  const clean = relPath.replace(/\.html$/, "");
+
+  if (clean.startsWith("funnels/")) {
+    const slug = clean.slice("funnels/".length);
+    return {
+      type: "funnel",
+      lang: /_es(?:_|$)/.test(slug) ? "es" : "en",
+      slug,
+      dest: slug.includes("boquete")
+        ? "boquete"
+        : slug.includes("elvalle")
+          ? "elvalle"
+          : "other",
+    };
+  }
+
+  const isEs = clean === "es" || clean.startsWith("es/");
+  const lang = isEs ? "es" : "en";
+  const path = isEs ? clean.replace(/^es\/?/, "") : clean;
+
+  if (path.startsWith("articles/")) {
+    return { type: "article", lang, slug: path.slice("articles/".length), dest: null };
+  }
+  if (path === "" || path === "index") {
+    return { type: "home", lang, slug: null, dest: null };
+  }
+  return { type: "other", lang, slug: null, dest: null };
+}
+
+/* The funnels already load gtag.js for the Google Ads conversion tag. On
+   those pages GA4 reuses that loader and only adds its own config command —
+   one library request, two destinations, no double-counted page views. */
+function analyticsSnippet(identity, sharesAdsLoader) {
+  const loader = sharesAdsLoader
+    ? "<!-- gtag.js is already loaded on this page for Google Ads; GA4 shares that loader. -->"
+    : `<script async src="https://www.googletagmanager.com/gtag/js?id=${GA_ID}"></script>`;
+  const jsCommand = sharesAdsLoader ? "" : "gtag('js', new Date());\n";
+
+  return (
+    `<!-- ${GA_MARKER}: injected by scripts/build-static.mjs — edit there, not here -->\n` +
+    `${loader}\n` +
+    `<script>\n` +
+    `window.__PS_PAGE__ = ${JSON.stringify(identity)};\n` +
+    `window.dataLayer = window.dataLayer || [];\n` +
+    `function gtag(){dataLayer.push(arguments);}\n` +
+    jsCommand +
+    `gtag('config', '${GA_ID}', {page_type: ${JSON.stringify(identity.type)}, content_lang: ${JSON.stringify(identity.lang)}});\n` +
+    `</script>\n` +
+    `<!-- /${GA_MARKER} -->`
+  );
+}
+
+function injectAnalytics(html, relPath) {
+  if (!GA_ID) return html;
+  if (html.includes(GA_MARKER)) return html; // already injected — stay idempotent
+
+  const sharesAdsLoader = /googletagmanager\.com\/gtag\/js/.test(html);
+  const head = analyticsSnippet(pageIdentity(relPath), sharesAdsLoader);
+
+  // Into <head> so the page view fires early; the loader is async either way.
+  html = html.includes("</head>")
+    ? html.replace("</head>", `${head}\n</head>`)
+    : `${head}\n${html}`;
+
+  if (!html.includes(ANALYTICS_JS_TAG)) {
+    html = html.includes("</body>")
+      ? html.replace("</body>", `${ANALYTICS_JS_TAG}</body>`)
+      : html + ANALYTICS_JS_TAG;
+  }
+
+  return html;
+}
+
 async function processFile(path) {
   const original = await readFile(path, "utf8");
   const relPath = relative(ROOT, path);
@@ -82,8 +201,15 @@ async function processFile(path) {
   html = stripNextRuntime(html);
   html = fixSpanishLang(html, relPath);
   html = injectAppJs(html);
+  html = injectAnalytics(html, relPath);
   if (html !== original) await writeFile(path, html, "utf8");
-  return { path: relPath, changed: html !== original, before: original.length, after: html.length };
+  return {
+    path: relPath,
+    changed: html !== original,
+    before: original.length,
+    after: html.length,
+    tagged: html.includes(GA_MARKER) && html.includes(ANALYTICS_JS_TAG),
+  };
 }
 
 /* Walk every file under out/ and decide whether it's dead weight from the
@@ -136,6 +262,7 @@ async function main() {
   let total = 0;
   let changed = 0;
   let bytesSaved = 0;
+  const untagged = [];
   for await (const file of walkHtml(ROOT)) {
     const r = await processFile(file);
     total += 1;
@@ -143,6 +270,7 @@ async function main() {
       changed += 1;
       bytesSaved += r.before - r.after;
     }
+    if (!r.tagged) untagged.push(r.path);
   }
   const kb = (bytesSaved / 1024).toFixed(1);
   console.log(`Cleaned ${changed}/${total} HTML files — ${kb} KB removed from HTML.`);
@@ -159,6 +287,23 @@ async function main() {
   await purgeEmptyDirs(ROOT.replace(/\/$/, ""));
   const purgedKb = (purgedBytes / 1024).toFixed(1);
   console.log(`Purged ${deleted} runtime artifacts — ${purgedKb} KB removed from disk.`);
+
+  /* Analytics coverage is asserted, not assumed. A page that silently ships
+     without the tag is invisible for weeks; a failed build is obvious now. */
+  if (!GA_ID) {
+    console.warn(
+      `\n⚠  NEXT_PUBLIC_GA_ID is not set — no analytics injected into ${total} pages.\n` +
+        `   Set it in .env.local for local builds, and in the Netlify UI for deploys.`,
+    );
+  } else if (untagged.length) {
+    console.error(
+      `\n✗ Analytics missing from ${untagged.length}/${total} pages:\n` +
+        untagged.map((p) => `    ${p}`).join("\n"),
+    );
+    process.exit(1);
+  } else {
+    console.log(`Analytics ${GA_ID} verified on ${total}/${total} pages.`);
+  }
 }
 
 main().catch((err) => {
