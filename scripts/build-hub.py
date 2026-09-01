@@ -30,7 +30,7 @@ HUBS = {
   lang="en", alt_lang="es", alt_url="/es/articles/el-valle-de-anton",
   name="El Valle de Antón",
   title="El Valle de Antón: Complete Travel Guide 2026",
-  desc="Everything we know about El Valle de Antón — the town inside a volcanic crater two hours from Panama City. Trails, waterfalls, hot springs, tours and how to plan the trip.",
+  desc="Everything we know about El Valle de Antón — the town inside a volcanic crater two hours from Panama City. Trails, waterfalls, hot springs and tours.",
   hero=IMG+"elvalle-crater-hero.webp",
   hero_alt="Families on the grass below the forested crater walls that ring El Valle de Antón",
   eyebrow="Destination guide",
@@ -83,7 +83,7 @@ HUBS = {
   lang="en", alt_lang="es", alt_url="/es/articles/boquete",
   name="Boquete", region="Chiriquí", lat=8.7799, lon=-82.4419,
   title="Boquete, Panama: Complete Travel Guide 2026",
-  desc="Everything we know about Boquete — the cloud-forest town in Chiriquí highlands. Coffee farms, Volcán Barú, hot springs, waterfall hikes and how to plan the trip.",
+  desc="Everything we know about Boquete — the cloud-forest town in the Chiriquí highlands. Coffee farms, Volcán Barú, hot springs and waterfall hikes.",
   hero=BQIMG+"boquete-hills.webp",
   hero_alt="Cloud settling over the forested ridges that surround Boquete in the Chiriquí highlands",
   eyebrow="Destination guide",
@@ -182,7 +182,7 @@ HUBS = {
   lang="es", alt_lang="en", alt_url="/articles/el-valle-de-anton",
   name="El Valle de Antón", region="Coclé", lat=8.6003, lon=-80.1264,
   title="El Valle de Antón: Guía Completa 2026",
-  desc="Todo lo que sabemos de El Valle de Antón — el pueblo dentro del cráter de un volcán, a dos horas de la capital. Senderos, cascadas, aguas termales, tours y cómo organizar el viaje.",
+  desc="Todo sobre El Valle de Antón — el pueblo dentro del cráter de un volcán, a dos horas de la capital. Senderos, cascadas, aguas termales y tours.",
   hero=IMG+"elvalle-crater-hero.webp",
   hero_alt="Familias en el pasto bajo las paredes boscosas del cráter de El Valle de Antón",
   eyebrow="Guía de destino",
@@ -242,7 +242,7 @@ HUBS = {
   lang="es", alt_lang="en", alt_url="/articles/boquete",
   name="Boquete", region="Chiriquí", lat=8.7799, lon=-82.4419,
   title="Boquete, Panamá: Guía Completa 2026",
-  desc="Todo lo que sabemos de Boquete — el pueblo cafetero de las tierras altas de Chiriquí. Fincas de café, Volcán Barú, aguas termales, senderos y cómo organizar el viaje.",
+  desc="Todo sobre Boquete — el pueblo cafetero de las tierras altas de Chiriquí. Fincas de café, Volcán Barú, aguas termales y senderos.",
   hero=BQIMG+"boquete-hills.webp",
   hero_alt="Nubes bajando sobre las lomas boscosas que rodean Boquete, en las tierras altas de Chiriquí",
   eyebrow="Guía de destino",
@@ -574,6 +574,9 @@ def jsonld(c, base="https://panamaspot.com"):
 
 def build(slug):
     c = HUBS[slug]
+    # a hub that truncates its own snippet is not shippable
+    assert len(c["title"]) <= 60, f'{slug}: title {len(c["title"])}c > 60'
+    assert len(c["desc"]) <= 160, f'{slug}: description {len(c["desc"])}c > 160'
     slug_path = c["out"].replace("public/", "").replace(".html", "")
     shell = (SHELL_ES if c["lang"] == "es" else SHELL_EN).read_text(encoding="utf8")
     url = "https://panamaspot.com/" + slug_path
