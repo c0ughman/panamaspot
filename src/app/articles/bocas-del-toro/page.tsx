@@ -44,11 +44,11 @@ const ARTICLE = {
   // header/footer language, og:locale, schema inLanguage and <html lang>.
   locale: "en" as "en" | "es",
   // seoTitle → the <title> tag. Keep it keyword-led and ~60 chars for search.
-  seoTitle: "Bocas del Toro Travel Guide: Islands, Things to Do & Tips",
+  seoTitle: "Bocas del Toro 2026: Islands & Things to Do",
   // title → the visible <h1>. Can be more narrative/editorial than seoTitle.
   title: "Bocas del Toro — nine islands that keep island time, on purpose.",
   description:
-    "A complete guide to Bocas del Toro, Panama's Caribbean archipelago: how to get there, when to go, where to stay across the islands, and what's worth doing on the water.",
+    "A guide to Bocas del Toro, Panama's Caribbean archipelago: how to get there, when to go, where to stay, and what's worth doing on the water.",
   // articleSection → topic/category for Article schema.
   section: "Destinations",
   publishedAt: "2026-05-26",

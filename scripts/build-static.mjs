@@ -120,6 +120,12 @@ function injectAppJs(html) {
 /* Everything GA4 needs to know about a page, derived once from its output
    path so the gtag config and analytics.js read the same values instead of
    each re-parsing the URL at runtime. */
+const HUB_SLUGS = {
+  "el-valle-de-anton": "elvalle",
+  boquete: "boquete",
+  "panama-city": "panama-city",
+};
+
 function pageIdentity(relPath) {
   const clean = relPath.replace(/\.html$/, "");
 
@@ -142,7 +148,13 @@ function pageIdentity(relPath) {
   const path = isEs ? clean.replace(/^es\/?/, "") : clean;
 
   if (path.startsWith("articles/")) {
-    return { type: "article", lang, slug: path.slice("articles/".length), dest: null };
+    const slug = path.slice("articles/".length);
+    // Destination hubs are a distinct page type (a curated cluster index, not
+    // a guide). Separating them here lets GA4 report hub vs article without
+    // anyone having to remember a slug list at query time.
+    const dest = HUB_SLUGS[slug];
+    if (dest) return { type: "hub", lang, slug, dest };
+    return { type: "article", lang, slug, dest: null };
   }
   if (path === "" || path === "index") {
     return { type: "home", lang, slug: null, dest: null };

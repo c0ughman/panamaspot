@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
-"""footer-fix.py — repair the site footer in the static HTML pages.
+"""chrome-fix.py — repair the shared chrome (header + footer) in static pages.
 
-Two problems, both sitewide:
+Three problems, all sitewide:
   1. Every destination is rendered as an inert <span class="footer-link-muted">,
      so 18 potential internal links per page do nothing. Destinations that now
      have a hub become real links; the rest stay muted until they have content.
   2. All 27 Spanish pages ship the ENGLISH footer. The Next component has the
      Spanish copy, but the static pages were generated from an English shell.
+  3. Same for the header: the Spanish pages carry the English nav and search
+     label, and their nav links point at the English homepage anchors.
 
 Idempotent — safe to re-run after any content batch.
 """
@@ -37,6 +39,16 @@ ES_LINKS = {
 # El Valle is the strongest cluster on the site and was missing from the list
 EN_EXTRA = ("El Valle de Antón", "/articles/el-valle-de-anton")
 ES_EXTRA = ("El Valle de Antón", "/es/articles/el-valle-de-anton")
+
+# Header, same root cause as the footer: generated from an English shell.
+ES_HEADER = [
+    ('<a href="/#cat-regions">Destinations</a>', '<a href="/es#cat-regions">Destinos</a>'),
+    ('<a href="/#cat-activities">Eco-tourism</a>', '<a href="/es#cat-activities">Ecoturismo</a>'),
+    ('<a href="/#cat-regions">Guides</a>', '<a href="/es#cat-regions">Guías</a>'),
+    ('<a href="/#cat-regions">Plan a trip</a>', '<a href="/es#cat-regions">Planifica tu viaje</a>'),
+    ('<span class="home-search-label">Search guides</span>',
+     '<span class="home-search-label">Buscar guías</span>'),
+]
 
 # English -> Spanish, for the static /es pages that shipped the English footer
 ES_COPY = [
@@ -69,6 +81,19 @@ ES_COPY = [
     ("© 2026 Panamaspot · Panamá City, RP", "© 2026 Panamaspot · Ciudad de Panamá, RP"),
     ('href="/#cat-regions"', 'href="/es#cat-regions"'),
 ]
+
+def patch_header(html, es):
+    """Localise the Spanish pages' nav. English pages are already correct."""
+    if not es or "<header" not in html:
+        return html, 0
+    a, b = html.index("<header"), html.index("</header>") + len("</header>")
+    head, n = html[a:b], 0
+    for en, sp in ES_HEADER:
+        if en in head:
+            head = head.replace(en, sp)
+            n += 1
+    return html[:a] + head + html[b:], n
+
 
 def patch_footer(html, es):
     if "<footer" not in html:
@@ -109,11 +134,16 @@ def main():
         html = p.read_text(encoding="utf8")
         es = "/es/" in f
         out, n = patch_footer(html, es)
+        out, n2 = patch_header(out, es)
+        n += n2
         if out != html:
             p.write_text(out, encoding="utf8")
             touched += 1
             links_made += n
     print(f"  patched {touched} files, {links_made} replacements")
+    leftover = [f for f in files
+                if "/es/" in f and "Eco-tourism</a>" in Path(f).read_text(encoding="utf8")]
+    print(f"  ES pages still showing the English nav: {len(leftover)}")
     # report what's still inert, so the gap stays visible
     sample = ROOT / "public/articles/caldera-hot-springs-boquete.html"
     if sample.exists():
