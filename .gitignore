@@ -70,3 +70,11 @@ public/es/articles/*-EXAMPLE.html
 
 # Raw source images dropped in for the El Valle funnel (working folder)
 /evalley el valle/
+
+# Python bytecode from the build scripts
+scripts/__pycache__/
+# Self-contained hub previews (multi-MB, images inlined as data URIs) and the
+# JSON intermediates the report scripts emit — regenerate, never commit.
+reports/hub-preview-*.html
+reports/_*.json
+reports/staged/

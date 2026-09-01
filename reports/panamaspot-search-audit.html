@@ -1,0 +1,1195 @@
+<title>The Click Ceiling</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ground:#F5F8F8; --surface:#FCFCFB; --surface-2:#EDF2F2; --line:#D4DEDE; --line-soft:#E3EAEA;
+  --ink:#0B1D20; --ink-2:#3A5257; --ink-3:#6B8286; --ink-inv:#FCFCFB;
+  --accent:#0891B2; --accent-soft:#E0F2F7; --accent-deep:#075E7C;
+  --s1:#0891B2; --s2:#B45309; --s3:#7C3AED; --s4:#BE123C;
+  --good:#15803D; --good-bg:#E4F3E9; --warn:#B45309; --warn-bg:#FBEEE0; --crit:#BE123C; --crit-bg:#FBE6EA;
+  --grid:#E3EAEA; --shadow:0 1px 2px rgba(11,29,32,.05),0 8px 24px -12px rgba(11,29,32,.14);
+  --fd:"Bricolage Grotesque","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --fb:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --fm:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#0C1416; --surface:#141E20; --surface-2:#1B282B; --line:#2A3B3F; --line-soft:#223034;
+  --ink:#E8F0F0; --ink-2:#A8BCBF; --ink-3:#7A9296; --ink-inv:#0C1416;
+  --accent:#38BDD8; --accent-soft:#12303A; --accent-deep:#8AD9E9;
+  --s1:#12A2BE; --s2:#CC7B22; --s3:#8E76E8; --s4:#E2547A;
+  --good:#4ADE80; --good-bg:#12291B; --warn:#E8963C; --warn-bg:#2E2013; --crit:#F2637E; --crit-bg:#2E1319;
+  --grid:#243437; --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+}}
+:root[data-theme="dark"]{
+  --ground:#0C1416; --surface:#141E20; --surface-2:#1B282B; --line:#2A3B3F; --line-soft:#223034;
+  --ink:#E8F0F0; --ink-2:#A8BCBF; --ink-3:#7A9296; --ink-inv:#0C1416;
+  --accent:#38BDD8; --accent-soft:#12303A; --accent-deep:#8AD9E9;
+  --s1:#12A2BE; --s2:#CC7B22; --s3:#8E76E8; --s4:#E2547A;
+  --good:#4ADE80; --good-bg:#12291B; --warn:#E8963C; --warn-bg:#2E2013; --crit:#F2637E; --crit-bg:#2E1319;
+  --grid:#243437; --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--fb);font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+h1,h2,h3,h4{font-family:var(--fd);text-wrap:balance;margin:0;line-height:1.1;letter-spacing:-.02em}
+h1{font-size:clamp(2.6rem,6vw,4.4rem);font-weight:800}
+h2{font-size:clamp(1.7rem,3.4vw,2.5rem);font-weight:700}
+h3{font-size:1.28rem;font-weight:700;letter-spacing:-.01em}
+h4{font-size:1.02rem;font-weight:600}
+p{margin:0 0 1.05em}
+a{color:var(--accent-deep);text-underline-offset:3px}
+:focus-visible{outline:2.5px solid var(--accent);outline-offset:3px;border-radius:3px}
+.mono{font-family:var(--fm);font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--fm);font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin:0 0 .6em}
+.mast{border-bottom:1px solid var(--line);background:var(--surface);position:relative;overflow:hidden}
+.mast canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.5;pointer-events:none}
+.mast .wrap{position:relative;padding-top:76px;padding-bottom:60px}
+.mast h1{max-width:16ch}
+.lede{font-size:1.32rem;line-height:1.5;color:var(--ink-2);max-width:56ch;margin-top:1.1rem}
+.mast-meta{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:32px;font-family:var(--fm);font-size:.76rem;color:var(--ink-3);letter-spacing:.04em}
+.mast-meta b{color:var(--ink-2);font-weight:500}
+.tocbar{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--ground) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line-soft)}
+.tocbar ul{display:flex;gap:0;list-style:none;margin:0;padding:0;overflow-x:auto;scrollbar-width:none}
+.tocbar ul::-webkit-scrollbar{display:none}
+.tocbar a{display:block;padding:13px 15px;font-family:var(--fm);font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent}
+.tocbar a:hover{color:var(--ink)}
+.tocbar a.on{color:var(--accent-deep);border-bottom-color:var(--accent)}
+section{padding:72px 0;border-bottom:1px solid var(--line-soft)}
+section:last-of-type{border-bottom:0}
+.shead{display:flex;align-items:baseline;gap:16px;margin-bottom:12px}
+.snum{font-family:var(--fm);font-size:.8rem;font-weight:600;color:var(--accent);letter-spacing:.06em;flex:none;padding-top:.35em}
+.sdek{color:var(--ink-2);font-size:1.1rem;max-width:64ch;margin:14px 0 40px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:0 0 40px}
+.kpi{background:var(--surface);padding:20px 22px 22px}
+.kpi .k{font-family:var(--fm);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+.kpi .v{font-family:var(--fd);font-size:2.15rem;font-weight:700;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.kpi .d{font-family:var(--fm);font-size:.74rem;margin-top:9px;color:var(--ink-2);display:flex;align-items:center;gap:6px}
+.tick{display:inline-block;width:7px;height:7px;border-radius:2px;flex:none}
+.up{background:var(--good)}.dn{background:var(--crit)}.fl{background:var(--warn)}
+figure{margin:0 0 38px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px 24px 18px;box-shadow:var(--shadow)}
+figcaption{margin-bottom:18px}
+figcaption .t{font-family:var(--fd);font-weight:700;font-size:1.06rem;letter-spacing:-.01em}
+figcaption .s{font-size:.9rem;color:var(--ink-2);margin-top:5px;line-height:1.45}
+.chart-scroll{overflow-x:auto}
+.legend{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:14px;font-family:var(--fm);font-size:.74rem;color:var(--ink-2)}
+.legend span{display:flex;align-items:center;gap:7px}
+.sw{width:11px;height:11px;border-radius:3px;flex:none}
+.note{font-family:var(--fm);font-size:.71rem;color:var(--ink-3);margin-top:14px;line-height:1.5;border-top:1px solid var(--line-soft);padding-top:11px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:24px}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface);margin-bottom:34px}
+table{border-collapse:collapse;width:100%;font-family:var(--fm);font-size:.79rem;font-variant-numeric:tabular-nums}
+th{text-align:left;padding:11px 14px;background:var(--surface-2);color:var(--ink-2);font-weight:600;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid var(--line)}
+td{padding:10px 14px;border-bottom:1px solid var(--line-soft);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:var(--surface-2)}
+td.n,th.n{text-align:right}
+td.u{white-space:normal;min-width:250px;font-size:.76rem;color:var(--ink-2)}
+.pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:.68rem;font-weight:600;letter-spacing:.02em}
+.p-good{background:var(--good-bg);color:var(--good)}
+.p-warn{background:var(--warn-bg);color:var(--warn)}
+.p-crit{background:var(--crit-bg);color:var(--crit)}
+.p-neut{background:var(--surface-2);color:var(--ink-2)}
+.call{border-left:3px solid var(--accent);background:var(--accent-soft);padding:20px 24px;border-radius:0 10px 10px 0;margin:30px 0}
+.call.crit{border-left-color:var(--crit);background:var(--crit-bg)}
+.call.good{border-left-color:var(--good);background:var(--good-bg)}
+.call p:last-child{margin-bottom:0}
+.call .lbl{font-family:var(--fm);font-size:.67rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;margin-bottom:9px;color:var(--ink-2)}
+.acts{display:grid;gap:14px;margin-bottom:34px}
+.act{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:19px 22px;display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:start}
+.act .ix{font-family:var(--fm);font-size:.76rem;font-weight:600;color:var(--ink-inv);background:var(--ink);width:26px;height:26px;border-radius:7px;display:grid;place-items:center;flex:none;margin-top:2px}
+.act h4{margin-bottom:6px}
+.act p{font-size:.95rem;color:var(--ink-2);margin:0}
+.act .meta{display:flex;flex-direction:column;gap:6px;align-items:flex-end;flex:none}
+.tag{font-family:var(--fm);font-size:.65rem;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:5px;font-weight:600;white-space:nowrap}
+.t-hi{background:var(--crit-bg);color:var(--crit)}
+.t-md{background:var(--warn-bg);color:var(--warn)}
+.t-lo{background:var(--surface-2);color:var(--ink-3)}
+.t-eff{background:var(--surface-2);color:var(--ink-2)}
+.act ul{margin:9px 0 0;padding-left:19px;font-size:.9rem;color:var(--ink-2)}
+.act li{margin-bottom:4px}
+.act code{font-family:var(--fm);font-size:.83em;background:var(--surface-2);padding:1px 5px;border-radius:4px;color:var(--ink)}
+.honest{background:var(--ink);color:var(--ink-inv)}
+.honest h2,.honest h3{color:var(--ink-inv)}
+.honest .sdek,.honest p{color:color-mix(in srgb,var(--ink-inv) 76%,transparent)}
+.honest .eyebrow,.honest .snum{color:var(--accent)}
+.honest strong{color:var(--ink-inv);font-weight:600}
+.honest .hcard{background:color-mix(in srgb,var(--ink-inv) 6%,transparent);border:1px solid color-mix(in srgb,var(--ink-inv) 13%,transparent);border-radius:11px;padding:22px 24px;margin-bottom:16px}
+.honest .hcard h4{color:var(--ink-inv);margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.honest .hcard p:last-child{margin-bottom:0}
+.verdict{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1px;background:color-mix(in srgb,var(--ink-inv) 14%,transparent);border:1px solid color-mix(in srgb,var(--ink-inv) 14%,transparent);border-radius:11px;overflow:hidden;margin:34px 0}
+.verdict div{background:var(--ink);padding:19px 21px}
+.verdict .k{font-family:var(--fm);font-size:.64rem;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);margin-bottom:9px}
+.verdict .v{font-family:var(--fd);font-size:1.02rem;font-weight:600;color:var(--ink-inv);line-height:1.3}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin:8px 0 34px}
+.sc{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:21px 22px}
+.sc.hl{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.sc .nm{font-family:var(--fm);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:11px}
+.sc .big{font-family:var(--fd);font-size:2.3rem;font-weight:800;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.sc .un{font-family:var(--fm);font-size:.72rem;color:var(--ink-3);margin-top:7px}
+.sc p{font-size:.9rem;color:var(--ink-2);margin:14px 0 0;line-height:1.5}
+ul.clean{list-style:none;padding:0;margin:0 0 1.2em}
+ul.clean li{padding-left:26px;position:relative;margin-bottom:9px;color:var(--ink-2)}
+ul.clean li::before{content:"";position:absolute;left:6px;top:.62em;width:6px;height:6px;border-radius:2px;background:var(--accent)}
+ul.clean li b{color:var(--ink)}
+.honest ul.clean li{color:color-mix(in srgb,var(--ink-inv) 76%,transparent)}
+.honest ul.clean li b{color:var(--ink-inv)}
+.tip{position:fixed;pointer-events:none;z-index:99;background:var(--surface);color:var(--ink);border:1px solid var(--line);font-family:var(--fm);font-size:.72rem;line-height:1.5;padding:9px 12px;border-radius:8px;opacity:0;transition:opacity .12s;box-shadow:0 8px 26px -8px rgba(0,0,0,.35);max-width:260px}
+.tip.on{opacity:1}
+.tip b{color:var(--accent-deep);font-weight:600}
+.tip .tl{color:var(--ink-3)}
+footer{padding:44px 0 60px;color:var(--ink-3);font-family:var(--fm);font-size:.74rem;line-height:1.7}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(max-width:640px){
+  .mast .wrap{padding-top:48px;padding-bottom:44px}
+  section{padding:52px 0}
+  .act{grid-template-columns:auto 1fr;gap:14px}
+  .act .meta{grid-column:2;flex-direction:row;align-items:center;justify-content:flex-start;margin-top:4px}
+  body{font-size:16px}
+}
+</style>
+
+<div class="tip" id="tip"></div>
+
+<header class="mast">
+  <canvas id="topo" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="eyebrow">PanamaSpot &middot; Search performance audit &middot; 7 Jun – 20 Aug 2026</p>
+    <h1>The Click Ceiling</h1>
+    <p class="lede">Your impressions grew <b>10.8&times;</b> in ten weeks. Your clicks did not keep up — and the gap between what you rank for and what you get paid in traffic is now the entire story of this site.</p>
+    <div class="mast-meta">
+      <span>Window <b>75 days</b></span>
+      <span>Clicks <b>397</b></span>
+      <span>Impressions <b>33,698</b></span>
+      <span>CTR <b>1.18%</b></span>
+      <span>Avg position <b>36.4 &rarr; 12.7</b></span>
+      <span>Indexed pages <b>53</b></span>
+    </div>
+  </div>
+</header>
+
+<nav class="tocbar" aria-label="Report sections">
+  <div class="wrap"><ul>
+    <li><a href="#situation">Situation</a></li>
+    <li><a href="#ceiling">The ceiling</a></li>
+    <li><a href="#working">What's working</a></li>
+    <li><a href="#broken">What's broken</a></li>
+    <li><a href="#honest">Honest assessment</a></li>
+    <li><a href="#quickwins">Quick wins</a></li>
+    <li><a href="#structural">Structural fixes</a></li>
+    <li><a href="#strategy">Growth strategy</a></li>
+    <li><a href="#plan">90-day plan</a></li>
+    <li><a href="#data">Data</a></li>
+  </ul></div>
+</nav>
+
+<main>
+
+<section id="situation">
+  <div class="wrap">
+    <div class="shead"><span class="snum">01</span><div>
+      <h2>Where you actually are</h2>
+      <p class="sdek">This site is roughly three months old. It went from zero to 1,200 impressions a day. That part is going genuinely well, and it is worth being clear about it before we get to the problems.</p>
+    </div></div>
+
+    <div class="kpis">
+      <div class="kpi"><div class="k">Impressions / day</div><div class="v">1,199</div><div class="d"><span class="tick up"></span>from 111 &middot; +980%</div></div>
+      <div class="kpi"><div class="k">Clicks / day</div><div class="v">13.7</div><div class="d"><span class="tick up"></span>from 0.7 &middot; +1,857%</div></div>
+      <div class="kpi"><div class="k">Avg position</div><div class="v">12.7</div><div class="d"><span class="tick up"></span>from 36.4 &middot; 23.7 places</div></div>
+      <div class="kpi"><div class="k">Click-through rate</div><div class="v">1.14%</div><div class="d"><span class="tick dn"></span>peaked 1.43% in July</div></div>
+      <div class="kpi"><div class="k">Branded searches</div><div class="v">3</div><div class="d"><span class="tick dn"></span>impressions, 0 clicks</div></div>
+      <div class="kpi"><div class="k">Days since last publish</div><div class="v">37</div><div class="d"><span class="tick fl"></span>last content 16 Jul</div></div>
+    </div>
+
+    <figure>
+      <figcaption>
+        <div class="t">Impressions per day &mdash; the growth is real</div>
+        <div class="s">Daily impressions across the full 75-day window. Four distinct phases: cold start, first traction, the July index expansion, and the current August plateau-climb.</div>
+      </figcaption>
+      <div class="chart-scroll"><div id="c-impr"></div></div>
+      <div class="note">A curve like this at three months old means Google has accepted the site and is testing it broadly. It is the single best signal in this dataset.</div>
+    </figure>
+
+    <div class="grid2">
+      <figure>
+        <figcaption>
+          <div class="t">Clicks per day</div>
+          <div class="s">Same window, same shape &mdash; but note the vertical scale. The whole 75 days totals 397 clicks.</div>
+        </figcaption>
+        <div class="chart-scroll"><div id="c-clicks"></div></div>
+      </figure>
+      <figure>
+        <figcaption>
+          <div class="t">Average position &mdash; lower is better</div>
+          <div class="s">A 24-place improvement in ten weeks. You crossed onto page two in mid-July and are now knocking on page one.</div>
+        </figcaption>
+        <div class="chart-scroll"><div id="c-pos"></div></div>
+      </figure>
+    </div>
+
+    <figure>
+      <figcaption>
+        <div class="t">The four phases, side by side</div>
+        <div class="s">Impressions per day rose 10.8&times;. Clicks per day rose 20&times;. But CTR peaked in phase two and has fallen every phase since.</div>
+      </figcaption>
+      <div class="chart-scroll"><div id="c-phase"></div></div>
+      <div class="legend">
+        <span><i class="sw" style="background:var(--s1)"></i>Impressions / day</span>
+        <span><i class="sw" style="background:var(--s2)"></i>Clicks / day</span>
+        <span><i class="sw" style="background:var(--s4)"></i>CTR %</span>
+      </div>
+      <div class="note">Falling CTR while impressions climb is normal early on &mdash; Google shows you for more queries you don't deserve yet. But at 1.14% it has fallen well below what your positions justify, which is section 02.</div>
+    </figure>
+  </div>
+</section>
+
+<section id="ceiling">
+  <div class="wrap">
+    <div class="shead"><span class="snum">02</span><div>
+      <h2>The click ceiling</h2>
+      <p class="sdek">You are ranking on page one and not getting the clicks that page-one rankings normally produce. This is the central finding of the audit, and almost everything you should do next follows from it.</p>
+    </div></div>
+
+    <figure>
+      <figcaption>
+        <div class="t">Actual CTR vs. what those positions normally earn</div>
+        <div class="s">Every indexed page grouped by its average position. Grey is the industry-normal CTR for that position band; colour is what you actually got.</div>
+      </figcaption>
+      <div class="chart-scroll"><div id="c-gap"></div></div>
+      <div class="legend">
+        <span><i class="sw" style="background:var(--s1)"></i>Your actual CTR</span>
+        <span><i class="sw" style="background:var(--ink-3)"></i>Expected CTR at that position</span>
+      </div>
+      <div class="note">Benchmarks are standard organic CTR curves. They are directional, not gospel &mdash; but a 3&times; shortfall across three separate bands, on thousands of impressions each, is not measurement noise.</div>
+    </figure>
+
+    <div class="call crit">
+      <div class="lbl">The number that matters</div>
+      <p style="font-size:1.12rem"><b>You earned 397 clicks. Pages at your positions would normally earn about 989.</b> You are collecting roughly <b>40 cents on the dollar</b> of the rankings you already have. That missing ~590 clicks is not a future opportunity that requires new content &mdash; it is traffic you have already done the work to deserve and are not receiving.</p>
+    </div>
+
+    <figure>
+      <figcaption>
+        <div class="t">Where the missing clicks are sitting</div>
+        <div class="s">The shortfall is not spread evenly. Positions 5&ndash;15 hold 24,439 impressions and account for essentially all of it. The two green bands already beat their benchmark &mdash; but they are page-two and page-three positions where the benchmark is close to zero, so beating it is worth 55 clicks in total.</div>
+      </figcaption>
+      <div class="chart-scroll"><div id="c-pot"></div></div>
+      <div class="legend">
+        <span><i class="sw" style="background:var(--s1)"></i>Clicks you got</span>
+        <span><i class="sw" style="background:var(--s4);opacity:.42"></i>Clicks you're missing</span>
+        <span><i class="sw" style="background:var(--good)"></i>Band already at or above expectation</span>
+      </div>
+    </figure>
+
+    <h3 style="margin-top:44px">Why this is happening &mdash; four causes, ranked by how much they explain</h3>
+    <p class="sdek" style="margin-bottom:26px">I checked each of these against the data rather than guessing. Two are fixable by you this month. Two are structural.</p>
+
+    <div class="acts">
+      <div class="act">
+        <span class="ix">1</span>
+        <div>
+          <h4>Average position is lying to you</h4>
+          <p>A page reported at "position 7.8" is often ranking #3 for a query with 40 impressions and #35 for a query with 900. GSC averages them. Your biggest pages show exactly this signature &mdash; <span class="mono">/articles/caldera-hot-springs-boquete</span> sits at 8.5 overall, but its head term <span class="mono">caldera hot springs</span> ranks 10.2 with 244 impressions and a 1.23% CTR. You are not really on page one for the queries that carry the volume.</p>
+        </div>
+        <div class="meta"><span class="tag t-hi">Explains most</span><span class="tag t-eff">Fix: content depth</span></div>
+      </div>
+      <div class="act">
+        <span class="ix">2</span>
+        <div>
+          <h4>Travel SERPs in 2026 barely give organic results a chance</h4>
+          <p>Queries like <span class="mono">boquete</span>, <span class="mono">el valle de anton</span> and <span class="mono">panama city</span> return an AI Overview, a map pack, a Things-to-do carousel, hotel and flight modules, and Tripadvisor/Viator before a single blue link. Your 717 impressions on <span class="mono">panama city</span> produced zero clicks. That is not a title-tag problem &mdash; there is nothing to click on above the fold.</p>
+        </div>
+        <div class="meta"><span class="tag t-hi">Explains a lot</span><span class="tag t-eff">Fix: query selection</span></div>
+      </div>
+      <div class="act">
+        <span class="ix">3</span>
+        <div>
+          <h4>Nobody knows who you are</h4>
+          <p>Three branded impressions in three months. Zero branded clicks. When a searcher sees <em>PanamaSpot</em> next to <em>Lonely Planet</em>, <em>Tripadvisor</em> and a blog they have heard of, they pick the one they recognise. Brand recognition is a CTR multiplier and you currently have none of it. This is the slowest of the four to fix and the one that compounds hardest.</p>
+        </div>
+        <div class="meta"><span class="tag t-md">Structural</span><span class="tag t-eff">Fix: 6&ndash;18 months</span></div>
+      </div>
+      <div class="act">
+        <span class="ix">4</span>
+        <div>
+          <h4>Snippet craft is good but not sharp</h4>
+          <p>Every page has a title, description, canonical, hreflang, Article, FAQPage and BreadcrumbList schema. Technically you are in better shape than most sites this age. But 8 pages have titles over 60 characters that truncate, 13 have descriptions over 160, and 29 pages &mdash; carrying 51% of impressions &mdash; have no year in the title while competing against results that do.</p>
+        </div>
+        <div class="meta"><span class="tag t-lo">Explains least</span><span class="tag t-eff">Fix: one afternoon</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="working">
+  <div class="wrap">
+    <div class="shead"><span class="snum">03</span><div>
+      <h2>What's working &mdash; and why</h2>
+      <p class="sdek">Three things in this dataset are genuinely strong. Understanding why they work tells you what to build more of.</p>
+    </div></div>
+
+    <div class="grid2">
+      <figure>
+        <figcaption>
+          <div class="t">Spanish is outperforming English</div>
+          <div class="s">Fewer impressions, more clicks per impression, and eleven positions better on average.</div>
+        </figcaption>
+        <div class="chart-scroll"><div id="c-lang"></div></div>
+        <div class="note">ES: 13,099 impressions &rarr; 181 clicks at position 12.5. EN: 21,661 impressions &rarr; 213 clicks at position 19.6. The Spanish side does 40% more work per impression.</div>
+      </figure>
+      <figure>
+        <figcaption>
+          <div class="t">Mobile is carrying the site</div>
+          <div class="s">Mobile out-ranks desktop by 11.6 positions and out-converts it 2:1 on CTR.</div>
+        </figcaption>
+        <div class="chart-scroll"><div id="c-dev"></div></div>
+        <div class="note">Desktop impressions are almost as high but rank at position 22.5 &mdash; those are largely international research queries you don't yet win.</div>
+      </figure>
+    </div>
+
+    <div class="call good">
+      <div class="lbl">The pattern to copy</div>
+      <p><b>Specific place + specific intent wins. Broad destination terms lose.</b> Every page beating a 1.8% CTR is a single named attraction: Caldera hot springs, Chorro El Macho, India Dormida, Volcán Barú, El Níspero zoo. Every page under 0.5% is a broad guide: <span class="mono">panama-city</span>, <span class="mono">things-to-do-in-boquete</span>, <span class="mono">bocas-del-toro</span>. Google has decided you are a credible source about individual attractions and not yet a credible source about entire destinations. It is right, and you should lean into it rather than fight it.</p>
+    </div>
+
+    <figure>
+      <figcaption>
+        <div class="t">Your ten best pages</div>
+        <div class="s">Ranked by impressions. Note how consistently the named-attraction pages hold single-digit positions.</div>
+      </figcaption>
+      <div class="chart-scroll"><div id="c-top"></div></div>
+      <div class="legend"><span><i class="sw" style="background:var(--s1)"></i>Impressions</span><span><i class="sw" style="background:var(--good)"></i>Position &lt;10</span><span><i class="sw" style="background:var(--warn)"></i>Position 10&ndash;20</span></div>
+    </figure>
+
+    <ul class="clean">
+      <li><b>Technical foundation is clean.</b> 53 of 53 pages carry a meta description, Article + FAQPage + BreadcrumbList schema, a canonical, and correct bidirectional hreflang. Zero pages in your sitemap have zero impressions &mdash; full indexation, no crawl waste.</li>
+      <li><b>Google is generating jump-to-section links for you.</b> 82 fragment URLs (<span class="mono">#s1</span>…<span class="mono">#s8</span>) appeared in search with 1,182 impressions. Google only does that when it trusts a page's structure. Your table-of-contents markup is earning that.</li>
+      <li><b>Content depth is not the problem.</b> Articles average 7,000&ndash;8,600 words with 16 images each, 94% lazy-loaded, at 140KB per page. That is a real asset.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="broken">
+  <div class="wrap">
+    <div class="shead"><span class="snum">04</span><div>
+      <h2>What's broken</h2>
+      <p class="sdek">Ordered by how many impressions each problem is currently wasting.</p>
+    </div></div>
+
+    <figure>
+      <figcaption>
+        <div class="t">7,616 impressions are stranded on page three or worse</div>
+        <div class="s">23% of all your visibility sits at position 20+, where it produces 27 clicks. These are your <em>biggest</em> topics ranking at your <em>worst</em> positions.</div>
+      </figcaption>
+      <div class="chart-scroll"><div id="c-trap"></div></div>
+      <div class="note">Bar length is impressions; the label is the average position. Anything past 20 is effectively invisible.</div>
+    </figure>
+
+    <div class="tw">
+      <table>
+        <caption class="mono" style="text-align:left;padding:12px 14px;color:var(--ink-3);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase">Dead head terms &mdash; high volume, no visibility</caption>
+        <thead><tr><th>Query</th><th class="n">Impr.</th><th class="n">Clicks</th><th class="n">Position</th><th>Diagnosis</th></tr></thead>
+        <tbody id="t-head"></tbody>
+      </table>
+    </div>
+
+    <div class="acts">
+      <div class="act">
+        <span class="ix">A</span>
+        <div>
+          <h4>Two live 404s are collecting search impressions</h4>
+          <p><span class="mono">/articles/el-valle-de-anton</span> (59 impressions, position 69) and <span class="mono">/es/articles/el-valle-de-anton</span> (10 impressions) appear in Google but do not exist on your site. Google wants a destination hub at that URL and you never built one. Small numbers, but it is free and it signals a missing structure.</p>
+        </div>
+        <div class="meta"><span class="tag t-md">Quick</span><span class="tag t-eff">1 hour</span></div>
+      </div>
+      <div class="act">
+        <span class="ix">B</span>
+        <div>
+          <h4>Four articles have zero inbound internal links</h4>
+          <p><span class="mono">/es/articles/como-llegar-a-boquete-sin-carro</span>, <span class="mono">/es/articles/san-blas-guna-yala-guia-tours-islas</span>, <span class="mono">/es/articles/alquiler-de-bicicletas-boquete</span> and <span class="mono">/articles/bocas-del-toro-island-hopping-guide</span> are orphans &mdash; reachable only from the sitemap. Sitewide you average 5.6 internal links out per article, and 15 of 48 articles have fewer than five. For a 48-page site that is thin.</p>
+        </div>
+        <div class="meta"><span class="tag t-hi">High impact</span><span class="tag t-eff">1 day</span></div>
+      </div>
+      <div class="act">
+        <span class="ix">C</span>
+        <div>
+          <h4>Content production stopped 37 days ago</h4>
+          <p>Last article published 16 July. Last commit 23 July. Impressions have kept climbing since purely on the July batch maturing &mdash; but that curve flattens. A three-month-old site that stops publishing in month three does not become a four-month-old site with momentum; it becomes a site Google crawls less often.</p>
+        </div>
+        <div class="meta"><span class="tag t-hi">Highest impact</span><span class="tag t-eff">Ongoing</span></div>
+      </div>
+      <div class="act">
+        <span class="ix">D</span>
+        <div>
+          <h4>Coverage is three destinations deep and eleven destinations wide</h4>
+          <p>El Valle (16 pages), Boquete (18) and Panama City (10) are well covered. Bocas del Toro has <b>one</b> page against 597 impressions of demand at position 66. San Blas, the Pearl Islands, Contadora, Taboga, Pedasí and the Azuero, Santa Catalina and Coiba, Portobelo, Gamboa and Soberanía, and every practical-logistics query (visas, SIM cards, rental cars, safety, best time to visit) have essentially <b>zero</b> dedicated coverage.</p>
+        </div>
+        <div class="meta"><span class="tag t-hi">Biggest ceiling</span><span class="tag t-eff">3&ndash;6 months</span></div>
+      </div>
+      <div class="act">
+        <span class="ix">E</span>
+        <div>
+          <h4>There is no way for this traffic to become money</h4>
+          <p>Across 48 articles there are exactly three outbound commercial links, all to <span class="mono">evalleybikes.com</span>. No booking affiliate, no tour affiliate, no accommodation affiliate, no email capture that appears in the data, no ad inventory. Even if I hand you 10,000 clicks a month, today the site converts them into nothing.</p>
+        </div>
+        <div class="meta"><span class="tag t-hi">Existential</span><span class="tag t-eff">2 weeks</span></div>
+      </div>
+      <div class="act">
+        <span class="ix">F</span>
+        <div>
+          <h4>Snippet hygiene gaps</h4>
+          <p>8 pages have titles over 60 characters (17% of impressions) that get truncated in the SERP. 13 pages have descriptions over 160 characters (22% of impressions). 29 pages have no year in the title against competitors whose titles say 2026. None of these are fatal; together they are a few percent of CTR you are leaving on the table for an afternoon of work.</p>
+        </div>
+        <div class="meta"><span class="tag t-lo">Low impact</span><span class="tag t-eff">1 afternoon</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="honest" class="honest">
+  <div class="wrap">
+    <div class="shead"><span class="snum">05</span><div>
+      <h2>The honest assessment</h2>
+      <p class="sdek">You asked for this section specifically, so I am going to be direct about what the data supports and what it doesn't. Some of this is uncomfortable.</p>
+    </div></div>
+
+    <div class="hcard">
+      <h4>First: 397 clicks in three months is a very small number</h4>
+      <p>I want to anchor this before anything else, because the percentage growth in section 01 makes it sound bigger than it is. <b>397 clicks over 75 days is about 5 visits a day.</b> Going from 0.7 to 13.7 clicks per day is a 1,857% increase and it is also the difference between nobody and almost nobody. Both things are true. Every strategic decision below should be made with that scale in mind &mdash; you are not optimising a business, you are trying to determine whether there is one.</p>
+    </div>
+
+    <div class="hcard">
+      <h4>Second: the trajectory is genuinely good, and that is not a consolation prize</h4>
+      <p>A site that is three months old, ranking at position 12.7 average, indexed on 100% of its sitemap, generating jump-to-section links, and climbing from 111 to 1,199 daily impressions without stalling &mdash; that is a healthy site. Most sites at this age are still at position 40 with 200 impressions. <b>Google has decided you are legitimate.</b> That is the hardest thing to buy and you already have it. The question is no longer "will this work at all," it is "how big is the room you're in."</p>
+    </div>
+
+    <div class="hcard">
+      <h4>Third: your query data reveals something you may not want to hear</h4>
+      <p>Google Search Console shows me your top 1,000 queries. Those 1,000 queries account for <b>37 of your 397 clicks &mdash; 9%.</b> The other 91% come from queries so rare that Google anonymises them. Your single best query in three months delivered <b>four clicks.</b></p>
+      <p>This means you have no head-term rankings converting at all. There is no keyword you own. Your traffic is pure long-tail dust &mdash; hundreds of one-off queries each sending one visitor. That is a normal place for a young site to be, but it is fragile: it means a single Google update, or one competitor deciding to cover your topics properly, removes most of it. <b>You do not yet have a defensible position on a single search term.</b></p>
+    </div>
+
+    <div class="hcard">
+      <h4>Fourth: the travel search category you picked is the hardest one on the internet right now</h4>
+      <p>Travel is where AI Overviews landed first and hardest, because travel queries are exactly what generative answers are good at. It is also where Google has the most first-party inventory to protect &mdash; Hotels, Flights, Things to do &mdash; and where the incumbents (Tripadvisor, Viator, GetYourGuide, Booking, Lonely Planet) have twenty years of domain authority and unlimited budget. Your CTR data is what that competitive environment looks like from the inside: <b>you rank, and the click goes somewhere else.</b></p>
+      <p>I am not telling you this to discourage you. I am telling you because if you plan for 2019 travel-SEO economics you will build the wrong thing. The traffic-per-ranking ratio in this category is permanently lower than it was, and no amount of on-page optimisation restores it.</p>
+    </div>
+
+    <div class="hcard">
+      <h4>Fifth: "multiply traffic massively" is achievable &mdash; the honest constraint is which lever you pull</h4>
+      <p>You have three multipliers available and they are not equal:</p>
+      <ul class="clean" style="margin-top:14px">
+        <li><b>Fix the CTR gap</b> &mdash; ceiling is roughly 2.5&times;. Real, fast, and capped. You cannot get more than the ~989 clicks your current rankings justify, and realistically you capture 60&ndash;70% of that gap, not all of it.</li>
+        <li><b>Rescue the trapped pages</b> &mdash; 7,616 impressions at position 20+. Moving those to page one is worth maybe another 200&ndash;300 clicks. Also real, also capped.</li>
+        <li><b>Publish more</b> &mdash; uncapped. You have 48 articles. Sites that win this category have 400&ndash;1,500. This is the only lever with no ceiling, and it is the one you have not pulled in five weeks.</li>
+      </ul>
+      <p>The uncomfortable version: <b>the first two levers together get you to roughly 1,500 clicks a month and then stop.</b> Only the third gets you to 50,000. If the goal is genuinely "multiply massively," the answer is not an optimisation project, it is a content operation.</p>
+    </div>
+
+    <div class="hcard">
+      <h4>Sixth: the monetisation gap makes the traffic question secondary</h4>
+      <p>Three outbound commercial links across the entire site. If you 10&times; this traffic to 4,000 clicks a month, at typical travel-affiliate economics that is somewhere between <b>$40 and $400 a month</b> depending entirely on whether you build a booking path. Right now it is $0 at any traffic level. <b>Decide what this site is for before you spend six months feeding it.</b> If it exists to funnel El Valley Bikes customers, then 200 highly-qualified El Valle clicks beat 20,000 general Panama clicks and your whole strategy narrows and gets much easier. If it is a media property, it needs affiliate infrastructure now and a content operation that most solo operators cannot sustain.</p>
+    </div>
+
+    <div class="verdict">
+      <div><div class="k">Is it working?</div><div class="v">Yes &mdash; the site is healthy and trusted. The traffic is just still tiny.</div></div>
+      <div><div class="k">Realistic 6-month ceiling</div><div class="v">3,000&ndash;6,000 clicks / month with sustained publishing. Not 50,000.</div></div>
+      <div><div class="k">Biggest risk</div><div class="v">Stopping. Five weeks dark is already visible in the crawl pattern.</div></div>
+      <div><div class="k">Biggest single mistake so far</div><div class="v">Building depth on 3 destinations instead of breadth across 12.</div></div>
+      <div><div class="k">What would change my answer</div><div class="v">Any single query holding top-3 with real volume. You have none yet.</div></div>
+      <div><div class="k">Honest odds</div><div class="v">Good chance of a real small site. Low chance of a large one without a team.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="quickwins">
+  <div class="wrap">
+    <div class="shead"><span class="snum">06</span><div>
+      <h2>Quick wins &mdash; next 14 days</h2>
+      <p class="sdek">Everything here is small, reversible, and pays off inside one crawl cycle. Do these first because they cost days, not months, and they raise the return on all the content you have already published.</p>
+    </div></div>
+
+    <div class="acts">
+      <div class="act">
+        <span class="ix">1</span>
+        <div>
+          <h4>Rewrite the 21 page-one titles for the click, not the keyword</h4>
+          <p>You have 21 pages sitting at position 5&ndash;15 with 500+ impressions each. Those are already winning the ranking and losing the click. Give each one a number, a year, and a friction-remover.</p>
+          <ul>
+            <li>Now: <span class="mono">Caldera Hot Springs Boquete: Complete 2026 Visitor Guide</span></li>
+            <li>Better: <span class="mono">Caldera Hot Springs, Boquete: $5 Entry, Exact Directions (2026)</span></li>
+            <li>Pattern: specific price, specific duration, or specific count &mdash; <em>the thing they'd have to click to find out</em>. Keep under 60 characters.</li>
+          </ul>
+        </div>
+        <div class="meta"><span class="tag t-hi">High</span><span class="tag t-eff">1 day</span></div>
+      </div>
+      <div class="act">
+        <span class="ix">2</span>
+        <div>
+          <h4>Rewrite descriptions as answer-teasers on the same 21 pages</h4>
+          <p>Lead with the concrete fact and cut off before the payoff. "Entry is $10, the pools run 38&ndash;42&deg;C, and the road in needs 4WD after rain &mdash; here's the turn-off most people miss." Cap at 155 characters. 13 of your pages currently truncate.</p>
+        </div>
+        <div class="meta"><span class="tag t-hi">High</span><span class="tag t-eff">1 day</span></div>
+      </div>
+      <div class="act">
+        <span class="ix">3</span>
+        <div>
+          <h4>Build the two missing destination hubs that Google is already asking for</h4>
+          <p>Create <span class="mono">/articles/el-valle-de-anton</span> and <span class="mono">/es/articles/el-valle-de-anton</span> &mdash; both currently 404 while collecting impressions. Make them real hub pages that link to all 16 El Valle articles. Then build the matching <span class="mono">/articles/boquete</span> and <span class="mono">/articles/bocas-del-toro</span> hubs.</p>
+        </div>
+        <div class="meta"><span class="tag t-hi">High</span><span class="tag t-eff">2 days</span></div>
+      </div>
+      <div class="act">
+        <span class="ix">4</span>
+        <div>
+          <h4>Fix the internal linking &mdash; target 12&ndash;15 contextual links per article</h4>
+          <p>You are at 5.6. Four articles have zero inbound links. Add a "Nearby &amp; related" block to every article, cross-link every EN article to its ES sibling in body copy (not just hreflang), and link every attraction page up to its destination hub and back down. This is the single highest-leverage technical change available to you and it requires no new content.</p>
+        </div>
+        <div class="meta"><span class="tag t-hi">High</span><span class="tag t-eff">2 days</span></div>
+      </div>
+      <div class="act">
+        <span class="ix">5</span>
+        <div>
+          <h4>Add FAQ blocks targeting the exact zero-click questions in your data</h4>
+          <p>Your query export contains real questions you rank for and get nothing from: <span class="mono">chorro el macho horario</span> (position 3.5), <span class="mono">el volcan baru esta activo</span> (position 9.8, zero clicks), <span class="mono">restaurantes en casco viejo económicos</span> (position 10, zero clicks), <span class="mono">boquete outdoor adventures prices</span> (position 5, zero clicks). Answer each in a 40-word FAQ block with the answer <em>partially</em> given &mdash; enough to win the snippet, not enough to end the search.</p>
+        </div>
+        <div class="meta"><span class="tag t-md">Medium</span><span class="tag t-eff">1 day</span></div>
+      </div>
+      <div class="act">
+        <span class="ix">6</span>
+        <div>
+          <h4>Put a booking path on the 21 best pages</h4>
+          <p>GetYourGuide and Viator affiliate programmes both accept small travel sites and both have Panama inventory. Add a contextual tour widget to every attraction page. Not because it will make money this quarter &mdash; because you need six months of conversion data before you can tell which traffic is worth chasing.</p>
+        </div>
+        <div class="meta"><span class="tag t-hi">High</span><span class="tag t-eff">3 days</span></div>
+      </div>
+      <div class="act">
+        <span class="ix">7</span>
+        <div>
+          <h4>Add the year to 29 titles and trim 8 over-length ones</h4>
+          <p>Mechanical, low-risk, measurable in two weeks. 51% of your impressions are on pages whose titles don't say 2026.</p>
+        </div>
+        <div class="meta"><span class="tag t-lo">Low</span><span class="tag t-eff">2 hours</span></div>
+      </div>
+    </div>
+
+    <div class="call">
+      <div class="lbl">How to know if it worked</div>
+      <p>Do not judge these on clicks for the first three weeks. Judge them on <b>CTR at constant position</b> &mdash; in GSC, filter to the 21 pages you edited, compare the 28 days before against the 28 days after, and confirm average position held steady. If CTR moves from 1.4% to 2.2% while position stays flat, the snippet work is working. If position moves too, you can't attribute anything.</p>
+    </div>
+  </div>
+</section>
+
+<section id="structural">
+  <div class="wrap">
+    <div class="shead"><span class="snum">07</span><div>
+      <h2>Structural fixes &mdash; weeks 3 to 8</h2>
+      <p class="sdek">These take longer and change what the site is, rather than how it is presented.</p>
+    </div></div>
+
+    <div class="acts">
+      <div class="act">
+        <span class="ix">1</span>
+        <div>
+          <h4>Stop competing for bare destination names</h4>
+          <p><span class="mono">panama city</span> (717 impressions, position 53), <span class="mono">boquete</span> (295, position 60), <span class="mono">el valle de anton</span> (256, position 47), <span class="mono">bocas islands</span> (117, position 76). Combined: <b>1,385 impressions, zero clicks.</b> You will not win these in the next two years, and they are dragging your average position down by roughly nine places, which distorts every other read on the site. Keep the pages, but re-target them at the modifier queries you can actually win &mdash; <em>"panama city 3 day itinerary"</em>, <em>"is boquete worth visiting"</em>, <em>"el valle de anton day trip from panama city"</em>.</p>
+        </div>
+        <div class="meta"><span class="tag t-hi">High</span><span class="tag t-eff">1 week</span></div>
+      </div>
+      <div class="act">
+        <span class="ix">2</span>
+        <div>
+          <h4>Rescue the eight trapped pages</h4>
+          <p>7,616 impressions sit at position 20+. <span class="mono">things-to-do-el-valle-de-anton</span> (1,383 impr, position 31) and <span class="mono">things-to-do-in-boquete-panama</span> (1,337, position 40) are both 8,000+ word pages that rank badly &mdash; a strong signal that length is not the problem and topical authority is. Each needs 10&ndash;15 inbound internal links from the specific attraction pages that already rank well, plus a rewrite that narrows the target from "everything" to a defensible angle.</p>
+        </div>
+        <div class="meta"><span class="tag t-hi">High</span><span class="tag t-eff">2 weeks</span></div>
+      </div>
+      <div class="act">
+        <span class="ix">3</span>
+        <div>
+          <h4>Fix the Bocas del Toro hole</h4>
+          <p>One page. 597 impressions of demand. Position 66. Bocas is one of the three highest-volume travel topics in Panama and you have less coverage of it than of a single El Valle waterfall. Build the same 12&ndash;16 page cluster you built for El Valle: island hopping, Bastimentos, Zapatilla, Starfish Beach, Red Frog, how to get there from Panama City, where to stay by island, surf seasons.</p>
+        </div>
+        <div class="meta"><span class="tag t-hi">High</span><span class="tag t-eff">4 weeks</span></div>
+      </div>
+      <div class="act">
+        <span class="ix">4</span>
+        <div>
+          <h4>Build the practical-logistics cluster nobody has written well</h4>
+          <p>Zero coverage today. These queries are lower-competition than attraction queries, have no AI Overview problem (they need current specifics), and they capture people at the <em>start</em> of trip planning &mdash; which means they feed every other page you own. Visa rules by nationality, eSIM and mobile data, rental car and driving, Uber vs taxi, is Panama safe, best time to visit by region, what to pack, Balboa vs dollar, tipping, domestic flights vs buses.</p>
+        </div>
+        <div class="meta"><span class="tag t-hi">High &middot; underrated</span><span class="tag t-eff">3 weeks</span></div>
+      </div>
+      <div class="act">
+        <span class="ix">5</span>
+        <div>
+          <h4>Lean into Spanish deliberately</h4>
+          <p>Your ES pages rank 7 places better and convert 40% better per impression, and Panama alone gives you 232 of your 397 clicks. Spanish-language Panama travel content is dramatically less contested than English. Right now ES is a translation layer bolted onto an English site. Make it a first-class property: ES-first topics that have no EN equivalent, aimed at Panamanian and regional domestic tourism, which is a real market that Tripadvisor serves badly.</p>
+        </div>
+        <div class="meta"><span class="tag t-hi">High &middot; underrated</span><span class="tag t-eff">Ongoing</span></div>
+      </div>
+      <div class="act">
+        <span class="ix">6</span>
+        <div>
+          <h4>Start manufacturing the thing you cannot buy: first-hand signal</h4>
+          <p>277 of your images come from Wikimedia and 108 from Pexels. Google's helpful-content systems and human readers both reward evidence that you were physically there. Original photography with EXIF intact, dated visit notes, current prices you verified, a named author with a real bio and a Panama footprint. This is the only durable moat against a competitor who can generate 8,000 words as fast as you can.</p>
+        </div>
+        <div class="meta"><span class="tag t-md">Medium &middot; compounds</span><span class="tag t-eff">Ongoing</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="strategy">
+  <div class="wrap">
+    <div class="shead"><span class="snum">08</span><div>
+      <h2>The strategy for actually multiplying this</h2>
+      <p class="sdek">Optimisation gets you 2.5&times; and stops. This is the part that has no ceiling. It is also the part that requires a decision from you before it requires work.</p>
+    </div></div>
+
+    <div class="call">
+      <div class="lbl">The decision that comes first</div>
+      <p>Before any of the below: <b>is PanamaSpot a media property or a lead channel?</b> If it is a lead channel for El Valley Bikes and similar operators, stop building Panama-wide coverage entirely and go 60 pages deep on El Valle and Boquete with aggressive booking paths &mdash; you'd be done in three months and profitable at 2,000 clicks a month. If it is a media property, everything below applies and you need to be honest about sustaining it for eighteen months. <b>The worst outcome is doing half of each.</b> Right now you are doing half of each.</p>
+    </div>
+
+    <h3>The math of getting to 10&times;</h3>
+    <p class="sdek" style="margin-bottom:22px">Your current run rate is roughly 410 clicks a month. Here is what each lever contributes, honestly costed.</p>
+
+    <figure>
+      <figcaption>
+        <div class="t">Clicks per month by lever, cumulative</div>
+        <div class="s">Each bar adds to the one before it. Note how quickly the optimisation levers exhaust themselves and how much of the total comes from the last one.</div>
+      </figcaption>
+      <div class="chart-scroll"><div id="c-lever"></div></div>
+      <div class="note">Assumes 25 new articles per month at the same quality level, and that new articles reach maturity in 8&ndash;12 weeks &mdash; which matches what your own July batch actually did.</div>
+    </figure>
+
+    <ul class="clean">
+      <li><b>Publishing volume is the whole game.</b> 48 articles produced 33,698 impressions in ten weeks. That is roughly 700 impressions per article per quarter at maturity. To reach 500,000 impressions a quarter you need in the region of 700 articles. There is no shortcut in the data that avoids this arithmetic.</li>
+      <li><b>Cluster completely before moving on.</b> El Valle works because you have 16 pages on it and Google can see topical completeness. Bocas fails because you have one. Never enter a new destination with fewer than 12 planned pages &mdash; a single page in a new topic is worse than no page, because it dilutes rather than concentrates.</li>
+      <li><b>Chase the queries AI Overviews can't answer.</b> Anything that requires a current price, a today-open status, a seasonal condition, a booking mechanic, or a first-hand comparison. Avoid "what is X" and "history of X" &mdash; those are already answered above your result.</li>
+      <li><b>Build one distribution channel that is not Google.</b> Pinterest for travel imagery, a Panama-focused newsletter, or YouTube shorts of the hikes. Not because it will out-perform search, but because right now a single algorithm update takes 100% of your traffic, and because branded search is the strongest CTR lever that exists and you have zero of it.</li>
+      <li><b>Get five real links.</b> Panama tourism boards, expat community sites, the tour operators you already write about, a Panama subreddit that doesn't ban you, and hotel partner pages. Five genuine referring domains at this stage moves position more than fifty pages of content does.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="plan">
+  <div class="wrap">
+    <div class="shead"><span class="snum">09</span><div>
+      <h2>90-day plan and forecast</h2>
+      <p class="sdek">Sequenced so the cheap compounding work happens first and nothing waits on anything it doesn't have to.</p>
+    </div></div>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th>Weeks</th><th>Focus</th><th>Concrete output</th><th class="n">Est. clicks / mo at end</th></tr></thead>
+        <tbody>
+          <tr><td><b>1&ndash;2</b></td><td>Snippet + linking</td><td class="u">21 titles and descriptions rewritten; 4 destination hubs built; internal links to 12+ per article; orphans fixed; booking widgets live on 21 pages</td><td class="n">600</td></tr>
+          <tr><td><b>3&ndash;4</b></td><td>Rescue trapped pages</td><td class="u">8 page-20+ pages re-targeted and internally boosted; head-term pages re-pointed at winnable modifiers; FAQ blocks on the 12 zero-click questions</td><td class="n">900</td></tr>
+          <tr><td><b>5&ndash;8</b></td><td>Bocas cluster + logistics</td><td class="u">14 Bocas del Toro articles; 10 practical-logistics articles; first original photography set; 5 link-building outreach conversations opened</td><td class="n">1,500</td></tr>
+          <tr><td><b>9&ndash;12</b></td><td>Scale and second channel</td><td class="u">San Blas and Pearl Islands clusters (24 articles); ES-first content programme launched; Pinterest or newsletter live; affiliate revenue data reviewed</td><td class="n">2,400</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin-bottom:6px">Six-month outcomes, three ways</h3>
+    <p class="sdek" style="margin-bottom:20px">Monthly clicks in February 2027. I have deliberately not put a hockey stick on any of these.</p>
+
+    <div class="scen">
+      <div class="sc">
+        <div class="nm">If you only optimise</div>
+        <div class="big">1,100</div>
+        <div class="un">clicks / month &middot; 2.7&times;</div>
+        <p>Quick wins and structural fixes, no new content. Real, fast, and then flat &mdash; you hit the ceiling of your existing 48 pages by month three and stay there.</p>
+      </div>
+      <div class="sc hl">
+        <div class="nm">Optimise + publish 25/mo</div>
+        <div class="big">4,200</div>
+        <div class="un">clicks / month &middot; 10.2&times;</div>
+        <p>The plan above, sustained. 198 articles by February. This is the realistic target and the one I would hold you to. It requires roughly one solid article every working day.</p>
+      </div>
+      <div class="sc">
+        <div class="nm">Everything, with a team</div>
+        <div class="big">9,000</div>
+        <div class="un">clicks / month &middot; 22&times;</div>
+        <p>60 articles a month, original photography, active link building, second channel. Needs 2&ndash;3 people. Achievable but this is a funded operation, not a side project.</p>
+      </div>
+    </div>
+
+    <div class="call crit">
+      <div class="lbl">The one thing to take away</div>
+      <p>Nothing in the first two rows of that table is hard. The variable that decides which of the three scenarios you land in is whether you publish next week &mdash; and you have not published in five. <b>The site is fine. The gap is production.</b></p>
+    </div>
+  </div>
+</section>
+
+<section id="data">
+  <div class="wrap">
+    <div class="shead"><span class="snum">10</span><div>
+      <h2>The data</h2>
+      <p class="sdek">Everything above is derived from these tables. Source: Google Search Console export, web search only, 7 June &ndash; 20 August 2026.</p>
+    </div></div>
+
+    <h3 style="margin-bottom:14px">Opportunity pages &mdash; position 5&ndash;15, 500+ impressions</h3>
+    <p class="sdek" style="margin-bottom:16px">These 21 pages are where the quick wins apply. Together they hold 22,244 impressions and 340 clicks.</p>
+    <div class="tw"><table>
+      <thead><tr><th>Page</th><th class="n">Impr.</th><th class="n">Clicks</th><th class="n">CTR</th><th class="n">Pos.</th><th class="n">Missing</th></tr></thead>
+      <tbody id="t-opp"></tbody>
+    </table></div>
+
+    <h3 style="margin-bottom:14px">Trapped pages &mdash; position 20+</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Page</th><th class="n">Impr.</th><th class="n">Clicks</th><th class="n">Pos.</th><th>Status</th></tr></thead>
+      <tbody id="t-trap"></tbody>
+    </table></div>
+
+    <h3 style="margin-bottom:14px">Markets</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Country</th><th class="n">Clicks</th><th class="n">Impr.</th><th class="n">CTR</th><th class="n">Pos.</th><th>Read</th></tr></thead>
+      <tbody id="t-ctry"></tbody>
+    </table></div>
+
+    <h3 style="margin-bottom:14px">CTR gap by position band</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Position band</th><th class="n">Pages</th><th class="n">Impr.</th><th class="n">Clicks</th><th class="n">Actual CTR</th><th class="n">Expected</th><th class="n">Clicks missing</th></tr></thead>
+      <tbody id="t-band"></tbody>
+    </table></div>
+  </div>
+</section>
+
+</main>
+
+<footer><div class="wrap">
+  <p>PanamaSpot search performance audit &middot; window 7 June – 20 August 2026 (75 days) &middot; Google Search Console, web search, all countries and devices.<br>
+  Totals reconcile to 397 clicks and 33,698 impressions across 57 non-fragment URLs. CTR benchmarks are standard organic position curves and are directional. Query-level figures cover only the 1,000 queries GSC discloses, which represent 9% of clicks — all query-level conclusions are stated with that limit in mind.</p>
+</div></footer>
+
+<script>
+const D = {"chart":[{"d":"2026-06-07","c":0,"i":0,"p":null},{"d":"2026-06-08","c":0,"i":10,"p":27.4},{"d":"2026-06-09","c":0,"i":86,"p":20.2},{"d":"2026-06-10","c":0,"i":65,"p":31.3},{"d":"2026-06-11","c":0,"i":85,"p":32.0},{"d":"2026-06-12","c":0,"i":121,"p":41.5},{"d":"2026-06-13","c":0,"i":80,"p":46.9},{"d":"2026-06-14","c":0,"i":128,"p":41.1},{"d":"2026-06-15","c":0,"i":149,"p":30.6},{"d":"2026-06-16","c":0,"i":97,"p":40.2},{"d":"2026-06-17","c":0,"i":101,"p":40.5},{"d":"2026-06-18","c":1,"i":96,"p":34.9},{"d":"2026-06-19","c":1,"i":143,"p":32.7},{"d":"2026-06-20","c":0,"i":109,"p":40.6},{"d":"2026-06-21","c":1,"i":71,"p":52.1},{"d":"2026-06-22","c":0,"i":59,"p":41.5},{"d":"2026-06-23","c":0,"i":101,"p":51.2},{"d":"2026-06-24","c":0,"i":146,"p":35.9},{"d":"2026-06-25","c":2,"i":83,"p":39.1},{"d":"2026-06-26","c":0,"i":87,"p":52.0},{"d":"2026-06-27","c":0,"i":190,"p":28.0},{"d":"2026-06-28","c":4,"i":262,"p":27.6},{"d":"2026-06-29","c":4,"i":211,"p":23.3},{"d":"2026-06-30","c":3,"i":188,"p":26.1},{"d":"2026-07-01","c":4,"i":297,"p":25.7},{"d":"2026-07-02","c":5,"i":186,"p":23.8},{"d":"2026-07-03","c":3,"i":247,"p":16.5},{"d":"2026-07-04","c":2,"i":301,"p":17.9},{"d":"2026-07-05","c":6,"i":349,"p":16.5},{"d":"2026-07-06","c":2,"i":239,"p":19.2},{"d":"2026-07-07","c":3,"i":271,"p":24.9},{"d":"2026-07-08","c":4,"i":257,"p":21.1},{"d":"2026-07-09","c":3,"i":285,"p":21.4},{"d":"2026-07-10","c":3,"i":351,"p":16.8},{"d":"2026-07-11","c":3,"i":315,"p":22.6},{"d":"2026-07-12","c":5,"i":384,"p":21.1},{"d":"2026-07-13","c":2,"i":256,"p":22.0},{"d":"2026-07-14","c":9,"i":269,"p":16.7},{"d":"2026-07-15","c":2,"i":252,"p":20.9},{"d":"2026-07-16","c":2,"i":161,"p":26.0},{"d":"2026-07-17","c":1,"i":149,"p":22.9},{"d":"2026-07-18","c":3,"i":167,"p":22.9},{"d":"2026-07-19","c":7,"i":272,"p":19.1},{"d":"2026-07-20","c":5,"i":257,"p":18.5},{"d":"2026-07-21","c":6,"i":314,"p":15.1},{"d":"2026-07-22","c":1,"i":452,"p":13.0},{"d":"2026-07-23","c":7,"i":480,"p":13.6},{"d":"2026-07-24","c":11,"i":614,"p":14.8},{"d":"2026-07-25","c":8,"i":607,"p":16.0},{"d":"2026-07-26","c":13,"i":716,"p":15.0},{"d":"2026-07-27","c":7,"i":669,"p":13.4},{"d":"2026-07-28","c":8,"i":616,"p":15.9},{"d":"2026-07-29","c":7,"i":685,"p":13.9},{"d":"2026-07-30","c":4,"i":517,"p":18.0},{"d":"2026-07-31","c":9,"i":551,"p":16.5},{"d":"2026-08-01","c":13,"i":617,"p":16.9},{"d":"2026-08-02","c":7,"i":689,"p":19.6},{"d":"2026-08-03","c":5,"i":587,"p":14.9},{"d":"2026-08-04","c":8,"i":583,"p":14.1},{"d":"2026-08-05","c":5,"i":576,"p":15.0},{"d":"2026-08-06","c":6,"i":554,"p":16.9},{"d":"2026-08-07","c":6,"i":630,"p":11.6},{"d":"2026-08-08","c":10,"i":689,"p":12.5},{"d":"2026-08-09","c":11,"i":893,"p":13.8},{"d":"2026-08-10","c":17,"i":929,"p":12.3},{"d":"2026-08-11","c":8,"i":854,"p":12.9},{"d":"2026-08-12","c":9,"i":1041,"p":14.9},{"d":"2026-08-13","c":21,"i":1309,"p":13.8},{"d":"2026-08-14","c":18,"i":1196,"p":12.5},{"d":"2026-08-15","c":21,"i":1287,"p":12.8},{"d":"2026-08-16","c":9,"i":1455,"p":12.3},{"d":"2026-08-17","c":14,"i":1250,"p":10.9},{"d":"2026-08-18","c":7,"i":1231,"p":12.9},{"d":"2026-08-19","c":14,"i":1095,"p":11.9},{"d":"2026-08-20","c":16,"i":1273,"p":12.3}],"ctry":[{"n":"Panama","c":232,"i":14811,"p":8.69},{"n":"United States","c":46,"i":7464,"p":26.37},{"n":"Spain","c":23,"i":1032,"p":22.57},{"n":"Canada","c":14,"i":924,"p":18.88},{"n":"Netherlands","c":11,"i":1131,"p":24.31},{"n":"United Kingdom","c":8,"i":1012,"p":25.11},{"n":"Germany","c":8,"i":479,"p":9.19},{"n":"Costa Rica","c":7,"i":419,"p":9.58},{"n":"Argentina","c":6,"i":203,"p":14.91},{"n":"Belgium","c":5,"i":322,"p":43.11}],"dev":[{"n":"Mobile","c":275,"i":17098,"p":10.95},{"n":"Desktop","c":120,"i":15476,"p":22.53},{"n":"Tablet","c":1,"i":318,"p":27.75}],"opp":[{"u":"/articles/caldera-hot-springs-boquete","c":29,"i":1721,"p":8.5},{"u":"/articles/boquete-coffee-farm-tour","c":28,"i":1540,"p":11.22},{"u":"/es/articles/cascada-chorro-el-macho-el-valle-de-anton","c":21,"i":1510,"p":7.65},{"u":"/articles/panama-canal-tour-miraflores-locks-visitor-guide","c":8,"i":1474,"p":12.6},{"u":"/es/articles/aguas-termales-caldera-boquete","c":39,"i":1465,"p":7.77},{"u":"/es/articles/sendero-india-dormida-el-valle-de-anton","c":12,"i":1178,"p":9.24},{"u":"/articles/chorro-el-macho-waterfall-el-valle-de-anton","c":21,"i":1171,"p":7.33},{"u":"/es/articles/el-valle-de-anton-desde-ciudad-de-panama","c":9,"i":1138,"p":7.6},{"u":"/es/articles/casco-viejo-restaurantes-donde-comer-beber-hospedarse","c":9,"i":1066,"p":10.76},{"u":"/es/articles/volcan-baru-como-subir-cima-panama","c":21,"i":1013,"p":9.0},{"u":"/articles/india-dormida-hike-el-valle-de-anton","c":18,"i":1002,"p":8.52},{"u":"/articles/tours-en-el-valle-de-anton","c":2,"i":890,"p":14.56},{"u":"/articles/tours-in-boquete-panama","c":1,"i":883,"p":12.21},{"u":"/es/articles/zoologico-el-nispero-el-valle-de-anton","c":8,"i":842,"p":8.73},{"u":"/es/articles/aguas-termales-el-valle-de-anton","c":8,"i":691,"p":7.11},{"u":"/articles/casco-viejo-panama-walking-guide","c":4,"i":686,"p":11.17},{"u":"/articles/lost-waterfalls-boquete-hiking-guide","c":11,"i":675,"p":11.22},{"u":"/articles/volcan-baru-hike-sunrise-summit-guide","c":12,"i":645,"p":10.3},{"u":"/articles/hikes-in-boquete","c":6,"i":557,"p":12.1},{"u":"/articles/hikes-el-valle-de-anton","c":9,"i":554,"p":11.97},{"u":"/articles/el-valle-day-trip-from-panama-city","c":7,"i":544,"p":14.15}],"trap":[{"u":"/articles/panama-city","c":1,"i":1854,"p":54.81},{"u":"/articles/things-to-do-el-valle-de-anton","c":5,"i":1383,"p":30.73},{"u":"/articles/things-to-do-in-boquete-panama","c":3,"i":1337,"p":40.35},{"u":"/articles/boquete-travel-guide","c":11,"i":1022,"p":21.18},{"u":"/es/articles/panama-city","c":0,"i":684,"p":56.84},{"u":"/articles/bocas-del-toro","c":0,"i":373,"p":65.11},{"u":"/es/articles/como-llegar-a-bocas-del-toro-desde-ciudad-de-panama","c":2,"i":353,"p":33.13},{"u":"/articles/day-trips-from-panama-city","c":3,"i":348,"p":22.37}],"head":[{"q":"panama city","c":0,"i":717,"p":53.13},{"q":"boquete","c":0,"i":295,"p":60.05},{"q":"el valle de anton","c":0,"i":256,"p":47.17},{"q":"panama city panama","c":0,"i":167,"p":50.86},{"q":"bocas islands","c":0,"i":117,"p":76.28},{"q":"ciudad de panama","c":0,"i":110,"p":59.27},{"q":"boquete in panama","c":0,"i":88,"p":75.92},{"q":"boquete travel guide","c":0,"i":75,"p":66.93},{"q":"things to do in el valle","c":0,"i":71,"p":46.76},{"q":"valle de anton travel guide","c":0,"i":71,"p":58.32},{"q":"panama capital","c":0,"i":68,"p":57.82},{"q":"panama bocas del toro","c":0,"i":63,"p":77.06},{"q":"bocas water sports","c":0,"i":61,"p":41.13},{"q":"capital de panama","c":0,"i":52,"p":59.37},{"q":"boquete panama","c":0,"i":51,"p":61.65},{"q":"el valle panama","c":0,"i":50,"p":44.58},{"q":"panama boquete","c":0,"i":50,"p":72.52}],"bands":[{"band":"5\u20138","pages":14,"i":7638,"c":128,"act":1.68,"exp":6.0,"pot":458},{"band":"8\u201310","pages":13,"i":7043,"c":109,"act":1.55,"exp":3.5000000000000004,"pot":247},{"band":"10\u201315","pages":15,"i":9758,"c":104,"act":1.07,"exp":2.5,"pot":244},{"band":"15\u201320","pages":3,"i":1643,"c":29,"act":1.77,"exp":1.2,"pot":20},{"band":"20\u201350","pages":7,"i":4529,"c":26,"act":0.57,"exp":0.4,"pot":18},{"band":"50\u2013200","pages":5,"i":3087,"c":1,"act":0.03,"exp":0.05,"pot":2}],"tot":{"c":397,"i":33698,"pages":57}};
+const NS="http://www.w3.org/2000/svg";
+const el=(t,a={})=>{const n=document.createElementNS(NS,t);for(const k in a)n.setAttribute(k,a[k]);return n;};
+const fmt=n=>n.toLocaleString('en-US');
+const cvar=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const tip=document.getElementById('tip');
+function showTip(e,html){tip.innerHTML=html;tip.classList.add('on');moveTip(e);}
+function moveTip(e){const r=tip.getBoundingClientRect();let x=e.clientX+14,y=e.clientY-r.height-12;
+  if(x+r.width>innerWidth-10)x=e.clientX-r.width-14; if(y<8)y=e.clientY+18; tip.style.left=x+'px';tip.style.top=y+'px';}
+function hideTip(){tip.classList.remove('on');}
+function hook(node,html){node.style.cursor='default';
+  node.addEventListener('mouseenter',e=>showTip(e,html));
+  node.addEventListener('mousemove',moveTip);
+  node.addEventListener('mouseleave',hideTip);}
+function svg(host,w,h){const s=el('svg',{viewBox:`0 0 ${w} ${h}`,width:'100%',preserveAspectRatio:'xMidYMid meet',role:'img'});
+  s.style.display='block'; s.style.minWidth=(w<560?w+'px':'auto'); host.innerHTML=''; host.appendChild(s); return s;}
+const shortDate=d=>{const [y,m,dd]=d.split('-');return ['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+m]+' '+(+dd);};
+
+function areaChart(id,key,color,label,{h=250,fmtV=fmt}={}){
+  const host=document.getElementById(id); if(!host)return;
+  const W=880,H=h,P={t:14,r:16,b:30,l:46};
+  const s=svg(host,W,H);
+  const data=D.chart.filter(d=>d[key]!==null&&d[key]!==undefined);
+  const vals=data.map(d=>d[key]);
+  const lo=0, hi=Math.max(...vals)*1.08;
+  const iw=W-P.l-P.r, ih=H-P.t-P.b;
+  const X=i=>P.l+(i/(data.length-1))*iw;
+  const Y=v=>P.t+ih-((v-lo)/(hi-lo))*ih;
+  for(let g=0;g<=4;g++){
+    const v=lo+(hi-lo)*g/4, y=Y(v);
+    s.appendChild(el('line',{x1:P.l,x2:W-P.r,y1:y,y2:y,stroke:cvar('--grid'),'stroke-width':1}));
+    const tx=el('text',{x:P.l-9,y:y+4,'text-anchor':'end',fill:cvar('--ink-3'),'font-size':10.5,'font-family':'IBM Plex Mono, monospace'});
+    tx.textContent=fmtV(Math.round(v)); s.appendChild(tx);
+  }
+  const lineD=data.map((d,i)=>`${i?'L':'M'}${X(i).toFixed(1)},${Y(d[key]).toFixed(1)}`).join('');
+  const gid='g'+id;
+  const defs=el('defs'); const lg=el('linearGradient',{id:gid,x1:0,y1:0,x2:0,y2:1});
+  lg.appendChild(el('stop',{offset:'0%','stop-color':color,'stop-opacity':.28}));
+  lg.appendChild(el('stop',{offset:'100%','stop-color':color,'stop-opacity':.02}));
+  defs.appendChild(lg); s.appendChild(defs);
+  s.appendChild(el('path',{d:lineD+`L${X(data.length-1)},${P.t+ih}L${P.l},${P.t+ih}Z`,fill:`url(#${gid})`}));
+  s.appendChild(el('path',{d:lineD,fill:'none',stroke:color,'stroke-width':2,'stroke-linejoin':'round','stroke-linecap':'round'}));
+  const last=data.length-1;
+  s.appendChild(el('circle',{cx:X(last),cy:Y(data[last][key]),r:4.5,fill:color,stroke:cvar('--surface'),'stroke-width':2}));
+  const AL=data.length-1;
+  [0,Math.round(AL*.25),Math.round(AL*.5),Math.round(AL*.75),AL].forEach((i,k)=>{
+    const t=el('text',{x:X(i),y:H-9,'text-anchor':k===0?'start':(k===4?'end':'middle'),fill:cvar('--ink-3'),'font-size':10.5,'font-family':'IBM Plex Mono, monospace'});
+    t.textContent=shortDate(data[i].d); s.appendChild(t); });
+  const cur=el('circle',{r:5,fill:color,stroke:cvar('--surface'),'stroke-width':2,opacity:0,'pointer-events':'none'});
+  data.forEach((d,i)=>{
+    const bw=iw/data.length;
+    const r=el('rect',{x:P.l+i*bw-bw/2,y:P.t,width:bw,height:ih,fill:'transparent'});
+    hook(r,`<span class="tl">${shortDate(d.d)}</span><br><b>${fmtV(d[key])}</b> ${label}`);
+    r.addEventListener('mouseenter',()=>{cur.setAttribute('opacity',1);cur.setAttribute('cx',X(i));cur.setAttribute('cy',Y(d[key]));});
+    r.addEventListener('mouseleave',()=>cur.setAttribute('opacity',0));
+    s.appendChild(r);
+  });
+  s.appendChild(cur);
+}
+
+function barsChart(id,key,color,label,{h=210}={}){
+  const host=document.getElementById(id); if(!host)return;
+  const W=520,H=h,P={t:14,r:12,b:28,l:36};
+  const s=svg(host,W,H);
+  const data=D.chart, iw=W-P.l-P.r, ih=H-P.t-P.b;
+  const hi=Math.max(...data.map(d=>d[key]))*1.1;
+  const bw=iw/data.length;
+  for(let g=0;g<=3;g++){const v=hi*g/3,y=P.t+ih-(v/hi)*ih;
+    s.appendChild(el('line',{x1:P.l,x2:W-P.r,y1:y,y2:y,stroke:cvar('--grid'),'stroke-width':1}));
+    const t=el('text',{x:P.l-7,y:y+4,'text-anchor':'end',fill:cvar('--ink-3'),'font-size':10,'font-family':'IBM Plex Mono, monospace'});t.textContent=Math.round(v);s.appendChild(t);}
+  data.forEach((d,i)=>{
+    const bh=Math.max(d[key]/hi*ih,d[key]?1.5:0);
+    const r=el('rect',{x:P.l+i*bw+1,y:P.t+ih-bh,width:Math.max(bw-2,1.4),height:bh,fill:color,rx:1.5});
+    hook(r,`<span class="tl">${shortDate(d.d)}</span><br><b>${d[key]}</b> ${label}`);
+    s.appendChild(r);
+  });
+  const L=data.length-1;
+  [0,Math.round(L/2),L].forEach((i,k)=>{const t=el('text',{x:P.l+i*bw+bw/2,y:H-8,'text-anchor':k===0?'start':(k===2?'end':'middle'),fill:cvar('--ink-3'),'font-size':10,'font-family':'IBM Plex Mono, monospace'});t.textContent=shortDate(data[i].d);s.appendChild(t);});
+}
+
+function posChart(id){
+  const host=document.getElementById(id); if(!host)return;
+  const W=520,H=210,P={t:14,r:12,b:28,l:36};
+  const s=svg(host,W,H);
+  const data=D.chart.filter(d=>d.p);
+  const iw=W-P.l-P.r,ih=H-P.t-P.b, lo=8,hi=58;
+  const X=i=>P.l+(i/(data.length-1))*iw, Y=v=>P.t+((v-lo)/(hi-lo))*ih;
+  [10,20,30,40,50].forEach(v=>{const y=Y(v);
+    s.appendChild(el('line',{x1:P.l,x2:W-P.r,y1:y,y2:y,stroke:cvar('--grid'),'stroke-width':1}));
+    const t=el('text',{x:P.l-7,y:y+4,'text-anchor':'end',fill:cvar('--ink-3'),'font-size':10,'font-family':'IBM Plex Mono, monospace'});t.textContent=v;s.appendChild(t);});
+  s.appendChild(el('rect',{x:P.l,y:Y(lo),width:iw,height:Y(10)-Y(lo),fill:cvar('--good'),opacity:.10}));
+  const bt=el('text',{x:P.l+7,y:Y(lo)+13,fill:cvar('--good'),'font-size':9.5,'font-weight':600,'font-family':'IBM Plex Mono, monospace'});
+  bt.textContent='PAGE 1'; s.appendChild(bt);
+  const d=data.map((p,i)=>`${i?'L':'M'}${X(i).toFixed(1)},${Y(p.p).toFixed(1)}`).join('');
+  s.appendChild(el('path',{d,fill:'none',stroke:cvar('--s3'),'stroke-width':2,'stroke-linejoin':'round','stroke-opacity':.35}));
+  const sm=data.map((_,i)=>{const w=data.slice(Math.max(0,i-3),i+4);return w.reduce((a,b)=>a+b.p,0)/w.length;});
+  s.appendChild(el('path',{d:sm.map((v,i)=>`${i?'L':'M'}${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join(''),fill:'none',stroke:cvar('--s3'),'stroke-width':2.5,'stroke-linecap':'round'}));
+  s.appendChild(el('circle',{cx:X(data.length-1),cy:Y(sm[sm.length-1]),r:4.5,fill:cvar('--s3'),stroke:cvar('--surface'),'stroke-width':2}));
+  data.forEach((p,i)=>{const bw=iw/data.length;
+    const r=el('rect',{x:P.l+i*bw-bw/2,y:P.t,width:bw,height:ih,fill:'transparent'});
+    hook(r,`<span class="tl">${shortDate(p.d)}</span><br>avg position <b>${p.p.toFixed(1)}</b>`); s.appendChild(r);});
+  const L=data.length-1;
+  [0,Math.round(L/2),L].forEach((i,k)=>{const t=el('text',{x:X(i),y:H-8,'text-anchor':k===0?'start':(k===2?'end':'middle'),fill:cvar('--ink-3'),'font-size':10,'font-family':'IBM Plex Mono, monospace'});t.textContent=shortDate(data[i].d);s.appendChild(t);});
+}
+
+const PHASES=[
+ {n:'Jun 7–30',d:24,c:16,i:2668,pos:36.4},
+ {n:'Jul 1–21',d:21,c:80,i:5579,pos:20.6},
+ {n:'Jul 22–Aug 10',d:20,c:163,i:12654,pos:14.9},
+ {n:'Aug 11–20',d:10,c:137,i:11991,pos:12.7}];
+function phaseChart(id){
+  const host=document.getElementById(id); if(!host)return;
+  const W=880,H=230,s=svg(host,W,H);
+  const panels=[
+   {t:'Impressions / day',col:cvar('--s1'),v:PHASES.map(p=>p.i/p.d),f:v=>Math.round(v).toLocaleString()},
+   {t:'Clicks / day',col:cvar('--s2'),v:PHASES.map(p=>p.c/p.d),f:v=>v.toFixed(1)},
+   {t:'CTR %',col:cvar('--s4'),v:PHASES.map(p=>p.c/p.i*100),f:v=>v.toFixed(2)+'%'}];
+  const pw=W/3;
+  panels.forEach((pan,pi)=>{
+    const ox=pi*pw+(pi===0?4:14), iw=pw-30, ih=125, oy=44;
+    const t=el('text',{x:ox,y:22,fill:cvar('--ink-2'),'font-size':11.5,'font-weight':600,'font-family':'IBM Plex Mono, monospace'});
+    t.textContent=pan.t; s.appendChild(t);
+    const hi=Math.max(...pan.v)*1.22, bw=iw/4;
+    s.appendChild(el('line',{x1:ox,x2:ox+iw,y1:oy+ih,y2:oy+ih,stroke:cvar('--line'),'stroke-width':1}));
+    pan.v.forEach((v,i)=>{
+      const bh=v/hi*ih;
+      const r=el('rect',{x:ox+i*bw+5,y:oy+ih-bh,width:bw-10,height:bh,fill:pan.col,rx:4});
+      hook(r,`<span class="tl">${PHASES[i].n}</span><br>${pan.t} <b>${pan.f(v)}</b>`);
+      s.appendChild(r);
+      const lb=el('text',{x:ox+i*bw+bw/2,y:oy+ih-bh-7,'text-anchor':'middle',fill:cvar('--ink'),'font-size':10.5,'font-weight':600,'font-family':'IBM Plex Mono, monospace'});
+      lb.textContent=pan.f(v); s.appendChild(lb);
+      const xl=el('text',{x:ox+i*bw+bw/2,y:oy+ih+15,'text-anchor':'middle',fill:cvar('--ink-3'),'font-size':9,'font-family':'IBM Plex Mono, monospace'});
+      xl.textContent='P'+(i+1); s.appendChild(xl);
+    });
+  });
+  const leg=el('text',{x:4,y:H-6,fill:cvar('--ink-3'),'font-size':9.5,'font-family':'IBM Plex Mono, monospace'});
+  leg.textContent='P1 Jun 7–30  ·  P2 Jul 1–21  ·  P3 Jul 22–Aug 10  ·  P4 Aug 11–20';
+  s.appendChild(leg);
+}
+
+function gapChart(id){
+  const host=document.getElementById(id); if(!host)return;
+  const b=D.bands.filter(x=>x.i>=1000);
+  const W=880,H=290,P={t:18,r:16,b:56,l:52},s=svg(host,W,H);
+  const iw=W-P.l-P.r,ih=H-P.t-P.b,hi=6.6;
+  for(let g=0;g<=6;g+=2){const y=P.t+ih-(g/hi)*ih;
+    s.appendChild(el('line',{x1:P.l,x2:W-P.r,y1:y,y2:y,stroke:cvar('--grid'),'stroke-width':1}));
+    const t=el('text',{x:P.l-8,y:y+4,'text-anchor':'end',fill:cvar('--ink-3'),'font-size':10.5,'font-family':'IBM Plex Mono, monospace'});t.textContent=g+'%';s.appendChild(t);}
+  const gw=iw/b.length;
+  b.forEach((d,i)=>{
+    const gx=P.l+i*gw, bw=(gw-46)/2;
+    [[d.exp,cvar('--ink-3'),'Expected'],[d.act,cvar('--s1'),'Actual']].forEach(([v,c,nm],j)=>{
+      const bh=v/hi*ih, x=gx+20+j*(bw+2);
+      const r=el('rect',{x,y:P.t+ih-bh,width:bw,height:bh,fill:c,rx:4});
+      hook(r,`<span class="tl">Position ${d.band}</span><br>${nm} CTR <b>${v.toFixed(2)}%</b><br><span class="tl">${fmt(d.i)} impressions · ${d.c} clicks</span>`);
+      s.appendChild(r);
+      const lb=el('text',{x:x+bw/2,y:P.t+ih-bh-7,'text-anchor':'middle',fill:cvar(j?'--ink':'--ink-3'),'font-size':10.5,'font-weight':600,'font-family':'IBM Plex Mono, monospace'});
+      lb.textContent=v.toFixed(2)+'%'; s.appendChild(lb);
+    });
+    const xl=el('text',{x:gx+gw/2,y:H-34,'text-anchor':'middle',fill:cvar('--ink'),'font-size':11.5,'font-weight':600,'font-family':'IBM Plex Mono, monospace'});
+    xl.textContent='Pos '+d.band; s.appendChild(xl);
+    const x2=el('text',{x:gx+gw/2,y:H-19,'text-anchor':'middle',fill:cvar('--ink-3'),'font-size':10,'font-family':'IBM Plex Mono, monospace'});
+    x2.textContent=fmt(d.i)+' impr'; s.appendChild(x2);
+    const ratio=d.act/d.exp;
+    const rat=el('text',{x:gx+gw/2,y:H-5,'text-anchor':'middle',fill:cvar(ratio>=1?'--good':'--crit'),'font-size':10,'font-weight':600,'font-family':'IBM Plex Mono, monospace'});
+    rat.textContent=ratio.toFixed(2)+'× of normal'; s.appendChild(rat);
+  });
+  s.appendChild(el('line',{x1:P.l,x2:W-P.r,y1:P.t+ih,y2:P.t+ih,stroke:cvar('--line'),'stroke-width':1}));
+}
+
+function potChart(id){
+  const host=document.getElementById(id); if(!host)return;
+  const b=D.bands.filter(x=>x.i>=1000);
+  const W=880,rowH=46,H=b.length*rowH+44,P={l:96,r:200,t:22},s=svg(host,W,H);
+  const iw=W-P.l-P.r, max=Math.max(...b.map(d=>Math.max(d.pot,d.c)));
+  b.forEach((d,i)=>{
+    const y=P.t+i*rowH, h=22;
+    const short=d.pot-d.c, over=short<=0;
+    const wGot=Math.max(d.c/max*iw,2), wPot=Math.max(d.pot/max*iw,2);
+    if(!over){
+      const bg=el('rect',{x:P.l,y,width:wPot,height:h,fill:cvar('--s4'),opacity:.30,rx:4});
+      hook(bg,`<span class="tl">Position ${d.band}</span><br>Would normally earn <b>${d.pot}</b> clicks<br>Actually earned <b>${d.c}</b><br><span class="tl">shortfall ${short} clicks</span>`);
+      s.appendChild(bg);
+    }
+    const fg=el('rect',{x:P.l,y,width:wGot,height:h,fill:cvar(over?'--good':'--s1'),rx:4,stroke:cvar('--surface'),'stroke-width':2});
+    hook(fg, over
+      ? `<span class="tl">Position ${d.band}</span><br><b>${d.c}</b> clicks — above the ${d.pot} these positions normally earn`
+      : `<span class="tl">Position ${d.band}</span><br>Actual clicks <b>${d.c}</b> of ${d.pot} possible`);
+    s.appendChild(fg);
+    const lb=el('text',{x:P.l-12,y:y+15,'text-anchor':'end',fill:cvar('--ink'),'font-size':11,'font-weight':600,'font-family':'IBM Plex Mono, monospace'});
+    lb.textContent='Pos '+d.band; s.appendChild(lb);
+    const vl=el('text',{x:P.l+Math.max(wGot,over?0:wPot)+12,y:y+15,fill:cvar(over?'--good':'--ink-2'),'font-size':11,'font-family':'IBM Plex Mono, monospace'});
+    vl.textContent = over ? d.c+' — above expectation' : d.c+' of '+d.pot; s.appendChild(vl);
+  });
+  const tot=el('text',{x:P.l,y:H-10,fill:cvar('--ink-3'),'font-size':10.5,'font-family':'IBM Plex Mono, monospace'});
+  tot.textContent='Total: 397 clicks earned of ~989 the rankings justify — a shortfall of 592.'; s.appendChild(tot);
+}
+
+function comparePanel(id,rows,metrics){
+  const host=document.getElementById(id); if(!host)return;
+  const W=430,H=60+metrics.length*62,s=svg(host,W,H);
+  const cols=[cvar('--s1'),cvar('--s2'),cvar('--s3')];
+  rows.forEach((r,i)=>{
+    const t=el('text',{x:14+i*160,y:16,fill:cols[i],'font-size':11.5,'font-weight':600,'font-family':'IBM Plex Mono, monospace'});
+    t.textContent=r.n; s.appendChild(t);
+  });
+  metrics.forEach((m,mi)=>{
+    const y=44+mi*62;
+    const lab=el('text',{x:14,y,fill:cvar('--ink-3'),'font-size':10,'letter-spacing':'.08em','font-family':'IBM Plex Mono, monospace'});
+    lab.textContent=m.t.toUpperCase(); s.appendChild(lab);
+    const max=Math.max(...rows.map(r=>m.v(r)));
+    const best=m.lowerBetter?Math.min(...rows.map(r=>m.v(r))):max;
+    rows.forEach((r,i)=>{
+      const v=m.v(r), y2=y+12;
+      if(m.bar===false){
+        const win=v===best;
+        const vl=el('text',{x:14+i*160,y:y2+20,fill:cvar(win?'--good':'--ink-2'),'font-size':20,'font-weight':600,'font-family':'IBM Plex Mono, monospace'});
+        vl.textContent=m.f(v); s.appendChild(vl);
+        s.appendChild(el('rect',{x:14+i*160,y:y2+29,width:104,height:5,rx:2.5,fill:cvar('--surface-2')}));
+        const g2=el('rect',{x:14+i*160,y:y2+29,width:Math.max(104*(best/v),7),height:5,rx:2.5,fill:cvar(win?'--good':'--ink-3')});
+        hook(g2,'<b>'+r.n+'</b><br>'+m.t+' <b>'+m.f(v)+'</b>'+(win?'<br><span class="tl">better of the two</span>':'')); s.appendChild(g2);
+        return;
+      }
+      const bw=Math.max(v/max*130,3);
+      const rect=el('rect',{x:14+i*160,y:y2,width:bw,height:18,fill:cols[i],rx:4});
+      hook(rect,`<b>${r.n}</b><br>${m.t} <b>${m.f(v)}</b>`); s.appendChild(rect);
+      const vl=el('text',{x:14+i*160,y:y2+32,fill:cvar('--ink'),'font-size':12,'font-weight':600,'font-family':'IBM Plex Mono, monospace'});
+      vl.textContent=m.f(v); s.appendChild(vl);
+    });
+  });
+}
+
+function pageBars(id,rows,{showPos=true,limit=10}={}){
+  const host=document.getElementById(id); if(!host)return;
+  const d=rows.slice(0,limit);
+  const W=880,rowH=40,H=d.length*rowH+18,P={l:8,r:242,t:8},s=svg(host,W,H);
+  const iw=W-P.l-P.r, max=Math.max(...d.map(x=>x.i));
+  const METAX=W-6, DOTX=W-148, NUMX=W-160;
+  d.forEach((r,i)=>{
+    const y=P.t+i*rowH;
+    const nm=el('text',{x:P.l,y:y+12,fill:cvar('--ink-2'),'font-size':11,'font-family':'IBM Plex Mono, monospace'});
+    nm.textContent=r.u.length>62?r.u.slice(0,61)+'…':r.u; s.appendChild(nm);
+    const bw=Math.max(r.i/max*iw,3);
+    const bar=el('rect',{x:P.l,y:y+18,width:bw,height:13,fill:cvar('--s1'),rx:3.5});
+    hook(bar,`<b>${r.u}</b><br>${fmt(r.i)} impressions · ${r.c} clicks<br>CTR ${(r.c/r.i*100).toFixed(2)}% · position ${r.p.toFixed(1)}`);
+    s.appendChild(bar);
+    const vl=el('text',{x:NUMX,y:y+29,'text-anchor':'end',fill:cvar('--ink-3'),'font-size':10.5,'font-family':'IBM Plex Mono, monospace'});
+    vl.textContent=fmt(r.i)+' impr'; s.appendChild(vl);
+    const meta=el('text',{x:METAX,y:y+29,'text-anchor':'end','font-size':10.5,'font-family':'IBM Plex Mono, monospace',fill:cvar('--ink-2')});
+    meta.textContent=showPos?`${r.c} clicks · pos ${r.p.toFixed(1)}`:`pos ${r.p.toFixed(1)}`; s.appendChild(meta);
+    const dot=el('rect',{x:DOTX,y:y+21,width:7,height:7,rx:2,fill:r.p<10?cvar('--good'):r.p<20?cvar('--warn'):cvar('--crit')});
+    s.appendChild(dot);
+  });
+}
+
+const LEVERS=[
+ {n:'Today',v:410,c:'--ink-3',note:'Current run rate: 397 clicks / 75 days'},
+ {n:'+ Snippet & CTR work',v:700,c:'--s1',note:'Capturing ~60% of the CTR gap on 21 pages'},
+ {n:'+ Internal links & hubs',v:900,c:'--s1',note:'Trapped pages moved from page 3 to page 1–2'},
+ {n:'+ Bocas & logistics clusters',v:1600,c:'--s2',note:'24 new articles reaching maturity'},
+ {n:'+ 25 articles / mo sustained',v:4200,c:'--s3',note:'198 total articles by month 6'}];
+function leverChart(id){
+  const host=document.getElementById(id); if(!host)return;
+  const W=880,H=300,P={t:24,r:20,b:64,l:56},s=svg(host,W,H);
+  const iw=W-P.l-P.r,ih=H-P.t-P.b,hi=4800;
+  [0,1200,2400,3600,4800].forEach(v=>{const y=P.t+ih-(v/hi)*ih;
+    s.appendChild(el('line',{x1:P.l,x2:W-P.r,y1:y,y2:y,stroke:cvar('--grid'),'stroke-width':1}));
+    const t=el('text',{x:P.l-9,y:y+4,'text-anchor':'end',fill:cvar('--ink-3'),'font-size':10.5,'font-family':'IBM Plex Mono, monospace'});t.textContent=fmt(v);s.appendChild(t);});
+  const gw=iw/LEVERS.length;
+  LEVERS.forEach((L,i)=>{
+    const bh=L.v/hi*ih, x=P.l+i*gw+16, bw=gw-32;
+    const prev=i?LEVERS[i-1].v:0, ph=prev/hi*ih;
+    if(i) s.appendChild(el('rect',{x,y:P.t+ih-ph,width:bw,height:ph,fill:cvar('--ink-3'),opacity:.16,rx:4}));
+    const r=el('rect',{x,y:P.t+ih-bh,width:bw,height:Math.max(bh-ph,2),fill:cvar(L.c),rx:4});
+    hook(r,`<b>${L.n}</b><br>${fmt(L.v)} clicks / month${i?`<br><span class="tl">+${fmt(L.v-prev)} from this lever</span>`:''}<br><span class="tl">${L.note}</span>`);
+    s.appendChild(r);
+    const lb=el('text',{x:x+bw/2,y:P.t+ih-bh-8,'text-anchor':'middle',fill:cvar('--ink'),'font-size':12,'font-weight':700,'font-family':'IBM Plex Mono, monospace'});
+    lb.textContent=fmt(L.v); s.appendChild(lb);
+    const words=L.n.split(' ');
+    let line=[],lines=[];
+    words.forEach(w=>{ if((line.join(' ')+' '+w).length>16){lines.push(line.join(' '));line=[w];} else line.push(w); });
+    lines.push(line.join(' '));
+    lines.forEach((ln,li)=>{
+      const t=el('text',{x:x+bw/2,y:H-46+li*13,'text-anchor':'middle',fill:cvar('--ink-2'),'font-size':10,'font-family':'IBM Plex Mono, monospace'});
+      t.textContent=ln; s.appendChild(t);});
+  });
+  s.appendChild(el('line',{x1:P.l,x2:W-P.r,y1:P.t+ih,y2:P.t+ih,stroke:cvar('--line'),'stroke-width':1}));
+}
+</script>
+
+<script>
+function expFor(p){return p<5?.16:p<8?.06:p<10?.035:p<15?.025:p<20?.012:p<50?.004:.0005;}
+function fillTables(){
+  const opp=document.getElementById('t-opp');
+  D.opp.forEach(r=>{
+    const miss=Math.max(Math.round(r.i*expFor(r.p)-r.c),0);
+    const ctr=r.c/r.i*100;
+    const cls=ctr>=2?'p-good':ctr>=1.2?'p-warn':'p-crit';
+    opp.insertAdjacentHTML('beforeend',
+     `<tr><td class="u">${r.u}</td><td class="n">${fmt(r.i)}</td><td class="n">${r.c}</td>
+      <td class="n"><span class="pill ${cls}">${ctr.toFixed(2)}%</span></td>
+      <td class="n">${r.p.toFixed(1)}</td><td class="n">+${miss}</td></tr>`);
+  });
+  const trap=document.getElementById('t-trap');
+  D.trap.forEach(r=>{
+    const st=r.p>=50?['p-crit','Invisible']:r.p>=30?['p-crit','Page 3+']:['p-warn','Page 2–3'];
+    trap.insertAdjacentHTML('beforeend',
+     `<tr><td class="u">${r.u}</td><td class="n">${fmt(r.i)}</td><td class="n">${r.c}</td>
+      <td class="n">${r.p.toFixed(1)}</td><td><span class="pill ${st[0]}">${st[1]}</span></td></tr>`);
+  });
+  const READ={Panama:'Your core market. Best position and best CTR — protect it.',
+   'United States':'High volume, position 26. The prize you have not won yet.',
+   Spain:'Strong CTR at 2.23%. Your Spanish content travels further than you think.',
+   Canada:'Same profile as US, smaller. Follows automatically if US improves.',
+   Netherlands:'1,131 impressions, position 24 — Dutch travellers research Panama early.',
+   'United Kingdom':'Volume without position. Nothing to act on yet.',
+   Germany:'Position 9.2 — your best non-Panama ranking. Worth watching.',
+   'Costa Rica':'Regional neighbour, position 9.6. Cheap wins available here.',
+   Argentina:'2.96% CTR, the highest of any real market.',
+   Belgium:'Position 43. Noise.'};
+  const ct=document.getElementById('t-ctry');
+  D.ctry.forEach(r=>{
+    const ctr=r.c/r.i*100;
+    ct.insertAdjacentHTML('beforeend',
+     `<tr><td>${r.n}</td><td class="n">${r.c}</td><td class="n">${fmt(r.i)}</td>
+      <td class="n"><span class="pill ${ctr>=1.5?'p-good':ctr>=.9?'p-warn':'p-crit'}">${ctr.toFixed(2)}%</span></td>
+      <td class="n">${r.p.toFixed(1)}</td><td class="u">${READ[r.n]||''}</td></tr>`);
+  });
+  const bt=document.getElementById('t-band');
+  D.bands.forEach(r=>{
+    const miss=Math.max(r.pot-r.c,0);
+    bt.insertAdjacentHTML('beforeend',
+     `<tr><td><b>Position ${r.band}</b></td><td class="n">${r.pages}</td><td class="n">${fmt(r.i)}</td>
+      <td class="n">${r.c}</td><td class="n">${r.act.toFixed(2)}%</td><td class="n">${r.exp.toFixed(1)}%</td>
+      <td class="n">${miss>3?`<span class="pill p-crit">+${miss}</span>`:`<span class="pill p-neut">—</span>`}</td></tr>`);
+  });
+  const DIAG={'panama city':'AI Overview + map pack + Google Travel. Unwinnable.',
+   'boquete':'Bare destination name. Tripadvisor and Lonely Planet own it.',
+   'el valle de anton':'Same. Needs a hub page and two years of authority.',
+   'panama city panama':'Duplicate intent of the above. Same verdict.',
+   'bocas islands':'You have one Bocas page. This is a coverage hole, not a ranking problem.',
+   'ciudad de panama':'Spanish head term, position 59. Hub page missing.',
+   'boquete in panama':'Long-tail variant of an unwinnable head term.',
+   'boquete travel guide':'You have this exact page at position 21. Fixable — see section 07.',
+   'things to do in el valle':'You have this page at position 31. Fixable.',
+   'valle de anton travel guide':'No matching page exists. Build the hub.',
+   'panama capital':'Informational, answered by the knowledge panel. Skip.',
+   'panama bocas del toro':'Coverage hole.',
+   'bocas water sports':'Coverage hole — no page targets this.',
+   'capital de panama':'Knowledge-panel query. Skip.',
+   'boquete panama':'Bare destination name. Skip.',
+   'ciudad panama':'Spanish head term. Hub page missing.',
+   'panamá city panamá':'Misspelling variant of an unwinnable term.'};
+  const ht=document.getElementById('t-head');
+  D.head.slice(0,14).forEach(r=>{
+    ht.insertAdjacentHTML('beforeend',
+     `<tr><td class="u"><b>${r.q}</b></td><td class="n">${fmt(r.i)}</td>
+      <td class="n">${r.c===0?'<span class="pill p-crit">0</span>':r.c}</td>
+      <td class="n">${r.p.toFixed(0)}</td><td class="u">${DIAG[r.q]||'No dedicated page targets this query.'}</td></tr>`);
+  });
+}
+
+function topo(){
+  const c=document.getElementById('topo'); if(!c)return;
+  const p=c.parentElement, dpr=Math.min(devicePixelRatio||1,2);
+  const w=p.offsetWidth,h=p.offsetHeight;
+  if(!w||!h)return;
+  c.width=w*dpr;c.height=h*dpr;
+  const x=c.getContext('2d'); x.scale(dpr,dpr); x.clearRect(0,0,w,h);
+  const line=cvar('--line');
+  x.lineWidth=1;
+  const seedN=(a,b)=>Math.sin(a*1.7+b*.9)*Math.cos(a*.6-b*1.3)+Math.sin(a*.31+b*2.1)*.6;
+  for(let k=0;k<22;k++){
+    x.beginPath(); x.strokeStyle=line; x.globalAlpha=.30+(k%3)*.09;
+    const base=h*.30+k*(h*.055);
+    for(let px=0;px<=w;px+=4){
+      const t=px/w*5;
+      const y=base+seedN(t,k*.42)*(24+k*1.3)-Math.pow(Math.max(0,1-Math.abs(px-w*.72)/(w*.42)),2)*(70+k*4);
+      px?x.lineTo(px,y):x.moveTo(px,y);
+    }
+    x.stroke();
+  }
+  x.globalAlpha=1;
+}
+
+function spy(){
+  const links=[...document.querySelectorAll('.tocbar a')];
+  const secs=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(!e.isIntersecting)return;
+      const i=secs.indexOf(e.target);
+      links.forEach(l=>l.classList.remove('on'));
+      if(links[i]){links[i].classList.add('on');
+        links[i].scrollIntoView({block:'nearest',inline:'nearest',behavior:'smooth'});}
+    });},{rootMargin:'-15% 0px -70% 0px'});
+  secs.forEach(s=>io.observe(s));
+}
+
+function renderAll(){
+  areaChart('c-impr','i',cvar('--s1'),'impressions',{h:260});
+  barsChart('c-clicks','c',cvar('--s2'),'clicks');
+  posChart('c-pos');
+  phaseChart('c-phase');
+  gapChart('c-gap');
+  potChart('c-pot');
+  comparePanel('c-lang',[{n:'Español',c:181,i:13099,p:12.5},{n:'English',c:213,i:21661,p:19.6}],[
+    {t:'Clicks',v:r=>r.c,f:v=>fmt(v)},
+    {t:'CTR',v:r=>r.c/r.i*100,f:v=>v.toFixed(2)+'%'},
+    {t:'Avg position — lower is better',v:r=>r.p,f:v=>v.toFixed(1),bar:false,lowerBetter:true}]);
+  comparePanel('c-dev',D.dev.filter(d=>d.n!=='Tablet'),[
+    {t:'Clicks',v:r=>r.c,f:v=>fmt(v)},
+    {t:'CTR',v:r=>r.c/r.i*100,f:v=>v.toFixed(2)+'%'},
+    {t:'Avg position — lower is better',v:r=>r.p,f:v=>v.toFixed(1),bar:false,lowerBetter:true}]);
+  pageBars('c-top',D.opp.slice(0,10));
+  pageBars('c-trap',D.trap,{limit:8});
+  leverChart('c-lever');
+  topo();
+}
+fillTables();
+renderAll();
+spy();
+let rt; addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(renderAll,180);});
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>setTimeout(renderAll,60));
+new MutationObserver(()=>setTimeout(renderAll,60)).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+document.fonts&&document.fonts.ready.then(()=>setTimeout(renderAll,50));
+</script>

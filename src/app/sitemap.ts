@@ -43,6 +43,29 @@ export default function sitemap(): MetadataRoute.Sitemap {
       : {}),
   });
 
+  // Destination hubs — curated indexes of a whole cluster. Higher priority than
+  // an individual guide because they are the entry point Google should prefer.
+  const hubsLastMod = new Date("2026-08-31");
+  const hub = (
+    en: string,
+    es: string,
+    hero: string,
+  ): MetadataRoute.Sitemap[number][] =>
+    [en, es].map((path) => ({
+      url: `${siteConfig.url}/${path}`,
+      lastModified: hubsLastMod,
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+      images: [hero],
+      alternates: {
+        languages: {
+          en: `${siteConfig.url}/${en}`,
+          es: `${siteConfig.url}/${es}`,
+          "x-default": `${siteConfig.url}/${en}`,
+        },
+      },
+    }));
+
   return [
     {
       url: siteConfig.url,
@@ -64,30 +87,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
-    {
-      url: `${siteConfig.url}/articles/panama-city`,
-      lastModified: new Date("2026-05-26"),
-      changeFrequency: "monthly",
-      priority: 0.8,
-      alternates: {
-        languages: {
-          en: `${siteConfig.url}/articles/panama-city`,
-          es: `${siteConfig.url}/es/articles/panama-city`,
-        },
-      },
-    },
-    {
-      url: `${siteConfig.url}/es/articles/panama-city`,
-      lastModified: new Date("2026-05-26"),
-      changeFrequency: "monthly",
-      priority: 0.8,
-      alternates: {
-        languages: {
-          en: `${siteConfig.url}/articles/panama-city`,
-          es: `${siteConfig.url}/es/articles/panama-city`,
-        },
-      },
-    },
+    // ── Destination hubs ────────────────────────────────────────────────────
+    ...hub(
+      "articles/panama-city",
+      "es/articles/panama-city",
+      "https://images.pexels.com/photos/17477516/pexels-photo-17477516.jpeg?auto=compress&cs=tinysrgb&w=2400",
+    ),
+    ...hub(
+      "articles/el-valle-de-anton",
+      "es/articles/el-valle-de-anton",
+      `${siteConfig.url}/images/el-valle/elvalle-crater-hero.webp`,
+    ),
+    ...hub(
+      "articles/boquete",
+      "es/articles/boquete",
+      `${siteConfig.url}/images/boquete/boquete-hills.webp`,
+    ),
 
     // ── Boquete deep-dive articles (EN ↔ ES pairs) ───────────────────────────
     {
