@@ -15,7 +15,7 @@ inserted right before </main>; a re-run strips the old block and rebuilds it.
 Run after image-swap.py / image-swap-sections.py:
     python3 scripts/image-credits.py
 """
-import re, json, pathlib, html, urllib.parse, sys
+import re, json, glob, pathlib, html, urllib.parse, sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from img_cap import wm_original
 
@@ -28,6 +28,16 @@ LICENSE = {}
 for c in SEL.values():
     if c.get("hero"): LICENSE[c["hero"]["url"]] = c["hero"].get("license", "")
     for it in c["use"]: LICENSE[it["url"]] = it.get("license", "")
+
+# Images sourced later, straight from Commons (scripts/place-verified-images.py)
+# are not in image-selections.json, so their licence and photographer come from
+# the Commons metadata captured alongside them. Without this their CC BY / BY-SA
+# attribution would silently never render.
+_VER = ROOT/"scripts"/"commons-verified.json"
+if _VER.exists():
+    for _t, _v in json.loads(_VER.read_text(encoding="utf-8")).items():
+        LICENSE[_v["url"]] = _v.get("lic", "")
+        ARTIST[_v["url"]] = _v.get("artist", "")
 
 def needs_credit(lic): return (lic or "").lower().startswith("cc by")
 
@@ -115,9 +125,9 @@ def process(page):
     print(f"  ✓ {page}  credited {len(urls)} images  [{lang}]")
 
 def main():
-    pages = []
-    for c in SEL.values():
-        pages += c["pages"]
+    # every article page, not just the selection set — CC BY images now appear
+    # on pages image-selections.json never knew about.
+    pages = sorted(glob.glob("public/articles/*.html") + glob.glob("public/es/articles/*.html"))
     for page in dict.fromkeys(pages):
         process(page)
 

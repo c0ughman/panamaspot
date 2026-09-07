@@ -116,7 +116,10 @@ def capped_dims(url, target):
     """Return (w, h) the image will render at once capped to `target`, or None."""
     u = url.replace("&amp;", "&")
     if "images.pexels.com" in u:
-        d = _DIMS.get(u)
+        # img-dims.json keys every Pexels image at its ?w=1600 form (that is what
+        # build-img-dims.py probes), so a URL asking for any other width missed
+        # the lookup entirely and the <img> shipped with no width/height.
+        d = _DIMS.get(u) or _DIMS.get(re.sub(r"([?&]w=)\d+", r"\g<1>1600", u))
         if not d:
             return None
         if d["w"] <= target:
