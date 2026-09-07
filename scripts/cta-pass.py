@@ -179,11 +179,19 @@ def strip_evb_blocks(s):
     s = _remove_balanced(s, r'<div class="evb-cta"', "div")
     return s
 
+# The destination hubs are curated cluster indexes, not articles: they have no
+# <h2 id="sN"> section anchors and no <article>, so the CTA blocks have nowhere
+# to go. They carry their own promo modules instead.
+HUBS = {"boquete.html", "el-valle-de-anton.html", "panama-city.html",
+        "bocas-del-toro.html"}
+
 def cta_region(name):
     """Which e-bike funnel a page should carry, by topic:
       'ev' -> El Valle,  'bq' -> Boquete / Chiriquí,  None -> no CTA at all.
     Only El Valle and Boquete-area pages get a funnel; everything else (Panama
     City, Casco Viejo, Coiba, Bocas, San Blas, …) gets nothing."""
+    if name in HUBS:
+        return None
     n = name.lower()
     if "el-valle" in n or "valle-de-anton" in n:
         return "ev"
@@ -214,9 +222,14 @@ def inject(path):
         "rail":   ("</article>",     "</article>" + wrap("rail", rail)),
         "closer": ('<section class="art-section tint"><div class="container"><div class="art-section-head"><span class="eyebrow">The short version</span><h2>Three things to know</h2>', wrap("closer", closer) + '<section class="art-section tint"><div class="container"><div class="art-section-head"><span class="eyebrow">The short version</span><h2>Three things to know</h2>'),
     }
+    missing = [a for a, _ in anchors.values() if s.count(a) < 1]
+    if missing:
+        # Not an article layout — leave it cleaned but un-injected rather than
+        # aborting the run and leaving later pages unprocessed.
+        path.write_text(s, encoding="utf-8")
+        print(f"  – {path.name}: no article anchors ({len(missing)} missing) — CTA skipped")
+        return None, None
     for key, (anchor, repl) in anchors.items():
-        if s.count(anchor) < 1:
-            raise SystemExit(f"  !! anchor {anchor!r} not found in {path.name}")
         s = s.replace(anchor, repl, 1)
 
     path.write_text(s, encoding="utf-8")

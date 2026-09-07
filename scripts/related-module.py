@@ -15,7 +15,7 @@ Idempotent: re-running rebuilds the same module. Run after restore-bento /
 image pipeline, before committing.
     python3 scripts/related-module.py
 """
-import re, json, glob, html, pathlib, sys
+import re, json, glob, html, pathlib, sys, collections
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import img_cap as ic
 
@@ -25,6 +25,11 @@ SEL = json.loads((ROOT/"scripts"/"image-selections.json").read_text())["selectio
 NEW = set()
 for c in SEL.values():
     NEW.update(c["pages"])
+# plus any batch listed in related-extra.json (e.g. the 2026-09 generated pages,
+# which are not covered by image-selections.json).
+_EXTRA = ROOT/"scripts"/"related-extra.json"
+if _EXTRA.exists():
+    NEW.update(json.loads(_EXTRA.read_text())["pages"])
 
 ALL = sorted(glob.glob("public/articles/*.html") + glob.glob("public/es/articles/*.html"))
 
@@ -70,7 +75,13 @@ def card_hero(og):
 def meta(path):
     s = pathlib.Path(path).read_text()
     lang = "es" if "/es/" in path else "en"
-    og = re.search(r'<meta content="([^"]+)" property="og:image"/>', s).group(1)
+    # the generated articles emit content-then-property; the hub pages (added
+    # later, by the Next app) emit property-then-content. Accept both.
+    m = (re.search(r'<meta content="([^"]+)" property="og:image"/>', s)
+         or re.search(r'<meta property="og:image" content="([^"]+)"/>', s))
+    if not m:
+        return None
+    og = m.group(1)
     h1 = re.search(r'<h1 class="art-title">(.*?)</h1>', s, re.S)
     dek = re.search(r'<p class="art-dek">(.*?)</p>', s, re.S)
     title = re.sub(r"<[^>]+>", "", h1.group(1)) if h1 else ""
@@ -78,18 +89,47 @@ def meta(path):
     return {"path": path, "url": rel_url(path), "lang": lang, "cluster": cluster(pathlib.Path(path).name),
             "hero": og, "title": html.unescape(title), "dek": html.unescape(dektxt)}
 
-META = {p: meta(p) for p in ALL}
+META = {p: m for p in ALL if (m := meta(p))}
+
+def is_hub(m):
+    return any(k in pathlib.Path(m["path"]).name for k in HUB)
 
 def related_for(path):
+    """One cluster hub + two cluster siblings, the siblings ROTATED by this
+    page's position in its cluster.
+
+    Picking the top-scoring three every time sent every page in a cluster to the
+    same three hubs, so the rest of the cluster got no inbound links at all and
+    stayed orphaned. Rotating the sibling slots spreads inbound links across the
+    whole cluster while keeping one hub for topical authority. Deterministic, so
+    re-running rebuilds the identical module."""
     me = META[path]
     same = [m for m in META.values() if m["lang"] == me["lang"] and m["path"] != path]
-    def score(m):
-        s = 0
-        if m["cluster"] == me["cluster"]: s += 10
-        if any(k in pathlib.Path(m["path"]).name for k in HUB): s += 2
-        return -s  # ascending sort → higher score first
-    same.sort(key=lambda m: (score(m), m["path"]))
-    return same[:3]
+    mine = sorted([m for m in same if m["cluster"] == me["cluster"]], key=lambda m: m["path"])
+    hubs = [m for m in mine if is_hub(m)]
+    sibs = [m for m in mine if not is_hub(m)]
+    others = sorted([m for m in same if m["cluster"] != me["cluster"]],
+                    key=lambda m: (not is_hub(m), m["path"]))
+
+    cohort = sorted(m["path"] for m in META.values()
+                    if m["lang"] == me["lang"] and m["cluster"] == me["cluster"])
+    i = cohort.index(path) if path in cohort else 0
+
+    pick = []
+    if hubs:
+        pick.append(hubs[i % len(hubs)])
+    for k in range(len(sibs)):
+        if len(pick) >= 3:
+            break
+        cand = sibs[(i + k) % len(sibs)]
+        if cand not in pick:
+            pick.append(cand)
+    for m in hubs + sibs + others:          # top up if the cluster is tiny
+        if len(pick) >= 3:
+            break
+        if m not in pick:
+            pick.append(m)
+    return pick[:3]
 
 def card(m, cls, lang, with_dek):
     hero, dims = card_hero(m["hero"])
@@ -110,9 +150,9 @@ def card(m, cls, lang, with_dek):
     return (f'<a class="bento-card b5" href="{m["url"]}"><div class="bento-split-img">{img}</div>'
             f'<div class="bento-split-body"><span class="b-tag">{tag}</span><h3>{title}</h3>{dek}</div></a>')
 
-def build_section(path):
+def build_section(path, picks=None):
     lang = META[path]["lang"]
-    rel = related_for(path)
+    rel = picks if picks is not None else related_for(path)
     if len(rel) < 3:
         return None
     eyebrow = "Sigue explorando" if lang == "es" else "Keep exploring"
@@ -122,9 +162,9 @@ def build_section(path):
             f'<span class="eyebrow">{eyebrow}</span><h2>{heading}</h2></div>'
             f'<div class="home-bento-grid">{cards}</div></div></section>')
 
-def process(path):
+def process(path, picks=None):
     s = pathlib.Path(path).read_text()
-    new_sec = build_section(path)
+    new_sec = build_section(path, picks)
     if not new_sec:
         print(f"  ! <3 related: {path}"); return
     wrapped = "<!--RELATED-MODULE-->" + new_sec + "<!--/RELATED-MODULE-->"
@@ -139,12 +179,59 @@ def process(path):
         sec_end = s.find("</section>", m.start()) + len("</section>")
         s = s[:sec_start] + wrapped + s[sec_end:]
     pathlib.Path(path).write_text(s)
-    r = related_for(path)
+    r = picks if picks is not None else related_for(path)
     print(f"  ✓ {pathlib.Path(path).name}  → {[pathlib.Path(x['path']).name[:20] for x in r]}")
 
+def external_inbound():
+    """Inbound article links that do NOT come from this module — hubs, the Next
+    app, and in-prose links. A page with one of these is already reachable."""
+    inb = collections.Counter()
+    for f in glob.glob("public/**/*.html", recursive=True) + glob.glob("src/**/*.tsx", recursive=True):
+        txt = pathlib.Path(f).read_text(errors="ignore")
+        txt = re.sub(r"<!--RELATED-MODULE-->.*?<!--/RELATED-MODULE-->", "", txt, flags=re.S)
+        self_url = "/" + f.replace("public/", "", 1)[:-5]
+        for l in set(re.findall(r'href="(/(?:es/)?articles/[^"#?]+)"', txt)):
+            if l != self_url:
+                inb[l] += 1
+    return inb
+
+def balance(picks):
+    """Guarantee every article gets at least one inbound link.
+
+    Rotation spreads links well but a page can still fall in a gap. For each
+    page nothing links to, take the most over-linked target off a same-cluster
+    donor and give the slot to the orphan. Deterministic: sorted iteration."""
+    ext = external_inbound()
+    def counts():
+        c = collections.Counter(ext)
+        for src, rel in picks.items():
+            for m in rel:
+                c[m["url"]] += 1
+        return c
+    for _ in range(200):
+        c = counts()
+        orphans = sorted(m["url"] for m in META.values() if c[m["url"]] == 0)
+        if not orphans:
+            break
+        url = orphans[0]
+        target = next(m for m in META.values() if m["url"] == url)
+        donors = sorted(
+            (d for d in picks
+             if META[d]["lang"] == target["lang"] and META[d]["cluster"] == target["cluster"]
+             and target not in picks[d] and META[d]["url"] != url),
+            key=lambda d: -max(c[m["url"]] for m in picks[d]))
+        if not donors:
+            print(f"  ! cannot place {url}"); break
+        d = donors[0]
+        worst = max(range(len(picks[d])), key=lambda i: c[picks[d][i]["url"]])
+        picks[d][worst] = target
+    return picks
+
 def main():
+    picks = {p: related_for(p) for p in sorted(NEW)}
+    picks = balance(picks)
     for p in sorted(NEW):
-        process(p)
+        process(p, picks[p])
 
 if __name__ == "__main__":
     main()

@@ -163,5 +163,60 @@
     "region": "Panamá Province",
     "wikipedia_en": "https://en.wikipedia.org/wiki/Panam%C3%A1_Viejo",
     "wikipedia_es": "https://es.wikipedia.org/wiki/Panam%C3%A1_Viejo"
+  },
+  "pearl-islands": {
+    "qid": "Q1142129",
+    "name_en": "Pearl Islands",
+    "name_es": "Archipiélago de las Perlas",
+    "lat": 8.333333,
+    "lng": -79.116667,
+    "type": "TouristDestination",
+    "region": "Panamá Province",
+    "wikipedia_en": "https://en.wikipedia.org/wiki/Pearl_Islands",
+    "wikipedia_es": "https://es.wikipedia.org/wiki/Archipi%C3%A9lago_de_las_Perlas"
+  },
+  "cayos-zapatillas": {
+    "qid": "Q1751287",
+    "name_en": "Bastimentos Island National Marine Park",
+    "name_es": "Parque Nacional Isla Bastimentos",
+    "lat": 9.3,
+    "lng": -82.14,
+    "type": "TouristAttraction",
+    "region": "Bocas del Toro Province",
+    "wikipedia_en": "https://en.wikipedia.org/wiki/Isla_Bastimentos_National_Marine_Park",
+    "wikipedia_es": "https://es.wikipedia.org/wiki/Parque_nacional_Isla_Bastimentos"
+  },
+  "isla-bastimentos": {
+    "qid": "Q2072445",
+    "name_en": "Bastimentos Island",
+    "name_es": "Isla Bastimentos",
+    "lat": 9.35,
+    "lng": -82.2,
+    "type": "TouristAttraction",
+    "region": "Bocas del Toro Province",
+    "wikipedia_en": "https://en.wikipedia.org/wiki/Bastimentos_Island",
+    "wikipedia_es": "https://es.wikipedia.org/wiki/Isla_Bastimentos"
+  },
+  "isla-colon": {
+    "qid": "Q1113143",
+    "name_en": "Colón Island",
+    "name_es": "Isla Colón",
+    "lat": 9.3898,
+    "lng": -82.2715,
+    "type": "TouristAttraction",
+    "region": "Bocas del Toro Province",
+    "wikipedia_en": "https://en.wikipedia.org/wiki/Col%C3%B3n_Island",
+    "wikipedia_es": "https://es.wikipedia.org/wiki/Isla_Col%C3%B3n"
+  },
+  "panama": {
+    "qid": "Q804",
+    "name_en": "Panama",
+    "name_es": "Panamá",
+    "lat": 9.0,
+    "lng": -80.0,
+    "type": "Country",
+    "region": "Panama",
+    "wikipedia_en": "https://en.wikipedia.org/wiki/Panama",
+    "wikipedia_es": "https://es.wikipedia.org/wiki/Panam%C3%A1"
   }
 }

@@ -43,6 +43,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       : {}),
   });
 
+  // The 2026-09 batch of 36 generated guides. Same shape as `guide`, its own
+  // lastModified so the older batch is not falsely re-dated.
+  const sepLastMod = new Date("2026-09-04");
+  const sepGuide = (
+    path: string,
+    hero: string,
+    pair?: { en: string; es: string },
+  ): MetadataRoute.Sitemap[number] => ({
+    ...guide(path, hero, pair),
+    lastModified: sepLastMod,
+  });
+
   // Destination hubs — curated indexes of a whole cluster. Higher priority than
   // an individual guide because they are the entry point Google should prefer.
   const hubsLastMod = new Date("2026-08-31");
@@ -394,6 +406,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date("2026-06-24"),
       changeFrequency: "monthly",
       priority: 0.8,
+      alternates: {
+        languages: {
+          en: `${siteConfig.url}/articles/boquete-bike-rental`,
+          es: `${siteConfig.url}/es/articles/alquiler-de-bicicletas-boquete`,
+          "x-default": `${siteConfig.url}/articles/boquete-bike-rental`,
+        },
+      },
     },
     {
       url: `${siteConfig.url}/es/articles/como-llegar-a-boquete-sin-carro`,
@@ -500,10 +519,163 @@ export default function sitemap(): MetadataRoute.Sitemap {
     guide(
       "es/articles/san-blas-guna-yala-guia-tours-islas",
       "https://images.pexels.com/photos/30271300/pexels-photo-30271300.jpeg?auto=compress&cs=tinysrgb&w=1280",
+      { en: "articles/san-blas-islands-panama-guna-yala-guide", es: "es/articles/san-blas-guna-yala-guia-tours-islas" },
     ),
     guide(
       "es/articles/como-llegar-a-bocas-del-toro-desde-ciudad-de-panama",
       "https://images.pexels.com/photos/16146741/pexels-photo-16146741.jpeg?auto=compress&cs=tinysrgb&w=1280",
+      { en: "articles/how-to-get-to-bocas-del-toro", es: "es/articles/como-llegar-a-bocas-del-toro-desde-ciudad-de-panama" },
+    ),
+
+    // ── 2026-09 batch (36 generated guides) ─────────────────────────────────
+    sepGuide(
+      "articles/best-time-to-visit-boquete",
+      "https://images.pexels.com/photos/30774401/pexels-photo-30774401.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    sepGuide(
+      "articles/best-time-to-visit-panama",
+      "https://images.pexels.com/photos/33803480/pexels-photo-33803480.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    sepGuide(
+      "articles/boat-charter-panama",
+      "https://images.pexels.com/photos/3754442/pexels-photo-3754442.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    sepGuide(
+      "articles/boquete-bike-rental",
+      "https://images.pexels.com/photos/30774401/pexels-photo-30774401.jpeg?auto=compress&cs=tinysrgb&w=1280",
+      { en: "articles/boquete-bike-rental", es: "es/articles/alquiler-de-bicicletas-boquete" },
+    ),
+    sepGuide(
+      "articles/boquete-cycling-routes",
+      "https://images.pexels.com/photos/30774401/pexels-photo-30774401.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    sepGuide(
+      "articles/boquete-hot-springs-caldera-vs-los-pozos",
+      "https://images.pexels.com/photos/37245214/pexels-photo-37245214.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    sepGuide(
+      "articles/cayos-zapatillas-snorkelling-bocas-del-toro",
+      "https://images.pexels.com/photos/6149489/pexels-photo-6149489.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    sepGuide(
+      "articles/el-valle-de-anton-itinerary-one-day",
+      "https://images.pexels.com/photos/30774409/pexels-photo-30774409.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    sepGuide(
+      "articles/el-valle-de-anton-vs-boquete",
+      "https://images.pexels.com/photos/35526169/pexels-photo-35526169.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    sepGuide(
+      "articles/how-to-get-to-bocas-del-toro",
+      "https://images.pexels.com/photos/16116492/pexels-photo-16116492.jpeg?auto=compress&cs=tinysrgb&w=1280",
+      { en: "articles/how-to-get-to-bocas-del-toro", es: "es/articles/como-llegar-a-bocas-del-toro-desde-ciudad-de-panama" },
+    ),
+    sepGuide(
+      "articles/is-panama-safe",
+      "https://images.pexels.com/photos/33803476/pexels-photo-33803476.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    sepGuide(
+      "articles/panama-city-to-boquete",
+      "https://images.pexels.com/photos/30774401/pexels-photo-30774401.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    sepGuide(
+      "articles/pearl-islands-panama-guide",
+      "https://images.pexels.com/photos/36601640/pexels-photo-36601640.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    sepGuide(
+      "articles/quetzal-season-boquete-when-where-to-see-resplendent-quetzal",
+      "https://images.pexels.com/photos/25489548/pexels-photo-25489548.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    sepGuide(
+      "articles/red-frog-beach-bocas-del-toro",
+      "https://images.pexels.com/photos/12831912/pexels-photo-12831912.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    sepGuide(
+      "articles/renting-a-car-in-panama",
+      "https://images.pexels.com/photos/30774401/pexels-photo-30774401.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    sepGuide(
+      "articles/san-blas-islands-panama-guna-yala-guide",
+      "https://images.pexels.com/photos/36601640/pexels-photo-36601640.jpeg?auto=compress&cs=tinysrgb&w=1280",
+      { en: "articles/san-blas-islands-panama-guna-yala-guide", es: "es/articles/san-blas-guna-yala-guia-tours-islas" },
+    ),
+    sepGuide(
+      "articles/san-blas-sailing-panama-to-colombia",
+      "https://images.pexels.com/photos/36117831/pexels-photo-36117831.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    sepGuide(
+      "articles/starfish-beach-bocas-del-toro-playa-estrella-guide",
+      "https://images.pexels.com/photos/30032075/pexels-photo-30032075.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    sepGuide(
+      "articles/where-to-stay-in-boquete",
+      "https://images.pexels.com/photos/30774401/pexels-photo-30774401.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    sepGuide(
+      "articles/where-to-stay-in-el-valle-de-anton",
+      "https://images.pexels.com/photos/13058771/pexels-photo-13058771.jpeg?auto=compress&cs=tinysrgb&w=1280",
+      { en: "articles/where-to-stay-in-el-valle-de-anton", es: "es/articles/donde-dormir-el-valle-de-anton" },
+    ),
+    sepGuide(
+      "articles/which-bocas-del-toro-island-to-stay-on",
+      "https://images.pexels.com/photos/33990238/pexels-photo-33990238.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    sepGuide(
+      "es/articles/boquete-con-ninos-guia-familiar",
+      "https://images.pexels.com/photos/35106208/pexels-photo-35106208.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    sepGuide(
+      "es/articles/bus-albrook-el-valle-de-anton-horarios-precios",
+      "https://images.pexels.com/photos/30774387/pexels-photo-30774387.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    sepGuide(
+      "es/articles/chorro-las-mozas-pozas-el-valle-de-anton",
+      "https://images.pexels.com/photos/17231782/pexels-photo-17231782.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    sepGuide(
+      "es/articles/cuanto-cuesta-boquete-presupuesto-semana",
+      "https://images.pexels.com/photos/30774401/pexels-photo-30774401.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    sepGuide(
+      "es/articles/donde-comer-en-el-valle-de-anton",
+      "https://images.pexels.com/photos/33703911/pexels-photo-33703911.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    sepGuide(
+      "es/articles/donde-dormir-el-valle-de-anton",
+      "https://images.pexels.com/photos/30774387/pexels-photo-30774387.jpeg?auto=compress&cs=tinysrgb&w=1280",
+      { en: "articles/where-to-stay-in-el-valle-de-anton", es: "es/articles/donde-dormir-el-valle-de-anton" },
+    ),
+    sepGuide(
+      "es/articles/el-volcan-baru-esta-activo",
+      "https://images.pexels.com/photos/37245225/pexels-photo-37245225.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    sepGuide(
+      "es/articles/feria-de-las-flores-y-del-cafe-boquete",
+      "https://images.pexels.com/photos/29207117/pexels-photo-29207117.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    sepGuide(
+      "es/articles/mariposario-el-valle-de-anton",
+      "https://images.pexels.com/photos/7200711/pexels-photo-7200711.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    sepGuide(
+      "es/articles/mercado-el-valle-de-anton",
+      "https://images.pexels.com/photos/15101211/pexels-photo-15101211.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    sepGuide(
+      "es/articles/mi-jardin-es-su-jardin-boquete",
+      "https://images.pexels.com/photos/18543358/pexels-photo-18543358.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    sepGuide(
+      "es/articles/piedra-pintada-el-valle-de-anton",
+      "https://images.pexels.com/photos/39056910/pexels-photo-39056910.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    sepGuide(
+      "es/articles/precios-horarios-el-valle-de-anton",
+      "https://images.pexels.com/photos/30774387/pexels-photo-30774387.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    ),
+    sepGuide(
+      "es/articles/tours-en-bicicleta-el-valle-de-anton",
+      "https://images.pexels.com/photos/30774401/pexels-photo-30774401.jpeg?auto=compress&cs=tinysrgb&w=1280",
     ),
   ];
 }

@@ -83,7 +83,9 @@ def image_object(src, alt, lang):
     cap = ""
     if e:
         cap = (e[1] if lang == "es" else e[0]) or e[0] or e[1]
-    cap = cap or alt
+    # alt/caption come out of the HTML still escaped (&#x27; &amp; …); JSON-LD
+    # is not HTML, so unescape or the entity ships literally to Google.
+    cap = html.unescape(cap or alt)
     if cap:
         node["caption"] = cap
     if e:

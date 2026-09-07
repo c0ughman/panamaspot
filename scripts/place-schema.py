@@ -46,8 +46,11 @@ def place_node(place, url, lang, desc, hero):
         "name": name, "description": desc,
         "geo": {"@type": "GeoCoordinates", "latitude": place["lat"], "longitude": place["lng"]},
         "address": {"@type": "PostalAddress", "addressCountry": "PA", "addressRegion": place["region"]},
-        "sameAs": same, "containedInPlace": {"@type": "Country", "name": "Panama"}, "url": url,
+        "sameAs": same, "url": url,
     }
+    # Panama itself is the country — don't nest it inside itself.
+    if place["qid"] != "Q804":
+        node["containedInPlace"] = {"@type": "Country", "name": "Panama"}
     if hero:
         node["image"] = hero
     return node
