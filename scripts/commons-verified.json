@@ -348,5 +348,33 @@
   "h": 1273,
   "lic": "Public domain",
   "artist": "Kenvanportbc at English Wikipedia"
+ },
+ "Bastimentos Panama 3.jpg": {
+  "url": "https://upload.wikimedia.org/wikipedia/commons/3/33/Bastimentos_Panama_3.jpg",
+  "w": 3723,
+  "h": 2091,
+  "lic": "CC BY 3.0",
+  "artist": "Dronepicr"
+ },
+ "Insel Bastimentos Panama (26130902833).jpg": {
+  "url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Insel_Bastimentos_Panama_%2826130902833%29.jpg",
+  "w": 3723,
+  "h": 2091,
+  "lic": "CC BY 2.0",
+  "artist": "dronepicr"
+ },
+ "Isla Carenero, Panama - panoramio.jpg": {
+  "url": "https://upload.wikimedia.org/wikipedia/commons/5/55/Isla_Carenero%2C_Panama_-_panoramio.jpg",
+  "w": 3968,
+  "h": 2976,
+  "lic": "CC BY 3.0",
+  "artist": "hh oldman"
+ },
+ "Isla Popa, Bocas del Toro.jpg": {
+  "url": "https://upload.wikimedia.org/wikipedia/commons/4/45/Isla_Popa%2C_Bocas_del_Toro.jpg",
+  "w": 1200,
+  "h": 900,
+  "lic": "CC BY-SA 2.0",
+  "artist": "Bernal Saborio from Costa Rica"
  }
 }

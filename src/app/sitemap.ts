@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site-config";
+import { pageImages } from "./page-images";
 
 export const dynamic = "force-static";
 
@@ -29,7 +30,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: guidesLastMod,
     changeFrequency: "monthly",
     priority: 0.8,
-    images: [hero],
+    // hero first, then the rest of the page's images (Google Images
+    // indexes what the sitemap declares, and these pages carry 7-12 each)
+    images: pageImages[`/${path}`] ?? [hero],
     ...(pair
       ? {
           alternates: {
@@ -68,7 +71,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: hubsLastMod,
       changeFrequency: "weekly" as const,
       priority: 0.9,
-      images: [hero],
+      // hero first, then the rest of the page's images (Google Images
+    // indexes what the sitemap declares, and these pages carry 7-12 each)
+    images: pageImages[`/${path}`] ?? [hero],
       alternates: {
         languages: {
           en: `${siteConfig.url}/${en}`,

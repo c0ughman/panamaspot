@@ -19,6 +19,10 @@ from img_cap import rendered_dims, wm_original
 ROOT   = pathlib.Path(__file__).resolve().parent.parent
 SEL    = json.loads((ROOT/"scripts"/"image-selections.json").read_text())["selections"]
 ARTIST = json.loads((ROOT/"scripts"/"image-artists.json").read_text()) if (ROOT/"scripts"/"image-artists.json").exists() else {}
+_VER = ROOT/"scripts"/"commons-verified.json"
+_VERBYURL = ({v["url"]: v for v in json.loads(_VER.read_text(encoding="utf-8")).values()}
+             if _VER.exists() else {})
+_HERO = []
 
 def norm(url):
     u = url.replace("&amp;", "&")
@@ -98,8 +102,27 @@ def image_object(src, alt, lang):
             node["creditText"] = artist
             node["creator"] = {"@type": "Person", "name": artist}
             node["copyrightNotice"] = artist
+    # Commons files sourced after image-selections.json was frozen carry their
+    # licence and photographer in commons-verified.json instead.
+    if "license" not in node:
+        v = _VERBYURL.get(wm_original(url))
+        if v:
+            lu = license_url(v.get("lic", ""))
+            if lu:
+                node["license"] = lu
+                node["acquireLicensePage"] = commons_page(wm_original(url)) or lu
+            if v.get("artist") and v["artist"] != "Unknown":
+                node["creditText"] = v["artist"]
+                node["creator"] = {"@type": "Person", "name": v["artist"]}
+                node["copyrightNotice"] = v["artist"]
     if "license" not in node and "images.pexels.com" in url:
         node["license"] = "https://www.pexels.com/license/"
+    # name + description give Google a short label and a full sentence for the
+    # image, on top of the caption.
+    if cap:
+        node["name"] = cap if len(cap) <= 70 else cap[:67].rsplit(" ", 1)[0] + "…"
+        node["description"] = cap
+    node["representativeOfPage"] = (norm(url) == norm(_HERO[0])) if _HERO else False
     return node
 
 def process(page):
@@ -108,6 +131,7 @@ def process(page):
     imgs = page_imgs(s)
     if not imgs:
         return
+    _HERO[:] = [imgs[0][0]] if imgs else []
     arr = ", ".join(json.dumps(image_object(src, alt, lang), ensure_ascii=False) for src, alt in imgs)
     am = re.search(r'<script type="application/ld\+json">\{"@context": "https://schema.org", "@type": "Article".*?</script>', s, re.S)
     if not am:
