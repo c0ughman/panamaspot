@@ -116,6 +116,11 @@ def fix_hub_hero(s):
         return s, False
     url = src.group(1).replace("&amp;", "&")
     dims = HUB_HERO_DIMS.get(url)
+    if not dims:
+        # any hub hero we know the size of — covers Commons files added later
+        from img_cap import capped_dims
+        wm = re.search(r"/(\d+)px-[^/]+$", url)
+        dims = capped_dims(url, int(wm.group(1)) if wm else 1280)
     new = tag
     if dims and "width=" not in attrs:
         new = tag.replace("<img ", f'<img width="{dims[0]}" height="{dims[1]}" ', 1)

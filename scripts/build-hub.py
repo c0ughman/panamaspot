@@ -24,6 +24,14 @@ PCIMG_CASCO = "https://images.pexels.com/photos/18049699/pexels-photo-18049699.j
 PCIMG_CANAL = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Panama_Canal_Gatun_Locks.jpg/1280px-Panama_Canal_Gatun_Locks.jpg"
 PCIMG_DAY   = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Calle_en_Isla_Taboga_-_Panam%C3%A1.jpg/1280px-Calle_en_Isla_Taboga_-_Panam%C3%A1.jpg"
 
+BOCIMG_HERO      = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Red_Frog_Beach_Bastimentos.jpg/1280px-Red_Frog_Beach_Bastimentos.jpg"
+BOCIMG_GETTING   = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Bocas_Town_--_Isla_Colon.jpg/960px-Bocas_Town_--_Isla_Colon.jpg"
+BOCIMG_ISLANDS   = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Isla_Popa%2C_Bocas_del_Toro.jpg/960px-Isla_Popa%2C_Bocas_del_Toro.jpg"
+BOCIMG_HOPPING   = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Zapatillas_Islands_-_panoramio_%282%29.jpg/960px-Zapatillas_Islands_-_panoramio_%282%29.jpg"
+BOCIMG_TRANSPORT = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Bocas_del_Toro_Province%2C_Panama_-_panoramio_%2814%29.jpg/960px-Bocas_del_Toro_Province%2C_Panama_-_panoramio_%2814%29.jpg"
+BOCIMG_BEACHES   = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Bastimentos_Wizzard_Beach_%2826708686196%29.jpg/960px-Bastimentos_Wizzard_Beach_%2826708686196%29.jpg"
+BOCIMG_REEFS     = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Zapatillas_Islands_-_panoramio.jpg/960px-Zapatillas_Islands_-_panoramio.jpg"
+
 HUBS = {
  "el-valle-de-anton": dict(
   out="public/articles/el-valle-de-anton.html",
@@ -175,6 +183,57 @@ HUBS = {
          ("/articles/panama-canal-tour-miraflores-locks-visitor-guide","Panama Canal: Miraflores Locks Visitor Guide","The canal"),
          ("/articles/amador-causeway-biomuseo-guide","Amador Causeway &amp; Biomuseo","Half-day"),
          ("/articles/day-trips-from-panama-city","Best Day Trips From Panama City","Day trips")],
+ ),
+
+ # Bocas del Toro. Unlike the other three this cluster has no local /images/
+ # set, so the art is Wikimedia Commons — every file names the place, and the
+ # widths are capped to real thumbnail buckets rather than serving originals.
+ # cta=None: there is no E-Valley funnel in Bocas.
+ "bocas-del-toro": dict(
+  out="public/articles/bocas-del-toro.html",
+  lang="en", alt_lang="es", alt_url="/es/articles/como-llegar-a-bocas-del-toro-desde-ciudad-de-panama",
+  name="Bocas del Toro", region="Bocas del Toro Province", lat=9.3402, lon=-82.2419,
+  title="Bocas del Toro: Complete Travel Guide 2026",
+  desc="Everything we know about Bocas del Toro — Panama's Caribbean archipelago. Which island to stay on, how to get there, and the beaches worth the boat ride.",
+  hero=BOCIMG_HERO,
+  hero_alt="Aerial view of the forested Caribbean coastline and reef at Red Frog Beach, Isla Bastimentos",
+  eyebrow="Destination guide",
+  dek="Nine main islands and several hundred smaller ones off Panama's Caribbean coast, reached by a 1-hour flight or an overnight bus and a water taxi. Warm sea, mangrove reef, and a calendar that runs opposite to the Pacific.",
+  pills=["Caribbean coast","9 main islands","1 hr flight from Panama City"],
+  intro=[
+   "Bocas del Toro is an archipelago, not a town — which is the single thing most first-time visitors get wrong. Bocas Town on Isla Colón is where the flights and water taxis arrive and where most people sleep, but the beaches that make the trip worth taking are on the other islands, twenty to forty minutes away by boat.",
+   "The weather here does not follow the rest of Panama. The Pacific dry season, December to April, is not reliably dry on this coast, and the calmest, clearest water often falls in September and October — the middle of what the rest of the country calls the green season. Planning around the national dry season is the second thing people get wrong."],
+  facts=[("Getting there","Fly Panama City to Bocas Town in about an hour, or take the overnight bus to Almirante and a 30-minute water taxi."),
+         ("When to go","September and October are the calmest and clearest. February to April is the reliable second window."),
+         ("How long","Three nights is the minimum that justifies the journey. A week if you want the outer cays."),
+         ("Getting around","Water taxis, not roads. Budget $6-$35 per crossing depending on distance and whether you charter.")],
+  start=[("/articles/how-to-get-to-bocas-del-toro","How to Get to Bocas del Toro","Flight, overnight bus, shuttle and water taxi compared, with real costs and times.",BOCIMG_GETTING),
+         ("/articles/which-bocas-del-toro-island-to-stay-on","Which Island to Stay On","Isla Colón, Bastimentos, Carenero or the outer islands — what each one is actually like.",BOCIMG_ISLANDS),
+         ("/articles/bocas-del-toro-island-hopping-guide","Island Hopping in Bocas","How the boat network works, what a day of hopping costs, and the routes worth taking.",BOCIMG_HOPPING)],
+  groups=[
+   dict(t="Getting there and getting around", img=BOCIMG_TRANSPORT,
+        alt="A street in Bocas Town, Isla Colón, lined with shops and colourful buildings",
+        blurb="There are no roads between the islands. Everything here is a boat, and knowing the network is most of the planning.",
+        items=[("/articles/how-to-get-to-bocas-del-toro","Every Route Compared","Flight, bus, shuttle and the Almirante water taxi, with 2026 costs and journey times."),
+               ("/articles/which-bocas-del-toro-island-to-stay-on","Where to Base Yourself","Island by island: who each one suits, what it costs, and how far it is from the boats."),
+               ("/articles/bocas-del-toro-island-hopping-guide","Island Hopping","The day-trip network, what a boat costs, and how to combine stops without wasting the day.")]),
+   dict(t="The beaches", img=BOCIMG_BEACHES,
+        alt="Aerial view of forested Caribbean coastline and reef near Bastimentos, Bocas del Toro",
+        blurb="The reason to make the crossing. All of these need a boat, and most need a plan for getting back.",
+        items=[("/articles/red-frog-beach-bocas-del-toro","Red Frog Beach","The day pass, the surf, and how to actually find the frog the beach is named after."),
+               ("/articles/starfish-beach-bocas-del-toro-playa-estrella-guide","Starfish Beach","Playa Estrella at Boca del Drago — when the starfish are there and when to arrive.")]),
+   dict(t="Reefs and day trips", img=BOCIMG_REEFS,
+        alt="The Zapatilla cays in the Bastimentos marine park, Bocas del Toro",
+        blurb="The clearest water in the archipelago sits inside the national marine park, an hour out.",
+        items=[("/articles/cayos-zapatillas-snorkelling-bocas-del-toro","Cayos Zapatillas","Two uninhabited cays inside the marine park — the best snorkelling in Bocas, and what it costs."),
+               ("/articles/bocas-del-toro-island-hopping-guide","Planning a Boat Day","How operators combine the cays, the mangroves and the beaches into one trip.")])],
+  cta=None,
+  index=[("/articles/how-to-get-to-bocas-del-toro","How to Get to Bocas del Toro","Getting there"),
+         ("/articles/which-bocas-del-toro-island-to-stay-on","Which Bocas Island to Stay On","Planning"),
+         ("/articles/bocas-del-toro-island-hopping-guide","Bocas del Toro Island Hopping Guide","Island hopping"),
+         ("/articles/red-frog-beach-bocas-del-toro","Red Frog Beach","Beaches"),
+         ("/articles/starfish-beach-bocas-del-toro-playa-estrella-guide","Starfish Beach (Playa Estrella)","Beaches"),
+         ("/articles/cayos-zapatillas-snorkelling-bocas-del-toro","Cayos Zapatillas Snorkelling","Snorkelling")],
  ),
 
  "es-el-valle-de-anton": dict(

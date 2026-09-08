@@ -99,10 +99,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       alternates: homeAlternates,
     },
     {
+      // Bocas is a destination hub like the other three, but English-only for
+      // now (the Spanish cluster is a single article), so it cannot use hub()
+      // — that helper emits an EN/ES pair.
       url: `${siteConfig.url}/articles/bocas-del-toro`,
-      lastModified: new Date("2026-05-26"),
-      changeFrequency: "monthly",
-      priority: 0.8,
+      lastModified: hubsLastMod,
+      changeFrequency: "weekly",
+      priority: 0.9,
+      images: pageImages["/articles/bocas-del-toro"],
     },
     // ── Destination hubs ────────────────────────────────────────────────────
     ...hub(
