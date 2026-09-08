@@ -63,9 +63,15 @@ def abs_url(u):
 
 # ---------------------------------------------------------------- hero + meta
 
-def set_hero(s, url, alt):
+def set_hero(s, url, alt, pos=None):
+    """`pos` is an optional object-position for the hero crop. The hero band is
+    much wider than it is tall, so a portrait file gets its middle third and
+    nothing else — pass e.g. "50% 78%" when the subject sits low in the frame."""
     esc_alt = html.escape(alt, quote=True)
-    img = img_html(url, esc_alt, HERO, SIZES_HERO, eager=True)
+    style = "width:100%;height:100%;object-fit:cover;display:block"
+    if pos:
+        style += f";object-position:{pos}"
+    img = img_html(url, esc_alt, HERO, SIZES_HERO, eager=True, style=style)
     s, n = re.subn(r'(<div class="art-hero-img-full">)<img[^>]*>', lambda m: m.group(1) + img, s, count=1)
     if not n:
         raise SystemExit("  !! no art-hero-img-full block")
@@ -185,8 +191,9 @@ def main():
         s = p.read_text(encoding="utf-8")
         print(f"* {page}")
 
-        hero_url, hero_alt = spec["hero"]
-        s, hero_src = set_hero(s, resolve(hero_url), hero_alt)
+        hero_url, hero_alt = spec["hero"][:2]
+        hero_pos = spec["hero"][2] if len(spec["hero"]) > 2 else None
+        s, hero_src = set_hero(s, resolve(hero_url), hero_alt, hero_pos)
         s = set_schema_hero(s, hero_src)
 
         s = strip_inline(s)

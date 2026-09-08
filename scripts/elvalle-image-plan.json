@@ -94,17 +94,13 @@
   "public/es/articles/bus-albrook-el-valle-de-anton-horarios-precios.html": {
     "lang": "es",
     "hero": [
-      "File:Albrook bus station Panama City.agr.jpg",
-      "Los andenes de la Gran Terminal Nacional de Transporte de Albrook, de donde sale el bus a El Valle de Antón."
+      "File:Albrookstation.jpg",
+      "Coasters alineados en la Gran Terminal de Albrook: el mismo tipo de bus, de unos 28 asientos, que cubre la ruta a El Valle de Antón."
     ],
     "sections": {
       "s1": [
-        "File:Albrookstation.jpg",
-        "Coasters estacionados en Albrook: el mismo tipo de bus, de unos 28 asientos, que cubre la ruta a El Valle."
-      ],
-      "s2": [
-        "File:Gran terminal de transporte.jpg",
-        "El patio de buses de la Gran Terminal visto desde arriba — decenas de andenes bajo un mismo techo, pegados al Albrook Mall."
+        "File:Albrook bus station Panama City.agr.jpg",
+        "Los andenes de la terminal vistos desde el nivel superior — de aquí sale el bus a El Valle."
       ],
       "s3": [
         "File:Albrook Bus Terminal.jpg",
@@ -127,8 +123,8 @@
   "public/es/articles/chorro-las-mozas-pozas-el-valle-de-anton.html": {
     "lang": "es",
     "hero": [
-      "File:Waterfall at Cerro El Macho (02).jpg",
-      "Agua cayendo en cortinas sobre roca oscura en el Cerro El Macho — el mismo sistema de quebradas que alimenta las pozas del valle."
+      "File:Chorro Marcho EL Valle Panama 03.jpg",
+      "Cortinas de agua sobre roca cubierta de musgo en el Chorro El Macho, el sistema de quebradas vecino al de Las Mozas."
     ],
     "sections": {
       "s1": [
@@ -142,14 +138,6 @@
       "s4": [
         "https://images.pexels.com/photos/34937418/pexels-photo-34937418.jpeg?auto=compress&cs=tinysrgb&w=960",
         "Una poza de agua ambarina al pie de un chorro, cerrada por rocas cubiertas de musgo."
-      ],
-      "s7": [
-        "File:Panorama of Waterfall at Cerro El Macho.jpg",
-        "Panorámica de la caída entre la vegetación: el encuadre horizontal es el que recoge la pared de roca y el chorro completo."
-      ],
-      "s10": [
-        "/images/el-valle/elvalle-panorama.webp",
-        "Ladera boscosa del cráter sobre el fondo del valle: la referencia para orientarse entre una poza y la siguiente."
       ]
     }
   },
@@ -163,10 +151,6 @@
       "s1": [
         "/images/el-valle/elvalle-market.webp",
         "El mercado de El Valle desde la Avenida Central — el punto donde empieza y termina casi todo plan de comida en el pueblo."
-      ],
-      "s2": [
-        "File:Mercado ElValle Panama.jpg",
-        "El pasillo del mercado público: puestos de fruta, verdura y comida preparada bajo un mismo techo."
       ],
       "s3": [
         "File:Vendedor MercadoElVallePma.jpg",
@@ -208,10 +192,6 @@
       "s5": [
         "File:Panamá 20230321 134938.jpg",
         "Un bloque de habitaciones de una planta con jardín delante — la planta típica del hospedaje de rango medio en El Valle."
-      ],
-      "s7": [
-        "File:Panamá 20230321 135006.jpg",
-        "Un rótulo de casa de alquiler al borde del camino: buena parte del mercado informal se anuncia así, no en internet."
       ],
       "s8": [
         "/images/el-valle/evbike-plaza.webp",
@@ -263,8 +243,9 @@
   "public/es/articles/tours-en-bicicleta-el-valle-de-anton.html": {
     "lang": "es",
     "hero": [
-      "/images/el-valle/evbike-crater-view.webp",
-      "El fondo del cráter de El Valle desde el borde, con la bicicleta apoyada: llano, verde y cerrado por la pared del volcán."
+      "/images/el-valle/evbike-plaza.webp",
+      "La flota de bicicletas eléctricas lista bajo los árboles en El Valle de Antón, con el jardín de piedra del punto de salida al fondo.",
+      "50% 88%"
     ],
     "sections": {
       "s1": [
@@ -276,8 +257,8 @@
         "Entrega de bicicletas en El Valle: casco puesto y ajuste de sillín antes de salir."
       ],
       "s3": [
-        "/images/el-valle/evbike-plaza.webp",
-        "La flota lista bajo un árbol: bicicletas eléctricas de cuadro bajo, las mismas que alquilan casi todos los operadores del pueblo."
+        "/images/el-valle/evbike-crater-view.webp",
+        "El fondo del cráter desde el borde, con la bici apoyada: llano, verde y cerrado por la pared del volcán."
       ],
       "s4": [
         "/images/el-valle/evbike-forest.webp",
@@ -300,29 +281,21 @@
   "public/es/articles/mercado-el-valle-de-anton.html": {
     "lang": "es",
     "hero": [
-      "File:Mercado El Valle de Antón.JPG",
-      "El mercado de El Valle de Antón desde la Avenida Principal: naves de techo a dos aguas y estacionamiento en línea delante."
+      "File:Artesanias MercadoElValle.jpg",
+      "Artesanía pintada a mano colgada en un puesto del mercado de El Valle de Antón: bandejas, soles, aves y cuencos en fibra y madera."
     ],
     "sections": {
-      "s2": [
-        "File:Mercado del Valle de Antón.jpg",
-        "El sector de plantas del mercado: crotones, buganvilla y orquídeas bajo el techo traslúcido."
-      ],
       "s3": [
         "File:Mercado ElValle Panama.jpg",
         "El pasillo central del mercado, con los puestos de fruta y verdura a un lado y la artesanía al otro."
-      ],
-      "s4": [
-        "File:Artesanias MercadoElValle.jpg",
-        "Artesanía colgada en la reja de un puesto: sombreros, bolsos de fibra y trabajo pintado a mano."
       ],
       "s5": [
         "File:Mercado EL Valle Panama.JPG",
         "Ristras de ajo, cebolla y ají colgadas sobre el mostrador — producto de finca, con precio hablado, no marcado."
       ],
       "s7": [
-        "File:Panamá 20230322 141822.jpg",
-        "La Avenida Principal junto al mercado: el estacionamiento en línea es el único que hay, y los domingos se llena temprano."
+        "File:Mercado El Valle de Antón.JPG",
+        "El mercado desde la Avenida Principal: las naves de teja y el estacionamiento en línea que se llena antes de las nueve los domingos."
       ],
       "s8": [
         "File:Pineapples El Valle.jpg",
@@ -344,10 +317,6 @@
       "s4": [
         "File:Piedra Pintada ElValle.jpg",
         "Los surcos se señalan con una vara, no con la mano: así recorren los motivos los guías locales sin dañar la roca."
-      ],
-      "s5": [
-        "File:Panamá 20230322 065507.jpg",
-        "Poste de sendero en El Valle: los accesos están señalizados en el punto de partida, aunque no siempre desde la carretera."
       ],
       "s9": [
         "File:Forest at Cerro Macho.jpg",

@@ -558,9 +558,8 @@ export const pageImages: Record<string, string[]> = {
     "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Boquete_RioCaldera.jpg/960px-Boquete_RioCaldera.jpg",
   ],
   "/es/articles/bus-albrook-el-valle-de-anton-horarios-precios": [
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Albrook_bus_station_Panama_City.agr.jpg/1280px-Albrook_bus_station_Panama_City.agr.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Albrookstation.jpg/960px-Albrookstation.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Gran_terminal_de_transporte.jpg/960px-Gran_terminal_de_transporte.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Albrookstation.jpg/1280px-Albrookstation.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Albrook_bus_station_Panama_City.agr.jpg/960px-Albrook_bus_station_Panama_City.agr.jpg",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Albrook_Bus_Terminal.jpg/960px-Albrook_Bus_Terminal.jpg",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Carretera_Interamericana_en_Penonom%C3%A9%2C_Provincia_de_Cocl%C3%A9%2C_Panam%C3%A1_%282024%29.jpg/960px-Carretera_Interamericana_en_Penonom%C3%A9%2C_Provincia_de_Cocl%C3%A9%2C_Panam%C3%A1_%282024%29.jpg",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Valle_de_Anton%2C_Panama.jpg/960px-Valle_de_Anton%2C_Panama.jpg",
@@ -599,12 +598,10 @@ export const pageImages: Record<string, string[]> = {
     "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Kids_on_Street_-_Casco_Viejo_%28Old_City%29_-_Panama_City_-_Panama_%2811427353396%29.jpg/960px-Kids_on_Street_-_Casco_Viejo_%28Old_City%29_-_Panama_City_-_Panama_%2811427353396%29.jpg",
   ],
   "/es/articles/chorro-las-mozas-pozas-el-valle-de-anton": [
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Waterfall_at_Cerro_El_Macho_%2802%29.jpg/1280px-Waterfall_at_Cerro_El_Macho_%2802%29.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Chorro_Marcho_EL_Valle_Panama_03.jpg/1280px-Chorro_Marcho_EL_Valle_Panama_03.jpg",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Forest_at_Cerro_Macho.jpg/960px-Forest_at_Cerro_Macho.jpg",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Chorro_las_Mozas%2C_Valle_de_Anton%2C_Panama_%2852728459947%29.jpg/960px-Chorro_las_Mozas%2C_Valle_de_Anton%2C_Panama_%2852728459947%29.jpg",
     "https://images.pexels.com/photos/34937418/pexels-photo-34937418.jpeg?auto=compress&cs=tinysrgb&w=960",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Panorama_of_Waterfall_at_Cerro_El_Macho.jpg/960px-Panorama_of_Waterfall_at_Cerro_El_Macho.jpg",
-    "https://panamaspot.com/images/el-valle/elvalle-panorama.webp",
   ],
   "/es/articles/cinta-costera-panama-mercado-mariscos-panama-viejo": [
     "https://images.pexels.com/photos/5005136/pexels-photo-5005136.jpeg?auto=compress&cs=tinysrgb&w=1280",
@@ -650,7 +647,6 @@ export const pageImages: Record<string, string[]> = {
   "/es/articles/donde-comer-en-el-valle-de-anton": [
     "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Anton_Valley%2C_Panama_-_panoramio_%281%29.jpg/1280px-Anton_Valley%2C_Panama_-_panoramio_%281%29.jpg",
     "https://panamaspot.com/images/el-valle/elvalle-market.webp",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Mercado_ElValle_Panama.jpg/960px-Mercado_ElValle_Panama.jpg",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Vendedor_MercadoElVallePma.jpg/960px-Vendedor_MercadoElVallePma.jpg",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Pineapples_El_Valle.jpg/960px-Pineapples_El_Valle.jpg",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Countryside_around_El_Valle_%2802%29.jpg/960px-Countryside_around_El_Valle_%2802%29.jpg",
@@ -662,7 +658,6 @@ export const pageImages: Record<string, string[]> = {
     "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Architectural_Detail_of_Hotel_El_Majo_del_Valle_-_El_Valle_-_Cocle_Province_-_Panama_%2811519249273%29.jpg/960px-Architectural_Detail_of_Hotel_El_Majo_del_Valle_-_El_Valle_-_Cocle_Province_-_Panama_%2811519249273%29.jpg",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/House_and_Landscape_-_El_Valle_%2802%29.jpg/960px-House_and_Landscape_-_El_Valle_%2802%29.jpg",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Panam%C3%A1_20230321_134938.jpg/960px-Panam%C3%A1_20230321_134938.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Panam%C3%A1_20230321_135006.jpg/960px-Panam%C3%A1_20230321_135006.jpg",
     "https://panamaspot.com/images/el-valle/evbike-plaza.webp",
   ],
   "/es/articles/el-valle-de-anton": [
@@ -724,12 +719,10 @@ export const pageImages: Record<string, string[]> = {
     "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Valle_de_Anton%2C_Panama.jpg/960px-Valle_de_Anton%2C_Panama.jpg",
   ],
   "/es/articles/mercado-el-valle-de-anton": [
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Mercado_El_Valle_de_Ant%C3%B3n.JPG/1280px-Mercado_El_Valle_de_Ant%C3%B3n.JPG",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Mercado_del_Valle_de_Ant%C3%B3n.jpg/960px-Mercado_del_Valle_de_Ant%C3%B3n.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Artesanias_MercadoElValle.jpg/1280px-Artesanias_MercadoElValle.jpg",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Mercado_ElValle_Panama.jpg/960px-Mercado_ElValle_Panama.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Artesanias_MercadoElValle.jpg/960px-Artesanias_MercadoElValle.jpg",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Mercado_EL_Valle_Panama.JPG/960px-Mercado_EL_Valle_Panama.JPG",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Panam%C3%A1_20230322_141822.jpg/960px-Panam%C3%A1_20230322_141822.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Mercado_El_Valle_de_Ant%C3%B3n.JPG/960px-Mercado_El_Valle_de_Ant%C3%B3n.JPG",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Pineapples_El_Valle.jpg/960px-Pineapples_El_Valle.jpg",
   ],
   "/es/articles/mi-jardin-es-su-jardin-boquete": [
@@ -750,7 +743,6 @@ export const pageImages: Record<string, string[]> = {
     "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/10-001-DMHN_Los_petroglifos_en_Panam%C3%A1.jpg/1280px-10-001-DMHN_Los_petroglifos_en_Panam%C3%A1.jpg",
     "https://panamaspot.com/images/el-valle/elvalle-petroglifo.webp",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Piedra_Pintada_ElValle.jpg/960px-Piedra_Pintada_ElValle.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Panam%C3%A1_20230322_065507.jpg/960px-Panam%C3%A1_20230322_065507.jpg",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Forest_at_Cerro_Macho.jpg/960px-Forest_at_Cerro_Macho.jpg",
     "https://panamaspot.com/images/el-valle/elvalle-panorama.webp",
   ],
@@ -878,10 +870,10 @@ export const pageImages: Record<string, string[]> = {
     "https://panamaspot.com/images/el-valle/elvalle-panorama.webp",
   ],
   "/es/articles/tours-en-bicicleta-el-valle-de-anton": [
-    "https://panamaspot.com/images/el-valle/evbike-crater-view.webp",
+    "https://panamaspot.com/images/el-valle/evbike-plaza.webp",
     "https://panamaspot.com/images/el-valle/ta-review-3.webp",
     "https://panamaspot.com/images/el-valle/ta-review-1.webp",
-    "https://panamaspot.com/images/el-valle/evbike-plaza.webp",
+    "https://panamaspot.com/images/el-valle/evbike-crater-view.webp",
     "https://panamaspot.com/images/el-valle/evbike-forest.webp",
     "https://panamaspot.com/images/el-valle/evbike-trail.webp",
     "https://panamaspot.com/images/el-valle/elvalle-petroglifo.webp",
