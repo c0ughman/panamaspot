@@ -72,40 +72,78 @@ CSS = ('<style id="img-credits-css">'
        '@media(max-width:600px){.img-credits{padding:40px 20px}.img-credits h2{font-size:20px}}'
        '</style>')
 
+PEXELS_LICENSE = "https://www.pexels.com/license/"
+
+def pexels_id(url):
+    m = re.search(r"/photos/(\d+)/", url)
+    return m.group(1) if m else None
+
+def pexels_page(url):
+    pid = pexels_id(url)
+    return f"https://www.pexels.com/photo/{pid}/" if pid else PEXELS_LICENSE
+
 def build_block(urls, lang):
-    title = "Créditos de imágenes" if lang == "es" else "Image credits"
-    eyebrow = "Créditos" if lang == "es" else "Credits"
-    intro = ("Fotografías bajo licencia Creative Commons, vía Wikimedia Commons. "
-             "Toca cualquier título para ver la fuente original."
-             if lang == "es" else
-             "Photographs licensed under Creative Commons, via Wikimedia Commons. "
-             "Tap any title to view the original source.")
+    es = lang == "es"
+    title   = "Créditos de imágenes" if es else "Image credits"
+    eyebrow = "Créditos" if es else "Credits"
+    intro = ("Todas las fotografías de esta página, con su fuente y licencia. "
+             "Toca cualquier título para ver el original."
+             if es else
+             "Every photograph on this page, with its source and licence. "
+             "Tap any title to view the original.")
     items = []
-    for u in urls:
-        key = u.replace("&amp;", "&")
-        lic  = html.escape(LICENSE.get(key, ""))
-        who  = html.escape(artist_of(key))
-        name = html.escape(pretty_name(u))
-        page = html.escape(commons_page(u))
+    for kind, u in urls:
+        if kind == "wm":
+            lic  = html.escape(LICENSE.get(u, "") or ("Public domain" if es is None else "Wikimedia Commons"))
+            who  = html.escape(artist_of(u))
+            name = html.escape(pretty_name(u))
+            page = html.escape(commons_page(u))
+            meta = f"{who} · {lic}" if lic else who
+        else:
+            pid  = pexels_id(u)
+            name = html.escape(f"Pexels photo {pid}" if pid else "Pexels photo")
+            page = html.escape(pexels_page(u))
+            # Pexels does not expose the photographer without an API key, so the
+            # credit names the source and links to the photo's own page, where
+            # the photographer is shown.
+            meta = "Pexels · " + ("Licencia Pexels" if es else "Pexels License")
         items.append(f'<li><a href="{page}" target="_blank" rel="noopener nofollow">{name}</a>'
-                     f'<span class="ic-meta">{who} · {lic}</span></li>')
+                     f'<span class="ic-meta">{meta}</span></li>')
     return (f'<!--IMGCREDITS-->{CSS}<section class="img-credits"><div class="img-credits-wrap">'
             f'<span class="ic-eyebrow">{eyebrow}</span><h2>{title}</h2>'
             f'<p class="ic-sub">{intro}</p><ul>{"".join(items)}</ul>'
             f'</div></section><!--/IMGCREDITS-->')
 
 def collect(s):
-    """All CC-BY* Wikimedia image URLs present on the page, de-duplicated, in
-    document order (hero first, then body/gallery/bento)."""
+    """Every image the page renders, de-duplicated, hero first.
+
+    This used to return only CC BY / CC BY-SA Wikimedia files, on the reasoning
+    that those are the ones that legally REQUIRE attribution. The client wants
+    every photograph credited, so public-domain and CC0 Commons files and the
+    Pexels stock are listed too — credited to their source, since crediting
+    only some images reads as though the rest are the site's own work.
+
+    Returns a list of (kind, key) where kind is "wm" or "px".
+    """
+    main = re.search(r"(?s)<main\b.*?</main>", s)
+    body = main.group(0) if main else s
+    for pat in (r"(?s)<!--RELATED-MODULE-->.*?<!--/RELATED-MODULE-->",
+                r"(?s)<!--IMGCREDITS-->.*?<!--/IMGCREDITS-->",
+                r'(?s)<aside class="evb-rail".*?</aside>'):
+        body = re.sub(pat, "", body)
+
     seen, out = set(), []
-    for u in re.findall(r"https://upload\.wikimedia\.org/[^'\"]+", s):
-        # pages now carry width-capped thumb URLs; resolve back to the original
-        # file URL for licence lookup and Commons filename derivation.
-        key = wm_original(u)
+    for u in re.findall(r'<img[^>]*\bsrc="([^"]+)"', body):
+        u = u.replace("&amp;", "&")
+        if "upload.wikimedia.org" in u:
+            key = wm_original(u); kind = "wm"
+        elif "images.pexels.com" in u:
+            key = re.sub(r"[?&]w=\d+", "", u); kind = "px"
+        else:
+            continue                      # the site's own artwork needs no credit
         if key in seen:
             continue
-        if needs_credit(LICENSE.get(key, "")):
-            seen.add(key); out.append(key)
+        seen.add(key); out.append((kind, key))
     return out
 
 def process(page):
