@@ -81,7 +81,10 @@ def meta(path):
          or re.search(r'<meta property="og:image" content="([^"]+)"/>', s))
     if not m:
         return None
-    og = m.group(1)
+    # og:image is HTML-escaped in the file (&amp;). Decode it here: card() escapes
+    # once on the way out, and card_hero()'s [?&]w= rewrite only matches raw "&",
+    # so leaving it encoded shipped "&amp;amp;" and an un-resized card image.
+    og = html.unescape(m.group(1))
     h1 = re.search(r'<h1 class="art-title">(.*?)</h1>', s, re.S)
     dek = re.search(r'<p class="art-dek">(.*?)</p>', s, re.S)
     title = re.sub(r"<[^>]+>", "", h1.group(1)) if h1 else ""

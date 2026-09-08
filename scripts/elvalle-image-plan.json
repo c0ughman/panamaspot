@@ -1,0 +1,395 @@
+{
+  "_comment": "Per-page image plan for the 2026-09 El Valle batch. Applied by scripts/elvalle-image-pass.py. 'hero' and each section entry is [image-key, caption]; image-key is either a local /images/... path or a Commons file title (resolved through scripts/commons-verified.json) or a full https URL for images being deliberately kept. Sections not listed lose their inline figure; the gallery is rebuilt to mirror the inline set.",
+  "public/articles/el-valle-de-anton-itinerary-one-day.html": {
+    "lang": "en",
+    "hero": [
+      "File:Valle de Antón La Mochila.jpg",
+      "The flat floor of the El Valle caldera, ringed by the forested crater wall that closes the valley on every side."
+    ],
+    "sections": {
+      "s1": [
+        "File:Countryside around El Valle (03).jpg",
+        "Fences and pasture on the caldera floor, with the crater rim standing behind the fields — the whole town sits inside this ring."
+      ],
+      "s2": [
+        "/images/el-valle/elvalle-town.webp",
+        "Avenida Central through the middle of town: a roadside kiosk, a food cart and the shops you walk past coming off the bus."
+      ],
+      "s3": [
+        "/images/el-valle/elvalle-elmachowaterfall.webp",
+        "Chorro El Macho at full flow — the main cascade drops into a natural pool at the head of the gorge."
+      ],
+      "s4": [
+        "/images/el-valle/elvalle-indiadormida.webp",
+        "The India Dormida ridge seen from the valley floor: the reclining silhouette the trail climbs onto."
+      ],
+      "s6": [
+        "/images/el-valle/elvalle-flowermarket.webp",
+        "Potted plants and cut flowers under the roof of the El Valle market, a block off Avenida Central."
+      ],
+      "s7": [
+        "File:El Valle (1).jpg",
+        "Dusk settling over El Valle from the crater rim — the light goes early inside the caldera, which is why the last bus matters."
+      ]
+    }
+  },
+  "public/articles/where-to-stay-in-el-valle-de-anton.html": {
+    "lang": "en",
+    "hero": [
+      "https://images.pexels.com/photos/13058771/pexels-photo-13058771.jpeg?auto=compress&cs=tinysrgb&w=1280",
+      "Where to Stay in El Valle de Antón"
+    ],
+    "sections": {
+      "s3": [
+        "File:House and Landscape - El Valle (02).jpg",
+        "A white house with a tiled roof on the hillside above the valley floor, the crater peaks rising directly behind it."
+      ],
+      "s4": [
+        "https://images.pexels.com/photos/13676680/pexels-photo-13676680.jpeg?auto=compress&cs=tinysrgb&w=960",
+        "A hammock strung between trees over a boulder-strewn clearing — the kind of grounds the rural-fringe properties are built around."
+      ],
+      "s6": [
+        "File:Scenery in El Valle de Anton.jpg",
+        "Lawn, flowering shrubs and the crater wall behind — the garden-and-view combination the $60–$120 tier is buying."
+      ],
+      "s9": [
+        "/images/el-valle/elvalle-town.webp",
+        "Avenida Principal on an ordinary morning — the market zone is a short flat walk from anywhere in the town-centre zone."
+      ],
+      "s10": [
+        "https://images.pexels.com/photos/37916073/pexels-photo-37916073.jpeg?auto=compress&cs=tinysrgb&w=960",
+        "A cluster of red-roofed buildings set in green farmland, seen from the air — the layout of the larger valley properties."
+      ]
+    }
+  },
+  "public/articles/el-valle-de-anton-vs-boquete.html": {
+    "lang": "en",
+    "hero": [
+      "File:Atardecer en El Valle de Antón.jpg",
+      "Late light on the crater wall above El Valle de Antón — the mountain town two hours from Panama City."
+    ],
+    "sections": {
+      "s1": [
+        "/images/el-valle/elvalle-panorama.webp",
+        "Forested crater wall above the valley floor: El Valle sits inside a six-kilometre volcanic bowl."
+      ],
+      "s2": [
+        "/images/boquete/boquete-town2.webp",
+        "Nursery rows and houses on the edge of Boquete, Chiriquí — a full day's travel west of El Valle."
+      ],
+      "s4": [
+        "/images/el-valle/elvalle-elmachowaterfall.webp",
+        "Chorro El Macho — one of El Valle's signature short hikes, fifteen minutes from the road."
+      ],
+      "s5": [
+        "/images/boquete/boquete-clouds.webp",
+        "Cloud pouring over the ridge above Boquete: the bajareque that defines the town's climate and its coffee."
+      ],
+      "s6": [
+        "File:Mercado ElValle Panama.jpg",
+        "Inside the El Valle market: produce, prepared food and craft stalls under one long roof."
+      ]
+    }
+  },
+  "public/es/articles/bus-albrook-el-valle-de-anton-horarios-precios.html": {
+    "lang": "es",
+    "hero": [
+      "File:Albrook bus station Panama City.agr.jpg",
+      "Los andenes de la Gran Terminal Nacional de Transporte de Albrook, de donde sale el bus a El Valle de Antón."
+    ],
+    "sections": {
+      "s1": [
+        "File:Albrookstation.jpg",
+        "Coasters estacionados en Albrook: el mismo tipo de bus, de unos 28 asientos, que cubre la ruta a El Valle."
+      ],
+      "s2": [
+        "File:Gran terminal de transporte.jpg",
+        "El patio de buses de la Gran Terminal visto desde arriba — decenas de andenes bajo un mismo techo, pegados al Albrook Mall."
+      ],
+      "s3": [
+        "File:Albrook Bus Terminal.jpg",
+        "El interior de la terminal: la boletería y las plataformas de salida están en pasillos distintos, y hay que pasar por los dos."
+      ],
+      "s5": [
+        "File:Carretera Interamericana en Penonomé, Provincia de Coclé, Panamá (2024).jpg",
+        "Rótulo de destinos sobre la Interamericana en Coclé — Antón, La Chorrera, Panamá: la vía que recorre el bus."
+      ],
+      "s7": [
+        "File:Valle de Anton, Panama.jpg",
+        "La entrada al valle por carretera, con el cerro cerrando el fondo — los últimos kilómetros de la subida."
+      ],
+      "s8": [
+        "/images/el-valle/elvalle-town.webp",
+        "El centro de El Valle: kioscos, carretillas y taxis sobre la Avenida Central, a pocos metros de donde para el bus."
+      ]
+    }
+  },
+  "public/es/articles/chorro-las-mozas-pozas-el-valle-de-anton.html": {
+    "lang": "es",
+    "hero": [
+      "File:Waterfall at Cerro El Macho (02).jpg",
+      "Agua cayendo en cortinas sobre roca oscura en el Cerro El Macho — el mismo sistema de quebradas que alimenta las pozas del valle."
+    ],
+    "sections": {
+      "s1": [
+        "File:Forest at Cerro Macho.jpg",
+        "El lecho del río entre bloques de piedra, aguas abajo de los chorros — el terreno que hay que cruzar para llegar a las pozas."
+      ],
+      "s3": [
+        "File:Chorro las Mozas, Valle de Anton, Panama (52728459947).jpg",
+        "El camino de acceso a Chorro Las Mozas: un sendero verde y llano antes de que el terreno baje hacia el río."
+      ],
+      "s4": [
+        "https://images.pexels.com/photos/34937418/pexels-photo-34937418.jpeg?auto=compress&cs=tinysrgb&w=960",
+        "Una poza de agua ambarina al pie de un chorro, cerrada por rocas cubiertas de musgo."
+      ],
+      "s7": [
+        "File:Panorama of Waterfall at Cerro El Macho.jpg",
+        "Panorámica de la caída entre la vegetación: el encuadre horizontal es el que recoge la pared de roca y el chorro completo."
+      ],
+      "s10": [
+        "/images/el-valle/elvalle-panorama.webp",
+        "Ladera boscosa del cráter sobre el fondo del valle: la referencia para orientarse entre una poza y la siguiente."
+      ]
+    }
+  },
+  "public/es/articles/donde-comer-en-el-valle-de-anton.html": {
+    "lang": "es",
+    "hero": [
+      "File:Anton Valley, Panama - panoramio (1).jpg",
+      "El mercado techado de El Valle a media mañana: cajas de fruta y verdura montadas sobre las mesas, y el cerro al fondo."
+    ],
+    "sections": {
+      "s1": [
+        "/images/el-valle/elvalle-market.webp",
+        "El mercado de El Valle desde la Avenida Central — el punto donde empieza y termina casi todo plan de comida en el pueblo."
+      ],
+      "s2": [
+        "File:Mercado ElValle Panama.jpg",
+        "El pasillo del mercado público: puestos de fruta, verdura y comida preparada bajo un mismo techo."
+      ],
+      "s3": [
+        "File:Vendedor MercadoElVallePma.jpg",
+        "Un puesto de pan, dulces y frutos secos — el desayuno más barato del pueblo se compra así, en bolsa y de pie."
+      ],
+      "s5": [
+        "File:Pineapples El Valle.jpg",
+        "Piñas y naranjas apiladas en cajas: producto de las fincas del cráter, vendido el mismo día que se corta."
+      ],
+      "s6": [
+        "File:Countryside around El Valle (02).jpg",
+        "Jardines y techos de teja en las afueras del pueblo, bajo la pared del cráter — el entorno de los restaurantes de las alturas."
+      ]
+    }
+  },
+  "public/es/articles/donde-dormir-el-valle-de-anton.html": {
+    "lang": "es",
+    "hero": [
+      "File:Anton Valley, Panama - panoramio.jpg",
+      "Un hospedaje de El Valle de Antón sobre un lote sembrado, con el cerro cerrando la vista al fondo."
+    ],
+    "sections": {
+      "s1": [
+        "File:El Valle (1).jpg",
+        "El Valle al anochecer desde el borde del cráter: las luces del pueblo encendidas bajo la silueta de la montaña."
+      ],
+      "s2": [
+        "File:Panamá 20230322 141816.jpg",
+        "La calle principal de El Valle: comercios, aceras y estacionamiento en línea, todo dentro del mismo kilómetro."
+      ],
+      "s3": [
+        "File:Architectural Detail of Hotel El Majo del Valle - El Valle - Cocle Province - Panama (11519249273).jpg",
+        "El rótulo de un hotel pequeño sobre pared naranja, con jardinera de plantas tropicales — el formato más común del pueblo."
+      ],
+      "s4": [
+        "File:House and Landscape - El Valle (02).jpg",
+        "Casa de una planta con techo de teja y jardín, al pie de las paredes del cráter."
+      ],
+      "s5": [
+        "File:Panamá 20230321 134938.jpg",
+        "Un bloque de habitaciones de una planta con jardín delante — la planta típica del hospedaje de rango medio en El Valle."
+      ],
+      "s7": [
+        "File:Panamá 20230321 135006.jpg",
+        "Un rótulo de casa de alquiler al borde del camino: buena parte del mercado informal se anuncia así, no en internet."
+      ],
+      "s8": [
+        "/images/el-valle/evbike-plaza.webp",
+        "Bicicletas listas bajo un árbol en El Valle: sin carro, la bici cubre el pueblo entero en minutos."
+      ]
+    }
+  },
+  "public/es/articles/precios-horarios-el-valle-de-anton.html": {
+    "lang": "es",
+    "hero": [
+      "File:Valle de Anton, Panama.jpg",
+      "La carretera que entra al cráter de El Valle de Antón, con el cerro al fondo."
+    ],
+    "sections": {
+      "s2": [
+        "File:EntradaChorroMacho ElValle.jpg",
+        "La caseta de entrada a Chorro El Macho: aquí se paga y aquí arranca el sendero."
+      ],
+      "s3": [
+        "File:Jardín Zoológico El Nispero.jpg",
+        "El Jardín Zoológico El Níspero, sede del Centro de Conservación de Anfibios de El Valle."
+      ],
+      "s6": [
+        "File:Workmen with Mountain Backdrop - El Valle.jpg",
+        "Viveros bajo malla de sombra en El Valle: el mismo cultivo bajo techo del que viven los orquidearios del valle."
+      ],
+      "s7": [
+        "File:Piedra Pintada ElValle.jpg",
+        "La Piedra Pintada: los grabados se siguen con una vara, no con la mano, para no dañar la roca."
+      ],
+      "s8": [
+        "File:Artesanias MercadoElValle.jpg",
+        "Artesanía colgada en un puesto del mercado de El Valle: sombreros, bolsos y trabajo en fibra."
+      ],
+      "s9": [
+        "File:WetRapel Abseiling.jpg",
+        "Descenso con cuerda sobre una de las caídas de El Valle — la misma zona de bosque que cruza el canopy."
+      ],
+      "s10": [
+        "File:LaIndiaDormida.jpg",
+        "La cresta de La India Dormida desde el fondo del valle: el sendero sube hasta ese perfil y es de acceso libre."
+      ],
+      "s13": [
+        "/images/el-valle/elvalle-market.webp",
+        "El mercado de El Valle desde la carretera, con el estacionamiento en línea delante — el punto de referencia del pueblo."
+      ]
+    }
+  },
+  "public/es/articles/tours-en-bicicleta-el-valle-de-anton.html": {
+    "lang": "es",
+    "hero": [
+      "/images/el-valle/evbike-crater-view.webp",
+      "El fondo del cráter de El Valle desde el borde, con la bicicleta apoyada: llano, verde y cerrado por la pared del volcán."
+    ],
+    "sections": {
+      "s1": [
+        "/images/el-valle/ta-review-3.webp",
+        "Pedaleando por la carretera del valle con el cerro de fondo: el fondo del cráter es casi todo llano."
+      ],
+      "s2": [
+        "/images/el-valle/ta-review-1.webp",
+        "Entrega de bicicletas en El Valle: casco puesto y ajuste de sillín antes de salir."
+      ],
+      "s3": [
+        "/images/el-valle/evbike-plaza.webp",
+        "La flota lista bajo un árbol: bicicletas eléctricas de cuadro bajo, las mismas que alquilan casi todos los operadores del pueblo."
+      ],
+      "s4": [
+        "/images/el-valle/evbike-forest.webp",
+        "Tramo de camino de tierra entre bosque: pedaleable con asistencia, incómodo con una bici de ciudad."
+      ],
+      "s5": [
+        "/images/el-valle/evbike-trail.webp",
+        "Las bicis al pie de una subida del borde del cráter — el punto donde la asistencia eléctrica deja de ser un lujo."
+      ],
+      "s6": [
+        "/images/el-valle/elvalle-petroglifo.webp",
+        "La Piedra Pintada, a unos 2 km del centro: una de las paradas fijas del circuito en bicicleta."
+      ],
+      "s8": [
+        "/images/el-valle/evbike-sunset.webp",
+        "Puesta de sol desde un mirador del cráter — la razón para salir tarde, y para llevar luces."
+      ]
+    }
+  },
+  "public/es/articles/mercado-el-valle-de-anton.html": {
+    "lang": "es",
+    "hero": [
+      "File:Mercado El Valle de Antón.JPG",
+      "El mercado de El Valle de Antón desde la Avenida Principal: naves de techo a dos aguas y estacionamiento en línea delante."
+    ],
+    "sections": {
+      "s2": [
+        "File:Mercado del Valle de Antón.jpg",
+        "El sector de plantas del mercado: crotones, buganvilla y orquídeas bajo el techo traslúcido."
+      ],
+      "s3": [
+        "File:Mercado ElValle Panama.jpg",
+        "El pasillo central del mercado, con los puestos de fruta y verdura a un lado y la artesanía al otro."
+      ],
+      "s4": [
+        "File:Artesanias MercadoElValle.jpg",
+        "Artesanía colgada en la reja de un puesto: sombreros, bolsos de fibra y trabajo pintado a mano."
+      ],
+      "s5": [
+        "File:Mercado EL Valle Panama.JPG",
+        "Ristras de ajo, cebolla y ají colgadas sobre el mostrador — producto de finca, con precio hablado, no marcado."
+      ],
+      "s7": [
+        "File:Panamá 20230322 141822.jpg",
+        "La Avenida Principal junto al mercado: el estacionamiento en línea es el único que hay, y los domingos se llena temprano."
+      ],
+      "s8": [
+        "File:Pineapples El Valle.jpg",
+        "Piñas y cítricos apilados en cajas al borde del pasillo — el producto fresco se agota primero."
+      ]
+    }
+  },
+  "public/es/articles/piedra-pintada-el-valle-de-anton.html": {
+    "lang": "es",
+    "hero": [
+      "File:10-001-DMHN Los petroglifos en Panamá.jpg",
+      "La Piedra Pintada de El Valle de Antón: un bloque de varios metros cubierto de grabados precolombinos, con una persona al pie para dar escala."
+    ],
+    "sections": {
+      "s1": [
+        "/images/el-valle/elvalle-petroglifo.webp",
+        "La cara principal de la Piedra Pintada, con una persona al pie: los grabados cubren casi toda la superficie expuesta."
+      ],
+      "s4": [
+        "File:Piedra Pintada ElValle.jpg",
+        "Los surcos se señalan con una vara, no con la mano: así recorren los motivos los guías locales sin dañar la roca."
+      ],
+      "s5": [
+        "File:Panamá 20230322 065507.jpg",
+        "Poste de sendero en El Valle: los accesos están señalizados en el punto de partida, aunque no siempre desde la carretera."
+      ],
+      "s9": [
+        "File:Forest at Cerro Macho.jpg",
+        "La quebrada que corre junto al sitio, con el lecho de piedra al descubierto en temporada seca."
+      ],
+      "s10": [
+        "/images/el-valle/elvalle-panorama.webp",
+        "Ladera boscosa del cráter vista desde el fondo del valle — casi todo lo que se visita en El Valle cabe dentro de este anillo."
+      ]
+    }
+  },
+  "public/es/articles/mariposario-el-valle-de-anton.html": {
+    "lang": "es",
+    "hero": [
+      "https://images.pexels.com/photos/7200711/pexels-photo-7200711.jpeg?auto=compress&cs=tinysrgb&w=1280",
+      "Dos mariposas Heliconius, de alas rayadas en naranja y negro, sobre un ramillete de flores amarillas."
+    ],
+    "sections": {
+      "s1": [
+        "https://images.pexels.com/photos/30911817/pexels-photo-30911817.jpeg?auto=compress&cs=tinysrgb&w=960",
+        "Una morfo azul con las alas abiertas sobre una hoja: la especie que casi todo el mundo entra a ver."
+      ],
+      "s2": [
+        "https://images.pexels.com/photos/35525462/pexels-photo-35525462.jpeg?auto=compress&cs=tinysrgb&w=960",
+        "Mariposas búho alimentándose de rodajas de naranja en un comedero — es donde se quedan quietas y se ven de cerca."
+      ],
+      "s5": [
+        "https://images.pexels.com/photos/7200725/pexels-photo-7200725.jpeg?auto=compress&cs=tinysrgb&w=960",
+        "Una mariposa moteada posada en una espiga de flor morada: bajo techo el vuelo sigue aunque llueva fuera."
+      ],
+      "s6": [
+        "https://images.pexels.com/photos/33161296/pexels-photo-33161296.jpeg?auto=compress&cs=tinysrgb&w=960",
+        "Una Heliconius sobre una flor roja — la siembra nectarífera que sostiene tanto este mariposario como el de Gamboa."
+      ],
+      "s7": [
+        "File:Scenery in El Valle de Anton (02).jpg",
+        "Jardín tropical en El Valle de Antón: heliconias, palmas y arbustos de flor bajo la pared del cráter."
+      ],
+      "s8": [
+        "File:Valle de Anton, Panama.jpg",
+        "La carretera de entrada al cráter de El Valle de Antón, el último tramo del viaje desde Albrook."
+      ]
+    }
+  }
+}
