@@ -6,10 +6,11 @@ on the page and in the markup, so the images are indexable in their own right.
 Three things, from scripts/elvalle-image-facts.json (written after viewing every
 file, so the words match the pixels):
 
-  1. GALLERY TILES get a <figcaption> carrying the short subject·place label.
-     The inline figures already carry the long descriptive caption; using the
-     short form here means the text nearest each image is different in the two
-     places it appears rather than duplicated.
+  1. EVERY FIGURE — gallery tile and body photo alike — gets a <figcaption>
+     carrying the same one-line description. The body caption is also made
+     visible: the site stylesheet ships .art-inline-img figcaption as
+     screen-reader-only, so until now the description under each in-article
+     photo existed in the markup and nowhere on the page.
 
   2. A "Sobre estas fotos" / "About these photographs" block replaces the old
      credits list at the foot of the page. Every image on the page is listed in
@@ -76,6 +77,17 @@ CSS = ('<style id="img-desc-css">'
  'font-size:11px;letter-spacing:.01em}'
  '.img-desc .id-m b{font-weight:500;color:var(--ink-soft)}'
  '@media(max-width:600px){.img-desc{padding:40px 20px}.img-desc h2{font-size:20px}}'
+
+ # The site stylesheet hides the inline caption from sight —
+ # .art-inline-img figcaption{position:absolute;width:1px;clip:rect(0,0,0,0)} —
+ # so the description written under every body photo was reaching screen
+ # readers and nobody else. The Boquete pages already show a visible caption
+ # via `.fig figcaption`; this is that rule, addressed at the inline figure.
+ # `figure.art-inline-img` outscores the bare class selector on specificity,
+ # so it wins wherever this <style> lands in the document.
+ 'figure.art-inline-img figcaption{position:static;width:auto;height:auto;'
+ 'margin:12px 0 0;padding:0;overflow:visible;clip:auto;white-space:normal;'
+ 'color:var(--ink-mute);font-size:13px;line-height:1.5;max-width:68ch}'
  # The batch CSS gradient tops out at 72% black, which loses white text on the
  # bright tiles (market roofs, pineapple crates). Deepen it and add a shadow.
  '.art-gallery-grid figcaption{z-index:2;background:linear-gradient(to top,'
