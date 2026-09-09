@@ -459,5 +459,15 @@
     "place": "Panamá",
     "region": "Panamá",
     "desc": "Ceviche de camarón en vaso de poliestireno sobre el mostrador de La Bendición."
+  },
+  "/images/el-valle/lasnubes-camarones.webp": {
+    "label": "Camarones a la plancha · Restaurante Las Nubes",
+    "label_en": null,
+    "desc": "Camarones grandes a la plancha con perejil, servidos sobre pasta en Las Nubes.",
+    "desc_en": null,
+    "place": "Restaurante Las Nubes",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "country": "PA"
   }
 }

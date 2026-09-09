@@ -45,6 +45,10 @@ PLAN = json.loads((ROOT / "scripts/elvalle-image-plan.json").read_text(encoding=
 FACTS = json.loads((ROOT / "scripts/elvalle-image-facts.json").read_text(encoding="utf-8"))
 VER = json.loads((ROOT / "scripts/commons-verified.json").read_text(encoding="utf-8"))
 ARTIST = json.loads((ROOT / "scripts/image-artists.json").read_text(encoding="utf-8"))
+# A photograph we host but did not take. Without this, the branch below would
+# print "Fotografía de PanamaSpot" under someone else's work.
+_tp = ROOT / "scripts/image-thirdparty.json"
+LOCAL = json.loads(_tp.read_text(encoding="utf-8")) if _tp.exists() else {}
 
 BASE = "https://panamaspot.com"
 
@@ -239,6 +243,9 @@ def desc_block(s, lang):
         elif k.startswith("http"):
             credit = f'Pexels · <a href="{pexels_page(k)}" target="_blank" rel="noopener nofollow">' \
                      + ("Licencia Pexels" if lang == "es" else "Pexels License") + "</a>"
+            title = lab
+        elif k in LOCAL:
+            credit = html.escape(LOCAL[k]["credit"])
             title = lab
         else:
             credit = t["own"]
