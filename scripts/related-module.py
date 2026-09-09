@@ -69,6 +69,15 @@ def short_dek(d, n=96):
 def card_hero(og):
     if "images.pexels.com" in og:
         return re.sub(r"([?&]w=)\d+", r"\g<1>700", og), ic.capped_dims(re.sub(r"([?&]w=)\d+", r"\g<1>1600", og), 700)
+    # A locally hosted hero has no thumbnail service to resize it, so the card
+    # serves the file as-is. capped_dims only understands the Wikimedia and
+    # Pexels URL shapes and returns None here, which used to leave the card
+    # <img> with no width/height at all — the browser then reserves no space and
+    # the bento grid reflows as the images arrive.
+    local = og.replace("https://panamaspot.com", "")
+    if local.startswith("/images/"):
+        d = ic._DIMS.get(local)
+        return og, (d["w"], d["h"]) if d else None
     orig = ic.wm_original(og)
     return ic.cap(orig, 500), ic.capped_dims(orig, 500)
 

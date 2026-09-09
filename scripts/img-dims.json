@@ -2330,5 +2330,41 @@
   "/images/el-valle/lasnubes-camarones.webp": {
     "w": 1100,
     "h": 1954
+  },
+  "/images/social/chorro-las-mozas-pozas-el-valle-de-anton-og.webp": {
+    "w": 1200,
+    "h": 630
+  },
+  "/images/social/donde-comer-en-el-valle-de-anton-og.webp": {
+    "w": 1200,
+    "h": 630
+  },
+  "/images/social/tours-en-bicicleta-el-valle-de-anton-og.webp": {
+    "w": 1200,
+    "h": 630
+  },
+  "/images/el-valle/india-dormida.webp": {
+    "w": 1600,
+    "h": 1067
+  },
+  "https://upload.wikimedia.org/wikipedia/commons/3/33/Bothriechis_nigroadspersus_172225700.jpg": {
+    "w": 2048,
+    "h": 1536
+  },
+  "https://upload.wikimedia.org/wikipedia/commons/a/a2/Common_morpho_%28Morpho_helenor_peleides%29.jpg": {
+    "w": 4728,
+    "h": 3152
+  },
+  "https://upload.wikimedia.org/wikipedia/commons/f/f1/Common_morpho_%28Morpho_helenor_peleides%29_underside.jpg": {
+    "w": 4891,
+    "h": 3261
+  },
+  "https://upload.wikimedia.org/wikipedia/commons/f/fa/Tithorea_tarricina_170503929.jpg": {
+    "w": 2048,
+    "h": 1540
+  },
+  "https://upload.wikimedia.org/wikipedia/commons/e/e4/Zebra_longwing_%28Heliconius_charithonia_vazquezae%29.jpg": {
+    "w": 3706,
+    "h": 2471
   }
 }

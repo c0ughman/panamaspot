@@ -336,25 +336,25 @@
   "public/es/articles/mariposario-el-valle-de-anton.html": {
     "lang": "es",
     "hero": [
-      "https://images.pexels.com/photos/7200711/pexels-photo-7200711.jpeg?auto=compress&cs=tinysrgb&w=1280",
-      "Dos mariposas Heliconius, de alas rayadas en naranja y negro, sobre un ramillete de flores amarillas."
+      "File:Common morpho (Morpho helenor peleides).jpg",
+      "Una morfo azul con las alas abiertas: la especie que casi todo el mundo entra a ver."
     ],
     "sections": {
-      "s1": [
-        "https://images.pexels.com/photos/30911817/pexels-photo-30911817.jpeg?auto=compress&cs=tinysrgb&w=960",
-        "Una morfo azul con las alas abiertas sobre una hoja: la especie que casi todo el mundo entra a ver."
-      ],
       "s2": [
-        "https://images.pexels.com/photos/35525462/pexels-photo-35525462.jpeg?auto=compress&cs=tinysrgb&w=960",
-        "Mariposas búho alimentándose de rodajas de naranja en un comedero — es donde se quedan quietas y se ven de cerca."
+        "File:Common morpho (Morpho helenor peleides) underside.jpg",
+        "La misma morfo con las alas cerradas — por debajo es parda y con ocelos, y así pasa desapercibida."
+      ],
+      "s3": [
+        "File:Bothriechis nigroadspersus 172225700.jpg",
+        "Una víbora de pestañas sobre musgo: la especie que la gente entra al serpentario a ver de cerca."
       ],
       "s5": [
-        "https://images.pexels.com/photos/7200725/pexels-photo-7200725.jpeg?auto=compress&cs=tinysrgb&w=960",
-        "Una mariposa moteada posada en una espiga de flor morada: bajo techo el vuelo sigue aunque llueva fuera."
+        "File:Tithorea tarricina 170503929.jpg",
+        "Una Tithorea tarricina posada en el follaje, fotografiada en el valle."
       ],
       "s6": [
-        "https://images.pexels.com/photos/33161296/pexels-photo-33161296.jpeg?auto=compress&cs=tinysrgb&w=960",
-        "Una Heliconius sobre una flor roja — la siembra nectarífera que sostiene tanto este mariposario como el de Gamboa."
+        "File:Zebra longwing (Heliconius charithonia vazquezae).jpg",
+        "Una Heliconius charithonia alimentándose de flores amarillas — la siembra nectarífera que sostiene el mariposario."
       ],
       "s7": [
         "File:Scenery in El Valle de Anton (02).jpg",

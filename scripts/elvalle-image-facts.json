@@ -469,5 +469,55 @@
     "locality": "El Valle de Antón",
     "region": "Coclé",
     "country": "PA"
+  },
+  "File:Common morpho (Morpho helenor peleides).jpg": {
+    "label": "Morfo azul · El Valle de Antón",
+    "label_en": null,
+    "desc": "Una morfo azul con las alas abiertas sobre una hoja, mostrando el azul metálico.",
+    "desc_en": null,
+    "place": "El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "country": "PA"
+  },
+  "File:Common morpho (Morpho helenor peleides) underside.jpg": {
+    "label": "Morfo azul, cara inferior · El Valle de Antón",
+    "label_en": null,
+    "desc": "La cara inferior de una morfo azul: parda, con una fila de ocelos a lo largo del ala.",
+    "desc_en": null,
+    "place": "El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "country": "PA"
+  },
+  "File:Bothriechis nigroadspersus 172225700.jpg": {
+    "label": "Víbora de pestañas · El Valle de Antón",
+    "label_en": null,
+    "desc": "Una víbora de pestañas enroscada sobre un tronco cubierto de musgo, verde y amarilla.",
+    "desc_en": null,
+    "place": "El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "country": "PA"
+  },
+  "File:Tithorea tarricina 170503929.jpg": {
+    "label": "Tithorea tarricina · El Valle de Antón",
+    "label_en": null,
+    "desc": "Una mariposa Tithorea tarricina, de alas naranjas y negras con puntos crema, posada en una hoja.",
+    "desc_en": null,
+    "place": "El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "country": "PA"
+  },
+  "File:Zebra longwing (Heliconius charithonia vazquezae).jpg": {
+    "label": "Heliconius charithonia · El Valle de Antón",
+    "label_en": null,
+    "desc": "Una Heliconius charithonia, rayada en blanco y negro, sobre un ramillete de flores amarillas.",
+    "desc_en": null,
+    "place": "El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "country": "PA"
   }
 }

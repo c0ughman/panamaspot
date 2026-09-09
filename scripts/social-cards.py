@@ -30,6 +30,9 @@ dateModified, so it is not part of the routine image pipeline.)
 """
 import re, sys, json, pathlib, subprocess, urllib.request
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from img_cap import rendered_dims
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 PLAN = json.loads((ROOT / "scripts/elvalle-image-plan.json").read_text(encoding="utf-8"))
 CARD_W, CARD_H = 1200, 630
@@ -96,25 +99,46 @@ def main():
             continue
         p = ROOT / page
         s = p.read_text(encoding="utf-8")
-        url = og(s, "og:image")
-        ow, oh = og(s, "og:image:width"), og(s, "og:image:height")
-        if not (url and ow and oh):
+        # Decide from the hero <img>, not from og:image. og:image is this
+        # script's own output: after one run it points at a 1200x630 card, the
+        # aspect test passes, and a re-run would skip the page it just fixed —
+        # so the meta could never be refreshed and the card's dimensions never
+        # got registered.
+        hm = re.search(r'art-hero-img-full">\s*<img[^>]*\bsrc="([^"]+)"', s)
+        if not hm:
             continue
-        ar = int(ow) / int(oh)
+        hero_url = hm.group(1).replace("&amp;", "&")
+        dims = rendered_dims(hero_url)
+        if not dims:
+            print(f"  ?? {page}: hero dimensions unknown, skipped")
+            continue
+        ar = dims[0] / dims[1]
         if ar >= MIN_AR:
             continue
+        url = hero_url
         slug = page.split("/")[-1][:-5]
         hero = spec["hero"]
         focus = vertical_focus(hero[2] if len(hero) > 2 else None)
-        print(f"  {slug:46s} {ow}x{oh} ar={ar:.2f} focus={focus:.0%}")
+        print(f"  {slug:46s} {dims[0]}x{dims[1]} ar={ar:.2f} focus={focus:.0%}")
         if CHECK:
             continue
+        # The hero <img> carries a root-relative path for our own files and an
+        # absolute URL for Wikimedia and Pexels.
         raw = url.replace("&amp;", "&")
-        src = (ROOT / "public" / raw.replace("https://panamaspot.com/", "")
-               if raw.startswith("https://panamaspot.com/") else fetch(raw))
+        local = raw.replace("https://panamaspot.com", "")
+        src = (ROOT / "public" / local.lstrip("/")) if local.startswith("/images/") else fetch(raw)
         out = OUTDIR / f"{slug}-og.webp"
         build(src, focus, out)
         card = f"https://panamaspot.com/images/social/{out.name}"
+        # related-module.py builds its cards from og:image, so these files also
+        # end up as bento thumbnails on other pages. img_cap reads img-dims.json
+        # to put width/height on those <img>s; without an entry the card ships
+        # dimensionless and the grid reflows.
+        dims_path = ROOT / "scripts/img-dims.json"
+        dd = json.loads(dims_path.read_text(encoding="utf-8"))
+        dd[f"/images/social/{out.name}"] = {"w": CARD_W, "h": CARD_H}
+        dims_path.write_text(json.dumps(dd, ensure_ascii=False, indent=2) + "\n",
+                             encoding="utf-8")
         s = re.sub(r'<meta content="[^"]*" property="og:image"/>',
                    f'<meta content="{card}" property="og:image"/>', s)
         s = re.sub(r'<meta content="[^"]*" name="twitter:image"/>',
