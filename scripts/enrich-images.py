@@ -19,6 +19,11 @@ from img_cap import rendered_dims, wm_original
 ROOT   = pathlib.Path(__file__).resolve().parent.parent
 SEL    = json.loads((ROOT/"scripts"/"image-selections.json").read_text())["selections"]
 ARTIST = json.loads((ROOT/"scripts"/"image-artists.json").read_text()) if (ROOT/"scripts"/"image-artists.json").exists() else {}
+# Photographs by named third parties that we host ourselves — a restaurant shot
+# a reviewer took, say. They live under /images/ like our own files, so without
+# this map the own-photo fallback below would credit them to PanamaSpot, which
+# would be a false claim of authorship. Keyed by the same /images/ path.
+LOCAL = json.loads((ROOT/"scripts"/"image-thirdparty.json").read_text()) if (ROOT/"scripts"/"image-thirdparty.json").exists() else {}
 _VER = ROOT/"scripts"/"commons-verified.json"
 _VERBYURL = ({v["url"]: v for v in json.loads(_VER.read_text(encoding="utf-8")).values()}
              if _VER.exists() else {})
@@ -126,6 +131,11 @@ def image_object(src, alt, lang):
         node["creditText"] = "E-Valley Bikes"
         node["creator"] = {"@type": "Organization", "name": "E-Valley Bikes"}
         node["copyrightNotice"] = "E-Valley Bikes"
+    lc = LOCAL.get(url.replace("https://panamaspot.com", ""))
+    if "creator" not in node and lc:
+        node["creditText"] = lc["credit"]
+        node["creator"] = {"@type": "Person", "name": lc["name"]}
+        node["copyrightNotice"] = "\u00a9 " + lc["name"]
     if "creator" not in node and (url.startswith("/images/") or url.startswith(f"{'https://panamaspot.com'}/images/")):
         node["creditText"] = "PanamaSpot"
         node["creator"] = {"@type": "Organization", "name": "PanamaSpot",
