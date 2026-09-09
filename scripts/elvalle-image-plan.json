@@ -163,6 +163,10 @@
       "s6": [
         "File:Countryside around El Valle (02).jpg",
         "Jardines y techos de teja en las afueras del pueblo, bajo la pared del cráter — el entorno de los restaurantes de las alturas."
+      ],
+      "s7": [
+        "File:Comida de un restaurante de El Valle de Anton.jpg",
+        "Una tabla de entradas en un restaurante de El Valle: canastitas de plátano con dip, ceviche, chicharrón y galletas — el tipo de plato del tramo medio-alto de precios."
       ]
     }
   },
@@ -176,10 +180,6 @@
       "s1": [
         "File:El Valle (1).jpg",
         "El Valle al anochecer desde el borde del cráter: las luces del pueblo encendidas bajo la silueta de la montaña."
-      ],
-      "s2": [
-        "File:Panamá 20230322 141816.jpg",
-        "La calle principal de El Valle: comercios, aceras y estacionamiento en línea, todo dentro del mismo kilómetro."
       ],
       "s3": [
         "File:Architectural Detail of Hotel El Majo del Valle - El Valle - Cocle Province - Panama (11519249273).jpg",
@@ -281,8 +281,8 @@
   "public/es/articles/mercado-el-valle-de-anton.html": {
     "lang": "es",
     "hero": [
-      "File:Artesanias MercadoElValle.jpg",
-      "Artesanía pintada a mano colgada en un puesto del mercado de El Valle de Antón: bandejas, soles, aves y cuencos en fibra y madera."
+      "File:Mercado EL Valle Panama.JPG",
+      "Ristras de ajo, cebolla y ají colgadas sobre el mostrador de un puesto del mercado de El Valle de Antón, con la bandera panameña arriba."
     ],
     "sections": {
       "s3": [
@@ -290,8 +290,8 @@
         "El pasillo central del mercado, con los puestos de fruta y verdura a un lado y la artesanía al otro."
       ],
       "s5": [
-        "File:Mercado EL Valle Panama.JPG",
-        "Ristras de ajo, cebolla y ají colgadas sobre el mostrador — producto de finca, con precio hablado, no marcado."
+        "File:Artesanias MercadoElValle.jpg",
+        "Artesanía pintada a mano en un puesto del mercado: bandejas, soles y aves en fibra y madera — el precio se habla, no viene marcado."
       ],
       "s7": [
         "File:Mercado El Valle de Antón.JPG",
