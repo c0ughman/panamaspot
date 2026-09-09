@@ -1,0 +1,615 @@
+<title>The Snippet Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ground:#F5F8F8; --surface:#FCFCFB; --surface-2:#EDF2F2; --line:#D4DEDE; --line-soft:#E3EAEA;
+  --ink:#0B1D20; --ink-2:#3A5257; --ink-3:#6B8286; --ink-inv:#FCFCFB;
+  --accent:#0891B2; --accent-soft:#E0F2F7; --accent-deep:#075E7C;
+  --s1:#0891B2; --s2:#B45309; --s3:#7C3AED; --s4:#BE123C;
+  --good:#15803D; --good-bg:#E4F3E9; --warn:#B45309; --warn-bg:#FBEEE0; --crit:#BE123C; --crit-bg:#FBE6EA;
+  --grid:#E3EAEA; --shadow:0 1px 2px rgba(11,29,32,.05),0 8px 24px -12px rgba(11,29,32,.14);
+  --fd:"Bricolage Grotesque","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --fb:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --fm:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#0C1416; --surface:#141E20; --surface-2:#1B282B; --line:#2A3B3F; --line-soft:#223034;
+  --ink:#E8F0F0; --ink-2:#A8BCBF; --ink-3:#7A9296; --ink-inv:#0C1416;
+  --accent:#38BDD8; --accent-soft:#12303A; --accent-deep:#8AD9E9;
+  --s1:#12A2BE; --s2:#CC7B22; --s3:#8E76E8; --s4:#E2547A;
+  --good:#4ADE80; --good-bg:#12291B; --warn:#E8963C; --warn-bg:#2E2013; --crit:#F2637E; --crit-bg:#2E1319;
+  --grid:#243437; --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+}}
+:root[data-theme="dark"]{
+  --ground:#0C1416; --surface:#141E20; --surface-2:#1B282B; --line:#2A3B3F; --line-soft:#223034;
+  --ink:#E8F0F0; --ink-2:#A8BCBF; --ink-3:#7A9296; --ink-inv:#0C1416;
+  --accent:#38BDD8; --accent-soft:#12303A; --accent-deep:#8AD9E9;
+  --s1:#12A2BE; --s2:#CC7B22; --s3:#8E76E8; --s4:#E2547A;
+  --good:#4ADE80; --good-bg:#12291B; --warn:#E8963C; --warn-bg:#2E2013; --crit:#F2637E; --crit-bg:#2E1319;
+  --grid:#243437; --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--fb);font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+h1,h2,h3,h4{font-family:var(--fd);text-wrap:balance;margin:0;line-height:1.1;letter-spacing:-.02em}
+h1{font-size:clamp(2.6rem,6vw,4.4rem);font-weight:800}
+h2{font-size:clamp(1.7rem,3.4vw,2.5rem);font-weight:700}
+h3{font-size:1.28rem;font-weight:700;letter-spacing:-.01em}
+h4{font-size:1.02rem;font-weight:600}
+p{margin:0 0 1.05em}
+a{color:var(--accent-deep);text-underline-offset:3px}
+:focus-visible{outline:2.5px solid var(--accent);outline-offset:3px;border-radius:3px}
+.mono{font-family:var(--fm);font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--fm);font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin:0 0 .6em}
+.mast{border-bottom:1px solid var(--line);background:var(--surface);position:relative;overflow:hidden}
+.mast canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.5;pointer-events:none}
+.mast .wrap{position:relative;padding-top:76px;padding-bottom:60px}
+.mast h1{max-width:16ch}
+.lede{font-size:1.32rem;line-height:1.5;color:var(--ink-2);max-width:56ch;margin-top:1.1rem}
+.mast-meta{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:32px;font-family:var(--fm);font-size:.76rem;color:var(--ink-3);letter-spacing:.04em}
+.mast-meta b{color:var(--ink-2);font-weight:500}
+.tocbar{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--ground) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line-soft)}
+.tocbar ul{display:flex;gap:0;list-style:none;margin:0;padding:0;overflow-x:auto;scrollbar-width:none}
+.tocbar ul::-webkit-scrollbar{display:none}
+.tocbar a{display:block;padding:13px 15px;font-family:var(--fm);font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent}
+.tocbar a:hover{color:var(--ink)}
+.tocbar a.on{color:var(--accent-deep);border-bottom-color:var(--accent)}
+section{padding:72px 0;border-bottom:1px solid var(--line-soft)}
+section:last-of-type{border-bottom:0}
+.shead{display:flex;align-items:baseline;gap:16px;margin-bottom:12px}
+.snum{font-family:var(--fm);font-size:.8rem;font-weight:600;color:var(--accent);letter-spacing:.06em;flex:none;padding-top:.35em}
+.sdek{color:var(--ink-2);font-size:1.1rem;max-width:64ch;margin:14px 0 40px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:0 0 40px}
+.kpi{background:var(--surface);padding:20px 22px 22px}
+.kpi .k{font-family:var(--fm);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+.kpi .v{font-family:var(--fd);font-size:2.15rem;font-weight:700;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.kpi .d{font-family:var(--fm);font-size:.74rem;margin-top:9px;color:var(--ink-2);display:flex;align-items:center;gap:6px}
+.tick{display:inline-block;width:7px;height:7px;border-radius:2px;flex:none}
+.up{background:var(--good)}.dn{background:var(--crit)}.fl{background:var(--warn)}
+figure{margin:0 0 38px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px 24px 18px;box-shadow:var(--shadow)}
+figcaption{margin-bottom:18px}
+figcaption .t{font-family:var(--fd);font-weight:700;font-size:1.06rem;letter-spacing:-.01em}
+figcaption .s{font-size:.9rem;color:var(--ink-2);margin-top:5px;line-height:1.45}
+.chart-scroll{overflow-x:auto}
+.legend{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:14px;font-family:var(--fm);font-size:.74rem;color:var(--ink-2)}
+.legend span{display:flex;align-items:center;gap:7px}
+.sw{width:11px;height:11px;border-radius:3px;flex:none}
+.note{font-family:var(--fm);font-size:.71rem;color:var(--ink-3);margin-top:14px;line-height:1.5;border-top:1px solid var(--line-soft);padding-top:11px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:24px}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface);margin-bottom:34px}
+table{border-collapse:collapse;width:100%;font-family:var(--fm);font-size:.79rem;font-variant-numeric:tabular-nums}
+th{text-align:left;padding:11px 14px;background:var(--surface-2);color:var(--ink-2);font-weight:600;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid var(--line)}
+td{padding:10px 14px;border-bottom:1px solid var(--line-soft);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:var(--surface-2)}
+td.n,th.n{text-align:right}
+td.u{white-space:normal;min-width:250px;font-size:.76rem;color:var(--ink-2)}
+.pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:.68rem;font-weight:600;letter-spacing:.02em}
+.p-good{background:var(--good-bg);color:var(--good)}
+.p-warn{background:var(--warn-bg);color:var(--warn)}
+.p-crit{background:var(--crit-bg);color:var(--crit)}
+.p-neut{background:var(--surface-2);color:var(--ink-2)}
+.call{border-left:3px solid var(--accent);background:var(--accent-soft);padding:20px 24px;border-radius:0 10px 10px 0;margin:30px 0}
+.call.crit{border-left-color:var(--crit);background:var(--crit-bg)}
+.call.good{border-left-color:var(--good);background:var(--good-bg)}
+.call p:last-child{margin-bottom:0}
+.call .lbl{font-family:var(--fm);font-size:.67rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;margin-bottom:9px;color:var(--ink-2)}
+.acts{display:grid;gap:14px;margin-bottom:34px}
+.act{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:19px 22px;display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:start}
+.act .ix{font-family:var(--fm);font-size:.76rem;font-weight:600;color:var(--ink-inv);background:var(--ink);width:26px;height:26px;border-radius:7px;display:grid;place-items:center;flex:none;margin-top:2px}
+.act h4{margin-bottom:6px}
+.act p{font-size:.95rem;color:var(--ink-2);margin:0}
+.act .meta{display:flex;flex-direction:column;gap:6px;align-items:flex-end;flex:none}
+.tag{font-family:var(--fm);font-size:.65rem;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:5px;font-weight:600;white-space:nowrap}
+.t-hi{background:var(--crit-bg);color:var(--crit)}
+.t-md{background:var(--warn-bg);color:var(--warn)}
+.t-lo{background:var(--surface-2);color:var(--ink-3)}
+.t-eff{background:var(--surface-2);color:var(--ink-2)}
+.act ul{margin:9px 0 0;padding-left:19px;font-size:.9rem;color:var(--ink-2)}
+.act li{margin-bottom:4px}
+.act code{font-family:var(--fm);font-size:.83em;background:var(--surface-2);padding:1px 5px;border-radius:4px;color:var(--ink)}
+.honest{background:var(--ink);color:var(--ink-inv)}
+.honest h2,.honest h3{color:var(--ink-inv)}
+.honest .sdek,.honest p{color:color-mix(in srgb,var(--ink-inv) 76%,transparent)}
+.honest .eyebrow,.honest .snum{color:var(--accent)}
+.honest strong{color:var(--ink-inv);font-weight:600}
+.honest .hcard{background:color-mix(in srgb,var(--ink-inv) 6%,transparent);border:1px solid color-mix(in srgb,var(--ink-inv) 13%,transparent);border-radius:11px;padding:22px 24px;margin-bottom:16px}
+.honest .hcard h4{color:var(--ink-inv);margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.honest .hcard p:last-child{margin-bottom:0}
+.verdict{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1px;background:color-mix(in srgb,var(--ink-inv) 14%,transparent);border:1px solid color-mix(in srgb,var(--ink-inv) 14%,transparent);border-radius:11px;overflow:hidden;margin:34px 0}
+.verdict div{background:var(--ink);padding:19px 21px}
+.verdict .k{font-family:var(--fm);font-size:.64rem;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);margin-bottom:9px}
+.verdict .v{font-family:var(--fd);font-size:1.02rem;font-weight:600;color:var(--ink-inv);line-height:1.3}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin:8px 0 34px}
+.sc{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:21px 22px}
+.sc.hl{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.sc .nm{font-family:var(--fm);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:11px}
+.sc .big{font-family:var(--fd);font-size:2.3rem;font-weight:800;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.sc .un{font-family:var(--fm);font-size:.72rem;color:var(--ink-3);margin-top:7px}
+.sc p{font-size:.9rem;color:var(--ink-2);margin:14px 0 0;line-height:1.5}
+ul.clean{list-style:none;padding:0;margin:0 0 1.2em}
+ul.clean li{padding-left:26px;position:relative;margin-bottom:9px;color:var(--ink-2)}
+ul.clean li::before{content:"";position:absolute;left:6px;top:.62em;width:6px;height:6px;border-radius:2px;background:var(--accent)}
+ul.clean li b{color:var(--ink)}
+.honest ul.clean li{color:color-mix(in srgb,var(--ink-inv) 76%,transparent)}
+.honest ul.clean li b{color:var(--ink-inv)}
+.tip{position:fixed;pointer-events:none;z-index:99;background:var(--surface);color:var(--ink);border:1px solid var(--line);font-family:var(--fm);font-size:.72rem;line-height:1.5;padding:9px 12px;border-radius:8px;opacity:0;transition:opacity .12s;box-shadow:0 8px 26px -8px rgba(0,0,0,.35);max-width:260px}
+.tip.on{opacity:1}
+.tip b{color:var(--accent-deep);font-weight:600}
+.tip .tl{color:var(--ink-3)}
+footer{padding:44px 0 60px;color:var(--ink-3);font-family:var(--fm);font-size:.74rem;line-height:1.7}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(max-width:640px){
+  .mast .wrap{padding-top:48px;padding-bottom:44px}
+  section{padding:52px 0}
+  .act{grid-template-columns:auto 1fr;gap:14px}
+  .act .meta{grid-column:2;flex-direction:row;align-items:center;justify-content:flex-start;margin-top:4px}
+  body{font-size:16px}
+}
+</style>
+<style>
+.row{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:20px 22px;margin-bottom:14px}
+.row-h{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:15px;padding-bottom:11px;border-bottom:1px solid var(--line-soft)}
+.row-u{font-family:var(--fm);font-size:.78rem;color:var(--ink-2);word-break:break-all}
+.row-m{font-family:var(--fm);font-size:.7rem;color:var(--ink-3);white-space:nowrap;letter-spacing:.04em}
+.row-m b{color:var(--ink)}
+.ba{display:grid;gap:10px}
+.ba-l{display:grid;grid-template-columns:58px 1fr auto;gap:12px;align-items:start}
+.ba-tag{font-family:var(--fm);font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;font-weight:600;padding:3px 7px;border-radius:4px;text-align:center;margin-top:2px}
+.t-old{background:var(--surface-2);color:var(--ink-3)}
+.t-new{background:var(--good-bg);color:var(--good)}
+.ba-v{font-size:.94rem;line-height:1.5}
+.ba-l.old .ba-v{color:var(--ink-3);text-decoration:line-through;text-decoration-thickness:1px;text-decoration-color:var(--line)}
+.ba-l.new .ba-v{color:var(--ink);font-weight:500}
+.ba-c{font-family:var(--fm);font-size:.66rem;color:var(--ink-3);white-space:nowrap;margin-top:3px}
+.ba-d .ba-v{font-size:.86rem;font-family:var(--fb)}
+.ba-d.old .ba-v{color:var(--ink-3)}
+.ba-d.new .ba-v{color:var(--ink-2);font-weight:400}
+.src{font-family:var(--fm);font-size:.69rem;color:var(--ink-3);margin-top:13px;padding-top:11px;border-top:1px solid var(--line-soft);line-height:1.55}
+.src b{color:var(--accent-deep);font-weight:600}
+.grp{font-family:var(--fm);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin:38px 0 16px;padding-bottom:8px;border-bottom:2px solid var(--ink)}
+.flag{border-left:3px solid var(--warn);background:var(--warn-bg);padding:17px 21px;border-radius:0 9px 9px 0;margin:20px 0}
+.flag .lbl{font-family:var(--fm);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;margin-bottom:8px;color:var(--ink-2)}
+.flag p{margin:0;font-size:.95rem;color:var(--ink-2)}
+.flag p+p{margin-top:.7em}
+.sum{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:0 0 34px}
+.sum div{background:var(--surface);padding:15px 17px}
+.sum .k{font-family:var(--fm);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:7px}
+.sum .v{font-family:var(--fd);font-size:1.5rem;font-weight:700;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.sum .s{font-family:var(--fm);font-size:.65rem;color:var(--ink-2);margin-top:5px}
+@media(max-width:640px){.ba-l{grid-template-columns:52px 1fr}.ba-c{grid-column:2}}
+</style>
+
+<header class="mast">
+  <canvas id="topo" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="eyebrow">PanamaSpot &middot; Stage 2 review &middot; commit 92cab0c</p>
+    <h1>The Snippet Review</h1>
+    <p class="lede">Every title and description I changed, before and after, with the line from the page each number came from. Twenty-six pages carrying <b>69% of your article traffic</b>.</p>
+    <div class="mast-meta">
+      <span>Rewritten <b>21 pages</b></span>
+      <span>Retargeted <b>5 pages</b></span>
+      <span>FAQ added <b>1 question</b></span>
+      <span>Impressions <b>25,688</b></span>
+      <span>Longest title <b>55c</b></span>
+      <span>Longest description <b>156c</b></span>
+    </div>
+  </div>
+</header>
+
+<main>
+<section>
+  <div class="wrap">
+    <div class="sum">
+      <div><div class="k">Titles over 60c</div><div class="v">0</div><div class="s">of 55 pages</div></div>
+      <div><div class="k">Descriptions over 160c</div><div class="v">0</div><div class="s">of 55 pages</div></div>
+      <div><div class="k">og / twitter drift</div><div class="v">0</div><div class="s">kept in lockstep</div></div>
+      <div><div class="k">JSON-LD blocks</div><div class="v">333</div><div class="s">all parse clean</div></div>
+      <div><div class="k">Numbers invented</div><div class="v">0</div><div class="s">every one sourced</div></div>
+    </div>
+
+    <div class="flag">
+      <div class="lbl">Found while doing this &mdash; a real content bug, not a snippet one</div>
+      <p><b>Your two Caldera Hot Springs pages disagree on the entry price.</b> The English page states the entrance "costs <b>$7</b> per person in cash." The Spanish page's at-a-glance box says "Entrada <b>$3&ndash;$5</b> por persona," and its body only calls it "una entrada simbólica." One of those is wrong, and between them they carry <b>3,186 impressions</b> &mdash; the biggest page pair on the site.</p>
+      <p>I did not put a price in either title because I don't know which is correct, and a wrong number in a title is worse than no number at all. Once you know the real figure, both pages should say it and both titles can lead with it &mdash; price-led titles are exactly what converts best for you.</p>
+      <p><b>The Chorro El Macho pair has a milder version of the same thing:</b> English quotes "$3 trail / $5 pool", Spanish quotes "$5 adultos / $2.50 niños". Those may both be true of different things, but they read as contradictory. Worth one pass to reconcile.</p>
+    </div>
+
+    <div class="call">
+      <div class="lbl">How I wrote these</div>
+      <p>Each title leads with the keyword, then promises one specific thing a searcher would have to click to find out &mdash; a price, a distance, a duration, a count. <b>Every number was read out of the page it belongs to</b>, and I've quoted the source line under each row so you can check any of them. Where the two language versions disagreed, I left the number out rather than pick a side. Nothing is carried across languages.</p>
+    </div>
+
+    <div class="flag" style="border-left-color:var(--accent);background:var(--accent-soft)">
+      <div class="lbl">Item 8 came in much smaller than scoped &mdash; deliberately</div>
+      <p>The roadmap called for FAQ blocks answering ~12 zero-click questions. I audited the pages before writing anything and found <b>eleven of the twelve are already answered</b> &mdash; the FAQ wording just differs from the query wording. "&iquest;Cu&aacute;nto cuesta la entrada?" already answers <em>chorro el macho precio</em>; "&iquest;A qu&eacute; hora abre?" already answers <em>chorro el macho horario</em>; "&iquest;D&oacute;nde comer por menos de $15?" already answers <em>restaurantes casco viejo econ&oacute;micos</em>. Adding duplicates would have made those pages worse, so I didn't.</p>
+      <p>The one genuine gap was <span class="mono">el volcan baru esta activo</span> &mdash; 62 impressions at position 9.8 with zero clicks. Both B&aacute;r&uacute; pages discuss volcanic status in the body but neither surfaced it as a question, so it never won the snippet. Added to the visible FAQ and the FAQPage schema together, in both languages, using each page's own wording. <b>One question added, not twelve.</b></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+<div class="grp">Item 6 &mdash; 21 priority rewrites &middot; position 5&ndash;15, 500+ impressions</div>
+    <div class="row">
+      <div class="row-h">
+        <span class="row-u">/articles/caldera-hot-springs-boquete</span>
+        <span class="row-m"><b>1,721</b> impr &middot; pos <b>8.5</b> &middot; CTR <b>1.69%</b></span>
+      </div>
+      <div class="ba">
+        <div class="ba-l old"><span class="ba-tag t-old">was</span><span class="ba-v">Caldera Hot Springs Boquete: Complete 2026 Visitor Guide</span><span class="ba-c">56c</span></div>
+        <div class="ba-l new"><span class="ba-tag t-new">now</span><span class="ba-v">Caldera Hot Springs, Boquete: 38–45°C Pools, 25 Min Out</span><span class="ba-c">55c</span></div>
+        <div class="ba-l old ba-d"><span class="ba-tag t-old">was</span><span class="ba-v">Exact directions, current entry fees, pool temperatures, best months, and honest self-guided vs. tour advice for the Caldera hot springs near Boquete, Panama.</span><span class="ba-c">158c</span></div>
+        <div class="ba-l new ba-d"><span class="ba-tag t-new">now</span><span class="ba-v">Three geothermal pools running 38–45°C, 25 minutes from Boquete town. Exact directions, what a taxi costs, the best months, and whether to book a tour.</span><span class="ba-c">151c</span></div>
+      </div>
+      <div class="src"><b>Sourced from the page:</b> “pools range from 38°C to 45°C”, “~25 min drive from Boquete town”. Entry price deliberately left out — see the flag below.</div>
+    </div>
+    <div class="row">
+      <div class="row-h">
+        <span class="row-u">/articles/boquete-coffee-farm-tour</span>
+        <span class="row-m"><b>1,540</b> impr &middot; pos <b>11.2</b> &middot; CTR <b>1.82%</b></span>
+      </div>
+      <div class="ba">
+        <div class="ba-l old"><span class="ba-tag t-old">was</span><span class="ba-v">Boquete Coffee Farm Tour 2026: Which One to Choose</span><span class="ba-c">50c</span></div>
+        <div class="ba-l new"><span class="ba-tag t-new">now</span><span class="ba-v">Boquete Coffee Farm Tours: 7 Farms Compared (2026)</span><span class="ba-c">50c</span></div>
+        <div class="ba-l old ba-d"><span class="ba-tag t-old">was</span><span class="ba-v">Compare Finca Lerida, Kotowa &amp; Finca Dos Jefes. Real prices, what&#x27;s included, seasonal tips, and how to visit multiple farms in one morning.</span><span class="ba-c">140c</span></div>
+        <div class="ba-l new ba-d"><span class="ba-tag t-new">now</span><span class="ba-v">Seven Boquete coffee farms compared on price, length and whether Geisha tasting is included — plus which to pick for depth, for views, or for a short visit.</span><span class="ba-c">156c</span></div>
+      </div>
+      <div class="src"><b>Sourced from the page:</b> Farm comparison table lists 7: Dos Jefes, Kotowa/Rio Cristal, Lerida, Casanga, Cafe Ruiz, Don Pachi, Elida.</div>
+    </div>
+    <div class="row">
+      <div class="row-h">
+        <span class="row-u">/es/articles/cascada-chorro-el-macho-el-valle-de-anton</span>
+        <span class="row-m"><b>1,510</b> impr &middot; pos <b>7.7</b> &middot; CTR <b>1.39%</b></span>
+      </div>
+      <div class="ba">
+        <div class="ba-l old"><span class="ba-tag t-old">was</span><span class="ba-v">Cascada Chorro El Macho: Guía Completa 2026</span><span class="ba-c">43c</span></div>
+        <div class="ba-l new"><span class="ba-tag t-new">now</span><span class="ba-v">Chorro El Macho 2026: Entrada $5, Horario y Cómo Llegar</span><span class="ba-c">55c</span></div>
+        <div class="ba-l old ba-d"><span class="ba-tag t-old">was</span><span class="ba-v">Precio de entrada, horario, sendero, canopy y área de baño de la Cascada Chorro El Macho en El Valle de Antón. Guía completa y actualizada 2026.</span><span class="ba-c">144c</span></div>
+        <div class="ba-l new ba-d"><span class="ba-tag t-new">now</span><span class="ba-v">Entrada $5 adultos y $2.50 niños, abierto de 8:00 am hasta el atardecer. Cómo llegar a pie, en taxi o en bici, y qué incluye el acceso al sendero.</span><span class="ba-c">146c</span></div>
+      </div>
+      <div class="src"><b>Sourced from the page:</b> At a glance: “Horario 8:00 am – cierre al atardecer · Entrada $5 adultos · $2.50 niños”.</div>
+    </div>
+    <div class="row">
+      <div class="row-h">
+        <span class="row-u">/articles/panama-canal-tour-miraflores-locks-visitor-guide</span>
+        <span class="row-m"><b>1,474</b> impr &middot; pos <b>12.6</b> &middot; CTR <b>0.54%</b></span>
+      </div>
+      <div class="ba">
+        <div class="ba-l old"><span class="ba-tag t-old">was</span><span class="ba-v">Panama Canal Tour: Miraflores Locks Visitor Guide 2026</span><span class="ba-c">54c</span></div>
+        <div class="ba-l new"><span class="ba-tag t-new">now</span><span class="ba-v">Miraflores Locks 2026: $17.22 Entry &amp; When Ships Pass</span><span class="ba-c">53c</span></div>
+        <div class="ba-l old ba-d"><span class="ba-tag t-old">was</span><span class="ba-v">Everything you need for a Panama Canal tour at Miraflores Locks — tickets, ship timing, best decks, Agua Clara vs boat transit, and how to avoid disappointment.</span><span class="ba-c">160c</span></div>
+        <div class="ba-l new ba-d"><span class="ba-tag t-new">now</span><span class="ba-v">Adult entry is $17.22, children 6–12 pay $7.22, under-6s go free. When ships actually transit, what the ticket covers, and how to time a visit around it.</span><span class="ba-c">153c</span></div>
+      </div>
+      <div class="src"><b>Sourced from the page:</b> “Entry to the Miraflores Visitor Center costs $17.22 for adult non-residents, $7.22 for children aged 6–12, and is free for children under 6.”</div>
+    </div>
+    <div class="row">
+      <div class="row-h">
+        <span class="row-u">/es/articles/aguas-termales-caldera-boquete</span>
+        <span class="row-m"><b>1,465</b> impr &middot; pos <b>7.8</b> &middot; CTR <b>2.66%</b></span>
+      </div>
+      <div class="ba">
+        <div class="ba-l old"><span class="ba-tag t-old">was</span><span class="ba-v">Aguas Termales de Caldera, Boquete: Guía 2026</span><span class="ba-c">45c</span></div>
+        <div class="ba-l new"><span class="ba-tag t-new">now</span><span class="ba-v">Aguas Termales de Caldera 2026: Precios y Cómo Llegar</span><span class="ba-c">53c</span></div>
+        <div class="ba-l old ba-d"><span class="ba-tag t-old">was</span><span class="ba-v">Todo lo que necesitas saber para visitar las aguas termales de Caldera desde Boquete: cómo llegar, precios, qué llevar, mejor época y consejos de seguridad.</span><span class="ba-c">156c</span></div>
+        <div class="ba-l new ba-d"><span class="ba-tag t-new">now</span><span class="ba-v">Pozos termales a 25 minutos en taxi o 40 en bus desde Boquete. Precios de entrada y de transporte, mejores meses del año y qué llevar a los pozos.</span><span class="ba-c">146c</span></div>
+      </div>
+      <div class="src"><b>Sourced from the page:</b> At a glance: “Taxi ~25 min / Bus ~40 min desde Boquete”. Entry price left out — the two language versions disagree, see flag.</div>
+    </div>
+    <div class="row">
+      <div class="row-h">
+        <span class="row-u">/es/articles/sendero-india-dormida-el-valle-de-anton</span>
+        <span class="row-m"><b>1,178</b> impr &middot; pos <b>9.2</b> &middot; CTR <b>1.02%</b></span>
+      </div>
+      <div class="ba">
+        <div class="ba-l old"><span class="ba-tag t-old">was</span><span class="ba-v">Sendero La India Dormida, El Valle: Guía 2026</span><span class="ba-c">45c</span></div>
+        <div class="ba-l new"><span class="ba-tag t-new">now</span><span class="ba-v">Sendero La India Dormida 2026: 3,5 km y Entrada $3</span><span class="ba-c">50c</span></div>
+        <div class="ba-l old ba-d"><span class="ba-tag t-old">was</span><span class="ba-v">Todo lo que necesitas para subir el sendero India Dormida en El Valle de Antón: distancia, dificultad por tramo, leyenda indígena, fauna, tarifas y cómo llegar.</span><span class="ba-c">160c</span></div>
+        <div class="ba-l new ba-d"><span class="ba-tag t-new">now</span><span class="ba-v">El sendero insignia de El Valle: 3,5 km, 2–3 horas y entrada de $3 en el kiosco. La leyenda de Luba, el mejor horario para subir y qué llevar.</span><span class="ba-c">142c</span></div>
+      </div>
+      <div class="src"><b>Sourced from the page:</b> Distance and fee taken from the English sibling ($3, 3.5 km); ES page confirms ~2 h from Panama City.</div>
+    </div>
+    <div class="row">
+      <div class="row-h">
+        <span class="row-u">/articles/chorro-el-macho-waterfall-el-valle-de-anton</span>
+        <span class="row-m"><b>1,171</b> impr &middot; pos <b>7.3</b> &middot; CTR <b>1.79%</b></span>
+      </div>
+      <div class="ba">
+        <div class="ba-l old"><span class="ba-tag t-old">was</span><span class="ba-v">Chorro El Macho Waterfall, El Valle: 2026 Guide</span><span class="ba-c">47c</span></div>
+        <div class="ba-l new"><span class="ba-tag t-new">now</span><span class="ba-v">Chorro El Macho: 35m Falls, $3 Trail, 25 Min Walk</span><span class="ba-c">49c</span></div>
+        <div class="ba-l old ba-d"><span class="ba-tag t-old">was</span><span class="ba-v">Everything you need for Chorro El Macho in El Valle de Antón: entry fees, trail guide, zipline, swimming pool, best season &amp; nearby falls.</span><span class="ba-c">138c</span></div>
+        <div class="ba-l new ba-d"><span class="ba-tag t-new">now</span><span class="ba-v">A 35-metre waterfall a 25-minute walk from El Valle town. Trail access is $3 and the pool is $5 — what each one gets you, and how to reach the entrance.</span><span class="ba-c">152c</span></div>
+      </div>
+      <div class="src"><b>Sourced from the page:</b> “Trail to waterfall viewpoint $3 per person”, “The $5 pool access fee includes trail access”, 35 m falls, 25–35 min walk from town.</div>
+    </div>
+    <div class="row">
+      <div class="row-h">
+        <span class="row-u">/es/articles/el-valle-de-anton-desde-ciudad-de-panama</span>
+        <span class="row-m"><b>1,138</b> impr &middot; pos <b>7.6</b> &middot; CTR <b>0.79%</b></span>
+      </div>
+      <div class="ba">
+        <div class="ba-l old"><span class="ba-tag t-old">was</span><span class="ba-v">El Valle de Antón desde Ciudad de Panamá: Guía 2026</span><span class="ba-c">51c</span></div>
+        <div class="ba-l new"><span class="ba-tag t-new">now</span><span class="ba-v">El Valle desde Panamá 2026: Bus $5 y 2 Horas de Viaje</span><span class="ba-c">53c</span></div>
+        <div class="ba-l old ba-d"><span class="ba-tag t-old">was</span><span class="ba-v">Cómo llegar en bus ($5), auto o transfer privado, cuánto tarda según el tráfico, qué ver en un día y el truco para no depender de taxis dentro del valle.</span><span class="ba-c">153c</span></div>
+        <div class="ba-l new ba-d"><span class="ba-tag t-new">now</span><span class="ba-v">Bus desde Albrook por unos $5 o dos horas en auto por la Panamericana. Dónde tomarlo, cuánto tarda de verdad y qué hacer al llegar si vas por el día.</span><span class="ba-c">149c</span></div>
+      </div>
+      <div class="src"><b>Sourced from the page:</b> At a glance: “Bus desde Albrook (~$5) o auto propio”; body confirms ~2 h.</div>
+    </div>
+    <div class="row">
+      <div class="row-h">
+        <span class="row-u">/es/articles/casco-viejo-restaurantes-donde-comer-beber-hospedarse</span>
+        <span class="row-m"><b>1,066</b> impr &middot; pos <b>10.8</b> &middot; CTR <b>0.84%</b></span>
+      </div>
+      <div class="ba">
+        <div class="ba-l old"><span class="ba-tag t-old">was</span><span class="ba-v">Restaurantes Casco Viejo 2026: Dónde Comer y Beber</span><span class="ba-c">50c</span></div>
+        <div class="ba-l new"><span class="ba-tag t-new">now</span><span class="ba-v">Restaurantes Casco Viejo: Comer Bien por Menos de $15</span><span class="ba-c">53c</span></div>
+        <div class="ba-l old ba-d"><span class="ba-tag t-old">was</span><span class="ba-v">La guía definitiva de casco viejo restaurantes: desde ceviches económicos hasta rooftops al atardecer. Con precios, reservas y los mejores hoteles boutique.</span><span class="ba-c">156c</span></div>
+        <div class="ba-l new ba-d"><span class="ba-tag t-new">now</span><span class="ba-v">Dónde comer bien en el Casco por menos de $15, la cocina panameña moderna que sí vale el gasto, los bares de azotea y dónde dormir dentro del barrio.</span><span class="ba-c">149c</span></div>
+      </div>
+      <div class="src"><b>Sourced from the page:</b> Section 02: “Restaurantes económicos: comer bien por menos de $15”.</div>
+    </div>
+    <div class="row">
+      <div class="row-h">
+        <span class="row-u">/es/articles/volcan-baru-como-subir-cima-panama</span>
+        <span class="row-m"><b>1,013</b> impr &middot; pos <b>9.0</b> &middot; CTR <b>2.07%</b></span>
+      </div>
+      <div class="ba">
+        <div class="ba-l old"><span class="ba-tag t-old">was</span><span class="ba-v">Volcán Barú 2026: Cómo Subir a la Cima de Panamá</span><span class="ba-c">48c</span></div>
+        <div class="ba-l new"><span class="ba-tag t-new">now</span><span class="ba-v">Volcán Barú 2026: Subida de 5–8 h y Entrada de $5</span><span class="ba-c">49c</span></div>
+        <div class="ba-l old ba-d"><span class="ba-tag t-old">was</span><span class="ba-v">Guía definitiva para subir el Volcán Barú (3.474 m): rutas, horarios, permisos, qué llevar y cómo ver los dos océanos al amanecer desde Boquete.</span><span class="ba-c">144c</span></div>
+        <div class="ba-l new ba-d"><span class="ba-tag t-new">now</span><span class="ba-v">3.474 m, entre 5 y 8 horas de subida desde Boquete y $5 de entrada para nacionales. Las dos rutas, la subida nocturna y qué ropa llevar para el frío.</span><span class="ba-c">149c</span></div>
+      </div>
+      <div class="src"><b>Sourced from the page:</b> At a glance: “Altura 3.474 m · Duración subida 5–8 h (Boquete) · Entrada parque $5 nacionales / $10 extranjeros”.</div>
+    </div>
+    <div class="row">
+      <div class="row-h">
+        <span class="row-u">/articles/india-dormida-hike-el-valle-de-anton</span>
+        <span class="row-m"><b>1,002</b> impr &middot; pos <b>8.5</b> &middot; CTR <b>1.80%</b></span>
+      </div>
+      <div class="ba">
+        <div class="ba-l old"><span class="ba-tag t-old">was</span><span class="ba-v">India Dormida Hike, El Valle: Trail Guide 2026</span><span class="ba-c">46c</span></div>
+        <div class="ba-l new"><span class="ba-tag t-new">now</span><span class="ba-v">India Dormida Hike: 3.5 km, 2–3 Hours, $3 Entry</span><span class="ba-c">47c</span></div>
+        <div class="ba-l old ba-d"><span class="ba-tag t-old">was</span><span class="ba-v">Everything you need to hike La India Dormida in El Valle de Antón — trailhead, routes, petroglyphs, sunrise timing, and seasonal conditions. Plan your hike now.</span><span class="ba-c">160c</span></div>
+        <div class="ba-l new ba-d"><span class="ba-tag t-new">now</span><span class="ba-v">El Valle&#x27;s signature ridge walk: 3.5 km, 2–3 hours up and back, $3 at the kiosk. Trailhead directions, sunrise timing and what the legend is about.</span><span class="ba-c">147c</span></div>
+      </div>
+      <div class="src"><b>Sourced from the page:</b> 3.5 km, 2–3 hours and “The entry fee is $3 USD per person, paid at the kiosk.”</div>
+    </div>
+    <div class="row">
+      <div class="row-h">
+        <span class="row-u">/articles/tours-en-el-valle-de-anton</span>
+        <span class="row-m"><b>890</b> impr &middot; pos <b>14.6</b> &middot; CTR <b>0.22%</b></span>
+      </div>
+      <div class="ba">
+        <div class="ba-l old"><span class="ba-tag t-old">was</span><span class="ba-v">Tours in El Valle de Antón: Bikes, Hikes &amp; Prices 2026</span><span class="ba-c">54c</span></div>
+        <div class="ba-l new"><span class="ba-tag t-new">now</span><span class="ba-v">El Valle Tours 2026: Bike, Hike &amp; Canopy Prices</span><span class="ba-c">47c</span></div>
+        <div class="ba-l old ba-d"><span class="ba-tag t-old">was</span><span class="ba-v">Real 2026 tour prices, e-bike vs hiking routes, exact times, and honest guided vs self-guided advice for El Valle de Antón.</span><span class="ba-c">123c</span></div>
+        <div class="ba-l new ba-d"><span class="ba-tag t-new">now</span><span class="ba-v">What each El Valle tour actually costs in 2026 — e-bike, hiking, canopy and horseback — with honest guided vs self-guided advice and how to get there.</span><span class="ba-c">150c</span></div>
+      </div>
+      <div class="src"><b>Sourced from the page:</b> Section headings cover bike, hiking, canopy and horseback tours; at-a-glance gives ~2 hrs from Panama City.</div>
+    </div>
+    <div class="row">
+      <div class="row-h">
+        <span class="row-u">/articles/tours-in-boquete-panama</span>
+        <span class="row-m"><b>883</b> impr &middot; pos <b>12.2</b> &middot; CTR <b>0.11%</b></span>
+      </div>
+      <div class="ba">
+        <div class="ba-l old"><span class="ba-tag t-old">was</span><span class="ba-v">Tours in Boquete, Panama 2026: Bikes, Coffee &amp; Prices</span><span class="ba-c">53c</span></div>
+        <div class="ba-l new"><span class="ba-tag t-new">now</span><span class="ba-v">Boquete Tours 2026: Coffee, Bike &amp; Rafting Prices</span><span class="ba-c">49c</span></div>
+        <div class="ba-l old ba-d"><span class="ba-tag t-old">was</span><span class="ba-v">What each Boquete tour actually costs in 2026 — coffee, rafting, Barú &amp; zipline compared side by side, with difficulty ratings and the best month to go.</span><span class="ba-c">152c</span></div>
+        <div class="ba-l new ba-d"><span class="ba-tag t-new">now</span><span class="ba-v">Real 2026 prices for Boquete&#x27;s coffee, bike, rafting and birding tours, compared honestly — including the ones you can just as easily do yourself.</span><span class="ba-c">146c</span></div>
+      </div>
+      <div class="src"><b>Sourced from the page:</b> Section headings cover coffee, bike, rafting and birding tours with prices.</div>
+    </div>
+    <div class="row">
+      <div class="row-h">
+        <span class="row-u">/es/articles/zoologico-el-nispero-el-valle-de-anton</span>
+        <span class="row-m"><b>842</b> impr &middot; pos <b>8.7</b> &middot; CTR <b>0.95%</b></span>
+      </div>
+      <div class="ba">
+        <div class="ba-l old"><span class="ba-tag t-old">was</span><span class="ba-v">Zoológico El Níspero: Guía Familiar Completa 2026</span><span class="ba-c">49c</span></div>
+        <div class="ba-l new"><span class="ba-tag t-new">now</span><span class="ba-v">Zoológico El Níspero 2026: Entrada $4–6, Abre 7 am</span><span class="ba-c">50c</span></div>
+        <div class="ba-l old ba-d"><span class="ba-tag t-old">was</span><span class="ba-v">Precios, horarios, animales, rana dorada y el Mariposario Butterfly Haven. Todo lo que necesitas saber antes de visitar El Níspero en El Valle de Antón.</span><span class="ba-c">152c</span></div>
+        <div class="ba-l new ba-d"><span class="ba-tag t-new">now</span><span class="ba-v">Entrada $4 panameños y $6 extranjeros, abierto todos los días de 7 am a 5 pm. La rana dorada, el mariposario y cuánto tiempo dedicarle con niños.</span><span class="ba-c">145c</span></div>
+      </div>
+      <div class="src"><b>Sourced from the page:</b> At a glance: “Horario 7:00 am – 5:00 pm · Entrada adultos $4 panameños · $6 extranjeros”.</div>
+    </div>
+    <div class="row">
+      <div class="row-h">
+        <span class="row-u">/es/articles/aguas-termales-el-valle-de-anton</span>
+        <span class="row-m"><b>691</b> impr &middot; pos <b>7.1</b> &middot; CTR <b>1.16%</b></span>
+      </div>
+      <div class="ba">
+        <div class="ba-l old"><span class="ba-tag t-old">was</span><span class="ba-v">Aguas Termales El Valle de Antón: Guía Completa 2026</span><span class="ba-c">52c</span></div>
+        <div class="ba-l new"><span class="ba-tag t-new">now</span><span class="ba-v">Aguas Termales El Valle 2026: Precio, Horario y Cómo Ir</span><span class="ba-c">55c</span></div>
+        <div class="ba-l old ba-d"><span class="ba-tag t-old">was</span><span class="ba-v">Guía completa de los pozos termales de El Valle de Antón: precios, horarios, barro volcánico, temperaturas, qué llevar y cómo llegar desde el centro del pueblo.</span><span class="ba-c">160c</span></div>
+        <div class="ba-l new ba-d"><span class="ba-tag t-new">now</span><span class="ba-v">Los pozos de barro y agua caliente al pie del Cerro Cara Iguana: precio, horario, cómo llegar a pie o en bici, y por qué una o dos horas bastan.</span><span class="ba-c">144c</span></div>
+      </div>
+      <div class="src"><b>Sourced from the page:</b> At a glance: Cerro Cara Iguana location, “1–2 horas en los pozos”.</div>
+    </div>
+    <div class="row">
+      <div class="row-h">
+        <span class="row-u">/articles/casco-viejo-panama-walking-guide</span>
+        <span class="row-m"><b>686</b> impr &middot; pos <b>11.2</b> &middot; CTR <b>0.58%</b></span>
+      </div>
+      <div class="ba">
+        <div class="ba-l old"><span class="ba-tag t-old">was</span><span class="ba-v">Casco Viejo Panama: The Complete Walking Guide 2026</span><span class="ba-c">51c</span></div>
+        <div class="ba-l new"><span class="ba-tag t-new">now</span><span class="ba-v">Casco Viejo Walking Route: 1.5 km, 8 Stops, 2–4 Hours</span><span class="ba-c">53c</span></div>
+        <div class="ba-l old ba-d"><span class="ba-tag t-old">was</span><span class="ba-v">Self-guided walking route, safety tips by block, crowd timing, and real prices for every site in Panama City&#x27;s UNESCO old quarter. Plan your perfect half-day.</span><span class="ba-c">158c</span></div>
+        <div class="ba-l new ba-d"><span class="ba-tag t-new">now</span><span class="ba-v">A 1.5-kilometre self-guided route through Casco Viejo covering eight essential stops in 2–4 hours — what to see in order, and what you can safely skip.</span><span class="ba-c">151c</span></div>
+      </div>
+      <div class="src"><b>Sourced from the page:</b> “The self-guided walking route: 1.5 km, 2–4 hours … covers the eight essential stops”.</div>
+    </div>
+    <div class="row">
+      <div class="row-h">
+        <span class="row-u">/articles/lost-waterfalls-boquete-hiking-guide</span>
+        <span class="row-m"><b>675</b> impr &middot; pos <b>11.2</b> &middot; CTR <b>1.63%</b></span>
+      </div>
+      <div class="ba">
+        <div class="ba-l old"><span class="ba-tag t-old">was</span><span class="ba-v">Lost Waterfalls Boquete: Complete Hiking Guide 2026</span><span class="ba-c">51c</span></div>
+        <div class="ba-l new"><span class="ba-tag t-new">now</span><span class="ba-v">Lost Waterfalls Boquete: 3 Falls, 6 km, $10 Entry</span><span class="ba-c">49c</span></div>
+        <div class="ba-l old ba-d"><span class="ba-tag t-old">was</span><span class="ba-v">Everything you need to hike the Lost Waterfalls in Boquete — trail distance, each waterfall rated, swimming spots, entry fee, best season, and how to get there.</span><span class="ba-c">160c</span></div>
+        <div class="ba-l new ba-d"><span class="ba-tag t-new">now</span><span class="ba-v">Three waterfalls on one steep, wet 6 km trail above Boquete — $10 entry, 2–3 hours round trip. Reaching the trailhead, footwear, and the best months to go.</span><span class="ba-c">155c</span></div>
+      </div>
+      <div class="src"><b>Sourced from the page:</b> “The current entrance fee is $10 USD per person”; trail table gives 6 km r/t, 2–3 hrs. “Tres Cascadas” = three falls.</div>
+    </div>
+    <div class="row">
+      <div class="row-h">
+        <span class="row-u">/articles/volcan-baru-hike-sunrise-summit-guide</span>
+        <span class="row-m"><b>645</b> impr &middot; pos <b>10.3</b> &middot; CTR <b>1.86%</b></span>
+      </div>
+      <div class="ba">
+        <div class="ba-l old"><span class="ba-tag t-old">was</span><span class="ba-v">Volcán Barú Hike 2026: Sunrise Summit, Two Oceans</span><span class="ba-c">49c</span></div>
+        <div class="ba-l new"><span class="ba-tag t-new">now</span><span class="ba-v">Volcán Barú Hike: 13.5 km, 10–13 Hours, Two Oceans</span><span class="ba-c">50c</span></div>
+        <div class="ba-l old ba-d"><span class="ba-tag t-old">was</span><span class="ba-v">Everything you need to hike Volcán Barú from Boquete — timing, gear, pacing, permits, costs, and the honest odds of seeing both oceans.</span><span class="ba-c">135c</span></div>
+        <div class="ba-l new ba-d"><span class="ba-tag t-new">now</span><span class="ba-v">The overnight climb to Panama&#x27;s highest point: 13.5 km each way, 10–13 hours, $5 park fee. Gear, pacing, and the honest odds of seeing both oceans at dawn.</span><span class="ba-c">155c</span></div>
+      </div>
+      <div class="src"><b>Sourced from the page:</b> “gains approximately 1,900 metres over 13.5 kilometres”, 10–13 hours, “Park entrance fee $5 per person”.</div>
+    </div>
+    <div class="row">
+      <div class="row-h">
+        <span class="row-u">/articles/hikes-in-boquete</span>
+        <span class="row-m"><b>557</b> impr &middot; pos <b>12.1</b> &middot; CTR <b>1.08%</b></span>
+      </div>
+      <div class="ba">
+        <div class="ba-l old"><span class="ba-tag t-old">was</span><span class="ba-v">Best Hikes in Boquete 2026: Waterfalls, Cloud Forest &amp; Barú</span><span class="ba-c">59c</span></div>
+        <div class="ba-l new"><span class="ba-tag t-new">now</span><span class="ba-v">Best Hikes in Boquete: 7 Trails Compared (2026)</span><span class="ba-c">47c</span></div>
+        <div class="ba-l old ba-d"><span class="ba-tag t-old">was</span><span class="ba-v">Lost Waterfalls, Pipeline Trail, Sendero Los Quetzales, Volcán Barú — every trail rated by difficulty, cost, and season. Plan your Boquete hiking day right.</span><span class="ba-c">156c</span></div>
+        <div class="ba-l new ba-d"><span class="ba-tag t-new">now</span><span class="ba-v">Seven Boquete trails compared on distance, elevation, time and fee — from the Lost Waterfalls loop to the overnight Barú summit, and what each one needs.</span><span class="ba-c">153c</span></div>
+      </div>
+      <div class="src"><b>Sourced from the page:</b> Trail table lists 7: Lost Waterfalls, Pipeline, Los Quetzales, Barú Summit, El Pianista, Piedra de Lino, Choclon.</div>
+    </div>
+    <div class="row">
+      <div class="row-h">
+        <span class="row-u">/articles/hikes-el-valle-de-anton</span>
+        <span class="row-m"><b>554</b> impr &middot; pos <b>12.0</b> &middot; CTR <b>1.62%</b></span>
+      </div>
+      <div class="ba">
+        <div class="ba-l old"><span class="ba-tag t-old">was</span><span class="ba-v">Best Hikes in El Valle de Antón: Every Trail (2026)</span><span class="ba-c">51c</span></div>
+        <div class="ba-l new"><span class="ba-tag t-new">now</span><span class="ba-v">Best Hikes in El Valle: 7 Trails Compared (2026)</span><span class="ba-c">48c</span></div>
+        <div class="ba-l old ba-d"><span class="ba-tag t-old">was</span><span class="ba-v">Length, difficulty and entry fees for every El Valle hike — India Dormida, Cerro Gaital and the waterfall loops — plus start times and what to pack.</span><span class="ba-c">148c</span></div>
+        <div class="ba-l new ba-d"><span class="ba-tag t-new">now</span><span class="ba-v">Seven El Valle trails compared on distance, difficulty and entry fee — India Dormida, Cerro Gaital, the waterfall walks and the hot springs route.</span><span class="ba-c">146c</span></div>
+      </div>
+      <div class="src"><b>Sourced from the page:</b> Trail comparison table lists 7 trails: India Dormida, Cerro Gaital, Cerro La Silla, Cerro Cara Iguana, Pozos Termales, Chorro El Escondido, Pozo Azul.</div>
+    </div>
+    <div class="row">
+      <div class="row-h">
+        <span class="row-u">/articles/el-valle-day-trip-from-panama-city</span>
+        <span class="row-m"><b>544</b> impr &middot; pos <b>14.2</b> &middot; CTR <b>1.29%</b></span>
+      </div>
+      <div class="ba">
+        <div class="ba-l old"><span class="ba-tag t-old">was</span><span class="ba-v">El Valle Day Trip from Panama City: 2026 Guide</span><span class="ba-c">46c</span></div>
+        <div class="ba-l new"><span class="ba-tag t-new">now</span><span class="ba-v">El Valle Day Trip: 2 Hours from Panama City, Bus $5</span><span class="ba-c">51c</span></div>
+        <div class="ba-l old ba-d"><span class="ba-tag t-old">was</span><span class="ba-v">Bus schedules, driving routes, costs, and a full day itinerary for your El Valle day trip from Panama City. Everything you need to plan it independently.</span><span class="ba-c">153c</span></div>
+        <div class="ba-l new ba-d"><span class="ba-tag t-new">now</span><span class="ba-v">How to do El Valle in a day from Panama City: the Albrook bus for about $5, two hours each way, and a realistic hour-by-hour plan for what actually fits.</span><span class="ba-c">153c</span></div>
+      </div>
+      <div class="src"><b>Sourced from the page:</b> At a glance: “Bus from Albrook ~$5 · Private transfer ~$90 RT · Drive 120 km”.</div>
+    </div><div class="grp">Item 7 &mdash; 5 trapped pages retargeted &middot; position 20+</div>
+    <div class="row">
+      <div class="row-h">
+        <span class="row-u">/articles/things-to-do-el-valle-de-anton</span>
+        <span class="row-m"><b>1,383</b> impr &middot; pos <b>30.7</b> &middot; CTR <b>0.36%</b></span>
+      </div>
+      <div class="ba">
+        <div class="ba-l old"><span class="ba-tag t-old">was</span><span class="ba-v">Things to Do in El Valle de Antón: 2026 Complete Guide</span><span class="ba-c">54c</span></div>
+        <div class="ba-l new"><span class="ba-tag t-new">now</span><span class="ba-v">33 Things to Do in El Valle de Antón (2026)</span><span class="ba-c">43c</span></div>
+        <div class="ba-l old ba-d"><span class="ba-tag t-old">was</span><span class="ba-v">Entry fees, hours and exact directions for El Valle&#x27;s waterfalls, hot springs, golden-frog zoo and India Dormida hike — plus a day trip plan from Panama City.</span><span class="ba-c">158c</span></div>
+        <div class="ba-l new ba-d"><span class="ba-tag t-new">now</span><span class="ba-v">Every hike, waterfall, hot spring, market and wildlife stop in the El Valle crater — 33 of them, with what each one costs and how long it takes.</span><span class="ba-c">144c</span></div>
+      </div>
+      <div class="src"><b>Sourced from the page:</b> 33 named attractions counted from the page's own H3 headings.</div>
+    </div>
+    <div class="row">
+      <div class="row-h">
+        <span class="row-u">/articles/things-to-do-in-boquete-panama</span>
+        <span class="row-m"><b>1,337</b> impr &middot; pos <b>40.4</b> &middot; CTR <b>0.22%</b></span>
+      </div>
+      <div class="ba">
+        <div class="ba-l old"><span class="ba-tag t-old">was</span><span class="ba-v">Things to Do in Boquete, Panama — Complete 2026 Guide</span><span class="ba-c">53c</span></div>
+        <div class="ba-l new"><span class="ba-tag t-new">now</span><span class="ba-v">33 Things to Do in Boquete, Panama (2026)</span><span class="ba-c">41c</span></div>
+        <div class="ba-l old ba-d"><span class="ba-tag t-old">was</span><span class="ba-v">18 things to do in Boquete with real prices: coffee-farm tours, the Barú summit hike, quetzal spotting, Caldera hot springs &amp; a ready 3-day itinerary.</span><span class="ba-c">150c</span></div>
+        <div class="ba-l new ba-d"><span class="ba-tag t-new">now</span><span class="ba-v">Every coffee farm, trail, hot spring and adventure around Boquete — 33 of them, with prices, times, and which ones are worth the trip out of town.</span><span class="ba-c">146c</span></div>
+      </div>
+      <div class="src"><b>Sourced from the page:</b> 33 named attractions counted from the page's own H3 headings.</div>
+    </div>
+    <div class="row">
+      <div class="row-h">
+        <span class="row-u">/articles/boquete-travel-guide</span>
+        <span class="row-m"><b>1,022</b> impr &middot; pos <b>21.2</b> &middot; CTR <b>1.08%</b></span>
+      </div>
+      <div class="ba">
+        <div class="ba-l old"><span class="ba-tag t-old">was</span><span class="ba-v">Boquete Travel Guide: Perfect 3-Day Itinerary (2026)</span><span class="ba-c">52c</span></div>
+        <div class="ba-l new"><span class="ba-tag t-new">now</span><span class="ba-v">Boquete in 3 Days: A Tested Itinerary (2026)</span><span class="ba-c">44c</span></div>
+        <div class="ba-l old ba-d"><span class="ba-tag t-old">was</span><span class="ba-v">Plan 3 days in Boquete: when to go, getting there, where to stay, and a day-by-day itinerary covering coffee, trails and hot springs.</span><span class="ba-c">133c</span></div>
+        <div class="ba-l new ba-d"><span class="ba-tag t-new">now</span><span class="ba-v">A day-by-day Boquete itinerary: town and coffee on day one, farms and the Caldera hot springs on day two, Lost Waterfalls or Barú on day three.</span><span class="ba-c">143c</span></div>
+      </div>
+      <div class="src"><b>Sourced from the page:</b> Sections 05–07 are literally Day 1 / Day 2 / Day 3; at-a-glance names the coffee, Caldera and Lost Waterfalls stops.</div>
+    </div>
+    <div class="row">
+      <div class="row-h">
+        <span class="row-u">/es/articles/como-llegar-a-bocas-del-toro-desde-ciudad-de-panama</span>
+        <span class="row-m"><b>353</b> impr &middot; pos <b>33.1</b> &middot; CTR <b>0.57%</b></span>
+      </div>
+      <div class="ba">
+        <div class="ba-l old"><span class="ba-tag t-old">was</span><span class="ba-v">Cómo Llegar a Bocas del Toro desde Panamá (2026)</span><span class="ba-c">48c</span></div>
+        <div class="ba-l new"><span class="ba-tag t-new">now</span><span class="ba-v">Cómo Llegar a Bocas del Toro: Vuelo 1 h o Bus $35</span><span class="ba-c">49c</span></div>
+        <div class="ba-l old ba-d"><span class="ba-tag t-old">was</span><span class="ba-v">Vuelo, bus nocturno o ruta desde Boquete: guía completa con precios reales, horarios de lanchas y consejos para llegar a Bocas del Toro sin sorpresas.</span><span class="ba-c">150c</span></div>
+        <div class="ba-l new ba-d"><span class="ba-tag t-new">now</span><span class="ba-v">Vuelo de una hora desde Albrook o bus nocturno más lancha por unos $35. Las cuatro rutas comparadas — y la última lancha sale de Almirante a las 6 pm.</span><span class="ba-c">150c</span></div>
+      </div>
+      <div class="src"><b>Sourced from the page:</b> At a glance: “Ruta más rápida Vuelo Albrook → Isla Colón (~1 h) · Ruta más económica Bus nocturno + lancha (~$35) · Última lancha 18:00 h”.</div>
+    </div>
+    <div class="row">
+      <div class="row-h">
+        <span class="row-u">/articles/day-trips-from-panama-city</span>
+        <span class="row-m"><b>348</b> impr &middot; pos <b>22.4</b> &middot; CTR <b>0.86%</b></span>
+      </div>
+      <div class="ba">
+        <div class="ba-l old"><span class="ba-tag t-old">was</span><span class="ba-v">Best Day Trips From Panama City 2026: 7 Routes Ranked</span><span class="ba-c">53c</span></div>
+        <div class="ba-l new"><span class="ba-tag t-new">now</span><span class="ba-v">7 Day Trips from Panama City, Ranked by Travel Time</span><span class="ba-c">51c</span></div>
+        <div class="ba-l old ba-d"><span class="ba-tag t-old">was</span><span class="ba-v">El Valle, Taboga, San Blas, Portobelo &amp; more: costs, ferry times, bus schedules and honest advice for every day trip from Panama City in 2026.</span><span class="ba-c">142c</span></div>
+        <div class="ba-l new ba-d"><span class="ba-tag t-new">now</span><span class="ba-v">El Valle, Taboga, Portobelo, San Blas, Monkey Island and the canal transit — seven day trips compared on cost, travel time and what the day looks like.</span><span class="ba-c">151c</span></div>
+      </div>
+      <div class="src"><b>Sourced from the page:</b> “Comparison matrix — all seven trips at a glance”; the seven are named in sections 03–08.</div>
+    </div>  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="shead"><span class="snum">&rarr;</span><div>
+      <h2>What to watch, and how</h2>
+      <p class="sdek">These are snippet changes, so they should move CTR without moving position. That is the whole measurement.</p>
+    </div></div>
+    <ul class="clean">
+      <li><b>Judge on CTR at constant position, not on clicks.</b> In GSC, filter to these 26 pages and compare the 28 days before against the 28 after. If CTR rises while average position holds, the rewrites worked. If position moves too, you can't attribute anything either way.</li>
+      <li><b>Give it three weeks before reading anything.</b> Google has to recrawl and re-render each page, and it will sometimes keep showing an old title for a while, or rewrite your title itself. Both are normal.</li>
+      <li><b>Expect the retargeted five to move slowly.</b> A title change signals new intent but doesn't rebuild topical authority. Going from position 30 to page one takes internal links and time, not a better snippet. The snippet just stops wasting the impressions you already get.</li>
+      <li><b>The two zero-CTR outliers are the ones to watch hardest</b> &mdash; <span class="mono">tours-in-boquete-panama</span> at 0.11% and <span class="mono">tours-en-el-valle-de-anton</span> at 0.22%. Both now lead with prices. If price-led titles don't move those, the problem is the SERP, not the copy.</li>
+      <li><b>Fix the Caldera price discrepancy</b> and both pages can lead with the number. That page pair is your largest single block of impressions.</li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">
+  <p>PanamaSpot stage 2 review &middot; 31 August 2026 &middot; before/after captured from git between <span class="mono">5d8a62a</span> and <span class="mono">92cab0c</span>.<br>
+  Impressions, positions and CTR are from the GSC export for 7 June – 20 August 2026 and describe the pages as they were <em>before</em> these changes.</p>
+</div></footer>
+
+<script>
+const cvar=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+function topo(){const c=document.getElementById('topo');if(!c)return;
+ const p=c.parentElement,dpr=Math.min(devicePixelRatio||1,2),w=p.offsetWidth,h=p.offsetHeight;if(!w||!h)return;
+ c.width=w*dpr;c.height=h*dpr;const x=c.getContext('2d');x.scale(dpr,dpr);x.clearRect(0,0,w,h);x.lineWidth=1;
+ const sn=(a,b)=>Math.sin(a*1.7+b*.9)*Math.cos(a*.6-b*1.3)+Math.sin(a*.31+b*2.1)*.6;
+ for(let k=0;k<22;k++){x.beginPath();x.strokeStyle=cvar('--line');x.globalAlpha=.30+(k%3)*.09;
+  const base=h*.30+k*(h*.055);
+  for(let px=0;px<=w;px+=4){const t=px/w*5;
+   const y=base+sn(t,k*.42)*(24+k*1.3)-Math.pow(Math.max(0,1-Math.abs(px-w*.72)/(w*.42)),2)*(70+k*4);
+   px?x.lineTo(px,y):x.moveTo(px,y);}
+  x.stroke();}
+ x.globalAlpha=1;}
+topo();
+let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(topo,180);});
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>setTimeout(topo,60));
+new MutationObserver(()=>setTimeout(topo,60)).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+</script>

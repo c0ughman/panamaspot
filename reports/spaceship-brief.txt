@@ -1,0 +1,397 @@
+==============================================================================
+PANAMASPOT — 36-ARTICLE CONTENT BRIEF FOR THE SEO PIPELINE
+==============================================================================
+
+Target repo:  c0ughman/panamaspot   branch: main
+Pipeline:     spaceship/backend/seo_pipeline.py  (SeoSite -> SeoTopic -> SeoPage)
+Prepared:     2 September 2026
+
+WHAT THIS IS
+36 article briefs, batched. Each maps to one SeoTopic row: `topic`,
+`primary_keyword`, `secondary_keywords`, `notes`. The suggested slug is included
+because the pipeline derives slugs from primary_keyword and these need to differ
+in a few cases.
+
+BEFORE QUEUEING ANYTHING — FOUR SETUP ITEMS
+
+1. TWO SeoSite ROWS ARE NEEDED, NOT ONE.
+   `language`, `serp_language_code` and `serp_location_code` live on SeoSite, not
+   on SeoTopic. 23 of these are English and 13 are Spanish, and the Spanish ones
+   target Panama, not the US. So:
+     - panamaspot-en : language "en", serp_language_code "en", pages_directory "public/articles/"
+     - panamaspot-es : language "es", serp_language_code "es", pages_directory "public/es/articles/"
+   Both should use the Panama SERP location, not the 2840 (United States) default
+   — 232 of the site's 397 clicks come from Panama. Verify the DataForSEO code for
+   Panama before the first run rather than trusting a remembered value.
+
+2. CREDENTIALS. The pipeline needs TAVILY_API_KEY (research stage) and
+   GITHUB_TOKEN (publish stage). Neither is in the local backend/.env. Confirm
+   both are set on Railway or the run dies at stage 4. DataForSEO is funded
+   ($41.82 as of 31 Aug).
+
+3. VALIDATE VOLUME FIRST — about $3 and one hour. The keywords below come from
+   the site's own Search Console data, which proves people reach this domain on
+   these themes. It does NOT prove the absolute volume justifies a page. Pull
+   DataForSEO search volume for all 36 primary keywords and drop anything with no
+   real demand before writing.
+
+4. PAGES ARE STATIC HTML IN public/, NOT NEXT ROUTES. Existing articles live at
+   public/articles/*.html and public/es/articles/*.html. The template extractor
+   is spaceship/backend/extract_ps_template.py. Do not create src/app routes.
+
+HOUSE RULES — APPLY TO ALL 36
+
+LENGTH: 2,500-4,000 words. Do NOT default to 8,000. The site's own data argues
+  against it: things-to-do-el-valle is 8,606 words and ranks 30.7;
+  things-to-do-in-boquete is 8,315 and ranks 40.4; shorter named-attraction pages
+  hold single digits. Specificity ranks, not length.
+
+TITLES: 60 rendered characters maximum, keyword first, then one specific
+  promise — a price, a distance, a duration, a count. Not "Complete Guide".
+  Working examples now live on the site:
+     India Dormida Hike: 3.5 km, 2-3 Hours, $3 Entry
+     Miraflores Locks 2026: $17.22 Entry & When Ships Pass
+     33 Things to Do in El Valle de Anton (2026)
+  Count the rendered character, not the HTML entity: "&amp;" is one character.
+
+DESCRIPTIONS: 160 rendered characters maximum. Lead with the concrete fact and
+  stop before the payoff.
+
+FACTS: every price, distance and duration must be verifiable and dated. Where a
+  figure could not be confirmed, write around it rather than guessing. Two
+  existing pages currently contradict each other on the Caldera hot springs entry
+  fee ($7 on the English page, $3-5 on the Spanish) — do not propagate either
+  number into new pages until it is resolved.
+
+SPANISH: native Panamanian Spanish, not translated English. The Spanish articles
+  are NOT translations of the English ones and must not be written as such — the
+  two libraries deliberately cover different ground.
+
+SCHEMA: Article + FAQPage + BreadcrumbList, matching the existing pages. 10-12
+  FAQs per article. Check the target page's existing FAQs before adding one — on
+  the current site, eleven of twelve "missing" questions turned out to be already
+  answered under different wording.
+
+INTERNAL LINKS: 10-14 per article. Every article links up to its destination hub
+  (/articles/el-valle-de-anton, /articles/boquete, /articles/panama-city and the
+  three /es/ equivalents) and across to 3-4 siblings in the same cluster.
+
+CLIENT CTA: El Valle and Boquete articles carry an E-Valley Bikes CTA pointing at
+  /funnels/evalley_elvalle or /funnels/evalley_boquete (append _es on Spanish
+  pages). Panama City and Bocas articles carry NO CTA — there is no client there.
+  scripts/cta-pass.py handles injection; do not hand-write these blocks.
+
+AFTER EACH BATCH, run in the panamaspot repo:
+     python3 scripts/chrome-fix.py       # footer + Spanish header, idempotent
+     python3 scripts/build-hub.py        # hubs pick up new articles
+     npm run build                       # asserts analytics on every page
+
+==============================================================================
+Batch 1 — commercial intent. Run these first. Two of them target queries where the site already ranks top-six for the bike client's competitors by name and earns nothing.
+==============================================================================
+
+--- 1.1  [EN]  Boquete ---
+topic:              Boquete Tour Prices Compared: What Every Operator Actually Charges
+primary_keyword:    boquete tour prices
+secondary_keywords: ["boquete outdoor adventures prices", "chiriqui boquete tours", "boquete tours", "boquete tour guide", "boquete tour cost"]
+suggested_slug:     /articles/boquete-tour-prices-compared
+notes:              ~200 impressions of people shopping for tour operators by name, where you already rank and earn nothing. Highest commercial value in the Boquete set — every comparison naturally ends at a bike-rental option.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): "boquete outdoor adventures prices" 73 impr pos 5 · "chiriqui boquete tours" 71 pos 15 · "boquete tours" 31 · "boquete tour guide" 23
+
+--- 1.2  [EN]  Boquete ---
+topic:              Boquete Bike Rental: Prices, Routes and Where to Actually Ride
+primary_keyword:    boquete bike rental
+secondary_keywords: ["bike rental boquete panama", "e-bike boquete", "boquete cycling", "rent a bike boquete"]
+suggested_slug:     /articles/boquete-bike-rental
+notes:              Your client conversion page exists in Spanish only, and Boquete demand is majority English. This is the most obvious missing page on the site for the business you actually have.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): Direct gap — /es/articles/alquiler-de-bicicletas-boquete exists, no English equivalent anywhere
+
+--- 1.3  [ES]  Boquete ---
+topic:              ¿El Volcán Barú está activo? Lo que hay que saber antes de subir
+primary_keyword:    el volcan baru esta activo
+secondary_keywords: ["volcan baru activo o inactivo", "ultima erupcion volcan baru", "volcan baru peligro", "es peligroso subir el volcan baru"]
+suggested_slug:     /es/articles/volcan-baru-esta-activo
+notes:              Ranks page one already and converts nothing. Safety-and-status questions are AI-Overview-resistant because Google will not risk a stale answer, and it feeds both existing Barú pages.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): "el volcan baru esta activo" 62 impr pos 9.8, zero clicks · "volcan baru" 44 pos 20
+
+--- 1.4  [ES]  El Valle ---
+topic:              El Valle de Antón: precios y horarios de todas las atracciones 2026
+primary_keyword:    precios y horarios el valle de anton
+secondary_keywords: ["chorro el macho horario", "chorro el macho precio", "entradas para chorro macho", "horario del nispero valle de anton", "horario del zoologico del valle de anton", "aguas termales valle de anton precio"]
+suggested_slug:     /es/articles/precios-horarios-atracciones-el-valle-de-anton
+notes:              ~155 impressions of pure practical intent across six queries you already rank top-ten for and mostly earn nothing from. This exact pattern already produces your single highest CTR. One master page, updated annually, that every attraction article links into.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): "chorro el macho horario" 64 impr pos 3.5 (4.69% CTR — your best) · "chorro el macho precio" 42 pos 6.9 · "entradas para chorro macho" pos 3.2 · "horario del níspero" · "horario del zoológico" · "aguas termales valle de antón precio"
+
+--- 1.5  [ES]  El Valle ---
+topic:              Tours en bicicleta en El Valle: precios y comparación honesta
+primary_keyword:    tours en bicicleta el valle de anton
+secondary_keywords: ["el valle biking and hiking tours", "go panama bike tours india dormida", "barefoot panama el valle explorer tour", "alquiler de bicicletas el valle", "precio tour bicicleta el valle"]
+suggested_slug:     /es/articles/tours-en-bicicleta-el-valle-de-anton
+notes:              People searching your client's direct competitors by name, with price intent, while you sit at position 3.6 and collect nothing. The single highest-commercial-value page on the entire site.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): "el valle biking and hiking tours" 39 impr pos 5.8, 0 clicks · "go panama bike tours india dormida and waterfall price" 17 pos 3.6 · "barefoot panama el valle explorer tour" 15 pos 9.2
+
+--- 1.6  [ES]  El Valle ---
+topic:              Qué hacer en El Valle de Antón gratis
+primary_keyword:    que hacer en el valle de anton gratis
+secondary_keywords: ["el valle de anton gratis", "atracciones gratuitas el valle", "que hacer gratis en el valle"]
+suggested_slug:     /es/articles/que-hacer-gratis-el-valle-de-anton
+notes:              Ranks page one and converts nothing. Free-activity intent is a large, distinct audience from your paid-attraction pages, and it is exactly the domestic weekend visitor you convert best.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): "que hacer en el valle de antón gratis" 45 impr pos 10.5, zero clicks
+==============================================================================
+Batch 2 — the Bocas cluster. Run all six as one block, not spread out. A single page in a new destination dilutes rather than concentrates; six together make the cluster legible and unlock a Bocas hub page.
+==============================================================================
+
+--- 2.1  [EN]  Rest of Panama ---
+topic:              Which Bocas del Toro Island Should You Stay On?
+primary_keyword:    which bocas del toro island to stay on
+secondary_keywords: ["best island bocas del toro", "islands of bocas del toro", "bocas islands", "where to stay bocas del toro"]
+suggested_slug:     /articles/which-bocas-del-toro-island
+notes:              ~170 impressions ranking between 65 and 79 — Google knows the topic exists on your domain and has nothing worth ranking. The decision page that anchors the whole Bocas cluster.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): "bocas islands" 117 impr pos 76 · "islands of bocas del toro" 34 pos 79 · "best island bocas del toro" 13 pos 65 · "best island in bocas del toro" pos 30
+
+--- 2.2  [EN]  Rest of Panama ---
+topic:              How to Get to Bocas del Toro: Flight, Bus and Boat Compared
+primary_keyword:    how to get to bocas del toro
+secondary_keywords: ["panama city to bocas del toro", "boat from panama city to bocas del toro", "flight to bocas del toro", "almirante to bocas town"]
+suggested_slug:     /articles/how-to-get-to-bocas-del-toro
+notes:              Bocas is genuinely hard to reach and the logistics are the first thing anyone searches. Spanish already has this page at position 33; English has nothing.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): "boat from panama city to bocas del toro" 12 impr pos 63.8 · ES equivalent exists and ranks 33
+
+--- 2.3  [EN]  Rest of Panama ---
+topic:              Starfish Beach and Boca del Drago
+primary_keyword:    starfish beach bocas del toro
+secondary_keywords: ["starfish beach panama bocas", "boca del drago", "playa estrella bocas"]
+suggested_slug:     /articles/starfish-beach-boca-del-drago
+notes:              The single most-searched named attraction in Bocas. You rank in the fifties on a specific-attraction query, which is exactly the page type you demonstrably win elsewhere.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): "starfish beach panama bocas" 13 pos 56.5 · "starfish beach bocas del toro panama" 10 pos 45.9
+
+--- 2.4  [EN]  Rest of Panama ---
+topic:              Red Frog Beach and Isla Bastimentos
+primary_keyword:    red frog beach bocas del toro
+secondary_keywords: ["isla bastimentos", "red frog beach how to get there", "bastimentos national park"]
+suggested_slug:     /articles/red-frog-beach-isla-bastimentos
+notes:              Second most-searched Bocas attraction. Your entire ranking strength is in named-attraction pages — this is that formula applied where the demand already exists.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): Named-attraction gap within a cluster showing 300+ impressions of unmet demand
+
+--- 2.5  [EN]  Rest of Panama ---
+topic:              Cayos Zapatillas: The Best Snorkelling in Bocas
+primary_keyword:    cayos zapatillas
+secondary_keywords: ["zapatilla cays bocas del toro", "snorkelling bocas del toro", "best snorkeling bocas"]
+suggested_slug:     /articles/cayos-zapatillas-snorkelling
+notes:              Rounds the Bocas cluster to six and doubles as the entry point for multi-day boat tours — a high-ticket niche with many small operators, which is the direction the site's monetisation is heading.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): Zapatilla queries present in the export · completes the island set
+
+--- 2.6  [EN]  Rest of Panama ---
+topic:              Bocas del Toro Island Hopping: Routes, Boats and Real Costs
+primary_keyword:    bocas del toro island hopping
+secondary_keywords: ["bocas del toro island hopping tour", "island hopping bocas", "bocas boat tour price"]
+suggested_slug:     /articles/bocas-del-toro-island-hopping
+notes:              You already have a page here at position 18 — this rebuilds it properly with the four island pages above linking in. Highest-ticket commercial intent in the Bocas set.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): "bocas del toro island hopping" 40 impr pos 61 · existing page ranks 18.2 but is thin
+==============================================================================
+Batch 3 — practical and logistics. The most linkable pages in the set, and they catch people before they have chosen anything.
+==============================================================================
+
+--- 3.1  [EN]  Boquete ---
+topic:              Panama City to Boquete: Bus, Flight or Drive, Honestly Compared
+primary_keyword:    panama city to boquete
+secondary_keywords: ["how to get from panama city to boquete", "panama city to boquete bus", "panama city to boquete flight", "david to boquete"]
+suggested_slug:     /articles/panama-city-to-boquete
+notes:              Spanish has cómo-llegar-a-boquete-sin-carro; English has nothing and ranks in the thirties. Transport pages catch people before they have chosen anything else.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): "how to get from panama city to boquete" pos 32.5 · "how to get to boquete from panama city" pos 33
+
+--- 3.2  [ES]  El Valle ---
+topic:              Cómo llegar a El Valle desde Albrook: horarios y precios de buses
+primary_keyword:    bus albrook el valle de anton
+secondary_keywords: ["terminal de albrook horario de buses valle de anton", "como llegar al valle de anton", "precio bus albrook el valle", "horario buses el valle"]
+suggested_slug:     /es/articles/buses-albrook-el-valle-horarios-precios
+notes:              Schedule and fare data is the most AI-resistant content that exists — it changes, so Google will not summarise it. Small volume, exceptional CTR, and it catches people at the decision moment.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): "terminal de albrook horario de buses valle de antón" 11 impr pos 10.6 · "como llegar al valle de anton" 6 pos 10 · "el valle de antón cómo llegar" pos 24
+
+--- 3.3  [EN]  Rest of Panama ---
+topic:              Is Panama Safe? An Honest 2026 Answer
+primary_keyword:    is panama safe
+secondary_keywords: ["is panama safe for tourists", "panama safety 2026", "is panama city safe", "safest places in panama"]
+suggested_slug:     /articles/is-panama-safe
+notes:              The most linkable page in this entire document. Forums, Reddit threads and relocation blogs link to good safety pages constantly. Written honestly it earns links passively for years.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): No coverage · uncontested by any Panama-focused site with real authority
+
+--- 3.4  [EN]  Rest of Panama ---
+topic:              Best Time to Visit Panama: Month by Month, Region by Region
+primary_keyword:    best time to visit panama
+secondary_keywords: ["panama weather by month", "panama dry season", "panama rainy season", "when to visit panama"]
+suggested_slug:     /articles/best-time-to-visit-panama
+notes:              The canonical linkable data asset. Region-by-region rainfall genuinely does not exist well anywhere, and it feeds every destination page you own.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): No coverage · anchors the Boquete and El Valle seasonal pages
+
+--- 3.5  [EN]  Rest of Panama ---
+topic:              Renting a Car in Panama: Rules, Real Costs and Road Conditions
+primary_keyword:    renting a car in panama
+secondary_keywords: ["car rental panama cost", "driving in panama", "panama car rental insurance", "is it safe to drive in panama"]
+suggested_slug:     /articles/renting-a-car-in-panama
+notes:              High-volume practical query with genuine gotchas (mandatory insurance, police checkpoints) that generic sites get wrong. Catches independent travellers, who are your best activity converters.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): "best scenic drives near me" pos 1.0 · transport cluster ranking 27–63 throughout
+
+--- 3.6  [EN]  Rest of Panama ---
+topic:              Panama eSIM and Mobile Data: What Actually Works
+primary_keyword:    panama esim
+secondary_keywords: ["panama sim card for tourists", "mobile data panama", "best sim card panama", "internet in panama travel"]
+suggested_slug:     /articles/panama-esim-mobile-data
+notes:              Everyone searches this and almost nobody covers Panama specifically. Cheap to write, needs annual refresh, and it reaches people weeks before they book anything.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): No coverage · standard pre-trip query for every international visitor
+==============================================================================
+Batch 4 — cluster completion. Named attractions that finish El Valle and Boquete.
+==============================================================================
+
+--- 4.1  [EN]  Boquete ---
+topic:              Boquete Hot Springs Compared: Caldera vs Los Pozos
+primary_keyword:    boquete hot springs
+secondary_keywords: ["hot springs boquete", "aguas termales boquete", "caldera hot springs vs los pozos", "best hot springs chiriqui"]
+suggested_slug:     /articles/boquete-hot-springs-compared
+notes:              Your Caldera page is your best performer at position 8.5. The comparison intent is a separate query set you currently answer with the same page — split it and win both.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): "aguas termales boquete" 39 impr pos 10.3 · "hot springs boquete" 38 pos 10.9 · "caldera hot springs" 244 pos 10.2
+
+--- 4.2  [EN]  Boquete ---
+topic:              Boquete Cycling Routes: Five Rides Out of Town
+primary_keyword:    boquete cycling routes
+secondary_keywords: ["cycling boquete panama", "bike routes boquete", "boquete bike trails", "road cycling chiriqui"]
+suggested_slug:     /articles/boquete-cycling-routes
+notes:              The only page in this set built purely for the client rather than for search. Pure bike intent, links straight to rental, and it gives the rental page something to rank alongside.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): No direct query data yet — this is a demand-creation page, not a demand-capture page
+
+--- 4.3  [ES]  El Valle ---
+topic:              La Piedra Pintada y los petroglifos de El Valle
+primary_keyword:    piedra pintada el valle de anton
+secondary_keywords: ["petroglifos el valle de anton", "piedra pintada precio", "sendero piedra pintada"]
+suggested_slug:     /es/articles/piedra-pintada-petroglifos-el-valle
+notes:              Completes the attraction set. Cluster completeness is why El Valle outranks Boquete on comparable pages — each addition strengthens the whole group, and this one sits on a walkable route you can sell.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): Uncovered attraction in a cluster where you already rank top-ten on eight other pages
+
+--- 4.4  [ES]  El Valle ---
+topic:              Mercado de El Valle: qué comprar y qué días abre
+primary_keyword:    mercado el valle de anton
+secondary_keywords: ["mercado de artesanias el valle", "que dias abre el mercado el valle", "mercado dominical el valle"]
+suggested_slug:     /es/articles/mercado-el-valle-de-anton
+notes:              The Sunday market is one of the three things every visitor does and you have nothing on it. Days-and-hours intent again, which is the pattern that demonstrably converts on your site.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): Top-three El Valle attraction with zero coverage · pairs with the horarios cluster
+
+--- 4.5  [ES]  El Valle ---
+topic:              Chorro Las Mozas y las pozas de El Valle
+primary_keyword:    chorro las mozas
+secondary_keywords: ["pozas el valle de anton", "donde nadar el valle de anton", "pozo azul el valle"]
+suggested_slug:     /es/articles/chorro-las-mozas-pozas-el-valle
+notes:              Chorro El Macho is your second-strongest page. The swimming-hole intent is adjacent but distinct, and captures visitors looking for the free alternative to the paid waterfall.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): Complements /articles/chorro-el-macho-waterfall (1,171 impr, pos 7.3) and the waterfalls page
+
+--- 4.6  [ES]  El Valle ---
+topic:              Mariposario, serpentario y orquideario: las atracciones pequeñas de El Valle
+primary_keyword:    mariposario el valle de anton
+secondary_keywords: ["serpentario el valle", "orquideario el valle de anton", "aprovaca el valle", "butterfly haven el valle"]
+suggested_slug:     /es/articles/mariposario-serpentario-orquideario-el-valle
+notes:              Bundles four minor attractions that individually cannot carry a page. Feeds the prices-and-hours master page and rounds out the rainy-day and family angles.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): "horario del níspero" 11 · "zoológico el níspero fotos" · small-attraction queries throughout
+==============================================================================
+Batch 5 — accommodation and decision pages. The site has zero accommodation coverage today.
+==============================================================================
+
+--- 5.1  [EN]  Boquete ---
+topic:              Best Time to Visit Boquete: Month by Month, Including Bajareque
+primary_keyword:    best time to visit boquete
+secondary_keywords: ["boquete weather by month", "bajareque boquete", "boquete rainy season", "when to go to boquete"]
+suggested_slug:     /articles/best-time-to-visit-boquete
+notes:              Boquete has a genuinely unusual microclimate that existing guides describe badly. Feeds every activity page and is one of the more linkable things in the Boquete set.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): No coverage sitewide · pairs with the Panama-wide seasonal page in section 05
+
+--- 5.2  [EN]  Boquete ---
+topic:              Where to Stay in Boquete: Bajo Boquete vs Jaramillo vs Alto Quiel
+primary_keyword:    where to stay in boquete
+secondary_keywords: ["boquete hotels", "best area to stay boquete", "bajo boquete vs alto quiel", "boquete accommodation"]
+suggested_slug:     /articles/where-to-stay-boquete
+notes:              Complete category gap. Accommodation queries are high-volume and you currently forfeit them entirely — and the neighbourhood framing is defensible against generic hotel listings.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): Zero accommodation coverage across all 48 pages
+
+--- 5.3  [EN]  El Valle ---
+topic:              El Valle de Antón vs Boquete: which mountain town is right for you?
+primary_keyword:    el valle de anton vs boquete
+secondary_keywords: ["boquete or el valle", "best mountain town panama", "el valle vs boquete which is better"]
+suggested_slug:     /articles/el-valle-vs-boquete
+notes:              Decision-stage content that ranks for both destination names without competing for either bare term. Internally it is the strongest possible bridge between your two commercial clusters.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): Comparison intent unserved · links your two strongest clusters together
+
+--- 5.4  [EN]  El Valle ---
+topic:              Where to Stay in El Valle de Antón
+primary_keyword:    where to stay in el valle de anton
+secondary_keywords: ["el valle de anton hotels", "el valle accommodation", "best hotels el valle panama"]
+suggested_slug:     /articles/where-to-stay-el-valle-de-anton
+notes:              Same category gap as Boquete. Foreign visitors book accommodation before activities, so this page catches them earlier in the funnel than anything else you have.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): Zero accommodation coverage · "el valle resort" and hotel-adjacent queries appearing already
+
+--- 5.5  [EN]  El Valle ---
+topic:              El Valle in One Day: The Itinerary That Actually Fits
+primary_keyword:    el valle de anton itinerary
+secondary_keywords: ["one day in el valle de anton", "el valle de anton in a day", "what to do in el valle in one day"]
+suggested_slug:     /articles/el-valle-one-day-itinerary
+notes:              The existing page answers "how do I get there". This answers "what do I do once I am there" — a different query set, and the natural place to put a bike tour as the spine of the day.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): /articles/el-valle-day-trip-from-panama-city ranks · this is the on-the-ground version
+
+--- 5.6  [ES]  El Valle ---
+topic:              Cuándo ir a El Valle: clima mes a mes
+primary_keyword:    clima el valle de anton
+secondary_keywords: ["mejor epoca para visitar el valle de anton", "el valle de anton temporada seca", "clima el valle mes a mes"]
+suggested_slug:     /es/articles/cuando-ir-el-valle-clima-mes-a-mes
+notes:              Completes a three-page seasonal set that cross-links tightly. Weather pages get linked to by forums and trip-planning threads more than any attraction page will.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): Seasonal intent unserved · pairs with the Boquete and Panama-wide seasonal pages
+==============================================================================
+Batch 6 — breadth. Lowest urgency; cut first if the pace slips.
+==============================================================================
+
+--- 6.1  [EN]  Boquete ---
+topic:              Quetzal Season in Boquete: When to Come and Where to Look
+primary_keyword:    quetzal season boquete
+secondary_keywords: ["resplendent quetzal panama", "where to see quetzals boquete", "los quetzales trail birds", "birdwatching boquete"]
+suggested_slug:     /articles/quetzal-season-boquete
+notes:              Seasonal urgency drives clicks, guided birding is high-margin and fragmented, and this is one of the few Panama topics that can attract conservation and academic citations.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): Finca Lérida page ranks with 200+ impressions · seasonal birding intent is unserved
+
+--- 6.2  [ES]  Boquete ---
+topic:              Cuánto cuesta una semana en Boquete: precios reales 2026
+primary_keyword:    cuanto cuesta boquete
+secondary_keywords: ["presupuesto boquete panama", "precios boquete", "viajar a boquete barato", "cuanto cuesta una semana en boquete"]
+suggested_slug:     /es/articles/cuanto-cuesta-una-semana-en-boquete
+notes:              Cost pages need current, verified numbers, which is precisely what generative answers avoid. Refreshed annually it compounds, and it links naturally to every paid activity you cover.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): Budget and price queries throughout the export · "boquete outdoor adventures prices" pattern
+
+--- 6.3  [ES]  Boquete ---
+topic:              Boquete con niños: qué hacer en familia
+primary_keyword:    boquete con niños
+secondary_keywords: ["que hacer en boquete con niños", "boquete familiar", "actividades para niños boquete"]
+suggested_slug:     /es/articles/boquete-con-ninos
+notes:              Panama is 232 of your 397 clicks and your ES pages rank seven places better. Family weekend content is aimed squarely at that domestic audience.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): Mirrors /articles/el-valle-de-anton-with-kids which already ranks · domestic weekend-trip intent
+
+--- 6.4  [ES]  Boquete ---
+topic:              Feria de las Flores y del Café: guía completa de la feria de Boquete
+primary_keyword:    feria de las flores y del cafe
+secondary_keywords: ["feria boquete", "feria de las flores boquete fechas", "feria del cafe boquete entradas"]
+suggested_slug:     /es/articles/feria-de-las-flores-y-del-cafe-boquete
+notes:              Seasonal spike content that you can publish once and harvest every January. Best written in Spanish because the audience that attends is overwhelmingly Panamanian.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): Annual January event with a large domestic search spike · no coverage
+
+--- 6.5  [EN]  Rest of Panama ---
+topic:              San Blas / Guna Yala: Tours, Islands and How It Actually Works
+primary_keyword:    san blas islands panama
+secondary_keywords: ["guna yala tours", "san blas tour from panama city", "san blas islands how to get there"]
+suggested_slug:     /articles/san-blas-guna-yala
+notes:              One of Panama's three highest-volume destinations, currently English-invisible. Also the doorway to the San Blas sailing niche — high ticket, dozens of independent operators, thin content competition.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): /es/articles/san-blas-guna-yala-guia-tours-islas exists and is orphaned · no English page at all
+
+--- 6.6  [EN]  Rest of Panama ---
+topic:              Contadora and the Pearl Islands: The Easiest Island Day Trip
+primary_keyword:    contadora island panama
+secondary_keywords: ["pearl islands panama", "isla contadora day trip", "ferry to contadora"]
+suggested_slug:     /articles/contadora-pearl-islands
+notes:              Natural extension of your Panama City cluster rather than a cold start, and it links straight into the day-trips page that currently ranks 22.
+                    EVIDENCE (GSC 7 Jun-20 Aug 2026): Zero coverage · closest island escape to Panama City, where 14 of your pages already rank
+==============================================================================
+TOTAL: 36 topics — 23 EN, 13 ES
+==============================================================================

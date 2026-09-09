@@ -1,0 +1,784 @@
+<title>The Content Queue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ground:#F5F8F8; --surface:#FCFCFB; --surface-2:#EDF2F2; --line:#D4DEDE; --line-soft:#E3EAEA;
+  --ink:#0B1D20; --ink-2:#3A5257; --ink-3:#6B8286; --ink-inv:#FCFCFB;
+  --accent:#0891B2; --accent-soft:#E0F2F7; --accent-deep:#075E7C;
+  --s1:#0891B2; --s2:#B45309; --s3:#7C3AED; --s4:#BE123C;
+  --good:#15803D; --good-bg:#E4F3E9; --warn:#B45309; --warn-bg:#FBEEE0; --crit:#BE123C; --crit-bg:#FBE6EA;
+  --grid:#E3EAEA; --shadow:0 1px 2px rgba(11,29,32,.05),0 8px 24px -12px rgba(11,29,32,.14);
+  --fd:"Bricolage Grotesque","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --fb:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --fm:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#0C1416; --surface:#141E20; --surface-2:#1B282B; --line:#2A3B3F; --line-soft:#223034;
+  --ink:#E8F0F0; --ink-2:#A8BCBF; --ink-3:#7A9296; --ink-inv:#0C1416;
+  --accent:#38BDD8; --accent-soft:#12303A; --accent-deep:#8AD9E9;
+  --s1:#12A2BE; --s2:#CC7B22; --s3:#8E76E8; --s4:#E2547A;
+  --good:#4ADE80; --good-bg:#12291B; --warn:#E8963C; --warn-bg:#2E2013; --crit:#F2637E; --crit-bg:#2E1319;
+  --grid:#243437; --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+}}
+:root[data-theme="dark"]{
+  --ground:#0C1416; --surface:#141E20; --surface-2:#1B282B; --line:#2A3B3F; --line-soft:#223034;
+  --ink:#E8F0F0; --ink-2:#A8BCBF; --ink-3:#7A9296; --ink-inv:#0C1416;
+  --accent:#38BDD8; --accent-soft:#12303A; --accent-deep:#8AD9E9;
+  --s1:#12A2BE; --s2:#CC7B22; --s3:#8E76E8; --s4:#E2547A;
+  --good:#4ADE80; --good-bg:#12291B; --warn:#E8963C; --warn-bg:#2E2013; --crit:#F2637E; --crit-bg:#2E1319;
+  --grid:#243437; --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--fb);font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+h1,h2,h3,h4{font-family:var(--fd);text-wrap:balance;margin:0;line-height:1.1;letter-spacing:-.02em}
+h1{font-size:clamp(2.6rem,6vw,4.4rem);font-weight:800}
+h2{font-size:clamp(1.7rem,3.4vw,2.5rem);font-weight:700}
+h3{font-size:1.28rem;font-weight:700;letter-spacing:-.01em}
+h4{font-size:1.02rem;font-weight:600}
+p{margin:0 0 1.05em}
+a{color:var(--accent-deep);text-underline-offset:3px}
+:focus-visible{outline:2.5px solid var(--accent);outline-offset:3px;border-radius:3px}
+.mono{font-family:var(--fm);font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--fm);font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin:0 0 .6em}
+.mast{border-bottom:1px solid var(--line);background:var(--surface);position:relative;overflow:hidden}
+.mast canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.5;pointer-events:none}
+.mast .wrap{position:relative;padding-top:76px;padding-bottom:60px}
+.mast h1{max-width:16ch}
+.lede{font-size:1.32rem;line-height:1.5;color:var(--ink-2);max-width:56ch;margin-top:1.1rem}
+.mast-meta{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:32px;font-family:var(--fm);font-size:.76rem;color:var(--ink-3);letter-spacing:.04em}
+.mast-meta b{color:var(--ink-2);font-weight:500}
+.tocbar{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--ground) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line-soft)}
+.tocbar ul{display:flex;gap:0;list-style:none;margin:0;padding:0;overflow-x:auto;scrollbar-width:none}
+.tocbar ul::-webkit-scrollbar{display:none}
+.tocbar a{display:block;padding:13px 15px;font-family:var(--fm);font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent}
+.tocbar a:hover{color:var(--ink)}
+.tocbar a.on{color:var(--accent-deep);border-bottom-color:var(--accent)}
+section{padding:72px 0;border-bottom:1px solid var(--line-soft)}
+section:last-of-type{border-bottom:0}
+.shead{display:flex;align-items:baseline;gap:16px;margin-bottom:12px}
+.snum{font-family:var(--fm);font-size:.8rem;font-weight:600;color:var(--accent);letter-spacing:.06em;flex:none;padding-top:.35em}
+.sdek{color:var(--ink-2);font-size:1.1rem;max-width:64ch;margin:14px 0 40px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:0 0 40px}
+.kpi{background:var(--surface);padding:20px 22px 22px}
+.kpi .k{font-family:var(--fm);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+.kpi .v{font-family:var(--fd);font-size:2.15rem;font-weight:700;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.kpi .d{font-family:var(--fm);font-size:.74rem;margin-top:9px;color:var(--ink-2);display:flex;align-items:center;gap:6px}
+.tick{display:inline-block;width:7px;height:7px;border-radius:2px;flex:none}
+.up{background:var(--good)}.dn{background:var(--crit)}.fl{background:var(--warn)}
+figure{margin:0 0 38px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px 24px 18px;box-shadow:var(--shadow)}
+figcaption{margin-bottom:18px}
+figcaption .t{font-family:var(--fd);font-weight:700;font-size:1.06rem;letter-spacing:-.01em}
+figcaption .s{font-size:.9rem;color:var(--ink-2);margin-top:5px;line-height:1.45}
+.chart-scroll{overflow-x:auto}
+.legend{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:14px;font-family:var(--fm);font-size:.74rem;color:var(--ink-2)}
+.legend span{display:flex;align-items:center;gap:7px}
+.sw{width:11px;height:11px;border-radius:3px;flex:none}
+.note{font-family:var(--fm);font-size:.71rem;color:var(--ink-3);margin-top:14px;line-height:1.5;border-top:1px solid var(--line-soft);padding-top:11px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:24px}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface);margin-bottom:34px}
+table{border-collapse:collapse;width:100%;font-family:var(--fm);font-size:.79rem;font-variant-numeric:tabular-nums}
+th{text-align:left;padding:11px 14px;background:var(--surface-2);color:var(--ink-2);font-weight:600;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid var(--line)}
+td{padding:10px 14px;border-bottom:1px solid var(--line-soft);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:var(--surface-2)}
+td.n,th.n{text-align:right}
+td.u{white-space:normal;min-width:250px;font-size:.76rem;color:var(--ink-2)}
+.pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:.68rem;font-weight:600;letter-spacing:.02em}
+.p-good{background:var(--good-bg);color:var(--good)}
+.p-warn{background:var(--warn-bg);color:var(--warn)}
+.p-crit{background:var(--crit-bg);color:var(--crit)}
+.p-neut{background:var(--surface-2);color:var(--ink-2)}
+.call{border-left:3px solid var(--accent);background:var(--accent-soft);padding:20px 24px;border-radius:0 10px 10px 0;margin:30px 0}
+.call.crit{border-left-color:var(--crit);background:var(--crit-bg)}
+.call.good{border-left-color:var(--good);background:var(--good-bg)}
+.call p:last-child{margin-bottom:0}
+.call .lbl{font-family:var(--fm);font-size:.67rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;margin-bottom:9px;color:var(--ink-2)}
+.acts{display:grid;gap:14px;margin-bottom:34px}
+.act{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:19px 22px;display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:start}
+.act .ix{font-family:var(--fm);font-size:.76rem;font-weight:600;color:var(--ink-inv);background:var(--ink);width:26px;height:26px;border-radius:7px;display:grid;place-items:center;flex:none;margin-top:2px}
+.act h4{margin-bottom:6px}
+.act p{font-size:.95rem;color:var(--ink-2);margin:0}
+.act .meta{display:flex;flex-direction:column;gap:6px;align-items:flex-end;flex:none}
+.tag{font-family:var(--fm);font-size:.65rem;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:5px;font-weight:600;white-space:nowrap}
+.t-hi{background:var(--crit-bg);color:var(--crit)}
+.t-md{background:var(--warn-bg);color:var(--warn)}
+.t-lo{background:var(--surface-2);color:var(--ink-3)}
+.t-eff{background:var(--surface-2);color:var(--ink-2)}
+.act ul{margin:9px 0 0;padding-left:19px;font-size:.9rem;color:var(--ink-2)}
+.act li{margin-bottom:4px}
+.act code{font-family:var(--fm);font-size:.83em;background:var(--surface-2);padding:1px 5px;border-radius:4px;color:var(--ink)}
+.honest{background:var(--ink);color:var(--ink-inv)}
+.honest h2,.honest h3{color:var(--ink-inv)}
+.honest .sdek,.honest p{color:color-mix(in srgb,var(--ink-inv) 76%,transparent)}
+.honest .eyebrow,.honest .snum{color:var(--accent)}
+.honest strong{color:var(--ink-inv);font-weight:600}
+.honest .hcard{background:color-mix(in srgb,var(--ink-inv) 6%,transparent);border:1px solid color-mix(in srgb,var(--ink-inv) 13%,transparent);border-radius:11px;padding:22px 24px;margin-bottom:16px}
+.honest .hcard h4{color:var(--ink-inv);margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.honest .hcard p:last-child{margin-bottom:0}
+.verdict{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1px;background:color-mix(in srgb,var(--ink-inv) 14%,transparent);border:1px solid color-mix(in srgb,var(--ink-inv) 14%,transparent);border-radius:11px;overflow:hidden;margin:34px 0}
+.verdict div{background:var(--ink);padding:19px 21px}
+.verdict .k{font-family:var(--fm);font-size:.64rem;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);margin-bottom:9px}
+.verdict .v{font-family:var(--fd);font-size:1.02rem;font-weight:600;color:var(--ink-inv);line-height:1.3}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin:8px 0 34px}
+.sc{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:21px 22px}
+.sc.hl{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.sc .nm{font-family:var(--fm);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:11px}
+.sc .big{font-family:var(--fd);font-size:2.3rem;font-weight:800;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.sc .un{font-family:var(--fm);font-size:.72rem;color:var(--ink-3);margin-top:7px}
+.sc p{font-size:.9rem;color:var(--ink-2);margin:14px 0 0;line-height:1.5}
+ul.clean{list-style:none;padding:0;margin:0 0 1.2em}
+ul.clean li{padding-left:26px;position:relative;margin-bottom:9px;color:var(--ink-2)}
+ul.clean li::before{content:"";position:absolute;left:6px;top:.62em;width:6px;height:6px;border-radius:2px;background:var(--accent)}
+ul.clean li b{color:var(--ink)}
+.honest ul.clean li{color:color-mix(in srgb,var(--ink-inv) 76%,transparent)}
+.honest ul.clean li b{color:var(--ink-inv)}
+.tip{position:fixed;pointer-events:none;z-index:99;background:var(--surface);color:var(--ink);border:1px solid var(--line);font-family:var(--fm);font-size:.72rem;line-height:1.5;padding:9px 12px;border-radius:8px;opacity:0;transition:opacity .12s;box-shadow:0 8px 26px -8px rgba(0,0,0,.35);max-width:260px}
+.tip.on{opacity:1}
+.tip b{color:var(--accent-deep);font-weight:600}
+.tip .tl{color:var(--ink-3)}
+footer{padding:44px 0 60px;color:var(--ink-3);font-family:var(--fm);font-size:.74rem;line-height:1.7}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(max-width:640px){
+  .mast .wrap{padding-top:48px;padding-bottom:44px}
+  section{padding:52px 0}
+  .act{grid-template-columns:auto 1fr;gap:14px}
+  .act .meta{grid-column:2;flex-direction:row;align-items:center;justify-content:flex-start;margin-top:4px}
+  body{font-size:16px}
+}
+</style>
+<style>
+.batch{margin-bottom:clamp(40px,5vw,64px)}
+.batch-h{display:flex;align-items:flex-start;gap:16px;padding-bottom:14px;border-bottom:2px solid var(--ink);margin-bottom:20px}
+.batch-n{font-family:var(--fd);font-size:2.2rem;font-weight:800;line-height:.85;letter-spacing:-.04em;color:var(--accent);flex:none;font-variant-numeric:tabular-nums}
+.batch-t{flex:1}
+.batch-t h2{margin:0 0 5px;font-size:clamp(1.4rem,2.8vw,1.9rem)}
+.batch-t p{margin:0;color:var(--ink-2);font-size:.97rem;line-height:1.5}
+.batch-m{flex:none;text-align:right;font-family:var(--fm);font-size:.68rem;color:var(--ink-3);letter-spacing:.05em;line-height:1.7;white-space:nowrap}
+.t-row{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 19px;margin-bottom:10px;display:grid;grid-template-columns:26px 1fr;gap:14px;align-items:start}
+.t-num{font-family:var(--fm);font-size:.72rem;color:var(--ink-3);margin-top:3px;font-variant-numeric:tabular-nums}
+.t-head{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin-bottom:6px}
+.t-title{font-family:var(--fd);font-weight:600;font-size:1.02rem;letter-spacing:-.01em;color:var(--ink)}
+.lg{font-family:var(--fm);font-size:.6rem;font-weight:700;padding:2px 6px;border-radius:3px;letter-spacing:.05em;flex:none}
+.lg-es{background:var(--warn-bg);color:var(--warn)}
+.lg-en{background:var(--accent-soft);color:var(--accent-deep)}
+.cl{font-family:var(--fm);font-size:.6rem;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);border:1px solid var(--line);border-radius:20px;padding:2px 8px}
+.t-slug{font-family:var(--fm);font-size:.71rem;color:var(--ink-3);word-break:break-all;margin-bottom:8px;display:block}
+.t-why{font-size:.9rem;color:var(--ink-2);line-height:1.55;margin:0 0 7px}
+.t-ev{font-family:var(--fm);font-size:.69rem;color:var(--ink-3);line-height:1.55;border-top:1px solid var(--line-soft);padding-top:8px;margin:0}
+.t-ev b{color:var(--accent-deep)}
+.sum{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:0 0 32px}
+.sum div{background:var(--surface);padding:15px 17px}
+.sum .k{font-family:var(--fm);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:7px}
+.sum .v{font-family:var(--fd);font-size:1.5rem;font-weight:700;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.sum .s{font-family:var(--fm);font-size:.65rem;color:var(--ink-2);margin-top:5px}
+.gate{border-left:3px solid var(--crit);background:var(--crit-bg);padding:17px 21px;border-radius:0 9px 9px 0;margin:22px 0;font-size:.95rem;color:var(--ink-2)}
+.gate.win{border-left-color:var(--good);background:var(--good-bg)}
+.gate.warn{border-left-color:var(--warn);background:var(--warn-bg)}
+.gate .lbl{font-family:var(--fm);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;margin-bottom:8px;color:var(--ink-2)}
+.gate p{margin:0}.gate p+p{margin-top:.7em}
+@media(max-width:640px){.t-row{grid-template-columns:1fr}.t-num{display:none}.batch-h{flex-wrap:wrap}.batch-m{text-align:left}}
+</style>
+
+<header class="mast">
+  <canvas id="topo" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="eyebrow">PanamaSpot &middot; Content queue &middot; 2 September 2026</p>
+    <h1>The Content Queue</h1>
+    <p class="lede">All thirty-six topics, each with a proposed slug, the query evidence behind it, and a batch number — ordered so the highest-value work runs first and each batch unblocks the next.</p>
+    <div class="mast-meta">
+      <span>Topics <b>36</b></span>
+      <span>English <b>23</b></span>
+      <span>Spanish <b>13</b></span>
+      <span>Batches <b>6 &times; 6</b></span>
+      <span>At 25/month <b>~6 weeks</b></span>
+      <span>Published since 16 Jul <b>0</b></span>
+    </div>
+  </div>
+</header>
+
+<main>
+<section>
+  <div class="wrap">
+    <div class="sum">
+      <div><div class="k">Articles today</div><div class="v">51</div><div class="s">+ 6 hubs</div></div>
+      <div><div class="k">After all 36</div><div class="v">87</div><div class="s">+71%</div></div>
+      <div><div class="k">Bocas today</div><div class="v">1</div><div class="s">~300 impr unmet</div></div>
+      <div><div class="k">Bocas after batch 2</div><div class="v">7</div><div class="s">hub becomes viable</div></div>
+      <div><div class="k">Accommodation pages</div><div class="v">0</div><div class="s">whole category</div></div>
+    </div>
+
+    <div class="gate warn">
+      <div class="lbl">Check these two before you schedule a run</div>
+      <p>The pipeline at <span class="mono">spaceship/backend/seo_pipeline.py</span> needs <span class="mono">TAVILY_API_KEY</span> for its research stage and <span class="mono">GITHUB_TOKEN</span> to publish. Neither is in the local <span class="mono">backend/.env</span> — if they're set on Railway you're fine in production, but a batch will die at stage 4 if they aren't. <b>DataForSEO is funded at $41.82</b>, and validating all 36 topics costs about $3.</p>
+    </div>
+
+    <div class="gate win">
+      <div class="lbl">Two rules that decide whether this works</div>
+      <p><b>Keep them to 2,500&ndash;4,000 words.</b> Your own data argues against the 8,000-word default: <span class="mono">things-to-do-el-valle</span> is 8,606 words at position 30.7 and <span class="mono">things-to-do-in-boquete</span> is 8,315 at 40.4, while shorter named-attraction pages hold single digits. Specificity ranks, not length &mdash; and the shorter target roughly triples throughput.</p>
+      <p><b>Finish a cluster before opening another.</b> El Valle ranks because it has sixteen pages and Google can read the topic as covered. Bocas fails on one. That is why batch 2 is six Bocas articles together rather than spread across the queue.</p>
+    </div>
+
+    <div class="gate">
+      <div class="lbl">Do this first, before writing a word</div>
+      <p><b>Validate all 36 against DataForSEO search volume &mdash; about $3 and an hour.</b> The evidence under each topic below is real GSC data from your own site, which proves people reach you on those themes. It does not prove the absolute volume is worth a page. Killing four topics that turn out to have no volume is cheaper than writing them, and it's the highest-return hour in this whole queue.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+
+    <div class="batch">
+      <div class="batch-h">
+        <span class="batch-n">1</span>
+        <div class="batch-t"><h2>Commercial intent</h2><p>The six with money or proven demand behind them. Two of these target queries where you already rank top-six for your client's competitors by name and earn nothing.</p></div>
+        <div class="batch-m">6 articles<br>2 EN &middot; 4 ES<br><b>highest value</b></div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">01</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">Boquete Tour Prices Compared: What Every Operator Actually Charges</span>
+            <span class="lg lg-en">EN</span>
+            <span class="cl">Boquete</span>
+          </div>
+          <span class="t-slug">/articles/boquete-tour-prices-compared</span>
+          <p class="t-why">~200 impressions of people shopping for tour operators by name, where you already rank and earn nothing. Highest commercial value in the Boquete set — every comparison naturally ends at a bike-rental option.</p>
+          <p class="t-ev"><b>Evidence:</b> "boquete outdoor adventures prices" 73 impr pos 5 · "chiriqui boquete tours" 71 pos 15 · "boquete tours" 31 · "boquete tour guide" 23</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">02</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">Boquete Bike Rental: Prices, Routes and Where to Actually Ride</span>
+            <span class="lg lg-en">EN</span>
+            <span class="cl">Boquete</span>
+          </div>
+          <span class="t-slug">/articles/boquete-bike-rental</span>
+          <p class="t-why">Your client conversion page exists in Spanish only, and Boquete demand is majority English. This is the most obvious missing page on the site for the business you actually have.</p>
+          <p class="t-ev"><b>Evidence:</b> Direct gap — /es/articles/alquiler-de-bicicletas-boquete exists, no English equivalent anywhere</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">03</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">¿El Volcán Barú está activo? Lo que hay que saber antes de subir</span>
+            <span class="lg lg-es">ES</span>
+            <span class="cl">Boquete</span>
+          </div>
+          <span class="t-slug">/es/articles/volcan-baru-esta-activo</span>
+          <p class="t-why">Ranks page one already and converts nothing. Safety-and-status questions are AI-Overview-resistant because Google will not risk a stale answer, and it feeds both existing Barú pages.</p>
+          <p class="t-ev"><b>Evidence:</b> "el volcan baru esta activo" 62 impr pos 9.8, zero clicks · "volcan baru" 44 pos 20</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">04</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">El Valle de Antón: precios y horarios de todas las atracciones 2026</span>
+            <span class="lg lg-es">ES</span>
+            <span class="cl">El Valle</span>
+          </div>
+          <span class="t-slug">/es/articles/precios-horarios-atracciones-el-valle-de-anton</span>
+          <p class="t-why">~155 impressions of pure practical intent across six queries you already rank top-ten for and mostly earn nothing from. This exact pattern already produces your single highest CTR. One master page, updated annually, that every attraction article links into.</p>
+          <p class="t-ev"><b>Evidence:</b> "chorro el macho horario" 64 impr pos 3.5 (4.69% CTR — your best) · "chorro el macho precio" 42 pos 6.9 · "entradas para chorro macho" pos 3.2 · "horario del níspero" · "horario del zoológico" · "aguas termales valle de antón precio"</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">05</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">Tours en bicicleta en El Valle: precios y comparación honesta</span>
+            <span class="lg lg-es">ES</span>
+            <span class="cl">El Valle</span>
+          </div>
+          <span class="t-slug">/es/articles/tours-en-bicicleta-el-valle-de-anton</span>
+          <p class="t-why">People searching your client's direct competitors by name, with price intent, while you sit at position 3.6 and collect nothing. The single highest-commercial-value page on the entire site.</p>
+          <p class="t-ev"><b>Evidence:</b> "el valle biking and hiking tours" 39 impr pos 5.8, 0 clicks · "go panama bike tours india dormida and waterfall price" 17 pos 3.6 · "barefoot panama el valle explorer tour" 15 pos 9.2</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">06</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">Qué hacer en El Valle de Antón gratis</span>
+            <span class="lg lg-es">ES</span>
+            <span class="cl">El Valle</span>
+          </div>
+          <span class="t-slug">/es/articles/que-hacer-gratis-el-valle-de-anton</span>
+          <p class="t-why">Ranks page one and converts nothing. Free-activity intent is a large, distinct audience from your paid-attraction pages, and it is exactly the domestic weekend visitor you convert best.</p>
+          <p class="t-ev"><b>Evidence:</b> "que hacer en el valle de antón gratis" 45 impr pos 10.5, zero clicks</p>
+        </div>
+      </div>    </div>
+    <div class="batch">
+      <div class="batch-h">
+        <span class="batch-n">2</span>
+        <div class="batch-t"><h2>The Bocas cluster</h2><p>Six at once, because a lone page in a new destination dilutes rather than concentrates. When these land, the Bocas hub becomes buildable and the footer's last dead destination goes live.</p></div>
+        <div class="batch-m">6 articles<br>6 EN &middot; 0 ES<br><b>unlocks the hub</b></div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">01</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">Which Bocas del Toro Island Should You Stay On?</span>
+            <span class="lg lg-en">EN</span>
+            <span class="cl">Rest of Panama</span>
+          </div>
+          <span class="t-slug">/articles/which-bocas-del-toro-island</span>
+          <p class="t-why">~170 impressions ranking between 65 and 79 — Google knows the topic exists on your domain and has nothing worth ranking. The decision page that anchors the whole Bocas cluster.</p>
+          <p class="t-ev"><b>Evidence:</b> "bocas islands" 117 impr pos 76 · "islands of bocas del toro" 34 pos 79 · "best island bocas del toro" 13 pos 65 · "best island in bocas del toro" pos 30</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">02</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">How to Get to Bocas del Toro: Flight, Bus and Boat Compared</span>
+            <span class="lg lg-en">EN</span>
+            <span class="cl">Rest of Panama</span>
+          </div>
+          <span class="t-slug">/articles/how-to-get-to-bocas-del-toro</span>
+          <p class="t-why">Bocas is genuinely hard to reach and the logistics are the first thing anyone searches. Spanish already has this page at position 33; English has nothing.</p>
+          <p class="t-ev"><b>Evidence:</b> "boat from panama city to bocas del toro" 12 impr pos 63.8 · ES equivalent exists and ranks 33</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">03</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">Starfish Beach and Boca del Drago</span>
+            <span class="lg lg-en">EN</span>
+            <span class="cl">Rest of Panama</span>
+          </div>
+          <span class="t-slug">/articles/starfish-beach-boca-del-drago</span>
+          <p class="t-why">The single most-searched named attraction in Bocas. You rank in the fifties on a specific-attraction query, which is exactly the page type you demonstrably win elsewhere.</p>
+          <p class="t-ev"><b>Evidence:</b> "starfish beach panama bocas" 13 pos 56.5 · "starfish beach bocas del toro panama" 10 pos 45.9</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">04</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">Red Frog Beach and Isla Bastimentos</span>
+            <span class="lg lg-en">EN</span>
+            <span class="cl">Rest of Panama</span>
+          </div>
+          <span class="t-slug">/articles/red-frog-beach-isla-bastimentos</span>
+          <p class="t-why">Second most-searched Bocas attraction. Your entire ranking strength is in named-attraction pages — this is that formula applied where the demand already exists.</p>
+          <p class="t-ev"><b>Evidence:</b> Named-attraction gap within a cluster showing 300+ impressions of unmet demand</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">05</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">Cayos Zapatillas: The Best Snorkelling in Bocas</span>
+            <span class="lg lg-en">EN</span>
+            <span class="cl">Rest of Panama</span>
+          </div>
+          <span class="t-slug">/articles/cayos-zapatillas-snorkelling</span>
+          <p class="t-why">Rounds the cluster to five and doubles as the entry point for the multi-day boat-tour niche you flagged as a monetisation target in section 06.</p>
+          <p class="t-ev"><b>Evidence:</b> Zapatilla queries present in the export · completes the island set</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">06</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">Bocas del Toro Island Hopping: Routes, Boats and Real Costs</span>
+            <span class="lg lg-en">EN</span>
+            <span class="cl">Rest of Panama</span>
+          </div>
+          <span class="t-slug">/articles/bocas-del-toro-island-hopping</span>
+          <p class="t-why">You already have a page here at position 18 — this rebuilds it properly with the four island pages above linking in. Highest-ticket commercial intent in the Bocas set.</p>
+          <p class="t-ev"><b>Evidence:</b> "bocas del toro island hopping" 40 impr pos 61 · existing page ranks 18.2 but is thin</p>
+        </div>
+      </div>    </div>
+    <div class="batch">
+      <div class="batch-h">
+        <span class="batch-n">3</span>
+        <div class="batch-t"><h2>Practical &amp; logistics</h2><p>The most linkable pages on the list — forums and relocation blogs link to safety and best-time pages constantly. They also catch people before they've chosen anything, so they feed every other page.</p></div>
+        <div class="batch-m">6 articles<br>5 EN &middot; 1 ES<br><b>feeds stage 4</b></div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">01</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">Panama City to Boquete: Bus, Flight or Drive, Honestly Compared</span>
+            <span class="lg lg-en">EN</span>
+            <span class="cl">Boquete</span>
+          </div>
+          <span class="t-slug">/articles/panama-city-to-boquete</span>
+          <p class="t-why">Spanish has cómo-llegar-a-boquete-sin-carro; English has nothing and ranks in the thirties. Transport pages catch people before they have chosen anything else.</p>
+          <p class="t-ev"><b>Evidence:</b> "how to get from panama city to boquete" pos 32.5 · "how to get to boquete from panama city" pos 33</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">02</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">Cómo llegar a El Valle desde Albrook: horarios y precios de buses</span>
+            <span class="lg lg-es">ES</span>
+            <span class="cl">El Valle</span>
+          </div>
+          <span class="t-slug">/es/articles/buses-albrook-el-valle-horarios-precios</span>
+          <p class="t-why">Schedule and fare data is the most AI-resistant content that exists — it changes, so Google will not summarise it. Small volume, exceptional CTR, and it catches people at the decision moment.</p>
+          <p class="t-ev"><b>Evidence:</b> "terminal de albrook horario de buses valle de antón" 11 impr pos 10.6 · "como llegar al valle de anton" 6 pos 10 · "el valle de antón cómo llegar" pos 24</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">03</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">Is Panama Safe? An Honest 2026 Answer</span>
+            <span class="lg lg-en">EN</span>
+            <span class="cl">Rest of Panama</span>
+          </div>
+          <span class="t-slug">/articles/is-panama-safe</span>
+          <p class="t-why">The most linkable page in this entire document. Forums, Reddit threads and relocation blogs link to good safety pages constantly. Written honestly it earns links passively for years.</p>
+          <p class="t-ev"><b>Evidence:</b> No coverage · uncontested by any Panama-focused site with real authority</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">04</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">Best Time to Visit Panama: Month by Month, Region by Region</span>
+            <span class="lg lg-en">EN</span>
+            <span class="cl">Rest of Panama</span>
+          </div>
+          <span class="t-slug">/articles/best-time-to-visit-panama</span>
+          <p class="t-why">The canonical linkable data asset. Region-by-region rainfall genuinely does not exist well anywhere, and it feeds every destination page you own.</p>
+          <p class="t-ev"><b>Evidence:</b> No coverage · anchors the Boquete and El Valle seasonal pages</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">05</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">Renting a Car in Panama: Rules, Real Costs and Road Conditions</span>
+            <span class="lg lg-en">EN</span>
+            <span class="cl">Rest of Panama</span>
+          </div>
+          <span class="t-slug">/articles/renting-a-car-in-panama</span>
+          <p class="t-why">High-volume practical query with genuine gotchas (mandatory insurance, police checkpoints) that generic sites get wrong. Catches independent travellers, who are your best activity converters.</p>
+          <p class="t-ev"><b>Evidence:</b> "best scenic drives near me" pos 1.0 · transport cluster ranking 27–63 throughout</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">06</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">Panama eSIM and Mobile Data: What Actually Works</span>
+            <span class="lg lg-en">EN</span>
+            <span class="cl">Rest of Panama</span>
+          </div>
+          <span class="t-slug">/articles/panama-esim-mobile-data</span>
+          <p class="t-why">Everyone searches this and almost nobody covers Panama specifically. Cheap to write, needs annual refresh, and it reaches people weeks before they book anything.</p>
+          <p class="t-ev"><b>Evidence:</b> No coverage · standard pre-trip query for every international visitor</p>
+        </div>
+      </div>    </div>
+    <div class="batch">
+      <div class="batch-h">
+        <span class="batch-n">4</span>
+        <div class="batch-t"><h2>Cluster completion</h2><p>The named attractions that finish El Valle and Boquete. Individually small; together they're what makes Google read the clusters as complete.</p></div>
+        <div class="batch-m">6 articles<br>2 EN &middot; 4 ES<br><b>topical depth</b></div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">01</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">Boquete Hot Springs Compared: Caldera vs Los Pozos</span>
+            <span class="lg lg-en">EN</span>
+            <span class="cl">Boquete</span>
+          </div>
+          <span class="t-slug">/articles/boquete-hot-springs-compared</span>
+          <p class="t-why">Your Caldera page is your best performer at position 8.5. The comparison intent is a separate query set you currently answer with the same page — split it and win both.</p>
+          <p class="t-ev"><b>Evidence:</b> "aguas termales boquete" 39 impr pos 10.3 · "hot springs boquete" 38 pos 10.9 · "caldera hot springs" 244 pos 10.2</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">02</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">Boquete Cycling Routes: Five Rides Out of Town</span>
+            <span class="lg lg-en">EN</span>
+            <span class="cl">Boquete</span>
+          </div>
+          <span class="t-slug">/articles/boquete-cycling-routes</span>
+          <p class="t-why">The only page in this set built purely for the client rather than for search. Pure bike intent, links straight to rental, and it gives the rental page something to rank alongside.</p>
+          <p class="t-ev"><b>Evidence:</b> No direct query data yet — this is a demand-creation page, not a demand-capture page</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">03</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">La Piedra Pintada y los petroglifos de El Valle</span>
+            <span class="lg lg-es">ES</span>
+            <span class="cl">El Valle</span>
+          </div>
+          <span class="t-slug">/es/articles/piedra-pintada-petroglifos-el-valle</span>
+          <p class="t-why">Completes the attraction set. Cluster completeness is why El Valle outranks Boquete on comparable pages — each addition strengthens the whole group, and this one sits on a walkable route you can sell.</p>
+          <p class="t-ev"><b>Evidence:</b> Uncovered attraction in a cluster where you already rank top-ten on eight other pages</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">04</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">Mercado de El Valle: qué comprar y qué días abre</span>
+            <span class="lg lg-es">ES</span>
+            <span class="cl">El Valle</span>
+          </div>
+          <span class="t-slug">/es/articles/mercado-el-valle-de-anton</span>
+          <p class="t-why">The Sunday market is one of the three things every visitor does and you have nothing on it. Days-and-hours intent again, which is the pattern that demonstrably converts on your site.</p>
+          <p class="t-ev"><b>Evidence:</b> Top-three El Valle attraction with zero coverage · pairs with the horarios cluster</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">05</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">Chorro Las Mozas y las pozas de El Valle</span>
+            <span class="lg lg-es">ES</span>
+            <span class="cl">El Valle</span>
+          </div>
+          <span class="t-slug">/es/articles/chorro-las-mozas-pozas-el-valle</span>
+          <p class="t-why">Chorro El Macho is your second-strongest page. The swimming-hole intent is adjacent but distinct, and captures visitors looking for the free alternative to the paid waterfall.</p>
+          <p class="t-ev"><b>Evidence:</b> Complements /articles/chorro-el-macho-waterfall (1,171 impr, pos 7.3) and the waterfalls page</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">06</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">Mariposario, serpentario y orquideario: las atracciones pequeñas de El Valle</span>
+            <span class="lg lg-es">ES</span>
+            <span class="cl">El Valle</span>
+          </div>
+          <span class="t-slug">/es/articles/mariposario-serpentario-orquideario-el-valle</span>
+          <p class="t-why">Bundles four minor attractions that individually cannot carry a page. Feeds the prices-and-hours master page and rounds out the rainy-day and family angles.</p>
+          <p class="t-ev"><b>Evidence:</b> "horario del níspero" 11 · "zoológico el níspero fotos" · small-attraction queries throughout</p>
+        </div>
+      </div>    </div>
+    <div class="batch">
+      <div class="batch-h">
+        <span class="batch-n">5</span>
+        <div class="batch-t"><h2>Accommodation &amp; decisions</h2><p>Zero accommodation coverage exists today — a whole category forfeited. Plus the comparison and itinerary pages that catch decision-stage searchers.</p></div>
+        <div class="batch-m">6 articles<br>5 EN &middot; 1 ES<br><b>category gap</b></div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">01</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">Best Time to Visit Boquete: Month by Month, Including Bajareque</span>
+            <span class="lg lg-en">EN</span>
+            <span class="cl">Boquete</span>
+          </div>
+          <span class="t-slug">/articles/best-time-to-visit-boquete</span>
+          <p class="t-why">Boquete has a genuinely unusual microclimate that existing guides describe badly. Feeds every activity page and is one of the more linkable things in the Boquete set.</p>
+          <p class="t-ev"><b>Evidence:</b> No coverage sitewide · pairs with the Panama-wide seasonal page in section 05</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">02</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">Where to Stay in Boquete: Bajo Boquete vs Jaramillo vs Alto Quiel</span>
+            <span class="lg lg-en">EN</span>
+            <span class="cl">Boquete</span>
+          </div>
+          <span class="t-slug">/articles/where-to-stay-boquete</span>
+          <p class="t-why">Complete category gap. Accommodation queries are high-volume and you currently forfeit them entirely — and the neighbourhood framing is defensible against generic hotel listings.</p>
+          <p class="t-ev"><b>Evidence:</b> Zero accommodation coverage across all 48 pages</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">03</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">El Valle de Antón vs Boquete: which mountain town is right for you?</span>
+            <span class="lg lg-en">EN</span>
+            <span class="cl">El Valle</span>
+          </div>
+          <span class="t-slug">/articles/el-valle-vs-boquete</span>
+          <p class="t-why">Decision-stage content that ranks for both destination names without competing for either bare term. Internally it is the strongest possible bridge between your two commercial clusters.</p>
+          <p class="t-ev"><b>Evidence:</b> Comparison intent unserved · links your two strongest clusters together</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">04</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">Where to Stay in El Valle de Antón</span>
+            <span class="lg lg-en">EN</span>
+            <span class="cl">El Valle</span>
+          </div>
+          <span class="t-slug">/articles/where-to-stay-el-valle-de-anton</span>
+          <p class="t-why">Same category gap as Boquete. Foreign visitors book accommodation before activities, so this page catches them earlier in the funnel than anything else you have.</p>
+          <p class="t-ev"><b>Evidence:</b> Zero accommodation coverage · "el valle resort" and hotel-adjacent queries appearing already</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">05</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">El Valle in One Day: The Itinerary That Actually Fits</span>
+            <span class="lg lg-en">EN</span>
+            <span class="cl">El Valle</span>
+          </div>
+          <span class="t-slug">/articles/el-valle-one-day-itinerary</span>
+          <p class="t-why">The existing page answers "how do I get there". This answers "what do I do once I am there" — a different query set, and the natural place to put a bike tour as the spine of the day.</p>
+          <p class="t-ev"><b>Evidence:</b> /articles/el-valle-day-trip-from-panama-city ranks · this is the on-the-ground version</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">06</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">Cuándo ir a El Valle: clima mes a mes</span>
+            <span class="lg lg-es">ES</span>
+            <span class="cl">El Valle</span>
+          </div>
+          <span class="t-slug">/es/articles/cuando-ir-el-valle-clima-mes-a-mes</span>
+          <p class="t-why">Completes a three-page seasonal set that cross-links tightly. Weather pages get linked to by forums and trip-planning threads more than any attraction page will.</p>
+          <p class="t-ev"><b>Evidence:</b> Seasonal intent unserved · pairs with the Boquete and Panama-wide seasonal pages</p>
+        </div>
+      </div>    </div>
+    <div class="batch">
+      <div class="batch-h">
+        <span class="batch-n">6</span>
+        <div class="batch-t"><h2>Breadth</h2><p>Two new destinations and the seasonal Spanish pieces. Lowest urgency, and the first to cut if the pace slips.</p></div>
+        <div class="batch-m">6 articles<br>3 EN &middot; 3 ES<br><b>cut first if needed</b></div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">01</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">Quetzal Season in Boquete: When to Come and Where to Look</span>
+            <span class="lg lg-en">EN</span>
+            <span class="cl">Boquete</span>
+          </div>
+          <span class="t-slug">/articles/quetzal-season-boquete</span>
+          <p class="t-why">Seasonal urgency drives clicks, guided birding is high-margin and fragmented, and this is one of the few Panama topics that can attract conservation and academic citations.</p>
+          <p class="t-ev"><b>Evidence:</b> Finca Lérida page ranks with 200+ impressions · seasonal birding intent is unserved</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">02</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">Cuánto cuesta una semana en Boquete: precios reales 2026</span>
+            <span class="lg lg-es">ES</span>
+            <span class="cl">Boquete</span>
+          </div>
+          <span class="t-slug">/es/articles/cuanto-cuesta-una-semana-en-boquete</span>
+          <p class="t-why">Cost pages need current, verified numbers, which is precisely what generative answers avoid. Refreshed annually it compounds, and it links naturally to every paid activity you cover.</p>
+          <p class="t-ev"><b>Evidence:</b> Budget and price queries throughout the export · "boquete outdoor adventures prices" pattern</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">03</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">Boquete con niños: qué hacer en familia</span>
+            <span class="lg lg-es">ES</span>
+            <span class="cl">Boquete</span>
+          </div>
+          <span class="t-slug">/es/articles/boquete-con-ninos</span>
+          <p class="t-why">Panama is 232 of your 397 clicks and your ES pages rank seven places better. Family weekend content is aimed squarely at that domestic audience.</p>
+          <p class="t-ev"><b>Evidence:</b> Mirrors /articles/el-valle-de-anton-with-kids which already ranks · domestic weekend-trip intent</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">04</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">Feria de las Flores y del Café: guía completa de la feria de Boquete</span>
+            <span class="lg lg-es">ES</span>
+            <span class="cl">Boquete</span>
+          </div>
+          <span class="t-slug">/es/articles/feria-de-las-flores-y-del-cafe-boquete</span>
+          <p class="t-why">Seasonal spike content that you can publish once and harvest every January. Best written in Spanish because the audience that attends is overwhelmingly Panamanian.</p>
+          <p class="t-ev"><b>Evidence:</b> Annual January event with a large domestic search spike · no coverage</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">05</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">San Blas / Guna Yala: Tours, Islands and How It Actually Works</span>
+            <span class="lg lg-en">EN</span>
+            <span class="cl">Rest of Panama</span>
+          </div>
+          <span class="t-slug">/articles/san-blas-guna-yala</span>
+          <p class="t-why">One of Panama's three highest-volume destinations, currently English-invisible. Also the doorway to the San Blas sailing niche — the strongest monetisation target identified in section 06.</p>
+          <p class="t-ev"><b>Evidence:</b> /es/articles/san-blas-guna-yala-guia-tours-islas exists and is orphaned · no English page at all</p>
+        </div>
+      </div>
+      <div class="t-row">
+        <span class="t-num">06</span>
+        <div>
+          <div class="t-head">
+            <span class="t-title">Contadora and the Pearl Islands: The Easiest Island Day Trip</span>
+            <span class="lg lg-en">EN</span>
+            <span class="cl">Rest of Panama</span>
+          </div>
+          <span class="t-slug">/articles/contadora-pearl-islands</span>
+          <p class="t-why">Natural extension of your Panama City cluster rather than a cold start, and it links straight into the day-trips page that currently ranks 22.</p>
+          <p class="t-ev"><b>Evidence:</b> Zero coverage · closest island escape to Panama City, where 14 of your pages already rank</p>
+        </div>
+      </div>    </div>  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="shead"><span class="snum">&rarr;</span><div>
+      <h2>Scheduling this</h2>
+      <p class="sdek">Six batches of six. What that looks like against real throughput.</p>
+    </div></div>
+    <ul class="clean">
+      <li><b>At 25 articles a month, all 36 land in about six weeks.</b> That is roughly one solid article every working day &mdash; aggressive but the number the 4,200 clicks/month forecast assumes.</li>
+      <li><b>At 12 a month it is three months</b>, and the forecast drops to something closer to 2,000&ndash;2,500 clicks. Still worth doing; just size the expectation to the pace you'll actually hold.</li>
+      <li><b>Batch 2 is the one not to break up.</b> Six Bocas articles shipped together turn a dead cluster into a live one and make the Bocas hub buildable. Six Bocas articles spread over three months do considerably less.</li>
+      <li><b>New pages take 8&ndash;12 weeks to mature.</b> Your own July batch is the evidence &mdash; impressions kept climbing through August on content published in mid-July. Nothing you publish this week shows its real position until November.</li>
+      <li><b>After each batch, re-run <span class="mono">scripts/chrome-fix.py</span> and rebuild the hubs.</b> Both are idempotent and pick up new articles automatically, so internal linking and the footer stay current without anyone remembering to do it.</li>
+    </ul>
+
+    <div class="call crit">
+      <div class="lbl">The thing worth repeating</div>
+      <p>Optimisation is finished. Between the hubs, the footer, the Spanish chrome and 26 snippet rewrites, the existing 48 pages have been taken about as far as they go &mdash; and that ceiling is roughly <b>1,500 clicks a month</b>. Everything above that number lives in this queue. <b>Nothing new has been published since 16 July.</b></p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">
+  <p>PanamaSpot content queue &middot; 2 September 2026 &middot; topics carried forward from the August build queue, with slugs and batch ordering added.<br>
+  Evidence lines are impressions and positions from the GSC export for 7 June – 20 August 2026 — they show demand reaching your domain, not absolute market volume. Validate against DataForSEO before writing.</p>
+</div></footer>
+
+<script>
+const cvar=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+function topo(){const c=document.getElementById('topo');if(!c)return;
+ const p=c.parentElement,dpr=Math.min(devicePixelRatio||1,2),w=p.offsetWidth,h=p.offsetHeight;if(!w||!h)return;
+ c.width=w*dpr;c.height=h*dpr;const x=c.getContext('2d');x.scale(dpr,dpr);x.clearRect(0,0,w,h);x.lineWidth=1;
+ const sn=(a,b)=>Math.sin(a*1.7+b*.9)*Math.cos(a*.6-b*1.3)+Math.sin(a*.31+b*2.1)*.6;
+ for(let k=0;k<22;k++){x.beginPath();x.strokeStyle=cvar('--line');x.globalAlpha=.30+(k%3)*.09;
+  const base=h*.30+k*(h*.055);
+  for(let px=0;px<=w;px+=4){const t=px/w*5;
+   const y=base+sn(t,k*.42)*(24+k*1.3)-Math.pow(Math.max(0,1-Math.abs(px-w*.72)/(w*.42)),2)*(70+k*4);
+   px?x.lineTo(px,y):x.moveTo(px,y);}
+  x.stroke();}
+ x.globalAlpha=1;}
+topo();
+let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(topo,180);});
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>setTimeout(topo,60));
+new MutationObserver(()=>setTimeout(topo,60)).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+</script>

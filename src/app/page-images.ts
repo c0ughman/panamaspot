@@ -281,7 +281,7 @@ export const pageImages: Record<string, string[]> = {
     "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Isla_Popa%2C_Bocas_del_Toro.jpg/960px-Isla_Popa%2C_Bocas_del_Toro.jpg",
   ],
   "/articles/india-dormida-hike-el-valle-de-anton": [
-    "https://panamaspot.com/images/el-valle/india-dormida.jpg",
+    "https://panamaspot.com/images/el-valle/india-dormida.webp",
     "https://panamaspot.com/images/el-valle/elvalle-indiadormida.webp",
     "https://panamaspot.com/images/el-valle/elvalle-petroglifo.webp",
     "https://panamaspot.com/images/el-valle/evbike-forest.webp",
@@ -645,7 +645,7 @@ export const pageImages: Record<string, string[]> = {
     "https://images.pexels.com/photos/32419583/pexels-photo-32419583.jpeg?auto=compress&cs=tinysrgb&w=960",
   ],
   "/es/articles/donde-comer-en-el-valle-de-anton": [
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Anton_Valley%2C_Panama_-_panoramio_%281%29.jpg/1280px-Anton_Valley%2C_Panama_-_panoramio_%281%29.jpg",
+    "https://panamaspot.com/images/el-valle/lasnubes-camarones.webp",
     "https://panamaspot.com/images/el-valle/elvalle-market.webp",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Vendedor_MercadoElVallePma.jpg/960px-Vendedor_MercadoElVallePma.jpg",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Pineapples_El_Valle.jpg/960px-Pineapples_El_Valle.jpg",
@@ -710,11 +710,11 @@ export const pageImages: Record<string, string[]> = {
     "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Isla_de_Coiba_-_Granite_de_Oro_-_Pacific_Ocean_Islands_off_Panama_-_panoramio_%2810%29.jpg/960px-Isla_de_Coiba_-_Granite_de_Oro_-_Pacific_Ocean_Islands_off_Panama_-_panoramio_%2810%29.jpg",
   ],
   "/es/articles/mariposario-el-valle-de-anton": [
-    "https://images.pexels.com/photos/7200711/pexels-photo-7200711.jpeg?auto=compress&cs=tinysrgb&w=1280",
-    "https://images.pexels.com/photos/30911817/pexels-photo-30911817.jpeg?auto=compress&cs=tinysrgb&w=960",
-    "https://images.pexels.com/photos/35525462/pexels-photo-35525462.jpeg?auto=compress&cs=tinysrgb&w=960",
-    "https://images.pexels.com/photos/7200725/pexels-photo-7200725.jpeg?auto=compress&cs=tinysrgb&w=960",
-    "https://images.pexels.com/photos/33161296/pexels-photo-33161296.jpeg?auto=compress&cs=tinysrgb&w=960",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Common_morpho_%28Morpho_helenor_peleides%29.jpg/1280px-Common_morpho_%28Morpho_helenor_peleides%29.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Common_morpho_%28Morpho_helenor_peleides%29_underside.jpg/960px-Common_morpho_%28Morpho_helenor_peleides%29_underside.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Bothriechis_nigroadspersus_172225700.jpg/960px-Bothriechis_nigroadspersus_172225700.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Tithorea_tarricina_170503929.jpg/960px-Tithorea_tarricina_170503929.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Zebra_longwing_%28Heliconius_charithonia_vazquezae%29.jpg/960px-Zebra_longwing_%28Heliconius_charithonia_vazquezae%29.jpg",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Scenery_in_El_Valle_de_Anton_%2802%29.jpg/960px-Scenery_in_El_Valle_de_Anton_%2802%29.jpg",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Valle_de_Anton%2C_Panama.jpg/960px-Valle_de_Anton%2C_Panama.jpg",
   ],
@@ -818,7 +818,7 @@ export const pageImages: Record<string, string[]> = {
     "https://images.pexels.com/photos/10490921/pexels-photo-10490921.jpeg?auto=compress&cs=tinysrgb&w=960",
   ],
   "/es/articles/sendero-india-dormida-el-valle-de-anton": [
-    "https://panamaspot.com/images/el-valle/india-dormida.jpg",
+    "https://panamaspot.com/images/el-valle/india-dormida.webp",
     "https://panamaspot.com/images/el-valle/elvalle-indiadormida.webp",
     "https://panamaspot.com/images/el-valle/elvalle-panorama.webp",
     "https://panamaspot.com/images/el-valle/elvalle-petroglifo.webp",
