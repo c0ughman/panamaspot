@@ -144,8 +144,8 @@
   "public/es/articles/donde-comer-en-el-valle-de-anton.html": {
     "lang": "es",
     "hero": [
-      "File:Anton Valley, Panama - panoramio (1).jpg",
-      "El mercado techado de El Valle a media mañana: cajas de fruta y verdura montadas sobre las mesas, y el cerro al fondo."
+      "File:Arroz con coco, pescado frito y patacones.jpg",
+      "Plato panameño servido en mesa de restaurante: pescado frito entero, arroz con coco, patacones y ensalada de tomate y lechuga."
     ],
     "sections": {
       "s1": [
@@ -161,12 +161,12 @@
         "Piñas y naranjas apiladas en cajas: producto de las fincas del cráter, vendido el mismo día que se corta."
       ],
       "s6": [
-        "File:Countryside around El Valle (02).jpg",
-        "Jardines y techos de teja en las afueras del pueblo, bajo la pared del cráter — el entorno de los restaurantes de las alturas."
+        "File:Patacones de Panamá.jpg",
+        "Pescado frito con patacones, rodaja de limón y ensalada — el plato de cena más pedido en los restaurantes del valle."
       ],
       "s7": [
-        "File:Comida de un restaurante de El Valle de Anton.jpg",
-        "Una tabla de entradas en un restaurante de El Valle: canastitas de plátano con dip, ceviche, chicharrón y galletas — el tipo de plato del tramo medio-alto de precios."
+        "File:Ropa vieja, arroz y plátano macho.jpg",
+        "Bandeja de fonda: ropa vieja con arroz, frijoles, plátano maduro y un café — el formato del tramo bajo de precios."
       ]
     }
   },
@@ -288,6 +288,10 @@
       "s3": [
         "File:Mercado ElValle Panama.jpg",
         "El pasillo central del mercado, con los puestos de fruta y verdura a un lado y la artesanía al otro."
+      ],
+      "s4": [
+        "/images/el-valle/elvalle-drums.webp",
+        "Tambores de cuña tallados y pintados a mano, colgados en un puesto del mercado de El Valle de Antón."
       ],
       "s5": [
         "File:Artesanias MercadoElValle.jpg",

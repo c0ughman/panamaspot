@@ -645,12 +645,12 @@ export const pageImages: Record<string, string[]> = {
     "https://images.pexels.com/photos/32419583/pexels-photo-32419583.jpeg?auto=compress&cs=tinysrgb&w=960",
   ],
   "/es/articles/donde-comer-en-el-valle-de-anton": [
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Anton_Valley%2C_Panama_-_panoramio_%281%29.jpg/1280px-Anton_Valley%2C_Panama_-_panoramio_%281%29.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Arroz_con_coco%2C_pescado_frito_y_patacones.jpg/1280px-Arroz_con_coco%2C_pescado_frito_y_patacones.jpg",
     "https://panamaspot.com/images/el-valle/elvalle-market.webp",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Vendedor_MercadoElVallePma.jpg/960px-Vendedor_MercadoElVallePma.jpg",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Pineapples_El_Valle.jpg/960px-Pineapples_El_Valle.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Countryside_around_El_Valle_%2802%29.jpg/960px-Countryside_around_El_Valle_%2802%29.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/e/e3/Comida_de_un_restaurante_de_El_Valle_de_Anton.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Patacones_de_Panam%C3%A1.jpg/960px-Patacones_de_Panam%C3%A1.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Ropa_vieja%2C_arroz_y_pl%C3%A1tano_macho.jpg/960px-Ropa_vieja%2C_arroz_y_pl%C3%A1tano_macho.jpg",
   ],
   "/es/articles/donde-dormir-el-valle-de-anton": [
     "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Anton_Valley%2C_Panama_-_panoramio.jpg/1280px-Anton_Valley%2C_Panama_-_panoramio.jpg",
@@ -721,6 +721,7 @@ export const pageImages: Record<string, string[]> = {
   "/es/articles/mercado-el-valle-de-anton": [
     "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Mercado_EL_Valle_Panama.JPG/1280px-Mercado_EL_Valle_Panama.JPG",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Mercado_ElValle_Panama.jpg/960px-Mercado_ElValle_Panama.jpg",
+    "https://panamaspot.com/images/el-valle/elvalle-drums.webp",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Artesanias_MercadoElValle.jpg/960px-Artesanias_MercadoElValle.jpg",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Mercado_El_Valle_de_Ant%C3%B3n.JPG/960px-Mercado_El_Valle_de_Ant%C3%B3n.JPG",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Pineapples_El_Valle.jpg/960px-Pineapples_El_Valle.jpg",

@@ -1,0 +1,457 @@
+{
+  "_comment": "Per-image facts for the El Valle batch, written after viewing every file. `label` is the short subject·place line that goes on the gallery tile; `desc` is the longer description for the 'Sobre estas fotos' block at the foot of the page; `place` names what the photograph actually shows and drives ImageObject.contentLocation; `locality`/`region` are the postal address for that place, and are omitted where the location is unknown. Keys match scripts/elvalle-image-plan.json.",
+  "File:Valle de Antón La Mochila.jpg": {
+    "label": "Fondo del cráter · El Valle de Antón",
+    "place": "El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Pradera segada en el fondo del cráter, con una casa de techo bajo a la izquierda, buganvilla en flor y el perfil dentado del borde del cráter cerrando el horizonte.",
+    "label_en": "Crater floor · El Valle de Antón",
+    "desc_en": "Mown pasture on the floor of the crater, a low-roofed house at the left, bougainvillea in flower, and the jagged crater rim closing the horizon."
+  },
+  "File:Countryside around El Valle (04).jpg": {
+    "label": "Potreros y cerros · El Valle de Antón",
+    "place": "El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Postes de alambre y un seto de plantas ornamentales dividen un potrero; detrás se levanta un cerro cónico completamente cubierto de bosque."
+  },
+  "/images/el-valle/elvalle-town.webp": {
+    "label": "Avenida Central · El Valle de Antón",
+    "place": "Avenida Central, El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Dos personas caminan por la acera frente a una tienda de fachada verde y a una carretilla de comida rotulada «Kiosco V.T.S. Santamaría»; el borde del cráter aparece entre los cables de luz.",
+    "label_en": "Avenida Central · El Valle de Antón",
+    "desc_en": "Two people walk the pavement past a green shopfront and a food cart lettered “Kiosco V.T.S. Santamaría”; the crater rim shows between the power lines."
+  },
+  "/images/el-valle/elvalle-elmachowaterfall.webp": {
+    "label": "Chorro El Macho · El Valle de Antón",
+    "place": "Chorro El Macho",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "La caída principal del Chorro El Macho bajando en varias lenguas de agua blanca por una pared de roca oscura, encajonada entre vegetación de bosque nuboso.",
+    "label_en": "Chorro El Macho · El Valle de Antón",
+    "desc_en": "The main drop of Chorro El Macho coming down in several tongues of white water over a dark rock face, boxed in by cloud-forest growth."
+  },
+  "/images/el-valle/elvalle-indiadormida.webp": {
+    "label": "Cresta de La India Dormida · El Valle de Antón",
+    "place": "La India Dormida",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "La cresta de La India Dormida vista desde el fondo del valle: laderas pardas y verdes bajo una franja de nubes, con matorral bajo en primer plano.",
+    "label_en": "La India Dormida ridge · El Valle de Antón",
+    "desc_en": "The India Dormida ridge from the valley floor: brown and green slopes under a band of cloud, with low scrub in the foreground."
+  },
+  "/images/el-valle/elvalle-flowermarket.webp": {
+    "label": "Sector de plantas del mercado · El Valle de Antón",
+    "place": "Mercado de El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Bajo el techo traslúcido del mercado, hileras de crotones, buganvillas y plantas en maceta a la venta; al fondo, vendedores atendiendo entre los pasillos.",
+    "label_en": "Market plant section · El Valle de Antón",
+    "desc_en": "Under the market's translucent roof, rows of crotons, bougainvillea and potted plants for sale, with vendors working the aisles behind."
+  },
+  "File:El Valle (1).jpg": {
+    "label": "El pueblo al anochecer · El Valle de Antón",
+    "place": "El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "El Valle al caer la noche desde el borde del cráter: las luces del pueblo encendidas en el fondo del valle bajo la silueta negra de la montaña y un cielo azul profundo.",
+    "label_en": "The town at nightfall · El Valle de Antón",
+    "desc_en": "El Valle at dusk from the crater rim: the town's lights on across the valley floor beneath the black silhouette of the mountain and a deep blue sky."
+  },
+  "https://images.pexels.com/photos/13058771/pexels-photo-13058771.jpeg?auto=compress&cs=tinysrgb&w=1280": {
+    "label": "Casa de montaña entre niebla · Colombia",
+    "place": "Santa Rosa de Cabal, Risaralda, Colombia",
+    "locality": "Santa Rosa de Cabal",
+    "region": "Risaralda",
+    "country": "CO",
+    "desc": "Casa moderna de dos aguas, con grandes ventanales y madera a la vista, rodeada de bosque tropical con la niebla entrando entre los árboles. Fotografía de archivo tomada en Colombia, incluida como referencia visual del tipo de alojamiento de ladera, no de una propiedad de El Valle.",
+    "label_en": "Mountain house in mist · Colombia",
+    "desc_en": "A modern gabled house with large windows and exposed timber, ringed by tropical forest with mist coming through the trees. Stock photograph taken in Colombia, included for the hillside-lodging look rather than as a property in El Valle."
+  },
+  "File:House and Landscape - El Valle (02).jpg": {
+    "label": "Casa de campo bajo el cráter · El Valle de Antón",
+    "place": "El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Casa blanca de estilo colonial con remates azules y techo de teja, palmas altas a los lados y las paredes boscosas del cráter levantándose justo detrás.",
+    "label_en": "Country house below the crater · El Valle de Antón",
+    "desc_en": "A white colonial-style house with blue trim and a tiled roof, tall palms to either side, and the forested crater walls rising directly behind it."
+  },
+  "https://images.pexels.com/photos/13676680/pexels-photo-13676680.jpeg?auto=compress&cs=tinysrgb&w=960": {
+    "label": "Hamaca en un claro · Honduras",
+    "place": "Honduras",
+    "country": "HN",
+    "desc": "Hamaca de rayas de colores tendida entre dos árboles sobre un claro de hierba sembrado de rocas grandes, encuadrada entre hojas desenfocadas. Fotografía de archivo tomada en Honduras, incluida por el tipo de terreno, no por el lugar.",
+    "label_en": "Hammock in a clearing · Honduras",
+    "desc_en": "A striped hammock slung between two trees over a grass clearing strewn with large boulders, framed by out-of-focus leaves. Stock photograph taken in Honduras, included for the kind of grounds rather than the place."
+  },
+  "File:Scenery in El Valle de Anton.jpg": {
+    "label": "Jardín y cerro boscoso · El Valle de Antón",
+    "place": "El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Césped cortado, arbustos de flor morada y árboles de copa ancha en un terreno de El Valle, con un cerro completamente boscoso ocupando el fondo.",
+    "label_en": "Garden and forested hill · El Valle de Antón",
+    "desc_en": "Cut lawn, purple flowering shrubs and broad-canopied trees on a property in El Valle, with a fully forested hill filling the background."
+  },
+  "https://images.pexels.com/photos/37916073/pexels-photo-37916073.jpeg?auto=compress&cs=tinysrgb&w=960": {
+    "label": "Vista aérea de casas rurales · Brasil",
+    "place": "Moreno, Pernambuco, Brasil",
+    "locality": "Moreno",
+    "region": "Pernambuco",
+    "country": "BR",
+    "desc": "Vista aérea de un conjunto de edificaciones de techo rojo repartidas entre potreros y arboledas. Fotografía de archivo tomada en Moreno, Pernambuco, Brasil, incluida como referencia de la disposición de las fincas grandes.",
+    "label_en": "Aerial view of rural buildings · Brazil",
+    "desc_en": "An aerial view of a cluster of red-roofed buildings spread between pasture and stands of trees. Stock photograph taken in Moreno, Pernambuco, Brazil, included as a reference for how the larger valley properties are laid out."
+  },
+  "File:Atardecer en El Valle de Antón.jpg": {
+    "label": "Última luz sobre el cráter · El Valle de Antón",
+    "place": "El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Luz de final de tarde sobre un potrero segado, con un árbol grande de copa abierta en el centro y el filo rocoso del cráter recortado al fondo.",
+    "label_en": "Last light on the crater · El Valle de Antón",
+    "desc_en": "Late-afternoon light across a mown pasture, a big open-crowned tree at the centre and the rocky crater rim cut out against the sky behind."
+  },
+  "/images/el-valle/elvalle-panorama.webp": {
+    "label": "Ladera del cráter · El Valle de Antón",
+    "place": "El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Copa de un árbol en primer plano y, detrás, la pared interior del cráter cubierta de bosque continuo hasta la línea de cumbre.",
+    "label_en": "Crater wall · El Valle de Antón",
+    "desc_en": "A tree canopy in the foreground and, behind it, the inner wall of the crater under continuous forest all the way to the ridgeline."
+  },
+  "/images/boquete/boquete-town2.webp": {
+    "label": "Viveros en el borde del pueblo · Boquete",
+    "place": "Boquete",
+    "locality": "Boquete",
+    "region": "Chiriquí",
+    "desc": "Hileras de viveros y bancales de flores en el borde de Boquete, con casas de techo rojo dispersas por la ladera y la sierra al fondo.",
+    "label_en": "Nurseries at the town edge · Boquete",
+    "desc_en": "Rows of plant nurseries and flower beds on the edge of Boquete, with red-roofed houses scattered up the slope and the cordillera behind."
+  },
+  "/images/boquete/boquete-clouds.webp": {
+    "label": "Bajareque entrando · Boquete",
+    "place": "Boquete",
+    "locality": "Boquete",
+    "region": "Chiriquí",
+    "desc": "Un banco de nubes desbordando el filo de una cordillera boscosa sobre el valle de Boquete: el bajareque que define el clima y el café de la zona.",
+    "label_en": "Bajareque coming over · Boquete",
+    "desc_en": "A bank of cloud spilling over the crest of a forested cordillera above the Boquete valley — the bajareque that defines the town's climate and its coffee."
+  },
+  "File:Mercado ElValle Panama.jpg": {
+    "label": "Interior del mercado público · El Valle de Antón",
+    "place": "Mercado de El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Pasillo interior del mercado público de El Valle: mesas con fruta y verdura, un vendedor de chaqueta azul atendiendo y la estructura de vigas y teja del techo sobre los puestos.",
+    "label_en": "Inside the public market · El Valle de Antón",
+    "desc_en": "The inner aisle of the El Valle public market: tables of fruit and vegetables, a vendor in a blue jacket serving, and the beam-and-tile roof structure over the stalls."
+  },
+  "File:Albrookstation.jpg": {
+    "label": "Coasters en el patio · Terminal de Albrook",
+    "place": "Gran Terminal Nacional de Transporte de Albrook",
+    "locality": "Ciudad de Panamá",
+    "region": "Panamá",
+    "desc": "Filas de buses coaster y de diablos rojos estacionados en el patio pavimentado de la terminal de Albrook, vistos desde el nivel superior."
+  },
+  "File:Albrook bus station Panama City.agr.jpg": {
+    "label": "Andenes de salida · Terminal de Albrook",
+    "place": "Gran Terminal Nacional de Transporte de Albrook",
+    "locality": "Ciudad de Panamá",
+    "region": "Panamá",
+    "desc": "Los andenes de la terminal de Albrook con los buses arrimados en batería a última hora de la tarde, vistos desde la pasarela superior."
+  },
+  "File:Albrook Bus Terminal.jpg": {
+    "label": "Vestíbulo interior · Terminal de Albrook",
+    "place": "Gran Terminal Nacional de Transporte de Albrook",
+    "locality": "Ciudad de Panamá",
+    "region": "Panamá",
+    "desc": "El vestíbulo interior de la terminal de Albrook: pasillo largo con locales comerciales a los dos lados, cubierta abovedada y pasajeros circulando con equipaje."
+  },
+  "File:Carretera Interamericana en Penonomé, Provincia de Coclé, Panamá (2024).jpg": {
+    "label": "Rótulo de destinos · Interamericana, Coclé",
+    "place": "Carretera Interamericana, Penonomé",
+    "locality": "Penonomé",
+    "region": "Coclé",
+    "desc": "Rótulo verde de destinos sobre la Carretera Interamericana en Coclé, con las flechas de Antón, La Chorrera y Panamá, y el tráfico y los comercios de la vía al fondo."
+  },
+  "File:Valle de Anton, Panama.jpg": {
+    "label": "Carretera de entrada al cráter · El Valle de Antón",
+    "place": "El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Carretera asfaltada entrando al valle entre setos y una cerca de madera, con un cerro puntiagudo cubierto de bosque cerrando el fondo."
+  },
+  "File:Chorro Marcho EL Valle Panama 03.jpg": {
+    "label": "Cortinas de agua · Chorro El Macho",
+    "place": "Chorro El Macho",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "El Chorro El Macho abriéndose en varias cortinas de agua sobre un farallón de roca cubierta de musgo, con la poza al pie y el bosque cerrando los dos lados."
+  },
+  "File:Forest at Cerro Macho.jpg": {
+    "label": "Lecho del río en seco · Cerro El Macho",
+    "place": "Cerro El Macho",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "El lecho pedregoso del río en el Cerro El Macho durante la estación seca, con un árbol caído cruzando el cauce y raíces colgando de la ribera."
+  },
+  "File:Chorro las Mozas, Valle de Anton, Panama (52728459947).jpg": {
+    "label": "Camino de acceso · Chorro Las Mozas",
+    "place": "Chorro Las Mozas",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Tres observadores de aves con trípode y binoculares en el camino de hierba que baja hacia Chorro Las Mozas, con el cerro asomando entre la vegetación."
+  },
+  "https://images.pexels.com/photos/34937418/pexels-photo-34937418.jpeg?auto=compress&cs=tinysrgb&w=960": {
+    "label": "Poza de agua ambarina",
+    "place": "Ubicación no documentada",
+    "desc": "Poza de agua color ámbar al pie de un chorro estrecho, cerrada por bloques de roca cubiertos de musgo y vegetación densa. Fotografía de archivo sin ubicación documentada por su autor."
+  },
+  "File:Arroz con coco, pescado frito y patacones.jpg": {
+    "label": "Pescado frito, arroz con coco y patacones · Panamá",
+    "place": "Panamá",
+    "region": "Panamá",
+    "desc": "Mesa de restaurante con mantel verde: pescado frito entero servido en plato rectangular con patacones y ensalada de tomate y lechuga, un plato de arroz con coco al lado y una cerveza detrás."
+  },
+  "/images/el-valle/elvalle-market.webp": {
+    "label": "El mercado desde la avenida · El Valle de Antón",
+    "place": "Mercado de El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Las naves de teja del mercado de El Valle vistas desde la Avenida Principal, con los carros estacionados en línea delante y el cerro asomando por encima de los techos."
+  },
+  "File:Vendedor MercadoElVallePma.jpg": {
+    "label": "Puesto de pan y dulces · Mercado de El Valle",
+    "place": "Mercado de El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Un vendedor coloca bolsas de pan, dulces y frutos secos en las rejillas de su puesto del mercado de El Valle, con flores artificiales colgando del borde."
+  },
+  "File:Pineapples El Valle.jpg": {
+    "label": "Piñas y cítricos · Mercado de El Valle",
+    "place": "Mercado de El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Cajas de piñas apiladas en el suelo del mercado con las coronas hacia arriba, y detrás guacales de naranjas y limones."
+  },
+  "File:Patacones de Panamá.jpg": {
+    "label": "Pescado frito con patacones · Panamá",
+    "place": "Panamá",
+    "region": "Panamá",
+    "desc": "Plato blanco con pescado frito entero, cuatro patacones dorados, rodaja de limón y ensalada de tomate y cebolla, servido en mesa de restaurante."
+  },
+  "File:Ropa vieja, arroz y plátano macho.jpg": {
+    "label": "Bandeja de fonda · Panamá",
+    "place": "Panamá",
+    "region": "Panamá",
+    "desc": "Bandeja azul de autoservicio con ropa vieja sobre arroz, frijoles, plátano maduro frito, una taza de café, una lata de refresco y servilletas."
+  },
+  "File:Anton Valley, Panama - panoramio (1).jpg": {
+    "label": "Mercado techado a media mañana · El Valle de Antón",
+    "place": "Mercado de El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "El mercado techado de El Valle a media mañana, con las mesas ya montadas de sandías, papayas y verduras, y los cerros del cráter visibles por el costado abierto de la nave."
+  },
+  "File:Anton Valley, Panama - panoramio.jpg": {
+    "label": "Hospedaje con jardín sembrado · El Valle de Antón",
+    "place": "El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Edificio de dos plantas con balcones de madera sobre un lote sembrado de cordilinas rojas y palmas, con el cerro boscoso cerrando la vista al fondo."
+  },
+  "File:Architectural Detail of Hotel El Majo del Valle - El Valle - Cocle Province - Panama (11519249273).jpg": {
+    "label": "Rótulo del Hotel El Majo del Valle · El Valle de Antón",
+    "place": "Hotel El Majo del Valle",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Rótulo de madera con las letras «Hotel El Majo del Valle» sobre una pared naranja intensa, con una jardinera de bromelias y cordilinas delante y un muro de piedra bola al lado."
+  },
+  "File:Panamá 20230321 134938.jpg": {
+    "label": "Bloque de habitaciones de una planta · El Valle de Antón",
+    "place": "El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Bloque de habitaciones de una sola planta con zócalo rojo y puertas de madera, con césped cortado delante y arbolado detrás."
+  },
+  "/images/el-valle/evbike-plaza.webp": {
+    "label": "Flota de e-bikes bajo el árbol · El Valle de Antón",
+    "place": "El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Cuatro bicicletas eléctricas de cuadro bajo apoyadas sobre el césped a la sombra de un árbol grande, con una galería de arcos de piedra al fondo."
+  },
+  "File:EntradaChorroMacho ElValle.jpg": {
+    "label": "Caseta de entrada · Chorro El Macho",
+    "place": "Chorro El Macho",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "La caseta de entrada al Chorro El Macho, con techo de paja a dos aguas, tableros informativos en la fachada y la vegetación del bosque cerrando el camino de acceso."
+  },
+  "File:Jardín Zoológico El Nispero.jpg": {
+    "label": "Camino interior · Zoológico El Níspero",
+    "place": "Zoológico El Níspero",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Camino interior del Jardín Zoológico El Níspero entre jardineras de flores y arbustos, con una edificación blanca a la derecha y el cerro boscoso del cráter al fondo."
+  },
+  "File:Workmen with Mountain Backdrop - El Valle.jpg": {
+    "label": "Vivero bajo malla · El Valle de Antón",
+    "place": "El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Dos hombres trabajando sobre la estructura metálica de un vivero de malla de sombra, con la ladera boscosa del cráter llenando el fondo."
+  },
+  "File:Piedra Pintada ElValle.jpg": {
+    "label": "Recorriendo los grabados con una vara · Piedra Pintada",
+    "place": "Piedra Pintada",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Un niño con camiseta azul y pantaloneta roja señala los grabados de la Piedra Pintada con una vara larga, apoyado en la base del bloque de roca."
+  },
+  "File:Artesanias MercadoElValle.jpg": {
+    "label": "Artesanía pintada a mano · Mercado de El Valle",
+    "place": "Mercado de El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Rejilla de un puesto del mercado de El Valle cubierta de artesanía pintada a mano: soles y lunas de colores, bandejas florales, placas con aves y piezas en fibra tejida."
+  },
+  "File:WetRapel Abseiling.jpg": {
+    "label": "Descenso con cuerda junto a la cascada · El Valle de Antón",
+    "place": "El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Dos personas descendiendo con cuerda por la pared de roca junto a una cascada de El Valle, con el agua cayendo a su izquierda y el bosque encima."
+  },
+  "File:LaIndiaDormida.jpg": {
+    "label": "Perfil de La India Dormida · El Valle de Antón",
+    "place": "La India Dormida",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "El perfil de La India Dormida visto entre ramas desnudas desde el fondo del valle, con la cresta recortada bajo un cielo de nubes altas."
+  },
+  "/images/el-valle/ta-review-3.webp": {
+    "label": "Ciclistas en la carretera del valle · El Valle de Antón",
+    "place": "El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Tres ciclistas detenidos junto a sus bicicletas en el arcén de la carretera del valle, con cafetales a los lados y un cerro puntiagudo cerrando el fondo."
+  },
+  "/images/el-valle/ta-review-1.webp": {
+    "label": "Entrega de bicicletas · El Valle de Antón",
+    "place": "El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Dos adultos con casco y una niña posan con tres bicicletas eléctricas en un camino de piedra a la salida del local de alquiler, entre plantas de jardín."
+  },
+  "/images/el-valle/evbike-crater-view.webp": {
+    "label": "Mirador del borde del cráter · El Valle de Antón",
+    "place": "El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Una ciclista de pie junto a su bicicleta eléctrica sobre hierba alta en el borde del cráter, mirando el fondo verde del valle con la cordillera y las nubes detrás."
+  },
+  "/images/el-valle/evbike-forest.webp": {
+    "label": "Camino de tierra entre pinos · El Valle de Antón",
+    "place": "El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Un ciclista visto de espaldas subiendo un camino de tierra húmeda entre pinos altos y sotobosque verde."
+  },
+  "/images/el-valle/evbike-trail.webp": {
+    "label": "Bicicleta al pie de la subida · El Valle de Antón",
+    "place": "El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Una bicicleta de montaña apoyada en la hierba al pie de una subida del borde del cráter, con la ladera pelada y dorada por el sol detrás."
+  },
+  "/images/el-valle/elvalle-petroglifo.webp": {
+    "label": "Espirales grabadas · Piedra Pintada",
+    "place": "Piedra Pintada",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Detalle de la cara de la Piedra Pintada con espirales y figuras grabadas en la roca, y una persona de pie a la derecha que da la escala del bloque."
+  },
+  "/images/el-valle/evbike-sunset.webp": {
+    "label": "Atardecer desde el mirador · El Valle de Antón",
+    "place": "El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Visto por encima del hombro de alguien con gorra blanca, el sol bajando sobre las tierras bajas desde un mirador del borde del cráter."
+  },
+  "File:Mercado EL Valle Panama.JPG": {
+    "label": "Ristras de ajo y ají · Mercado de El Valle",
+    "place": "Mercado de El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Ristras de ajo, cebolla y ají colgadas del travesaño de un puesto del mercado de El Valle, con una banderita panameña arriba y la vendedora sentada al fondo."
+  },
+  "/images/el-valle/elvalle-drums.webp": {
+    "label": "Tambores de cuña · Mercado de El Valle",
+    "place": "Mercado de El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Tambores de cuña tallados en madera y barnizados en tonos rojos y ámbar, colgados en fila del enrejado de un puesto de artesanía del mercado."
+  },
+  "File:Mercado El Valle de Antón.JPG": {
+    "label": "Naves del mercado · El Valle de Antón",
+    "place": "Mercado de El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Las naves de teja a dos aguas del mercado de El Valle desde la calle, con el estacionamiento en línea ocupado delante y el cerro del cráter al fondo."
+  },
+  "File:10-001-DMHN Los petroglifos en Panamá.jpg": {
+    "label": "El bloque completo · Piedra Pintada",
+    "place": "Piedra Pintada",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "La Piedra Pintada completa: un bloque de roca de varios metros partido en dos, con una persona de pie al pie del corte que da la escala, rodeado de vegetación y del cauce pedregoso."
+  },
+  "https://images.pexels.com/photos/7200711/pexels-photo-7200711.jpeg?auto=compress&cs=tinysrgb&w=1280": {
+    "label": "Mariposas Heliconius sobre flor amarilla",
+    "place": "Ubicación no documentada",
+    "desc": "Dos mariposas Heliconius de alas rayadas en naranja, negro y crema posadas sobre un ramillete de flores amarillas y anaranjadas. Fotografía de archivo sin ubicación documentada."
+  },
+  "https://images.pexels.com/photos/30911817/pexels-photo-30911817.jpeg?auto=compress&cs=tinysrgb&w=960": {
+    "label": "Morfo azul con las alas abiertas",
+    "place": "Ubicación no documentada",
+    "desc": "Una mariposa morfo azul posada sobre una hoja con las alas completamente abiertas, mostrando el azul metálico y el borde pardo con puntos claros. Fotografía de archivo sin ubicación documentada."
+  },
+  "https://images.pexels.com/photos/35525462/pexels-photo-35525462.jpeg?auto=compress&cs=tinysrgb&w=960": {
+    "label": "Mariposas búho en el comedero",
+    "place": "Ubicación no documentada",
+    "desc": "Dos mariposas búho, con los grandes ocelos de las alas a la vista, alimentándose de rodajas de naranja en un platón verde colgado entre la vegetación. Fotografía de archivo sin ubicación documentada."
+  },
+  "https://images.pexels.com/photos/7200725/pexels-photo-7200725.jpeg?auto=compress&cs=tinysrgb&w=960": {
+    "label": "Mariposa moteada en espiga morada",
+    "place": "Ubicación no documentada",
+    "desc": "Mariposa de alas moteadas en naranja y blanco posada en una espiga de flores moradas, con las alas plegadas. Fotografía de archivo sin ubicación documentada."
+  },
+  "https://images.pexels.com/photos/33161296/pexels-photo-33161296.jpeg?auto=compress&cs=tinysrgb&w=960": {
+    "label": "Heliconius sobre flor roja",
+    "place": "Ubicación no documentada",
+    "desc": "Mariposa Heliconius de alas alargadas en naranja y negro alimentándose de una flor roja de anturio. Fotografía de archivo sin ubicación documentada."
+  },
+  "File:Scenery in El Valle de Anton (02).jpg": {
+    "label": "Jardín tropical · El Valle de Antón",
+    "place": "El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Jardín tropical denso en El Valle: bromelias y plantas de hoja ancha en primer plano, coníferas y árboles de sombra detrás, y un techo de teja asomando entre la vegetación."
+  },
+  "File:Countryside around El Valle (03).jpg": {
+    "label": "Potreros y cerros · El Valle de Antón",
+    "place": "El Valle de Antón",
+    "locality": "El Valle de Antón",
+    "region": "Coclé",
+    "desc": "Postes de alambre y un seto de plantas ornamentales dividen un potrero; detrás se levanta un cerro cónico completamente cubierto de bosque.",
+    "label_en": "Pasture and peaks · El Valle de Antón",
+    "desc_en": "Wire fence posts and a hedge of ornamental planting divide a pasture; behind it a conical hill rises under unbroken forest."
+  }
+}

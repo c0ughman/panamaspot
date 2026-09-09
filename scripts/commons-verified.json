@@ -691,5 +691,26 @@
   "h": 375,
   "lic": "CC BY-SA 3.0",
   "artist": "Gray16"
+ },
+ "Arroz con coco, pescado frito y patacones.jpg": {
+  "url": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Arroz_con_coco%2C_pescado_frito_y_patacones.jpg",
+  "w": 4000,
+  "h": 3000,
+  "lic": "CC BY-SA 4.0",
+  "artist": "ProtoplasmaKid"
+ },
+ "Patacones de Panamá.jpg": {
+  "url": "https://upload.wikimedia.org/wikipedia/commons/6/64/Patacones_de_Panam%C3%A1.jpg",
+  "w": 4000,
+  "h": 3000,
+  "lic": "CC BY-SA 4.0",
+  "artist": "ProtoplasmaKid"
+ },
+ "Ropa vieja, arroz y plátano macho.jpg": {
+  "url": "https://upload.wikimedia.org/wikipedia/commons/4/49/Ropa_vieja%2C_arroz_y_pl%C3%A1tano_macho.jpg",
+  "w": 4000,
+  "h": 3000,
+  "lic": "CC BY-SA 4.0",
+  "artist": "ProtoplasmaKid"
  }
 }

@@ -151,6 +151,11 @@ def process(page):
     s = p.read_text(encoding="utf-8")
     s = re.sub(r"<!--IMGCREDITS-->.*?<!--/IMGCREDITS-->", "", s, flags=re.S)  # idempotent
     lang = "es" if "/es/" in page else "en"
+    if "<!--IMGDESC-->" in s:
+        # elvalle-image-descriptions.py owns the foot of this page: its block
+        # describes AND credits every image, including the site's own, so a
+        # credits list alongside it would repeat the same photographs.
+        p.write_text(s, encoding="utf-8"); print(f"  – {page}  (IMGDESC block owns credits)"); return
     urls = collect(s)
     if not urls:
         p.write_text(s, encoding="utf-8"); print(f"  – {page}  (no CC images)"); return
