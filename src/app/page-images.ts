@@ -645,7 +645,7 @@ export const pageImages: Record<string, string[]> = {
     "https://images.pexels.com/photos/32419583/pexels-photo-32419583.jpeg?auto=compress&cs=tinysrgb&w=960",
   ],
   "/es/articles/donde-comer-en-el-valle-de-anton": [
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Arroz_con_coco%2C_pescado_frito_y_patacones.jpg/1280px-Arroz_con_coco%2C_pescado_frito_y_patacones.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/a/a1/Ceviche_de_camar%C3%B3n.jpg",
     "https://panamaspot.com/images/el-valle/elvalle-market.webp",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Vendedor_MercadoElVallePma.jpg/960px-Vendedor_MercadoElVallePma.jpg",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Pineapples_El_Valle.jpg/960px-Pineapples_El_Valle.jpg",

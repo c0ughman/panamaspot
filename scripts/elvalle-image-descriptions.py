@@ -51,11 +51,11 @@ T = {
  "es": {"eyebrow": "Las fotos", "title": "Sobre estas fotos",
         "sub": "Qué muestra cada fotografía de esta página, dónde se tomó y quién la tomó. "
                "Toca el título para ver el archivo original.",
-        "own": "Fotografía de PanamaSpot", "where": "Dónde", "lic": "Licencia"},
+        "own": "Fotografía de PanamaSpot", "lic": "Licencia"},
  "en": {"eyebrow": "The photographs", "title": "About these photographs",
         "sub": "What each photograph on this page shows, where it was taken and who took it. "
                "Tap a title to see the original file.",
-        "own": "PanamaSpot photograph", "where": "Where", "lic": "Licence"},
+        "own": "PanamaSpot photograph", "lic": "Licence"},
 }
 
 CSS = ('<style id="img-desc-css">'
@@ -205,9 +205,12 @@ def desc_block(s, lang):
         else:
             credit = t["own"]
             title = lab
+        # No visible "Where: <place>" line — the client finds it clumsy at the
+        # end of every entry. The place still ships in ImageObject.contentLocation,
+        # which is the part search engines read.
         items.append(
           f'<li><span class="id-t">{title}</span><p class="id-d">{dsc}</p>'
-          f'<span class="id-m"><b>{t["where"]}:</b> {html.escape(f["place"])} · {credit}</span></li>')
+          f'<span class="id-m">{credit}</span></li>')
 
     if not items:
         return s
