@@ -1,2370 +1,2598 @@
 {
-  "https://upload.wikimedia.org/wikipedia/commons/c/cb/Aerial_view_of_Boquete%2C_Panama.jpg": {
-    "w": 4000,
-    "h": 2628
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/e/ed/Aerial_view_of_the_Province_of_Chiriqui%2C_Republic_of_Panama_02.jpg": {
-    "w": 3417,
-    "h": 2189
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/c/c3/Aerial_view_of_the_Province_of_Chiriqui%2C_Republic_of_Panama_06.jpg": {
-    "w": 3796,
-    "h": 2847
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/4/49/Atardecer_en_El_Valle_de_Ant%C3%B3n.jpg": {
-    "w": 2000,
-    "h": 1335
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/a/a8/Boquete%2C_Alto_Jaramillo%2C_Chiriqu%C3%AD%2C_Rep%C3%BAblica_de_Panam%C3%A1.png": {
-    "w": 7128,
-    "h": 2429
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/2/2c/Boquete_Cloud_Forest_2.jpg": {
-    "w": 1600,
-    "h": 1200
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/6/68/Boquete_RioCaldera.jpg": {
-    "w": 5198,
-    "h": 3462
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/2/20/Causeway_de_Amador_17-12-14.jpg": {
-    "w": 3974,
-    "h": 2235
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/5/5b/ChorroMachoElValle.jpg": {
-    "w": 1930,
-    "h": 2898
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/d/db/Chorro_Marcho_EL_Valle_Panama_01.jpg": {
-    "w": 3462,
-    "h": 5198
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/d/db/Colibri-thalassinus-001-edit.jpg": {
-    "w": 2112,
-    "h": 1320
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/e/e1/EL_MACHO_FALLS_-_panoramio.jpg": {
-    "w": 2072,
-    "h": 2576
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/2/22/El_Chorro_Macho_La_Mochila.jpg": {
-    "w": 3168,
-    "h": 4752
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/3/3a/El_Valle_%281%29.jpg": {
-    "w": 3072,
-    "h": 2040
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/8/82/El_valle2.jpg": {
-    "w": 5652,
-    "h": 2476
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/8/8f/Elementary_School_in_Boquete_Panama_11.jpg": {
-    "w": 1200,
-    "h": 800
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/4/4e/Finca_Lerida%2C_Boquete%2C_Panama.jpg": {
-    "w": 3072,
-    "h": 2304
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/f/f4/ISS015-E-27703_-_View_of_Panama.jpg": {
-    "w": 3032,
-    "h": 2008
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/f/f3/La_Amistad_Panama_Biosphere_Reserve_-_Bocas_del_Toro_Province_42_-_Core_Zone_-_Summit_of_Volcan_Baru%2C_Volcan_Baru_National_Park.jpg": {
-    "w": 1968,
-    "h": 1312
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/0/0d/La_Amistad_Panama_Biosphere_Reserve_-_Parque_Nacional_Volcan_Baru_%28a_core_zone%29_09.JPG": {
-    "w": 4320,
-    "h": 3240
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/7/7f/Laguna_La_Mochila.jpg": {
-    "w": 2816,
-    "h": 2112
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/6/64/Pharomachrus_mocinno_294535167.jpg": {
-    "w": 2048,
-    "h": 1366
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/4/44/RVN06957.jpg": {
-    "w": 6000,
-    "h": 4000
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/0/0a/Resplendent_Quetzal_%28Pharomachrus_mocinno%29_-_Flickr_-_gailhampshire_%281%29.jpg": {
-    "w": 2938,
-    "h": 2499
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/c/cd/Rope_Bridge_Near_Cerro_El_Macho_Waterfall.jpg": {
-    "w": 3648,
-    "h": 2736
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/0/02/Scenery_in_El_Valle_de_Anton.jpg": {
-    "w": 2736,
-    "h": 3648
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/4/4b/Scenery_in_El_Valle_de_Anton_%2802%29.jpg": {
-    "w": 3648,
-    "h": 2736
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/b/b3/Street_Scene_-_El_Valle_de_Anton.jpg": {
-    "w": 3648,
-    "h": 2736
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/7/7f/Street_Scene_-_El_Valle_de_Anton_-_Cocle_Province_-_Panama_-_03_%2811503415213%29.jpg": {
-    "w": 2736,
-    "h": 3648
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/4/46/Summit_of_Volcan_Baru_visible_from_the_town_of_Volcan.JPG": {
-    "w": 5616,
-    "h": 3744
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/4/48/View_from_Finca_Lerida_coffee_plantation_-_Flickr_-_gailhampshire.jpg": {
-    "w": 4467,
-    "h": 2916
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/c/ca/Volcan_Baru%2C_Quetzal_Trail_-_Flickr_-_gailhampshire.jpg": {
-    "w": 4608,
-    "h": 3072
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/4/48/Volcan_Baru_-_Flickr_-_gailhampshire.jpg": {
-    "w": 4344,
-    "h": 3072
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/3/31/Volcan_Baru_in_a_cloud_shroud.jpg": {
-    "w": 2400,
-    "h": 1349
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/d/d3/Volcan_Baru_up_close_and_clouded.jpg": {
-    "w": 4000,
-    "h": 3000
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/7/7a/Volcan_baru.jpg": {
-    "w": 825,
-    "h": 528
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/3/30/Volc%C3%A1n_Bar%C3%BA_desde_Volc%C3%A1n.JPG": {
-    "w": 3264,
-    "h": 2448
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/3/3d/Waterfall_at_Cerro_El_Macho_%2802%29.jpg": {
-    "w": 2736,
-    "h": 3648
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/f/f0/Waterfall_at_Cerro_El_Macho_%2803%29.jpg": {
-    "w": 2736,
-    "h": 3648
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/4/42/WetRapel_Abseiling.jpg": {
-    "w": 2304,
-    "h": 3456
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/2/2e/06._Canal_de_Panama_%2817%29.JPG": {
-    "w": 2592,
-    "h": 1944
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/4/4a/5-Torre_Panama_Vieja-08-099-DCMHN.jpg": {
-    "w": 2000,
-    "h": 2667
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/4/4c/Along_the_Cinta_Costera_at_Nightfall_%2805%29.jpg": {
-    "w": 3648,
-    "h": 2736
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/5/5f/Altar_de_Oro_Iglesia_San_Jos%C3%A9_de_Panam%C3%A1.jpg": {
-    "w": 540,
-    "h": 720
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/2/29/Amador_Causeway_-_22929854980.jpg": {
-    "w": 3731,
-    "h": 2498
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/5/51/Calle_Casco_Viejo.jpg": {
-    "w": 1946,
-    "h": 2629
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/e/e7/Calzada_de_Amador_%28Vista_A%C3%A9rea_desde_Isla_Naos%29.jpg": {
-    "w": 3375,
-    "h": 2250
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/b/b7/Canal_de_Panama._Exclusas_de_miraflores._-_Flickr_-_MaxiV4.jpg": {
-    "w": 1365,
-    "h": 2048
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/8/8c/Canal_de_Panama_-_Miraflores_-_Detalle_de_Remolcador_-_CJRD.jpg": {
-    "w": 4290,
-    "h": 2856
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/1/17/Casco_Antiguo_%28San_Felipe%29_-_Pamama.jpg": {
-    "w": 3968,
-    "h": 2976
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/1/13/Casco_Viejo%2C_Panama_City%2C_Panama.jpg": {
-    "w": 7160,
-    "h": 4734
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/d/d1/Casco_Viejo%2C_Panama_City%2C_Panama_-_54301629817.jpg": {
-    "w": 4032,
-    "h": 3024
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/d/db/Casco_Viejo%2C_Panama_City_%2823652555433%29.jpg": {
-    "w": 3053,
-    "h": 2037
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/4/4d/Catedral_Panam%C3%A1_Viejo.jpg": {
-    "w": 2048,
-    "h": 1446
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/8/86/Causeway_de_Amador.jpg": {
-    "w": 1024,
-    "h": 768
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/2/2b/Esclusas_de_Miraflores_Panam%C3%A1.JPG": {
-    "w": 5184,
-    "h": 3456
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/f/fd/IslaPerico_Causeway_Amador.JPG": {
-    "w": 5184,
-    "h": 3456
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/9/99/Isla_Naos_e_Isla_Perico.jpg": {
-    "w": 5184,
-    "h": 3456
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/6/6f/Iv-Ruins_of_the_Cathedral_Tower-_Old_Panama.jpg": {
-    "w": 869,
-    "h": 1319
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/f/fb/Kids_on_Street_-_Casco_Viejo_%28Old_City%29_-_Panama_City_-_Panama_%2811427353396%29.jpg": {
-    "w": 3648,
-    "h": 2736
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/f/fd/Main_Building_of_the_Miraflores_Locks.jpg": {
-    "w": 2592,
-    "h": 1936
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/2/2f/Miraflores_Locks_-_49953155947.jpg": {
-    "w": 5562,
-    "h": 3708
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/0/05/Old_Panama_City_-_Casco_Viejo_-_Panama_-_panoramio_%2813%29.jpg": {
-    "w": 2848,
-    "h": 4288
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/8/89/Old_Panama_City_-_Casco_Viejo_-_Panama_-_panoramio_%285%29.jpg": {
-    "w": 4288,
-    "h": 2848
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/a/a2/Panama_Canal_-_Pacific_Side_Entrance.jpg": {
-    "w": 831,
-    "h": 686
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/f/f7/Panama_Canal_Gatun_Locks.jpg": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/f/f6/Panama_Canal_Trip_1994_01.jpg": {
-    "w": 2958,
-    "h": 2016
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/5/53/Panama_City_-_Casco_Viejo.jpg": {
-    "w": 5184,
-    "h": 2916
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/4/4d/Panama_City_Casco_Viejo.jpg": {
-    "w": 3264,
-    "h": 2448
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/4/42/Panama_city_Amador_Causeway-9673_-_Flickr_-_Ragnhild_%26_Neil_Crawford.jpg": {
-    "w": 1400,
-    "h": 528
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/1/13/Panam%C3%A1_Viejo_%282005%29_01.jpg": {
-    "w": 717,
-    "h": 1071
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/0/02/Torre_Catedral_%28Panam%C3%A1_Viejo%29.JPG": {
-    "w": 4272,
-    "h": 2848
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/0/0f/Torre_Catedral_PANAM%C3%81_VIEJO..jpg": {
-    "w": 3456,
-    "h": 5184
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/9/96/Torre_Panam%C3%A1_Viejo_y_Plaza.JPG": {
-    "w": 4608,
-    "h": 3456
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/c/c4/Torre_de_Panama_Viejo.jpg": {
-    "w": 2498,
-    "h": 1691
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/e/e3/Torre_de_la_Catedral_Panam%C3%A1_Viejo.jpg": {
-    "w": 3500,
-    "h": 2333
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/d/df/Torre_de_la_Catedral_Panam%C3%A1_Viejo_Panam%C3%A1.jpg": {
-    "w": 1750,
-    "h": 2625
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/8/87/Torre_de_la_Catedral_Panam%C3%A1_Viejo_desde_adentro.jpg": {
-    "w": 3500,
-    "h": 2063
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/7/74/Tower_of_the_Cathedral_at_Old_Panama_City_ruins.jpg": {
-    "w": 6000,
-    "h": 4000
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/7/74/Vista_desde_Torre_en_Panam%C3%A1_Viejo_.jpg": {
-    "w": 2389,
-    "h": 2985
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/4/49/...a_reflection_of_life..._-_panoramio.jpg": {
-    "w": 1800,
-    "h": 1200
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/b/b0/Arroz_con_coco%2C_pescado_frito_y_patacones.jpg": {
-    "w": 4000,
-    "h": 3000
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/e/ef/Bocas1.jpg": {
-    "w": 945,
-    "h": 707
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/e/e5/Bocas_Town_--_Isla_Colon.jpg": {
-    "w": 4032,
-    "h": 3024
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/a/a7/Bocas_del_Toro%2C_Changuinola%2C_Panama_%28Unsplash%29.jpg": {
-    "w": 2361,
-    "h": 3148
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bocas_del_Toro_Panama.jpg": {
-    "w": 3992,
-    "h": 2242
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/d/de/Bocas_del_Toro_Panama_6.jpg": {
-    "w": 3992,
-    "h": 2992
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/1/18/Bradypus.jpg": {
-    "w": 1536,
-    "h": 2048
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/c/c0/Calle_en_Isla_Taboga_-_Panam%C3%A1.jpg": {
-    "w": 2976,
-    "h": 3968
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/0/00/Canal_-_Lake_Gatun_-_panoramio.jpg": {
-    "w": 3072,
-    "h": 2304
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/5/52/Casa_Fuerte_de_Bater%C3%ADas_dec_San_Fernando_-_Fortificaciones_de_Portobelo%2C_Panama.jpg": {
-    "w": 640,
-    "h": 480
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/2/2c/Cinta_Costera_Paitilla1.JPG": {
-    "w": 3648,
-    "h": 2736
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/7/73/Cinta_Costera_Panama_Agosto20019.jpg": {
-    "w": 3992,
-    "h": 2242
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/5/5c/Cinta_Costera_Pma.jpg": {
-    "w": 1930,
-    "h": 2898
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/d/d3/Cinta_Costera_de_Panam%C3%A1.jpg": {
-    "w": 2048,
-    "h": 1536
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/8/88/Cinta_costera%2C_Panam%C3%A1.jpg": {
-    "w": 4000,
-    "h": 2248
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/2/26/Cinta_costera%2C_que_rodea_exteriormente_el_centro_hist%C3%B3rico_de_la_ciudad_de_Panam%C3%A1.jpg": {
-    "w": 3642,
-    "h": 1841
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/7/70/Container_Vessel_HS_Mozart_Gatun_Lake_Panama_Canal_0682.jpg": {
-    "w": 5621,
-    "h": 3426
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/a/a0/Facade_-_Portobelo_-_Caribbean_Coast_-_Panama_%2811457833485%29.jpg": {
-    "w": 3648,
-    "h": 2736
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/d/d1/Gatun_Lake.jpg": {
-    "w": 1500,
-    "h": 1000
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/7/72/Gatun_Lake_-_50088345977.jpg": {
-    "w": 5500,
-    "h": 3094
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/3/3d/Gatun_Panama.png": {
-    "w": 796,
-    "h": 724
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/d/df/Geoffroy%27s_tamarin_%28Saguinus_geoffroyi%29_2.jpg": {
-    "w": 3993,
-    "h": 3993
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/9/9d/Harbourt_Scene_-_Portobelo_-_Caribbean_Coast_-_Panama_-_02_%2811457888296%29.jpg": {
-    "w": 2736,
-    "h": 3648
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/f/f2/ISS065-E-31000_-_View_of_Panama_-_Taboga_Island_-_island_Isla_de_Urab%C3%A1_%28cropped%29.jpg": {
-    "w": 2491,
-    "h": 1868
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/e/e8/IslaTaboga.JPG": {
-    "w": 5184,
-    "h": 3456
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/e/e0/Lunch_near_Portobelo%2C_Panama_%283777588022%29.jpg": {
-    "w": 3648,
-    "h": 2736
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/5/53/Mercado_de_Mariscos_%28Ciudad_de_Panam%C3%A1%2C_Panam%C3%A1%29.jpg": {
-    "w": 3264,
-    "h": 2448
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/4/4f/Panama%2C_Gatun_Lake_1.jpg": {
-    "w": 5184,
-    "h": 2916
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/7/70/Panama%2C_Gatun_Lake_2.jpg": {
-    "w": 4994,
-    "h": 2809
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/9/9d/Panama_-_Porto_Bello_ruins.jpg": {
-    "w": 1600,
-    "h": 990
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/5/55/Panama_-_Taboga_-_panoramio.jpg": {
-    "w": 5117,
-    "h": 2799
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/2/26/Panama_-_Taboga_-_panoramio_%281%29.jpg": {
-    "w": 5184,
-    "h": 2920
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/f/f8/Portobelo%2C_Colon._Panam%C3%A1_2.jpg": {
-    "w": 2592,
-    "h": 1944
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/3/3a/Portobelo%2C_Colon.jpg": {
-    "w": 2592,
-    "h": 1944
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/3/30/Spanish_Cannon_at_Portobelo%2C_Panama_%283777622546%29.jpg": {
-    "w": 3648,
-    "h": 2736
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/9/9c/Sport_courts_in_Cinta_Costera_-_Panama_City_%28DSCF5759%29.jpg": {
-    "w": 3653,
-    "h": 2426
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/d/d9/TabogaBeach.JPG": {
-    "w": 5184,
-    "h": 3456
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/a/ae/Taboga_Insel.jpg": {
-    "w": 932,
-    "h": 700
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/7/74/Taboga_island.jpg": {
-    "w": 933,
-    "h": 700
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/7/78/Ancon_Hill_-_14095325320.jpg": {
-    "w": 2000,
-    "h": 3008
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/d/df/Ancon_Hill_-_2014.JPG": {
-    "w": 1944,
-    "h": 2592
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/6/6d/Ancon_Hill_in_Panama_01.jpg": {
-    "w": 2048,
-    "h": 1536
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/e/eb/Antennarius_commerson.jpg": {
-    "w": 4368,
-    "h": 2912
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/c/c2/Anton_Valle_foothills_-_Flickr_-_gailhampshire.jpg": {
-    "w": 4608,
-    "h": 3072
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/9/94/Arothron_meleagris.jpg": {
-    "w": 4368,
-    "h": 2912
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/8/8b/Atelopus_zeteki.jpg": {
-    "w": 1024,
-    "h": 681
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/1/17/Atelopus_zeteki_VA.jpg": {
-    "w": 4032,
-    "h": 3024
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/b/b1/Baird%27s_tapir_mother_with_baby_%2892151%29.jpg": {
-    "w": 3920,
-    "h": 2768
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/8/8c/Bocas_del_Toro_Province%2C_Panama_-_panoramio_%2813%29.jpg": {
-    "w": 3774,
-    "h": 2829
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/6/64/Catedral_Metropolitana_Panam%C3%A1.jpg": {
-    "w": 2872,
-    "h": 2872
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/5/52/Coiba_Panama_%2826216765884%29.jpg": {
-    "w": 6000,
-    "h": 4000
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/8/8c/Coiba_Panama_%2826822070175%29.jpg": {
-    "w": 6000,
-    "h": 4000
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/c/cc/Coiba_Sunset_%282071282152%29.jpg": {
-    "w": 4368,
-    "h": 2912
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/7/77/Coibita_Island_Panorama.jpg": {
-    "w": 11722,
-    "h": 3902
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/7/76/Countryside_around_El_Valle_%2803%29.jpg": {
-    "w": 3648,
-    "h": 2736
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/b/b0/Countryside_around_El_Valle_%2804%29.jpg": {
-    "w": 3648,
-    "h": 2736
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/c/cd/El_Valle_%284242157981%29.jpg": {
-    "w": 3968,
-    "h": 2976
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/4/4e/El_Valle_%284242926674%29.jpg": {
-    "w": 4032,
-    "h": 3024
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/e/ed/GOLF_COURSE_AND_PANAMA_CITY_SKYLINE_-_panoramio.jpg": {
-    "w": 3872,
-    "h": 2592
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/8/83/Gnathanodon_speciosus.jpg": {
-    "w": 4368,
-    "h": 2912
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/a/a2/Horses_and_Bougainvillea_-_El_Valle.jpg": {
-    "w": 3648,
-    "h": 2736
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/1/1f/Insel_Coiba_Rangerstation_%2826549648040%29.jpg": {
-    "w": 6000,
-    "h": 4000
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/8/88/Insel_Coiba_Strand_%2826217559123%29.jpg": {
-    "w": 6000,
-    "h": 4000
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/8/89/Isla_Canales_de_Afuera_Shallows_%282063365818%29.jpg": {
-    "w": 4368,
-    "h": 2912
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/9/9e/Isla_de_Coiba_-_Granite_de_Oro_-_Pacific_Ocean_Islands_off_Panama_-_panoramio_%2810%29.jpg": {
-    "w": 4288,
-    "h": 2848
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/5/52/Jard%C3%ADn_Zool%C3%B3gico_El_Nispero.jpg": {
-    "w": 4320,
-    "h": 2880
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/1/1f/Kristallklares_Wasser_Coiba_Panama_%2826549517610%29.jpg": {
-    "w": 6000,
-    "h": 4000
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/6/61/LaIndiaDormida.jpg": {
-    "w": 5184,
-    "h": 3456
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/d/d1/Panama_City_Skyline_1.jpg": {
-    "w": 5184,
-    "h": 2916
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/c/c2/Panama_City_Skyline_180107.jpg": {
-    "w": 4000,
-    "h": 2246
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/3/39/Panama_city_Skyline.jpg": {
-    "w": 2592,
-    "h": 1944
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/5/52/Panama_skyline.jpg": {
-    "w": 750,
-    "h": 1334
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/c/c4/Three-toed_Sloth_-_Cerro_Ancon_-_Panama_City_%2848454787316%29.jpg": {
-    "w": 1200,
-    "h": 800
-  },
-  "https://images.pexels.com/photos/920270/pexels-photo-920270.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1068
-  },
-  "https://images.pexels.com/photos/36791113/pexels-photo-36791113.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/35125836/pexels-photo-35125836.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/16017280/pexels-photo-16017280.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/36345390/pexels-photo-36345390.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/33803472/pexels-photo-33803472.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 900
-  },
-  "https://images.pexels.com/photos/5005136/pexels-photo-5005136.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/18049699/pexels-photo-18049699.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/18183895/pexels-photo-18183895.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/1867024/pexels-photo-1867024.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/18184146/pexels-photo-18184146.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/2564872/pexels-photo-2564872.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/33803474/pexels-photo-33803474.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 900
-  },
-  "https://images.pexels.com/photos/2666249/pexels-photo-2666249.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/30826590/pexels-photo-30826590.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1068
-  },
-  "https://images.pexels.com/photos/12861718/pexels-photo-12861718.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1068
-  },
-  "https://images.pexels.com/photos/25489812/pexels-photo-25489812.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1068
-  },
-  "https://images.pexels.com/photos/33161290/pexels-photo-33161290.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/32791312/pexels-photo-32791312.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1066
-  },
-  "https://images.pexels.com/photos/17254453/pexels-photo-17254453.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/17477516/pexels-photo-17477516.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/11962310/pexels-photo-11962310.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/13110362/pexels-photo-13110362.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/33803476/pexels-photo-33803476.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 900
-  },
-  "https://images.pexels.com/photos/28518788/pexels-photo-28518788.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/33452256/pexels-photo-33452256.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 900
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/1/1c/Boquete%2C_Panama.jpg": {
-    "w": 2732,
-    "h": 2320
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/7/76/Castillo_San_Jer%C3%B3nimo_Portobelo_09_2019_0505.jpg": {
-    "w": 3000,
-    "h": 2000
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/0/0f/Custom_House_at_Portobelo_Panama.jpg": {
-    "w": 5902,
-    "h": 3824
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/e/e1/IglesiasanpedroTaboga.JPG": {
-    "w": 2707,
-    "h": 2275
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/0/0f/Island_In_Gatun_Lake_-_panoramio.jpg": {
-    "w": 3072,
-    "h": 2304
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/e/e0/Mantled_Howler_Monkey._Alouatta_palliata_%2842253693155%29.jpg": {
-    "w": 3638,
-    "h": 2709
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/4/4f/Portobelo_Ruins_and_bay.jpg": {
-    "w": 1200,
-    "h": 900
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/b/bb/VistaBoquete.jpg": {
-    "w": 2898,
-    "h": 1930
-  },
-  "https://images.pexels.com/photos/4965891/pexels-photo-4965891.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/14511967/pexels-photo-14511967.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/35629753/pexels-photo-35629753.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/7791255/pexels-photo-7791255.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/14776857/pexels-photo-14776857.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/30717831/pexels-photo-30717831.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/2166297/pexels-photo-2166297.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/7761601/pexels-photo-7761601.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/2024457/pexels-photo-2024457.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/16146741/pexels-photo-16146741.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1000
-  },
-  "https://images.pexels.com/photos/29525731/pexels-photo-29525731.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/10490919/pexels-photo-10490919.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/10490913/pexels-photo-10490913.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/30271300/pexels-photo-30271300.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1205
-  },
-  "https://images.pexels.com/photos/36601640/pexels-photo-36601640.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1200
-  },
-  "https://images.pexels.com/photos/10490921/pexels-photo-10490921.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/1450367/pexels-photo-1450367.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1068
-  },
-  "https://images.pexels.com/photos/30095790/pexels-photo-30095790.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 900
-  },
-  "https://images.pexels.com/photos/16147522/pexels-photo-16147522.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1200
-  },
-  "https://images.pexels.com/photos/9399874/pexels-photo-9399874.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/36172390/pexels-photo-36172390.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 900
-  },
-  "https://images.pexels.com/photos/33990238/pexels-photo-33990238.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 900
-  },
-  "https://images.pexels.com/photos/16403241/pexels-photo-16403241.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1297
-  },
-  "https://images.pexels.com/photos/36758150/pexels-photo-36758150.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/37245214/pexels-photo-37245214.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/38579180/pexels-photo-38579180.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/5111070/pexels-photo-5111070.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/5111046/pexels-photo-5111046.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/38579183/pexels-photo-38579183.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/8324140/pexels-photo-8324140.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1064
-  },
-  "https://images.pexels.com/photos/37245213/pexels-photo-37245213.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/35570901/pexels-photo-35570901.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/3754442/pexels-photo-3754442.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/3954301/pexels-photo-3954301.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/4783703/pexels-photo-4783703.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1066
-  },
-  "https://images.pexels.com/photos/4784477/pexels-photo-4784477.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1066
-  },
-  "https://images.pexels.com/photos/38507042/pexels-photo-38507042.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1065
-  },
-  "https://images.pexels.com/photos/9122911/pexels-photo-9122911.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1171
-  },
-  "https://images.pexels.com/photos/15305189/pexels-photo-15305189.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1068
-  },
-  "https://images.pexels.com/photos/15162465/pexels-photo-15162465.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/28891911/pexels-photo-28891911.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/30774401/pexels-photo-30774401.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/32419583/pexels-photo-32419583.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/4119699/pexels-photo-4119699.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 447
-  },
-  "https://images.pexels.com/photos/16828441/pexels-photo-16828441.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/5988866/pexels-photo-5988866.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 462
-  },
-  "https://images.pexels.com/photos/6333646/pexels-photo-6333646.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/10936419/pexels-photo-10936419.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/13758986/pexels-photo-13758986.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 973
-  },
-  "https://images.pexels.com/photos/16116492/pexels-photo-16116492.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1200
-  },
-  "https://images.pexels.com/photos/26077420/pexels-photo-26077420.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1064
-  },
-  "https://images.pexels.com/photos/35803823/pexels-photo-35803823.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/16010024/pexels-photo-16010024.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1064
-  },
-  "https://images.pexels.com/photos/4999688/pexels-photo-4999688.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/7200626/pexels-photo-7200626.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/30826587/pexels-photo-30826587.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1068
-  },
-  "https://images.pexels.com/photos/14185503/pexels-photo-14185503.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/12635878/pexels-photo-12635878.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/30774409/pexels-photo-30774409.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/11112892/pexels-photo-11112892.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/31550913/pexels-photo-31550913.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/37341529/pexels-photo-37341529.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/17991607/pexels-photo-17991607.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/32190389/pexels-photo-32190389.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/31451558/pexels-photo-31451558.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/21222910/pexels-photo-21222910.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/38574684/pexels-photo-38574684.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/16321326/pexels-photo-16321326.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/16208593/pexels-photo-16208593.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/2221136/pexels-photo-2221136.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/33803477/pexels-photo-33803477.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 900
-  },
-  "https://images.pexels.com/photos/30032075/pexels-photo-30032075.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/36117834/pexels-photo-36117834.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/12831944/pexels-photo-12831944.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/36117835/pexels-photo-36117835.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/33503255/pexels-photo-33503255.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/11167999/pexels-photo-11167999.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/12831912/pexels-photo-12831912.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/33653869/pexels-photo-33653869.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1200
-  },
-  "https://images.pexels.com/photos/25489548/pexels-photo-25489548.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1064
-  },
-  "https://images.pexels.com/photos/2518891/pexels-photo-2518891.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/14023085/pexels-photo-14023085.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/27949388/pexels-photo-27949388.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/30700949/pexels-photo-30700949.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/10614792/pexels-photo-10614792.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/5077838/pexels-photo-5077838.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/32419577/pexels-photo-32419577.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/36117831/pexels-photo-36117831.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/36095905/pexels-photo-36095905.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/32330651/pexels-photo-32330651.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/10855239/pexels-photo-10855239.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1068
-  },
-  "https://images.pexels.com/photos/38822827/pexels-photo-38822827.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/20526452/pexels-photo-20526452.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1065
-  },
-  "https://images.pexels.com/photos/35526169/pexels-photo-35526169.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/11334331/pexels-photo-11334331.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/37049263/pexels-photo-37049263.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/7478219/pexels-photo-7478219.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/14036110/pexels-photo-14036110.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 956
-  },
-  "https://images.pexels.com/photos/11334330/pexels-photo-11334330.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/14023382/pexels-photo-14023382.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 914
-  },
-  "https://images.pexels.com/photos/12832297/pexels-photo-12832297.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/28207747/pexels-photo-28207747.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 900
-  },
-  "https://images.pexels.com/photos/33803480/pexels-photo-33803480.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 900
-  },
-  "https://images.pexels.com/photos/1681453/pexels-photo-1681453.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/13842831/pexels-photo-13842831.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/33803478/pexels-photo-33803478.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 900
-  },
-  "https://images.pexels.com/photos/14840814/pexels-photo-14840814.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/18118137/pexels-photo-18118137.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1143
-  },
-  "https://images.pexels.com/photos/33803485/pexels-photo-33803485.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 900
-  },
-  "https://images.pexels.com/photos/18118099/pexels-photo-18118099.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1208
-  },
-  "https://images.pexels.com/photos/8661751/pexels-photo-8661751.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/37926843/pexels-photo-37926843.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/700420/pexels-photo-700420.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1064
-  },
-  "https://images.pexels.com/photos/2373200/pexels-photo-2373200.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1133
-  },
-  "https://images.pexels.com/photos/12627695/pexels-photo-12627695.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/36756197/pexels-photo-36756197.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/17979348/pexels-photo-17979348.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/35664953/pexels-photo-35664953.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/11331386/pexels-photo-11331386.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/28408402/pexels-photo-28408402.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1068
-  },
-  "https://images.pexels.com/photos/37208428/pexels-photo-37208428.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/16549532/pexels-photo-16549532.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/37528835/pexels-photo-37528835.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/39187507/pexels-photo-39187507.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/36219554/pexels-photo-36219554.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/14776806/pexels-photo-14776806.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 954
-  },
-  "https://images.pexels.com/photos/27855359/pexels-photo-27855359.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/28840460/pexels-photo-28840460.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/35746669/pexels-photo-35746669.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/13058771/pexels-photo-13058771.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/30774387/pexels-photo-30774387.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/37916073/pexels-photo-37916073.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 900
-  },
-  "https://images.pexels.com/photos/13676680/pexels-photo-13676680.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/7163615/pexels-photo-7163615.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/20159088/pexels-photo-20159088.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/30774398/pexels-photo-30774398.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/2549020/pexels-photo-2549020.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1068
-  },
-  "https://images.pexels.com/photos/13657857/pexels-photo-13657857.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/2575271/pexels-photo-2575271.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/38212171/pexels-photo-38212171.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1200
-  },
-  "https://images.pexels.com/photos/38212169/pexels-photo-38212169.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1200
-  },
-  "https://images.pexels.com/photos/37245215/pexels-photo-37245215.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/14510507/pexels-photo-14510507.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/30650598/pexels-photo-30650598.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/37866942/pexels-photo-37866942.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/18976054/pexels-photo-18976054.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1236
-  },
-  "https://images.pexels.com/photos/37131291/pexels-photo-37131291.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1200
-  },
-  "https://images.pexels.com/photos/18976055/pexels-photo-18976055.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1143
-  },
-  "https://images.pexels.com/photos/19362139/pexels-photo-19362139.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1200
-  },
-  "https://images.pexels.com/photos/1662312/pexels-photo-1662312.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/37359925/pexels-photo-37359925.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 900
-  },
-  "https://images.pexels.com/photos/14840760/pexels-photo-14840760.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/1494576/pexels-photo-1494576.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/6149489/pexels-photo-6149489.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 984
-  },
-  "https://images.pexels.com/photos/7292828/pexels-photo-7292828.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/6621690/pexels-photo-6621690.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/9202651/pexels-photo-9202651.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/4631160/pexels-photo-4631160.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/35858832/pexels-photo-35858832.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1200
-  },
-  "https://images.pexels.com/photos/20674794/pexels-photo-20674794.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/37926848/pexels-photo-37926848.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/12241665/pexels-photo-12241665.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/37809612/pexels-photo-37809612.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/18543358/pexels-photo-18543358.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/17246210/pexels-photo-17246210.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/34709301/pexels-photo-34709301.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/36965631/pexels-photo-36965631.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/20233816/pexels-photo-20233816.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/38069420/pexels-photo-38069420.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/13022434/pexels-photo-13022434.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/38175757/pexels-photo-38175757.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/18684951/pexels-photo-18684951.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/15101211/pexels-photo-15101211.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/8536232/pexels-photo-8536232.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/29318724/pexels-photo-29318724.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/26843092/pexels-photo-26843092.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/10500567/pexels-photo-10500567.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/16063802/pexels-photo-16063802.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/7575039/pexels-photo-7575039.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1068
-  },
-  "https://images.pexels.com/photos/25391626/pexels-photo-25391626.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/35264360/pexels-photo-35264360.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/33703911/pexels-photo-33703911.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/25391622/pexels-photo-25391622.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/33395010/pexels-photo-33395010.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/29994005/pexels-photo-29994005.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/25391577/pexels-photo-25391577.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/37816801/pexels-photo-37816801.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/16837819/pexels-photo-16837819.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1065
-  },
-  "https://images.pexels.com/photos/37810966/pexels-photo-37810966.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/17231782/pexels-photo-17231782.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/37197891/pexels-photo-37197891.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1200
-  },
-  "https://images.pexels.com/photos/34937418/pexels-photo-34937418.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/17231776/pexels-photo-17231776.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/30751245/pexels-photo-30751245.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1064
-  },
-  "https://images.pexels.com/photos/39056910/pexels-photo-39056910.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/12832511/pexels-photo-12832511.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/11643004/pexels-photo-11643004.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1241
-  },
-  "https://images.pexels.com/photos/38120313/pexels-photo-38120313.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/35106208/pexels-photo-35106208.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/31494982/pexels-photo-31494982.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 972
-  },
-  "https://images.pexels.com/photos/5036679/pexels-photo-5036679.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/37143166/pexels-photo-37143166.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1068
-  },
-  "https://images.pexels.com/photos/8082897/pexels-photo-8082897.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/7239659/pexels-photo-7239659.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/33006138/pexels-photo-33006138.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1068
-  },
-  "https://images.pexels.com/photos/17751978/pexels-photo-17751978.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/35106211/pexels-photo-35106211.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/8196420/pexels-photo-8196420.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/15847945/pexels-photo-15847945.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/18077634/pexels-photo-18077634.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/37124298/pexels-photo-37124298.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/17848630/pexels-photo-17848630.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1200
-  },
-  "https://images.pexels.com/photos/29207117/pexels-photo-29207117.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/29207118/pexels-photo-29207118.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/9482594/pexels-photo-9482594.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/29207121/pexels-photo-29207121.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/18159811/pexels-photo-18159811.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1236
-  },
-  "https://images.pexels.com/photos/33704050/pexels-photo-33704050.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/29207125/pexels-photo-29207125.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/29207119/pexels-photo-29207119.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/29207123/pexels-photo-29207123.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/7200711/pexels-photo-7200711.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/33161296/pexels-photo-33161296.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/7200725/pexels-photo-7200725.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/35525462/pexels-photo-35525462.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 900
-  },
-  "https://images.pexels.com/photos/35844455/pexels-photo-35844455.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/30911817/pexels-photo-30911817.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/12900392/pexels-photo-12900392.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/7238195/pexels-photo-7238195.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/17231766/pexels-photo-17231766.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/37679503/pexels-photo-37679503.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/2186033/pexels-photo-2186033.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/15261777/pexels-photo-15261777.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 900
-  },
-  "https://images.pexels.com/photos/30826606/pexels-photo-30826606.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1068
-  },
-  "https://images.pexels.com/photos/17153600/pexels-photo-17153600.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/34043006/pexels-photo-34043006.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/37124304/pexels-photo-37124304.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/15699960/pexels-photo-15699960.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/37124300/pexels-photo-37124300.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/37124301/pexels-photo-37124301.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/37245225/pexels-photo-37245225.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/28036969/pexels-photo-28036969.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/2528801/pexels-photo-2528801.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/4581270/pexels-photo-4581270.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/27427355/pexels-photo-27427355.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/20329117/pexels-photo-20329117.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1064
-  },
-  "https://images.pexels.com/photos/19964438/pexels-photo-19964438.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 900
-  },
-  "https://images.pexels.com/photos/27272719/pexels-photo-27272719.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1063
-  },
-  "https://images.pexels.com/photos/28404849/pexels-photo-28404849.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/30640922/pexels-photo-30640922.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/6151802/pexels-photo-6151802.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/2218103/pexels-photo-2218103.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://images.pexels.com/photos/2918139/pexels-photo-2918139.jpeg?auto=compress&cs=tinysrgb&w=1600": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/8/85/Bastimentos_Wizzard_Beach_%2826708686196%29.jpg": {
-    "w": 3992,
-    "h": 2242
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/8/85/Carretera_Interamericana_en_Penonom%C3%A9%2C_Provincia_de_Cocl%C3%A9%2C_Panam%C3%A1_%282024%29.jpg": {
-    "w": 1025,
-    "h": 802
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/8/87/Corredor_Sur_Panama.jpg": {
-    "w": 3648,
-    "h": 2736
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/2/27/Entrada_al_Dari%C3%A9n_en_la_Carretera_Interamericana%2C_Panam%C3%A1_%282020%29.jpg": {
-    "w": 1384,
-    "h": 922
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/8/83/Interamericana_Santa_Marta.jpg": {
-    "w": 1280,
-    "h": 960
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/f/fa/Old_Bank%2C_Bastimento%2C_Panama_-_panoramio.jpg": {
-    "w": 14329,
-    "h": 2603
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/b/b7/Puente_de_las_Americas_2013_09_14.jpg": {
-    "w": 4603,
-    "h": 1845
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/e/e5/Red_Frog_Beach_Bastimentos.jpg": {
-    "w": 3992,
-    "h": 2242
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/4/40/Red_Frog_Beach_Bastimentos_3.jpg": {
-    "w": 3992,
-    "h": 2242
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/5/5f/Red_Frog_Beach_Bastimentos_6.jpg": {
-    "w": 3992,
-    "h": 2242
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/4/40/Red_Frog_Beach_Bastimentos_8.jpg": {
-    "w": 3992,
-    "h": 2242
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/b/bc/V%C3%ADa_Israel_y_Corredor_Sur_en_Ciudad_de_Panam%C3%A1.jpg": {
-    "w": 736,
-    "h": 536
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/d/db/Bocas_del_Drago.jpg": {
-    "w": 3264,
-    "h": 2448
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/8/84/Bocas_del_Toro_Province%2C_Panama_-_panoramio_%2814%29.jpg": {
-    "w": 3787,
-    "h": 2837
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/1/17/Bocas_del_Toro_Province%2C_Panama_-_panoramio_%2816%29.jpg": {
-    "w": 3968,
-    "h": 2976
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/f/f6/Bocas_pano.jpg": {
-    "w": 2048,
-    "h": 293
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/7/72/Guna_Yala_Island.jpg": {
-    "w": 5184,
-    "h": 3456
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/8/8a/Insel_Zapatilla_%2827083959796%29.jpg": {
-    "w": 3850,
-    "h": 2888
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/3/36/Island_of_Chichimen%2C_Cuyos_Limones%2C_Guna_Yala%2C_Panama.jpg": {
-    "w": 2432,
-    "h": 1355
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/4/45/Oophaga_pumilio_120574497.jpg": {
-    "w": 1397,
-    "h": 1402
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/9/9e/Paradise_-_Bocas_del_drago_%286778445008%29.jpg": {
-    "w": 4320,
-    "h": 3240
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/5/5c/Starfish_Beach_04036.jpg": {
-    "w": 4000,
-    "h": 6000
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/1/12/Women_at_Starfish_Beach%2C_Boca_del_Drago.jpg": {
-    "w": 2719,
-    "h": 2273
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/6/6d/Zapatillas_Islands_-_panoramio.jpg": {
-    "w": 2048,
-    "h": 1536
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/e/e7/Banco_de_Arena_-_San_Blas_-_Guna_Yala.jpg": {
-    "w": 2694,
-    "h": 3592
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/2/24/Caba%C3%B1as_Guna_Yala.jpg": {
-    "w": 5184,
-    "h": 3456
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/0/03/Contadora_Island_Tropical_View.jpg": {
-    "w": 320,
-    "h": 240
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/5/5b/Isla_Perro_en_la_Comarca_Guna_Yala.JPG": {
-    "w": 5184,
-    "h": 3456
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/7/7a/Pearl_Islands_banner.jpg": {
-    "w": 1996,
-    "h": 285
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/0/0a/San_Blas_Islands.jpg": {
-    "w": 1000,
-    "h": 440
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/c/cb/Shipwreck_near_Chichimen_Island%2C_Cuyos_Limones%2C_Guna_Yala%2C_Panama.jpg": {
-    "w": 2560,
-    "h": 1920
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/a/a0/Snorkelling_in_Guna_Yala_-_Panama_-_panoramio.jpg": {
-    "w": 4000,
-    "h": 3000
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/5/57/Strand_in_Contadora_%2827117318015%29.jpg": {
-    "w": 2495,
-    "h": 1871
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/2/2a/Wyspa_Contadora%2C_Archipelag_Wysp_Per%C5%82owych%2C_Panama.jpg": {
-    "w": 2816,
-    "h": 2112
-  },
-  "/images/boquete/boquete-aerial.jpg": {
-    "w": 960,
-    "h": 631
-  },
-  "/images/boquete/boquete-aerial2.webp": {
-    "w": 960,
-    "h": 615
-  },
-  "/images/boquete/boquete-bird.webp": {
-    "w": 960,
-    "h": 600
-  },
-  "/images/boquete/boquete-bridge.webp": {
-    "w": 960,
-    "h": 717
-  },
-  "/images/boquete/boquete-clouds.webp": {
-    "w": 960,
-    "h": 720
-  },
-  "/images/boquete/boquete-ebike-orbea.webp": {
-    "w": 1400,
-    "h": 1400
-  },
-  "/images/boquete/boquete-ebike-riders.webp": {
-    "w": 1400,
-    "h": 2489
-  },
-  "/images/boquete/boquete-ebike-trail.webp": {
-    "w": 1400,
-    "h": 2489
-  },
-  "/images/boquete/boquete-forest.webp": {
-    "w": 960,
-    "h": 640
-  },
-  "/images/boquete/boquete-hills.webp": {
-    "w": 960,
-    "h": 720
-  },
-  "/images/boquete/boquete-losquetzales.webp": {
-    "w": 960,
-    "h": 720
-  },
-  "/images/boquete/boquete-manmadewaterfall.jpg": {
-    "w": 960,
-    "h": 720
-  },
-  "/images/boquete/boquete-market.webp": {
-    "w": 960,
-    "h": 615
-  },
-  "/images/boquete/boquete-people.webp": {
-    "w": 960,
-    "h": 720
-  },
-  "/images/boquete/boquete-rafting.webp": {
-    "w": 960,
-    "h": 720
-  },
-  "/images/boquete/boquete-river2.webp": {
-    "w": 960,
-    "h": 720
-  },
-  "/images/boquete/boquete-rocks.webp": {
-    "w": 960,
-    "h": 659
-  },
-  "/images/boquete/boquete-town2.webp": {
-    "w": 960,
-    "h": 640
-  },
-  "/images/boquete/boquete-volcanbaru.webp": {
-    "w": 960,
-    "h": 720
-  },
-  "/images/el-valle/elvalle-bird.webp": {
-    "w": 960,
-    "h": 640
-  },
-  "/images/el-valle/elvalle-bridge.webp": {
-    "w": 960,
-    "h": 639
-  },
-  "/images/el-valle/elvalle-church.webp": {
-    "w": 960,
-    "h": 720
-  },
-  "/images/el-valle/elvalle-crater-hero.webp": {
-    "w": 2400,
-    "h": 1310
-  },
-  "/images/el-valle/elvalle-drums.webp": {
-    "w": 960,
-    "h": 600
-  },
-  "/images/el-valle/elvalle-elmachowaterfall.webp": {
-    "w": 960,
-    "h": 1280
-  },
-  "/images/el-valle/elvalle-elmachowaterfall2.webp": {
-    "w": 960,
-    "h": 1280
-  },
-  "/images/el-valle/elvalle-flowermarket.webp": {
-    "w": 960,
-    "h": 640
-  },
-  "/images/el-valle/elvalle-indiadormida.webp": {
-    "w": 960,
-    "h": 720
-  },
-  "/images/el-valle/elvalle-market.webp": {
-    "w": 960,
-    "h": 640
-  },
-  "/images/el-valle/elvalle-panorama.webp": {
-    "w": 960,
-    "h": 640
-  },
-  "/images/el-valle/elvalle-petroglifo.webp": {
-    "w": 960,
-    "h": 639
-  },
-  "/images/el-valle/elvalle-shrine.webp": {
-    "w": 960,
-    "h": 720
-  },
-  "/images/el-valle/elvalle-town.webp": {
-    "w": 960,
-    "h": 720
-  },
-  "/images/el-valle/elvalle-waterfall.webp": {
-    "w": 960,
-    "h": 211
-  },
-  "/images/el-valle/evbike-crater-view.webp": {
-    "w": 1080,
-    "h": 720
-  },
-  "/images/el-valle/evbike-forest.webp": {
-    "w": 1080,
-    "h": 1350
-  },
-  "/images/el-valle/evbike-trail.webp": {
-    "w": 1080,
-    "h": 1350
-  },
-  "/images/el-valle/india-dormida.jpg": {
-    "w": 5184,
-    "h": 3456
-  },
-  "/images/hikes-boquete.webp": {
-    "w": 960,
-    "h": 720
-  },
-  "/images/hikes-el-valle.webp": {
-    "w": 960,
-    "h": 1280
-  },
-  "/images/things-to-do-boquete.webp": {
-    "w": 2048,
-    "h": 1536
-  },
-  "/images/things-to-do-el-valle.webp": {
-    "w": 960,
-    "h": 640
-  },
-  "/images/tours-boquete.webp": {
-    "w": 1080,
-    "h": 1920
-  },
-  "/images/tours-el-valle.webp": {
-    "w": 960,
-    "h": 640
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/1/1f/Bocas_Del_Toro_Zapazilla_%28204787523%29.jpeg": {
-    "w": 2048,
-    "h": 729
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/d/db/Bocas_del_Toro_Panama_4.jpg": {
-    "w": 3992,
-    "h": 2992
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/c/c8/Bocas_del_Toro_Zapazilla_%2832833358553%29.jpg": {
-    "w": 8052,
-    "h": 2866
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/e/ed/Feria_de_las_Flores_y_el_Caf%C3%A9_de_Boquete_2019.jpg": {
-    "w": 4160,
-    "h": 3120
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/2/25/Zapatillas_Islands_-_panoramio_%281%29.jpg": {
-    "w": 2048,
-    "h": 1536
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/6/6b/Zapatillas_Islands_-_panoramio_%282%29.jpg": {
-    "w": 2048,
-    "h": 1536
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/3/3f/Zapatillas_Islands_-_panoramio_%283%29.jpg": {
-    "w": 2048,
-    "h": 1536
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/4/46/Zapatillas_Islands_-_panoramio_%284%29.jpg": {
-    "w": 2048,
-    "h": 1536
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/8/8a/Bocas3.jpg": {
-    "w": 945,
-    "h": 705
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/e/ec/Bocas_del_Toro_Province%2C_Panama_-_panoramio_%2815%29.jpg": {
-    "w": 3851,
-    "h": 2891
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/7/75/Bocas_del_Toro_Province%2C_Panama_-_panoramio_%2817%29.jpg": {
-    "w": 3968,
-    "h": 2976
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/8/8c/Carnaval_en_Las_Tablas%2C_Panam%C3%A1.png": {
-    "w": 587,
-    "h": 786
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/2/21/San_Miguel_%281%29.jpg": {
-    "w": 1909,
-    "h": 1273
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/3/33/Bastimentos_Panama_3.jpg": {
-    "w": 3723,
-    "h": 2091
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/f/fa/Insel_Bastimentos_Panama_%2826130902833%29.jpg": {
-    "w": 3723,
-    "h": 2091
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/5/55/Isla_Carenero%2C_Panama_-_panoramio.jpg": {
-    "w": 3968,
-    "h": 2976
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/4/45/Isla_Popa%2C_Bocas_del_Toro.jpg": {
-    "w": 1200,
-    "h": 900
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/f/fb/Albrook_Bus_Terminal.jpg": {
-    "w": 4032,
-    "h": 3024
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/1/1f/Albrook_bus_station_Panama_City.agr.jpg": {
-    "w": 4032,
-    "h": 3024
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/e/e2/Albrookstation.jpg": {
-    "w": 4695,
-    "h": 3160
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/e/e4/Anton_Valley%2C_Panama_-_panoramio.jpg": {
-    "w": 3840,
-    "h": 2160
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/9/95/Anton_Valley%2C_Panama_-_panoramio_%281%29.jpg": {
-    "w": 3840,
-    "h": 2160
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/f/f6/Chorro_las_Mozas%2C_Valle_de_Anton%2C_Panama_%2852728459947%29.jpg": {
-    "w": 3024,
-    "h": 4032
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/5/55/Forest_at_Cerro_Macho.jpg": {
-    "w": 2736,
-    "h": 3648
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/9/9b/Gran_terminal_de_transporte.jpg": {
-    "w": 5033,
-    "h": 3775
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/1/18/House_and_Landscape_-_El_Valle_%2802%29.jpg": {
-    "w": 3648,
-    "h": 2736
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/7/7b/Mercado_EL_Valle_Panama.JPG": {
-    "w": 5184,
-    "h": 3456
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/9/9a/Mercado_ElValle_Panama.jpg": {
-    "w": 2898,
-    "h": 1930
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/4/40/Valle_de_Anton%2C_Panama.jpg": {
-    "w": 4032,
-    "h": 2268
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/9/9d/Valle_de_Ant%C3%B3n_La_Mochila.jpg": {
-    "w": 2560,
-    "h": 1920
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/7/70/Vendedor_MercadoElVallePma.jpg": {
-    "w": 2898,
-    "h": 1811
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/1/16/10-001-DMHN_Los_petroglifos_en_Panam%C3%A1.jpg": {
-    "w": 3061,
-    "h": 1704
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/5/51/Architectural_Detail_of_Hotel_El_Majo_del_Valle_-_El_Valle_-_Cocle_Province_-_Panama_%2811519249273%29.jpg": {
-    "w": 2736,
-    "h": 3648
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/d/df/Artesanias_MercadoElValle.jpg": {
-    "w": 1811,
-    "h": 2898
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/4/42/Countryside_around_El_Valle_%2802%29.jpg": {
-    "w": 2736,
-    "h": 3648
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/b/b0/EntradaChorroMacho_ElValle.jpg": {
-    "w": 2898,
-    "h": 1930
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/b/b0/La_India_Dormida.jpg": {
-    "w": 640,
-    "h": 480
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/2/29/Mercado_El_Valle_de_Ant%C3%B3n.JPG": {
-    "w": 5184,
-    "h": 3456
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/a/ae/Mercado_del_Valle_de_Ant%C3%B3n.jpg": {
-    "w": 5184,
-    "h": 3456
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/4/42/Panam%C3%A1_20230321_134938.jpg": {
-    "w": 4000,
-    "h": 3000
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/7/7a/Panam%C3%A1_20230321_135006.jpg": {
-    "w": 4000,
-    "h": 3000
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/e/e3/Panam%C3%A1_20230322_065507.jpg": {
-    "w": 3000,
-    "h": 4000
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/1/1e/Panam%C3%A1_20230322_141816.jpg": {
-    "w": 4000,
-    "h": 3000
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/3/30/PetroglifoElValle.jpg": {
-    "w": 2898,
-    "h": 1930
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/e/e9/Piedra_Pintada_ElValle.jpg": {
-    "w": 1930,
-    "h": 2898
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/2/22/Pineapples_El_Valle.jpg": {
-    "w": 5196,
-    "h": 3462
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/7/78/Workmen_with_Mountain_Backdrop_-_El_Valle.jpg": {
-    "w": 3648,
-    "h": 2736
-  },
-  "/images/el-valle/evbike-plaza.webp": {
-    "w": 1080,
-    "h": 1350
-  },
-  "/images/el-valle/evbike-group.webp": {
-    "w": 387,
-    "h": 516
-  },
-  "/images/el-valle/ta-review-1.webp": {
-    "w": 680,
-    "h": 454
-  },
-  "/images/el-valle/ta-review-3.webp": {
-    "w": 680,
-    "h": 510
-  },
-  "/images/el-valle/evbike-sunset.webp": {
-    "w": 1080,
-    "h": 1350
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/2/23/Panorama_of_Waterfall_at_Cerro_El_Macho.jpg": {
-    "w": 4912,
-    "h": 1080
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/d/d4/Panam%C3%A1_20230322_141822.jpg": {
-    "w": 4000,
-    "h": 3000
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/f/f6/Chorro_Marcho_EL_Valle_Panama_03.jpg": {
-    "w": 3462,
-    "h": 5198
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/e/e3/Comida_de_un_restaurante_de_El_Valle_de_Anton.jpg": {
-    "w": 500,
-    "h": 375
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/6/64/Patacones_de_Panam%C3%A1.jpg": {
-    "w": 4000,
-    "h": 3000
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/4/49/Ropa_vieja%2C_arroz_y_pl%C3%A1tano_macho.jpg": {
-    "w": 4000,
-    "h": 3000
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/a/a1/Ceviche_de_camar%C3%B3n.jpg": {
-    "w": 960,
-    "h": 1280
-  },
-  "/images/el-valle/elvalle-bird2.webp": {
-    "w": 960,
-    "h": 640
-  },
-  "/images/el-valle/elvalle-bird3.webp": {
-    "w": 960,
-    "h": 640
-  },
-  "https://images.booqablecdn.com/uploads/8979ffef14a1bdb06611230ae9a36a01/photo/photo/666becca-f5a4-495c-ad7b-aab2f3302809/1734624084-457447415407503-0032-7472/upload.jpeg": {
-    "w": 1080,
-    "h": 1920
-  },
-  "https://images.booqablecdn.com/uploads/8979ffef14a1bdb06611230ae9a36a01/photo/photo/2dffc872-6ef2-42ce-9cd9-80704386d81d/1734623947-983444268809418-0021-4065/upload.jpeg": {
-    "w": 1080,
-    "h": 1920
-  },
-  "/images/el-valle/lasnubes-camarones.webp": {
-    "w": 1100,
-    "h": 1954
-  },
-  "/images/social/chorro-las-mozas-pozas-el-valle-de-anton-og.webp": {
-    "w": 1200,
-    "h": 630
-  },
-  "/images/social/donde-comer-en-el-valle-de-anton-og.webp": {
-    "w": 1200,
-    "h": 630
-  },
-  "/images/social/tours-en-bicicleta-el-valle-de-anton-og.webp": {
-    "w": 1200,
-    "h": 630
-  },
-  "/images/el-valle/india-dormida.webp": {
-    "w": 1600,
-    "h": 1067
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/3/33/Bothriechis_nigroadspersus_172225700.jpg": {
-    "w": 2048,
-    "h": 1536
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/a/a2/Common_morpho_%28Morpho_helenor_peleides%29.jpg": {
-    "w": 4728,
-    "h": 3152
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/f/f1/Common_morpho_%28Morpho_helenor_peleides%29_underside.jpg": {
-    "w": 4891,
-    "h": 3261
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/f/fa/Tithorea_tarricina_170503929.jpg": {
-    "w": 2048,
-    "h": 1540
-  },
-  "https://upload.wikimedia.org/wikipedia/commons/e/e4/Zebra_longwing_%28Heliconius_charithonia_vazquezae%29.jpg": {
-    "w": 3706,
-    "h": 2471
-  }
+ "https://upload.wikimedia.org/wikipedia/commons/c/cb/Aerial_view_of_Boquete%2C_Panama.jpg": {
+  "w": 4000,
+  "h": 2628
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/ed/Aerial_view_of_the_Province_of_Chiriqui%2C_Republic_of_Panama_02.jpg": {
+  "w": 3417,
+  "h": 2189
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/c/c3/Aerial_view_of_the_Province_of_Chiriqui%2C_Republic_of_Panama_06.jpg": {
+  "w": 3796,
+  "h": 2847
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/49/Atardecer_en_El_Valle_de_Ant%C3%B3n.jpg": {
+  "w": 2000,
+  "h": 1335
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/a/a8/Boquete%2C_Alto_Jaramillo%2C_Chiriqu%C3%AD%2C_Rep%C3%BAblica_de_Panam%C3%A1.png": {
+  "w": 7128,
+  "h": 2429
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/2/2c/Boquete_Cloud_Forest_2.jpg": {
+  "w": 1600,
+  "h": 1200
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/6/68/Boquete_RioCaldera.jpg": {
+  "w": 5198,
+  "h": 3462
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/2/20/Causeway_de_Amador_17-12-14.jpg": {
+  "w": 3974,
+  "h": 2235
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/5/5b/ChorroMachoElValle.jpg": {
+  "w": 1930,
+  "h": 2898
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/db/Chorro_Marcho_EL_Valle_Panama_01.jpg": {
+  "w": 3462,
+  "h": 5198
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/db/Colibri-thalassinus-001-edit.jpg": {
+  "w": 2112,
+  "h": 1320
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/e1/EL_MACHO_FALLS_-_panoramio.jpg": {
+  "w": 2072,
+  "h": 2576
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/2/22/El_Chorro_Macho_La_Mochila.jpg": {
+  "w": 3168,
+  "h": 4752
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/3/3a/El_Valle_%281%29.jpg": {
+  "w": 3072,
+  "h": 2040
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/82/El_valle2.jpg": {
+  "w": 5652,
+  "h": 2476
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/8f/Elementary_School_in_Boquete_Panama_11.jpg": {
+  "w": 1200,
+  "h": 800
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/4e/Finca_Lerida%2C_Boquete%2C_Panama.jpg": {
+  "w": 3072,
+  "h": 2304
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/f/f4/ISS015-E-27703_-_View_of_Panama.jpg": {
+  "w": 3032,
+  "h": 2008
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/f/f3/La_Amistad_Panama_Biosphere_Reserve_-_Bocas_del_Toro_Province_42_-_Core_Zone_-_Summit_of_Volcan_Baru%2C_Volcan_Baru_National_Park.jpg": {
+  "w": 1968,
+  "h": 1312
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/0/0d/La_Amistad_Panama_Biosphere_Reserve_-_Parque_Nacional_Volcan_Baru_%28a_core_zone%29_09.JPG": {
+  "w": 4320,
+  "h": 3240
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/7f/Laguna_La_Mochila.jpg": {
+  "w": 2816,
+  "h": 2112
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/6/64/Pharomachrus_mocinno_294535167.jpg": {
+  "w": 2048,
+  "h": 1366
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/44/RVN06957.jpg": {
+  "w": 6000,
+  "h": 4000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/0/0a/Resplendent_Quetzal_%28Pharomachrus_mocinno%29_-_Flickr_-_gailhampshire_%281%29.jpg": {
+  "w": 2938,
+  "h": 2499
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/c/cd/Rope_Bridge_Near_Cerro_El_Macho_Waterfall.jpg": {
+  "w": 3648,
+  "h": 2736
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/0/02/Scenery_in_El_Valle_de_Anton.jpg": {
+  "w": 2736,
+  "h": 3648
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/4b/Scenery_in_El_Valle_de_Anton_%2802%29.jpg": {
+  "w": 3648,
+  "h": 2736
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/b/b3/Street_Scene_-_El_Valle_de_Anton.jpg": {
+  "w": 3648,
+  "h": 2736
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/7f/Street_Scene_-_El_Valle_de_Anton_-_Cocle_Province_-_Panama_-_03_%2811503415213%29.jpg": {
+  "w": 2736,
+  "h": 3648
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/46/Summit_of_Volcan_Baru_visible_from_the_town_of_Volcan.JPG": {
+  "w": 5616,
+  "h": 3744
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/48/View_from_Finca_Lerida_coffee_plantation_-_Flickr_-_gailhampshire.jpg": {
+  "w": 4467,
+  "h": 2916
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/c/ca/Volcan_Baru%2C_Quetzal_Trail_-_Flickr_-_gailhampshire.jpg": {
+  "w": 4608,
+  "h": 3072
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/48/Volcan_Baru_-_Flickr_-_gailhampshire.jpg": {
+  "w": 4344,
+  "h": 3072
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/3/31/Volcan_Baru_in_a_cloud_shroud.jpg": {
+  "w": 2400,
+  "h": 1349
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/d3/Volcan_Baru_up_close_and_clouded.jpg": {
+  "w": 4000,
+  "h": 3000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/7a/Volcan_baru.jpg": {
+  "w": 825,
+  "h": 528
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/3/30/Volc%C3%A1n_Bar%C3%BA_desde_Volc%C3%A1n.JPG": {
+  "w": 3264,
+  "h": 2448
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/3/3d/Waterfall_at_Cerro_El_Macho_%2802%29.jpg": {
+  "w": 2736,
+  "h": 3648
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/f/f0/Waterfall_at_Cerro_El_Macho_%2803%29.jpg": {
+  "w": 2736,
+  "h": 3648
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/42/WetRapel_Abseiling.jpg": {
+  "w": 2304,
+  "h": 3456
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/2/2e/06._Canal_de_Panama_%2817%29.JPG": {
+  "w": 2592,
+  "h": 1944
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/4a/5-Torre_Panama_Vieja-08-099-DCMHN.jpg": {
+  "w": 2000,
+  "h": 2667
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/4c/Along_the_Cinta_Costera_at_Nightfall_%2805%29.jpg": {
+  "w": 3648,
+  "h": 2736
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/5/5f/Altar_de_Oro_Iglesia_San_Jos%C3%A9_de_Panam%C3%A1.jpg": {
+  "w": 540,
+  "h": 720
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/2/29/Amador_Causeway_-_22929854980.jpg": {
+  "w": 3731,
+  "h": 2498
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/5/51/Calle_Casco_Viejo.jpg": {
+  "w": 1946,
+  "h": 2629
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/e7/Calzada_de_Amador_%28Vista_A%C3%A9rea_desde_Isla_Naos%29.jpg": {
+  "w": 3375,
+  "h": 2250
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/b/b7/Canal_de_Panama._Exclusas_de_miraflores._-_Flickr_-_MaxiV4.jpg": {
+  "w": 1365,
+  "h": 2048
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/8c/Canal_de_Panama_-_Miraflores_-_Detalle_de_Remolcador_-_CJRD.jpg": {
+  "w": 4290,
+  "h": 2856
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/1/17/Casco_Antiguo_%28San_Felipe%29_-_Pamama.jpg": {
+  "w": 3968,
+  "h": 2976
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/1/13/Casco_Viejo%2C_Panama_City%2C_Panama.jpg": {
+  "w": 7160,
+  "h": 4734
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/d1/Casco_Viejo%2C_Panama_City%2C_Panama_-_54301629817.jpg": {
+  "w": 4032,
+  "h": 3024
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/db/Casco_Viejo%2C_Panama_City_%2823652555433%29.jpg": {
+  "w": 3053,
+  "h": 2037
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/4d/Catedral_Panam%C3%A1_Viejo.jpg": {
+  "w": 2048,
+  "h": 1446
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/86/Causeway_de_Amador.jpg": {
+  "w": 1024,
+  "h": 768
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/2/2b/Esclusas_de_Miraflores_Panam%C3%A1.JPG": {
+  "w": 5184,
+  "h": 3456
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/f/fd/IslaPerico_Causeway_Amador.JPG": {
+  "w": 5184,
+  "h": 3456
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/9/99/Isla_Naos_e_Isla_Perico.jpg": {
+  "w": 5184,
+  "h": 3456
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/6/6f/Iv-Ruins_of_the_Cathedral_Tower-_Old_Panama.jpg": {
+  "w": 869,
+  "h": 1319
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/f/fb/Kids_on_Street_-_Casco_Viejo_%28Old_City%29_-_Panama_City_-_Panama_%2811427353396%29.jpg": {
+  "w": 3648,
+  "h": 2736
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/f/fd/Main_Building_of_the_Miraflores_Locks.jpg": {
+  "w": 2592,
+  "h": 1936
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/2/2f/Miraflores_Locks_-_49953155947.jpg": {
+  "w": 5562,
+  "h": 3708
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/0/05/Old_Panama_City_-_Casco_Viejo_-_Panama_-_panoramio_%2813%29.jpg": {
+  "w": 2848,
+  "h": 4288
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/89/Old_Panama_City_-_Casco_Viejo_-_Panama_-_panoramio_%285%29.jpg": {
+  "w": 4288,
+  "h": 2848
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/a/a2/Panama_Canal_-_Pacific_Side_Entrance.jpg": {
+  "w": 831,
+  "h": 686
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/f/f7/Panama_Canal_Gatun_Locks.jpg": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/f/f6/Panama_Canal_Trip_1994_01.jpg": {
+  "w": 2958,
+  "h": 2016
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/5/53/Panama_City_-_Casco_Viejo.jpg": {
+  "w": 5184,
+  "h": 2916
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/4d/Panama_City_Casco_Viejo.jpg": {
+  "w": 3264,
+  "h": 2448
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/42/Panama_city_Amador_Causeway-9673_-_Flickr_-_Ragnhild_%26_Neil_Crawford.jpg": {
+  "w": 1400,
+  "h": 528
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/1/13/Panam%C3%A1_Viejo_%282005%29_01.jpg": {
+  "w": 717,
+  "h": 1071
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/0/02/Torre_Catedral_%28Panam%C3%A1_Viejo%29.JPG": {
+  "w": 4272,
+  "h": 2848
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/0/0f/Torre_Catedral_PANAM%C3%81_VIEJO..jpg": {
+  "w": 3456,
+  "h": 5184
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/9/96/Torre_Panam%C3%A1_Viejo_y_Plaza.JPG": {
+  "w": 4608,
+  "h": 3456
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/c/c4/Torre_de_Panama_Viejo.jpg": {
+  "w": 2498,
+  "h": 1691
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/e3/Torre_de_la_Catedral_Panam%C3%A1_Viejo.jpg": {
+  "w": 3500,
+  "h": 2333
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/df/Torre_de_la_Catedral_Panam%C3%A1_Viejo_Panam%C3%A1.jpg": {
+  "w": 1750,
+  "h": 2625
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/87/Torre_de_la_Catedral_Panam%C3%A1_Viejo_desde_adentro.jpg": {
+  "w": 3500,
+  "h": 2063
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/74/Tower_of_the_Cathedral_at_Old_Panama_City_ruins.jpg": {
+  "w": 6000,
+  "h": 4000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/74/Vista_desde_Torre_en_Panam%C3%A1_Viejo_.jpg": {
+  "w": 2389,
+  "h": 2985
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/49/...a_reflection_of_life..._-_panoramio.jpg": {
+  "w": 1800,
+  "h": 1200
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/b/b0/Arroz_con_coco%2C_pescado_frito_y_patacones.jpg": {
+  "w": 4000,
+  "h": 3000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/ef/Bocas1.jpg": {
+  "w": 945,
+  "h": 707
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/e5/Bocas_Town_--_Isla_Colon.jpg": {
+  "w": 4032,
+  "h": 3024
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/a/a7/Bocas_del_Toro%2C_Changuinola%2C_Panama_%28Unsplash%29.jpg": {
+  "w": 2361,
+  "h": 3148
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bocas_del_Toro_Panama.jpg": {
+  "w": 3992,
+  "h": 2242
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/de/Bocas_del_Toro_Panama_6.jpg": {
+  "w": 3992,
+  "h": 2992
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/1/18/Bradypus.jpg": {
+  "w": 1536,
+  "h": 2048
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/c/c0/Calle_en_Isla_Taboga_-_Panam%C3%A1.jpg": {
+  "w": 2976,
+  "h": 3968
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/0/00/Canal_-_Lake_Gatun_-_panoramio.jpg": {
+  "w": 3072,
+  "h": 2304
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/5/52/Casa_Fuerte_de_Bater%C3%ADas_dec_San_Fernando_-_Fortificaciones_de_Portobelo%2C_Panama.jpg": {
+  "w": 640,
+  "h": 480
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/2/2c/Cinta_Costera_Paitilla1.JPG": {
+  "w": 3648,
+  "h": 2736
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/73/Cinta_Costera_Panama_Agosto20019.jpg": {
+  "w": 3992,
+  "h": 2242
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/5/5c/Cinta_Costera_Pma.jpg": {
+  "w": 1930,
+  "h": 2898
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/d3/Cinta_Costera_de_Panam%C3%A1.jpg": {
+  "w": 2048,
+  "h": 1536
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/88/Cinta_costera%2C_Panam%C3%A1.jpg": {
+  "w": 4000,
+  "h": 2248
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/2/26/Cinta_costera%2C_que_rodea_exteriormente_el_centro_hist%C3%B3rico_de_la_ciudad_de_Panam%C3%A1.jpg": {
+  "w": 3642,
+  "h": 1841
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/70/Container_Vessel_HS_Mozart_Gatun_Lake_Panama_Canal_0682.jpg": {
+  "w": 5621,
+  "h": 3426
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/a/a0/Facade_-_Portobelo_-_Caribbean_Coast_-_Panama_%2811457833485%29.jpg": {
+  "w": 3648,
+  "h": 2736
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/d1/Gatun_Lake.jpg": {
+  "w": 1500,
+  "h": 1000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/72/Gatun_Lake_-_50088345977.jpg": {
+  "w": 5500,
+  "h": 3094
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/3/3d/Gatun_Panama.png": {
+  "w": 796,
+  "h": 724
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/df/Geoffroy%27s_tamarin_%28Saguinus_geoffroyi%29_2.jpg": {
+  "w": 3993,
+  "h": 3993
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/9/9d/Harbourt_Scene_-_Portobelo_-_Caribbean_Coast_-_Panama_-_02_%2811457888296%29.jpg": {
+  "w": 2736,
+  "h": 3648
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/f/f2/ISS065-E-31000_-_View_of_Panama_-_Taboga_Island_-_island_Isla_de_Urab%C3%A1_%28cropped%29.jpg": {
+  "w": 2491,
+  "h": 1868
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/e8/IslaTaboga.JPG": {
+  "w": 5184,
+  "h": 3456
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/e0/Lunch_near_Portobelo%2C_Panama_%283777588022%29.jpg": {
+  "w": 3648,
+  "h": 2736
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/5/53/Mercado_de_Mariscos_%28Ciudad_de_Panam%C3%A1%2C_Panam%C3%A1%29.jpg": {
+  "w": 3264,
+  "h": 2448
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/4f/Panama%2C_Gatun_Lake_1.jpg": {
+  "w": 5184,
+  "h": 2916
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/70/Panama%2C_Gatun_Lake_2.jpg": {
+  "w": 4994,
+  "h": 2809
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/9/9d/Panama_-_Porto_Bello_ruins.jpg": {
+  "w": 1600,
+  "h": 990
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/5/55/Panama_-_Taboga_-_panoramio.jpg": {
+  "w": 5117,
+  "h": 2799
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/2/26/Panama_-_Taboga_-_panoramio_%281%29.jpg": {
+  "w": 5184,
+  "h": 2920
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/f/f8/Portobelo%2C_Colon._Panam%C3%A1_2.jpg": {
+  "w": 2592,
+  "h": 1944
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/3/3a/Portobelo%2C_Colon.jpg": {
+  "w": 2592,
+  "h": 1944
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/3/30/Spanish_Cannon_at_Portobelo%2C_Panama_%283777622546%29.jpg": {
+  "w": 3648,
+  "h": 2736
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/9/9c/Sport_courts_in_Cinta_Costera_-_Panama_City_%28DSCF5759%29.jpg": {
+  "w": 3653,
+  "h": 2426
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/d9/TabogaBeach.JPG": {
+  "w": 5184,
+  "h": 3456
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/a/ae/Taboga_Insel.jpg": {
+  "w": 932,
+  "h": 700
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/74/Taboga_island.jpg": {
+  "w": 933,
+  "h": 700
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/78/Ancon_Hill_-_14095325320.jpg": {
+  "w": 2000,
+  "h": 3008
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/df/Ancon_Hill_-_2014.JPG": {
+  "w": 1944,
+  "h": 2592
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/6/6d/Ancon_Hill_in_Panama_01.jpg": {
+  "w": 2048,
+  "h": 1536
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/eb/Antennarius_commerson.jpg": {
+  "w": 4368,
+  "h": 2912
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/c/c2/Anton_Valle_foothills_-_Flickr_-_gailhampshire.jpg": {
+  "w": 4608,
+  "h": 3072
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/9/94/Arothron_meleagris.jpg": {
+  "w": 4368,
+  "h": 2912
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/8b/Atelopus_zeteki.jpg": {
+  "w": 1024,
+  "h": 681
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/1/17/Atelopus_zeteki_VA.jpg": {
+  "w": 4032,
+  "h": 3024
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/b/b1/Baird%27s_tapir_mother_with_baby_%2892151%29.jpg": {
+  "w": 3920,
+  "h": 2768
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/8c/Bocas_del_Toro_Province%2C_Panama_-_panoramio_%2813%29.jpg": {
+  "w": 3774,
+  "h": 2829
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/6/64/Catedral_Metropolitana_Panam%C3%A1.jpg": {
+  "w": 2872,
+  "h": 2872
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/5/52/Coiba_Panama_%2826216765884%29.jpg": {
+  "w": 6000,
+  "h": 4000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/8c/Coiba_Panama_%2826822070175%29.jpg": {
+  "w": 6000,
+  "h": 4000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/c/cc/Coiba_Sunset_%282071282152%29.jpg": {
+  "w": 4368,
+  "h": 2912
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/77/Coibita_Island_Panorama.jpg": {
+  "w": 11722,
+  "h": 3902
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/76/Countryside_around_El_Valle_%2803%29.jpg": {
+  "w": 3648,
+  "h": 2736
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/b/b0/Countryside_around_El_Valle_%2804%29.jpg": {
+  "w": 3648,
+  "h": 2736
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/c/cd/El_Valle_%284242157981%29.jpg": {
+  "w": 3968,
+  "h": 2976
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/4e/El_Valle_%284242926674%29.jpg": {
+  "w": 4032,
+  "h": 3024
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/ed/GOLF_COURSE_AND_PANAMA_CITY_SKYLINE_-_panoramio.jpg": {
+  "w": 3872,
+  "h": 2592
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/83/Gnathanodon_speciosus.jpg": {
+  "w": 4368,
+  "h": 2912
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/a/a2/Horses_and_Bougainvillea_-_El_Valle.jpg": {
+  "w": 3648,
+  "h": 2736
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/1/1f/Insel_Coiba_Rangerstation_%2826549648040%29.jpg": {
+  "w": 6000,
+  "h": 4000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/88/Insel_Coiba_Strand_%2826217559123%29.jpg": {
+  "w": 6000,
+  "h": 4000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/89/Isla_Canales_de_Afuera_Shallows_%282063365818%29.jpg": {
+  "w": 4368,
+  "h": 2912
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/9/9e/Isla_de_Coiba_-_Granite_de_Oro_-_Pacific_Ocean_Islands_off_Panama_-_panoramio_%2810%29.jpg": {
+  "w": 4288,
+  "h": 2848
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/5/52/Jard%C3%ADn_Zool%C3%B3gico_El_Nispero.jpg": {
+  "w": 4320,
+  "h": 2880
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/1/1f/Kristallklares_Wasser_Coiba_Panama_%2826549517610%29.jpg": {
+  "w": 6000,
+  "h": 4000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/6/61/LaIndiaDormida.jpg": {
+  "w": 5184,
+  "h": 3456
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/d1/Panama_City_Skyline_1.jpg": {
+  "w": 5184,
+  "h": 2916
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/c/c2/Panama_City_Skyline_180107.jpg": {
+  "w": 4000,
+  "h": 2246
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/3/39/Panama_city_Skyline.jpg": {
+  "w": 2592,
+  "h": 1944
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/5/52/Panama_skyline.jpg": {
+  "w": 750,
+  "h": 1334
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/c/c4/Three-toed_Sloth_-_Cerro_Ancon_-_Panama_City_%2848454787316%29.jpg": {
+  "w": 1200,
+  "h": 800
+ },
+ "https://images.pexels.com/photos/920270/pexels-photo-920270.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1068
+ },
+ "https://images.pexels.com/photos/36791113/pexels-photo-36791113.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/35125836/pexels-photo-35125836.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/16017280/pexels-photo-16017280.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/36345390/pexels-photo-36345390.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/33803472/pexels-photo-33803472.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 900
+ },
+ "https://images.pexels.com/photos/5005136/pexels-photo-5005136.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/18049699/pexels-photo-18049699.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/18183895/pexels-photo-18183895.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/1867024/pexels-photo-1867024.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/18184146/pexels-photo-18184146.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/2564872/pexels-photo-2564872.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/33803474/pexels-photo-33803474.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 900
+ },
+ "https://images.pexels.com/photos/2666249/pexels-photo-2666249.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/30826590/pexels-photo-30826590.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1068
+ },
+ "https://images.pexels.com/photos/12861718/pexels-photo-12861718.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1068
+ },
+ "https://images.pexels.com/photos/25489812/pexels-photo-25489812.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1068
+ },
+ "https://images.pexels.com/photos/33161290/pexels-photo-33161290.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/32791312/pexels-photo-32791312.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1066
+ },
+ "https://images.pexels.com/photos/17254453/pexels-photo-17254453.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/17477516/pexels-photo-17477516.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/11962310/pexels-photo-11962310.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/13110362/pexels-photo-13110362.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/33803476/pexels-photo-33803476.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 900
+ },
+ "https://images.pexels.com/photos/28518788/pexels-photo-28518788.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/33452256/pexels-photo-33452256.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 900
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/1/1c/Boquete%2C_Panama.jpg": {
+  "w": 2732,
+  "h": 2320
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/76/Castillo_San_Jer%C3%B3nimo_Portobelo_09_2019_0505.jpg": {
+  "w": 3000,
+  "h": 2000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/0/0f/Custom_House_at_Portobelo_Panama.jpg": {
+  "w": 5902,
+  "h": 3824
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/e1/IglesiasanpedroTaboga.JPG": {
+  "w": 2707,
+  "h": 2275
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/0/0f/Island_In_Gatun_Lake_-_panoramio.jpg": {
+  "w": 3072,
+  "h": 2304
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/e0/Mantled_Howler_Monkey._Alouatta_palliata_%2842253693155%29.jpg": {
+  "w": 3638,
+  "h": 2709
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/4f/Portobelo_Ruins_and_bay.jpg": {
+  "w": 1200,
+  "h": 900
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/b/bb/VistaBoquete.jpg": {
+  "w": 2898,
+  "h": 1930
+ },
+ "https://images.pexels.com/photos/4965891/pexels-photo-4965891.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/14511967/pexels-photo-14511967.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/35629753/pexels-photo-35629753.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/7791255/pexels-photo-7791255.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/14776857/pexels-photo-14776857.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/30717831/pexels-photo-30717831.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/2166297/pexels-photo-2166297.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/7761601/pexels-photo-7761601.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/2024457/pexels-photo-2024457.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/16146741/pexels-photo-16146741.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1000
+ },
+ "https://images.pexels.com/photos/29525731/pexels-photo-29525731.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/10490919/pexels-photo-10490919.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/10490913/pexels-photo-10490913.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/30271300/pexels-photo-30271300.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1205
+ },
+ "https://images.pexels.com/photos/36601640/pexels-photo-36601640.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1200
+ },
+ "https://images.pexels.com/photos/10490921/pexels-photo-10490921.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/1450367/pexels-photo-1450367.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1068
+ },
+ "https://images.pexels.com/photos/30095790/pexels-photo-30095790.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 900
+ },
+ "https://images.pexels.com/photos/16147522/pexels-photo-16147522.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1200
+ },
+ "https://images.pexels.com/photos/9399874/pexels-photo-9399874.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/36172390/pexels-photo-36172390.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 900
+ },
+ "https://images.pexels.com/photos/33990238/pexels-photo-33990238.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 900
+ },
+ "https://images.pexels.com/photos/16403241/pexels-photo-16403241.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1297
+ },
+ "https://images.pexels.com/photos/36758150/pexels-photo-36758150.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/37245214/pexels-photo-37245214.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/38579180/pexels-photo-38579180.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/5111070/pexels-photo-5111070.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/5111046/pexels-photo-5111046.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/38579183/pexels-photo-38579183.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/8324140/pexels-photo-8324140.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1064
+ },
+ "https://images.pexels.com/photos/37245213/pexels-photo-37245213.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/35570901/pexels-photo-35570901.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/3754442/pexels-photo-3754442.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/3954301/pexels-photo-3954301.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/4783703/pexels-photo-4783703.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1066
+ },
+ "https://images.pexels.com/photos/4784477/pexels-photo-4784477.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1066
+ },
+ "https://images.pexels.com/photos/38507042/pexels-photo-38507042.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1065
+ },
+ "https://images.pexels.com/photos/9122911/pexels-photo-9122911.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1171
+ },
+ "https://images.pexels.com/photos/15305189/pexels-photo-15305189.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1068
+ },
+ "https://images.pexels.com/photos/15162465/pexels-photo-15162465.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/28891911/pexels-photo-28891911.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/30774401/pexels-photo-30774401.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/32419583/pexels-photo-32419583.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/4119699/pexels-photo-4119699.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 447
+ },
+ "https://images.pexels.com/photos/16828441/pexels-photo-16828441.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/5988866/pexels-photo-5988866.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 462
+ },
+ "https://images.pexels.com/photos/6333646/pexels-photo-6333646.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/10936419/pexels-photo-10936419.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/13758986/pexels-photo-13758986.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 973
+ },
+ "https://images.pexels.com/photos/16116492/pexels-photo-16116492.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1200
+ },
+ "https://images.pexels.com/photos/26077420/pexels-photo-26077420.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1064
+ },
+ "https://images.pexels.com/photos/35803823/pexels-photo-35803823.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/16010024/pexels-photo-16010024.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1064
+ },
+ "https://images.pexels.com/photos/4999688/pexels-photo-4999688.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/7200626/pexels-photo-7200626.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/30826587/pexels-photo-30826587.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1068
+ },
+ "https://images.pexels.com/photos/14185503/pexels-photo-14185503.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/12635878/pexels-photo-12635878.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/30774409/pexels-photo-30774409.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/11112892/pexels-photo-11112892.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/31550913/pexels-photo-31550913.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/37341529/pexels-photo-37341529.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/17991607/pexels-photo-17991607.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/32190389/pexels-photo-32190389.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/31451558/pexels-photo-31451558.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/21222910/pexels-photo-21222910.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/38574684/pexels-photo-38574684.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/16321326/pexels-photo-16321326.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/16208593/pexels-photo-16208593.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/2221136/pexels-photo-2221136.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/33803477/pexels-photo-33803477.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 900
+ },
+ "https://images.pexels.com/photos/30032075/pexels-photo-30032075.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/36117834/pexels-photo-36117834.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/12831944/pexels-photo-12831944.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/36117835/pexels-photo-36117835.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/33503255/pexels-photo-33503255.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/11167999/pexels-photo-11167999.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/12831912/pexels-photo-12831912.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/33653869/pexels-photo-33653869.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1200
+ },
+ "https://images.pexels.com/photos/25489548/pexels-photo-25489548.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1064
+ },
+ "https://images.pexels.com/photos/2518891/pexels-photo-2518891.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/14023085/pexels-photo-14023085.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/27949388/pexels-photo-27949388.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/30700949/pexels-photo-30700949.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/10614792/pexels-photo-10614792.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/5077838/pexels-photo-5077838.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/32419577/pexels-photo-32419577.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/36117831/pexels-photo-36117831.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/36095905/pexels-photo-36095905.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/32330651/pexels-photo-32330651.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/10855239/pexels-photo-10855239.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1068
+ },
+ "https://images.pexels.com/photos/38822827/pexels-photo-38822827.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/20526452/pexels-photo-20526452.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1065
+ },
+ "https://images.pexels.com/photos/35526169/pexels-photo-35526169.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/11334331/pexels-photo-11334331.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/37049263/pexels-photo-37049263.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/7478219/pexels-photo-7478219.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/14036110/pexels-photo-14036110.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 956
+ },
+ "https://images.pexels.com/photos/11334330/pexels-photo-11334330.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/14023382/pexels-photo-14023382.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 914
+ },
+ "https://images.pexels.com/photos/12832297/pexels-photo-12832297.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/28207747/pexels-photo-28207747.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 900
+ },
+ "https://images.pexels.com/photos/33803480/pexels-photo-33803480.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 900
+ },
+ "https://images.pexels.com/photos/1681453/pexels-photo-1681453.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/13842831/pexels-photo-13842831.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/33803478/pexels-photo-33803478.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 900
+ },
+ "https://images.pexels.com/photos/14840814/pexels-photo-14840814.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/18118137/pexels-photo-18118137.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1143
+ },
+ "https://images.pexels.com/photos/33803485/pexels-photo-33803485.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 900
+ },
+ "https://images.pexels.com/photos/18118099/pexels-photo-18118099.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1208
+ },
+ "https://images.pexels.com/photos/8661751/pexels-photo-8661751.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/37926843/pexels-photo-37926843.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/700420/pexels-photo-700420.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1064
+ },
+ "https://images.pexels.com/photos/2373200/pexels-photo-2373200.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1133
+ },
+ "https://images.pexels.com/photos/12627695/pexels-photo-12627695.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/36756197/pexels-photo-36756197.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/17979348/pexels-photo-17979348.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/35664953/pexels-photo-35664953.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/11331386/pexels-photo-11331386.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/28408402/pexels-photo-28408402.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1068
+ },
+ "https://images.pexels.com/photos/37208428/pexels-photo-37208428.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/16549532/pexels-photo-16549532.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/37528835/pexels-photo-37528835.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/39187507/pexels-photo-39187507.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/36219554/pexels-photo-36219554.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/14776806/pexels-photo-14776806.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 954
+ },
+ "https://images.pexels.com/photos/27855359/pexels-photo-27855359.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/28840460/pexels-photo-28840460.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/35746669/pexels-photo-35746669.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/13058771/pexels-photo-13058771.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/30774387/pexels-photo-30774387.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/37916073/pexels-photo-37916073.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 900
+ },
+ "https://images.pexels.com/photos/13676680/pexels-photo-13676680.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/7163615/pexels-photo-7163615.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/20159088/pexels-photo-20159088.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/30774398/pexels-photo-30774398.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/2549020/pexels-photo-2549020.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1068
+ },
+ "https://images.pexels.com/photos/13657857/pexels-photo-13657857.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/2575271/pexels-photo-2575271.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/38212171/pexels-photo-38212171.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1200
+ },
+ "https://images.pexels.com/photos/38212169/pexels-photo-38212169.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1200
+ },
+ "https://images.pexels.com/photos/37245215/pexels-photo-37245215.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/14510507/pexels-photo-14510507.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/30650598/pexels-photo-30650598.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/37866942/pexels-photo-37866942.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/18976054/pexels-photo-18976054.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1236
+ },
+ "https://images.pexels.com/photos/37131291/pexels-photo-37131291.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1200
+ },
+ "https://images.pexels.com/photos/18976055/pexels-photo-18976055.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1143
+ },
+ "https://images.pexels.com/photos/19362139/pexels-photo-19362139.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1200
+ },
+ "https://images.pexels.com/photos/1662312/pexels-photo-1662312.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/37359925/pexels-photo-37359925.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 900
+ },
+ "https://images.pexels.com/photos/14840760/pexels-photo-14840760.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/1494576/pexels-photo-1494576.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/6149489/pexels-photo-6149489.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 984
+ },
+ "https://images.pexels.com/photos/7292828/pexels-photo-7292828.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/6621690/pexels-photo-6621690.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/9202651/pexels-photo-9202651.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/4631160/pexels-photo-4631160.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/35858832/pexels-photo-35858832.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1200
+ },
+ "https://images.pexels.com/photos/20674794/pexels-photo-20674794.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/37926848/pexels-photo-37926848.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/12241665/pexels-photo-12241665.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/37809612/pexels-photo-37809612.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/18543358/pexels-photo-18543358.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/17246210/pexels-photo-17246210.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/34709301/pexels-photo-34709301.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/36965631/pexels-photo-36965631.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/20233816/pexels-photo-20233816.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/38069420/pexels-photo-38069420.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/13022434/pexels-photo-13022434.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/38175757/pexels-photo-38175757.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/18684951/pexels-photo-18684951.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/15101211/pexels-photo-15101211.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/8536232/pexels-photo-8536232.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/29318724/pexels-photo-29318724.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/26843092/pexels-photo-26843092.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/10500567/pexels-photo-10500567.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/16063802/pexels-photo-16063802.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/7575039/pexels-photo-7575039.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1068
+ },
+ "https://images.pexels.com/photos/25391626/pexels-photo-25391626.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/35264360/pexels-photo-35264360.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/33703911/pexels-photo-33703911.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/25391622/pexels-photo-25391622.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/33395010/pexels-photo-33395010.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/29994005/pexels-photo-29994005.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/25391577/pexels-photo-25391577.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/37816801/pexels-photo-37816801.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/16837819/pexels-photo-16837819.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1065
+ },
+ "https://images.pexels.com/photos/37810966/pexels-photo-37810966.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/17231782/pexels-photo-17231782.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/37197891/pexels-photo-37197891.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1200
+ },
+ "https://images.pexels.com/photos/34937418/pexels-photo-34937418.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/17231776/pexels-photo-17231776.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/30751245/pexels-photo-30751245.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1064
+ },
+ "https://images.pexels.com/photos/39056910/pexels-photo-39056910.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/12832511/pexels-photo-12832511.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/11643004/pexels-photo-11643004.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1241
+ },
+ "https://images.pexels.com/photos/38120313/pexels-photo-38120313.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/35106208/pexels-photo-35106208.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/31494982/pexels-photo-31494982.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 972
+ },
+ "https://images.pexels.com/photos/5036679/pexels-photo-5036679.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/37143166/pexels-photo-37143166.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1068
+ },
+ "https://images.pexels.com/photos/8082897/pexels-photo-8082897.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/7239659/pexels-photo-7239659.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/33006138/pexels-photo-33006138.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1068
+ },
+ "https://images.pexels.com/photos/17751978/pexels-photo-17751978.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/35106211/pexels-photo-35106211.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/8196420/pexels-photo-8196420.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/15847945/pexels-photo-15847945.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/18077634/pexels-photo-18077634.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/37124298/pexels-photo-37124298.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/17848630/pexels-photo-17848630.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1200
+ },
+ "https://images.pexels.com/photos/29207117/pexels-photo-29207117.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/29207118/pexels-photo-29207118.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/9482594/pexels-photo-9482594.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/29207121/pexels-photo-29207121.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/18159811/pexels-photo-18159811.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1236
+ },
+ "https://images.pexels.com/photos/33704050/pexels-photo-33704050.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/29207125/pexels-photo-29207125.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/29207119/pexels-photo-29207119.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/29207123/pexels-photo-29207123.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/7200711/pexels-photo-7200711.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/33161296/pexels-photo-33161296.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/7200725/pexels-photo-7200725.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/35525462/pexels-photo-35525462.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 900
+ },
+ "https://images.pexels.com/photos/35844455/pexels-photo-35844455.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/30911817/pexels-photo-30911817.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/12900392/pexels-photo-12900392.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/7238195/pexels-photo-7238195.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/17231766/pexels-photo-17231766.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/37679503/pexels-photo-37679503.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/2186033/pexels-photo-2186033.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/15261777/pexels-photo-15261777.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 900
+ },
+ "https://images.pexels.com/photos/30826606/pexels-photo-30826606.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1068
+ },
+ "https://images.pexels.com/photos/17153600/pexels-photo-17153600.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/34043006/pexels-photo-34043006.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/37124304/pexels-photo-37124304.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/15699960/pexels-photo-15699960.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/37124300/pexels-photo-37124300.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/37124301/pexels-photo-37124301.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/37245225/pexels-photo-37245225.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/28036969/pexels-photo-28036969.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/2528801/pexels-photo-2528801.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/4581270/pexels-photo-4581270.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/27427355/pexels-photo-27427355.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/20329117/pexels-photo-20329117.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1064
+ },
+ "https://images.pexels.com/photos/19964438/pexels-photo-19964438.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 900
+ },
+ "https://images.pexels.com/photos/27272719/pexels-photo-27272719.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1063
+ },
+ "https://images.pexels.com/photos/28404849/pexels-photo-28404849.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/30640922/pexels-photo-30640922.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/6151802/pexels-photo-6151802.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/2218103/pexels-photo-2218103.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://images.pexels.com/photos/2918139/pexels-photo-2918139.jpeg?auto=compress&cs=tinysrgb&w=1600": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/85/Bastimentos_Wizzard_Beach_%2826708686196%29.jpg": {
+  "w": 3992,
+  "h": 2242
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/85/Carretera_Interamericana_en_Penonom%C3%A9%2C_Provincia_de_Cocl%C3%A9%2C_Panam%C3%A1_%282024%29.jpg": {
+  "w": 1025,
+  "h": 802
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/87/Corredor_Sur_Panama.jpg": {
+  "w": 3648,
+  "h": 2736
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/2/27/Entrada_al_Dari%C3%A9n_en_la_Carretera_Interamericana%2C_Panam%C3%A1_%282020%29.jpg": {
+  "w": 1384,
+  "h": 922
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/83/Interamericana_Santa_Marta.jpg": {
+  "w": 1280,
+  "h": 960
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/f/fa/Old_Bank%2C_Bastimento%2C_Panama_-_panoramio.jpg": {
+  "w": 14329,
+  "h": 2603
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/b/b7/Puente_de_las_Americas_2013_09_14.jpg": {
+  "w": 4603,
+  "h": 1845
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/e5/Red_Frog_Beach_Bastimentos.jpg": {
+  "w": 3992,
+  "h": 2242
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/40/Red_Frog_Beach_Bastimentos_3.jpg": {
+  "w": 3992,
+  "h": 2242
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/5/5f/Red_Frog_Beach_Bastimentos_6.jpg": {
+  "w": 3992,
+  "h": 2242
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/40/Red_Frog_Beach_Bastimentos_8.jpg": {
+  "w": 3992,
+  "h": 2242
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/b/bc/V%C3%ADa_Israel_y_Corredor_Sur_en_Ciudad_de_Panam%C3%A1.jpg": {
+  "w": 736,
+  "h": 536
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/db/Bocas_del_Drago.jpg": {
+  "w": 3264,
+  "h": 2448
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/84/Bocas_del_Toro_Province%2C_Panama_-_panoramio_%2814%29.jpg": {
+  "w": 3787,
+  "h": 2837
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/1/17/Bocas_del_Toro_Province%2C_Panama_-_panoramio_%2816%29.jpg": {
+  "w": 3968,
+  "h": 2976
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/f/f6/Bocas_pano.jpg": {
+  "w": 2048,
+  "h": 293
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/72/Guna_Yala_Island.jpg": {
+  "w": 5184,
+  "h": 3456
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/8a/Insel_Zapatilla_%2827083959796%29.jpg": {
+  "w": 3850,
+  "h": 2888
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/3/36/Island_of_Chichimen%2C_Cuyos_Limones%2C_Guna_Yala%2C_Panama.jpg": {
+  "w": 2432,
+  "h": 1355
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/45/Oophaga_pumilio_120574497.jpg": {
+  "w": 1397,
+  "h": 1402
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/9/9e/Paradise_-_Bocas_del_drago_%286778445008%29.jpg": {
+  "w": 4320,
+  "h": 3240
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/5/5c/Starfish_Beach_04036.jpg": {
+  "w": 4000,
+  "h": 6000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/1/12/Women_at_Starfish_Beach%2C_Boca_del_Drago.jpg": {
+  "w": 2719,
+  "h": 2273
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/6/6d/Zapatillas_Islands_-_panoramio.jpg": {
+  "w": 2048,
+  "h": 1536
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/e7/Banco_de_Arena_-_San_Blas_-_Guna_Yala.jpg": {
+  "w": 2694,
+  "h": 3592
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/2/24/Caba%C3%B1as_Guna_Yala.jpg": {
+  "w": 5184,
+  "h": 3456
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/0/03/Contadora_Island_Tropical_View.jpg": {
+  "w": 320,
+  "h": 240
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/5/5b/Isla_Perro_en_la_Comarca_Guna_Yala.JPG": {
+  "w": 5184,
+  "h": 3456
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/7a/Pearl_Islands_banner.jpg": {
+  "w": 1996,
+  "h": 285
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/0/0a/San_Blas_Islands.jpg": {
+  "w": 1000,
+  "h": 440
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/c/cb/Shipwreck_near_Chichimen_Island%2C_Cuyos_Limones%2C_Guna_Yala%2C_Panama.jpg": {
+  "w": 2560,
+  "h": 1920
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/a/a0/Snorkelling_in_Guna_Yala_-_Panama_-_panoramio.jpg": {
+  "w": 4000,
+  "h": 3000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/5/57/Strand_in_Contadora_%2827117318015%29.jpg": {
+  "w": 2495,
+  "h": 1871
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/2/2a/Wyspa_Contadora%2C_Archipelag_Wysp_Per%C5%82owych%2C_Panama.jpg": {
+  "w": 2816,
+  "h": 2112
+ },
+ "/images/boquete/boquete-aerial.jpg": {
+  "w": 960,
+  "h": 631
+ },
+ "/images/boquete/boquete-aerial2.webp": {
+  "w": 960,
+  "h": 615
+ },
+ "/images/boquete/boquete-bird.webp": {
+  "w": 960,
+  "h": 600
+ },
+ "/images/boquete/boquete-bridge.webp": {
+  "w": 960,
+  "h": 717
+ },
+ "/images/boquete/boquete-clouds.webp": {
+  "w": 960,
+  "h": 720
+ },
+ "/images/boquete/boquete-ebike-orbea.webp": {
+  "w": 1400,
+  "h": 1400
+ },
+ "/images/boquete/boquete-ebike-riders.webp": {
+  "w": 1400,
+  "h": 2489
+ },
+ "/images/boquete/boquete-ebike-trail.webp": {
+  "w": 1400,
+  "h": 2489
+ },
+ "/images/boquete/boquete-forest.webp": {
+  "w": 960,
+  "h": 640
+ },
+ "/images/boquete/boquete-hills.webp": {
+  "w": 960,
+  "h": 720
+ },
+ "/images/boquete/boquete-losquetzales.webp": {
+  "w": 960,
+  "h": 720
+ },
+ "/images/boquete/boquete-manmadewaterfall.jpg": {
+  "w": 960,
+  "h": 720
+ },
+ "/images/boquete/boquete-market.webp": {
+  "w": 960,
+  "h": 615
+ },
+ "/images/boquete/boquete-people.webp": {
+  "w": 960,
+  "h": 720
+ },
+ "/images/boquete/boquete-rafting.webp": {
+  "w": 960,
+  "h": 720
+ },
+ "/images/boquete/boquete-river2.webp": {
+  "w": 960,
+  "h": 720
+ },
+ "/images/boquete/boquete-rocks.webp": {
+  "w": 960,
+  "h": 659
+ },
+ "/images/boquete/boquete-town2.webp": {
+  "w": 960,
+  "h": 640
+ },
+ "/images/boquete/boquete-volcanbaru.webp": {
+  "w": 960,
+  "h": 720
+ },
+ "/images/el-valle/elvalle-bird.webp": {
+  "w": 960,
+  "h": 640
+ },
+ "/images/el-valle/elvalle-bridge.webp": {
+  "w": 960,
+  "h": 639
+ },
+ "/images/el-valle/elvalle-church.webp": {
+  "w": 960,
+  "h": 720
+ },
+ "/images/el-valle/elvalle-crater-hero.webp": {
+  "w": 2400,
+  "h": 1310
+ },
+ "/images/el-valle/elvalle-drums.webp": {
+  "w": 960,
+  "h": 600
+ },
+ "/images/el-valle/elvalle-elmachowaterfall.webp": {
+  "w": 960,
+  "h": 1280
+ },
+ "/images/el-valle/elvalle-elmachowaterfall2.webp": {
+  "w": 960,
+  "h": 1280
+ },
+ "/images/el-valle/elvalle-flowermarket.webp": {
+  "w": 960,
+  "h": 640
+ },
+ "/images/el-valle/elvalle-indiadormida.webp": {
+  "w": 960,
+  "h": 720
+ },
+ "/images/el-valle/elvalle-market.webp": {
+  "w": 960,
+  "h": 640
+ },
+ "/images/el-valle/elvalle-panorama.webp": {
+  "w": 960,
+  "h": 640
+ },
+ "/images/el-valle/elvalle-petroglifo.webp": {
+  "w": 960,
+  "h": 639
+ },
+ "/images/el-valle/elvalle-shrine.webp": {
+  "w": 960,
+  "h": 720
+ },
+ "/images/el-valle/elvalle-town.webp": {
+  "w": 960,
+  "h": 720
+ },
+ "/images/el-valle/elvalle-waterfall.webp": {
+  "w": 960,
+  "h": 211
+ },
+ "/images/el-valle/evbike-crater-view.webp": {
+  "w": 1080,
+  "h": 720
+ },
+ "/images/el-valle/evbike-forest.webp": {
+  "w": 1080,
+  "h": 1350
+ },
+ "/images/el-valle/evbike-trail.webp": {
+  "w": 1080,
+  "h": 1350
+ },
+ "/images/el-valle/india-dormida.jpg": {
+  "w": 5184,
+  "h": 3456
+ },
+ "/images/hikes-boquete.webp": {
+  "w": 960,
+  "h": 720
+ },
+ "/images/hikes-el-valle.webp": {
+  "w": 960,
+  "h": 1280
+ },
+ "/images/things-to-do-boquete.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/things-to-do-el-valle.webp": {
+  "w": 960,
+  "h": 640
+ },
+ "/images/tours-boquete.webp": {
+  "w": 1080,
+  "h": 1920
+ },
+ "/images/tours-el-valle.webp": {
+  "w": 960,
+  "h": 640
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/1/1f/Bocas_Del_Toro_Zapazilla_%28204787523%29.jpeg": {
+  "w": 2048,
+  "h": 729
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/db/Bocas_del_Toro_Panama_4.jpg": {
+  "w": 3992,
+  "h": 2992
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/c/c8/Bocas_del_Toro_Zapazilla_%2832833358553%29.jpg": {
+  "w": 8052,
+  "h": 2866
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/ed/Feria_de_las_Flores_y_el_Caf%C3%A9_de_Boquete_2019.jpg": {
+  "w": 4160,
+  "h": 3120
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/2/25/Zapatillas_Islands_-_panoramio_%281%29.jpg": {
+  "w": 2048,
+  "h": 1536
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/6/6b/Zapatillas_Islands_-_panoramio_%282%29.jpg": {
+  "w": 2048,
+  "h": 1536
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/3/3f/Zapatillas_Islands_-_panoramio_%283%29.jpg": {
+  "w": 2048,
+  "h": 1536
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/46/Zapatillas_Islands_-_panoramio_%284%29.jpg": {
+  "w": 2048,
+  "h": 1536
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/8a/Bocas3.jpg": {
+  "w": 945,
+  "h": 705
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/ec/Bocas_del_Toro_Province%2C_Panama_-_panoramio_%2815%29.jpg": {
+  "w": 3851,
+  "h": 2891
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/75/Bocas_del_Toro_Province%2C_Panama_-_panoramio_%2817%29.jpg": {
+  "w": 3968,
+  "h": 2976
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/8c/Carnaval_en_Las_Tablas%2C_Panam%C3%A1.png": {
+  "w": 587,
+  "h": 786
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/2/21/San_Miguel_%281%29.jpg": {
+  "w": 1909,
+  "h": 1273
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/3/33/Bastimentos_Panama_3.jpg": {
+  "w": 3723,
+  "h": 2091
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/f/fa/Insel_Bastimentos_Panama_%2826130902833%29.jpg": {
+  "w": 3723,
+  "h": 2091
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/5/55/Isla_Carenero%2C_Panama_-_panoramio.jpg": {
+  "w": 3968,
+  "h": 2976
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/45/Isla_Popa%2C_Bocas_del_Toro.jpg": {
+  "w": 1200,
+  "h": 900
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/f/fb/Albrook_Bus_Terminal.jpg": {
+  "w": 4032,
+  "h": 3024
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/1/1f/Albrook_bus_station_Panama_City.agr.jpg": {
+  "w": 4032,
+  "h": 3024
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/e2/Albrookstation.jpg": {
+  "w": 4695,
+  "h": 3160
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/e4/Anton_Valley%2C_Panama_-_panoramio.jpg": {
+  "w": 3840,
+  "h": 2160
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/9/95/Anton_Valley%2C_Panama_-_panoramio_%281%29.jpg": {
+  "w": 3840,
+  "h": 2160
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/f/f6/Chorro_las_Mozas%2C_Valle_de_Anton%2C_Panama_%2852728459947%29.jpg": {
+  "w": 3024,
+  "h": 4032
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/5/55/Forest_at_Cerro_Macho.jpg": {
+  "w": 2736,
+  "h": 3648
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/9/9b/Gran_terminal_de_transporte.jpg": {
+  "w": 5033,
+  "h": 3775
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/1/18/House_and_Landscape_-_El_Valle_%2802%29.jpg": {
+  "w": 3648,
+  "h": 2736
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/7b/Mercado_EL_Valle_Panama.JPG": {
+  "w": 5184,
+  "h": 3456
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/9/9a/Mercado_ElValle_Panama.jpg": {
+  "w": 2898,
+  "h": 1930
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/40/Valle_de_Anton%2C_Panama.jpg": {
+  "w": 4032,
+  "h": 2268
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/9/9d/Valle_de_Ant%C3%B3n_La_Mochila.jpg": {
+  "w": 2560,
+  "h": 1920
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/70/Vendedor_MercadoElVallePma.jpg": {
+  "w": 2898,
+  "h": 1811
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/1/16/10-001-DMHN_Los_petroglifos_en_Panam%C3%A1.jpg": {
+  "w": 3061,
+  "h": 1704
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/5/51/Architectural_Detail_of_Hotel_El_Majo_del_Valle_-_El_Valle_-_Cocle_Province_-_Panama_%2811519249273%29.jpg": {
+  "w": 2736,
+  "h": 3648
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/df/Artesanias_MercadoElValle.jpg": {
+  "w": 1811,
+  "h": 2898
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/42/Countryside_around_El_Valle_%2802%29.jpg": {
+  "w": 2736,
+  "h": 3648
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/b/b0/EntradaChorroMacho_ElValle.jpg": {
+  "w": 2898,
+  "h": 1930
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/b/b0/La_India_Dormida.jpg": {
+  "w": 640,
+  "h": 480
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/2/29/Mercado_El_Valle_de_Ant%C3%B3n.JPG": {
+  "w": 5184,
+  "h": 3456
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/a/ae/Mercado_del_Valle_de_Ant%C3%B3n.jpg": {
+  "w": 5184,
+  "h": 3456
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/42/Panam%C3%A1_20230321_134938.jpg": {
+  "w": 4000,
+  "h": 3000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/7a/Panam%C3%A1_20230321_135006.jpg": {
+  "w": 4000,
+  "h": 3000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/e3/Panam%C3%A1_20230322_065507.jpg": {
+  "w": 3000,
+  "h": 4000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/1/1e/Panam%C3%A1_20230322_141816.jpg": {
+  "w": 4000,
+  "h": 3000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/3/30/PetroglifoElValle.jpg": {
+  "w": 2898,
+  "h": 1930
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/e9/Piedra_Pintada_ElValle.jpg": {
+  "w": 1930,
+  "h": 2898
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/2/22/Pineapples_El_Valle.jpg": {
+  "w": 5196,
+  "h": 3462
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/7/78/Workmen_with_Mountain_Backdrop_-_El_Valle.jpg": {
+  "w": 3648,
+  "h": 2736
+ },
+ "/images/el-valle/evbike-plaza.webp": {
+  "w": 1080,
+  "h": 1350
+ },
+ "/images/el-valle/evbike-group.webp": {
+  "w": 387,
+  "h": 516
+ },
+ "/images/el-valle/ta-review-1.webp": {
+  "w": 680,
+  "h": 454
+ },
+ "/images/el-valle/ta-review-3.webp": {
+  "w": 680,
+  "h": 510
+ },
+ "/images/el-valle/evbike-sunset.webp": {
+  "w": 1080,
+  "h": 1350
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/2/23/Panorama_of_Waterfall_at_Cerro_El_Macho.jpg": {
+  "w": 4912,
+  "h": 1080
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/d4/Panam%C3%A1_20230322_141822.jpg": {
+  "w": 4000,
+  "h": 3000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/f/f6/Chorro_Marcho_EL_Valle_Panama_03.jpg": {
+  "w": 3462,
+  "h": 5198
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/e3/Comida_de_un_restaurante_de_El_Valle_de_Anton.jpg": {
+  "w": 500,
+  "h": 375
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/6/64/Patacones_de_Panam%C3%A1.jpg": {
+  "w": 4000,
+  "h": 3000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/4/49/Ropa_vieja%2C_arroz_y_pl%C3%A1tano_macho.jpg": {
+  "w": 4000,
+  "h": 3000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/a/a1/Ceviche_de_camar%C3%B3n.jpg": {
+  "w": 960,
+  "h": 1280
+ },
+ "/images/el-valle/elvalle-bird2.webp": {
+  "w": 960,
+  "h": 640
+ },
+ "/images/el-valle/elvalle-bird3.webp": {
+  "w": 960,
+  "h": 640
+ },
+ "https://images.booqablecdn.com/uploads/8979ffef14a1bdb06611230ae9a36a01/photo/photo/666becca-f5a4-495c-ad7b-aab2f3302809/1734624084-457447415407503-0032-7472/upload.jpeg": {
+  "w": 1080,
+  "h": 1920
+ },
+ "https://images.booqablecdn.com/uploads/8979ffef14a1bdb06611230ae9a36a01/photo/photo/2dffc872-6ef2-42ce-9cd9-80704386d81d/1734623947-983444268809418-0021-4065/upload.jpeg": {
+  "w": 1080,
+  "h": 1920
+ },
+ "/images/el-valle/lasnubes-camarones.webp": {
+  "w": 1100,
+  "h": 1954
+ },
+ "/images/social/chorro-las-mozas-pozas-el-valle-de-anton-og.webp": {
+  "w": 1200,
+  "h": 630
+ },
+ "/images/social/donde-comer-en-el-valle-de-anton-og.webp": {
+  "w": 1200,
+  "h": 630
+ },
+ "/images/social/tours-en-bicicleta-el-valle-de-anton-og.webp": {
+  "w": 1200,
+  "h": 630
+ },
+ "/images/el-valle/india-dormida.webp": {
+  "w": 1600,
+  "h": 1067
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/3/33/Bothriechis_nigroadspersus_172225700.jpg": {
+  "w": 2048,
+  "h": 1536
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/a/a2/Common_morpho_%28Morpho_helenor_peleides%29.jpg": {
+  "w": 4728,
+  "h": 3152
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/f/f1/Common_morpho_%28Morpho_helenor_peleides%29_underside.jpg": {
+  "w": 4891,
+  "h": 3261
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/f/fa/Tithorea_tarricina_170503929.jpg": {
+  "w": 2048,
+  "h": 1540
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/e4/Zebra_longwing_%28Heliconius_charithonia_vazquezae%29.jpg": {
+  "w": 3706,
+  "h": 2471
+ },
+ "/images/boquete/boquete-cabbage.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/boquete-cabins.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/boquete-cafe.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/boquete-cafeview.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/boquete-cafeview2.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/boquete-canyon-bridge.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/boquete-cloudforest.webp": {
+  "w": 971,
+  "h": 1295
+ },
+ "/images/boquete/boquete-cow.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/boquete-ebike-hero-lp.webp": {
+  "w": 540,
+  "h": 961
+ },
+ "/images/boquete/boquete-ebike-hero.webp": {
+  "w": 1400,
+  "h": 2489
+ },
+ "/images/boquete/boquete-ebike-trail-lp.webp": {
+  "w": 720,
+  "h": 1281
+ },
+ "/images/boquete/boquete-firepit.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/boquete-flowers.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/boquete-flowers2.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/boquete-food.webp": {
+  "w": 2048,
+  "h": 2099
+ },
+ "/images/boquete/boquete-food2.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/boquete-greenhouse.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/boquete-horse.webp": {
+  "w": 2048,
+  "h": 1672
+ },
+ "/images/boquete/boquete-houseclouds.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/boquete-manmadewaterfall.webp": {
+  "w": 960,
+  "h": 720
+ },
+ "/images/boquete/boquete-marshmallow.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/boquete-night.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/boquete-night2.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/boquete-nightvolcan.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/boquete-plantation.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/boquete-pond.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/boquete-rainbow-canopy.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/boquete-river-euc.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/boquete-sheep.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/boquete-strawberry.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/boquete-street-peak.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/boquete-terraces.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/boquete-town.webp": {
+  "w": 2048,
+  "h": 1381
+ },
+ "/images/boquete/boquete-tree.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/boquete-vegfarm.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/boquete-volcanview.webp": {
+  "w": 2048,
+  "h": 2731
+ },
+ "/images/boquete/boquete-zipline-forest.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/boquete-zipline-group.webp": {
+  "w": 2048,
+  "h": 2731
+ },
+ "/images/boquete/boquete-zipline-guide.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/boquete-zipline-platform.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/boquete-zipline-rider.webp": {
+  "w": 2048,
+  "h": 1536
+ },
+ "/images/boquete/ta-review-1.webp": {
+  "w": 680,
+  "h": 454
+ },
+ "/images/boquete/ta-review-2.webp": {
+  "w": 680,
+  "h": 454
+ },
+ "/images/boquete/ta-review-3.webp": {
+  "w": 680,
+  "h": 510
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/d0/Calderahotsprings.JPG": {
+  "w": 3264,
+  "h": 2448
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/2/2f/Caminando_a_los_Pozos_de_Caldera%2C_Panama.jpg": {
+  "w": 3072,
+  "h": 2304
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/e/ef/Hei%C3%9Fe_Quellen_bei_Boquete_%2826700913504%29.jpg": {
+  "w": 5749,
+  "h": 3833
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/8a/Hei%C3%9Fe_Quellen_Boquete_%2827032980500%29.jpg": {
+  "w": 6000,
+  "h": 4000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/2/2a/YellowJeepCrossingRiver.JPG": {
+  "w": 3264,
+  "h": 2448
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/a/a1/Feria_de_las_Flores.jpg": {
+  "w": 3264,
+  "h": 1836
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/1/16/Resplendent_Quetzal_%28Pharomachrus_mocinno%29_-_Flickr_-_gailhampshire.jpg": {
+  "w": 2856,
+  "h": 2831
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/d5/Resplendent_quetzal_%28Pharomachrus_mocinno%29_male_3.jpg": {
+  "w": 3452,
+  "h": 2301
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/9/90/Resplendent_Quetzal_-_Panama_H8O1573_%2816305973361%29.jpg": {
+  "w": 760,
+  "h": 1140
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/1/10/Vulkan_Baru_Boquete_%2827238202851%29.jpg": {
+  "w": 6000,
+  "h": 4000
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/8/81/Volc%C3%A1n-bar%C3%BA-panama-at-sunrise.jpg": {
+  "w": 1284,
+  "h": 1712
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/d/d9/Aerial_view_of_the_Province_of_Chiriqui%2C_Republic_of_Panama_09.jpg": {
+  "w": 4000,
+  "h": 2695
+ },
+ "https://upload.wikimedia.org/wikipedia/commons/f/fb/Aerial_view_of_the_Province_of_Chiriqui%2C_Republic_of_Panama_04.jpg": {
+  "w": 4000,
+  "h": 2647
+ }
 }
