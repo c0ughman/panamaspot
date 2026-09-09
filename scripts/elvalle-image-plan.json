@@ -9,7 +9,7 @@
     "sections": {
       "s1": [
         "File:Countryside around El Valle (03).jpg",
-        "Fences and pasture on the caldera floor, with the crater rim standing behind the fields — the whole town sits inside this ring."
+        "Fences and pasture on the caldera floor, with the forested crater rim behind."
       ],
       "s2": [
         "/images/el-valle/elvalle-town.webp",
@@ -46,7 +46,7 @@
       ],
       "s4": [
         "https://images.pexels.com/photos/13676680/pexels-photo-13676680.jpeg?auto=compress&cs=tinysrgb&w=960",
-        "A hammock strung between trees over a boulder-strewn clearing — the kind of grounds the rural-fringe properties are built around."
+        "A striped hammock slung between trees over a grass clearing strewn with boulders."
       ],
       "s6": [
         "File:Scenery in El Valle de Anton.jpg",
@@ -95,7 +95,7 @@
     "lang": "es",
     "hero": [
       "File:Albrookstation.jpg",
-      "Coasters alineados en la Gran Terminal de Albrook: el mismo tipo de bus, de unos 28 asientos, que cubre la ruta a El Valle de Antón."
+      "Coasters and long-distance buses lined up in the Albrook terminal yard."
     ],
     "sections": {
       "s1": [
@@ -104,7 +104,7 @@
       ],
       "s3": [
         "File:Albrook Bus Terminal.jpg",
-        "El interior de la terminal: la boletería y las plataformas de salida están en pasillos distintos, y hay que pasar por los dos."
+        "The interior concourse of the Albrook bus terminal, shops down both sides."
       ],
       "s5": [
         "File:Carretera Interamericana en Penonomé, Provincia de Coclé, Panamá (2024).jpg",
@@ -144,9 +144,8 @@
   "public/es/articles/donde-comer-en-el-valle-de-anton.html": {
     "lang": "es",
     "hero": [
-      "File:Ceviche de camarón.jpg",
-      "Vaso de ceviche de camarón servido en el restaurante La Bendición: camarón curado en limón con cebolla y ají picados.",
-      "50% 20%"
+      "File:Anton Valley, Panama - panoramio (1).jpg",
+      "El mercado techado de El Valle a media mañana: piñas, plátanos, zapallos y sandías apilados sobre las mesas."
     ],
     "sections": {
       "s1": [
@@ -196,7 +195,7 @@
       ],
       "s8": [
         "/images/el-valle/evbike-plaza.webp",
-        "Bicicletas listas bajo un árbol en El Valle: sin carro, la bici cubre el pueblo entero en minutos."
+        "Electric bicycles parked on the grass under a large tree in El Valle."
       ]
     }
   },
@@ -225,7 +224,7 @@
       ],
       "s8": [
         "File:Artesanias MercadoElValle.jpg",
-        "Artesanía colgada en un puesto del mercado de El Valle: sombreros, bolsos y trabajo en fibra."
+        "Artesanía pintada a mano colgada en la rejilla de un puesto del mercado."
       ],
       "s9": [
         "File:WetRapel Abseiling.jpg",
@@ -245,7 +244,7 @@
     "lang": "es",
     "hero": [
       "/images/el-valle/evbike-plaza.webp",
-      "La flota de bicicletas eléctricas lista bajo los árboles en El Valle de Antón, con el jardín de piedra del punto de salida al fondo.",
+      "Electric bicycles parked on the grass under a large tree in El Valle.",
       "50% 88%"
     ],
     "sections": {
@@ -283,7 +282,7 @@
     "lang": "es",
     "hero": [
       "File:Mercado EL Valle Panama.JPG",
-      "Ristras de ajo, cebolla y ají colgadas sobre el mostrador de un puesto del mercado de El Valle de Antón, con la bandera panameña arriba."
+      "Ristras de ajo, cebolla y ají colgadas de un puesto del mercado de El Valle."
     ],
     "sections": {
       "s3": [
@@ -296,11 +295,11 @@
       ],
       "s5": [
         "File:Artesanias MercadoElValle.jpg",
-        "Artesanía pintada a mano en un puesto del mercado: bandejas, soles y aves en fibra y madera — el precio se habla, no viene marcado."
+        "Artesanía pintada a mano colgada en la rejilla de un puesto del mercado."
       ],
       "s7": [
         "File:Mercado El Valle de Antón.JPG",
-        "El mercado desde la Avenida Principal: las naves de teja y el estacionamiento en línea que se llena antes de las nueve los domingos."
+        "Las naves de teja del mercado de El Valle vistas desde la Avenida Principal."
       ],
       "s8": [
         "File:Pineapples El Valle.jpg",
@@ -312,7 +311,7 @@
     "lang": "es",
     "hero": [
       "File:10-001-DMHN Los petroglifos en Panamá.jpg",
-      "La Piedra Pintada de El Valle de Antón: un bloque de varios metros cubierto de grabados precolombinos, con una persona al pie para dar escala."
+      "La Piedra Pintada: un gran bloque de roca grabado, con una persona al pie."
     ],
     "sections": {
       "s1": [

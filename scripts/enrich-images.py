@@ -117,6 +117,20 @@ def image_object(src, alt, lang):
                 node["copyrightNotice"] = v["artist"]
     if "license" not in node and "images.pexels.com" in url:
         node["license"] = "https://www.pexels.com/license/"
+    # The site's own photographs. No licence URL is claimed because the site
+    # publishes no rights page — asserting one would be inventing a term. What
+    # can honestly be stated is authorship, and that is what Google reads for
+    # attribution.
+    if "creator" not in node and "images.booqablecdn.com" in url:
+        # E-Valley's own product photography, served by their booking widget
+        node["creditText"] = "E-Valley Bikes"
+        node["creator"] = {"@type": "Organization", "name": "E-Valley Bikes"}
+        node["copyrightNotice"] = "E-Valley Bikes"
+    if "creator" not in node and (url.startswith("/images/") or url.startswith(f"{'https://panamaspot.com'}/images/")):
+        node["creditText"] = "PanamaSpot"
+        node["creator"] = {"@type": "Organization", "name": "PanamaSpot",
+                           "@id": "https://panamaspot.com/#organization"}
+        node["copyrightNotice"] = "PanamaSpot"
     # name + description give Google a short label and a full sentence for the
     # image, on top of the caption.
     if cap:

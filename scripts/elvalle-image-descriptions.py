@@ -51,11 +51,11 @@ T = {
  "es": {"eyebrow": "Las fotos", "title": "Sobre estas fotos",
         "sub": "Qué muestra cada fotografía de esta página, dónde se tomó y quién la tomó. "
                "Toca el título para ver el archivo original.",
-        "own": "Fotografía de PanamaSpot", "lic": "Licencia"},
+        "own": "Fotografía de PanamaSpot", "where": "Dónde", "lic": "Licencia"},
  "en": {"eyebrow": "The photographs", "title": "About these photographs",
         "sub": "What each photograph on this page shows, where it was taken and who took it. "
                "Tap a title to see the original file.",
-        "own": "PanamaSpot photograph", "lic": "Licence"},
+        "own": "PanamaSpot photograph", "where": "Where", "lic": "Licence"},
 }
 
 CSS = ('<style id="img-desc-css">'
@@ -160,7 +160,10 @@ def gallery_captions(s, lang):
         f = FACTS.get(k) if k else None
         if not f:
             return fig
-        lab = f.get("label_en" if lang == "en" else "label", f["label"])
+        # The tile carries the full description, same sentence as under the
+        # inline photo. The "Subject · Place" label reads as a location tag
+        # bolted onto the end and is kept for the credits list only.
+        lab = f.get("desc_en" if lang == "en" else "desc", f["desc"])
         cap = f'<figcaption>{html.escape(lab, quote=True)}</figcaption>'
         fig = re.sub(r'<figcaption>.*?</figcaption>', '', fig, flags=re.S)
         n += 1
@@ -168,6 +171,29 @@ def gallery_captions(s, lang):
 
     seg = re.sub(r'<figure[^>]*>.*?</figure>', fix, seg, flags=re.S)
     return s[:start] + seg + s[end:], n
+
+
+def inline_captions(s, lang):
+    """The body figure carries the same sentence as its gallery tile, so a
+    reader meeting the photo in context and a reader skimming the gallery get
+    the same description. alt stays separate — it is the literal frame."""
+    n = 0
+    def fix(fm):
+        nonlocal n
+        fig = fm.group(0)
+        src = re.search(r'<img[^>]*\bsrc="([^"]+)"', fig)
+        if not src:
+            return fig
+        k = key_for(src.group(1))
+        f = FACTS.get(k) if k else None
+        if not f:
+            return fig
+        d = html.escape(f.get("desc_en" if lang == "en" else "desc", f["desc"]), quote=True)
+        n += 1
+        return re.sub(r'<figcaption>.*?</figcaption>', f'<figcaption>{d}</figcaption>',
+                      fig, flags=re.S)
+    s = re.sub(r'<figure class="art-inline-img".*?</figure>', fix, s, flags=re.S)
+    return s, n
 
 
 def desc_block(s, lang):
@@ -205,12 +231,9 @@ def desc_block(s, lang):
         else:
             credit = t["own"]
             title = lab
-        # No visible "Where: <place>" line — the client finds it clumsy at the
-        # end of every entry. The place still ships in ImageObject.contentLocation,
-        # which is the part search engines read.
         items.append(
           f'<li><span class="id-t">{title}</span><p class="id-d">{dsc}</p>'
-          f'<span class="id-m">{credit}</span></li>')
+          f'<span class="id-m"><b>{t["where"]}:</b> {html.escape(f["place"])} · {credit}</span></li>')
 
     if not items:
         return s
@@ -261,12 +284,13 @@ def main():
         p = ROOT / page
         s = p.read_text(encoding="utf-8")
         lang = spec.get("lang", "es")
+        s, ni = inline_captions(s, lang)
         s, ng = gallery_captions(s, lang)
         s = desc_block(s, lang)
         s = schema_locations(s, lang)
         nd = len(re.findall(r'<li><span class="id-t">', s))
         p.write_text(s, encoding="utf-8")
-        print(f"  {page.split('/')[-1][:-5]:52s} gallery {ng:2d} · described {nd:2d} · {lang}")
+        print(f"  {page.split('/')[-1][:-5]:52s} inline {ni:2d} · gallery {ng:2d} · described {nd:2d} · {lang}")
         total_g += ng; total_d += nd
     print(f"\n  {total_g} gallery captions, {total_d} described images")
 
