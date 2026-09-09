@@ -67,6 +67,33 @@ def audit(path):
         if f'property="{prop}"' not in s: warn.append(f"missing {prop}")
     for nm in ("twitter:card", "twitter:title", "twitter:description", "twitter:image"):
         if f'name="{nm}"' not in s: warn.append(f"missing {nm}")
+    # summary_large_image asks every social platform to render the og:image in a
+    # 1.91:1 frame, which they do by centre-cropping. A portrait image loses most
+    # of its height to that crop and usually its subject with it, so a portrait
+    # og:image and this card type together are a defect, not a preference.
+    tw = re.search(r'<meta content="([^"]*)" name="twitter:card"/>', s)
+    ow = re.search(r'<meta content="(\d+)" property="og:image:width"/>', s)
+    oh = re.search(r'<meta content="(\d+)" property="og:image:height"/>', s)
+    if tw and tw.group(1) == "summary_large_image" and ow and oh:
+        ar = int(ow.group(1)) / int(oh.group(1))
+        if ar < 1.2:
+            bad.append(f"og:image is {ow.group(1)}x{oh.group(1)} (ar {ar:.2f}) "
+                       f"but twitter:card is summary_large_image — run social-cards.py")
+    elif tw and tw.group(1) == "summary_large_image" and not (ow and oh):
+        warn.append("summary_large_image with no og:image dimensions")
+
+    # Every other bit of chrome on a Spanish page is translated; a stray English
+    # heading is a leak from the template, and readers see it.
+    if es:
+        import html as _h
+        vis = re.sub(r'(?s)<script.*?</script>|<style.*?</style>', '', s)
+        for m in re.finditer(r'<span class="eyebrow">(.*?)</span>', vis, re.S):
+            t = _h.unescape(re.sub(r'<[^>]+>', '', m.group(1))).strip()
+            if t in ("Questions", "In pictures", "The short version",
+                     "Keep exploring", "More to see", "The photographs"):
+                bad.append(f'English eyebrow on a Spanish page: "{t}"')
+                break
+
     loc = re.search(r'<meta content="([^"]*)" property="og:locale"/>', s)
     if loc and ((es and not loc.group(1).startswith("es")) or (not es and not loc.group(1).startswith("en"))):
         bad.append(f"og:locale {loc.group(1)} wrong for this language")
