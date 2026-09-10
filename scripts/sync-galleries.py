@@ -34,6 +34,8 @@ def rebuild(s):
     if h:
         items.append((h.group(1), h.group(2)))
     for fm in re.finditer(r'<figure class="art-inline-img"[^>]*>.*?</figure>', s, re.S):
+        if 'is-map' in fm.group(0)[:80]:
+            continue          # a map is not a photograph; it does not belong in the grid
         um = re.search(r'src="([^"]+)"', fm.group(0))
         cm = re.search(r'<figcaption>(.*?)</figcaption>', fm.group(0), re.S)
         if um:

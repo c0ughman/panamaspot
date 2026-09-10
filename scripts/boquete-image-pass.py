@@ -198,6 +198,27 @@ PLAN = {
       "Boquete town from the hillside, gardens along the river"),
 ]},
 
+# ── Best time to visit (EN) — a weather page, so weather we photographed ──────
+# Section 05 (Micro-climates and altitude) takes the routes map instead of a
+# photo; place-map.py swaps it in, because the map is what actually explains
+# which neighbourhood sits at which altitude.
+"public/articles/best-time-to-visit-boquete.html": {
+ "hero": "/images/boquete/boquete-rainbow-canopy.webp",
+ "place": [
+  (0, "/images/boquete/boquete-clouds.webp",
+      "Cloud pouring over the ridge into the valley — the bajareque rolling in off the Caribbean side"),
+  (1, "/images/boquete/boquete-houseclouds.webp",
+      "Mist coming down the ridge behind a house on the valley edge"),
+  (2, "/images/boquete/boquete-plantation.webp",
+      "Rows of coffee in a Boquete finca, the cerro clouded in behind — harvest runs December to March"),
+  (3, "/images/boquete/boquete-zipline-rider.webp",
+      "A rider crossing the cable above the cloud forest, helmets and harness on"),
+  (5, "/images/boquete/boquete-flowers2.webp",
+      "Beds of dahlias under the pines, with the mountain behind"),
+  (7, "/images/boquete/boquete-terraces.webp",
+      "Pines and terraced smallholdings on the slopes above the valley"),
+]},
+
 # ── Bike rental (EN) — the operator's own kit, not stock ──────────────────────
 "public/articles/boquete-bike-rental.html": {
  "hero": "/images/boquete/boquete-ebike-hero.webp",
@@ -232,6 +253,41 @@ PLAN = {
       "Cloud forest closing in on the upper slopes above Boquete"),
 ]},
 }
+
+
+_DIV = re.compile(r'<div\b[^>]*>|</div>', re.S)
+
+
+def _balanced_div_end(s, start):
+    depth = 0
+    for m in _DIV.finditer(s, start):
+        depth += 1 if m.group(0)[1] != '/' else -1
+        if depth == 0:
+            return m.end()
+    return len(s)
+
+
+def cta_spans(s):
+    """The promo blocks. A body image must never be dropped inside one — the
+    last section's search window runs to the end of the document, so a naive
+    'first </p> after the heading' lands in the sticky E-Valley rail card and
+    the photo renders inside the advert."""
+    spans = [(m.start(), m.end()) for m in
+             re.finditer(r'(?s)<!--EVB-CTA:[a-z]+-->.*?<!--/EVB-CTA:[a-z]+-->', s)]
+    spans += [(m.start(), m.end()) for m in re.finditer(r'(?s)<aside class="evb-rail".*?</aside>', s)]
+    spans += [(m.start(), m.end()) for m in re.finditer(r'(?s)<section class="evb-cta.*?</section>', s)]
+    spans += [(m.start(), _balanced_div_end(s, m.start())) for m in re.finditer(r'<div class="evb-cta', s)]
+    return spans
+
+
+def first_free_p_end(s, start, nxt):
+    """End offset of the first </p> in [start, nxt) that is not inside a CTA."""
+    blocked = cta_spans(s)
+    for m in re.finditer(r"</p>", s[start:nxt]):
+        off = start + m.end()
+        if not any(a <= off < b for a, b in blocked):
+            return off
+    return None
 
 
 def figure(ref, caption):
@@ -295,8 +351,11 @@ def main():
             else:
                 start = hs[si].end()
                 nxt = hs[si + 1].start() if si + 1 < len(hs) else len(s)
-                pm = re.search(r"</p>", s[start:nxt])
-                ins.append((start + pm.end() if pm else start, ref, cap))
+                off = first_free_p_end(s, start, nxt)
+                if off is None:
+                    print(f"  ! {page}: section {si} has no prose paragraph outside a CTA")
+                    continue
+                ins.append((off, ref, cap))
                 added += 1
         for off, ref, cap in sorted(ins, reverse=True):
             s = s[:off] + figure(ref, cap) + s[off:]

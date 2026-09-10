@@ -15,12 +15,14 @@ export const pageImages: Record<string, string[]> = {
     "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Calzada_de_Amador_%28Vista_A%C3%A9rea_desde_Isla_Naos%29.jpg/960px-Calzada_de_Amador_%28Vista_A%C3%A9rea_desde_Isla_Naos%29.jpg",
   ],
   "/articles/best-time-to-visit-boquete": [
-    "https://images.pexels.com/photos/30774401/pexels-photo-30774401.jpeg?auto=compress&cs=tinysrgb&w=1280",
-    "https://images.pexels.com/photos/12635878/pexels-photo-12635878.jpeg?auto=compress&cs=tinysrgb&w=960",
-    "https://images.pexels.com/photos/37341529/pexels-photo-37341529.jpeg?auto=compress&cs=tinysrgb&w=960",
-    "https://images.pexels.com/photos/31550913/pexels-photo-31550913.jpeg?auto=compress&cs=tinysrgb&w=960",
-    "https://images.pexels.com/photos/11112892/pexels-photo-11112892.jpeg?auto=compress&cs=tinysrgb&w=960",
-    "https://images.pexels.com/photos/30774409/pexels-photo-30774409.jpeg?auto=compress&cs=tinysrgb&w=960",
+    "https://panamaspot.com/images/boquete/boquete-rainbow-canopy.webp",
+    "https://panamaspot.com/images/boquete/boquete-clouds.webp",
+    "https://panamaspot.com/images/boquete/boquete-houseclouds.webp",
+    "https://panamaspot.com/images/boquete/boquete-plantation.webp",
+    "https://panamaspot.com/images/boquete/boquete-zipline-rider.webp",
+    "https://panamaspot.com/images/boquete/boquete-cycling-map.webp",
+    "https://panamaspot.com/images/boquete/boquete-flowers2.webp",
+    "https://panamaspot.com/images/boquete/boquete-terraces.webp",
   ],
   "/articles/best-time-to-visit-panama": [
     "https://images.pexels.com/photos/13842831/pexels-photo-13842831.jpeg?auto=compress&cs=tinysrgb&w=1280",
@@ -63,6 +65,8 @@ export const pageImages: Record<string, string[]> = {
     "https://panamaspot.com/images/boquete/boquete-bridge.webp",
     "https://panamaspot.com/images/boquete/boquete-losquetzales.webp",
     "https://panamaspot.com/images/boquete/boquete-river2.webp",
+    "https://panamaspot.com/images/boquete/boquete-ebike-trail.webp",
+    "https://panamaspot.com/images/boquete/boquete-cabins.webp",
   ],
   "/articles/boquete-bike-rental": [
     "https://panamaspot.com/images/boquete/boquete-ebike-hero.webp",
@@ -86,6 +90,7 @@ export const pageImages: Record<string, string[]> = {
   ],
   "/articles/boquete-cycling-routes": [
     "https://panamaspot.com/images/boquete/boquete-ebike-trail.webp",
+    "https://panamaspot.com/images/boquete/boquete-cycling-map.webp",
     "https://panamaspot.com/images/boquete/boquete-ebike-orbea.webp",
     "https://panamaspot.com/images/boquete/boquete-rocks.webp",
     "https://panamaspot.com/images/boquete/boquete-street-peak.webp",
@@ -349,6 +354,9 @@ export const pageImages: Record<string, string[]> = {
     "https://panamaspot.com/images/boquete/boquete-terraces.webp",
     "https://panamaspot.com/images/boquete/boquete-street-peak.webp",
     "https://panamaspot.com/images/boquete/boquete-clouds.webp",
+    "https://panamaspot.com/images/boquete/boquete-town2.webp",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Vulkan_Baru_Boquete_%2827238202851%29.jpg/960px-Vulkan_Baru_Boquete_%2827238202851%29.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Aerial_view_of_the_Province_of_Chiriqui%2C_Republic_of_Panama_09.jpg/960px-Aerial_view_of_the_Province_of_Chiriqui%2C_Republic_of_Panama_09.jpg",
   ],
   "/articles/pearl-islands-panama-guide": [
     "https://images.pexels.com/photos/37208428/pexels-photo-37208428.jpeg?auto=compress&cs=tinysrgb&w=1280",
@@ -359,10 +367,13 @@ export const pageImages: Record<string, string[]> = {
   "/articles/quetzal-season-boquete-when-where-to-see-resplendent-quetzal": [
     "https://upload.wikimedia.org/wikipedia/commons/d/d5/Resplendent_quetzal_%28Pharomachrus_mocinno%29_male_3.jpg",
     "https://panamaspot.com/images/boquete/boquete-cloudforest.webp",
-    "https://upload.wikimedia.org/wikipedia/commons/1/16/Resplendent_Quetzal_%28Pharomachrus_mocinno%29_-_Flickr_-_gailhampshire.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Resplendent_quetzal_%28Pharomachrus_mocinno%29_male_2.jpg/960px-Resplendent_quetzal_%28Pharomachrus_mocinno%29_male_2.jpg",
     "https://upload.wikimedia.org/wikipedia/commons/c/ca/Volcan_Baru%2C_Quetzal_Trail_-_Flickr_-_gailhampshire.jpg",
     "https://upload.wikimedia.org/wikipedia/commons/4/4e/Finca_Lerida%2C_Boquete%2C_Panama.jpg",
     "https://panamaspot.com/images/boquete/boquete-losquetzales.webp",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Resplendent_quetzal_%28Pharomachrus_mocinno%29_male_3.jpg/960px-Resplendent_quetzal_%28Pharomachrus_mocinno%29_male_3.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Volcan_Baru%2C_Quetzal_Trail_-_Flickr_-_gailhampshire.jpg/960px-Volcan_Baru%2C_Quetzal_Trail_-_Flickr_-_gailhampshire.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Finca_Lerida%2C_Boquete%2C_Panama.jpg/960px-Finca_Lerida%2C_Boquete%2C_Panama.jpg",
   ],
   "/articles/red-frog-beach-bocas-del-toro": [
     "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Red_Frog_Beach_Bastimentos_8.jpg/1280px-Red_Frog_Beach_Bastimentos_8.jpg",
