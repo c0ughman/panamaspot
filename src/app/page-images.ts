@@ -707,13 +707,12 @@ export const pageImages: Record<string, string[]> = {
     "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Vulkan_Baru_Boquete_%2827238202851%29.jpg/960px-Vulkan_Baru_Boquete_%2827238202851%29.jpg",
   ],
   "/es/articles/feria-de-las-flores-y-del-cafe-boquete": [
-    "https://upload.wikimedia.org/wikipedia/commons/e/ed/Feria_de_las_Flores_y_el_Caf%C3%A9_de_Boquete_2019.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/a/a1/Feria_de_las_Flores.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/RVN06957.jpg/1280px-RVN06957.jpg",
     "https://panamaspot.com/images/boquete/boquete-flowers2.webp",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/RVN06957.jpg/960px-RVN06957.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Feria_de_las_Flores_y_el_Caf%C3%A9_de_Boquete_2019.jpg/960px-Feria_de_las_Flores_y_el_Caf%C3%A9_de_Boquete_2019.jpg",
     "https://panamaspot.com/images/boquete/boquete-plantation.webp",
     "https://panamaspot.com/images/boquete/boquete-street-peak.webp",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Feria_de_las_Flores_y_el_Caf%C3%A9_de_Boquete_2019.jpg/960px-Feria_de_las_Flores_y_el_Caf%C3%A9_de_Boquete_2019.jpg",
+    "https://panamaspot.com/images/boquete/boquete-food.webp",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Feria_de_las_Flores.jpg/960px-Feria_de_las_Flores.jpg",
   ],
   "/es/articles/isla-coiba-buceo-parque-nacional": [

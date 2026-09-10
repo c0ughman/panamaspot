@@ -1,0 +1,480 @@
+{
+ "_comment": "Per-image facts for the Boquete pages, written after viewing every file. `label` is the short subject line; `desc` is the sentence used as alt text, as the visible caption under the photo and on the gallery tile, and in the 'About these photographs' block. `place` comes from PROVENANCE (our own photographs are of Boquete; Commons files use their geotag or description) and never from guessing at the pixels — the descriptions themselves never name a place the image does not show. _en fields are the English; the bare fields are Spanish.",
+ "/images/boquete/boquete-cabbage.webp": {
+  "label_en": "Cabbage field behind a fence",
+  "desc_en": "Neat rows of cabbage stretch toward misty green hills, seen through a wire perimeter fence along a rural road.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Cabbage field behind a fence",
+  "desc": "Neat rows of cabbage stretch toward misty green hills, seen through a wire perimeter fence along a rural road."
+ },
+ "/images/boquete/boquete-cabins.webp": {
+  "label_en": "A-frame cabins on a hillside",
+  "desc_en": "Twin wooden A-frame cabins sit against a steep, forested hillside, fronted by hydrangeas and a low stone wall.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Cabañas de madera en la ladera",
+  "desc": "Dos cabañas de madera a dos aguas contra una ladera boscosa, con hortensias y un muro bajo de piedra al frente."
+ },
+ "/images/boquete/boquete-cafeview.webp": {
+  "label_en": "Coffee-country view from a café bar",
+  "desc_en": "A wooden bar overlooks rows of coffee bushes and forested ridges through floor-to-ceiling windows on a cloudy day.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Coffee-country view from a café bar",
+  "desc": "A wooden bar overlooks rows of coffee bushes and forested ridges through floor-to-ceiling windows on a cloudy day."
+ },
+ "/images/boquete/boquete-cafeview2.webp": {
+  "label_en": "Coffee hillside seen from a shop window",
+  "desc_en": "Coffee bushes and misty mountains fill the view from a shop's window bar, with branded merchandise hanging nearby.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Cafetales desde la ventana de una tienda",
+  "desc": "Cafetales y montañas con neblina llenan la vista desde la barra de una ventana, con mercancía de la marca colgada al lado."
+ },
+ "/images/boquete/boquete-cloudforest.webp": {
+  "label_en": "Dense cloud forest canopy",
+  "desc_en": "Layers of mossy trees and dense undergrowth cover a steep slope, the upper canopy fading into haze near the ridge.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Dosel cerrado de bosque nuboso",
+  "desc": "Capas de árboles cubiertos de musgo y sotobosque denso tapizan una ladera empinada, con el dosel superior perdiéndose en la bruma."
+ },
+ "/images/boquete/boquete-clouds.webp": {
+  "label_en": "Clouds rolling over a highland valley",
+  "desc_en": "A bank of cloud pours over forested ridgelines above a patchwork valley of farms and scattered rooftops.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Clouds rolling over a highland valley",
+  "desc": "A bank of cloud pours over forested ridgelines above a patchwork valley of farms and scattered rooftops."
+ },
+ "/images/boquete/boquete-cycling-map.webp": {
+  "label_en": "Cycling routes map · Boquete",
+  "desc_en": "A map graphic plots color-coded mountain-bike routes through Bajo Boquete, Alto Boquete, and the surrounding highlands, with markers for viewpoints and coffee stops.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Cycling routes map · Boquete",
+  "desc": "A map graphic plots color-coded mountain-bike routes through Bajo Boquete, Alto Boquete, and the surrounding highlands, with markers for viewpoints and coffee stops."
+ },
+ "/images/boquete/boquete-ebike-hero.webp": {
+  "label_en": "Cyclists pause at a waterfall",
+  "desc_en": "A helmeted couple wheels their mountain bikes up to a mossy rock face streaked with a narrow waterfall.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Cyclists pause at a waterfall",
+  "desc": "A helmeted couple wheels their mountain bikes up to a mossy rock face streaked with a narrow waterfall."
+ },
+ "/images/boquete/boquete-ebike-orbea.webp": {
+  "label_en": "Mint-green mountain bike, studio shot",
+  "desc_en": "A sage-green mountain bike with disc brakes and knobby tires is shown side-on against a plain white background.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Mint-green mountain bike, studio shot",
+  "desc": "A sage-green mountain bike with disc brakes and knobby tires is shown side-on against a plain white background."
+ },
+ "/images/boquete/boquete-ebike-riders.webp": {
+  "label_en": "Electric mountain bike among coffee leaves",
+  "desc_en": "A black electric mountain bike with a helmet slung on the bars stands parked beside glossy coffee-plant foliage.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Electric mountain bike among coffee leaves",
+  "desc": "A black electric mountain bike with a helmet slung on the bars stands parked beside glossy coffee-plant foliage."
+ },
+ "/images/boquete/boquete-ebike-trail.webp": {
+  "label_en": "Cyclists smiling on a coffee-farm trail",
+  "desc_en": "Two helmeted riders grin at the camera while pedaling a dirt trail bordered by tall coffee bushes.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Cyclists smiling on a coffee-farm trail",
+  "desc": "Two helmeted riders grin at the camera while pedaling a dirt trail bordered by tall coffee bushes."
+ },
+ "/images/boquete/boquete-flowers.webp": {
+  "label_en": "Orange-flowered shrub in a garden",
+  "desc_en": "A glossy-leaved shrub carries clusters of small orange and red tubular flowers against a backdrop of trees.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Arbusto de flores naranjas",
+  "desc": "Un arbusto de hojas lustrosas carga racimos de flores tubulares naranjas y rojas contra un fondo de árboles."
+ },
+ "/images/boquete/boquete-flowers2.webp": {
+  "label_en": "Dahlias and dusty miller in a flower bed",
+  "desc_en": "Pink dahlias and red salvia rise behind a silvery dusty-miller border, with tall pines framing the garden beyond.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Dalias y cineraria en un macizo",
+  "desc": "Dalias rosadas y salvia roja se levantan detrás de un borde plateado de cineraria, con pinos altos enmarcando el jardín."
+ },
+ "/images/boquete/boquete-food.webp": {
+  "label_en": "Braised short rib · sweet potato puree",
+  "desc_en": "Braised short rib rests on a swirl of sweet potato puree, plated with a fried plantain slice and a sprig of rosemary.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Costilla guisada con puré de camote",
+  "desc": "Costilla guisada sobre un espiral de puré de camote, con una tajada de plátano frito y una ramita de romero."
+ },
+ "/images/boquete/boquete-food2.webp": {
+  "label_en": "Shredded beef tamale on banana leaf",
+  "desc_en": "Shredded beef with peppers and carrots tops a fried plantain, served open on a broad glossy banana leaf.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Ropa vieja sobre hoja de bijao",
+  "desc": "Carne deshebrada con pimentón y zanahoria corona un plátano frito, servida abierta sobre una hoja de bijao."
+ },
+ "/images/boquete/boquete-houseclouds.webp": {
+  "label_en": "Dark-timbered cabin in mountain fog",
+  "desc_en": "A dark cabin with dormer windows and a stone retaining wall sits on a mowed lawn as fog rolls over the forested ridge behind it.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Dark-timbered cabin in mountain fog",
+  "desc": "A dark cabin with dormer windows and a stone retaining wall sits on a mowed lawn as fog rolls over the forested ridge behind it."
+ },
+ "/images/boquete/boquete-losquetzales.webp": {
+  "label_en": "Camino Los Quetzales trail sign",
+  "desc_en": "A hand-painted wooden sign for Camino Los Quetzales marks a trailhead inside Volcán Barú National Park.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Letrero del Camino Los Quetzales",
+  "desc": "Un letrero de madera pintado a mano señala la entrada del Camino Los Quetzales, dentro del Parque Nacional Volcán Barú."
+ },
+ "/images/boquete/boquete-market.webp": {
+  "label_en": "Vendors at a roadside produce stand",
+  "desc_en": "An older couple stand beside a tiled stall stocked with watermelons, bananas, tomatoes, pineapple and bagged goods.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Puesto de frutas a la orilla de la carretera",
+  "desc": "Una pareja mayor atiende un puesto de azulejos con sandías, guineos, tomates, piña y productos empacados."
+ },
+ "/images/boquete/boquete-nightvolcan.webp": {
+  "label_en": "Mountain silhouette at dusk",
+  "desc_en": "A peaked mountain silhouette rises behind a dark forested ridge as dusk settles over a lit driveway and palms below.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Silueta del volcán al anochecer",
+  "desc": "La silueta de un pico se alza detrás de una cresta boscosa mientras cae la noche sobre una entrada iluminada y unas palmas."
+ },
+ "/images/boquete/boquete-plantation.webp": {
+  "label_en": "Walking a coffee row path",
+  "desc_en": "A man walks a grassy path between trimmed coffee bushes toward cloud-wrapped hills in the distance.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Camino entre hileras de café",
+  "desc": "Un hombre camina por un sendero de hierba entre cafetos podados, hacia unos cerros envueltos en nubes."
+ },
+ "/images/boquete/boquete-pond.webp": {
+  "label_en": "Garden pond with lily pads",
+  "desc_en": "Lily pads float on a shaded garden pond ringed by broad-leafed plants and clusters of red flowers.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Estanque de jardín con nenúfares",
+  "desc": "Nenúfares flotan en un estanque sombreado, rodeado de plantas de hoja ancha y racimos de flores rojas."
+ },
+ "/images/boquete/boquete-rainbow-canopy.webp": {
+  "label_en": "Rainbow over forested hills",
+  "desc_en": "A faint rainbow arcs over layered green hills, framed by a zipline cable and overhanging tree branches.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Rainbow over forested hills",
+  "desc": "A faint rainbow arcs over layered green hills, framed by a zipline cable and overhanging tree branches."
+ },
+ "/images/boquete/boquete-river-euc.webp": {
+  "label_en": "River lined with tall trees",
+  "desc_en": "A shallow rocky river runs past a stone retaining wall and a stand of tall trees, with a red roof glimpsed beyond.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "River lined with tall trees",
+  "desc": "A shallow rocky river runs past a stone retaining wall and a stand of tall trees, with a red roof glimpsed beyond."
+ },
+ "/images/boquete/boquete-river2.webp": {
+  "label_en": "Boulder-strewn river valley",
+  "desc_en": "Large pale boulders line a wide river as it winds through a valley toward distant green mountains.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Boulder-strewn river valley",
+  "desc": "Large pale boulders line a wide river as it winds through a valley toward distant green mountains."
+ },
+ "/images/boquete/boquete-rocks.webp": {
+  "label_en": "Curved columnar rock formation",
+  "desc_en": "Ridged columns of layered rock curve dramatically down a hillside, capped with greenery at the top.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Curved columnar rock formation",
+  "desc": "Ridged columns of layered rock curve dramatically down a hillside, capped with greenery at the top."
+ },
+ "/images/boquete/boquete-sheep.webp": {
+  "label_en": "Goat's face in a barn pen",
+  "desc_en": "A pale goat leans over a green wooden rail inside a straw-floored barn pen, a darker animal behind it.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Cabra en el corral de un establo",
+  "desc": "Una cabra clara se asoma por encima de una baranda verde dentro de un corral con piso de paja, con otro animal detrás."
+ },
+ "/images/boquete/boquete-strawberry.webp": {
+  "label_en": "Strawberry picked by hand",
+  "desc_en": "A ripe strawberry rests in an open palm, its green cap and pale runners still attached to the plant.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Fresa recién cortada en la mano",
+  "desc": "Una fresa madura descansa en la palma abierta de una mano, con el cáliz verde y los estolones aún prendidos."
+ },
+ "/images/boquete/boquete-street-peak.webp": {
+  "label_en": "Misty ridge behind garden fence",
+  "desc_en": "A cloud-wrapped ridge rises behind a chain-link fence, terraced hillside plots, and a blue house with a red tin roof.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Cerro con neblina detrás de una cerca",
+  "desc": "Un cerro envuelto en nubes se levanta detrás de una cerca de malla, parcelas en terraza y una casa azul de techo de zinc rojo."
+ },
+ "/images/boquete/boquete-terraces.webp": {
+  "label_en": "Terraced hillside farms",
+  "desc_en": "A pine bough frames terraced farm plots climbing a hillside toward clouds gathering along the ridge above.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Terraced hillside farms",
+  "desc": "A pine bough frames terraced farm plots climbing a hillside toward clouds gathering along the ridge above."
+ },
+ "/images/boquete/boquete-town.webp": {
+  "label_en": "Vintage VW coffee truck",
+  "desc_en": "A green vintage VW van converted into a roadside coffee stand, its side hatch open and a chalkboard menu on display.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Van VW convertida en cafetería",
+  "desc": "Una van VW verde convertida en puesto de café al borde de la calle, con la escotilla abierta y un menú de pizarra."
+ },
+ "/images/boquete/boquete-town2.webp": {
+  "label_en": "Raised flower beds below the town",
+  "desc_en": "Raised flower beds edged in painted tin form blocks of color below a hillside town and forested mountains.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Macizos de flores bajo el pueblo",
+  "desc": "Macizos elevados bordeados de zinc pintado forman bloques de color bajo un pueblo en la ladera y montañas boscosas."
+ },
+ "/images/boquete/boquete-tree.webp": {
+  "label_en": "Textured tree bark in forest",
+  "desc_en": "Deeply furrowed, lichen-mottled bark rises through a canopy gap, broadleaf undergrowth crowding the base.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Corteza de árbol en el bosque",
+  "desc": "Corteza profundamente surcada y moteada de líquenes se alza por un claro del dosel, con sotobosque de hoja ancha a sus pies."
+ },
+ "/images/boquete/boquete-volcanbaru.webp": {
+  "label_en": "Cloud forest ridge from above",
+  "desc_en": "Cloud spills over a forested ridge seen from above, a single peak catching sun as mist drifts through the canopy.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Cresta de bosque nuboso desde el aire",
+  "desc": "Las nubes se derraman sobre una cresta boscosa vista desde arriba, con un pico recibiendo el sol entre la bruma."
+ },
+ "/images/boquete/boquete-volcanview.webp": {
+  "label_en": "Mountain silhouette through a window",
+  "desc_en": "A hazy, single-peaked mountain sits low on the horizon, framed by a window and a line of trees below.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Silueta del volcán desde una ventana",
+  "desc": "Una montaña de un solo pico, difusa por la calima, se asienta baja en el horizonte, enmarcada por una ventana y una fila de árboles."
+ },
+ "/images/boquete/boquete-zipline-rider.webp": {
+  "label_en": "Zip-line canopy tour",
+  "desc_en": "A helmeted rider glides along a zip line over forest canopy while another waits harnessed on the platform.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Canopy sobre el bosque",
+  "desc": "Un participante con casco se desliza por el cable sobre el dosel mientras otro espera arnesado en la plataforma."
+ },
+ "File:Aerial view of the Province of Chiriqui, Republic of Panama 09.jpg": {
+  "label_en": "Terraced farmland · Chiriquí highlands",
+  "desc_en": "Patchwork fields and terraced plots checker a mountain valley, forested ridges rising on either side under a partly cloudy sky.",
+  "place": "Chiriquí",
+  "region": "Chiriquí",
+  "label": "Terraced farmland · Chiriquí highlands",
+  "desc": "Patchwork fields and terraced plots checker a mountain valley, forested ridges rising on either side under a partly cloudy sky."
+ },
+ "File:Albrook Bus Terminal.jpg": {
+  "label_en": "Albrook Bus Terminal concourse",
+  "desc_en": "Shoppers and travelers move through a vaulted, two-level terminal concourse lined with storefronts and ad panels.",
+  "place": "Terminal de Albrook, Ciudad de Panamá",
+  "region": "Panamá",
+  "locality": "Ciudad de Panamá",
+  "label": "Albrook Bus Terminal concourse",
+  "desc": "Shoppers and travelers move through a vaulted, two-level terminal concourse lined with storefronts and ad panels."
+ },
+ "File:Boquete, Panama.jpg": {
+  "label_en": "Tin-roofed house · Boquete",
+  "desc_en": "A green house with a rusting red tin roof sits behind flowering vines, a forested hill rising beyond the garden.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Casa de techo de zinc · Boquete",
+  "desc": "Una casa verde con techo de zinc rojo oxidado se esconde tras enredaderas en flor, con un cerro boscoso detrás del jardín."
+ },
+ "File:Calderahotsprings.JPG": {
+  "label_en": "Soaking in a hot spring pool",
+  "desc_en": "Two bathers relax in a turquoise, stone-lined hot spring pool fed by a pipe, ringed by forest and river rocks.",
+  "place": "Caldera Hot Springs",
+  "region": "Chiriquí",
+  "locality": "Caldera",
+  "label": "Baño en una poza termal",
+  "desc": "Dos bañistas descansan en una poza termal turquesa, bordeada de piedra y alimentada por un tubo, entre bosque y cantos de río."
+ },
+ "File:Caminando a los Pozos de Caldera, Panama.jpg": {
+  "label_en": "Wooden suspension footbridge · rainforest",
+  "desc_en": "A weathered wooden-plank suspension bridge with wire-mesh sides crosses a gap in the forest, concrete piers anchoring each end.",
+  "place": "Los Pozos de Caldera",
+  "region": "Chiriquí",
+  "locality": "Caldera",
+  "label": "Wooden suspension footbridge · rainforest",
+  "desc": "A weathered wooden-plank suspension bridge with wire-mesh sides crosses a gap in the forest, concrete piers anchoring each end."
+ },
+ "File:Feria de las Flores y el Café de Boquete 2019.jpg": {
+  "label_en": "Flower festival garden beds",
+  "desc_en": "Geometric beds of red, orange and pink flowers spread across a hillside garden, framed by cloud-wrapped mountains and colorful benches.",
+  "place": "Feria de las Flores y del Café, Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Macizos de la feria de las flores",
+  "desc": "Macizos geométricos de flores rojas, naranjas y rosadas se extienden por un jardín en ladera, entre montañas nubladas y bancas de colores."
+ },
+ "File:Feria de las Flores.jpg": {
+  "label_en": "Flower bed and orange café building",
+  "desc_en": "A trimmed bed of white, pink and red flowers sits before a peach-colored building with a red tile roof, forested slope rising behind.",
+  "place": "Feria de las Flores y del Café, Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Macizo de flores frente a un pabellón",
+  "desc": "Un macizo recortado de flores blancas, rosadas y rojas frente a un edificio color durazno con techo de teja, y una ladera boscosa detrás."
+ },
+ "File:Finca Lerida, Boquete, Panama.jpg": {
+  "label_en": "Coffee lodge among terraced rows",
+  "desc_en": "A long green-roofed lodge sits on a grassy shelf surrounded by neatly terraced coffee bushes climbing the hillside on all sides.",
+  "place": "Finca Lérida, Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Coffee lodge among terraced rows",
+  "desc": "A long green-roofed lodge sits on a grassy shelf surrounded by neatly terraced coffee bushes climbing the hillside on all sides."
+ },
+ "File:Heiße Quellen Boquete (27032980500).jpg": {
+  "label_en": "Stone-walled pool in the forest",
+  "desc_en": "Rounded river stones stacked into low walls enclose a calm, dark pool fed by a narrow trickle of water in dappled forest light.",
+  "place": "Caldera, Chiriquí",
+  "region": "Chiriquí",
+  "locality": "Caldera",
+  "label": "Stone-walled pool in the forest",
+  "desc": "Rounded river stones stacked into low walls enclose a calm, dark pool fed by a narrow trickle of water in dappled forest light."
+ },
+ "File:Heiße Quellen bei Boquete (26700913504).jpg": {
+  "label_en": "Boulder-strewn riverbed and footbridge",
+  "desc_en": "Large smooth boulders fill a dry riverbed beneath a slender wire suspension footbridge, forested hills and cloud rising in the distance.",
+  "place": "Caldera, Chiriquí",
+  "region": "Chiriquí",
+  "locality": "Caldera",
+  "label": "Boulder-strewn riverbed and footbridge",
+  "desc": "Large smooth boulders fill a dry riverbed beneath a slender wire suspension footbridge, forested hills and cloud rising in the distance."
+ },
+ "File:RVN06957.jpg": {
+  "label_en": "Flower-lined riverwalk with heart decoration",
+  "desc_en": "A red woven heart decorates a white railing along a flower-bordered riverside path, with colorful benches and a mountain town beyond.",
+  "place": "Río Caldera, Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Paseo del río bordeado de flores",
+  "desc": "Un corazón tejido en rojo adorna una baranda blanca junto a un paseo ribereño bordeado de flores, con bancas de colores y el pueblo al fondo."
+ },
+ "File:Resplendent quetzal (Pharomachrus mocinno) male 2.jpg": {
+  "label_en": "Resplendent quetzal on blossom branch",
+  "desc_en": "A resplendent quetzal shows its iridescent green back, crimson belly patch and long trailing blue tail feathers while perched among white blossoms.",
+  "place": "Mount Totumas Cloud Forest, Chiriquí",
+  "region": "Chiriquí",
+  "label": "Resplendent quetzal on blossom branch",
+  "desc": "A resplendent quetzal shows its iridescent green back, crimson belly patch and long trailing blue tail feathers while perched among white blossoms."
+ },
+ "File:Resplendent quetzal (Pharomachrus mocinno) male 3.jpg": {
+  "label_en": "Resplendent quetzal on mossy branch",
+  "desc_en": "A resplendent quetzal with a green crest, red breast and long streaming tail sits on a moss-covered branch surrounded by leafy foliage.",
+  "place": "Mount Totumas Cloud Forest, Chiriquí",
+  "region": "Chiriquí",
+  "label": "Resplendent quetzal on mossy branch",
+  "desc": "A resplendent quetzal with a green crest, red breast and long streaming tail sits on a moss-covered branch surrounded by leafy foliage."
+ },
+ "File:Volcan Baru, Quetzal Trail - Flickr - gailhampshire.jpg": {
+  "label_en": "Cultivated rows below misty forest ridge",
+  "desc_en": "Freshly furrowed vegetable rows stretch toward a dense, mist-shrouded forest ridge rising in the highland afternoon light.",
+  "place": "Sendero Los Quetzales, Volcán Barú",
+  "region": "Chiriquí",
+  "label": "Cultivated rows below misty forest ridge",
+  "desc": "Freshly furrowed vegetable rows stretch toward a dense, mist-shrouded forest ridge rising in the highland afternoon light."
+ },
+ "File:Volcán-barú-panama-at-sunrise.jpg": {
+  "label_en": "Mountain summit at dusk",
+  "desc_en": "Jagged rock outcrops crown a mountain ridge as a faint moon hangs in a darkening sky streaked orange above a hazy valley.",
+  "place": "Volcán Barú",
+  "region": "Chiriquí",
+  "label": "Cima del volcán al amanecer",
+  "desc": "Peñascos dentados coronan la cresta mientras una luna tenue cuelga en un cielo que se oscurece, con franjas naranjas sobre el valle."
+ },
+ "File:Vulkan Baru Boquete (27238202851).jpg": {
+  "label_en": "Mountain range above town rooftops",
+  "desc_en": "A forested mountain range with antennas on its highest peak rises behind tin rooftops and a small roadside market sign.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Cordillera sobre los techos del pueblo",
+  "desc": "Una cordillera boscosa con antenas en su pico más alto se alza detrás de techos de zinc y el letrero de un mercadito."
+ },
+ "File:YellowJeepCrossingRiver.JPG": {
+  "label_en": "Yellow tour jeep crossing river",
+  "desc_en": "An open-sided yellow jeep loaded with hatted passengers fords a shallow, boulder-strewn river beneath overhanging forest shade.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete",
+  "label": "Yellow tour jeep crossing river",
+  "desc": "An open-sided yellow jeep loaded with hatted passengers fords a shallow, boulder-strewn river beneath overhanging forest shade."
+ },
+ "https://images.pexels.com/photos/5036679/pexels-photo-5036679.jpeg?auto=compress&cs=tinysrgb": {
+  "label": "Niños explorando un bosque de pinos",
+  "label_en": "Children exploring a pine wood",
+  "desc": "Cuatro niños con mochilas se detienen sobre un montículo de tierra en un bosque de pinos abierto.",
+  "desc_en": "Four children with daypacks pause on a mound of bare earth in an open pine wood.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/31494982/pexels-photo-31494982.jpeg?auto=compress&cs=tinysrgb": {
+  "label": "Niños caminando por un sendero",
+  "label_en": "Children walking a woodland path",
+  "desc": "Cuatro niños caminan y juegan a lo largo de un sendero de concreto entre árboles y maleza.",
+  "desc_en": "Four children walk and play along a concrete path between trees and low scrub.",
+  "place": null
+ }
+}
