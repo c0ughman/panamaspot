@@ -59,8 +59,9 @@ TARGETS_EN = {
                                              "Cartagena"],
  "pearl-islands-panama-guide":              ["Pearl Islands", "Contadora"],
  # practical / national
- "renting-a-car-in-panama":   ["renting a car in Panama", "renting a car", "rental car"],
- "is-panama-safe":            ["is Panama safe", "safety in Panama"],
+ "renting-a-car-in-panama":   ["renting a car in Panama", "renting a car", "rental car",
+                              "Interamericana"],
+ "is-panama-safe":            ["is Panama safe", "safety in Panama", "safety"],
  "best-time-to-visit-panama": ["best time to visit Panama", "dry season"],
  "boat-charter-panama":       ["chartering a boat", "boat charter"],
  # Panama City cluster
@@ -69,12 +70,41 @@ TARGETS_EN = {
  "amador-causeway-biomuseo-guide":   ["Amador Causeway"],
  "day-trips-from-panama-city":       ["day trips from Panama City", "Portobelo"],
  "panama-city-itinerary-3-days":     ["three days in Panama City"],
- # highlands
- "volcan-baru-hike-sunrise-summit-guide": ["Volcán Barú", "Volcan Baru"],
+ # highlands / Boquete cluster.
+ # The generic phrases here ("hiking", "coffee farms", "dry season", "Jaramillo")
+ # are safe ONLY because CLUSTER_ONLY locks them to Boquete: on a Boquete page
+ # the reader saying "hiking" means Boquete's trails. They are the phrases these
+ # pages actually use — checked against the prose, not guessed.
+ # NOT bare "Baru": it matched "Super Baru", the supermarket in Bajo Boquete,
+ # and sent shoppers to a 13.5 km volcano hike. The accented "Barú" is safe.
+ "volcan-baru-hike-sunrise-summit-guide": ["Volcán Barú", "Volcan Baru", "Barú"],
  "things-to-do-in-boquete-panama":    ["things to do in Boquete"],
- "hikes-in-boquete":                  ["hikes in Boquete", "hiking in Boquete"],
- "boquete-coffee-farm-tour":          ["coffee farm tour", "coffee farms"],
- "panama-city-to-boquete":            ["Panama City to Boquete"],
+ "hikes-in-boquete":                  ["hikes in Boquete", "hiking in Boquete", "Pipeline Trail",
+                                       "hiking", "hikes", "hike", "trails", "trail"],
+ "boquete-coffee-farm-tour":          ["coffee farm tour", "coffee farms", "coffee farm", "coffee tour"],
+ "panama-city-to-boquete":            ["Panama City to Boquete", "Albrook", "David", "flight", "bus"],
+ "boquete-travel-guide":              ["three days in Boquete", "Boquete itinerary"],
+ "tours-in-boquete-panama":           ["tours in Boquete", "Boquete tours", "guided tour", "tours", "tour"],
+ # NOT bare "dry season" — best-time-to-visit-panama already claims that phrase
+ # and is national, so the two would race for the same anchor on a Boquete page.
+ "best-time-to-visit-boquete":        ["best time to visit Boquete", "dry season in Boquete",
+                                       "in the dry season", "bajareque", "rainy season"],
+ "boquete-bike-rental":               ["bike rental in Boquete", "renting a bike", "bike rental",
+                                       "e-bikes", "e-bike"],
+ "boquete-cycling-routes":            ["cycling routes", "cycling in Boquete", "Bajo Mono Loop",
+                                       "Bajo Mono", "cycling"],
+ "boquete-hot-springs-caldera-vs-los-pozos": ["Boquete hot springs", "Los Pozos de Caldera",
+                                              "Los Pozos", "hot springs"],
+ "caldera-hot-springs-boquete":       ["Caldera Hot Springs", "Caldera hot springs"],
+ "where-to-stay-in-boquete":          ["where to stay in Boquete", "Bajo Boquete", "Jaramillo",
+                                       "Alto Quiel", "Volcancito", "Palo Alto"],
+ "quetzal-season-boquete-when-where-to-see-resplendent-quetzal":
+                                      ["resplendent quetzals", "resplendent quetzal", "quetzal season",
+                                       "quetzals", "quetzal"],
+ "finca-lerida-los-quetzales-trail-birdwatching-boquete":
+                                      ["Finca Lérida", "Finca Lerida", "Los Quetzales Trail",
+                                       "birdwatching", "birding"],
+ "lost-waterfalls-boquete-hiking-guide": ["Lost Waterfalls"],
  "things-to-do-el-valle-de-anton":    ["things to do in El Valle"],
  # El Valle de Antón cluster
  # The extra phrases are the ones the OLDER El Valle pages actually use, so the
@@ -84,8 +114,12 @@ TARGETS_EN = {
                                           "one day in El Valle", "a single day"],
  "where-to-stay-in-el-valle-de-anton":   ["where to stay in El Valle", "accommodation in El Valle",
                                           "where to stay", "accommodation"],
- "el-valle-de-anton-vs-boquete":         ["El Valle or Boquete", "Boquete or El Valle",
-                                          "than Boquete"],
+ # Unlocked from the El Valle cluster on purpose: a comparison page naming both
+ # towns is exactly the "contextually significant" cross-link, so Boquete pages
+ # may reach it too. The anchors name both places, so they cannot misfire.
+ # ("than Boquete" was a hook for the El Valle reciprocal pass; it has served
+ # its purpose and is too loose to keep now that Boquete pages are in play.)
+ "el-valle-de-anton-vs-boquete":         ["El Valle or Boquete", "Boquete or El Valle"],
  "chorro-el-macho-waterfall-el-valle-de-anton": ["Chorro El Macho"],
  "india-dormida-hike-el-valle-de-anton": ["La India Dormida", "India Dormida"],
  "el-valle-de-anton-waterfalls":         ["waterfalls in El Valle"],
@@ -101,7 +135,7 @@ TARGETS_EN = {
 TARGETS_ES = {
  # hubs
  "el-valle-de-anton":  ["El Valle de Antón", "El Valle"],
- "boquete":            ["Boquete"],
+ "boquete":            ["Boquete", "Chiriquí"],
  "panama-city":        ["Ciudad de Panamá"],
  # El Valle — the guides
  "que-hacer-el-valle-de-anton":        ["qué hacer en El Valle"],
@@ -126,14 +160,28 @@ TARGETS_ES = {
                                                     "Albrook"],
  "el-valle-de-anton-desde-ciudad-de-panama": ["desde Ciudad de Panamá"],
  "canopy-el-valle-de-anton-cabalgatas-aventura": ["canopy", "cabalgatas", "tirolesa"],
- # Boquete
- "que-hacer-en-boquete-guia-completa": ["qué hacer en Boquete"],
- "senderos-en-boquete-guia-completa":  ["senderos de Boquete"],
- "volcan-baru-como-subir-cima-panama": ["Volcán Barú"],
- "como-llegar-a-boquete-sin-carro":    ["cómo llegar a Boquete"],
- "alquiler-de-bicicletas-boquete":     ["alquiler de bicicletas en Boquete"],
- "tours-en-boquete-panama":            ["tours en Boquete"],
- "aguas-termales-caldera-boquete":     ["aguas termales de Caldera"],
+ # Boquete. Same reasoning as the English cluster: the loose phrases
+ # ("senderos", "café", "jardines", "niños") only fire inside Boquete, so a
+ # Spanish reader on a Boquete page is never sent to El Valle's version.
+ "que-hacer-en-boquete-guia-completa": ["qué hacer en Boquete", "qué hacer", "Bajo Boquete"],
+ "senderos-en-boquete-guia-completa":  ["senderos de Boquete", "senderos", "senderismo", "caminata"],
+ "volcan-baru-como-subir-cima-panama": ["Volcán Barú", "Barú", "cima", "subida"],
+ "el-volcan-baru-esta-activo":         ["está activo", "sigue activo", "volcán activo", "volcán"],
+ "como-llegar-a-boquete-sin-carro":    ["cómo llegar a Boquete", "Albrook"],
+ "alquiler-de-bicicletas-boquete":     ["alquiler de bicicletas en Boquete", "alquiler de bicicletas",
+                                        "bicicletas", "bicicleta"],
+ "tours-en-boquete-panama":            ["tours en Boquete", "fincas de café", "cafetales", "tours", "café"],
+ "aguas-termales-caldera-boquete":     ["aguas termales de Caldera", "aguas termales", "termales",
+                                        "Caldera"],
+ "boquete-panama-guia-completa-itinerario": ["itinerario de 3 días", "tres días en Boquete",
+                                             "tres días", "itinerario"],
+ "rafting-boquete-rio-chiriqui":       ["Río Chiriquí Viejo", "rafting"],
+ "boquete-con-ninos-guia-familiar":    ["Boquete con niños", "con niños", "en familia", "niños"],
+ "cuanto-cuesta-boquete-presupuesto-semana": ["cuánto cuesta Boquete", "cuánto cuesta", "presupuesto",
+                                             "precios"],
+ "feria-de-las-flores-y-del-cafe-boquete": ["Feria de las Flores y del Café", "Feria de las Flores",
+                                            "la Feria"],
+ "mi-jardin-es-su-jardin-boquete":     ["Mi Jardín es Su Jardín", "Mi Jardín", "jardines"],
  # elsewhere
  "san-blas-guna-yala-guia-tours-islas": ["San Blas", "Guna Yala"],
  "como-llegar-a-bocas-del-toro-desde-ciudad-de-panama": ["Bocas del Toro"],
@@ -188,6 +236,17 @@ CLUSTER_ONLY_ES = {
  "alquiler-de-bicicletas-boquete": "boquete",
  "senderos-en-boquete-guia-completa": "boquete",
  "tours-en-boquete-panama": "boquete",
+ # the 2026-09 Spanish Boquete pages and the older guides they pair with
+ "que-hacer-en-boquete-guia-completa": "boquete",
+ "volcan-baru-como-subir-cima-panama": "boquete",
+ "el-volcan-baru-esta-activo": "boquete",
+ "como-llegar-a-boquete-sin-carro": "boquete",
+ "boquete-panama-guia-completa-itinerario": "boquete",
+ "rafting-boquete-rio-chiriqui": "boquete",
+ "boquete-con-ninos-guia-familiar": "boquete",
+ "cuanto-cuesta-boquete-presupuesto-semana": "boquete",
+ "feria-de-las-flores-y-del-cafe-boquete": "boquete",
+ "mi-jardin-es-su-jardin-boquete": "boquete",
 }
 NATIONAL_ES = {"el-valle-de-anton", "boquete", "panama-city"}
 
@@ -197,12 +256,30 @@ CLUSTER_ONLY = {
                 # may only point at the El Valle pages from inside El Valle.
                 "where-to-stay-in-el-valle-de-anton": "elvalle",
                 "el-valle-de-anton-itinerary-one-day": "elvalle",
-                "el-valle-de-anton-vs-boquete": "elvalle",
                 "bocas-del-toro-island-hopping-guide": "bocas",
                 "how-to-get-to-bocas-del-toro": "bocas",
                 "boquete-coffee-farm-tour": "boquete",
                 "which-bocas-del-toro-island-to-stay-on": "bocas",
-                "red-frog-beach-bocas-del-toro": "bocas"}
+                "red-frog-beach-bocas-del-toro": "bocas",
+                # 2026-09 English Boquete pages + the older guides they pair
+                # with. "hiking", "tours", "dry season", "Jaramillo", "David"
+                # and "Barú" all turn up across the site; inside Boquete they
+                # mean Boquete's version of the thing, nowhere else.
+                "hikes-in-boquete": "boquete",
+                "tours-in-boquete-panama": "boquete",
+                "boquete-travel-guide": "boquete",
+                "things-to-do-in-boquete-panama": "boquete",
+                "best-time-to-visit-boquete": "boquete",
+                "boquete-bike-rental": "boquete",
+                "boquete-cycling-routes": "boquete",
+                "boquete-hot-springs-caldera-vs-los-pozos": "boquete",
+                "caldera-hot-springs-boquete": "boquete",
+                "where-to-stay-in-boquete": "boquete",
+                "quetzal-season-boquete-when-where-to-see-resplendent-quetzal": "boquete",
+                "finca-lerida-los-quetzales-trail-birdwatching-boquete": "boquete",
+                "lost-waterfalls-boquete-hiking-guide": "boquete",
+                "volcan-baru-hike-sunrise-summit-guide": "boquete",
+                "panama-city-to-boquete": "boquete"}
 
 def cluster_of(slug):
     s = slug.lower()
@@ -217,15 +294,36 @@ SKIP = [r'(?s)<!--RELATED-MODULE-->.*?<!--/RELATED-MODULE-->',
         r'(?s)<aside class="evb-rail".*?</aside>',
         r'(?s)<!--EVB-CTA:[a-z]+-->.*?<!--/EVB-CTA:[a-z]+-->',
         r'(?s)<section class="evb-cta.*?</section>',
-        r'(?s)<div class="evb-cta".*?</div></div></div>',
         r'(?s)<script.*?</script>', r'(?s)<header.*?</header>',
         r'(?s)<footer.*?</footer>', r'(?s)<figure.*?</figure>',
         r'(?s)<nav class="breadcrumb".*?</nav>']
+
+# Divs whose whole subtree is off limits. These need real nesting awareness:
+# the old rule was r'<div class="evb-cta".*?</div></div></div>', and because the
+# CTA's own nesting does not end on the first triple </div> the match ran on far
+# past the block — swallowing 1005 of 3852 body paragraphs (26%) across 60 pages,
+# worst on the Boquete pages where the e-bike CTAs live. Every interlinking pass
+# before 2026-09-09 was choosing anchors from only three-quarters of the article.
+SKIP_DIV = [r'<div class="evb-cta']
+
+_DIV = re.compile(r'<div\b[^>]*>|</div>', re.S)
+
+def balanced_div_span(s, start):
+    """End offset of the <div> opening at `start`, respecting nesting."""
+    depth = 0
+    for m in _DIV.finditer(s, start):
+        depth += 1 if m.group(0)[1] != '/' else -1
+        if depth == 0:
+            return m.end()
+    return len(s)          # unbalanced markup: skip to the end, never past it
 
 def protected_spans(s):
     spans = []
     for pat in SKIP:
         spans += [(m.start(), m.end()) for m in re.finditer(pat, s)]
+    for pat in SKIP_DIV:
+        for m in re.finditer(pat, s):
+            spans.append((m.start(), balanced_div_span(s, m.start())))
     spans += [(m.start(), m.end()) for m in re.finditer(r"(?s)<a\b.*?</a>", s)]
     return spans
 
@@ -324,19 +422,27 @@ def link_page(path, targets, want_min, want_max, only=None):
         p.write_text(s, encoding="utf-8")
     return len(chosen)
 
-# The 2026-09 El Valle batch: three English pages, nine Spanish.
-FOCUS_EN = ["el-valle-de-anton-itinerary-one-day",
-            "where-to-stay-in-el-valle-de-anton",
-            "el-valle-de-anton-vs-boquete"]
-FOCUS_ES = ["bus-albrook-el-valle-de-anton-horarios-precios",
-            "chorro-las-mozas-pozas-el-valle-de-anton",
-            "donde-comer-en-el-valle-de-anton",
-            "donde-dormir-el-valle-de-anton",
-            "precios-horarios-el-valle-de-anton",
-            "tours-en-bicicleta-el-valle-de-anton",
-            "mercado-el-valle-de-anton",
-            "piedra-pintada-el-valle-de-anton",
-            "mariposario-el-valle-de-anton"]
+# The 2026-09 BOQUETE batch. The El Valle batch was done in b9ebef8; this pass
+# is the Boquete cluster. interlink.py is ADDITIVE, so el-valle-de-anton-vs-boquete
+# is deliberately absent from the forward lists — it already carries 10 in-prose
+# links from the El Valle pass and a second forward run would stack another set on
+# top. It stays in RECIP_* so the other Boquete pages still link INTO it.
+FOCUS_EN = ["best-time-to-visit-boquete",
+            "boquete-bike-rental",
+            "boquete-cycling-routes",
+            "boquete-hot-springs-caldera-vs-los-pozos",
+            "panama-city-to-boquete",
+            "quetzal-season-boquete-when-where-to-see-resplendent-quetzal",
+            "where-to-stay-in-boquete"]
+FOCUS_ES = ["boquete-con-ninos-guia-familiar",
+            "cuanto-cuesta-boquete-presupuesto-semana",
+            "el-volcan-baru-esta-activo",
+            "feria-de-las-flores-y-del-cafe-boquete",
+            "mi-jardin-es-su-jardin-boquete"]
+
+# What the reciprocal pass is allowed to point older pages AT.
+RECIP_EN = FOCUS_EN + ["el-valle-de-anton-vs-boquete"]
+RECIP_ES = list(FOCUS_ES)
 
 def main():
     recip = "--reciprocal" in sys.argv
@@ -350,9 +456,9 @@ def main():
                 print(f"  {slug:<52} +{n}")
         else:
             print(f"reciprocal links, {lang.upper()} — older pages -> the pages under review:")
-            only = set(focus)
+            only = set(RECIP_EN if lang == "en" else RECIP_ES)
             for f in sorted(glob.glob(pattern)):
-                if pathlib.Path(f).stem in focus:
+                if pathlib.Path(f).stem in only:
                     continue
                 n = link_page(f, {k: v for k, v in targets.items() if k in only}, 0, 2, only=only)
                 if n:
