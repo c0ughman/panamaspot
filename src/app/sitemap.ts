@@ -49,13 +49,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // The 2026-09 batch of 36 generated guides. Same shape as `guide`, its own
   // lastModified so the older batch is not falsely re-dated.
   const sepLastMod = new Date("2026-09-04");
+  // The twelve Boquete guides were reworked on 2026-09-10 — new photography,
+  // captions, alt text, credits blocks and interlinking. Dating them 09-04
+  // alongside the untouched half of the batch understates the change and gives
+  // crawlers no reason to come back for it.
+  const boqueteLastMod = new Date("2026-09-10");
+  const REWORKED = new Set([
+    "articles/best-time-to-visit-boquete",
+    "articles/boquete-bike-rental",
+    "articles/boquete-cycling-routes",
+    "articles/boquete-hot-springs-caldera-vs-los-pozos",
+    "articles/panama-city-to-boquete",
+    "articles/quetzal-season-boquete-when-where-to-see-resplendent-quetzal",
+    "articles/where-to-stay-in-boquete",
+    "es/articles/boquete-con-ninos-guia-familiar",
+    "es/articles/cuanto-cuesta-boquete-presupuesto-semana",
+    "es/articles/el-volcan-baru-esta-activo",
+    "es/articles/feria-de-las-flores-y-del-cafe-boquete",
+    "es/articles/mi-jardin-es-su-jardin-boquete",
+  ]);
   const sepGuide = (
     path: string,
     hero: string,
     pair?: { en: string; es: string },
   ): MetadataRoute.Sitemap[number] => ({
     ...guide(path, hero, pair),
-    lastModified: sepLastMod,
+    lastModified: REWORKED.has(path) ? boqueteLastMod : sepLastMod,
   });
 
   // Destination hubs — curated indexes of a whole cluster. Higher priority than

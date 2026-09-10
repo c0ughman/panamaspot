@@ -34,6 +34,13 @@ PAIRS = {
  "articles/el-valle-de-anton": "es/articles/el-valle-de-anton",
  "articles/boquete": "es/articles/boquete",
  "articles/panama-city": "es/articles/panama-city",
+ # pairs the pages themselves declare via hreflang but this map was missing, so
+ # their toggle fell through to the cluster hub (or worse, to whatever article
+ # the page was generated from).
+ "articles/how-to-get-to-bocas-del-toro": "es/articles/como-llegar-a-bocas-del-toro-desde-ciudad-de-panama",
+ "articles/boquete-bike-rental": "es/articles/alquiler-de-bicicletas-boquete",
+ "articles/san-blas-islands-panama-guna-yala-guide": "es/articles/san-blas-guna-yala-guia-tours-islas",
+ "articles/where-to-stay-in-el-valle-de-anton": "es/articles/donde-dormir-el-valle-de-anton",
 }
 
 # no sibling — send them to the cluster hub in the other language instead of "/"
