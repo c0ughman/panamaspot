@@ -4,6 +4,31 @@ import { pageImages } from "./page-images";
 
 export const dynamic = "force-static";
 
+/**
+ * XML-escape a URL before it goes into the sitemap.
+ *
+ * Next interpolates these values raw — in
+ * next/dist/.../metadata/resolve-route-data.js the line is literally
+ * `<image:loc>${image}</image:loc>` with no escaping anywhere in the file — so
+ * any `&` in a URL produces malformed XML. Our Pexels heroes carry
+ * `?auto=compress&cs=tinysrgb&w=…`, which put 212 bare ampersands in the
+ * sitemap and made Search Console reject the whole file ("unable to read your
+ * Sitemap … Line 54"). An XML parser stops at the first one.
+ *
+ * Escaping here rather than in page-images.ts keeps that file clean data; this
+ * is the only place it is rendered as XML.
+ */
+const xmlSafe = (u: string) =>
+  u
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+
+const safeImages = (urls: readonly string[] | undefined) =>
+  urls?.map(xmlSafe);
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   // The two homepages are language equivalents → declare them as hreflang
@@ -32,7 +57,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
     // hero first, then the rest of the page's images (Google Images
     // indexes what the sitemap declares, and these pages carry 7-12 each)
-    images: pageImages[`/${path}`] ?? [hero],
+    images: safeImages(pageImages[`/${path}`]) ?? [xmlSafe(hero)],
     ...(pair
       ? {
           alternates: {
@@ -92,7 +117,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
       // hero first, then the rest of the page's images (Google Images
     // indexes what the sitemap declares, and these pages carry 7-12 each)
-    images: pageImages[`/${path}`] ?? [hero],
+    images: safeImages(pageImages[`/${path}`]) ?? [xmlSafe(hero)],
       alternates: {
         languages: {
           en: `${siteConfig.url}/${en}`,
@@ -125,7 +150,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: hubsLastMod,
       changeFrequency: "weekly",
       priority: 0.9,
-      images: pageImages["/articles/bocas-del-toro"],
+      images: safeImages(pageImages["/articles/bocas-del-toro"]),
     },
     // ── Destination hubs ────────────────────────────────────────────────────
     ...hub(
