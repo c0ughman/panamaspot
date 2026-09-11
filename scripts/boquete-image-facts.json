@@ -360,13 +360,13 @@
   "desc": "A weathered wooden-plank suspension bridge with wire-mesh sides crosses a gap in the forest, concrete piers anchoring each end."
  },
  "File:Feria de las Flores y el Café de Boquete 2019.jpg": {
-  "label_en": "Flower festival garden beds",
-  "desc_en": "Geometric beds of red, orange and pink flowers spread across a hillside garden, framed by cloud-wrapped mountains and colorful benches.",
+  "label_en": "Flower garden with mountain backdrop",
+  "desc_en": "Geometric beds of red, orange and pink flowers fill a landscaped garden with forested mountains rising behind.",
+  "label": "Flower garden with mountain backdrop",
+  "desc": "Geometric beds of red, orange and pink flowers fill a landscaped garden with forested mountains rising behind.",
   "place": "Feria de las Flores y del Café, Boquete",
   "region": "Chiriquí",
-  "locality": "Boquete",
-  "label": "Macizos de la feria de las flores",
-  "desc": "Macizos geométricos de flores rojas, naranjas y rosadas se extienden por un jardín en ladera, entre montañas nubladas y bancas de colores."
+  "locality": "Boquete"
  },
  "File:Feria de las Flores.jpg": {
   "label_en": "Flower bed and orange café building",
@@ -475,6 +475,483 @@
   "label_en": "Children walking a woodland path",
   "desc": "Cuatro niños caminan y juegan a lo largo de un sendero de concreto entre árboles y maleza.",
   "desc_en": "Four children walk and play along a concrete path between trees and low scrub.",
+  "place": null
+ },
+ "File:Aerial view of Boquete, Panama.jpg": {
+  "label_en": "River valley town from above",
+  "desc_en": "A river cuts through a green valley below a cluster of red-roofed buildings, forested ridges rising on every side.",
+  "label": "River valley town from above",
+  "desc": "A river cuts through a green valley below a cluster of red-roofed buildings, forested ridges rising on every side.",
+  "place": "Boquete",
+  "region": "Chiriquí",
+  "locality": "Boquete"
+ },
+ "File:Banco de Arena - San Blas - Guna Yala.jpg": {
+  "label_en": "Sandbar swimmers, turquoise water",
+  "desc_en": "Bathers wade on a pale sandbar surrounded by turquoise shallows, seen from directly overhead.",
+  "label": "Sandbar swimmers, turquoise water",
+  "desc": "Bathers wade on a pale sandbar surrounded by turquoise shallows, seen from directly overhead.",
+  "place": "San Blas, Guna Yala",
+  "region": "Guna Yala"
+ },
+ "File:Bastimentos Wizzard Beach (26708686196).jpg": {
+  "label_en": "Forested coastline and reef break",
+  "desc_en": "Waves break along a forested headland where pale sand meets turquoise water and scattered dark reef.",
+  "label": "Forested coastline and reef break",
+  "desc": "Waves break along a forested headland where pale sand meets turquoise water and scattered dark reef.",
+  "place": "Isla Bastimentos, Bocas del Toro",
+  "region": "Bocas del Toro",
+  "locality": "Isla Bastimentos"
+ },
+ "File:Bocas Town -- Isla Colon.jpg": {
+  "label_en": "Town park with Panamanian bunting",
+  "desc_en": "People rest on painted benches under a shade tree strung with red, white and blue Panamanian flag bunting.",
+  "label": "Town park with Panamanian bunting",
+  "desc": "People rest on painted benches under a shade tree strung with red, white and blue Panamanian flag bunting.",
+  "place": "Bocas Town, Isla Colón",
+  "region": "Bocas del Toro",
+  "locality": "Bocas del Toro"
+ },
+ "File:Bocas del Drago.jpg": {
+  "label_en": "Palm-lined shore, calm green water",
+  "desc_en": "Coconut palms lean over a calm green shoreline where a few people wade near the sand, mangroves visible across the water.",
+  "label": "Palm-lined shore, calm green water",
+  "desc": "Coconut palms lean over a calm green shoreline where a few people wade near the sand, mangroves visible across the water.",
+  "place": "Boca del Drago, Isla Colón",
+  "region": "Bocas del Toro",
+  "locality": "Isla Colón"
+ },
+ "File:Bocas del Toro Province, Panama - panoramio (14).jpg": {
+  "label_en": "Rain-slicked Caribbean-style street",
+  "desc_en": "A wet street runs past wooden storefronts with a Caribbean food restaurant sign under a cloudy sky.",
+  "label": "Rain-slicked Caribbean-style street",
+  "desc": "A wet street runs past wooden storefronts with a Caribbean food restaurant sign under a cloudy sky.",
+  "place": "Bocas del Toro",
+  "region": "Bocas del Toro"
+ },
+ "File:Bocas del Toro Province, Panama - panoramio (15).jpg": {
+  "label_en": "Small-town street with souvenir stall",
+  "desc_en": "A souvenir stall spills onto the sidewalk of a quiet street lined with wooden buildings and an old cannon out front.",
+  "label": "Small-town street with souvenir stall",
+  "desc": "A souvenir stall spills onto the sidewalk of a quiet street lined with wooden buildings and an old cannon out front.",
+  "place": "Bocas del Toro",
+  "region": "Bocas del Toro"
+ },
+ "File:Cabañas Guna Yala.jpg": {
+  "label_en": "Thatched over-water huts at dusk",
+  "desc_en": "Thatched-roof huts on stilts line a wooden walkway over calm water as the sky fades into a dusky sunset.",
+  "label": "Thatched over-water huts at dusk",
+  "desc": "Thatched-roof huts on stilts line a wooden walkway over calm water as the sky fades into a dusky sunset.",
+  "place": "Isla Yandup, Guna Yala",
+  "region": "Guna Yala"
+ },
+ "File:Carretera Interamericana en Penonomé, Provincia de Coclé, Panamá (2024).jpg": {
+  "label_en": "Highway sign to Antón and Panama City",
+  "desc_en": "A green overhead highway sign points ahead to Antón, La Chorrera and Panama City along Route 1.",
+  "label": "Highway sign to Antón and Panama City",
+  "desc": "A green overhead highway sign points ahead to Antón, La Chorrera and Panama City along Route 1.",
+  "place": "Penonomé, Coclé",
+  "region": "Coclé",
+  "locality": "Penonomé"
+ },
+ "File:Corredor Sur Panama.jpg": {
+  "label_en": "Coastal highway toward city skyline",
+  "desc_en": "Cars travel a concrete-barriered highway along the coast, a dense skyline of high-rises and a crane rising ahead in the haze.",
+  "label": "Coastal highway toward city skyline",
+  "desc": "Cars travel a concrete-barriered highway along the coast, a dense skyline of high-rises and a crane rising ahead in the haze.",
+  "place": "Corredor Sur, Ciudad de Panamá",
+  "region": "Panamá",
+  "locality": "Ciudad de Panamá"
+ },
+ "File:Entrada al Darién en la Carretera Interamericana, Panamá (2020).jpg": {
+  "label_en": "Welcome arch at Darién entrance",
+  "desc_en": "An arched sign reading Bienvenidos a Darién spans the highway beside a large colorful roadside Darién sign.",
+  "label": "Welcome arch at Darién entrance",
+  "desc": "An arched sign reading Bienvenidos a Darién spans the highway beside a large colorful roadside Darién sign.",
+  "place": "Darién",
+  "region": "Darién"
+ },
+ "File:Insel Zapatilla (27083959796).jpg": {
+  "label_en": "Palm cay with stilted thatch shelter",
+  "desc_en": "A thatched wooden shelter on stilts sits among coconut palms on a small sandy cay, driftwood scattered near the shore.",
+  "label": "Palm cay with stilted thatch shelter",
+  "desc": "A thatched wooden shelter on stilts sits among coconut palms on a small sandy cay, driftwood scattered near the shore.",
+  "place": "Cayos Zapatillas, Bocas del Toro",
+  "region": "Bocas del Toro"
+ },
+ "File:Isla Perro en la Comarca Guna Yala.JPG": {
+  "label_en": "Palm-covered cay, snorkeler offshore",
+  "desc_en": "A dense palm cay ringed by white sand and thatched-roof shelters, a swimmer in a straw hat bobbing in the foreground shallows.",
+  "label": "Palm-covered cay, snorkeler offshore",
+  "desc": "A dense palm cay ringed by white sand and thatched-roof shelters, a swimmer in a straw hat bobbing in the foreground shallows.",
+  "place": "Isla Perro, Guna Yala",
+  "region": "Guna Yala"
+ },
+ "File:Isla Popa, Bocas del Toro.jpg": {
+  "label_en": "Aerial reef and mangrove channels",
+  "desc_en": "An aerial view of turquoise channels threading through low mangrove islets beside a forested coastline and open sea.",
+  "label": "Aerial reef and mangrove channels",
+  "desc": "An aerial view of turquoise channels threading through low mangrove islets beside a forested coastline and open sea.",
+  "place": "Isla Popa, Bocas del Toro",
+  "region": "Bocas del Toro"
+ },
+ "File:Island of Chichimen, Cuyos Limones, Guna Yala, Panama.jpg": {
+  "label_en": "Small palm-dense island",
+  "desc_en": "A narrow island crowded edge-to-edge with tall coconut palms, a thin band of sand separating it from deep blue water.",
+  "label": "Small palm-dense island",
+  "desc": "A narrow island crowded edge-to-edge with tall coconut palms, a thin band of sand separating it from deep blue water.",
+  "place": "Chichime, Cayos Limones, Guna Yala",
+  "region": "Guna Yala"
+ },
+ "File:Oophaga pumilio 120574497.jpg": {
+  "label_en": "Yellow-green poison dart frog",
+  "desc_en": "A small yellow-green frog with mottled skin perches on wet dark bark, its dark eye and slender limbs sharply lit.",
+  "label": "Yellow-green poison dart frog",
+  "desc": "A small yellow-green frog with mottled skin perches on wet dark bark, its dark eye and slender limbs sharply lit.",
+  "place": "Isla Bastimentos, Bocas del Toro",
+  "region": "Bocas del Toro",
+  "locality": "Isla Bastimentos"
+ },
+ "File:Paradise - Bocas del drago (6778445008).jpg": {
+  "label_en": "Empty beach with palm treeline",
+  "desc_en": "A quiet stretch of pale sand curves beside calm blue water, driftwood scattered near a dense line of coconut palms.",
+  "label": "Empty beach with palm treeline",
+  "desc": "A quiet stretch of pale sand curves beside calm blue water, driftwood scattered near a dense line of coconut palms.",
+  "place": "Boca del Drago, Isla Colón",
+  "region": "Bocas del Toro",
+  "locality": "Isla Colón"
+ },
+ "File:Puente de las Americas 2013 09 14.jpg": {
+  "label_en": "Steel arch bridge over harbor",
+  "desc_en": "A tall steel through-arch bridge spans a wide waterway at dusk, small boats anchored below against a hazy skyline.",
+  "label": "Steel arch bridge over harbor",
+  "desc": "A tall steel through-arch bridge spans a wide waterway at dusk, small boats anchored below against a hazy skyline.",
+  "place": "Puente de las Américas, Ciudad de Panamá",
+  "region": "Panamá",
+  "locality": "Ciudad de Panamá"
+ },
+ "File:Red Frog Beach Bastimentos 3.jpg": {
+  "label_en": "Aerial coastline with mangrove lagoon",
+  "desc_en": "A jungle-lined shore meets a reef-flecked turquoise sea, with a maze of small mangrove islets filling a lagoon behind.",
+  "label": "Aerial coastline with mangrove lagoon",
+  "desc": "A jungle-lined shore meets a reef-flecked turquoise sea, with a maze of small mangrove islets filling a lagoon behind.",
+  "place": "Red Frog Beach, Isla Bastimentos",
+  "region": "Bocas del Toro",
+  "locality": "Isla Bastimentos"
+ },
+ "File:Red Frog Beach Bastimentos 6.jpg": {
+  "label_en": "Aerial beach with breaking surf",
+  "desc_en": "Whitewater rolls onto a sandy shore backed by forest, a few small figures walking near driftwood at the tideline.",
+  "label": "Aerial beach with breaking surf",
+  "desc": "Whitewater rolls onto a sandy shore backed by forest, a few small figures walking near driftwood at the tideline.",
+  "place": "Red Frog Beach, Isla Bastimentos",
+  "region": "Bocas del Toro",
+  "locality": "Isla Bastimentos"
+ },
+ "File:Red Frog Beach Bastimentos 8.jpg": {
+  "label_en": "Overhead view of surf on sand",
+  "desc_en": "Looking straight down, foaming waves break in overlapping arcs against a pale beach fringed with scattered palms.",
+  "label": "Overhead view of surf on sand",
+  "desc": "Looking straight down, foaming waves break in overlapping arcs against a pale beach fringed with scattered palms.",
+  "place": "Red Frog Beach, Isla Bastimentos",
+  "region": "Bocas del Toro",
+  "locality": "Isla Bastimentos"
+ },
+ "File:Red Frog Beach Bastimentos.jpg": {
+  "label_en": "Aerial jungle coastline and lagoon",
+  "desc_en": "A curving reef-edged coastline of dense forest meets turquoise water, with a mangrove-studded lagoon visible inland.",
+  "label": "Aerial jungle coastline and lagoon",
+  "desc": "A curving reef-edged coastline of dense forest meets turquoise water, with a mangrove-studded lagoon visible inland.",
+  "place": "Red Frog Beach, Isla Bastimentos",
+  "region": "Bocas del Toro",
+  "locality": "Isla Bastimentos"
+ },
+ "File:San Blas Islands.jpg": {
+  "label_en": "Crowded island village, Guna Yala style",
+  "desc_en": "Thatched and tin-roofed houses pack a tiny island wall to wall, with a second similarly built island visible in the haze beyond.",
+  "label": "Crowded island village, Guna Yala style",
+  "desc": "Thatched and tin-roofed houses pack a tiny island wall to wall, with a second similarly built island visible in the haze beyond.",
+  "place": "San Blas, Guna Yala",
+  "region": "Guna Yala"
+ },
+ "File:Snorkelling in Guna Yala - Panama - panoramio.jpg": {
+  "label_en": "Brain coral on shallow reef",
+  "desc_en": "A rounded brain coral with maze-like ridges sits on a sunlit patch of reef, smaller coral heads scattered in the background.",
+  "label": "Brain coral on shallow reef",
+  "desc": "A rounded brain coral with maze-like ridges sits on a sunlit patch of reef, smaller coral heads scattered in the background.",
+  "place": "Guna Yala",
+  "region": "Guna Yala"
+ },
+ "File:Vía Israel y Corredor Sur en Ciudad de Panamá.jpg": {
+  "label_en": "Corredor Sur highway, Panama City",
+  "desc_en": "A yellow taxi drives an elevated highway toward a spiral glass tower, green signs overhead reading Via Israel and Corredor Sur.",
+  "label": "Corredor Sur highway, Panama City",
+  "desc": "A yellow taxi drives an elevated highway toward a spiral glass tower, green signs overhead reading Via Israel and Corredor Sur.",
+  "place": "Ciudad de Panamá",
+  "region": "Panamá",
+  "locality": "Ciudad de Panamá"
+ },
+ "File:Zapatillas Islands - panoramio (1).jpg": {
+  "label_en": "Sand spit · Cayos Zapatillas",
+  "desc_en": "A sculpted spit of white sand curls into calm turquoise shallows, dense green shoreline forming a backdrop across the water.",
+  "label": "Sand spit · Cayos Zapatillas",
+  "desc": "A sculpted spit of white sand curls into calm turquoise shallows, dense green shoreline forming a backdrop across the water.",
+  "place": "Cayos Zapatillas, Bocas del Toro",
+  "region": "Bocas del Toro"
+ },
+ "File:Zapatillas Islands - panoramio (2).jpg": {
+  "label_en": "Palm-lined shore · Cayos Zapatillas",
+  "desc_en": "A palm-lined curve of white sand meets glassy turquoise shallows, a low green islet visible far across the water.",
+  "label": "Palm-lined shore · Cayos Zapatillas",
+  "desc": "A palm-lined curve of white sand meets glassy turquoise shallows, a low green islet visible far across the water.",
+  "place": "Cayos Zapatillas, Bocas del Toro",
+  "region": "Bocas del Toro"
+ },
+ "File:Zapatillas Islands - panoramio (3).jpg": {
+  "label_en": "Driftwood beach · Cayos Zapatillas",
+  "desc_en": "Driftwood and scattered shells line a quiet white-sand beach under a bank of towering cumulus clouds.",
+  "label": "Driftwood beach · Cayos Zapatillas",
+  "desc": "Driftwood and scattered shells line a quiet white-sand beach under a bank of towering cumulus clouds.",
+  "place": "Cayos Zapatillas, Bocas del Toro",
+  "region": "Bocas del Toro"
+ },
+ "File:Zapatillas Islands - panoramio.jpg": {
+  "label_en": "Driftwood log · Cayos Zapatillas",
+  "desc_en": "A long bleached driftwood log rests on empty white sand with a teal-to-blue sea stretching to the horizon.",
+  "label": "Driftwood log · Cayos Zapatillas",
+  "desc": "A long bleached driftwood log rests on empty white sand with a teal-to-blue sea stretching to the horizon.",
+  "place": "Cayos Zapatillas, Bocas del Toro",
+  "region": "Bocas del Toro"
+ },
+ "https://images.pexels.com/photos/10490921/pexels-photo-10490921.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Reef shallows and palm point",
+  "desc_en": "Clear turquoise water fades into darker reef patches as a palm-covered point stretches out along the coastline.",
+  "label": "Reef shallows and palm point",
+  "desc": "Clear turquoise water fades into darker reef patches as a palm-covered point stretches out along the coastline.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/11331386/pexels-photo-11331386.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Swimmer wading into cove",
+  "desc_en": "A lone swimmer wades into clear turquoise water off a sandy cove framed by a low rocky headland.",
+  "label": "Swimmer wading into cove",
+  "desc": "A lone swimmer wades into clear turquoise water off a sandy cove framed by a low rocky headland.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/11962310/pexels-photo-11962310.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Colonial balconies and arched windows",
+  "desc_en": "Arched windows and wrought-iron balconies lined with potted plants front a colonial building under a red tile roof.",
+  "label": "Colonial balconies and arched windows",
+  "desc": "Arched windows and wrought-iron balconies lined with potted plants front a colonial building under a red tile roof.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/12831944/pexels-photo-12831944.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Palm over beached hull",
+  "desc_en": "A coconut palm leans out over calm shallows where driftwood and a half-sunken hull sit just offshore.",
+  "label": "Palm over beached hull",
+  "desc": "A coconut palm leans out over calm shallows where driftwood and a half-sunken hull sit just offshore.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/13110362/pexels-photo-13110362.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Marina below city skyline",
+  "desc_en": "A marina of small boats sits below a cluster of high-rise towers, forested hills rising behind the skyline.",
+  "label": "Marina below city skyline",
+  "desc": "A marina of small boats sits below a cluster of high-rise towers, forested hills rising behind the skyline.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/13842831/pexels-photo-13842831.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Skyline spire at dusk",
+  "desc_en": "Skyscrapers catch the last light at dusk, a glass spire tower rising above the cluster with hills in the distance.",
+  "label": "Skyline spire at dusk",
+  "desc": "Skyscrapers catch the last light at dusk, a glass spire tower rising above the cluster with hills in the distance.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/14840760/pexels-photo-14840760.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Sunset over city skyline",
+  "desc_en": "Pastel clouds glow at sunset over a sprawling skyline where low rooftops give way to distant high-rises.",
+  "label": "Sunset over city skyline",
+  "desc": "Pastel clouds glow at sunset over a sprawling skyline where low rooftops give way to distant high-rises.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/16010024/pexels-photo-16010024.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Mangrove dock with moored boat",
+  "desc_en": "Bare mangrove branches arch over the shallows beside a wooden dock where a white boat sits moored.",
+  "label": "Mangrove dock with moored boat",
+  "desc": "Bare mangrove branches arch over the shallows beside a wooden dock where a white boat sits moored.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/16116492/pexels-photo-16116492.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Aerial boat off sandy beach",
+  "desc_en": "Seen from directly overhead, a small boat idles just off a sandy beach marked with tire tracks and patches of seagrass.",
+  "label": "Aerial boat off sandy beach",
+  "desc": "Seen from directly overhead, a small boat idles just off a sandy beach marked with tire tracks and patches of seagrass.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/1681453/pexels-photo-1681453.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "City skyline through tree canopy",
+  "desc_en": "Dense high-rise skyline rises along the waterfront, framed by tree branches and leaves with a towering cloud overhead.",
+  "label": "City skyline through tree canopy",
+  "desc": "Dense high-rise skyline rises along the waterfront, framed by tree branches and leaves with a towering cloud overhead.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/17477516/pexels-photo-17477516.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Spiral skyscraper on skyline · Panama City",
+  "desc_en": "A distinctive spiral-shaped skyscraper anchors a dense waterfront skyline of glass towers under a clear blue sky.",
+  "label": "Spiral skyscraper on skyline · Panama City",
+  "desc": "A distinctive spiral-shaped skyscraper anchors a dense waterfront skyline of glass towers under a clear blue sky.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/2549020/pexels-photo-2549020.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Turquoise sandbar and reef edge",
+  "desc_en": "Pale turquoise shallows fade into a shifting line where a sandbar meets deeper reef water under a wide sky.",
+  "label": "Turquoise sandbar and reef edge",
+  "desc": "Pale turquoise shallows fade into a shifting line where a sandbar meets deeper reef water under a wide sky.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/26077420/pexels-photo-26077420.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Beached tour boat on sand",
+  "desc_en": "A weathered tour boat named Cielo y Mar II sits beached on sand, its canvas roof frame catching the morning light.",
+  "label": "Beached tour boat on sand",
+  "desc": "A weathered tour boat named Cielo y Mar II sits beached on sand, its canvas roof frame catching the morning light.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/28408402/pexels-photo-28408402.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Pastel sand meeting turquoise surf",
+  "desc_en": "A gentle wave washes over pale, pink-toned sand where it meets clear turquoise water.",
+  "label": "Pastel sand meeting turquoise surf",
+  "desc": "A gentle wave washes over pale, pink-toned sand where it meets clear turquoise water.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/30032075/pexels-photo-30032075.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Five-armed starfish in shallows",
+  "desc_en": "A five-armed starfish rests on a shallow, sandy seabed, its spotted red and dark markings visible through the water.",
+  "label": "Five-armed starfish in shallows",
+  "desc": "A five-armed starfish rests on a shallow, sandy seabed, its spotted red and dark markings visible through the water.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/30826587/pexels-photo-30826587.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Tour boat nearing palm island",
+  "desc_en": "A green-roofed tour boat cuts across turquoise water toward a long, palm-covered island lined with thatched-roof huts.",
+  "label": "Tour boat nearing palm island",
+  "desc": "A green-roofed tour boat cuts across turquoise water toward a long, palm-covered island lined with thatched-roof huts.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/30826590/pexels-photo-30826590.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Palm-lined island with dock",
+  "desc_en": "Small boats and a wooden dock sit along a palm-fringed shoreline dotted with thatched huts and a sandy beach.",
+  "label": "Palm-lined island with dock",
+  "desc": "Small boats and a wooden dock sit along a palm-fringed shoreline dotted with thatched huts and a sandy beach.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/33503255/pexels-photo-33503255.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Eight-armed sea star on sand",
+  "desc_en": "An eight-armed sea star lies on tan sand, its ridged, spiny limbs radiating from a central disc.",
+  "label": "Eight-armed sea star on sand",
+  "desc": "An eight-armed sea star lies on tan sand, its ridged, spiny limbs radiating from a central disc.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/33803472/pexels-photo-33803472.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "City skyline lit at night",
+  "desc_en": "A dense city skyline glows against the night sky, its lit towers reflected in the dark water below.",
+  "label": "City skyline lit at night",
+  "desc": "A dense city skyline glows against the night sky, its lit towers reflected in the dark water below.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/33803476/pexels-photo-33803476.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Historic peninsula at night · Casco Viejo, Panama City",
+  "desc_en": "A lit-up colonial peninsula of church domes and old buildings juts into the water at night, linked by a curving lit causeway.",
+  "label": "Historic peninsula at night · Casco Viejo, Panama City",
+  "desc": "A lit-up colonial peninsula of church domes and old buildings juts into the water at night, linked by a curving lit causeway.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/33990238/pexels-photo-33990238.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Overwater ranchos linked by dock",
+  "desc_en": "Two round thatched-roof over-water structures sit at the ends of a long wooden dock crossing turquoise shallows, seen from above.",
+  "label": "Overwater ranchos linked by dock",
+  "desc": "Two round thatched-roof over-water structures sit at the ends of a long wooden dock crossing turquoise shallows, seen from above.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/36095905/pexels-photo-36095905.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Sea stack with breaking wave",
+  "desc_en": "A dark rock outcrop breaks the surface between two distant sailboats as a wave curls onto the shore.",
+  "label": "Sea stack with breaking wave",
+  "desc": "A dark rock outcrop breaks the surface between two distant sailboats as a wave curls onto the shore.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/36117831/pexels-photo-36117831.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Sailboat on open water",
+  "desc_en": "A single sailboat glides across a calm turquoise sea, a small mooring buoy floating in the foreground.",
+  "label": "Sailboat on open water",
+  "desc": "A single sailboat glides across a calm turquoise sea, a small mooring buoy floating in the foreground.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/36117834/pexels-photo-36117834.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Woman floating in inflatable raft",
+  "desc_en": "A woman lies back in an inflatable raft on flat blue-green water, a tree-covered point sitting on the horizon.",
+  "label": "Woman floating in inflatable raft",
+  "desc": "A woman lies back in an inflatable raft on flat blue-green water, a tree-covered point sitting on the horizon.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/36117835/pexels-photo-36117835.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Floating on calm turquoise water",
+  "desc_en": "A swimmer relaxes in a translucent inflatable float on still water, with a jungled headland visible in the distance.",
+  "label": "Floating on calm turquoise water",
+  "desc": "A swimmer relaxes in a translucent inflatable float on still water, with a jungled headland visible in the distance.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/37208428/pexels-photo-37208428.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Aerial view of curving sandbar",
+  "desc_en": "A pale sandbar curls beside dark reef patches in aquamarine water, tiny figures gathered on the sand from above.",
+  "label": "Aerial view of curving sandbar",
+  "desc": "A pale sandbar curls beside dark reef patches in aquamarine water, tiny figures gathered on the sand from above.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/3754442/pexels-photo-3754442.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Sailboats and yacht at anchor",
+  "desc_en": "Several sailboats and a dark motor yacht sit at anchor near a low, tree-lined shoreline in fading evening light.",
+  "label": "Sailboats and yacht at anchor",
+  "desc": "Several sailboats and a dark motor yacht sit at anchor near a low, tree-lined shoreline in fading evening light.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/3954301/pexels-photo-3954301.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Catamaran under overcast sky",
+  "desc_en": "A white sailing catamaran with crew aboard sits on pale, glassy water beneath a soft overcast sky.",
+  "label": "Catamaran under overcast sky",
+  "desc": "A white sailing catamaran with crew aboard sits on pale, glassy water beneath a soft overcast sky.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/4783703/pexels-photo-4783703.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Aerial of yellow-hulled catamaran",
+  "desc_en": "A yellow-trimmed sailing catamaran cuts a white wake across green water, passengers seated on its deck.",
+  "label": "Aerial of yellow-hulled catamaran",
+  "desc": "A yellow-trimmed sailing catamaran cuts a white wake across green water, passengers seated on its deck.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/4784477/pexels-photo-4784477.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Catamaran over turquoise reef",
+  "desc_en": "A white catamaran floats motionless above a pale, reef-mottled turquoise seabed, seen from directly overhead.",
+  "label": "Catamaran over turquoise reef",
+  "desc": "A white catamaran floats motionless above a pale, reef-mottled turquoise seabed, seen from directly overhead.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/6149489/pexels-photo-6149489.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Snorkeler underwater selfie",
+  "desc_en": "A snorkeler in a yellow-rimmed mask flashes an okay sign underwater, sunlight rippling on the surface above.",
+  "label": "Snorkeler underwater selfie",
+  "desc": "A snorkeler in a yellow-rimmed mask flashes an okay sign underwater, sunlight rippling on the surface above.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/7200626/pexels-photo-7200626.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Sloth close-up in tree",
+  "desc_en": "A three-toed sloth peers from a tree trunk, a curling green vine looping across its shaggy, moss-tinged fur.",
+  "label": "Sloth close-up in tree",
+  "desc": "A three-toed sloth peers from a tree trunk, a curling green vine looping across its shaggy, moss-tinged fur.",
+  "place": null
+ },
+ "https://images.pexels.com/photos/9122911/pexels-photo-9122911.jpeg?auto=compress&cs=tinysrgb": {
+  "label_en": "Small palm-covered islet",
+  "desc_en": "A tiny sand cay crowned with a cluster of coconut palms sits ringed by pale shallows, a boat moored just offshore.",
+  "label": "Small palm-covered islet",
+  "desc": "A tiny sand cay crowned with a cluster of coconut palms sits ringed by pale shallows, a boat moored just offshore.",
   "place": null
  }
 }

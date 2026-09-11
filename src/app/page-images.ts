@@ -551,6 +551,8 @@ export const pageImages: Record<string, string[]> = {
     "https://panamaspot.com/images/boquete/boquete-bridge.webp",
     "https://panamaspot.com/images/boquete/boquete-losquetzales.webp",
     "https://panamaspot.com/images/boquete/boquete-river2.webp",
+    "https://panamaspot.com/images/boquete/boquete-cabins.webp",
+    "https://panamaspot.com/images/boquete/boquete-flowers2.webp",
   ],
   "/es/articles/boquete-con-ninos-guia-familiar": [
     "https://images.pexels.com/photos/5036679/pexels-photo-5036679.jpeg?auto=compress&cs=tinysrgb&w=1280",

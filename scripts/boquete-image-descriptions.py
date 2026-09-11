@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-boquete-image-descriptions.py — describe every photograph on the Boquete pages,
+boquete-image-descriptions.py — describe every photograph on the 2026-09 batch,
 on the page and in the markup, so the images are indexable in their own right.
 
 The El Valle batch got this treatment in 58f7083 / b0605f9; this is the same
@@ -64,6 +64,18 @@ PAGES = {
  "public/es/articles/el-volcan-baru-esta-activo.html": "es",
  "public/es/articles/feria-de-las-flores-y-del-cafe-boquete.html": "es",
  "public/es/articles/mi-jardin-es-su-jardin-boquete.html": "es",
+ "public/articles/best-time-to-visit-panama.html": "en",
+ "public/articles/boat-charter-panama.html": "en",
+ "public/articles/cayos-zapatillas-snorkelling-bocas-del-toro.html": "en",
+ "public/articles/how-to-get-to-bocas-del-toro.html": "en",
+ "public/articles/is-panama-safe.html": "en",
+ "public/articles/pearl-islands-panama-guide.html": "en",
+ "public/articles/red-frog-beach-bocas-del-toro.html": "en",
+ "public/articles/renting-a-car-in-panama.html": "en",
+ "public/articles/san-blas-islands-panama-guna-yala-guide.html": "en",
+ "public/articles/san-blas-sailing-panama-to-colombia.html": "en",
+ "public/articles/starfish-beach-bocas-del-toro-playa-estrella-guide.html": "en",
+ "public/articles/which-bocas-del-toro-island-to-stay-on.html": "en",
 }
 
 T = {

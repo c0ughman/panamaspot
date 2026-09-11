@@ -55,13 +55,19 @@ TARGETS_EN = {
  "bocas-del-toro-island-hopping-guide": ["island hopping", "island-hopping"],
  # Guna Yala / islands
  "san-blas-islands-panama-guna-yala-guide": ["San Blas islands", "San Blas Islands", "Guna Yala", "San Blas"],
+ # "Cartagena" and the long forms appear nowhere but on the page itself, so this
+ # guide had one inbound link. "sailing trip" is the phrase the other pages
+ # actually use for it. NOT bare "Colombia" — that turns up in coffee and
+ # comparison contexts too.
  "san-blas-sailing-panama-to-colombia":     ["sailing from Panama to Colombia", "sailboat to Colombia",
-                                             "Cartagena"],
+                                             "Cartagena", "sailing trip"],
  "pearl-islands-panama-guide":              ["Pearl Islands", "Contadora"],
  # practical / national
  "renting-a-car-in-panama":   ["renting a car in Panama", "renting a car", "rental car",
                               "Interamericana"],
- "is-panama-safe":            ["is Panama safe", "safety in Panama", "safety"],
+ # NOT bare "safety" — it matched "complete safety briefings" on a sailing
+ # page and sent the reader to a piece about crime in Panama.
+ "is-panama-safe":            ["is Panama safe", "safety in Panama"],
  "best-time-to-visit-panama": ["best time to visit Panama", "dry season"],
  "boat-charter-panama":       ["chartering a boat", "boat charter"],
  # Panama City cluster
@@ -119,7 +125,8 @@ TARGETS_EN = {
  # may reach it too. The anchors name both places, so they cannot misfire.
  # ("than Boquete" was a hook for the El Valle reciprocal pass; it has served
  # its purpose and is too loose to keep now that Boquete pages are in play.)
- "el-valle-de-anton-vs-boquete":         ["El Valle or Boquete", "Boquete or El Valle"],
+ "el-valle-de-anton-vs-boquete":         ["El Valle or Boquete", "Boquete or El Valle",
+                                          "mountain town"],
  "chorro-el-macho-waterfall-el-valle-de-anton": ["Chorro El Macho"],
  "india-dormida-hike-el-valle-de-anton": ["La India Dormida", "India Dormida"],
  "el-valle-de-anton-waterfalls":         ["waterfalls in El Valle"],
