@@ -16,6 +16,14 @@ ROOT = Path(__file__).resolve().parent.parent
 SHELL_EN = ROOT / "public/articles/things-to-do-el-valle-de-anton.html"
 SHELL_ES = ROOT / "public/es/articles/que-hacer-el-valle-de-anton.html"
 
+# width/height for our own /images/ files, from img-dims.json. Card and group
+# boxes have a fixed aspect-ratio, so this is belt-and-braces against CLS and
+# keeps the audit quiet; remote images get nothing rather than a guess.
+_DIMS = json.loads((ROOT / "scripts/img-dims.json").read_text(encoding="utf-8"))
+def wh(src):
+    d = _DIMS.get(src)
+    return f' width="{d["w"]}" height="{d["h"]}"' if d else ""
+
 IMG = "/images/el-valle/"
 BQIMG = "/images/boquete/"
 PCIMG_HERO  = "https://images.pexels.com/photos/17477516/pexels-photo-17477516.jpeg?auto=compress&cs=tinysrgb&w=2400"
@@ -321,7 +329,7 @@ HUBS = {
   cta=dict(img=IMG+"evbike-bike-crater.webp", eyebrow="E-Valley Bikes · El Valle",
            h="Recorre el cráter completo en bici.",
            p="Tours autoguiados en e-bike desde $30 — casco, audioguía con GPS y candado incluidos. El piso del volcán a tu ritmo.",
-           btn="Ver los tours en bici", href="/funnels/evalley_elvalle",
+           btn="Ver los tours en bici", href="/funnels/evalley_elvalle_es",
            micro="Cuatro rutas · Aptas para principiantes y familias · Cancelación gratis hasta 24 h antes"),
   index=[("/es/articles/que-hacer-el-valle-de-anton","Qué Hacer en El Valle de Antón","General"),
          ("/es/articles/bus-albrook-el-valle-de-anton-horarios-precios","Bus Albrook a El Valle de Antón","Cómo llegar"),
@@ -402,7 +410,7 @@ HUBS = {
   cta=dict(img=BQIMG+"boquete-ebike-hero.webp", eyebrow="E-Valley Bikes · Boquete",
            h="Recorre los caminos del café.",
            p="Tours autoguiados en e-bike por el valle de Boquete — casco, audioguía con GPS y candado incluidos. Las subidas son el punto, y el motor las hace posibles.",
-           btn="Ver las rutas de Boquete", href="/funnels/evalley_boquete",
+           btn="Ver las rutas de Boquete", href="/funnels/evalley_boquete_es",
            micro="Varias rutas · Aptas para principiantes y familias · Cancelación gratis hasta 24 h antes"),
   index=[("/es/articles/que-hacer-en-boquete-guia-completa","Qué Hacer en Boquete","General"),
          ("/es/articles/cuanto-cuesta-boquete-presupuesto-semana","¿Cuánto cuesta Boquete?","Presupuesto"),
@@ -614,7 +622,7 @@ def build_main(c):
     A('<div class="hub-start">')
     for href, t, d, img in c["start"]:
         A(f'<a class="hub-card" href="{href}">'
-          f'<div class="hub-card-img"><img src="{img}" alt="" loading="lazy" decoding="async"></div>'
+          f'<div class="hub-card-img"><img src="{img}"{wh(img)} alt="" loading="lazy" decoding="async"></div>'
           f'<div class="hub-card-body"><h3>{t}</h3><p>{d}</p>'
           f'<span class="hub-card-go">{T.get("card_cta","Read the guide")} <span aria-hidden="true">&rarr;</span></span>'
           '</div></a>')
@@ -624,7 +632,7 @@ def build_main(c):
     A('<hr class="hub-rule"><section class="hub-sec"><div class="hub-wrap">')
     for g in c["groups"]:
         A('<div class="hub-group">')
-        A(f'<div class="hub-group-media"><img src="{g["img"]}" alt="{g["alt"]}" loading="lazy" decoding="async"></div>')
+        A(f'<div class="hub-group-media"><img src="{g["img"]}"{wh(g["img"])} alt="{g["alt"]}" loading="lazy" decoding="async"></div>')
         A('<div>')
         A(f'<h2>{g["t"]}</h2>')
         A(f'<p class="hub-group-blurb">{g["blurb"]}</p>')

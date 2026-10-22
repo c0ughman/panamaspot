@@ -18,6 +18,8 @@ not worth a second file.
 
     python3 scripts/social-cards.py            # build cards, rewrite the meta
     python3 scripts/social-cards.py --check    # report only, change nothing
+    python3 scripts/social-cards.py public/articles/x.html ...   # only these pages,
+                                               # focus read from the hero's own style
 
 Run after elvalle-image-pass.py (it reads the hero the pass wrote) and before
 build-page-images.py. Idempotent: cards are regenerated from the source each
@@ -94,7 +96,11 @@ def build(src_path, focus, out):
 def main():
     OUTDIR.mkdir(parents=True, exist_ok=True)
     changed = 0
-    for page, spec in PLAN.items():
+    # Explicit page paths on the command line take the place of the plan; their
+    # crop focus comes from the hero's own object-position instead.
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    pages = [(a, None) for a in args] if args else list(PLAN.items())
+    for page, spec in pages:
         if page.startswith("_"):
             continue
         p = ROOT / page
@@ -117,8 +123,13 @@ def main():
             continue
         url = hero_url
         slug = page.split("/")[-1][:-5]
-        hero = spec["hero"]
-        focus = vertical_focus(hero[2] if len(hero) > 2 else None)
+        if spec:
+            hero = spec["hero"]
+            focus = vertical_focus(hero[2] if len(hero) > 2 else None)
+        else:
+            tag = re.search(r'art-hero-img-full">\s*(<img[^>]*>)', s).group(1)
+            pos = re.search(r'object-position:\s*([^;"]+)', tag)
+            focus = vertical_focus(pos.group(1).strip() if pos else None)
         print(f"  {slug:46s} {dims[0]}x{dims[1]} ar={ar:.2f} focus={focus:.0%}")
         if CHECK:
             continue
@@ -137,7 +148,9 @@ def main():
         dims_path = ROOT / "scripts/img-dims.json"
         dd = json.loads(dims_path.read_text(encoding="utf-8"))
         dd[f"/images/social/{out.name}"] = {"w": CARD_W, "h": CARD_H}
-        dims_path.write_text(json.dumps(dd, ensure_ascii=False, indent=2) + "\n",
+        # indent=1, no trailing newline: the format every other writer of this
+        # file uses, so a run adds lines instead of reformatting all 2,600.
+        dims_path.write_text(json.dumps(dd, ensure_ascii=False, indent=1),
                              encoding="utf-8")
         s = re.sub(r'<meta content="[^"]*" property="og:image"/>',
                    f'<meta content="{card}" property="og:image"/>', s)
