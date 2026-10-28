@@ -10,3 +10,10 @@
   to = "/funnels/:slug.html"
   status = 200
   force = false
+
+# Guide fonts may be loaded by the SEO dashboard's page preview (another domain);
+# browsers only do that when the font allows it.
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
