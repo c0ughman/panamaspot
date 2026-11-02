@@ -248,11 +248,11 @@ def desc_block(s, lang):
             credit = html.escape(LOCAL[k]["credit"])
             title = lab
         else:
-            credit = t["own"]
+            credit = ""  # own-folder photo: original source not traced yet, so no credit
             title = lab
         items.append(
           f'<li><span class="id-t">{title}</span><p class="id-d">{dsc}</p>'
-          f'<span class="id-m"><b>{t["where"]}:</b> {html.escape(f["place"])} · {credit}</span></li>')
+          f'<span class="id-m"><b>{t["where"]}:</b> {html.escape(f["place"])}{" · " + credit if credit else ""}</span></li>')
 
     if not items:
         return s

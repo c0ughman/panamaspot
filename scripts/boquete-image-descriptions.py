@@ -243,9 +243,9 @@ def desc_block(s, lang):
         elif k in LOCAL:
             credit = html.escape(LOCAL[k]["credit"]); title = lab
         else:
-            credit = t["own"]; title = lab
+            credit = ""; title = lab  # own-folder photo: original source not traced yet, so no credit
         # a stock photograph has no place we can honestly state
-        where = (f'<b>{t["where"]}:</b> {html.escape(f["place"])} · ' if f.get("place") else "")
+        where = (f'<b>{t["where"]}:</b> {html.escape(f["place"])}' + (" · " if credit else "") if f.get("place") else "")
         items.append(
           f'<li><span class="id-t">{title}</span><p class="id-d">{dsc}</p>'
           f'<span class="id-m">{where}{credit}</span></li>')
