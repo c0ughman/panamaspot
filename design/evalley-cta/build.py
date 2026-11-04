@@ -328,8 +328,17 @@ def absolutize(html):
     return html
 
 
+def strip_live_blocks(html):
+    """The source guides now carry the live blocks (scripts/evalley_cta_rollout.py); remove them so previews don't double up."""
+    for k in ("banner", "offer", "rail", "closer"):
+        html = re.sub(rf"<!--evx:{k}-->.*?<!--/evx-->\n?", "", html, flags=re.S)
+    for a, b in (("<!--evx:css-->", "<!--/evx:css-->"), ("<!--evx:js-->", "<!--/evx:js-->"), ("/* evx:css */", "/* /evx:css */")):
+        html = re.sub(re.escape(a) + r".*?" + re.escape(b) + r"\n?", "", html, flags=re.S)
+    return html
+
+
 def build(key, src, out):
-    html = (ROOT / src).read_text()
+    html = strip_live_blocks((ROOT / src).read_text())
     bl = blocks(key)
     html = html.replace("</style>", CSS + "\n</style>", 1)
     html = insert_before_nth_section(html, 3, bl["offer"])
