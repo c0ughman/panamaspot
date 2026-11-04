@@ -97,7 +97,7 @@ CSS = r"""
 .ev-rail .ev-ph { position: relative; aspect-ratio: 5/2; border-radius: 12px; overflow: hidden; }
 .ev-rail .ev-ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .ev-valle.ev-rail .ev-ph img { object-position: center 62%; }
-.ev-valle.ev-rail .ev-ph img[src*="evbike-trail"] { object-position: center 72%; }
+.ev-valle.ev-rail .ev-ph img[src*="evbike-trail"] { object-position: center 86%; transform: scale(1.25); transform-origin: 90% 86%; }
 .ev-rail .ev-ph .chip { position: absolute; left: 8px; bottom: 8px; font-size: 12px; padding: 7px 10px; gap: 6px; }
 .ev-rail .ev-bd { padding: 10px 10px 8px; display: grid; gap: 8px; }
 .ev-rail .ev-t { font-size: 22px; }
@@ -162,7 +162,7 @@ VARIANT_W = (640, 1000)
 SIZES = {
     "banner": "(max-width: 640px) 100vw, 330px",
     "card": "(max-width: 760px) 116px, 240px",
-    "rail": "280px",
+    "rail": "350px",  # leaves room for the zoomed El Valle crop without going soft
     "closer": "(max-width: 860px) 100vw, 680px",
 }
 
