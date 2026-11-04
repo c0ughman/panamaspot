@@ -97,7 +97,7 @@ CSS = r"""
 .ev-rail .ev-ph { position: relative; aspect-ratio: 5/2; border-radius: 12px; overflow: hidden; }
 .ev-rail .ev-ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .ev-valle.ev-rail .ev-ph img { object-position: center 62%; }
-.ev-valle.ev-rail .ev-ph img[src*="bike-crater"] { object-position: center 100%; }
+.ev-valle.ev-rail .ev-ph img[src*="evbike-trail"] { object-position: center 72%; }
 .ev-rail .ev-ph .chip { position: absolute; left: 8px; bottom: 8px; font-size: 12px; padding: 7px 10px; gap: 6px; }
 .ev-rail .ev-bd { padding: 10px 10px 8px; display: grid; gap: 8px; }
 .ev-rail .ev-t { font-size: 22px; }
@@ -228,7 +228,7 @@ IMAGES = {
             ("/images/el-valle/evbike-group.webp", {"en": "Group on e-bikes on a road in El Valle de Antón", "es": "Grupo en bicis eléctricas por una calle de El Valle de Antón"}),
         ],
         # E-Valley's own photos from evalleybikes.net (download approved by the user 2026-11-04)
-        "rail": ("/images/el-valle/evbike-bike-crater.webp", {"en": "Rider with an E-Valley e-bike at a lookout above El Valle", "es": "Ciclista con bici eléctrica de E-Valley en un mirador sobre El Valle"}),
+        "rail": ("/images/el-valle/evbike-trail.webp", {"en": "An E-Valley e-bike parked on a hillside trail in El Valle de Antón", "es": "Bici eléctrica de E-Valley en un sendero de montaña en El Valle de Antón"}),
         "closer": ("/images/el-valle/evbike-sunset2.webp", {"en": "An E-Valley Bikes rider in a branded cap watching the sunset over El Valle", "es": "Una clienta de E-Valley Bikes con gorra de la marca mirando el atardecer sobre El Valle"}),
     },
 }
