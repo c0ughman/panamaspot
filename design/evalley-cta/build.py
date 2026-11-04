@@ -97,7 +97,7 @@ CSS = r"""
 .ev-rail .ev-ph { position: relative; aspect-ratio: 5/2; border-radius: 12px; overflow: hidden; }
 .ev-rail .ev-ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .ev-valle.ev-rail .ev-ph img { object-position: center 62%; }
-.ev-valle.ev-rail .ev-ph img[src*="bike-crater"] { object-position: center 42%; }
+.ev-valle.ev-rail .ev-ph img[src*="bike-crater"] { object-position: center 72%; }
 .ev-rail .ev-ph .chip { position: absolute; left: 8px; bottom: 8px; font-size: 12px; padding: 7px 10px; gap: 6px; }
 .ev-rail .ev-bd { padding: 10px 10px 8px; display: grid; gap: 8px; }
 .ev-rail .ev-t { font-size: 22px; }
