@@ -1,0 +1,338 @@
+{
+  "boquete-en": {
+    "label": "Boquete · English",
+    "wa_number": "50769833141",
+    "wa_msg": "Hi! I'd like to book an e-bike tour or rental in Boquete. What are the next steps?",
+    "brand": "E-Valley Bikes · Boquete",
+    "tag": "Local partner",
+    "rating_short": "5.0 on Google · 180+ reviews",
+    "banner": {
+      "title": "See more of Boquete in a morning, by e-bike",
+      "body": "E-Valley Bikes runs **guided coffee and viewpoint tours** and rents e-bikes from its shop in Bajo Boquete.\nThe motor handles the hills, so the farms, rivers and lookouts are all within reach.",
+      "button": "Learn more on WhatsApp"
+    },
+    "offer": {
+      "title": "Three ways to see Boquete by e-bike",
+      "intro": "Pick by what you want from the day: coffee, views, or your own route.",
+      "cards": [
+        {
+          "pill": "Coffee farm",
+          "name": "Private Coffee Tour",
+          "desc": "A farm tour and tasting, with a guide just for your group.",
+          "meta": [
+            "2.5–3 hours",
+            "Private guide"
+          ]
+        },
+        {
+          "pill": "",
+          "name": "Private Panoramic Tour",
+          "desc": "Viewpoints and quiet rural roads around Boquete, with a local guide.",
+          "meta": [
+            "2.5–3 hours",
+            "Private guide"
+          ]
+        },
+        {
+          "pill": "",
+          "name": "E-bike rental",
+          "desc": "Two, four or eight hours, with free route maps to download.",
+          "meta": [
+            "2, 4 or 8 hours",
+            "Self-guided"
+          ]
+        }
+      ],
+      "button": "Learn more on WhatsApp",
+      "trust": [
+        "Open daily, 8 am–5 pm",
+        "Shop in Bajo Boquete",
+        "Badge of Excellence from the Panama government"
+      ],
+      "includes_title": "Every bike comes with:",
+      "includes": [
+        "A helmet, goggles and gloves",
+        "A backpack, water and a rain poncho",
+        "A safety briefing before you set off"
+      ]
+    },
+    "rail": {
+      "chip": "5.0 · 180+ reviews",
+      "title": "Boquete by e-bike",
+      "body": "Guided tours and e-bike rentals.\nOpen daily, 8 am–5 pm.",
+      "button": "Learn more on WhatsApp"
+    },
+    "closer": {
+      "rating": "5.0 on Google from 180+ riders",
+      "title": "The highlight of your trip to Boquete.",
+      "review_quote": "I 100% recommend this experience. Don't be afraid of the hills along the route; the eBike is easy to use and really helps when the hills get a little challenging.",
+      "review_name": "Eileen Gisselle",
+      "review_source": "Review on evalleybikes.net",
+      "button": "Book on WhatsApp",
+      "trust": [
+        "Helmet, gloves and water included",
+        "Open daily, 8 am–5 pm"
+      ],
+      "review_verified": true,
+      "review_ref": "evalleybikes.net/en/reviews?loc=boquete, verbatim (first two sentences)",
+      "steps_title": "How it works",
+      "steps": [
+        "Message E-Valley on WhatsApp with your day and group size.",
+        "Pick a guided tour or a rental (two, four or eight hours).",
+        "Get your bike and a safety briefing at the shop in Bajo Boquete, then ride."
+      ]
+    }
+  },
+  "boquete-es": {
+    "label": "Boquete · Español",
+    "wa_number": "50769833141",
+    "wa_msg": "¡Hola! Quisiera reservar un tour o alquiler de bici eléctrica en Boquete. ¿Cuáles son los siguientes pasos?",
+    "brand": "E-Valley Bikes · Boquete",
+    "tag": "Socio local",
+    "rating_short": "5.0 en Google · más de 180 reseñas",
+    "banner": {
+      "title": "Recorre todo Boquete en una mañana, en bici eléctrica",
+      "body": "E-Valley Bikes ofrece **tours guiados de café y miradores** y alquila bicis eléctricas desde su tienda en Bajo Boquete.\nEl motor sube las lomas por ti, así que las fincas, los ríos y los miradores quedan a tu alcance.",
+      "button": "Más información por WhatsApp"
+    },
+    "offer": {
+      "title": "Tres formas de recorrer Boquete en bici eléctrica",
+      "intro": "Elige según lo que quieras del día: café, vistas o tu propia ruta.",
+      "cards": [
+        {
+          "pill": "Finca de café",
+          "name": "Tour Privado de Café",
+          "desc": "Visita a una finca y cata de café, con un guía solo para tu grupo.",
+          "meta": [
+            "2.5–3 horas",
+            "Guía privado"
+          ]
+        },
+        {
+          "pill": "",
+          "name": "Tour Panorámico Privado",
+          "desc": "Miradores y caminos rurales alrededor de Boquete, con un guía local.",
+          "meta": [
+            "2.5–3 horas",
+            "Guía privado"
+          ]
+        },
+        {
+          "pill": "",
+          "name": "Alquiler de bici eléctrica",
+          "desc": "Dos, cuatro u ocho horas, con rutas gratis para descargar.",
+          "meta": [
+            "2, 4 u 8 horas",
+            "Sin guía"
+          ]
+        }
+      ],
+      "button": "Más información por WhatsApp",
+      "trust": [
+        "Abierto todos los días, 8:00–17:00",
+        "Tienda en Bajo Boquete",
+        "Distinción de Excelencia del gobierno de Panamá"
+      ],
+      "includes_title": "Cada bici incluye:",
+      "includes": [
+        "Casco, gafas y guantes",
+        "Mochila, botella de agua y poncho para la lluvia",
+        "Charla de seguridad antes de salir"
+      ]
+    },
+    "rail": {
+      "chip": "5.0 · 180+ reseñas",
+      "title": "Boquete en bici",
+      "body": "Tours guiados y alquiler de bicis eléctricas.\nAbierto todos los días, 8:00–17:00.",
+      "button": "Más info por WhatsApp"
+    },
+    "closer": {
+      "rating": "5.0 en Google · más de 180 reseñas",
+      "title": "El mejor recuerdo de tu viaje a Boquete.",
+      "review_quote": "Recomiendo esta experiencia al 100 %. No le tengas miedo a las lomas de la ruta: la e-bike es fácil de usar y ayuda mucho cuando las subidas se ponen difíciles.",
+      "review_name": "Eileen Gisselle",
+      "review_source": "Reseña en evalleybikes.net · traducida del inglés",
+      "button": "Reservar por WhatsApp",
+      "trust": [
+        "Casco, guantes y agua incluidos",
+        "Abierto todos los días, 8:00–17:00"
+      ],
+      "review_verified": true,
+      "review_ref": "evalleybikes.net/en/reviews?loc=boquete, translated from the English original",
+      "steps_title": "Cómo funciona",
+      "steps": [
+        "Escríbele a E-Valley por WhatsApp con el día y cuántos van.",
+        "Elige un tour guiado o un alquiler de dos, cuatro u ocho horas.",
+        "Recoge tu bici en la tienda de Bajo Boquete, recibe la charla de seguridad y a rodar."
+      ]
+    }
+  },
+  "elvalle-es": {
+    "label": "El Valle · Español",
+    "wa_number": "50768852907",
+    "wa_msg": "¡Hola! Quisiera reservar un tour o alquiler de bici eléctrica en El Valle. ¿Cuáles son los siguientes pasos?",
+    "brand": "E-Valley Bikes · El Valle",
+    "tag": "Socio local",
+    "rating_short": "5.0 en Google · más de 180 reseñas",
+    "banner": {
+      "title": "Recorre El Valle en bici eléctrica\nen una sola mañana",
+      "body": "E-Valley Bikes ofrece tours guiados y alquila bicis eléctricas desde su tienda, diagonal al mercado.\nCascadas, miradores y el pueblo quedan a tu alcance.",
+      "button": "Más información por WhatsApp"
+    },
+    "offer": {
+      "title": "Tres formas de recorrer El Valle en bici eléctrica",
+      "intro": "",
+      "cards": [
+        {
+          "pill": "Pasa por El Macho",
+          "name": "Adventure Tour",
+          "desc": "La cascada El Macho, los petroglifos de La Piedra Pintada y el borde del bosque nuboso, con guía.",
+          "meta": [
+            "2.5–3 horas",
+            "Con guía"
+          ]
+        },
+        {
+          "pill": "",
+          "name": "Panoramic Tour",
+          "desc": "Miradores del Cerro Cara Iguana y la India Dormida, el mercado y caminos rurales.",
+          "meta": [
+            "2.5–3 horas",
+            "Con guía"
+          ]
+        },
+        {
+          "pill": "",
+          "name": "Alquiler de bici eléctrica",
+          "desc": "Dos, cuatro u ocho horas, con rutas gratis para descargar, una de ellas hasta El Macho.",
+          "meta": [
+            "2, 4 u 8 horas",
+            "Sin guía"
+          ]
+        }
+      ],
+      "button": "Más información por WhatsApp",
+      "trust": [
+        "Abierto todos los días, 8:00–17:00",
+        "Diagonal al mercado de El Valle",
+        "Distinción de Excelencia del gobierno de Panamá"
+      ],
+      "includes_title": "Cada bici incluye:",
+      "includes": [
+        "Casco, gafas y guantes",
+        "Mochila, botella de agua y poncho para la lluvia",
+        "Charla de seguridad antes de salir"
+      ]
+    },
+    "rail": {
+      "chip": "5.0 · 180+ reseñas",
+      "title": "El Valle en bici",
+      "body": "Tours guiados y alquiler de bicis eléctricas.\nAbierto todos los días, 8:00–17:00.",
+      "button": "Más info por WhatsApp"
+    },
+    "closer": {
+      "rating": "5.0 en Google · Distinción de Excelencia del gobierno de Panamá",
+      "title": "El mejor recuerdo de tu viaje a El Valle.",
+      "review_quote": "El Valle tiene sus lomas, así que alquilar la bici fue una gran idea. El recorrido recomendado es llevadero, y aproveché todo el día con calma para ver cada punto de interés.",
+      "review_name": "Sierra M",
+      "review_source": "Tripadvisor · marzo 2026",
+      "button": "Reservar por WhatsApp",
+      "trust": [
+        "Casco, gafas y guantes incluidos",
+        "Rutas gratis en Komoot"
+      ],
+      "review_verified": true,
+      "review_ref": "Verbatim from public/funnels/evalley_elvalle_es.html (user accepted the funnel as source, 2026-11-04).",
+      "steps_title": "Cómo funciona",
+      "steps": [
+        "Escríbeles por WhatsApp con el día y cuántos van.",
+        "Elige un tour guiado o un alquiler de dos, cuatro u ocho horas.",
+        "Recoge tu bici en la tienda, diagonal al mercado, recibe la charla de seguridad y a rodar."
+      ]
+    }
+  },
+  "elvalle-en": {
+    "label": "El Valle · English",
+    "wa_number": "50768852907",
+    "wa_msg": "Hi! I'd like to book an e-bike tour or rental in El Valle. What are the next steps?",
+    "brand": "E-Valley Bikes · El Valle",
+    "tag": "Local partner",
+    "rating_short": "5.0 on Google · 180+ reviews",
+    "banner": {
+      "title": "Ride El Valle by e-bike\nin one morning",
+      "body": "E-Valley Bikes runs guided tours and rents e-bikes from its shop across from the El Valle market.\nWaterfalls, viewpoints and the town are all within reach.",
+      "button": "Learn more on WhatsApp"
+    },
+    "offer": {
+      "title": "Three ways to see El Valle by e-bike",
+      "intro": "",
+      "cards": [
+        {
+          "pill": "Passes El Macho",
+          "name": "Adventure Tour",
+          "desc": "El Macho waterfall, the Piedra Pintada petroglyphs and the edge of the cloud forest, with a guide.",
+          "meta": [
+            "2.5–3 hours",
+            "Guided"
+          ]
+        },
+        {
+          "pill": "",
+          "name": "Panoramic Tour",
+          "desc": "The Cerro Cara Iguana and India Dormida viewpoints, the market and quiet rural lanes.",
+          "meta": [
+            "2.5–3 hours",
+            "Guided"
+          ]
+        },
+        {
+          "pill": "",
+          "name": "E-bike rental",
+          "desc": "Two, four or eight hours, with free route maps to download, one of them out to El Macho.",
+          "meta": [
+            "2, 4 or 8 hours",
+            "Self-guided"
+          ]
+        }
+      ],
+      "button": "Learn more on WhatsApp",
+      "trust": [
+        "Open daily, 8 am–5 pm",
+        "Across from the El Valle market",
+        "Badge of Excellence from the Panama government"
+      ],
+      "includes_title": "Every bike comes with:",
+      "includes": [
+        "A helmet, goggles and gloves",
+        "A backpack, water and a rain poncho",
+        "A safety briefing before you set off"
+      ]
+    },
+    "rail": {
+      "chip": "5.0 · 180+ reviews",
+      "title": "El Valle by e-bike",
+      "body": "Guided tours and e-bike rentals.\nOpen daily, 8 am–5 pm.",
+      "button": "Learn more on WhatsApp"
+    },
+    "closer": {
+      "rating": "5.0 on Google · Badge of Excellence from the Panama government",
+      "title": "The highlight of your trip to El Valle.",
+      "review_quote": "El Valle has its hills, so renting the bike was a great idea. The recommended route is manageable, and I spent the whole day taking my time to see every point of interest.",
+      "review_name": "Sierra M",
+      "review_source": "Tripadvisor · March 2026 · translated from Spanish",
+      "button": "Book on WhatsApp",
+      "trust": [
+        "Helmet, goggles and gloves included",
+        "Free routes in Komoot"
+      ],
+      "review_verified": true,
+      "review_ref": "Spanish original in public/funnels/evalley_elvalle_es.html (user accepted the funnel as source, 2026-11-04); translated.",
+      "steps_title": "How it works",
+      "steps": [
+        "Message E-Valley on WhatsApp with your day and group size.",
+        "Pick a guided tour or a rental (two, four or eight hours).",
+        "Get your bike and a safety briefing at the shop across from the market, then ride."
+      ]
+    }
+  }
+}

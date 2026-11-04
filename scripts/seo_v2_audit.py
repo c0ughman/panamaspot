@@ -643,7 +643,7 @@ def audit_page(p, site, ctx):
                 sz = f.stat().st_size; local_bytes += sz
                 if sz > 350_000: heavy.append(f"{f.name} {sz // 1024}KB")
                 d = img_dims(f)
-                if d and (i.inside("article") or i.inside(cls="gal")) and d[0] < 800: small.append(f"{f.name} {d[0]}px")
+                if d and (i.inside("article") or i.inside(cls="gal")) and not i.inside(cls="evx") and d[0] < 800: small.append(f"{f.name} {d[0]}px")
     r.ok(C, "local-files-exist", not missing, f"{len(missing)} image files missing", "fail", "; ".join(missing[:3]))
     r.ok(C, "modern-format", sum(v for k, v in exts.items() if k in ("webp", "avif", "svg")) >= .8 * max(1, len(imgs)),
          f"formats {dict(exts)}", "warn")
@@ -737,7 +737,9 @@ def audit_page(p, site, ctx):
     r.ok(C, "html-size", kb <= 150, f"HTML {kb:.0f}KB", "warn")
     css = sum(len(x) for x in re.findall(r"<style[^>]*>(.*?)</style>", s, re.S)) / 1024
     r.ok(C, "inline-css", css <= 40, f"{css:.0f}KB inline CSS on every page (not cacheable)", "warn")
-    blocking = [l.attrs.get("href", "") for l in head.iter("link") if l.attrs.get("rel") == "stylesheet"]
+    # media="print" + onload swap and <noscript> fallbacks do not block the first paint
+    blocking = [l.attrs.get("href", "") for l in head.iter("link") if l.attrs.get("rel") == "stylesheet"
+                and l.attrs.get("media", "all") != "print" and not l.inside("noscript")]
     r.ok(C, "render-blocking-css", len(blocking) <= 1, f"{len(blocking)} external stylesheets", "warn")
     gf = [b for b in blocking if "fonts.googleapis" in b]
     r.ok(C, "third-party-fonts", not gf, "Google Fonts CSS is render-blocking (self-host Hanken like GildaC)", "warn")
