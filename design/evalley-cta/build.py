@@ -97,6 +97,7 @@ CSS = r"""
 .ev-rail .ev-ph { position: relative; aspect-ratio: 5/2; border-radius: 12px; overflow: hidden; }
 .ev-rail .ev-ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .ev-valle.ev-rail .ev-ph img { object-position: center 62%; }
+.ev-valle.ev-rail .ev-ph img[src*="couple-riding"] { object-position: center 18%; }
 .ev-rail .ev-ph .chip { position: absolute; left: 8px; bottom: 8px; font-size: 12px; padding: 7px 10px; gap: 6px; }
 .ev-rail .ev-bd { padding: 10px 10px 8px; display: grid; gap: 8px; }
 .ev-rail .ev-t { font-size: 22px; }
@@ -226,9 +227,9 @@ IMAGES = {
             ("/images/el-valle/evbike-bike-crater.webp", {"en": "Rider with her e-bike at a lookout above El Valle", "es": "Ciclista con su bici eléctrica en un mirador sobre El Valle"}),
             ("/images/el-valle/evbike-group.webp", {"en": "Group on e-bikes on a road in El Valle de Antón", "es": "Grupo en bicis eléctricas por una calle de El Valle de Antón"}),
         ],
-        # TEMP: reuses the banner photo until E-Valley's own rider photos are approved for download
-        "rail": ("/images/el-valle/evbike-crater-view.webp", {"en": "Rider with an E-Valley e-bike above El Valle", "es": "Ciclista con bici eléctrica de E-Valley sobre El Valle"}),
-        "closer": ("/images/el-valle/evbike-forest.webp", {"en": "Rider on an E-Valley e-bike on a dirt track through the pines in El Valle", "es": "Ciclista en bici eléctrica de E-Valley por un camino entre pinos en El Valle"}),
+        # E-Valley's own photos from evalleybikes.net (download approved by the user 2026-11-04)
+        "rail": ("/images/el-valle/evbike-couple-riding.webp", {"en": "Two riders on E-Valley e-bikes in El Valle de Antón", "es": "Dos ciclistas en bicis eléctricas de E-Valley en El Valle de Antón"}),
+        "closer": ("/images/el-valle/evbike-smiling-rider.webp", {"en": "A smiling rider on an E-Valley e-bike on a tree-lined road in El Valle", "es": "Una ciclista sonriente en bici eléctrica de E-Valley por una calle arbolada de El Valle"}),
     },
 }
 
