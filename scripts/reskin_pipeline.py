@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]; P = ROOT / "public"; TS = ROOT / "sr
 dl = sys.argv[1]; pages = [a.split("=", 1)[1] for a in sys.argv[2:] if a.startswith("--page=")]
 if not pages: sys.exit("no pages")
 run = lambda *c: subprocess.run([sys.executable, *c], cwd=ROOT, check=True)
-out = subprocess.run([sys.executable, "scripts/reskin_old_guides.py", *[f"--page={p}" for p in pages]], cwd=ROOT, capture_output=True, text=True)
+out = subprocess.run([sys.executable, "scripts/reskin_old_guides.py", "--force", *[f"--page={p}" for p in pages]], cwd=ROOT, capture_output=True, text=True)
 print(out.stdout.strip())
 done = [l.split(" ", 1)[1] for l in out.stdout.splitlines() if l.startswith("wrote ")]
 if not done: sys.exit("nothing converted")

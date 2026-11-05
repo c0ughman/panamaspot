@@ -70,7 +70,7 @@ for f in sorted(P.glob("articles/*.html")) + sorted(P.glob("es/articles/*.html")
                 # crop when the share image is the 1200x630 shape; a plain hero URL is compared whole
                 is_share = subprocess.run(["magick", "identify", "-format", "%w %h", str(of) + "[0]"], capture_output=True, text=True).stdout.split() == ["1200", "630"]
                 target = small(of, False) if is_share else small(of, True)
-                d = min(diff(small(hf, True, y, z), target) for y in (20, 35, 44, 50, 55, 65, 75, 80) for z in (1.0, 1.25, 1.5))
+                d = min(diff(small(hf, True, y, z), target) for y in (20, 28, 35, 44, 50, 55, 60, 62, 65, 68, 72, 75, 80) for z in (1.0, 1.25, 1.5))
                 if d > 28: why.append(f"share image is not the hero photo (difference {d:.0f})")
         except StopIteration:
             pass

@@ -55,6 +55,8 @@ HERO_FOCUS = {
     "articles/renting-a-car-in-panama": 70,
     "articles/tours-in-boquete-panama": 51,
     "es/articles/cinta-costera-panama-mercado-mariscos-panama-viejo": 68,
+    "articles/boquete-bike-rental": 60, "articles/el-valle-de-anton-vs-boquete": 72,
+    "articles/red-frog-beach-bocas-del-toro": 22, "articles/cayos-zapatillas-snorkelling-bocas-del-toro": 28,
 }
 SEARCH_TAG = '<script src="/js/search.js" defer></script>'
 
@@ -501,6 +503,9 @@ def all_old():
 
 if __name__ == "__main__":
     pages = [a.split("=", 1)[1] for a in sys.argv[1:] if a.startswith("--page=")]
+    if pages and "--force" not in sys.argv and "--dry" not in sys.argv:
+        sys.exit("All 80 guides are converted and have since had hand corrections (scripts/content_fixes_2026_11.py, pearl_islands_photos.py). "
+                 "Converting again from git would undo them. Use --force only if you mean that.")
     dry = "--dry" in sys.argv
     todo = all_old() if dry else pages
     ok = 0; fails = []
