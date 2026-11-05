@@ -2,7 +2,7 @@
   "boquete-en": {
     "label": "Boquete · English",
     "wa_number": "50769833141",
-    "wa_msg": "Hey, I saw you on Panama Spot. I'm interested in an e-bike tour or rental in Boquete. Can you send me more information?",
+    "wa_msg": "Hey, I'm interested in an e-bike tour or rental in Boquete. Can you send me more information?",
     "brand": "E-Valley Bikes · Boquete",
     "tag": "Local partner",
     "rating_short": "5 stars on Google · 180+ reviews across both shops",
@@ -86,7 +86,7 @@
   "boquete-es": {
     "label": "Boquete · Español",
     "wa_number": "50769833141",
-    "wa_msg": "Hola, los vi en Panama Spot. Me interesa un tour o alquiler de bici eléctrica en Boquete. ¿Me pueden dar más información?",
+    "wa_msg": "Hola, me interesa un tour o alquiler de bici eléctrica en Boquete. ¿Me pueden dar más información?",
     "brand": "E-Valley Bikes · Boquete",
     "tag": "Socio local",
     "rating_short": "5 estrellas en Google · más de 180 reseñas en sus dos tiendas",
@@ -170,7 +170,7 @@
   "elvalle-es": {
     "label": "El Valle · Español",
     "wa_number": "50768852907",
-    "wa_msg": "Hola, los vi en Panama Spot. Me interesa un tour o alquiler de bici eléctrica en El Valle. ¿Me pueden dar más información?",
+    "wa_msg": "Hola, me interesa un tour o alquiler de bici eléctrica en El Valle. ¿Me pueden dar más información?",
     "brand": "E-Valley Bikes · El Valle",
     "tag": "Socio local",
     "rating_short": "5 estrellas en Google · más de 180 reseñas en sus dos tiendas",
@@ -254,7 +254,7 @@
   "elvalle-en": {
     "label": "El Valle · English",
     "wa_number": "50768852907",
-    "wa_msg": "Hey, I saw you on Panama Spot. I'm interested in an e-bike tour or rental in El Valle. Can you send me more information?",
+    "wa_msg": "Hey, I'm interested in an e-bike tour or rental in El Valle. Can you send me more information?",
     "brand": "E-Valley Bikes · El Valle",
     "tag": "Local partner",
     "rating_short": "5 stars on Google · 180+ reviews across both shops",
