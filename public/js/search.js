@@ -31,9 +31,65 @@
     "@media(max-width:640px){.ps-t{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}}" +
     ".ps-res.more{-webkit-mask-image:linear-gradient(#000 calc(100% - 26px),transparent);mask-image:linear-gradient(#000 calc(100% - 26px),transparent)}" +
     ".ps-m{padding:15px 20px 18px;font-size:14px;line-height:1.4;color:rgba(255,255,255,.8)}.ps-m a{color:#fff}" +
-    ".ps-b{text-shadow:0 1px 2px rgba(0,0,0,.28),0 1px 12px rgba(0,0,0,.4)}.ps-b mark{text-shadow:none}" +
+    ".ps-b,.ps-b *{text-shadow:none}" +
+    ".ps-tint{position:absolute;inset:0;pointer-events:none;transition:background .25s ease}.ps-r,.ps-res{position:relative;z-index:1}" +
     "@keyframes ps-up{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}.ps-l.fresh li{animation:ps-up .34s cubic-bezier(.2,.8,.2,1) both}";
-  var hidden = null;
+  var hidden = null, raf = 0, lastShade = 0, lastGrad = "";
+  var DARK = "rgba(16,20,28,.6)", CLEAR = "rgba(16,20,28,0)";
+  /* Brightness 0-1 of a photo at a screen point, from a 48x48 copy of it. Unknown -> 0 (treated as dark). */
+  var grids = new Map(), cv = document.createElement("canvas"); cv.width = cv.height = 48;
+  function brightAt(img, x, y) {
+    var key = img.currentSrc || img.src, g = grids.get(key);
+    if (g === undefined) {
+      g = null;
+      try {
+        if (img.complete && img.naturalWidth) {
+          var cx = cv.getContext("2d", { willReadFrequently: true }); cx.clearRect(0, 0, 48, 48); cx.drawImage(img, 0, 0, 48, 48);
+          var d = cx.getImageData(0, 0, 48, 48).data; g = new Float32Array(2304);
+          for (var i = 0; i < 2304; i++) g[i] = (0.2126 * d[i * 4] + 0.7152 * d[i * 4 + 1] + 0.0722 * d[i * 4 + 2]) / 255;
+          grids.set(key, g);
+        }
+      } catch (e) { grids.set(key, null); }
+    }
+    if (!g) return 0;
+    var r = img.getBoundingClientRect(), sc = Math.max(r.width / img.naturalWidth, r.height / img.naturalHeight), dw = img.naturalWidth * sc, dh = img.naturalHeight * sc;
+    var pos = getComputedStyle(img).objectPosition.split(" ").map(function (v) { return parseFloat(v) / 100; });
+    var ox = r.left + (r.width - dw) * (isNaN(pos[0]) ? .5 : pos[0]), oy = r.top + (r.height - dh) * (isNaN(pos[1]) ? .5 : pos[1]);
+    var gx = Math.min(47, Math.max(0, Math.floor((x - ox) / dw * 48))), gy = Math.min(47, Math.max(0, Math.floor((y - oy) / dh * 48)));
+    return g[gy * 48 + gx];
+  }
+  /* Is the page behind this point light (white page, beige box) rather than a photo or a dark block? */
+  function lightAt(x, y) {
+    var under = document.elementsFromPoint(x, y);
+    for (var i = 0; i < under.length; i++) {
+      var el = under[i];
+      if (host.contains(el)) continue;
+      var img = el.tagName === "IMG" ? el : null, box = img ? null : el.closest("header.hero, .hero, .home-hero, .hub-hero, .art-hero-section, figure, .ph, .gal, .stamp, .ev-ph");
+      if (box) img = box.querySelector("img");
+      if (img || box || el.tagName === "VIDEO") return img ? brightAt(img, x, y) > .72 : false;
+      for (var a = el; a && a.nodeType === 1; a = a.parentElement) {
+        var c = getComputedStyle(a).backgroundColor.match(/[\d.]+/g);
+        if (c && (c.length < 4 || +c[3] > .5)) return (0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]) / 255 > .55;
+      }
+      return true;
+    }
+    return true;
+  }
+  /* Scan the panel top to bottom in 20px bands and tint only the bands that sit over the light page. */
+  function shade(now) {
+    if (!isOpen) return;
+    raf = requestAnimationFrame(shade);
+    if (now - lastShade < 90) return;
+    lastShade = now;
+    var r = panel.getBoundingClientRect(), stops = [], step = 20;
+    for (var y = 0; y <= r.height; y += step) {
+      var vy = Math.min(r.bottom - 2, r.top + y), votes = 0;
+      [.2, .5, .8].forEach(function (f) { if (lightAt(r.left + r.width * f, vy)) votes++; });
+      stops.push((votes >= 2 ? DARK : CLEAR) + " " + y + "px");
+    }
+    var g = "linear-gradient(to bottom, " + stops.join(", ") + ")";
+    if (g !== lastGrad) { panel.querySelector(".ps-tint").style.backgroundImage = g; lastGrad = g; }
+  }
   var host, panel, inner, input, res, list, msg, data = null, loading = null, sel = -1, trigger = null, isOpen = false, anim = null, shown = 0;
 
   function norm(s) { return (s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase(); }
@@ -126,7 +182,7 @@
   function build() {
     var st = document.createElement("style"); st.textContent = CSSTEXT; document.head.appendChild(st);
     host = document.createElement("div"); host.className = "ps-s"; host.setAttribute("role", "dialog"); host.setAttribute("aria-modal", "true"); host.setAttribute("aria-label", L.ph);
-    host.innerHTML = '<div class="ps-b"><div class="ps-in"><div class="ps-r"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input class="ps-i" type="search" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="search" placeholder="' + L.ph + '" aria-label="' + L.ph + '"><button class="ps-x" type="button">' + L.close + '</button></div><div class="ps-res"><ul class="ps-l" role="listbox"></ul><div class="ps-m"></div></div></div></div>';
+    host.innerHTML = '<div class="ps-b"><div class="ps-in"><div class="ps-tint" aria-hidden="true"></div><div class="ps-r"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input class="ps-i" type="search" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="search" placeholder="' + L.ph + '" aria-label="' + L.ph + '"><button class="ps-x" type="button">' + L.close + '</button></div><div class="ps-res"><ul class="ps-l" role="listbox"></ul><div class="ps-m"></div></div></div></div>';
     document.body.appendChild(host);
     panel = host.querySelector(".ps-b"); inner = host.querySelector(".ps-in"); input = host.querySelector(".ps-i"); res = host.querySelector(".ps-res"); list = host.querySelector(".ps-l"); msg = host.querySelector(".ps-m");
     host.addEventListener("mousedown", function (e) { if (e.target === host) hide(); });
@@ -169,6 +225,7 @@
     var end = { left: parseFloat(panel.style.left), top: parseFloat(panel.style.top), width: parseFloat(panel.style.width), height: inner.offsetHeight };
     if (calm) { panel.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 160 }); return; }
     if (o.el) { o.el.style.visibility = "hidden"; hidden = o.el; }
+    cancelAnimationFrame(raf); lastShade = 0; raf = requestAnimationFrame(shade);
     panel.style.transition = "none";
     anim = panel.animate([frame(o, false), frame(end, true)], { duration: 560, easing: EASE });
     inner.animate([{ opacity: 0, offset: 0 }, { opacity: 0, offset: .14 }, { opacity: 1, offset: .5 }, { opacity: 1, offset: 1 }], { duration: 560, easing: "ease-out" });
@@ -186,6 +243,23 @@
     anim.onfinish = function () { panel.style.transition = ""; done(); };
   }
   document.addEventListener("click", function (e) {
+    var lang = e.target.closest && e.target.closest(".lang a:not(.on)");
+    if (lang && !e.metaKey && !e.ctrlKey && !e.shiftKey && !calm) {
+      var wrap = lang.parentElement, on = wrap.querySelector("a.on");
+      if (on) {
+        e.preventDefault();
+        var w = wrap.getBoundingClientRect(), a = on.getBoundingClientRect(), b = lang.getBoundingClientRect();
+        var knob = document.createElement("i");
+        knob.style.cssText = "position:absolute;z-index:0;border-radius:999px;background:rgba(255,255,255,.92);pointer-events:none;left:" + (a.left - w.left) + "px;top:" + (a.top - w.top) + "px;width:" + a.width + "px;height:" + a.height + "px";
+        wrap.style.position = "relative"; wrap.insertBefore(knob, wrap.firstChild);
+        [on, lang].forEach(function (x) { x.style.position = "relative"; x.style.zIndex = "1"; x.style.transition = "color .28s ease"; });
+        on.classList.remove("on"); on.style.background = "none"; lang.style.color = "var(--navy, #05183f)";
+        knob.animate([{ transform: "translateX(0)", width: a.width + "px" }, { transform: "translateX(" + (b.left - a.left) + "px)", width: b.width + "px" }], { duration: 340, easing: EASE, fill: "forwards" });
+        var href = lang.href;
+        setTimeout(function () { location.href = href; }, 360);
+        return;
+      }
+    }
     var a = e.target.closest && e.target.closest("[data-search]");
     if (a) { e.preventDefault(); show(a); }
   });

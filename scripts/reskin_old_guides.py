@@ -28,6 +28,7 @@ T = {
 }
 EXTRA_CSS = """
 /* old-guide components in the V2 template */
+@view-transition { navigation: auto; }
 a.search { color: inherit; text-decoration: none; cursor: pointer; }
 .gg b.sm { font: 700 15px/1.3 var(--sans); letter-spacing: 0; }
 .note.warn { background: #fdf0ec; }
