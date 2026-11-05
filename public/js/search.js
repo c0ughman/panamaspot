@@ -32,10 +32,9 @@
     ".ps-res.more{-webkit-mask-image:linear-gradient(#000 calc(100% - 26px),transparent);mask-image:linear-gradient(#000 calc(100% - 26px),transparent)}" +
     ".ps-m{padding:15px 20px 18px;font-size:14px;line-height:1.4;color:rgba(255,255,255,.8)}.ps-m a{color:#fff}" +
     ".ps-b,.ps-b *{text-shadow:none}" +
-    ".ps-tint{position:absolute;inset:0;pointer-events:none;transition:background .25s ease}.ps-r,.ps-res{position:relative;z-index:1}" +
+    ".ps-tint{position:absolute;inset:0;pointer-events:none}.ps-r,.ps-res{position:relative;z-index:1}" +
     "@keyframes ps-up{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}.ps-l.fresh li{animation:ps-up .34s cubic-bezier(.2,.8,.2,1) both}";
   var hidden = null, raf = 0, lastShade = 0, lastGrad = "";
-  var DARK = "rgba(16,20,28,.6)", CLEAR = "rgba(16,20,28,0)";
   /* Brightness 0-1 of a photo at a screen point, from a 48x48 copy of it. Unknown -> 0 (treated as dark). */
   var grids = new Map(), cv = document.createElement("canvas"); cv.width = cv.height = 48;
   function brightAt(img, x, y) {
@@ -75,21 +74,40 @@
     }
     return true;
   }
-  /* Scan the panel top to bottom in 20px bands and tint only the bands that sit over the light page. */
+  /* One soft shade instead of strips: measure how much of each 20px band sits over a light area,
+     blur that over about 160px, and ease it in over time, so the edge is a long gentle fade. */
+  var MAXA = .34, target = [], eased = [];
+  function measure() {
+    var r = panel.getBoundingClientRect(), n = Math.ceil(r.height / 20) + 1, raw = [];
+    for (var i = 0; i < n; i++) {
+      var vy = Math.min(r.bottom - 2, r.top + i * 20), v = 0;
+      [.15, .38, .62, .85].forEach(function (f) { if (lightAt(r.left + r.width * f, vy)) v += .25; });
+      raw.push(v);
+    }
+    target = raw.map(function (_, i) {   /* gaussian blur, sigma 4 bands */
+      var sum = 0, w = 0;
+      for (var k = -10; k <= 10; k++) { var j = Math.min(n - 1, Math.max(0, i + k)), g = Math.exp(-k * k / 32); sum += raw[j] * g; w += g; }
+      return sum / w;
+    });
+  }
   function shade(now) {
     if (!isOpen) return;
     raf = requestAnimationFrame(shade);
-    if (now - lastShade < 90) return;
-    lastShade = now;
-    var r = panel.getBoundingClientRect(), stops = [], step = 20;
-    for (var y = 0; y <= r.height; y += step) {
-      var vy = Math.min(r.bottom - 2, r.top + y), votes = 0;
-      [.2, .5, .8].forEach(function (f) { if (lightAt(r.left + r.width * f, vy)) votes++; });
-      stops.push((votes >= 2 ? DARK : CLEAR) + " " + y + "px");
+    if (now - lastShade > 120) { lastShade = now; measure(); }
+    if (!target.length) return;
+    var moved = false;
+    for (var i = 0; i < target.length; i++) {
+      var cur = eased[i] === undefined ? target[i] : eased[i], nx = cur + (target[i] - cur) * .12;
+      if (Math.abs(nx - cur) > .002) moved = true;
+      eased[i] = nx;
     }
+    eased.length = target.length;
+    if (!moved && lastGrad) return;
+    var stops = eased.map(function (v, i) { return "rgba(24,30,42," + (MAXA * v * v * (3 - 2 * v)).toFixed(3) + ") " + i * 20 + "px"; });
     var g = "linear-gradient(to bottom, " + stops.join(", ") + ")";
     if (g !== lastGrad) { panel.querySelector(".ps-tint").style.backgroundImage = g; lastGrad = g; }
   }
+
   var host, panel, inner, input, res, list, msg, data = null, loading = null, sel = -1, trigger = null, isOpen = false, anim = null, shown = 0;
 
   function norm(s) { return (s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase(); }
@@ -225,7 +243,7 @@
     var end = { left: parseFloat(panel.style.left), top: parseFloat(panel.style.top), width: parseFloat(panel.style.width), height: inner.offsetHeight };
     if (calm) { panel.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 160 }); return; }
     if (o.el) { o.el.style.visibility = "hidden"; hidden = o.el; }
-    cancelAnimationFrame(raf); lastShade = 0; raf = requestAnimationFrame(shade);
+    cancelAnimationFrame(raf); lastShade = 0; target = []; eased = []; lastGrad = ""; raf = requestAnimationFrame(shade);
     panel.style.transition = "none";
     anim = panel.animate([frame(o, false), frame(end, true)], { duration: 560, easing: EASE });
     inner.animate([{ opacity: 0, offset: 0 }, { opacity: 0, offset: .14 }, { opacity: 1, offset: .5 }, { opacity: 1, offset: 1 }], { duration: 560, easing: "ease-out" });
