@@ -45,8 +45,9 @@ def family(src):
     if "pexels" in u.netloc:
         return "pexels-" + re.search(r"/photos/(\d+)", u.path).group(1)
     if u.netloc not in ("panamaspot.com", ""):
-        name = re.sub(r"^\d+px-", "", pathlib.PurePosixPath(u.path).name)  # one photo at any width
-        return "ext-" + hashlib.md5(name.encode()).hexdigest()[:8]
+        if "wikimedia" in u.netloc:  # one photo at any width: Wikimedia file names are unique
+            return "ext-" + hashlib.md5(re.sub(r"^\d+px-", "", pathlib.PurePosixPath(u.path).name).encode()).hexdigest()[:8]
+        return "ext-" + hashlib.md5(u.path.encode()).hexdigest()[:8]  # other hosts reuse names like upload.jpeg
     name = pathlib.PurePosixPath(u.path).name
     if "/images/guides/" in u.path:
         name = re.sub(r"^[0-9a-f]{8}-", "", name)
