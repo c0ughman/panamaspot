@@ -18,11 +18,11 @@ P = ROOT / "public"
 DONOR = {"en": "articles/el-pianista-trail-boquete", "es": "es/articles/sendero-el-pianista-boquete-ruta-dificultad"}
 T = {
     "en": dict(toc="On this page", glance="At a glance", who="Panama Spot editors", role="Guides to Panama", upd="Updated", know="Need to know", read="Read next",
-               confirm="Always confirm with the operator before booking.", guide="Guide", explore=("Keep exploring", "More guides to read next", "All guides →"),
+               confirm="Always confirm with the operator before booking.", guide="Guide", hub="Hub", explore=("Keep exploring", "More guides to read next", "All guides →"),
                more="Continue reading", faq="Questions", photos="Photos", home="/#cat-regions", of="of", place="PANAMA",
                months="January February March April May June July August September October November December".split()),
     "es": dict(toc="En esta página", glance="De un vistazo", who="Editores de Panama Spot", role="Guías de Panamá", upd="Actualizado en", know="Lo esencial", read="Lee después",
-               confirm="Confirme siempre con el operador antes de reservar.", guide="Guía", explore=("Sigue explorando", "Más guías para leer después", "Todas las guías →"),
+               confirm="Confirme siempre con el operador antes de reservar.", guide="Guía", hub="Destino", explore=("Sigue explorando", "Más guías para leer después", "Todas las guías →"),
                more="Seguir leyendo", faq="Preguntas", photos="Fotos", home="/es#cat-regions", of="de", place="PANAMÁ",
                months="enero febrero marzo abril mayo junio julio agosto septiembre octubre noviembre diciembre".split()),
 }
@@ -226,7 +226,7 @@ def explore_html(cards, hub, t):
     hubs = [c for c in cards if c.get("is_hub")]
     a, b, g, d = (guides[0], hubs[0], guides[1], guides[2]) if hubs else cards[:4]
     pills = lambda: f'<span class="pills"><span class="chip glass">{t["guide"]}</span></span>'
-    c = lambda x: f'<span class="c"><i class="dot"></i>{t["guide"]}</span><h3>{x["title"]}</h3>'
+    c = lambda x: f'<span class="c"><i class="dot"></i>{t["hub"] if x.get("is_hub") else t["guide"]}</span><h3>{x["title"]}</h3>'
     im = lambda x: f'<img alt="" loading="lazy" src="{tile_src(x["src"])}"/>'
     out = (f'<a class="bt t-a" href="{a["href"]}"><span class="ph">{im(a)}{pills()}</span><span class="tx">{c(a)}<p>{a["dek"]}</p></span></a>'
            f'<a class="bt t-b" href="{b["href"]}"><span class="ph">{im(b)}</span><span class="tx">{c(b)}</span></a>'

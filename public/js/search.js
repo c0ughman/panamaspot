@@ -7,12 +7,12 @@
   var L = es
     ? { ph: "Buscar guías", none: "No hay guías para esa búsqueda.", all: "Ver todas las guías", hint: "Busque un lugar o una actividad: cascadas, café, Bocas…", close: "Cerrar", err: "No se pudo cargar la búsqueda. Inténtelo de nuevo.", home: "/es#cat-regions", guide: "Guía" }
     : { ph: "Search guides", none: "No guides match that search.", all: "See all guides", hint: "Try a place or an activity: waterfalls, coffee, Bocas…", close: "Close", err: "Search could not load. Please try again.", home: "/#cat-regions", guide: "Guide" };
-  var SPRING = "linear(0, 0.02 1.1%, 0.083 2.4%, 0.311 5.7%, 0.63 10.4%, 0.85 14.6%, 0.96 17.9%, 1.03 21.3%, 1.06 24.4%, 1.07 27.5%, 1.06 31.5%, 1.02 39.5%, 1 45%, 0.995 52%, 1)";
+  var SPRING = "linear(0, 0.07 2.2%, 0.26 6.3%, 0.55 12.5%, 0.79 19.5%, 0.93 27%, 0.99 35%, 1.008 43%, 1.006 53%, 1)";
   var hasSpring = window.CSS && CSS.supports && CSS.supports("transition-timing-function", SPRING);
-  var EASE = hasSpring ? SPRING : "cubic-bezier(.22,1.15,.36,1)";
+  var EASE = hasSpring ? SPRING : "cubic-bezier(.2,.9,.25,1)";
   var calm = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var GLASS = { bg: "rgba(22,26,34,.56)", blur: "blur(34px) saturate(1.6)", shadow: "0 24px 70px rgba(0,0,0,.34), inset 0 0 0 1px rgba(255,255,255,.14)" };
-  var PILL = { bg: "rgba(255,255,255,.18)", blur: "blur(7px) saturate(1.15)", shadow: "0 2px 8px rgba(0,0,0,.15), inset 0 0 0 1px rgba(255,255,255,0)" };
+  var GLASS = { bg: "rgba(255,255,255,.18)", blur: "blur(26px) saturate(1.15)", shadow: "0 2px 8px rgba(0,0,0,.15), 0 22px 60px rgba(0,0,0,.12)" };
+  var PILL = { bg: "rgba(255,255,255,.18)", blur: "blur(7px) saturate(1.15)", shadow: "0 2px 8px rgba(0,0,0,.15), 0 0 0 rgba(0,0,0,0)" };
   var CSSTEXT = ".ps-s{position:fixed;inset:0;z-index:1000;display:none}.ps-s.on{display:block}" +
     ".ps-b{position:fixed;overflow:hidden;border-radius:26px;background:" + GLASS.bg + ";-webkit-backdrop-filter:" + GLASS.blur + ";backdrop-filter:" + GLASS.blur + ";box-shadow:" + GLASS.shadow + ";font-family:var(--sans,system-ui,sans-serif);color:#fff;transition:height .42s " + EASE + "}" +
     ".ps-in{display:flex;flex-direction:column;min-height:0}" +
@@ -31,7 +31,68 @@
     "@media(max-width:640px){.ps-t{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}}" +
     ".ps-res.more{-webkit-mask-image:linear-gradient(#000 calc(100% - 26px),transparent);mask-image:linear-gradient(#000 calc(100% - 26px),transparent)}" +
     ".ps-m{padding:15px 20px 18px;font-size:14px;line-height:1.4;color:rgba(255,255,255,.8)}.ps-m a{color:#fff}" +
+    ".ps-b{text-shadow:0 1px 2px rgba(0,0,0,.28),0 1px 12px rgba(0,0,0,.4)}.ps-b .lt{text-shadow:none}.ps-b mark{text-shadow:none}" +
+    ".ps-r.lt,.ps-m.lt,.ps-l li.lt .ps-t{color:var(--navy,#05183f)}.ps-r.lt .ps-i{color:var(--ink,#161b26)}.ps-r.lt svg{color:var(--ink,#161b26)}.ps-r.lt .ps-i::placeholder{color:rgba(22,27,38,.55)}.ps-r.lt .ps-x{background:rgba(22,27,38,.08);color:var(--ink,#161b26)}" +
+    ".ps-l li.lt .ps-g,.ps-l li.lt .ps-d,.ps-m.lt{color:rgba(22,27,38,.7)}.ps-l li.lt .ps-g i{background:var(--red,#da121a)}.ps-m.lt a{color:var(--ink,#161b26)}" +
+    ".ps-l li.lt a:hover{background:rgba(255,255,255,.45)}.ps-l li.lt a[aria-selected=true]{background:rgba(255,255,255,.6)}.ps-l li.lt mark{background:rgba(218,18,26,.14);color:#a50d14}" +
     "@keyframes ps-up{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}.ps-l.fresh li{animation:ps-up .34s cubic-bezier(.2,.8,.2,1) both}";
+  var hidden = null, raf = 0;
+  /* Each row measures how bright the picture behind it is, so the glass can stay exactly the pill's:
+     dark photo -> white text (like the nav on the hero), bright photo or plain page -> dark text.
+     Checked about ten times a second while search is open. */
+  var lastTone = 0, grids = new Map(), cv = document.createElement("canvas");
+  cv.width = cv.height = 48;
+  function grid(img) {
+    var key = img.currentSrc || img.src;
+    if (grids.has(key)) return grids.get(key);
+    var g = null;
+    try {
+      if (img.complete && img.naturalWidth) {
+        var cx = cv.getContext("2d", { willReadFrequently: true });
+        cx.clearRect(0, 0, 48, 48); cx.drawImage(img, 0, 0, 48, 48);
+        var d = cx.getImageData(0, 0, 48, 48).data; g = new Float32Array(48 * 48);
+        for (var i = 0; i < g.length; i++) g[i] = (0.2126 * d[i * 4] + 0.7152 * d[i * 4 + 1] + 0.0722 * d[i * 4 + 2]) / 255;
+      }
+    } catch (e) { g = "photo"; }   /* a picture we may not read: treat it as a darkish photo */
+    if (g) grids.set(key, g);
+    return g;
+  }
+  /* brightness 0-1 of what is under a point, or -1 for "some photo, brightness unknown" */
+  function lum(x, y) {
+    var under = document.elementsFromPoint(x, y);
+    for (var i = 0; i < under.length; i++) {
+      var el = under[i];
+      if (host.contains(el)) continue;
+      var img = el.tagName === "IMG" ? el : null;
+      if (!img) { var box = el.closest("header.hero, .hero, figure, .ph, .gal, .stamp, .ev-ph, .home-hero, .hub-hero"); img = box && box.querySelector("img"); if (!img) return 1; }
+      var g = grid(img); if (!g) return -1; if (g === "photo") return -1;
+      var r = img.getBoundingClientRect(), nw = img.naturalWidth, nh = img.naturalHeight;
+      var sc = Math.max(r.width / nw, r.height / nh), dw = nw * sc, dh = nh * sc;
+      var pos = getComputedStyle(img).objectPosition.split(" ").map(function (v) { return parseFloat(v) / 100; });
+      var ox = r.left + (r.width - dw) * (isNaN(pos[0]) ? .5 : pos[0]), oy = r.top + (r.height - dh) * (isNaN(pos[1]) ? .5 : pos[1]);
+      var gx = Math.min(47, Math.max(0, Math.floor((x - ox) / dw * 48))), gy = Math.min(47, Math.max(0, Math.floor((y - oy) / dh * 48)));
+      return g[gy * 48 + gx];
+    }
+    return 1;
+  }
+  function tone(now) {
+    if (!isOpen) return;
+    raf = requestAnimationFrame(tone);
+    if (now - lastTone < 90) return;
+    lastTone = now;
+    var rows = [panel.querySelector(".ps-r"), msg].concat([].slice.call(list.children));
+    rows.forEach(function (el) {
+      var r = el.getBoundingClientRect(); if (!r.height) return;
+      var sum = 0, n = 0, unknown = 0;
+      [.25, .5, .75].forEach(function (fy) { [.15, .35, .55, .75, .95].forEach(function (fx) {
+        var v = lum(r.left + r.width * fx, r.top + r.height * fy);
+        if (v < 0) unknown++; else { sum += v; n++; }
+      }); });
+      /* the pill's glass adds 18% white on top of what is behind it */
+      var seen = n ? .82 * (sum / n) + .18 : 1;
+      el.classList.toggle("lt", unknown > n ? false : seen > .62);
+    });
+  }
   var host, panel, inner, input, res, list, msg, data = null, loading = null, sel = -1, trigger = null, isOpen = false, anim = null, shown = 0;
 
   function norm(s) { return (s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase(); }
@@ -166,7 +227,8 @@
     input.focus({ preventScroll: true }); load();
     var end = { left: parseFloat(panel.style.left), top: parseFloat(panel.style.top), width: parseFloat(panel.style.width), height: inner.offsetHeight };
     if (calm) { panel.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 160 }); return; }
-    if (o.el) o.el.style.visibility = "hidden";
+    if (o.el) { o.el.style.visibility = "hidden"; hidden = o.el; }
+    cancelAnimationFrame(raf); lastTone = 0; raf = requestAnimationFrame(tone);
     panel.style.transition = "none";
     anim = panel.animate([frame(o, false), frame(end, true)], { duration: 560, easing: EASE });
     inner.animate([{ opacity: 0, offset: 0 }, { opacity: 0, offset: .14 }, { opacity: 1, offset: .5 }, { opacity: 1, offset: 1 }], { duration: 560, easing: "ease-out" });
@@ -175,7 +237,7 @@
   function hide() {
     if (!isOpen) return; isOpen = false;
     var o = origin(), r = panel.getBoundingClientRect();
-    var done = function () { host.classList.remove("on"); if (o.el) o.el.style.visibility = ""; input.value = ""; list.innerHTML = ""; if (trigger && trigger.focus) trigger.focus({ preventScroll: true }); };
+    var done = function () { host.classList.remove("on"); if (hidden) { hidden.style.visibility = ""; hidden = null; } input.value = ""; list.innerHTML = ""; if (trigger && trigger.focus) trigger.focus({ preventScroll: true }); };
     if (calm) { done(); return; }
     if (anim) anim.cancel();
     panel.style.transition = "none";

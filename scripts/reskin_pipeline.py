@@ -4,6 +4,7 @@
   3. evalley_cta_rollout.py new CTAs on Boquete and El Valle guides
   4. build_search_thumbs.py search thumbnail
   5. page-images.ts         sitemap image list now names the photos on the page
+  6. check_share_images.py  the share image must be the hero photo, or the run fails
 
   python3 scripts/reskin_pipeline.py <photo_download_dir> --page=articles/x [--page=...]
 """
@@ -30,4 +31,7 @@ for p in done:
     ts, n = re.subn(r'  "/' + re.escape(p) + r'": \[\n.*?\n  \],\n', lambda m: block, ts, flags=re.S)
     if not n: ts = ts.replace("export const pageImages", "export const pageImages", 1); print("no sitemap image entry for", p)
 TS.write_text(ts)
+check = subprocess.run([sys.executable, "scripts/check_share_images.py", *[f"--page={p}" for p in done]], cwd=ROOT, capture_output=True, text=True)
+print(check.stdout.strip())
+if check.returncode: sys.exit("share image check failed: fix before committing")
 print("converted", len(done), "of", len(pages))
