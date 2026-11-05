@@ -10,7 +10,6 @@ Found while converting the old guides to the new template. The converter changes
 
 ## Also
 - `public/funnels/evalley_elvalle.html` (Google Ads landing page) shows $30/$40/$50.
-- Five Spanish guides lose a fifth "At a glance" fact, since the box holds four: bus-albrook-el-valle-de-anton-horarios-precios (Duración), el-volcan-baru-esta-activo (Monitoreo), tours-el-valle-de-anton (Idiomas), volcan-baru-como-subir-cima-panama (Entrada parque), zoologico-el-nispero-el-valle-de-anton (Tiempo recomendado).
 
 ## Sentences by page
 
