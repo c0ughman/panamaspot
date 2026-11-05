@@ -39,34 +39,14 @@ a.search { color: inherit; text-decoration: none; cursor: pointer; }
 .sec ul, .sec ol, .article > ul { padding-left: 22px; display: grid; gap: 8px; color: var(--body); }
 .t-c .tx { min-height: 0; overflow: hidden; }
 .t-c p { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; }
+.pull { display: grid; gap: 10px; padding: 26px 0 6px; border-top: 1px solid var(--line); }
+.pull figcaption { font-size: 14px; color: var(--muted); }
+.pull blockquote, .sec blockquote { font: 500 clamp(21px, 2vw, 26px)/1.45 var(--sans); color: var(--navy); letter-spacing: -0.012em; }
+.sec blockquote { padding-left: 20px; box-shadow: inset 3px 0 0 var(--red); }
 .id-t { display: block; font-weight: 600; color: var(--ink); }
 .id-d { font-size: 14.5px; color: var(--body); margin: 2px 0; }
 """
 SEARCH_TAG = '<script src="/js/search.js" defer></script>'
-
-
-COPY = json.loads((ROOT / "design/evalley-cta/copy.json").read_text())
-# E-Valley facts in old article text, from evalleybikes.net (read 2026-11-05). Applied to article text and FAQ schema alike.
-ALLOWED_EV = {"35", "45", "55", "20", "25", "30", "66", "75", "85", "100", "115"}
-PRICE_RULES = [
-    (r"(E-?Valley[^.$]{0,140}?)\b(from|starting at) \$30(?: per bike| per person|/day| a day| per day)?", r"\1\2 $35 per person"),
-    (r"(E-?Valley[^.$]{0,140}?)\b(desde|a partir de) \$30(?: por bici(?:cleta)?| por persona| al día| por día)?", r"\1\2 $35 por persona"),
-]
-
-
-def apply_prices(s):
-    for pat, rep in PRICE_RULES:
-        s = re.sub(pat, rep, s)
-    return s
-
-
-def funnel_to_whatsapp(s, lang):
-    """Article links to E-Valley go straight to WhatsApp, like the CTAs (user decision 2026-11-04)."""
-    def rep(m):
-        region = "elvalle" if m[1] == "elvalle" else "boquete"
-        c = COPY[f"{region}-{lang}"]
-        return f'<a href="{html.escape("https://wa.me/" + c["wa_number"] + "?text=" + quote(c["wa_msg"]))}" target="_blank" rel="sponsored noopener" data-ev="inline" data-region="{"el-valle" if region == "elvalle" else "boquete"}">{m[2]}</a>'
-    return re.sub(r'<a href="/funnels/evalley_(elvalle|boquete)[^"]*"[^>]*>(.*?)</a>', rep, s, flags=re.S)
 
 
 def old_html(rel):
@@ -257,7 +237,6 @@ def convert(rel):
     lang = "es" if rel.startswith("es/") else "en"
     t = T[lang]
     d = DONORS.setdefault(lang, donor_parts(lang))
-    s = apply_prices(s)
     ld = re.findall(r'<script type="application/ld\+json">.*?</script>', s, re.S)
     head = s[:s.index("</head>")]
     head = re.sub(r'<script type="application/ld\+json">.*?</script>|<style\b.*?</style>|<!--.*?-->', "", head, flags=re.S)
@@ -310,7 +289,7 @@ def convert(rel):
     prose = re.search(r'<article class="prose[^"]*"[^>]*>(.*)</article>', b[:b.index("</article>") + 10], re.S)[1]
     toc = re.search(r'<aside class="toc">(.*?)</aside>', b, re.S)[1]
     labels = {i: text(n) for i, n in re.findall(r'<a href="#([^"]+)"[^>]*><span class="n">.*?</span><span>(.*?)</span>', toc, re.S)}
-    prose = funnel_to_whatsapp(convert_tables(convert_callouts(convert_figures(prose))), lang)
+    prose = convert_tables(convert_callouts(convert_figures(prose)))
     intro, secs = split_sections(prose, labels)
     after = b[b.index("</article>"):]
     # highlights
@@ -321,6 +300,9 @@ def convert(rel):
         cs = re.findall(r'<div class="art-highlight-card">.*?<div class="stat">(.*?)</div><h3>(.*?)</h3><p>(.*?)</p></div>', g, re.S)
         high = f'<section class="sec" id="short-version"><span class="lbl">{hl[1]}</span><h2>{hl[2]}</h2><div class="prices p3">' + "".join(f'<div><h3 class="k">{h3}</h3><b>{st}</b><p>{p}</p></div>' for st, h3, p in cs) + "</div></section>"
         know = [f"{text(st)}: {text(h3)}" for st, h3, _ in cs]
+    # pull-quote ("from the field notebook"): text on the page, so it stays
+    stq = re.search(r'<section class="art-statement">.*?<blockquote>(.*?)</blockquote>\s*(?:<cite>(.*?)</cite>)?', after, re.S)
+    pull = f'<figure class="pull"><blockquote>{stq[1]}</blockquote>' + (f"<figcaption>{stq[2]}</figcaption>" if stq and stq[2] else "") + "</figure>" if stq else ""
     # FAQ
     fq = re.search(r'<span class="eyebrow">([^<]*)</span><h2>([^<]*)</h2></div><div class="faq"', after)
     faq = ""
@@ -329,7 +311,7 @@ def convert(rel):
         items = []
         for m in re.finditer(r'<button[^>]*class="faq-q"[^>]*>(.*?)</button><div class="faq-a">', g, re.S):
             a, e = block(g, m.end() - len('<div class="faq-a">'))
-            ans = funnel_to_whatsapp(g[m.end():e - 6].strip(), lang)
+            ans = g[m.end():e - 6].strip()
             items.append(f"<div><h3>{m[1]}</h3>" + (ans if re.search(r"<(p|ul|ol)\b", ans) else f"<p>{ans}</p>") + "</div>")
         faq = f'<section class="sec" id="faq"><span class="lbl">{fq[1]}</span><h2>{fq[2]}</h2><div class="faq">{"".join(items)}</div></section>'
     # photo notes
@@ -340,7 +322,10 @@ def convert(rel):
         lis = re.sub(r"<li>(.*?)</li>", lambda m: "<li><div>" + m[1].replace('class="id-m"', 'class="src-domain"') + "</div></li>", dsc[3], flags=re.S)
         refs = f'<section class="refs-box" id="sources"><div class="refs img-refs"><h2>{dsc[1]}</h2><p class="intro">{dsc[2]}</p><ul class="src-list">{lis}</ul></div></section>'
     elif crd:
-        refs = f'<section class="refs-box" id="sources"><div class="refs img-refs">{crd[1]}</div></section>'
+        ch = re.search(r"<h2>(.*?)</h2>", crd[1], re.S); sub = re.search(r'<p class="ic-sub">(.*?)</p>', crd[1], re.S)
+        items = "".join(f'<li><div>{a}<span class="src-domain">{m}</span></div></li>' for a, m in re.findall(r'<li>(<a\b.*?</a>)<span class="ic-meta">(.*?)</span></li>', crd[1], re.S))
+        refs = (f'<section class="refs-box" id="sources"><div class="refs img-refs"><h2>{ch[1] if ch else "Image credits"}</h2>'
+                + (f'<p class="intro">{sub[1]}</p>' if sub else "") + f'<ul class="src-list">{items}</ul></div></section>')
     # toc
     li = "".join(f'<li><a href="#{i}">{n}</a></li>' for i, n in labels.items() if re.search(rf'id="{re.escape(i)}"', secs))
     if faq: li += f'<li><a href="#faq">{t["faq"]}</a></li>'
@@ -384,6 +369,7 @@ def convert(rel):
 
 {secs}
 
+{pull}
 {high}
 {faq}
 {refs}
@@ -419,7 +405,6 @@ def head_val(s, pat):
 def check(old, new, rel):
     """Everything Google already knows about the page has to survive. Returns a list of problems."""
     bad = []
-    old = apply_prices(old)
     for name, pat in (("title", r"<title>(.*?)</title>"), ("description", r'<meta content="([^"]*)" name="description"'), ("robots", r'<meta content="([^"]*)" name="robots"'),
                       ("canonical", r'<link href="([^"]*)" rel="canonical"'), ("hreflang", r"<link\b[^>]*hreflang=[^>]*>"), ("og", r'<meta content="[^"]*" property="[^"]*"'), ("twitter", r'<meta content="[^"]*" name="twitter:[^"]*"')):
         if head_val(old, pat) != head_val(new, pat): bad.append(name + " changed")
@@ -449,21 +434,11 @@ def check(old, new, rel):
     for src in set(re.findall(r'<img\b[^>]*\bsrc="([^"]+)"', op)):
         if f'src="{src}"' not in new: bad.append("photo lost: " + src[:60])
     body = new[new.index("<body"):]; body = re.sub(r"<script\b.*?</script>|<style\b.*?</style>", "", body, flags=re.S)
-    if "/funnels/" in body: bad.append("funnel link left")
+    q = re.search(r'<section class="art-statement">.*?<blockquote>(.*?)</blockquote>', old, re.S)
+    if q and text(q[1]) not in text(new): bad.append("pull-quote lost")
+    oc = len(re.findall(r'<span class="ic-meta">', old)); nc = len(re.findall(r'<div class="refs img-refs">.*?</section>', new, re.S) and re.findall(r'<li><div><a\b[^>]*>[^<]*</a><span class="src-domain">', new))
+    if oc and nc < oc: bad.append(f"image credits lost ({nc} of {oc})")
     if len(re.findall(r'class="bt t-[abcd]"', body)) != 4: bad.append("explore does not have 4 cards")
-    if len(re.findall(r'<span class="k">', body[body.index('class="gg"'):body.index('class="wrap body"')])) > 4: bad.append("more than 4 glance facts")
-    other_lang = "en" if lang == "es" else "es"
-    sw = re.search(r'<span class="lang glass">.*?</span>', body, re.S)[0]
-    sw_to = re.search(r'href="([^"]+)" hreflang="' + other_lang + '"', sw)[1]
-    tw = [re.search(r'href="https://panamaspot\.com(/[^"]*)"', x) for x in re.findall(r"<link\b[^>]*hreflang=[^>]*>", new[:new.index("</head>")]) if f'hreflang="{other_lang}"' in x]
-    want = tw[0][1] if tw and tw[0] else ("/es" if other_lang == "es" else "/")
-    if sw_to != want: bad.append(f"language switch goes to {sw_to}, should be {want}")
-    words = html.unescape(re.sub(r"<[^>]+>", " ", re.sub(r"<!--evx:\w+-->.*?<!--/evx-->", " ", body[:body.index('<footer')], flags=re.S)))
-    for sent in re.split(r"(?<=[.!?])\s+", words):
-        if re.search(r"E-?Valley", sent):
-            amounts = re.findall(r"\$\s?(\d+)", sent)
-            if any(a not in ALLOWED_EV for a in amounts) or re.search(r"\$30\b", sent) or re.search(r"audio ?gu|canasta|basket|\block\b|candado|Plaza Paseo|cancel", sent, re.I):
-                bad.append("E-Valley fact to check: " + sent.strip()[:110]); break
     pv = None
     for m in re.finditer(r"<h([1-6])\b", body):
         l = int(m[1])

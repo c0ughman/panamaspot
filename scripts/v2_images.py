@@ -16,7 +16,7 @@ every page that uses the same photo. Pexels/Booqable hotlinks are downloaded onc
     python3 scripts/v2_images.py <download_dir> [--dry]
     python3 scripts/v2_images.py <download_dir> --page=articles/x.html [--page=...]   # only these pages; photos already in /images/v2 are left alone
 """
-import re, sys, json, html, time, hashlib, pathlib, subprocess, urllib.request, urllib.error, urllib.parse, concurrent.futures, collections
+import re, sys, json, html, time, threading, hashlib, pathlib, subprocess, urllib.request, urllib.error, urllib.parse, concurrent.futures, collections
 from html.parser import HTMLParser
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -100,14 +100,23 @@ def dims(f):
     return int(out[0]), int(out[1])
 
 
+WIKI_LOCK = threading.Lock()   # Wikimedia throttles parallel or rapid downloads: one at a time, with a pause
+
+
 def fetch(url, dest):
     if dest.exists() and dest.stat().st_size > 1000: return dest
-    req = urllib.request.Request(url, headers={"User-Agent": "PanamaSpot image self-hosting (panamaspot.com)"})
-    for wait in (0, 4, 10, 25):
-        time.sleep(wait)
+    req = urllib.request.Request(url, headers={"User-Agent": "PanamaSpotImageCopy/1.0 (https://panamaspot.com)"})
+    wiki = "wikimedia.org" in url
+    for wait in (0, 6, 20, 45):
+        if wait: time.sleep(wait)
         try:
-            with urllib.request.urlopen(req, timeout=60) as r:
-                dest.write_bytes(r.read())
+            if wiki:
+                with WIKI_LOCK:
+                    time.sleep(1.2)
+                    with urllib.request.urlopen(req, timeout=60) as r: data = r.read()
+            else:
+                with urllib.request.urlopen(req, timeout=60) as r: data = r.read()
+            dest.write_bytes(data)
             return dest
         except urllib.error.HTTPError as e:
             if e.code != 429 and e.code < 500: raise
@@ -115,14 +124,14 @@ def fetch(url, dest):
 
 
 def fetch_wikimedia(srcs, dest):
-    """The largest size Wikimedia will give us for this photo. Only fixed thumbnail widths exist."""
+    """The largest standard size Wikimedia will give for this photo; if none comes, the size the page already uses."""
     if dest.exists() and dest.stat().st_size > 1000: return dest
     thumb = next((u for u in sorted(srcs) if "/thumb/" in u), None)
-    tries = [re.sub(r"/\d+px-", f"/{w}px-", thumb) for w in (1920, 1280, 960)] if thumb else []
-    for u in tries + sorted(srcs):
+    tries = [re.sub(r"/\d+px-", f"/{w}px-", thumb) for w in (1920, 1280)] if thumb else []
+    for u in tries + sorted(srcs, key=lambda x: -int((re.search(r"/(\d+)px-", x) or [0, 0])[1])):
         try:
             return fetch(u, dest)
-        except urllib.error.HTTPError:
+        except (urllib.error.HTTPError, RuntimeError):
             continue
     raise RuntimeError("no size available for " + sorted(srcs)[0])
 
