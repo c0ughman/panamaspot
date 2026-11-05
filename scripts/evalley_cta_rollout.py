@@ -28,13 +28,8 @@ B = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(B)
 
 REGION_BY_CRUMB = {"Boquete": "boquete", "El Valle de Antón": "elvalle"}
-# breadcrumb says El Valle/Boquete but the page is a national round-up, not about the town
-NATIONAL = {
-    "articles/best-waterfalls-in-panama-where-to-see-several.html",
-    "articles/hiking-in-panama-best-trails.html",
-    "es/articles/cascadas-en-panama-mejores-como-llegar.html",
-    "es/articles/senderismo-en-panama-mejores-senderos-ciudad.html",
-}
+# National round-ups whose breadcrumb is El Valle get the El Valle blocks (user decision 2026-11-05).
+NATIONAL = set()
 M = {k: (f"<!--evx:{k}-->", "<!--/evx-->") for k in ("banner", "offer", "rail", "closer")}
 CSS_M = ("<!--evx:css-->", "<!--/evx:css-->")
 CSS_FILE = PUB / "css/evalley-cta.css"

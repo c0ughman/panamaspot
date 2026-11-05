@@ -447,12 +447,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date("2026-06-24"),
       changeFrequency: "monthly",
       priority: 0.8,
+      alternates: {
+        languages: {
+          en: `${siteConfig.url}/articles/boquete-coffee-farm-tour`,
+          es: `${siteConfig.url}/es/articles/tour-de-cafe-boquete-fincas-precios-reservar`,
+          "x-default": `${siteConfig.url}/articles/boquete-coffee-farm-tour`,
+        },
+      },
     },
     {
       url: `${siteConfig.url}/articles/lost-waterfalls-boquete-hiking-guide`,
       lastModified: new Date("2026-06-24"),
       changeFrequency: "monthly",
       priority: 0.8,
+      alternates: {
+        languages: {
+          en: `${siteConfig.url}/articles/lost-waterfalls-boquete-hiking-guide`,
+          es: `${siteConfig.url}/es/articles/cascadas-perdidas-boquete-ruta-precio`,
+          "x-default": `${siteConfig.url}/articles/lost-waterfalls-boquete-hiking-guide`,
+        },
+      },
     },
     {
       url: `${siteConfig.url}/es/articles/alquiler-de-bicicletas-boquete`,
@@ -498,12 +512,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     guide(
       "articles/el-valle-de-anton-with-kids",
       "https://images.pexels.com/photos/12861718/pexels-photo-12861718.jpeg?auto=compress&cs=tinysrgb&w=1280",
-      { en: "articles/el-valle-de-anton-with-kids", es: "es/articles/zoologico-el-nispero-el-valle-de-anton" },
+      { en: "articles/el-valle-de-anton-with-kids", es: "es/articles/el-valle-de-anton-con-ninos-familia" },
     ),
     guide(
       "es/articles/zoologico-el-nispero-el-valle-de-anton",
       "https://images.pexels.com/photos/12861718/pexels-photo-12861718.jpeg?auto=compress&cs=tinysrgb&w=1280",
-      { en: "articles/el-valle-de-anton-with-kids", es: "es/articles/zoologico-el-nispero-el-valle-de-anton" },
     ),
     guide(
       "articles/amador-causeway-biomuseo-guide",
@@ -520,6 +533,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     guide(
       "articles/cerro-gaital-cara-iguana-hike-el-valle",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Anton_Valle_foothills_-_Flickr_-_gailhampshire.jpg/1280px-Anton_Valle_foothills_-_Flickr_-_gailhampshire.jpg",
+      { en: "articles/cerro-gaital-cara-iguana-hike-el-valle", es: "es/articles/cerro-gaital-cara-iguana-rutas-dificultad" },
     ),
     guide(
       "articles/day-trips-from-panama-city",
@@ -528,6 +542,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     guide(
       "articles/el-valle-de-anton-waterfalls",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/ChorroMachoElValle.jpg/1280px-ChorroMachoElValle.jpg",
+      { en: "articles/el-valle-de-anton-waterfalls", es: "es/articles/cascadas-el-valle-de-anton-como-llegar" },
     ),
     guide(
       "articles/finca-lerida-los-quetzales-trail-birdwatching-boquete",
@@ -544,6 +559,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     guide(
       "es/articles/aguas-termales-el-valle-de-anton",
       "https://images.pexels.com/photos/920270/pexels-photo-920270.jpeg?auto=compress&cs=tinysrgb&w=1280",
+      { en: "articles/el-valle-de-anton-hot-springs-prices-hours-getting-there", es: "es/articles/aguas-termales-el-valle-de-anton" },
     ),
     guide(
       "es/articles/canopy-el-valle-de-anton-cabalgatas-aventura",
@@ -560,6 +576,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     guide(
       "es/articles/isla-coiba-buceo-parque-nacional",
       "https://panamaspot.com/images/v2/snowflake-in-panama-2072311431-hero-1920.webp",
+      { en: "articles/diving-in-panama", es: "es/articles/isla-coiba-buceo-parque-nacional" },
     ),
     guide(
       "es/articles/que-hacer-en-ciudad-de-panama",
@@ -613,6 +630,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     sepGuide(
       "articles/el-valle-de-anton-itinerary-one-day",
       "https://images.pexels.com/photos/30774409/pexels-photo-30774409.jpeg?auto=compress&cs=tinysrgb&w=1280",
+      { en: "articles/el-valle-de-anton-itinerary-one-day", es: "es/articles/el-valle-de-anton-en-un-dia-itinerario" },
     ),
     sepGuide(
       "articles/el-valle-de-anton-vs-boquete",
@@ -663,6 +681,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     sepGuide(
       "articles/where-to-stay-in-boquete",
       "https://images.pexels.com/photos/30774401/pexels-photo-30774401.jpeg?auto=compress&cs=tinysrgb&w=1280",
+      { en: "articles/where-to-stay-in-boquete", es: "es/articles/donde-dormir-en-boquete-hoteles-cabanas-hospedaje" },
     ),
     sepGuide(
       "articles/where-to-stay-in-el-valle-de-anton",
@@ -676,6 +695,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     sepGuide(
       "es/articles/boquete-con-ninos-guia-familiar",
       "https://images.pexels.com/photos/35106208/pexels-photo-35106208.jpeg?auto=compress&cs=tinysrgb&w=1280",
+      { en: "articles/boquete-with-kids-family-guide", es: "es/articles/boquete-con-ninos-guia-familiar" },
     ),
     sepGuide(
       "es/articles/bus-albrook-el-valle-de-anton-horarios-precios",
@@ -684,6 +704,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     sepGuide(
       "es/articles/chorro-las-mozas-pozas-el-valle-de-anton",
       "https://images.pexels.com/photos/17231782/pexels-photo-17231782.jpeg?auto=compress&cs=tinysrgb&w=1280",
+      { en: "articles/chorro-las-mozas-swimming-falls-el-valle", es: "es/articles/chorro-las-mozas-pozas-el-valle-de-anton" },
     ),
     sepGuide(
       "es/articles/cuanto-cuesta-boquete-presupuesto-semana",
@@ -692,6 +713,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     sepGuide(
       "es/articles/donde-comer-en-el-valle-de-anton",
       "https://images.pexels.com/photos/33703911/pexels-photo-33703911.jpeg?auto=compress&cs=tinysrgb&w=1280",
+      { en: "articles/where-to-eat-el-valle-de-anton", es: "es/articles/donde-comer-en-el-valle-de-anton" },
     ),
     sepGuide(
       "es/articles/donde-dormir-el-valle-de-anton",
@@ -701,10 +723,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     sepGuide(
       "es/articles/el-volcan-baru-esta-activo",
       "https://images.pexels.com/photos/37245225/pexels-photo-37245225.jpeg?auto=compress&cs=tinysrgb&w=1280",
+      { en: "articles/volcan-baru-national-park-entry-facts-active", es: "es/articles/el-volcan-baru-esta-activo" },
     ),
     sepGuide(
       "es/articles/feria-de-las-flores-y-del-cafe-boquete",
       "https://images.pexels.com/photos/29207117/pexels-photo-29207117.jpeg?auto=compress&cs=tinysrgb&w=1280",
+      { en: "articles/boquete-flower-and-coffee-fair-visitor-guide", es: "es/articles/feria-de-las-flores-y-del-cafe-boquete" },
     ),
     sepGuide(
       "es/articles/mariposario-el-valle-de-anton",
@@ -721,6 +745,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     sepGuide(
       "es/articles/piedra-pintada-el-valle-de-anton",
       "https://images.pexels.com/photos/39056910/pexels-photo-39056910.jpeg?auto=compress&cs=tinysrgb&w=1280",
+      { en: "articles/piedra-pintada-painted-rock-el-valle-de-anton", es: "es/articles/piedra-pintada-el-valle-de-anton" },
     ),
     sepGuide(
       "es/articles/precios-horarios-el-valle-de-anton",
@@ -880,6 +905,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...guide(
         "es/articles/cerro-gaital-cara-iguana-rutas-dificultad",
         "https://panamaspot.com/images/v2/iguana-iguana-hero-1920.webp",
+      { en: "articles/cerro-gaital-cara-iguana-hike-el-valle", es: "es/articles/cerro-gaital-cara-iguana-rutas-dificultad" },
       ),
       lastModified: new Date("2026-11-03"),
     },
@@ -887,6 +913,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...guide(
         "es/articles/cascadas-perdidas-boquete-ruta-precio",
         "https://panamaspot.com/images/v2/wasserfall-bei-boquete-26701686043-hero-1920.webp",
+      { en: "articles/lost-waterfalls-boquete-hiking-guide", es: "es/articles/cascadas-perdidas-boquete-ruta-precio" },
       ),
       lastModified: new Date("2026-11-03"),
     },
@@ -916,6 +943,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...guide(
         "es/articles/tour-de-cafe-boquete-fincas-precios-reservar",
         "https://panamaspot.com/images/v2/finca-lerida-boquete-panama-hero-1920.webp",
+      { en: "articles/boquete-coffee-farm-tour", es: "es/articles/tour-de-cafe-boquete-fincas-precios-reservar" },
       ),
       lastModified: new Date("2026-11-03"),
     },
@@ -938,6 +966,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...guide(
         "articles/el-valle-de-anton-hot-springs-prices-hours-getting-there",
         "https://panamaspot.com/images/v2/steam-rises-over-a-bed-of-920270-hero-1920.webp",
+      { en: "articles/el-valle-de-anton-hot-springs-prices-hours-getting-there", es: "es/articles/aguas-termales-el-valle-de-anton" },
       ),
       lastModified: new Date("2026-11-03"),
     },
@@ -945,6 +974,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...guide(
         "articles/boquete-flower-and-coffee-fair-visitor-guide",
         "https://panamaspot.com/images/v2/rvn06957-hero-1920.webp",
+      { en: "articles/boquete-flower-and-coffee-fair-visitor-guide", es: "es/articles/feria-de-las-flores-y-del-cafe-boquete" },
       ),
       lastModified: new Date("2026-11-03"),
     },
@@ -966,6 +996,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...guide(
         "es/articles/el-valle-de-anton-con-ninos-familia",
         "https://panamaspot.com/images/v2/four-children-stand-on-a-sandy-5036679-hero-1920.webp",
+      { en: "articles/el-valle-de-anton-with-kids", es: "es/articles/el-valle-de-anton-con-ninos-familia" },
       ),
       lastModified: new Date("2026-11-03"),
     },
@@ -973,6 +1004,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...guide(
         "articles/boquete-with-kids-family-guide",
         "https://panamaspot.com/images/v2/four-children-stand-on-a-sandy-5036679-hero-1920.webp",
+      { en: "articles/boquete-with-kids-family-guide", es: "es/articles/boquete-con-ninos-guia-familiar" },
       ),
       lastModified: new Date("2026-11-03"),
     },
@@ -980,6 +1012,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...guide(
         "es/articles/el-valle-de-anton-en-un-dia-itinerario",
         "https://panamaspot.com/images/v2/house-and-landscape-el-valle-02-hero-1920.webp",
+      { en: "articles/el-valle-de-anton-itinerary-one-day", es: "es/articles/el-valle-de-anton-en-un-dia-itinerario" },
       ),
       lastModified: new Date("2026-11-03"),
     },
@@ -994,6 +1027,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...guide(
         "es/articles/donde-dormir-en-boquete-hoteles-cabanas-hospedaje",
         "https://panamaspot.com/images/v2/boquete-houseclouds-hero-1920.webp",
+      { en: "articles/where-to-stay-in-boquete", es: "es/articles/donde-dormir-en-boquete-hoteles-cabanas-hospedaje" },
       ),
       lastModified: new Date("2026-11-03"),
     },
@@ -1017,6 +1051,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...guide(
         "articles/where-to-eat-el-valle-de-anton",
         "https://panamaspot.com/images/v2/lasnubes-camarones-hero-1920.webp",
+      { en: "articles/where-to-eat-el-valle-de-anton", es: "es/articles/donde-comer-en-el-valle-de-anton" },
       ),
       lastModified: new Date("2026-11-03"),
     },
@@ -1024,6 +1059,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...guide(
         "articles/volcan-baru-national-park-entry-facts-active",
         "https://panamaspot.com/images/v2/volcan-baru-up-close-and-clouded-hero-1920.webp",
+      { en: "articles/volcan-baru-national-park-entry-facts-active", es: "es/articles/el-volcan-baru-esta-activo" },
       ),
       lastModified: new Date("2026-11-03"),
     },
@@ -1061,6 +1097,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...guide(
         "es/articles/cascadas-el-valle-de-anton-como-llegar",
         "https://panamaspot.com/images/v2/el-macho-falls-panoramio-hero-1920.webp",
+      { en: "articles/el-valle-de-anton-waterfalls", es: "es/articles/cascadas-el-valle-de-anton-como-llegar" },
       ),
       lastModified: new Date("2026-11-03"),
     },
@@ -1075,6 +1112,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...guide(
         "articles/piedra-pintada-painted-rock-el-valle-de-anton",
         "https://panamaspot.com/images/v2/petroglifoelvalle-hero-1920.webp",
+      { en: "articles/piedra-pintada-painted-rock-el-valle-de-anton", es: "es/articles/piedra-pintada-el-valle-de-anton" },
       ),
       lastModified: new Date("2026-11-03"),
     },
@@ -1082,6 +1120,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...guide(
         "articles/chorro-las-mozas-swimming-falls-el-valle",
         "https://panamaspot.com/images/v2/a-waterfall-falls-into-a-amber-34937418-hero-1920.webp",
+      { en: "articles/chorro-las-mozas-swimming-falls-el-valle", es: "es/articles/chorro-las-mozas-pozas-el-valle-de-anton" },
       ),
       lastModified: new Date("2026-11-03"),
     },
