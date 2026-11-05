@@ -32,6 +32,7 @@
     ".ps-res.more{-webkit-mask-image:linear-gradient(#000 calc(100% - 26px),transparent);mask-image:linear-gradient(#000 calc(100% - 26px),transparent)}" +
     ".ps-m{padding:15px 20px 18px;font-size:14px;line-height:1.4;color:rgba(255,255,255,.8)}.ps-m a{color:#fff}" +
     ".ps-b,.ps-b *{text-shadow:none}" +
+    ".ps-pill{position:absolute;left:0;top:0;margin:0;background:none!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;color:#fff;pointer-events:none;opacity:0;white-space:nowrap;z-index:2}" +
     ".ps-tint{position:absolute;inset:0;pointer-events:none}.ps-r,.ps-res{position:relative;z-index:1}" +
     "@keyframes ps-up{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}.ps-l.fresh li{animation:ps-up .34s cubic-bezier(.2,.8,.2,1) both}";
   var hidden = null, raf = 0, lastShade = 0, lastGrad = "";
@@ -208,6 +209,7 @@
     input.addEventListener("input", render);
     res.addEventListener("scroll", edge, { passive: true });
     input.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") { e.preventDefault(); e.stopPropagation(); hide(); return; }  /* stop the browser clearing the box first */
       if (e.key === "ArrowDown") { e.preventDefault(); select(sel + 1); }
       else if (e.key === "ArrowUp") { e.preventDefault(); select(sel - 1); }
       else if (e.key === "Enter") { var a = list.querySelectorAll("a"); if (a.length) { e.preventDefault(); location.href = a[Math.max(sel, 0)].getAttribute("href"); } }
@@ -233,6 +235,16 @@
     return { left: o.left + "px", top: o.top + "px", width: o.width + "px", height: o.height + "px", borderRadius: glass ? "26px" : o.height / 2 + "px", backgroundColor: g.bg, backdropFilter: g.blur, webkitBackdropFilter: g.blur, boxShadow: g.shadow };
   }
   var byKey = false;
+  /* Put the pill's own icon and label inside the panel, at the pill's size, so the two can cross-fade. */
+  function pillCopy(el) {
+    var c = panel.querySelector(".ps-pill");
+    if (!c) { c = document.createElement("span"); c.className = "search ps-pill"; c.setAttribute("aria-hidden", "true"); panel.appendChild(c); }
+    if (el) {
+      c.innerHTML = el.innerHTML;
+      var r = el.getBoundingClientRect(); c.style.width = r.width + "px"; c.style.height = r.height + "px"; c.style.font = getComputedStyle(el).font;
+    }
+    return el ? c : null;
+  }
   function show(from) {
     if (!host) build();
     if (isOpen) { input.focus(); input.select(); return; }
@@ -247,31 +259,31 @@
     cancelAnimationFrame(raf); lastShade = 0; target = []; eased = []; lastGrad = ""; raf = requestAnimationFrame(shade);
     panel.style.transition = "none";
     anim = panel.animate([frame(o, false), frame(end, true)], { duration: 560, easing: EASE });
-    inner.animate([{ opacity: 0, offset: 0 }, { opacity: 0, offset: .14 }, { opacity: 1, offset: .5 }, { opacity: 1, offset: 1 }], { duration: 560, easing: "ease-out" });
+    inner.animate([{ opacity: 0, offset: 0 }, { opacity: 0, offset: .12 }, { opacity: 1, offset: .46 }, { opacity: 1, offset: 1 }], { duration: 560, easing: "ease-out" });
+    var pc = pillCopy(o.el);
+    if (pc) pc.animate([{ opacity: 1 }, { opacity: 0, offset: .24 }, { opacity: 0 }], { duration: 560, easing: "ease-out" });
     anim.onfinish = function () { panel.style.transition = ""; };
   }
-  /* Closing mirrors opening: the contents fade first and stay hidden, the panel folds up to the search row,
-     then glides back into the pill, which fades in under it as it lands. */
+  /* Closing mirrors opening: in one continuous move the results fade out while the pill's own label
+     fades in early, so the glass is never empty, and it lands exactly on the pill. */
   function hide() {
     if (!isOpen) return; isOpen = false;
-    var o = origin(), r = panel.getBoundingClientRect(), row = panel.querySelector(".ps-r").offsetHeight;
-    var fade = null;
+    var o = origin(), r = panel.getBoundingClientRect(), fades = [];
     var done = function () {
-      host.classList.remove("on"); if (fade) fade.cancel();
+      host.classList.remove("on"); fades.forEach(function (f) { f.cancel(); });
       input.value = ""; list.innerHTML = ""; shown = 0;
       if (trigger && trigger.focus) trigger.focus({ preventScroll: true, focusVisible: byKey });
     };
-    var back = function () { if (hidden) { var h = hidden; hidden = null; h.style.visibility = ""; if (!calm) h.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 160, easing: "ease-out" }); } };
+    var back = function () { if (hidden) { hidden.style.visibility = ""; hidden = null; } };
     if (calm) { back(); done(); return; }
     if (anim) anim.cancel();
     panel.style.transition = "none";
-    fade = inner.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 110, easing: "ease-out", fill: "forwards" });
-    var start = frame({ left: r.left, top: r.top, width: r.width, height: r.height }, true);
-    var folded = Object.assign(frame({ left: r.left, top: r.top, width: r.width, height: Math.min(r.height, row) }, true), { offset: .34, easing: "cubic-bezier(.32,.72,0,1)" });
+    var D = 440;
+    fades.push(inner.animate([{ opacity: 1 }, { opacity: 0, offset: .24 }, { opacity: 0 }], { duration: D, easing: "ease-out", fill: "forwards" }));
+    var pc = pillCopy(o.el);
+    if (pc) fades.push(pc.animate([{ opacity: 0 }, { opacity: 1, offset: .3 }, { opacity: 1 }], { duration: D, easing: "ease-out", fill: "forwards" }));
     var end = o.el ? frame(o, false) : Object.assign(frame(o, false), { opacity: 0 });
-    start.easing = "cubic-bezier(.4,0,.2,1)";
-    anim = panel.animate([start, folded, end], { duration: 460 });
-    setTimeout(back, 330);
+    anim = panel.animate([frame({ left: r.left, top: r.top, width: r.width, height: r.height }, true), end], { duration: D, easing: "cubic-bezier(.32,.72,0,1)" });
     anim.onfinish = function () { panel.style.transition = ""; back(); done(); };
   }
   document.addEventListener("click", function (e) {
