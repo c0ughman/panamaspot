@@ -1,5 +1,5 @@
 /* Site search for the guides. Loads /search-index.json (built by scripts/build-static.mjs) on first use.
-   The panel grows out of the "Search guides" pill, in the same frosted glass, with nothing dimmed behind it.
+   The panel grows out of the "Search guides" pill and glides to the centre, in dark frosted glass with white text and nothing dimmed behind it.
    Results stay in the language of the page you are on. */
 (function () {
   "use strict";
@@ -11,26 +11,26 @@
   var hasSpring = window.CSS && CSS.supports && CSS.supports("transition-timing-function", SPRING);
   var EASE = hasSpring ? SPRING : "cubic-bezier(.22,1.15,.36,1)";
   var calm = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var GLASS = { bg: "rgba(255,255,255,.62)", blur: "blur(30px) saturate(1.7)", shadow: "0 18px 60px rgba(5,24,63,.2), inset 0 0 0 1px rgba(255,255,255,.5)" };
+  var GLASS = { bg: "rgba(22,26,34,.56)", blur: "blur(34px) saturate(1.6)", shadow: "0 24px 70px rgba(0,0,0,.34), inset 0 0 0 1px rgba(255,255,255,.14)" };
   var PILL = { bg: "rgba(255,255,255,.18)", blur: "blur(7px) saturate(1.15)", shadow: "0 2px 8px rgba(0,0,0,.15), inset 0 0 0 1px rgba(255,255,255,0)" };
   var CSSTEXT = ".ps-s{position:fixed;inset:0;z-index:1000;display:none}.ps-s.on{display:block}" +
-    ".ps-b{position:fixed;overflow:hidden;border-radius:26px;background:" + GLASS.bg + ";-webkit-backdrop-filter:" + GLASS.blur + ";backdrop-filter:" + GLASS.blur + ";box-shadow:" + GLASS.shadow + ";font-family:var(--sans,system-ui,sans-serif);color:var(--ink,#161b26);transition:height .42s " + EASE + "}" +
+    ".ps-b{position:fixed;overflow:hidden;border-radius:26px;background:" + GLASS.bg + ";-webkit-backdrop-filter:" + GLASS.blur + ";backdrop-filter:" + GLASS.blur + ";box-shadow:" + GLASS.shadow + ";font-family:var(--sans,system-ui,sans-serif);color:#fff;transition:height .42s " + EASE + "}" +
     ".ps-in{display:flex;flex-direction:column;min-height:0}" +
-    ".ps-r{display:flex;align-items:center;gap:11px;padding:13px 14px 13px 18px;flex:none}.ps-r svg{flex:none;color:var(--ink,#161b26);opacity:.65}" +
-    ".ps-i{flex:1;min-width:0;border:0;outline:0;background:none;color:inherit;font:500 17px/1.3 var(--sans,system-ui,sans-serif);-webkit-appearance:none;appearance:none}.ps-i::placeholder{color:rgba(22,27,38,.55)}.ps-i::-webkit-search-cancel-button{display:none}" +
-    ".ps-x{border:0;background:rgba(255,255,255,.55);border-radius:999px;padding:6px 12px;font:600 12.5px/1.2 var(--sans,system-ui,sans-serif);color:var(--ink,#161b26);cursor:pointer}" +
-    ".ps-res{overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;border-top:1px solid rgba(22,27,38,.09)}.ps-res:empty{display:none}" +
+    ".ps-r{display:flex;align-items:center;gap:11px;padding:13px 14px 13px 18px;flex:none}.ps-r svg{flex:none;color:#fff;opacity:.75}" +
+    ".ps-i{caret-color:#ff4a4f;flex:1;min-width:0;border:0;outline:0;background:none;color:inherit;font:500 17px/1.3 var(--sans,system-ui,sans-serif);-webkit-appearance:none;appearance:none}.ps-i::placeholder{color:rgba(255,255,255,.62)}.ps-i::-webkit-search-cancel-button{display:none}" +
+    ".ps-x{border:0;background:rgba(255,255,255,.16);border-radius:999px;padding:6px 12px;font:600 12.5px/1.2 var(--sans,system-ui,sans-serif);color:#fff;cursor:pointer}" +
+    ".ps-res{overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;border-top:1px solid rgba(255,255,255,.13)}.ps-res:empty{display:none}" +
     ".ps-l{list-style:none;margin:0;padding:7px}.ps-l:empty{display:none}" +
     ".ps-l a{display:grid;grid-template-columns:56px minmax(0,1fr);gap:13px;align-items:center;padding:8px;border-radius:17px;color:inherit;text-decoration:none;transition:background .16s ease}" +
-    ".ps-l a[aria-selected=true]{background:rgba(255,255,255,.62);box-shadow:0 1px 4px rgba(5,24,63,.07)}.ps-l a:hover{background:rgba(255,255,255,.5)}" +
-    ".ps-th{display:block;width:56px;height:56px;border-radius:13px;overflow:hidden;background:rgba(5,24,63,.08)}.ps-th img{display:block;width:100%;height:100%;object-fit:cover}" +
-    ".ps-tx{display:grid;gap:2px;min-width:0}.ps-g{display:inline-flex;align-items:center;gap:6px;font:600 12px/1.2 var(--sans,system-ui,sans-serif);color:rgba(22,27,38,.68)}.ps-g i{width:6px;height:6px;border-radius:50%;background:var(--red,#da121a);flex:none}" +
-    ".ps-t{font:700 15.5px/1.28 var(--sans,system-ui,sans-serif);color:var(--navy,#05183f);letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}" +
-    ".ps-d{font:400 13px/1.35 var(--sans,system-ui,sans-serif);color:rgba(22,27,38,.68);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}" +
-    ".ps-b mark{background:rgba(218,18,26,.15);color:inherit;border-radius:4px;padding:0 1px;font-weight:inherit}.ps-t mark{color:#a50d14}" +
+    ".ps-l a:hover{background:rgba(255,255,255,.09)}.ps-l a[aria-selected=true]{background:rgba(255,255,255,.17)}" +
+    ".ps-th{display:block;width:56px;height:56px;border-radius:13px;overflow:hidden;background:rgba(255,255,255,.1)}.ps-th img{display:block;width:100%;height:100%;object-fit:cover}" +
+    ".ps-tx{display:grid;gap:2px;min-width:0}.ps-g{display:inline-flex;align-items:center;gap:6px;font:600 12px/1.2 var(--sans,system-ui,sans-serif);color:rgba(255,255,255,.74)}.ps-g i{width:6px;height:6px;border-radius:50%;background:#ff4a4f;flex:none}" +
+    ".ps-t{font:700 15.5px/1.28 var(--sans,system-ui,sans-serif);color:#fff;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}" +
+    ".ps-d{font:400 13px/1.35 var(--sans,system-ui,sans-serif);color:rgba(255,255,255,.72);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}" +
+    ".ps-b mark{background:rgba(255,74,79,.42);color:#fff;border-radius:4px;padding:0 1px;font-weight:inherit}" +
     "@media(max-width:640px){.ps-t{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}}" +
     ".ps-res.more{-webkit-mask-image:linear-gradient(#000 calc(100% - 26px),transparent);mask-image:linear-gradient(#000 calc(100% - 26px),transparent)}" +
-    ".ps-m{padding:15px 20px 18px;font-size:14px;line-height:1.4;color:rgba(22,27,38,.72)}.ps-m a{color:inherit}" +
+    ".ps-m{padding:15px 20px 18px;font-size:14px;line-height:1.4;color:rgba(255,255,255,.8)}.ps-m a{color:#fff}" +
     "@keyframes ps-up{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}.ps-l.fresh li{animation:ps-up .34s cubic-bezier(.2,.8,.2,1) both}";
   var host, panel, inner, input, res, list, msg, data = null, loading = null, sel = -1, trigger = null, isOpen = false, anim = null, shown = 0;
 
@@ -146,10 +146,10 @@
     if (r && r.width > 0 && r.bottom > 0 && r.top < innerHeight) return { left: r.left, top: r.top, width: r.width, height: r.height, el: el };
     return { left: innerWidth / 2 - 95, top: 16, width: 190, height: 40, el: null };
   }
+  /* The panel always lands in the middle of the screen; the pill stays hidden while it is open. */
   function place() {
-    var vw = document.documentElement.clientWidth, o = origin(), w, left;
-    if (vw <= 640) { w = vw - 24; left = 12; } else { w = Math.min(640, vw - 32); left = o.el ? Math.max(16, Math.min(o.left + o.width - w, vw - w - 16)) : (vw - w) / 2; }
-    panel.style.left = left + "px"; panel.style.top = Math.max(12, o.top - 3) + "px"; panel.style.width = w + "px";
+    var vw = document.documentElement.clientWidth, vh = window.innerHeight, o = origin(), w = vw <= 640 ? vw - 24 : Math.min(660, vw - 32);
+    panel.style.left = (vw - w) / 2 + "px"; panel.style.top = (vw <= 640 ? 16 : Math.round(vh * .14)) + "px"; panel.style.width = w + "px";
     return o;
   }
   function frame(o, glass) {

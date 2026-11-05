@@ -14,8 +14,9 @@ Files land in public/images/v2/<name>-<role>[-<w>].webp, named after the photo (
 every page that uses the same photo. Pexels/Booqable hotlinks are downloaded once into a cache dir.
 
     python3 scripts/v2_images.py <download_dir> [--dry]
+    python3 scripts/v2_images.py <download_dir> --page=articles/x.html [--page=...]   # only these pages; photos already in /images/v2 are left alone
 """
-import re, sys, json, html, hashlib, pathlib, subprocess, urllib.request, urllib.parse, concurrent.futures, collections
+import re, sys, json, html, time, hashlib, pathlib, subprocess, urllib.request, urllib.error, urllib.parse, concurrent.futures, collections
 from html.parser import HTMLParser
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -24,6 +25,7 @@ OUT = PUB / "images/v2"
 SITE = "https://panamaspot.com"
 DL = pathlib.Path(sys.argv[1])
 DRY = "--dry" in sys.argv
+ONLY = {a.split("=", 1)[1] for a in sys.argv if a.startswith("--page=")}
 Q = 76
 
 ROLE_OF = [("hero-img", "hero"), ("stamp", "stamp"), ("fc", "card"), ("fig", "wide"), ("gal", "gallery"), ("bt", "tile")]
@@ -43,7 +45,8 @@ def family(src):
     if "pexels" in u.netloc:
         return "pexels-" + re.search(r"/photos/(\d+)", u.path).group(1)
     if u.netloc not in ("panamaspot.com", ""):
-        return "ext-" + hashlib.md5(u.path.encode()).hexdigest()[:8]
+        name = re.sub(r"^\d+px-", "", pathlib.PurePosixPath(u.path).name)  # one photo at any width
+        return "ext-" + hashlib.md5(name.encode()).hexdigest()[:8]
     name = pathlib.PurePosixPath(u.path).name
     if "/images/guides/" in u.path:
         name = re.sub(r"^[0-9a-f]{8}-", "", name)
@@ -99,17 +102,37 @@ def dims(f):
 
 def fetch(url, dest):
     if dest.exists() and dest.stat().st_size > 1000: return dest
-    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (PanamaSpot image self-hosting)"})
-    with urllib.request.urlopen(req, timeout=60) as r:
-        dest.write_bytes(r.read())
-    return dest
+    req = urllib.request.Request(url, headers={"User-Agent": "PanamaSpot image self-hosting (panamaspot.com)"})
+    for wait in (0, 4, 10, 25):
+        time.sleep(wait)
+        try:
+            with urllib.request.urlopen(req, timeout=60) as r:
+                dest.write_bytes(r.read())
+            return dest
+        except urllib.error.HTTPError as e:
+            if e.code != 429 and e.code < 500: raise
+    raise RuntimeError("gave up on " + url)
+
+
+def fetch_wikimedia(srcs, dest):
+    """The largest size Wikimedia will give us for this photo. Only fixed thumbnail widths exist."""
+    if dest.exists() and dest.stat().st_size > 1000: return dest
+    thumb = next((u for u in sorted(srcs) if "/thumb/" in u), None)
+    tries = [re.sub(r"/\d+px-", f"/{w}px-", thumb) for w in (1920, 1280, 960)] if thumb else []
+    for u in tries + sorted(srcs):
+        try:
+            return fetch(u, dest)
+        except urllib.error.HTTPError:
+            continue
+    raise RuntimeError("no size available for " + sorted(srcs)[0])
 
 
 def main():
     DL.mkdir(parents=True, exist_ok=True)
     OUT.mkdir(parents=True, exist_ok=True)
     pages = [f for f in sorted(list((PUB / "articles").glob("*.html")) + list((PUB / "es/articles").glob("*.html")))
-             if '<header class="hero">' in f.read_text(encoding="utf-8")]
+             if '<header class="hero">' in f.read_text(encoding="utf-8")
+             and (not ONLY or str(f.relative_to(PUB)) in ONLY)]
     uses = []                                   # (page, offset, attrs, role, family)
     fam_srcs = collections.defaultdict(set)
     fam_alt = {}
@@ -117,6 +140,7 @@ def main():
     for f in pages:
         s = f.read_text(encoding="utf-8")
         for off, a, anc in ImgScan(s).imgs:
+            if ONLY and "/images/v2/" in a.get("src", ""): continue
             srcs = [a.get("src", "")] + [x.strip().split(" ")[0] for x in (a.get("srcset") or "").split(",") if x.strip()]
             fam = family(a.get("src", ""))
             role = role_for(a, anc)
@@ -136,7 +160,8 @@ def main():
             return fetch(f"https://images.pexels.com/photos/{pid}/pexels-photo-{pid}.jpeg?auto=compress&cs=tinysrgb&w=2400", DL / f"{fam}.jpg")
         if fam.startswith("ext-"):
             u = sorted(srcs)[0]
-            return fetch(u, DL / (fam + pathlib.PurePosixPath(urllib.parse.urlparse(u).path).suffix))
+            dest = DL / (fam + pathlib.PurePosixPath(urllib.parse.urlparse(u).path).suffix)
+            return fetch_wikimedia(srcs, dest) if "wikimedia" in u else fetch(u, dest)
         best, bw = None, -1
         for u in srcs:
             p = PUB / urllib.parse.unquote(urllib.parse.urlparse(u if "://" in u else SITE + u).path).lstrip("/")
@@ -150,7 +175,7 @@ def main():
                     w = dims(p)[0]
                     if w > bw: best, bw = p, w
         return best
-    with concurrent.futures.ThreadPoolExecutor(8) as ex:
+    with concurrent.futures.ThreadPoolExecutor(3) as ex:
         for fam, m in zip(list(fam_srcs), ex.map(master_of, list(fam_srcs))):
             masters[fam] = m
     missing = [f for f, m in masters.items() if m is None]
@@ -273,6 +298,11 @@ def main():
             if old.startswith(SITE): olds |= {old[len(SITE):]}
             for o in sorted(olds, key=len, reverse=True):
                 s = s.replace(f'"{o}"', f'"{newu}"')
+        # any other size of a moved photo still named in schema or metadata
+        def moved(m):
+            fam = family(html.unescape(m[0]))
+            return next((nu for o, (nu, _) in page_map.items() if family(o) == fam), m[0])
+        s = re.sub(r'https://(?:images\.pexels\.com/photos|upload\.wikimedia\.org/wikipedia)/[^"\s\\]+', moved, s)
         # share image
         sp, salt = share[f]
         surl = SITE + sp

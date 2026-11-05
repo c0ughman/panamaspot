@@ -191,48 +191,47 @@ def meta_of(href):
     d = re.search(r'<p class="(?:dek|art-dek|hub-hero-dek)">(.*?)</p>', h, re.S)
     i = re.search(r'<img\b[^>]*class="hero-img"[^>]*>', h) or re.search(r'(?:art-hero-img-full|hub-hero-img)"[^>]*>\s*<img\b[^>]*>', h)
     dek = text(d[1]) if d else ""
-    if len(dek) > 130: dek = dek[:130].rsplit(" ", 1)[0] + "…"
+    if len(dek) > 170: dek = dek[:170].rsplit(" ", 1)[0] + "…"
     return dict(href=href, title=text(t[1]) if t else href, dek=dek, src=attr(i[0], "src") if i else "", tag="")
 
 
+def tile_src(src):
+    """Use the small tile of a photo that already has one, not its full-width hero."""
+    m = re.match(r"(https://panamaspot\.com)?(/images/v2/.*)-hero-\d+\.webp$", src)
+    if m and (P / (m[2].lstrip("/") + "-tile.webp")).exists(): return f"{m[1] or ''}{m[2]}-tile.webp"
+    return src
+
+
 def related(s, prose, rel, lang, hub):
-    """Always four cards: three related guides, and the fourth takes you to the destination hub when there is one."""
+    """Three related guides with their full titles and descriptions, plus the destination hub when there is one."""
     pre = "/es/articles/" if lang == "es" else "/articles/"
     hub_card = meta_of(hub) if hub.startswith(pre) else None
+    if hub_card: hub_card["is_hub"] = True
     skip = {"/" + rel, hub}
-    cards = []
-    for c in card_data(s):
-        if c["href"] in skip: continue
-        if not text(c["title"]) or not text(c["dek"]) or not c["src"]:  # some old cards are incomplete
-            d = meta_of(c["href"])
-            if not d: continue
-            c["title"] = c["title"] if text(c["title"]) else d["title"]
-            c["dek"] = c["dek"] if text(c["dek"]) else d["dek"]
-            c["src"] = c["src"] or d["src"]
-        skip.add(c["href"]); cards.append(c)
     need = 3 if hub_card else 4
-    hub_links = []
-    if hub_card: hub_links = re.findall(r'href="(' + re.escape(pre) + r'[^"#]+)"', (P / (hub.lstrip("/") + ".html")).read_text(errors="ignore"))
+    hub_links = re.findall(r'href="(' + re.escape(pre) + r'[^"#]+)"', (P / (hub.lstrip("/") + ".html")).read_text(errors="ignore")) if hub_card else []
     fallback = {"en": ["/articles/best-time-to-visit-panama", "/articles/is-panama-safe", "/articles/panama-city", "/articles/bocas-del-toro"], "es": ["/es/articles/panama-city", "/es/articles/boquete", "/es/articles/el-valle-de-anton", "/es/articles/que-hacer-en-ciudad-de-panama"]}[lang]
-    for href in re.findall(r'href="(' + re.escape(pre) + r'[^"#]+)"', prose) + hub_links + fallback:
+    cards = []
+    for href in [c["href"] for c in card_data(s)] + re.findall(r'href="(' + re.escape(pre) + r'[^"#]+)"', prose) + hub_links + fallback:
         if len(cards) >= need: break
         if href in skip: continue
         skip.add(href); d = meta_of(href)
-        if d and d["src"]: cards.append(d)
-    cards = cards[:need]
-    if hub_card: cards.append(hub_card)
-    return cards
+        if d and d["src"] and d["dek"]: cards.append(d)
+    return cards + ([hub_card] if hub_card else [])
 
 
 def explore_html(cards, hub, t):
-    def pills(c): return '<span class="pills">' + (f'<span class="chip glass">{c["tag"]}</span>' if c.get("tag") else "") + f'<span class="chip glass">{t["guide"]}</span></span>'
+    """Top middle holds the hub: it only needs its name. The guides get the room for a full title and description."""
+    guides = [c for c in cards if not c.get("is_hub")]
+    hubs = [c for c in cards if c.get("is_hub")]
+    a, b, g, d = (guides[0], hubs[0], guides[1], guides[2]) if hubs else cards[:4]
+    pills = lambda: f'<span class="pills"><span class="chip glass">{t["guide"]}</span></span>'
     c = lambda x: f'<span class="c"><i class="dot"></i>{t["guide"]}</span><h3>{x["title"]}</h3>'
-    a, b, g, d = cards[:4]
-    im = lambda x: f'<img alt="" loading="lazy" src="{x["src"]}"/>'
-    out = (f'<a class="bt t-a" href="{a["href"]}"><span class="ph">{im(a)}{pills(a)}</span><span class="tx">{c(a)}<p>{a["dek"]}</p></span></a>'
+    im = lambda x: f'<img alt="" loading="lazy" src="{tile_src(x["src"])}"/>'
+    out = (f'<a class="bt t-a" href="{a["href"]}"><span class="ph">{im(a)}{pills()}</span><span class="tx">{c(a)}<p>{a["dek"]}</p></span></a>'
            f'<a class="bt t-b" href="{b["href"]}"><span class="ph">{im(b)}</span><span class="tx">{c(b)}</span></a>'
            f'<a class="bt t-c" href="{g["href"]}"><span class="tx">{c(g)}<p>{g["dek"]}</p></span><span class="go">→</span></a>'
-           f'<a class="bt t-d" href="{d["href"]}"><span class="tx">{c(d)}<p class="lead">{d["dek"]}</p><span class="more">{t["more"]} <i>→</i></span></span><span class="ph">{im(d)}{pills(d)}</span></a>')
+           f'<a class="bt t-d" href="{d["href"]}"><span class="tx">{c(d)}<p class="lead">{d["dek"]}</p><span class="more">{t["more"]} <i>→</i></span></span><span class="ph">{im(d)}{pills()}</span></a>')
     e = t["explore"]
     return f'<section class="wrap band"><div class="explore"><div class="band-h"><div><span class="lbl">{e[0]}</span><h2>{e[1]}</h2></div><a href="{hub}">{e[2]}</a></div><div class="bx">{out}</div></div></section>'
 
@@ -270,8 +269,13 @@ def convert(rel):
     hero = re.search(r'art-hero-img-full"[^>]*>\s*(<img\b[^>]*>)', b, re.S)[1]
     hero = clean_img(hero, "hero-img", keep_lazy=False).replace("<img ", '<img fetchpriority="high" loading="eager" decoding="async" ', 1)
     chips = "".join(f'<span class="chip glass">{c}</span>' for c in re.findall(r'class="art-hero-tag">(.*?)</span>', b, re.S))
-    en = re.search(r'<a\b[^>]*class="lang-opt[^"]*"[^>]*href="([^"]+)"[^>]*hreflang="en"', b)[1]
-    es = re.search(r'<a\b[^>]*class="lang-opt[^"]*"[^>]*href="([^"]+)"[^>]*hreflang="es"', b)[1]
+    # EN/ES switch: the same guide in the other language when there is one, otherwise that language's homepage
+    twin = {}
+    for tag in re.findall(r"<link\b[^>]*hreflang=[^>]*>", head):
+        m = re.search(r'hreflang="(en|es)"', tag); u = re.search(r'href="https://panamaspot\.com(/[^"]*)"', tag)
+        if m and u: twin[m[1]] = u[1]
+    en = "/" + rel if lang == "en" else twin.get("en", "/")
+    es = "/" + rel if lang == "es" else twin.get("es", "/es")
     nav = d["nav"]
     nav = re.sub(r'<span class="lang glass">.*?</span>', f'<span class="lang glass"><a{" class=" + chr(34) + "on" + chr(34) if lang == "en" else ""} href="{en}" hreflang="en">EN</a><a{" class=" + chr(34) + "on" + chr(34) if lang == "es" else ""} href="{es}" hreflang="es">ES</a></span>', nav, flags=re.S)
     nav = re.sub(r'<span class="search glass">(.*?)</span></span>', lambda m: f'<a class="search glass" href="{t["home"]}" data-search aria-haspopup="dialog">{m[1]}</span></a>', nav, flags=re.S)
@@ -293,7 +297,9 @@ def convert(rel):
     fact = re.search(r'<aside class="fact-card">(.*?)</aside>', b, re.S)[1]
     rows = re.findall(r'<div class="fact-row"><span class="k">(.*?)</span><span class="v">(.*?)</span></div>', fact, re.S)
     best = next(((k, v) for k, v in rows if re.search(r"best|mejor|season|temporada|época", k, re.I)), None)
-    cells = "".join(glance_cell(k, v) for k, v in rows)
+    # always four facts; "Language" is what the EN/ES switch at the top is for
+    keep = [(k, v) for k, v in rows if not re.fullmatch(r"language|idioma", text(k), re.I)][:4]
+    cells = "".join(glance_cell(k, v) for k, v in keep)
     rates = []
     for lab, bar in re.findall(r'<span class="lbl">(.*?)</span><span class="bar">(.*?)</span>', fact, re.S):
         n = bar.count('class="on"'); tot = bar.count("<i ")
@@ -444,6 +450,13 @@ def check(old, new, rel):
     body = new[new.index("<body"):]; body = re.sub(r"<script\b.*?</script>|<style\b.*?</style>", "", body, flags=re.S)
     if "/funnels/" in body: bad.append("funnel link left")
     if len(re.findall(r'class="bt t-[abcd]"', body)) != 4: bad.append("explore does not have 4 cards")
+    if len(re.findall(r'<span class="k">', body[body.index('class="gg"'):body.index('class="wrap body"')])) > 4: bad.append("more than 4 glance facts")
+    other_lang = "en" if lang == "es" else "es"
+    sw = re.search(r'<span class="lang glass">.*?</span>', body, re.S)[0]
+    sw_to = re.search(r'href="([^"]+)" hreflang="' + other_lang + '"', sw)[1]
+    tw = [re.search(r'href="https://panamaspot\.com(/[^"]*)"', x) for x in re.findall(r"<link\b[^>]*hreflang=[^>]*>", new[:new.index("</head>")]) if f'hreflang="{other_lang}"' in x]
+    want = tw[0][1] if tw and tw[0] else ("/es" if other_lang == "es" else "/")
+    if sw_to != want: bad.append(f"language switch goes to {sw_to}, should be {want}")
     words = html.unescape(re.sub(r"<[^>]+>", " ", re.sub(r"<!--evx:\w+-->.*?<!--/evx-->", " ", body[:body.index('<footer')], flags=re.S)))
     for sent in re.split(r"(?<=[.!?])\s+", words):
         if re.search(r"E-?Valley", sent):
