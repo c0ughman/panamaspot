@@ -232,6 +232,7 @@
     var g = glass ? GLASS : PILL;
     return { left: o.left + "px", top: o.top + "px", width: o.width + "px", height: o.height + "px", borderRadius: glass ? "26px" : o.height / 2 + "px", backgroundColor: g.bg, backdropFilter: g.blur, webkitBackdropFilter: g.blur, boxShadow: g.shadow };
   }
+  var byKey = false;
   function show(from) {
     if (!host) build();
     if (isOpen) { input.focus(); input.select(); return; }
@@ -249,16 +250,29 @@
     inner.animate([{ opacity: 0, offset: 0 }, { opacity: 0, offset: .14 }, { opacity: 1, offset: .5 }, { opacity: 1, offset: 1 }], { duration: 560, easing: "ease-out" });
     anim.onfinish = function () { panel.style.transition = ""; };
   }
+  /* Closing mirrors opening: the contents fade first and stay hidden, the panel folds up to the search row,
+     then glides back into the pill, which fades in under it as it lands. */
   function hide() {
     if (!isOpen) return; isOpen = false;
-    var o = origin(), r = panel.getBoundingClientRect();
-    var done = function () { host.classList.remove("on"); if (hidden) { hidden.style.visibility = ""; hidden = null; } input.value = ""; list.innerHTML = ""; if (trigger && trigger.focus) trigger.focus({ preventScroll: true }); };
-    if (calm) { done(); return; }
+    var o = origin(), r = panel.getBoundingClientRect(), row = panel.querySelector(".ps-r").offsetHeight;
+    var fade = null;
+    var done = function () {
+      host.classList.remove("on"); if (fade) fade.cancel();
+      input.value = ""; list.innerHTML = ""; shown = 0;
+      if (trigger && trigger.focus) trigger.focus({ preventScroll: true, focusVisible: byKey });
+    };
+    var back = function () { if (hidden) { var h = hidden; hidden = null; h.style.visibility = ""; if (!calm) h.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 160, easing: "ease-out" }); } };
+    if (calm) { back(); done(); return; }
     if (anim) anim.cancel();
     panel.style.transition = "none";
-    inner.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 120, easing: "ease-out", fill: "forwards" }).onfinish = function (e) { e.target.cancel(); };
-    anim = panel.animate([frame({ left: r.left, top: r.top, width: r.width, height: r.height }, true), o.el ? frame(o, false) : Object.assign(frame(o, false), { opacity: 0 })], { duration: 300, easing: "cubic-bezier(.32,.72,0,1)" });
-    anim.onfinish = function () { panel.style.transition = ""; done(); };
+    fade = inner.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 110, easing: "ease-out", fill: "forwards" });
+    var start = frame({ left: r.left, top: r.top, width: r.width, height: r.height }, true);
+    var folded = Object.assign(frame({ left: r.left, top: r.top, width: r.width, height: Math.min(r.height, row) }, true), { offset: .34, easing: "cubic-bezier(.32,.72,0,1)" });
+    var end = o.el ? frame(o, false) : Object.assign(frame(o, false), { opacity: 0 });
+    start.easing = "cubic-bezier(.4,0,.2,1)";
+    anim = panel.animate([start, folded, end], { duration: 460 });
+    setTimeout(back, 330);
+    anim.onfinish = function () { panel.style.transition = ""; back(); done(); };
   }
   document.addEventListener("click", function (e) {
     var lang = e.target.closest && e.target.closest(".lang a:not(.on)");
@@ -279,10 +293,10 @@
       }
     }
     var a = e.target.closest && e.target.closest("[data-search]");
-    if (a) { e.preventDefault(); show(a); }
+    if (a) { e.preventDefault(); byKey = e.detail === 0; show(a); }
   });
   document.addEventListener("keydown", function (e) {
-    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") { e.preventDefault(); show(); }
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") { e.preventDefault(); byKey = true; show(); }
     else if (e.key === "Escape" && isOpen) hide();
   });
 })();
