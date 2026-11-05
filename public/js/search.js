@@ -31,68 +31,9 @@
     "@media(max-width:640px){.ps-t{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}}" +
     ".ps-res.more{-webkit-mask-image:linear-gradient(#000 calc(100% - 26px),transparent);mask-image:linear-gradient(#000 calc(100% - 26px),transparent)}" +
     ".ps-m{padding:15px 20px 18px;font-size:14px;line-height:1.4;color:rgba(255,255,255,.8)}.ps-m a{color:#fff}" +
-    ".ps-b{text-shadow:0 1px 2px rgba(0,0,0,.28),0 1px 12px rgba(0,0,0,.4)}.ps-b .lt{text-shadow:none}.ps-b mark{text-shadow:none}" +
-    ".ps-r.lt,.ps-m.lt,.ps-l li.lt .ps-t{color:var(--navy,#05183f)}.ps-r.lt .ps-i{color:var(--ink,#161b26)}.ps-r.lt svg{color:var(--ink,#161b26)}.ps-r.lt .ps-i::placeholder{color:rgba(22,27,38,.55)}.ps-r.lt .ps-x{background:rgba(22,27,38,.08);color:var(--ink,#161b26)}" +
-    ".ps-l li.lt .ps-g,.ps-l li.lt .ps-d,.ps-m.lt{color:rgba(22,27,38,.7)}.ps-l li.lt .ps-g i{background:var(--red,#da121a)}.ps-m.lt a{color:var(--ink,#161b26)}" +
-    ".ps-l li.lt a:hover{background:rgba(255,255,255,.45)}.ps-l li.lt a[aria-selected=true]{background:rgba(255,255,255,.6)}.ps-l li.lt mark{background:rgba(218,18,26,.14);color:#a50d14}" +
+    ".ps-b{text-shadow:0 1px 2px rgba(0,0,0,.28),0 1px 12px rgba(0,0,0,.4)}.ps-b mark{text-shadow:none}" +
     "@keyframes ps-up{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}.ps-l.fresh li{animation:ps-up .34s cubic-bezier(.2,.8,.2,1) both}";
-  var hidden = null, raf = 0;
-  /* Each row measures how bright the picture behind it is, so the glass can stay exactly the pill's:
-     dark photo -> white text (like the nav on the hero), bright photo or plain page -> dark text.
-     Checked about ten times a second while search is open. */
-  var lastTone = 0, grids = new Map(), cv = document.createElement("canvas");
-  cv.width = cv.height = 48;
-  function grid(img) {
-    var key = img.currentSrc || img.src;
-    if (grids.has(key)) return grids.get(key);
-    var g = null;
-    try {
-      if (img.complete && img.naturalWidth) {
-        var cx = cv.getContext("2d", { willReadFrequently: true });
-        cx.clearRect(0, 0, 48, 48); cx.drawImage(img, 0, 0, 48, 48);
-        var d = cx.getImageData(0, 0, 48, 48).data; g = new Float32Array(48 * 48);
-        for (var i = 0; i < g.length; i++) g[i] = (0.2126 * d[i * 4] + 0.7152 * d[i * 4 + 1] + 0.0722 * d[i * 4 + 2]) / 255;
-      }
-    } catch (e) { g = "photo"; }   /* a picture we may not read: treat it as a darkish photo */
-    if (g) grids.set(key, g);
-    return g;
-  }
-  /* brightness 0-1 of what is under a point, or -1 for "some photo, brightness unknown" */
-  function lum(x, y) {
-    var under = document.elementsFromPoint(x, y);
-    for (var i = 0; i < under.length; i++) {
-      var el = under[i];
-      if (host.contains(el)) continue;
-      var img = el.tagName === "IMG" ? el : null;
-      if (!img) { var box = el.closest("header.hero, .hero, figure, .ph, .gal, .stamp, .ev-ph, .home-hero, .hub-hero"); img = box && box.querySelector("img"); if (!img) return 1; }
-      var g = grid(img); if (!g) return -1; if (g === "photo") return -1;
-      var r = img.getBoundingClientRect(), nw = img.naturalWidth, nh = img.naturalHeight;
-      var sc = Math.max(r.width / nw, r.height / nh), dw = nw * sc, dh = nh * sc;
-      var pos = getComputedStyle(img).objectPosition.split(" ").map(function (v) { return parseFloat(v) / 100; });
-      var ox = r.left + (r.width - dw) * (isNaN(pos[0]) ? .5 : pos[0]), oy = r.top + (r.height - dh) * (isNaN(pos[1]) ? .5 : pos[1]);
-      var gx = Math.min(47, Math.max(0, Math.floor((x - ox) / dw * 48))), gy = Math.min(47, Math.max(0, Math.floor((y - oy) / dh * 48)));
-      return g[gy * 48 + gx];
-    }
-    return 1;
-  }
-  function tone(now) {
-    if (!isOpen) return;
-    raf = requestAnimationFrame(tone);
-    if (now - lastTone < 90) return;
-    lastTone = now;
-    var rows = [panel.querySelector(".ps-r"), msg].concat([].slice.call(list.children));
-    rows.forEach(function (el) {
-      var r = el.getBoundingClientRect(); if (!r.height) return;
-      var sum = 0, n = 0, unknown = 0;
-      [.25, .5, .75].forEach(function (fy) { [.15, .35, .55, .75, .95].forEach(function (fx) {
-        var v = lum(r.left + r.width * fx, r.top + r.height * fy);
-        if (v < 0) unknown++; else { sum += v; n++; }
-      }); });
-      /* the pill's glass adds 18% white on top of what is behind it */
-      var seen = n ? .82 * (sum / n) + .18 : 1;
-      el.classList.toggle("lt", unknown > n ? false : seen > .62);
-    });
-  }
+  var hidden = null;
   var host, panel, inner, input, res, list, msg, data = null, loading = null, sel = -1, trigger = null, isOpen = false, anim = null, shown = 0;
 
   function norm(s) { return (s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase(); }
@@ -228,7 +169,6 @@
     var end = { left: parseFloat(panel.style.left), top: parseFloat(panel.style.top), width: parseFloat(panel.style.width), height: inner.offsetHeight };
     if (calm) { panel.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 160 }); return; }
     if (o.el) { o.el.style.visibility = "hidden"; hidden = o.el; }
-    cancelAnimationFrame(raf); lastTone = 0; raf = requestAnimationFrame(tone);
     panel.style.transition = "none";
     anim = panel.animate([frame(o, false), frame(end, true)], { duration: 560, easing: EASE });
     inner.animate([{ opacity: 0, offset: 0 }, { opacity: 0, offset: .14 }, { opacity: 1, offset: .5 }, { opacity: 1, offset: 1 }], { duration: 560, easing: "ease-out" });
