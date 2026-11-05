@@ -363,7 +363,35 @@ function assertSitemapIsWellFormed() {
   console.log(`Sitemap well-formed: ${urls} URLs, ${imgs} images, 0 unescaped entities.`);
 }
 
-main().catch((err) => {
+/* The index behind the search box: every guide, written fresh on each build so a new page can never be missing. */
+async function buildSearchIndex() {
+  const decode = (t) => t.replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"').replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim();
+  const entries = [];
+  for (const dir of ["articles", "es/articles"]) {
+    for (const name of await readdir(join(ROOT, dir))) {
+      if (!name.endsWith(".html")) continue;
+      const html = await readFile(join(ROOT, dir, name), "utf8");
+      const body = html.replace(/<style[\s\S]*?<\/style>|<script[\s\S]*?<\/script>/g, "");
+      const h1 = /<h1[^>]*>([\s\S]*?)<\/h1>/.exec(body);
+      const desc = /<meta content="([^"]*)" name="description"/.exec(html) || /<meta name="description" content="([^"]*)"/.exec(html);
+      const trail = /"@type":\s*"BreadcrumbList"[\s\S]*?"position":\s*2,[\s\S]*?"name":\s*"([^"]*)"[\s\S]*?"position":\s*3/.exec(html);
+      const main = /<(?:article|main)\b[\s\S]*/.exec(body);
+      const h2s = main ? [...main[0].matchAll(/<h2\b[^>]*>([\s\S]*?)<\/h2>/g)].map((m) => decode(m[1])).filter((t) => t.length < 90) : [];
+      entries.push({
+        u: `/${dir}/${name.replace(/\.html$/, "")}`,
+        l: dir.startsWith("es") ? "es" : "en",
+        t: decode(h1 ? h1[1] : name),
+        d: decode(desc ? desc[1] : ""),
+        r: trail ? decode(trail[1]) : "",
+        h: h2s.slice(0, 14).join(" · "),
+      });
+    }
+  }
+  await writeFile(join(ROOT, "search-index.json"), JSON.stringify(entries));
+  console.log(`Search index: ${entries.length} guides.`);
+}
+
+main().then(buildSearchIndex).catch((err) => {
   console.error(err);
   process.exit(1);
 });

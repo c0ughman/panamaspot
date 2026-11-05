@@ -38,7 +38,7 @@ CSS_HREF = "/css/evalley-cta.css"
 CSS_TAG = ('<link rel="stylesheet" href="' + CSS_HREF + '" media="print" onload="this.media=\'all\';window.dispatchEvent(new Event(\'resize\'))">'
            '<noscript><link rel="stylesheet" href="' + CSS_HREF + '"></noscript>')
 JS_M = ("<!--evx:js-->", "<!--/evx:js-->")
-TRACK = """<script>document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[data-ev]");if(!a||typeof gtag!=="function")return;var x=a.closest(".evx");gtag("event","evalley_whatsapp_click",{placement:a.getAttribute("data-ev"),region:x&&x.classList.contains("ev-valle")?"el-valle":"boquete",page_lang:document.documentElement.lang||"",link_url:a.href,transport_type:"beacon"});});</script>"""
+TRACK = """<script>document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[data-ev]");if(!a||typeof gtag!=="function")return;var x=a.closest(".evx");gtag("event","evalley_whatsapp_click",{placement:a.getAttribute("data-ev"),region:a.getAttribute("data-region")||(x&&x.classList.contains("ev-valle")?"el-valle":"boquete"),page_lang:document.documentElement.lang||"",link_url:a.href,transport_type:"beacon"});});</script>"""
 
 
 def crumb(html):
