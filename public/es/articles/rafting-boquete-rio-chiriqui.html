@@ -49,7 +49,7 @@ a { color: inherit; }
 .hero > * { position: relative; width: 100%; }
 .nav { display: flex; align-items: center; gap: 24px; padding-block: 20px; }
 .nav .logo { font-size: 30px; color: #fff; text-shadow: 0 1px 12px rgba(0,0,0,.35); }
-.nav .logo .a { color: #ff4a4f; }
+.nav .logo .a { color: var(--red); }
 .nav .links { display: flex; gap: clamp(20px, 2.6vw, 40px); margin-inline: auto; }
 .nav .links a { font: 500 15px/1 var(--sans); text-decoration: none; text-shadow: 0 1px 10px rgba(0,0,0,.35); }
 .nav .links a:hover { text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 2px; text-underline-offset: 7px; }
@@ -453,6 +453,10 @@ a.search { color: inherit; text-decoration: none; cursor: pointer; }
 .pull figcaption { font-size: 14px; color: var(--muted); }
 .pull blockquote, .sec blockquote { font: 500 clamp(21px, 2vw, 26px)/1.45 var(--sans); color: var(--navy); letter-spacing: -0.012em; }
 .sec blockquote { padding-left: 20px; box-shadow: inset 3px 0 0 var(--red); }
+.gx { display: grid; gap: 6px; padding: 12px 22px 14px; border-top: 1px solid var(--line); }
+.gx > div { display: flex; justify-content: space-between; gap: 14px; font-size: 13.5px; line-height: 1.35; }
+.gx .gk { font-weight: 600; color: var(--muted); white-space: nowrap; }
+.gx .gv { color: var(--ink); text-align: right; }
 .id-t { display: block; font-weight: 600; color: var(--ink); }
 .id-d { font-size: 14.5px; color: var(--body); margin: 2px 0; }
 </style>
@@ -470,7 +474,7 @@ a.search { color: inherit; text-decoration: none; cursor: pointer; }
   <h1>Rafting en Boquete y el Río Chiriquí Viejo</h1>
   <p class="dek">Guía completa del rafting en Boquete: ríos, clases de rápidos, precios, temporada, operadores y qué llevar. Todo lo que necesitas saber antes de reservar.</p>
   <div class="byline"><span class="who"><span class="av"><span class="logo"><span class="a">á</span><i class="pd"></i></span></span><span><b>Editores de Panama Spot</b>Guías de Panamá</span></span><span>10 min de lectura</span><span>Actualizado en septiembre 2026</span></div>
-</div><aside class="glance" aria-label="De un vistazo"><h2>De un vistazo</h2><div class="gg"><div><span class="k">Región</span><b>Chiriquí</b><span class="s">Panamá occidental</span></div><div><span class="k">Cómo llegar</span><b>1 h</b><span class="s">desde David en bus o taxi</span></div><div><span class="k">Mejor temporada</span><b>Jun–Nov</b><span class="s">temporada lluviosa</span></div><div><span class="k">Precio típico</span><b>$65–$80</b><span class="s">por persona</span></div></div><div class="rates"><span class="rate">Adrenalina <span class="rd" aria-label="5 de 5"><i></i><i></i><i></i><i></i><i></i></span></span><span class="rate">Accesibilidad <span class="rd" aria-label="4 de 5"><i></i><i></i><i></i><i></i><i class="o"></i></span></span><span class="rate">Naturaleza <span class="rd" aria-label="5 de 5"><i></i><i></i><i></i><i></i><i></i></span></span><span class="rate">Precio/valor <span class="rd" aria-label="4 de 5"><i></i><i></i><i></i><i></i><i class="o"></i></span></span></div></aside></div></section>
+</div><aside class="glance" aria-label="De un vistazo"><h2>De un vistazo</h2><div class="gg"><div><span class="k">Región</span><b>Chiriquí</b><span class="s">Panamá occidental</span></div><div><span class="k">Cómo llegar</span><b>1 h</b><span class="s">desde David en bus o taxi</span></div><div><span class="k">Mejor temporada</span><b>Jun–Nov</b><span class="s">temporada lluviosa</span></div><div><span class="k">Precio típico</span><b>$65–$80</b><span class="s">por persona</span></div></div><div class="gx"><div><span class="gk">Idioma</span><span class="gv">ES / EN</span></div></div><div class="rates"><span class="rate">Adrenalina <span class="rd" aria-label="5 de 5"><i></i><i></i><i></i><i></i><i></i></span></span><span class="rate">Accesibilidad <span class="rd" aria-label="4 de 5"><i></i><i></i><i></i><i></i><i class="o"></i></span></span><span class="rate">Naturaleza <span class="rd" aria-label="5 de 5"><i></i><i></i><i></i><i></i><i></i></span></span><span class="rate">Precio/valor <span class="rd" aria-label="4 de 5"><i></i><i></i><i></i><i></i><i class="o"></i></span></span></div></aside></div></section>
 <div class="wrap body">
   <aside class="tocl" aria-label="En esta página"><div class="tocl-in"><nav class="toc"><h2>En esta página</h2><ol id="toc"><li><a href="#s1">Por qué Boquete</a></li><li><a href="#s2">Los ríos y sus niveles</a></li><li><a href="#s3">El factor represa</a></li><li><a href="#s4">Temporada ideal</a></li><li><a href="#s5">Operadores y precios</a></li><li><a href="#s6">Qué incluye un tour</a></li><li><a href="#s7">Requisitos y seguridad</a></li><li><a href="#s8">Qué llevar</a></li><li><a href="#s9">Más aventura en Boquete</a></li><li><a href="#s10">Cómo organizar tu visita</a></li><li><a href="#faq">Preguntas</a></li><li><a href="#sources">Fotos</a></li></ol></nav><div class="lst"><span class="mh">Lee después</span><a class="sf" href="/es/articles/tours-en-boquete-panama"><span class="sw"><span class="stamp"><img class="in" alt="" loading="lazy" src="https://panamaspot.com/images/v2/tours-boquete-stamp.webp" width="360" height="450"/></span></span><span class="sl">Tours en Boquete: la guía definitiva para 2026 →</span></a><a class="sf" href="/es/articles/alquiler-de-bicicletas-boquete"><span class="sw"><span class="stamp"><img class="in" alt="" loading="lazy" src="https://panamaspot.com/images/v2/boquete-ebike-trail-stamp.webp" width="360" height="450"/></span></span><span class="sl">Alquiler de bicicletas en Boquete: la guía completa de e-bikes →</span></a></div></div></aside>
   <article class="article" id="article">

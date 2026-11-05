@@ -43,9 +43,19 @@ a.search { color: inherit; text-decoration: none; cursor: pointer; }
 .pull figcaption { font-size: 14px; color: var(--muted); }
 .pull blockquote, .sec blockquote { font: 500 clamp(21px, 2vw, 26px)/1.45 var(--sans); color: var(--navy); letter-spacing: -0.012em; }
 .sec blockquote { padding-left: 20px; box-shadow: inset 3px 0 0 var(--red); }
+.gx { display: grid; gap: 6px; padding: 12px 22px 14px; border-top: 1px solid var(--line); }
+.gx > div { display: flex; justify-content: space-between; gap: 14px; font-size: 13.5px; line-height: 1.35; }
+.gx .gk { font-weight: 600; color: var(--muted); white-space: nowrap; }
+.gx .gv { color: var(--ink); text-align: right; }
 .id-t { display: block; font-weight: 600; color: var(--ink); }
 .id-d { font-size: 14.5px; color: var(--body); margin: 2px 0; }
 """
+HERO_FOCUS = {
+    "articles/san-blas-sailing-panama-to-colombia": 64,
+    "articles/renting-a-car-in-panama": 70,
+    "articles/tours-in-boquete-panama": 51,
+    "es/articles/cinta-costera-panama-mercado-mariscos-panama-viejo": 68,
+}
 SEARCH_TAG = '<script src="/js/search.js" defer></script>'
 
 
@@ -248,6 +258,8 @@ def convert(rel):
     # hero
     hero = re.search(r'art-hero-img-full"[^>]*>\s*(<img\b[^>]*>)', b, re.S)[1]
     hero = clean_img(hero, "hero-img", keep_lazy=False).replace("<img ", '<img fetchpriority="high" loading="eager" decoding="async" ', 1)
+    if rel in HERO_FOCUS:
+        hero = re.sub(r'\sstyle="[^"]*"', "", hero).replace("/>", f' style="object-position:center {HERO_FOCUS[rel]}%"/>')
     chips = "".join(f'<span class="chip glass">{c}</span>' for c in re.findall(r'class="art-hero-tag">(.*?)</span>', b, re.S))
     # EN/ES switch: the same guide in the other language when there is one, otherwise that language's homepage
     twin = {}
@@ -278,19 +290,22 @@ def convert(rel):
     rows = re.findall(r'<div class="fact-row"><span class="k">(.*?)</span><span class="v">(.*?)</span></div>', fact, re.S)
     best = next(((k, v) for k, v in rows if re.search(r"best|mejor|season|temporada|época", k, re.I)), None)
     # always four facts; "Language" is what the EN/ES switch at the top is for
-    keep = [(k, v) for k, v in rows if not re.fullmatch(r"language|idioma", text(k), re.I)][:4]
+    facts = [(k, v) for k, v in rows if not re.fullmatch(r"language|idioma", text(k), re.I)]
+    keep, extra = facts[:4], facts[4:] + [(k, v) for k, v in rows if re.fullmatch(r"language|idioma", text(k), re.I)]
     cells = "".join(glance_cell(k, v) for k, v in keep)
+    gx = '<div class="gx">' + "".join(f'<div><span class="gk">{k}</span><span class="gv">{v}</span></div>' for k, v in extra) + "</div>" if extra else ""
     rates = []
     for lab, bar in re.findall(r'<span class="lbl">(.*?)</span><span class="bar">(.*?)</span>', fact, re.S):
         n = bar.count('class="on"'); tot = bar.count("<i ")
         rates.append(f'<span class="rate">{lab} <span class="rd" aria-label="{n} {t["of"]} {tot}">' + "<i></i>" * n + '<i class="o"></i>' * (tot - n) + "</span></span>")
-    glance = f'<aside class="glance" aria-label="{t["glance"]}"><h2>{t["glance"]}</h2><div class="gg">{cells}</div>' + (f'<div class="rates">{"".join(rates)}</div>' if rates else "") + "</aside>"
+    glance = f'<aside class="glance" aria-label="{t["glance"]}"><h2>{t["glance"]}</h2><div class="gg">{cells}</div>{gx}' + (f'<div class="rates">{"".join(rates)}</div>' if rates else "") + "</aside>"
     # prose
     prose = re.search(r'<article class="prose[^"]*"[^>]*>(.*)</article>', b[:b.index("</article>") + 10], re.S)[1]
     toc = re.search(r'<aside class="toc">(.*?)</aside>', b, re.S)[1]
     labels = {i: text(n) for i, n in re.findall(r'<a href="#([^"]+)"[^>]*><span class="n">.*?</span><span>(.*?)</span>', toc, re.S)}
     prose = convert_tables(convert_callouts(convert_figures(prose)))
     intro, secs = split_sections(prose, labels)
+    prose_out = prose
     after = b[b.index("</article>"):]
     # highlights
     hl = re.search(r'<span class="eyebrow">([^<]*)</span><h2>([^<]*)</h2></div><div class="art-highlights-grid">', after)
@@ -341,6 +356,16 @@ def convert(rel):
         for m in re.finditer(r"<figure\b[^>]*>(.*?)</figure>", g, re.S):
             cap = re.search(r"<figcaption\b[^>]*>.*?</figcaption>", m[1], re.S)
             figs.append("<figure>" + clean_img(re.search(r"<img\b[^>]*>", m[1])[0], "ph") + (cap[0] if cap else "") + "</figure>")
+        have = set(re.findall(r'\bsrc="([^"]+)"', "".join(figs)))
+        for m in re.finditer(r'<figure class="fig[^"]*"><img\b[^>]*>(?:<figcaption>(.*?)</figcaption>)?', prose_out, re.S):
+            if len(figs) >= 5: break
+            img = re.search(r"<img\b[^>]*>", m[0])[0]; src = attr(img, "src")
+            if src in have: continue
+            have.add(src); cap = re.sub(r'<span class="cr">.*?</span>', "", m[1] or "", flags=re.S).strip()
+            figs.append("<figure>" + clean_img(img, "ph") + (f"<figcaption>{cap}</figcaption>" if cap else "") + "</figure>")
+        if len(figs) < 5 and attr(hero, "src") not in have:
+            figs.append("<figure>" + clean_img(re.sub(r'\s(?:srcset|sizes|fetchpriority|loading|decoding|style)="[^"]*"', "", hero).replace(' class="hero-img"', ""), "ph") + "</figure>")
+        figs = figs[:5]  # the gallery has five slots; any extra photo is already in the article
         gal = f'<section class="band gband"><div class="wrap band-h"><div><span class="lbl">{gh[1]}</span><h2>{gh[2]}</h2></div></div><div class="gal">{"".join(figs)}</div></section>'
     pm = re.sub(r'(<textPath[^>]*>).*?(</textPath>)', lambda m: f'{m[1]}{place} · PANAM{"Á" if lang == "es" else "A"} · {mod[1]} ·{m[2]}' if place not in ("PANAMA", "PANAMÁ") else f'{m[1]}PANAM{"Á" if lang == "es" else "A"} · {mod[1]} · GUÍA ·{m[2]}' if lang == "es" else f'{m[1]}PANAMA · {mod[1]} · GUIDE ·{m[2]}', d["pm"], flags=re.S)
     know_html = "".join(f"<li>{html.escape(x, quote=False)}</li>" for x in know) or (f"<li>{best[1]}</li>" if best else "")
@@ -439,6 +464,16 @@ def check(old, new, rel):
     oc = len(re.findall(r'<span class="ic-meta">', old)); nc = len(re.findall(r'<div class="refs img-refs">.*?</section>', new, re.S) and re.findall(r'<li><div><a\b[^>]*>[^<]*</a><span class="src-domain">', new))
     if oc and nc < oc: bad.append(f"image credits lost ({nc} of {oc})")
     if len(re.findall(r'class="bt t-[abcd]"', body)) != 4: bad.append("explore does not have 4 cards")
+    gbox = body[body.index('class="glance"'):body.index('class="wrap body"')]
+    if len(re.findall(r'<span class="k">', gbox)) > 4: bad.append("more than 4 glance facts")
+    gw = set(re.findall(r"\w+", text(gbox).lower()))
+    for k, v in re.findall(r'<div class="fact-row"><span class="k">(.*?)</span><span class="v">(.*?)</span></div>', old, re.S):
+        if not set(re.findall(r"\w+", text(v).lower())) <= gw: bad.append("glance fact lost: " + text(k)); break
+    other_lang = "en" if lang == "es" else "es"
+    sw_to = re.search(r'href="([^"]+)" hreflang="' + other_lang + '"', re.search(r'<span class="lang glass">.*?</span>', body, re.S)[0])[1]
+    tw = [re.search(r'href="https://panamaspot\.com(/[^"]*)"', x) for x in re.findall(r"<link\b[^>]*hreflang=[^>]*>", new[:new.index("</head>")]) if f'hreflang="{other_lang}"' in x]
+    want = tw[0][1] if tw and tw[0] else ("/es" if other_lang == "es" else "/")
+    if sw_to != want: bad.append(f"language switch goes to {sw_to}, should be {want}")
     pv = None
     for m in re.finditer(r"<h([1-6])\b", body):
         l = int(m[1])

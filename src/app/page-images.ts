@@ -235,6 +235,9 @@ export const pageImages: Record<string, string[]> = {
     "https://panamaspot.com/images/v2/valley-scenery-beneath-the-cerro-gaital-16307b61-wide.webp",
     "https://panamaspot.com/images/v2/valley-scenery-beneath-the-cerro-gaital-16307b61-gallery.webp",
     "https://panamaspot.com/images/v2/horses-and-bougainvillea-in-the-el-a2358dae-gallery.webp",
+    "https://panamaspot.com/images/v2/the-el-valle-de-anton-crater-829139d1-gallery.webp",
+    "https://panamaspot.com/images/v2/green-mountains-above-el-valle-de-9f716f5c-gallery.webp",
+    "https://panamaspot.com/images/v2/the-valley-floor-and-ridgelines-of-b88481d5-gallery.webp",
   ],
   "/articles/chorro-el-macho-waterfall-el-valle-de-anton": [
     "https://panamaspot.com/images/el-valle/elvalle-elmachowaterfall.webp",
@@ -1281,7 +1284,6 @@ export const pageImages: Record<string, string[]> = {
     "https://panamaspot.com/images/v2/una-tithorea-tarricina-posada-en-el-fa76c6c2-gallery.webp",
     "https://panamaspot.com/images/v2/una-heliconius-charithonia-alimentandose-de-flores-4cb016d1-gallery.webp",
     "https://panamaspot.com/images/v2/valley-scenery-beneath-the-cerro-gaital-16307b61-gallery.webp",
-    "https://panamaspot.com/images/v2/la-carretera-de-entrada-al-crater-d9c1199f-gallery.webp",
   ],
   "/es/articles/mercado-el-valle-de-anton": [
     "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Mercado_EL_Valle_Panama.JPG/1280px-Mercado_EL_Valle_Panama.JPG",
@@ -1336,6 +1338,7 @@ export const pageImages: Record<string, string[]> = {
     "https://panamaspot.com/images/v2/los-surcos-se-senalan-con-una-e9070372-gallery.webp",
     "https://panamaspot.com/images/v2/la-quebrada-que-corre-junto-al-5515aa3c-gallery.webp",
     "https://panamaspot.com/images/v2/elvalle-panorama-gallery.webp",
+    "https://panamaspot.com/images/v2/la-piedra-pintada-un-gran-bloque-db68b418-gallery.webp",
   ],
   "/es/articles/precios-horarios-el-valle-de-anton": [
     "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Valle_de_Anton%2C_Panama.jpg/1280px-Valle_de_Anton%2C_Panama.jpg",
