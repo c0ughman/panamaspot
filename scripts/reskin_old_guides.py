@@ -19,11 +19,11 @@ DONOR = {"en": "articles/el-pianista-trail-boquete", "es": "es/articles/sendero-
 T = {
     "en": dict(toc="On this page", glance="At a glance", who="Panama Spot editors", role="Guides to Panama", upd="Updated", know="Need to know", read="Read next",
                confirm="Always confirm with the operator before booking.", guide="Guide", explore=("Keep exploring", "More guides to read next", "All guides →"),
-               faq="Questions", photos="Photos", home="/#cat-regions", of="of", place="PANAMA",
+               more="Continue reading", faq="Questions", photos="Photos", home="/#cat-regions", of="of", place="PANAMA",
                months="January February March April May June July August September October November December".split()),
     "es": dict(toc="En esta página", glance="De un vistazo", who="Editores de Panama Spot", role="Guías de Panamá", upd="Actualizado en", know="Lo esencial", read="Lee después",
                confirm="Confirme siempre con el operador antes de reservar.", guide="Guía", explore=("Sigue explorando", "Más guías para leer después", "Todas las guías →"),
-               faq="Preguntas", photos="Fotos", home="/es#cat-regions", of="de", place="PANAMÁ",
+               more="Seguir leyendo", faq="Preguntas", photos="Fotos", home="/es#cat-regions", of="de", place="PANAMÁ",
                months="enero febrero marzo abril mayo junio julio agosto septiembre octubre noviembre diciembre".split()),
 }
 EXTRA_CSS = """
@@ -36,6 +36,8 @@ a.search { color: inherit; text-decoration: none; cursor: pointer; }
 .prices h3.k { font: 600 12.5px/1.3 var(--sans); color: var(--muted); letter-spacing: 0; }
 @media (max-width: 760px) { .prices.p3 { grid-template-columns: 1fr; } .prices.p3 > div + div { box-shadow: inset 0 1px 0 var(--beige-2); } }
 .sec ul, .sec ol, .article > ul { padding-left: 22px; display: grid; gap: 8px; color: var(--body); }
+.t-c .tx { min-height: 0; overflow: hidden; }
+.t-c p { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; }
 .id-t { display: block; font-weight: 600; color: var(--ink); }
 .id-d { font-size: 14.5px; color: var(--body); margin: 2px 0; }
 """
@@ -186,37 +188,53 @@ def meta_of(href):
     if not f.exists(): return None
     h = f.read_text(errors="ignore")
     t = re.search(r"<h1[^>]*>(.*?)</h1>", h, re.S)
-    d = re.search(r'<p class="(?:dek|art-dek)">(.*?)</p>', h, re.S)
-    i = re.search(r'<img class="hero-img"[^>]*>', h) or re.search(r'art-hero-img-full"><img\b[^>]*>', h)
-    return dict(href=href, title=text(t[1]) if t else href, dek=text(d[1])[:120] if d else "", src=attr(i[0], "src") if i else "", tag="")
+    d = re.search(r'<p class="(?:dek|art-dek|hub-hero-dek)">(.*?)</p>', h, re.S)
+    i = re.search(r'<img\b[^>]*class="hero-img"[^>]*>', h) or re.search(r'(?:art-hero-img-full|hub-hero-img)"[^>]*>\s*<img\b[^>]*>', h)
+    dek = text(d[1]) if d else ""
+    if len(dek) > 130: dek = dek[:130].rsplit(" ", 1)[0] + "…"
+    return dict(href=href, title=text(t[1]) if t else href, dek=dek, src=attr(i[0], "src") if i else "", tag="")
 
 
-def related(s, prose, rel, lang):
-    cards = []
-    for c in card_data(s):  # some old cards have an empty title; take it from the page they link to
-        if not text(c["title"]) or not text(c["dek"]):
-            d = meta_of(c["href"])
-            if d:
-                c["title"] = text(c["title"]) and c["title"] or d["title"]
-                c["dek"] = text(c["dek"]) and c["dek"] or d["dek"]
-        cards.append(c)
-    seen = {c["href"] for c in cards} | {"/" + rel}
+def related(s, prose, rel, lang, hub):
+    """Always four cards: three related guides, and the fourth takes you to the destination hub when there is one."""
     pre = "/es/articles/" if lang == "es" else "/articles/"
-    for href in re.findall(r'href="(' + re.escape(pre) + r'[^"#]+)"', prose):
-        if len(cards) >= 4: break
-        if href in seen: continue
-        seen.add(href); d = meta_of(href)
-        if d: cards.append(d)
-    return cards[:4]
+    hub_card = meta_of(hub) if hub.startswith(pre) else None
+    skip = {"/" + rel, hub}
+    cards = []
+    for c in card_data(s):
+        if c["href"] in skip: continue
+        if not text(c["title"]) or not text(c["dek"]) or not c["src"]:  # some old cards are incomplete
+            d = meta_of(c["href"])
+            if not d: continue
+            c["title"] = c["title"] if text(c["title"]) else d["title"]
+            c["dek"] = c["dek"] if text(c["dek"]) else d["dek"]
+            c["src"] = c["src"] or d["src"]
+        skip.add(c["href"]); cards.append(c)
+    need = 3 if hub_card else 4
+    hub_links = []
+    if hub_card: hub_links = re.findall(r'href="(' + re.escape(pre) + r'[^"#]+)"', (P / (hub.lstrip("/") + ".html")).read_text(errors="ignore"))
+    fallback = {"en": ["/articles/best-time-to-visit-panama", "/articles/is-panama-safe", "/articles/panama-city", "/articles/bocas-del-toro"], "es": ["/es/articles/panama-city", "/es/articles/boquete", "/es/articles/el-valle-de-anton", "/es/articles/que-hacer-en-ciudad-de-panama"]}[lang]
+    for href in re.findall(r'href="(' + re.escape(pre) + r'[^"#]+)"', prose) + hub_links + fallback:
+        if len(cards) >= need: break
+        if href in skip: continue
+        skip.add(href); d = meta_of(href)
+        if d and d["src"]: cards.append(d)
+    cards = cards[:need]
+    if hub_card: cards.append(hub_card)
+    return cards
 
 
 def explore_html(cards, hub, t):
-    out = []
-    for c, k in zip(cards, "abcd"):
-        ph = f'<span class="ph"><img alt="" loading="lazy" src="{c["src"]}"/>' + (f'<span class="pills"><span class="chip glass">{c["tag"]}</span></span>' if c.get("tag") else "") + "</span>"
-        out.append(f'<a class="bt t-{k}" href="{c["href"]}">{ph}<span class="tx"><span class="c"><i class="dot"></i>{t["guide"]}</span><h3>{c["title"]}</h3><p>{c["dek"]}</p></span></a>')
+    def pills(c): return '<span class="pills">' + (f'<span class="chip glass">{c["tag"]}</span>' if c.get("tag") else "") + f'<span class="chip glass">{t["guide"]}</span></span>'
+    c = lambda x: f'<span class="c"><i class="dot"></i>{t["guide"]}</span><h3>{x["title"]}</h3>'
+    a, b, g, d = cards[:4]
+    im = lambda x: f'<img alt="" loading="lazy" src="{x["src"]}"/>'
+    out = (f'<a class="bt t-a" href="{a["href"]}"><span class="ph">{im(a)}{pills(a)}</span><span class="tx">{c(a)}<p>{a["dek"]}</p></span></a>'
+           f'<a class="bt t-b" href="{b["href"]}"><span class="ph">{im(b)}</span><span class="tx">{c(b)}</span></a>'
+           f'<a class="bt t-c" href="{g["href"]}"><span class="tx">{c(g)}<p>{g["dek"]}</p></span><span class="go">→</span></a>'
+           f'<a class="bt t-d" href="{d["href"]}"><span class="tx">{c(d)}<p class="lead">{d["dek"]}</p><span class="more">{t["more"]} <i>→</i></span></span><span class="ph">{im(d)}{pills(d)}</span></a>')
     e = t["explore"]
-    return f'<section class="wrap band"><div class="explore"><div class="band-h"><div><span class="lbl">{e[0]}</span><h2>{e[1]}</h2></div><a href="{hub}">{e[2]}</a></div><div class="bx">{"".join(out)}</div></div></section>'
+    return f'<section class="wrap band"><div class="explore"><div class="band-h"><div><span class="lbl">{e[0]}</span><h2>{e[1]}</h2></div><a href="{hub}">{e[2]}</a></div><div class="bx">{out}</div></div></section>'
 
 
 def donor_parts(lang):
@@ -320,7 +338,7 @@ def convert(rel):
     li = "".join(f'<li><a href="#{i}">{n}</a></li>' for i, n in labels.items() if re.search(rf'id="{re.escape(i)}"', secs))
     if faq: li += f'<li><a href="#faq">{t["faq"]}</a></li>'
     if refs: li += f'<li><a href="#sources">{t["photos"]}</a></li>'
-    cards = related(after, prose, rel, lang)
+    cards = related(after, prose, rel, lang, hub)
     rn = "".join(f'<a class="sf" href="{c["href"]}"><span class="sw"><span class="stamp"><img class="in" alt="" loading="lazy" src="{c["src"]}"/></span></span><span class="sl">{c["title"]} →</span></a>' for c in cards[:2])
     # gallery
     gal = ""
@@ -425,6 +443,7 @@ def check(old, new, rel):
         if f'src="{src}"' not in new: bad.append("photo lost: " + src[:60])
     body = new[new.index("<body"):]; body = re.sub(r"<script\b.*?</script>|<style\b.*?</style>", "", body, flags=re.S)
     if "/funnels/" in body: bad.append("funnel link left")
+    if len(re.findall(r'class="bt t-[abcd]"', body)) != 4: bad.append("explore does not have 4 cards")
     words = html.unescape(re.sub(r"<[^>]+>", " ", re.sub(r"<!--evx:\w+-->.*?<!--/evx-->", " ", body[:body.index('<footer')], flags=re.S)))
     for sent in re.split(r"(?<=[.!?])\s+", words):
         if re.search(r"E-?Valley", sent):

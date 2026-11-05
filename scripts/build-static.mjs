@@ -377,7 +377,17 @@ async function buildSearchIndex() {
       const trail = /"@type":\s*"BreadcrumbList"[\s\S]*?"position":\s*2,[\s\S]*?"name":\s*"([^"]*)"[\s\S]*?"position":\s*3/.exec(html);
       const main = /<(?:article|main)\b[\s\S]*/.exec(body);
       const h2s = main ? [...main[0].matchAll(/<h2\b[^>]*>([\s\S]*?)<\/h2>/g)].map((m) => decode(m[1])).filter((t) => t.length < 90) : [];
+      // A very small picture for the result row: our own thumbnail, or a small size from the photo's CDN.
+      const heroTag = /<img\b[^>]*class="hero-img"[^>]*>/.exec(html) || /art-hero-img-full"[^>]*>\s*<img\b[^>]*>/.exec(html) || /hub-hero-img"[^>]*>\s*<img\b[^>]*>/.exec(html);
+      const heroSrc = heroTag ? (/\bsrc="([^"]+)"/.exec(heroTag[0]) || [])[1] || "" : "";
+      const thumbName = `${dir.startsWith("es") ? "es-" : ""}${name.replace(/\.html$/, "")}.webp`;
+      let thumb = "";
+      if (await stat(join(ROOT, "images/thumbs", thumbName)).catch(() => null)) thumb = `/images/thumbs/${thumbName}`;
+      else if (heroSrc.includes("images.pexels.com")) thumb = `${heroSrc.split("?")[0]}?auto=compress&cs=tinysrgb&w=112&h=112&fit=crop`;
+      else if (/upload\.wikimedia\.org\/.*\/thumb\//.test(heroSrc)) thumb = heroSrc.replace(/\/\d+px-/, "/250px-");
+      else if (heroSrc.includes("upload.wikimedia.org")) thumb = heroSrc.replace(/\/commons\/(\w\/\w\w\/)([^/?]+).*$/, "/commons/thumb/$1$2/250px-$2");
       entries.push({
+        i: thumb,
         u: `/${dir}/${name.replace(/\.html$/, "")}`,
         l: dir.startsWith("es") ? "es" : "en",
         t: decode(h1 ? h1[1] : name),
