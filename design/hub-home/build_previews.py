@@ -219,8 +219,11 @@ a.hx-search svg { flex: none; opacity: .9; }
 a.hx-search kbd { margin-left: auto; font: 600 12px/1 var(--sans); padding: 6px 9px; border-radius: 8px; background: rgba(255,255,255,.18); }
 .hx-quick { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
 .hx-quick a { text-decoration: none; }
-.hx-sec { padding-block: 72px 0; scroll-margin-top: 20px; }
-.hx-sec:last-of-type { padding-bottom: 72px; }
+.hx-sec { padding-block: 112px 0; scroll-margin-top: 20px; }
+.hx-sec:last-of-type { padding-bottom: 112px; }
+.hx-sec .band-h { margin-bottom: 26px; }
+.hx-sec .band-h h2 { font-size: clamp(28px, 2.3vw, 34px); }
+@media (max-width: 760px) { .hx-sec { padding-top: 72px; } .hx-sec:last-of-type { padding-bottom: 72px; } }
 .hx-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .hx-dest { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
 .hx-d { position: relative; border-radius: 22px; overflow: hidden; aspect-ratio: 3/4; color: #fff; text-decoration: none; isolation: isolate; }
@@ -558,15 +561,15 @@ function st(){l.disabled=r.scrollLeft<4;n.disabled=r.scrollLeft+r.clientWidth>=r
 l.onclick=function(){r.scrollBy({left:-r.clientWidth*.8,behavior:"smooth"})};n.onclick=function(){r.scrollBy({left:r.clientWidth*.8,behavior:"smooth"})};
 r.addEventListener("scroll",st,{passive:true});addEventListener("resize",st);st();});</script>"""
 # ---------------- Homepage ----------------
-src = (ROOT / "src/app/page.tsx").read_text()
-def cards_of(name):
+SRC = {"en": (ROOT / "src/app/page.tsx").read_text(), "es": (ROOT / "src/app/es/page.tsx").read_text()}
+def cards_of(name, lang="en"):
+    src = SRC[lang]
     blk = re.search(r"const " + name + r": Card\[\] = \[(.*?)\];", src, re.S)[1]
     out = []
     for m in re.finditer(r'\{ title: "([^"]+)", tag: "([^"]+)",.*?href: ([A-Z_]+|"[^"]+") \}', blk):
         href = m[3].strip('"') if m[3].startswith('"') else re.search(r"const " + m[3] + r' = "([^"]+)"', src)[1]
         out.append((m[1], m[2], href))
     return out
-H = "/images/v2/playa-blanca-saboga-hero"
 HOME_BG = "https://images.pexels.com/photos/2474690/pexels-photo-2474690.jpeg?auto=compress&cs=tinysrgb&w=2400"
 ROT_IMGS = [(HOME_BG, "", 50)] + [(f"/images/v2/{n}-hero-1920.webp", a, y) for n, a, y in [
     ("playa-blanca-saboga", "Palm trees over Playa Blanca on Isla Saboga, Pearl Islands.", 62),
@@ -575,91 +578,148 @@ ROT_IMGS = [(HOME_BG, "", 50)] + [(f"/images/v2/{n}-hero-1920.webp", a, y) for n
     ("panama-city-skyline-from-the-waterfront-17477516", "The Panama City skyline seen across the water.", 55),
     ("aerial-view-of-boquete-panama-ed675378", "Boquete in its river valley, seen from the air.", 55),
     ("late-light-on-the-crater-wall-a262b398", "Late light on the crater wall above El Valle de Antón.", 60)]]
-ROT = "".join(f'<img class="hero-img hx-rot{" on" if i == 0 else ""}" alt="{a}" {"fetchpriority=" + chr(34) + "high" + chr(34) + " src" if i == 0 else "data-src"}="{u}" style="object-position:center {y}%"/>' for i, (u, a, y) in enumerate(ROT_IMGS))
+ROT_ES = {"Palm trees over Playa Blanca on Isla Saboga, Pearl Islands.": "Palmeras sobre Playa Blanca, en isla Saboga, archipiélago de las Perlas.",
+          "Volcán Barú rising through cloud above forested slopes.": "El Volcán Barú asomando entre las nubes sobre laderas de bosque.",
+          "A palm-lined beach on an island in Guna Yala.": "Una playa con palmeras en una isla de Guna Yala.",
+          "The Panama City skyline seen across the water.": "Los rascacielos de Ciudad de Panamá vistos desde el agua.",
+          "Boquete in its river valley, seen from the air.": "Boquete en su valle de río, visto desde el aire.",
+          "Late light on the crater wall above El Valle de Antón.": "Luz de tarde en la pared del cráter de El Valle de Antón."}
+def rot(lang):
+    return "".join(f'<img class="hero-img hx-rot{" on" if i == 0 else ""}" alt="{ROT_ES.get(a, a) if lang == "es" else a}" {"fetchpriority=" + chr(34) + "high" + chr(34) + " src" if i == 0 else "data-src"}="{u}" style="object-position:center {y}%"/>' for i, (u, a, y) in enumerate(ROT_IMGS))
 ROTJS = """<script>(function(){var im=[].slice.call(document.querySelectorAll(".hx-rot"));if(im.length<2||matchMedia("(prefers-reduced-motion: reduce)").matches)return;
 addEventListener("load",function(){im.forEach(function(i){if(i.dataset.src)i.src=i.dataset.src;});var k=0;setInterval(function(){var n=(k+1)%im.length;if(!im[n].complete)return;im[k].classList.remove("on");im[n].classList.add("on");k=n;},3200);});})();</script>"""
-dest = [("Panama City", "Capital and canal", "/articles/panama-city"), ("Boquete", "Coffee highlands", "/articles/boquete"),
-        ("El Valle de Antón", "Volcanic crater", "/articles/el-valle-de-anton"), ("Bocas del Toro", "Caribbean islands", "/articles/bocas-del-toro"),
-        ("San Blas", "Guna Yala", "/articles/san-blas-islands-panama-guna-yala-guide")]
+# destination photos are the English footer's, matched by region so both languages show the same pictures
+DEST_PHOTO = {k: re.search(r'<a class="fc" href="' + re.escape(k) + r'"><img class="ph"[^>]*src="([^"]+)"', D["foot"])[1].replace(SITE, "")
+              for k in ["/articles/panama-city", "/articles/boquete", "/articles/el-valle-de-anton", "/articles/bocas-del-toro", "/articles/san-blas-islands-panama-guna-yala-guide"]}
+ES_TWIN = {"/es/articles/panama-city": "/articles/panama-city", "/es/articles/boquete": "/articles/boquete", "/es/articles/el-valle-de-anton": "/articles/el-valle-de-anton",
+           "/es/articles/como-llegar-a-bocas-del-toro-desde-ciudad-de-panama": "/articles/bocas-del-toro", "/es/articles/san-blas-guna-yala-guia-tours-islas": "/articles/san-blas-islands-panama-guna-yala-guide"}
 def dest_img(href):
-    f = re.search(r'<a class="fc" href="' + re.escape(href) + r'"><img class="ph"[^>]*src="([^"]+)"', D["foot"])
-    return f[1].replace(SITE, "") if f else img_of(href)
+    return DEST_PHOTO.get(ES_TWIN.get(href, href)) or img_of(href)
 def count(href):
     f = P / (href.lstrip("/") + ".html"); t = f.read_text(errors="ignore")
-    return len(set(re.findall(r'href="(/articles/[^"#]+)"', t[t.find("<body"):t.find("<footer")])))
-acts = cards_of("ACTIVITIES")
-ACT_PHOTO = {"Eco-tourism": "/images/v2/mist-drifts-through-the-cloud-forest-36345390-wide.webp"}
-act_img = {"Hiking & Trails": "/articles/hikes-in-boquete", "Wildlife & Birding": "/articles/birding-el-valle-de-anton-trails-lodges-season", "Surf & Dive": "/articles/panama-surf-camps",
-           "Food & Coffee": "/articles/geisha-coffee-boquete-where-to-taste", "Eco-tourism": "/articles/finca-lerida-los-quetzales-trail-birdwatching-boquete", "Cities & Culture": "/articles/casco-viejo-panama-walking-guide", "Islands & Beaches": "/articles/san-blas-islands-panama-guna-yala-guide"}
-FOOT_GROUPS = {n: re.findall(r'href="(/articles/[^"]+)">(.*?)</a>', ul) for n, ul in re.findall(r"<h4>(.*?)</h4><ul>(.*?)</ul>", D["foot"], re.S)}
-ROW_PHOTO = {"/articles/tours-in-boquete-panama": "/images/v2/grupo-disfrutando-de-aguas-rapidas-emocionantes-36791113-hero-1280.webp", "/articles/where-to-stay-in-panama-city": "/images/v2/casco-viejo-panama-city-panama-54319827771-hero-1280.webp"}
-HUBS = {"/articles/boquete", "/articles/el-valle-de-anton", "/articles/panama-city", "/articles/bocas-del-toro"}
-def seven(name, group):
-    cands = [(html.unescape(t), g, u) for t, g, u in (cards_of(name) if name else [])] + [(html.unescape(t), "Guide", u) for u, t in FOOT_GROUPS.get(group, [])]
-    for strict in (12, 4):
-        if strict == 4: cands = cands[:]  # second pass: hubs allowed   # prefer clearly different photos; relax only if a row would come up short
-        out, seen, pics = [], set(), []
-        for t, g, u in cands:
-            if len(out) >= 7: break
-            if u in HUBS and strict > 4: continue  # the "All guides" link already goes to the hub; use it only to fill a short row
-            im = dest_img(u) if u in HUBS else img_of(u)
-            if u in seen or not im: continue
-            key = look(im)
-            if any(bin(key ^ k).count("1") <= strict for k in pics): continue
-            seen.add(u); pics.append(key); out.append((t, g, u))
-        if len(out) >= 7: return out
-    return out
-rows = ""
-for name, group, h2, allhref in [("BOQUETE_GUIDES", "Boquete", "Explore Boquete", "/articles/boquete"), ("EL_VALLE_GUIDES", "El Valle de Antón", "Explore El Valle de Antón", "/articles/el-valle-de-anton"),
-                                 ("PANAMA_CITY_GUIDES", "Panama City", "Explore Panama City", "/articles/panama-city"), ]:
-    cs = seven(name, group)
-    if len(cs) < 7: continue
-    rows += (f'<section class="wrap hx-sec"><div class="band-h"><div><h2>{h2}</h2></div><a href="{allhref}">All guides →</a></div>'
-             f'<div class="hx-g7">{"".join(f'<a class="hx-t" href="{u}"><span class="ph"><img alt="" loading="lazy" src="{ROW_PHOTO.get(u) or (dest_img(u) if u in HUBS else img_of(u))}"/></span><b>{E(t)}</b><span class="c"><i class="dot"></i>{E(g)}</span></a>' for t, g, u in cs)}</div></section>')
+    pre = "/es/articles/" if href.startswith("/es/") else "/articles/"
+    return len(set(re.findall(r'href="(' + pre + r'[^"#]+)"', t[t.find("<body"):t.find("<footer")])))
+HUBS = {"/articles/boquete", "/articles/el-valle-de-anton", "/articles/panama-city", "/articles/bocas-del-toro",
+        "/es/articles/boquete", "/es/articles/el-valle-de-anton", "/es/articles/panama-city"}
+ROW_PHOTO = {"/articles/tours-in-boquete-panama": "/images/v2/grupo-disfrutando-de-aguas-rapidas-emocionantes-36791113-hero-1280.webp",
+             "/articles/where-to-stay-in-panama-city": "/images/v2/casco-viejo-panama-city-panama-54319827771-hero-1280.webp",
+             "/es/articles/tours-en-boquete-panama": "/images/v2/boquete-zipline-rider-hero-1280.webp",
+             "/es/articles/panama-city": "/images/v2/skyscrapers-catch-the-last-light-at-13842831-hero-1280.webp"}
 def dek_of(href):
     t = (P / (href.lstrip("/") + ".html")).read_text(errors="ignore"); m = re.search(r'<p class="dek">(.*?)</p>', t, re.S); s = R.text(m[1]) if m else ""
     return s if len(s) < 150 else s[:150].rsplit(" ", 1)[0] + "…"
-def mixcard(u, area, label, t, d, kind, im=None):
-    if kind == "photo":
-        return ptile(u, t, label, im or (dest_img(u) if u in HUBS else img_of(u)), desc=d).replace('class="hx-pt"', f'class="hx-pt m-{area}"', 1)
-    if kind == "navy":
-        return f'<a class="hx-navy m-{area}" href="{u}"><span class="lbl">{label}</span><b>{t}</b><p>{d}</p><span class="ar"></span></a>'
-    im = dest_img(u) if u in HUBS else img_of(u)
-    return (f'<a class="hx-split m-{area}" href="{u}"><span class="tx"><span class="c"><i class="dot"></i>{label}</span><b>{t}</b><p>{d}</p>'
-            f'<span class="go">Read the guide <span class="ar"></span></span></span><span class="ph"><img alt="" loading="lazy" src="{im}"/></span></a>')
-MIX = "".join([
-    mixcard("/articles/bocas-del-toro", "a", "Caribbean", "Bocas del Toro — nine islands, slow boats, sloths", "", "photo", "/images/v2/nyara-bocas-del-toro-panama-hero-1280.webp"),
-    mixcard("/articles/san-blas-islands-panama-guna-yala-guide", "b", "Caribbean", "San Blas and Guna Yala", "", "photo", "/images/v2/x-diadup-kuna-yala-panam-c3-a1-hero-1280.webp"),
-    mixcard("/articles/el-valle-de-anton", "c", "Highlands", "El Valle de Antón — a town inside an extinct volcano.", "Waterfalls, hot springs and the India Dormida ridge, two hours from the capital.", "navy"),
-    mixcard("/articles/chorro-el-macho-waterfall-el-valle-de-anton", "d", "Highlands", "Chorro El Macho, El Valle", "", "photo"),
-    mixcard("/articles/boquete", "e", "Highlands", "Boquete — cloud forest, coffee, Volcán Barú", "The highland town that runs on coffee, rivers, and fog — plus the country’s best day hikes from town.", "split"),
-    mixcard("/articles/panama-city", "f", "Capital", "Panama City", "", "photo", "/images/v2/panama-city-skyline-from-the-waterfront-17477516-hero-1280.webp"),
-    mixcard("/articles/playa-venao-panama", "g", "Pacific coast", "Playa Venao and the Azuero coast", "", "photo"),
-])
-def fresh(u):
-    im = {"/articles/san-blas-tours-from-panama-city": "/images/v2/isla-pelicano-san-blas-panama-sg105536-wide.webp"}.get(u) or img_of(u)
-    return (f'<a class="hx-fr" href="{u}"><span class="hx-pt"><img alt="" loading="lazy" src="{im}"/><b>{title_of(u).split(":")[0]}</b><span class="ar"></span></span>'
-            f'<span class="c"><i class="dot"></i>New guide</span><p>{E(dek_of(u))}</p></a>')
-new = ["/articles/geisha-coffee-boquete-where-to-taste", "/articles/chorro-las-mozas-swimming-falls-el-valle", "/articles/san-blas-tours-from-panama-city",
-       "/articles/playa-venao-panama", "/articles/panama-canal-boat-tours", "/articles/el-pianista-trail-boquete"]
-home = f"""<div class="guide-progress" id="prog" aria-hidden="true"></div>
+ACT_PHOTO = {"Eco-tourism": "/images/v2/mist-drifts-through-the-cloud-forest-36345390-wide.webp"}
+act_img = {"Hiking & Trails": "/articles/hikes-in-boquete", "Wildlife & Birding": "/articles/birding-el-valle-de-anton-trails-lodges-season", "Surf & Dive": "/articles/panama-surf-camps",
+           "Food & Coffee": "/articles/geisha-coffee-boquete-where-to-taste", "Eco-tourism": "/articles/finca-lerida-los-quetzales-trail-birdwatching-boquete", "Cities & Culture": "/articles/casco-viejo-panama-walking-guide", "Islands & Beaches": "/articles/san-blas-islands-panama-guna-yala-guide"}
+ACT_ES = {"Ciudades y Cultura": "Cities & Culture", "Senderismo": "Hiking & Trails", "Ecoturismo": "Eco-tourism", "Fauna y Aves": "Wildlife & Birding",
+          "Surf y Buceo": "Surf & Dive", "Comida y Café": "Food & Coffee", "Islas y Playas": "Islands & Beaches"}
+def act_photo(t):
+    t = ACT_ES.get(t, t)
+    return ACT_PHOTO.get(t) or img_of(act_img[t])
+
+L = {"en": dict(file="home.html", title="Preview: Panama Spot homepage", en="/preview/home.html", es="/preview/home-es.html",
+                dek="The complete guide to traveling in Panama — ten provinces, two coasts, written by people who live here.", cta="Start exploring →",
+                where="Where in Panama?", what="What will you do?", fresh_h="Fresh guides", new="New guide", all="All guides →", guides="guides", read="Read the guide",
+                bento="Seven Panamas, one isthmus.", guide_tag="Guide",
+                dest=[("Panama City", "Capital and canal", "/articles/panama-city"), ("Boquete", "Coffee highlands", "/articles/boquete"),
+                      ("El Valle de Antón", "Volcanic crater", "/articles/el-valle-de-anton"), ("Bocas del Toro", "Caribbean islands", "/articles/bocas-del-toro"),
+                      ("San Blas", "Guna Yala", "/articles/san-blas-islands-panama-guna-yala-guide")],
+                rows=[("BOQUETE_GUIDES", "Boquete", "Explore Boquete", "/articles/boquete"), ("EL_VALLE_GUIDES", "El Valle de Antón", "Explore El Valle de Antón", "/articles/el-valle-de-anton"),
+                      ("PANAMA_CITY_GUIDES", "Panama City", "Explore Panama City", "/articles/panama-city")],
+                new_list=["/articles/geisha-coffee-boquete-where-to-taste", "/articles/chorro-las-mozas-swimming-falls-el-valle", "/articles/san-blas-tours-from-panama-city",
+                          "/articles/playa-venao-panama", "/articles/panama-canal-boat-tours", "/articles/el-pianista-trail-boquete"],
+                new_photo={"/articles/san-blas-tours-from-panama-city": "/images/v2/isla-pelicano-san-blas-panama-sg105536-wide.webp"},
+                mix=[("/articles/bocas-del-toro", "a", "Caribbean", "Bocas del Toro — nine islands, slow boats, sloths", "", "photo", "/images/v2/nyara-bocas-del-toro-panama-hero-1280.webp"),
+                     ("/articles/san-blas-islands-panama-guna-yala-guide", "b", "Caribbean", "San Blas and Guna Yala", "", "photo", "/images/v2/x-diadup-kuna-yala-panam-c3-a1-hero-1280.webp"),
+                     ("/articles/el-valle-de-anton", "c", "Highlands", "El Valle de Antón — a town inside an extinct volcano.", "Waterfalls, hot springs and the India Dormida ridge, two hours from the capital.", "navy", None),
+                     ("/articles/chorro-el-macho-waterfall-el-valle-de-anton", "d", "Highlands", "Chorro El Macho, El Valle", "", "photo", None),
+                     ("/articles/boquete", "e", "Highlands", "Boquete — cloud forest, coffee, Volcán Barú", "The highland town that runs on coffee, rivers, and fog — plus the country’s best day hikes from town.", "split", None),
+                     ("/articles/panama-city", "f", "Capital", "Panama City", "", "photo", "/images/v2/panama-city-skyline-from-the-waterfront-17477516-hero-1280.webp"),
+                     ("/articles/playa-venao-panama", "g", "Pacific coast", "Playa Venao and the Azuero coast", "", "photo", None)]),
+     "es": dict(file="home-es.html", title="Vista previa: portada de Panama Spot", en="/preview/home.html", es="/preview/home-es.html",
+                dek="La guía completa para viajar por Panamá — nueve provincias, tres costas, escrita por quienes vivimos aquí.", cta="Empieza a explorar →",
+                where="¿En qué parte de Panamá?", what="¿Qué vas a hacer?", fresh_h="Guías nuevas", new="Guía nueva", all="Todas las guías →", guides="guías", read="Leer la guía",
+                bento="Siete Panamás, un istmo.", guide_tag="Guía",
+                dest=[("Ciudad de Panamá", "Capital y canal", "/es/articles/panama-city"), ("Boquete", "Tierras altas del café", "/es/articles/boquete"),
+                      ("El Valle de Antón", "Cráter volcánico", "/es/articles/el-valle-de-anton"), ("Bocas del Toro", "Islas del Caribe", "/es/articles/como-llegar-a-bocas-del-toro-desde-ciudad-de-panama"),
+                      ("San Blas", "Guna Yala", "/es/articles/san-blas-guna-yala-guia-tours-islas")],
+                rows=[("BOQUETE_GUIAS", "Boquete", "Explora Boquete", "/es/articles/boquete"), ("EL_VALLE_GUIAS", "El Valle de Antón", "Explora El Valle de Antón", "/es/articles/el-valle-de-anton"),
+                      ("PANAMA_CITY_GUIAS", "Ciudad de Panamá", "Explora Ciudad de Panamá", "/es/articles/panama-city")],
+                new_list=["/es/articles/tour-de-cafe-boquete-fincas-precios-reservar", "/es/articles/miradores-el-valle-de-anton", "/es/articles/sendero-los-quetzales-quetzal-boquete",
+                          "/es/articles/senderismo-en-panama-mejores-senderos-ciudad", "/es/articles/cerro-la-silla-sendero-amanecer-el-valle", "/es/articles/lugares-turisticos-de-cocle"],
+                new_photo={},
+                # the Spanish library has few city guides: these three are about the city too
+                row_extra={"PANAMA_CITY_GUIAS": [("Hoteles en Casco Viejo", "Guía", "/es/articles/hoteles-en-casco-viejo"),
+                                                 ("Cómo llegar a Bocas", "Guía", "/es/articles/como-llegar-a-bocas-del-toro-desde-ciudad-de-panama"),
+                                                 ("Senderos cerca de la ciudad", "Senderismo", "/es/articles/senderismo-en-panama-mejores-senderos-ciudad")]},
+                mix=[("/es/articles/como-llegar-a-bocas-del-toro-desde-ciudad-de-panama", "a", "Caribe", "Bocas del Toro — nueve islas, lanchas lentas, perezosos", "", "photo", "/images/v2/nyara-bocas-del-toro-panama-hero-1280.webp"),
+                     ("/es/articles/san-blas-guna-yala-guia-tours-islas", "b", "Caribe", "San Blas y Guna Yala", "", "photo", "/images/v2/x-diadup-kuna-yala-panam-c3-a1-hero-1280.webp"),
+                     ("/es/articles/el-valle-de-anton", "c", "Tierras altas", "El Valle de Antón — un pueblo dentro de un volcán extinto.", "Cascadas, aguas termales y la cresta de la India Dormida, a dos horas de la capital.", "navy", None),
+                     ("/es/articles/cascada-chorro-el-macho-el-valle-de-anton", "d", "Tierras altas", "Chorro El Macho, El Valle", "", "photo", None),
+                     ("/es/articles/boquete", "e", "Tierras altas", "Boquete — bosque nuboso, café, Volcán Barú", "El pueblo de montaña que vive del café, los ríos y la neblina — y las mejores caminatas de un día del país.", "split", None),
+                     ("/es/articles/panama-city", "f", "Capital", "Ciudad de Panamá", "", "photo", "/images/v2/panama-city-skyline-from-the-waterfront-17477516-hero-1280.webp"),
+                     ("/es/articles/isla-coiba-buceo-parque-nacional", "g", "Pacífico", "Coiba y su parque nacional", "", "photo", None)])}
+
+def build_home(lang):
+    C = L[lang]; foot = donors(lang)["foot"]
+    groups_ = {n: re.findall(r'href="(/(?:es/)?articles/[^"]+)">(.*?)</a>', ul) for n, ul in re.findall(r"<h4>(.*?)</h4><ul>(.*?)</ul>", foot, re.S)}
+    def tile_img(u): return ROW_PHOTO.get(u) or (dest_img(u) if u in HUBS else img_of(u))
+    def seven(name, group):
+        cands = [(html.unescape(t), g, u) for t, g, u in cards_of(name, lang)] + [(html.unescape(t), C["guide_tag"], u) for u, t in groups_.get(group, [])] + C.get("row_extra", {}).get(name, [])
+        for strict in (12, 4, 0):   # prefer clearly different photos; relax only if a row would come up short
+            out, seen, pics = [], set(), []
+            for t, g, u in cands:
+                if len(out) >= 7: break
+                if u in HUBS and strict > 4: continue  # the "All guides" link already goes to the hub; use it only to fill a short row
+                im = tile_img(u)
+                if u in seen or not im: continue
+                key = look(im)
+                if any(bin(key ^ k).count("1") <= strict for k in pics): continue
+                seen.add(u); pics.append(key); out.append((t, g, u))
+            if len(out) >= 7: return out
+        return out
+    rows = ""
+    for name, group, h2, allhref in C["rows"]:
+        cs = seven(name, group)
+        if len(cs) < 7: print("short row:", lang, h2, len(cs)); continue
+        rows += (f'<section class="wrap hx-sec"><div class="band-h"><div><h2>{h2}</h2></div><a href="{allhref}">{C["all"]}</a></div>'
+                 f'<div class="hx-g7">{"".join(f'<a class="hx-t" href="{u}"><span class="ph"><img alt="" loading="lazy" src="{tile_img(u)}"/></span><b>{E(t)}</b><span class="c"><i class="dot"></i>{E(g)}</span></a>' for t, g, u in cs)}</div></section>')
+    def mixcard(u, area, label, t, d, kind, im=None):
+        if kind == "photo":
+            return ptile(u, t, label, im or (dest_img(u) if u in HUBS else img_of(u)), desc=d).replace('class="hx-pt"', f'class="hx-pt m-{area}"', 1)
+        if kind == "navy":
+            return f'<a class="hx-navy m-{area}" href="{u}"><span class="lbl">{label}</span><b>{t}</b><p>{d}</p><span class="ar"></span></a>'
+        im = dest_img(u)
+        return (f'<a class="hx-split m-{area}" href="{u}"><span class="tx"><span class="c"><i class="dot"></i>{label}</span><b>{t}</b><p>{d}</p>'
+                f'<span class="go">{C["read"]} <span class="ar"></span></span></span><span class="ph"><img alt="" loading="lazy" src="{im}"/></span></a>')
+    def fresh(u):
+        im = C["new_photo"].get(u) or img_of(u)
+        return (f'<a class="hx-fr" href="{u}"><span class="hx-pt"><img alt="" loading="lazy" src="{im}"/><b>{title_of(u).split(":")[0]}</b><span class="ar"></span></span>'
+                f'<span class="c"><i class="dot"></i>{C["new"]}</span><p>{E(dek_of(u))}</p></a>')
+    acts = cards_of("ACTIVITIES", lang)
+    body = f"""<div class="guide-progress" id="prog" aria-hidden="true"></div>
 <header class="hero hx-home">
-  {ROT}
-  {nav("/preview/home.html", "/es")}
+  {rot(lang)}
+  {nav(C["en"], C["es"], lang)}
   <div class="wrap hx-c">
     <h1 class="hx-mark">Panam<span class="a">á</span><i class="pd"></i></h1>
-    <p class="hx-dek">The complete guide to traveling in Panama — ten provinces, two coasts, written by people who live here.</p>
-    <a class="hx-btn" href="#cat-regions">Start exploring →</a>
+    <p class="hx-dek">{C["dek"]}</p>
+    <a class="hx-btn" href="#cat-regions">{C["cta"]}</a>
   </div>
 </header>
-<section class="wrap hx-sec" id="cat-regions"><div class="band-h"><div><h2>Where in Panama?</h2></div></div>
-<div class="hx-dest">{"".join(f'<a class="hx-d" href="{u}"><img alt="" loading="lazy" src="{dest_img(u)}"/><span class="chip glass">{count(u)} guides</span><span class="ft"><b>{n}</b><small>{s}</small></span></a>' for n, s, u in dest)}</div></section>
-<section class="wrap hx-sec" id="cat-activities"><div class="band-h"><div><h2>What will you do?</h2></div></div>
-<div class="hx-acts">{"".join(f'<a class="hx-act" href="{u}"><img alt="" loading="lazy" src="{ACT_PHOTO.get(html.unescape(t)) or img_of(act_img.get(html.unescape(t), u))}"/><b>{E(t)}</b></a>' for t, g, u in acts)}</div></section>
-<section class="wrap hx-sec"><div class="band-h"><div><h2>Fresh guides</h2></div></div>
-<div class="hx-new">{"".join(fresh(u) for u in new)}</div></section>
+<section class="wrap hx-sec" id="cat-regions"><div class="band-h"><div><h2>{C["where"]}</h2></div></div>
+<div class="hx-dest">{"".join(f'<a class="hx-d" href="{u}"><img alt="" loading="lazy" src="{dest_img(u)}"/><span class="chip glass">{count(u)} {C["guides"]}</span><span class="ft"><b>{n}</b><small>{s}</small></span></a>' for n, s, u in C["dest"])}</div></section>
+<section class="wrap hx-sec" id="cat-activities"><div class="band-h"><div><h2>{C["what"]}</h2></div></div>
+<div class="hx-acts">{"".join(f'<a class="hx-act" href="{u}"><img alt="" loading="lazy" src="{act_photo(html.unescape(t))}"/><b>{E(t)}</b></a>' for t, g, u in acts)}</div></section>
+<section class="wrap hx-sec"><div class="band-h"><div><h2>{C["fresh_h"]}</h2></div></div>
+<div class="hx-new">{"".join(fresh(u) for u in C["new_list"])}</div></section>
 {rows}
-<section class="wrap hx-sec"><div class="band-h"><div><h2>Seven Panamas, one isthmus.</h2></div></div><div class="hx-mix">{MIX}</div></section>
+<section class="wrap hx-sec"><div class="band-h"><div><h2>{C["bento"]}</h2></div></div><div class="hx-mix">{"".join(mixcard(*m) for m in C["mix"])}</div></section>
 """
-(OUT / "home.html").write_text(page("Preview: Panama Spot homepage", home + ROTJS, HOME_BG))
-print("wrote", OUT / "boquete-hub.html", OUT / "home.html")
+    out = page(C["title"], body + ROTJS, HOME_BG, lang)
+    # the footer's opening band ("Find your spot in Panama", Start exploring, Where to next?) repeats the hero and "Where in Panama?" on the homepage
+    out = re.sub(r'<div class="wrap f-top">.*?</div>', "", out, count=1, flags=re.S)
+    out = re.sub(r'<div class="wrap f-dest">.*?</div></div>', "", out, count=1, flags=re.S)
+    (OUT / C["file"]).write_text(out)
+    print("wrote", OUT / C["file"])
+build_home("en"); build_home("es")
