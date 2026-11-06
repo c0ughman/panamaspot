@@ -176,8 +176,9 @@ a.hx-btn:hover { transform: translateY(-1px); }
 @media (max-width: 560px) { .hb-side, .hb-more { grid-template-columns: 1fr; grid-auto-rows: auto; } .hb-g.s2, .hb-g.s4 { grid-column: auto; } }
 /* hub: the original layout, restyled */
 .hb-hero { height: clamp(420px, 38vw, 540px); grid-template-rows: auto 1fr; }
-.hb-hero::before { background: linear-gradient(180deg, rgba(3,10,30,.45) 0%, rgba(3,10,30,.05) 30%, rgba(3,10,30,.25) 58%, rgba(3,10,30,.72) 100%); }
+.hb-hero::before { background: linear-gradient(180deg, rgba(3,10,30,.42) 0%, rgba(3,10,30,0) 26%, rgba(3,10,30,.28) 50%, rgba(3,10,30,.72) 76%, rgba(3,10,30,.94) 100%); }
 .hb-hero > .wrap:last-of-type { align-self: end; }
+.hb-ev-ph img { object-position: center 34% !important; }
 .hb-hero .hb-c { display: grid; gap: 14px; padding-bottom: 44px; max-width: 760px; margin: 0; }
 .hb-hero .lbl { color: #fff; }
 .hb-hero h1 { font: 650 clamp(56px, 6.4vw, 96px)/.95 var(--serif); color: #fff; letter-spacing: -0.01em; }
@@ -364,6 +365,8 @@ idx_h = re.search(r'<p class="hub-eyebrow">(The full library)</p>\s*<h2 class="h
 es_t = re.search(r'<p class="hub-lang-t">(.*?)</p><p class="hub-lang-d">(.*?)</p>', b, re.S)
 HERO = "/images/v2/aerial-view-of-boquete-panama-ed675378-hero"
 cta = B.blocks("boquete-en")
+# hub only: the waterfall photo in the banner; the riders photo is overused (live guide CTAs are unchanged)
+cta["banner"] = cta["banner"].replace("evalley-boquete-ebike-trail", "evalley-boquete-ebike-hero").replace("Two riders on E-Valley e-bikes on a farm track in Boquete", "Two riders with e-bikes in front of a waterfall near Boquete").replace('class="ev-ph"', 'class="ev-ph hb-ev-ph"')
 group_html = ""
 for i, g in enumerate(groups):
     rows = "".join(f'<a class="hx-li" href="{u}"><img alt="" loading="lazy" src="{img_of(u)}"/><span><b>{E(n)}</b><span>{E(d)}</span></span><i>→</i></a>' for u, n, d in g["items"])
@@ -408,7 +411,7 @@ def photos_of(u):
     rest = re.findall(r'src="(?:' + re.escape(SITE) + r')?(/images/v2/[^"]+?-(?:wide|gallery)\.webp)"', h)
     return [img_of(u)] + rest
 USED = []
-TILE_PHOTO = {"/articles/boquete-cycling-routes": "/images/v2/boquete-ebike-trail-gallery.webp"}  # its other photos are a map and a product shot
+TILE_PHOTO = {"/articles/boquete-cycling-routes": "/images/v2/evalley-boquete-ebike-riders-640.webp"}  # a parked bike: the riders photo is overused
 def fresh_photo(u):
     if u in TILE_PHOTO:
         USED.append(look(TILE_PHOTO[u])); return TILE_PHOTO[u]
@@ -427,8 +430,9 @@ _hot["h2"] = "Hot water and rivers"
 _g = _group("Trails"); _g["img"] = "/images/v2/volcan-baru-in-a-cloud-shroud-wide.webp"; _g["alt"] = "Volcán Barú's summit above a band of cloud, seen across highland forest and pasture."
 _g = _group("Coffee"); _g["img"] = "/images/v2/al-in-los-quetzales-national-park-photo-hero-1280.webp"; _g["alt"] = "A resplendent quetzal perched on a mossy branch."
 PILLS = '<nav class="hb-pills" aria-label="Boquete guides by topic">' + "".join(
-    f'<a href="#topic-{i + 1}"><img alt="" src="{g["img"]}"/><span><b>{g["h2"].split(":")[0]}</b><small>{len(g["items"])} guides</small></span></a>'
+    f'<a href="#topic-{i + 1}"><img alt="" src="{"/images/v2/boquete-ebike-hero-tile.webp" if g is _wheels else g["img"]}"/><span><b>{g["h2"].split(":")[0]}</b><small>{len(g["items"])} guides</small></span></a>'
     for i, g in enumerate(groups)) + "</nav>"
+USED.extend(look(g["img"]) for g in groups)
 TOPICS = ""
 for i, g in enumerate(groups):
     rows = "".join(f'<li><a href="{u}"><img alt="" loading="lazy" src="{fresh_photo(u)}"/><span class="t"><b>{n}</b><span>{d}</span></span><span class="go">→</span></a></li>' for u, n, d in g["items"])
@@ -436,21 +440,20 @@ for i, g in enumerate(groups):
                f'<div class="gt"><h2>{g["h2"]}</h2><p class="bl">{g["blurb"]}</p><ul class="hb-list">{rows}</ul></div></div>')
 GAL = [("/images/v2/volcan-baru-emerging-through-clouds-d35d9b87-hero-1280.webp", "Volcán Barú rising through cloud above forested slopes."),
        ("/images/v2/resplendent-quetzal-646deb1a-gallery.webp", "A resplendent quetzal, the bird most birders come to Boquete for."),
-       ("/images/v2/finca-lerida-boquete-panama-wide.webp", "Finca Lérida, one of the Boquete farms that pours Geisha."),
+       ("/images/v2/red-coffee-cherries-at-peak-ripeness-35629753-wide.webp", "Red coffee cherries at peak ripeness on the slopes of Volcán Barú."),
        ("/images/boquete/boquete-rafting.webp", "Rafters in yellow boats on a river near Boquete."),
        ("/images/boquete/boquete-cabins.webp", "Timber A-frame cabins on a hillside above Boquete."),
        ("/images/boquete/boquete-market.webp", "Fruit and vegetables for sale at a market stall in Boquete."),
-       ("/images/boquete/boquete-clouds.webp", "Bajareque mist rolling through the Boquete valley.")]
+       ("/images/v2/view-from-restaurant-covered-los-molinos-hero-1280.webp", "Storm light over the green canyons around Boquete.")]
 gal_html = "".join(f'<figure><img class="ph" alt="{a}" loading="lazy" src="{u}"/><figcaption>{a}</figcaption></figure>' for u, a in GAL)
 hub = f"""<div class="guide-progress" id="prog" aria-hidden="true"></div>
 <header class="hero hb-hero">
-  <img class="hero-img" alt="{html.escape(html.unescape(HB[2]))}" fetchpriority="high" src="{HB[1]}" style="object-position:center 45%"/>
+  <img class="hero-img" alt="{html.escape(html.unescape(HB[2]))}" fetchpriority="high" src="/images/v2/boquete-hills-hero-1920.webp" style="object-position:center 45%"/>
   {nav("/preview/boquete-hub.html", "/es/articles/boquete")}
   <div class="wrap"><div class="hb-c">
     <span class="lbl">{eyebrow}</span>
     <h1>Boquete</h1>
     <p>{dek}</p>
-    <div class="hb-pills">{"".join(f'<span class="chip glass">{E(p)}</span>' for p in pills)}</div>
   </div></div>
 </header>
 <section class="wrap hb-sec first"><div class="hb-orient"><div class="lead">{"".join(f"<p>{l}</p>" for l in leads[:1])}{icons_html}</div>
@@ -506,7 +509,7 @@ ACT_PHOTO = {"Eco-tourism": "/images/v2/mist-drifts-through-the-cloud-forest-363
 act_img = {"Hiking & Trails": "/articles/hikes-in-boquete", "Wildlife & Birding": "/articles/birding-el-valle-de-anton-trails-lodges-season", "Surf & Dive": "/articles/panama-surf-camps",
            "Food & Coffee": "/articles/geisha-coffee-boquete-where-to-taste", "Eco-tourism": "/articles/finca-lerida-los-quetzales-trail-birdwatching-boquete", "Cities & Culture": "/articles/casco-viejo-panama-walking-guide", "Islands & Beaches": "/articles/san-blas-islands-panama-guna-yala-guide"}
 FOOT_GROUPS = {n: re.findall(r'href="(/articles/[^"]+)">(.*?)</a>', ul) for n, ul in re.findall(r"<h4>(.*?)</h4><ul>(.*?)</ul>", D["foot"], re.S)}
-ROW_PHOTO = {"/articles/where-to-stay-in-panama-city": "/images/v2/casco-viejo-panama-city-panama-54319827771-hero-1280.webp"}
+ROW_PHOTO = {"/articles/tours-in-boquete-panama": "/images/v2/grupo-disfrutando-de-aguas-rapidas-emocionantes-36791113-hero-1280.webp", "/articles/where-to-stay-in-panama-city": "/images/v2/casco-viejo-panama-city-panama-54319827771-hero-1280.webp"}
 HUBS = {"/articles/boquete", "/articles/el-valle-de-anton", "/articles/panama-city", "/articles/bocas-del-toro"}
 def seven(name, group):
     cands = [(html.unescape(t), g, u) for t, g, u in (cards_of(name) if name else [])] + [(html.unescape(t), "Guide", u) for u, t in FOOT_GROUPS.get(group, [])]
@@ -547,7 +550,7 @@ MIX = "".join([
     mixcard("/articles/el-valle-de-anton", "c", "Highlands", "El Valle de Antón — a town inside an extinct volcano.", "Waterfalls, hot springs and the India Dormida ridge, two hours from the capital.", "navy"),
     mixcard("/articles/chorro-el-macho-waterfall-el-valle-de-anton", "d", "Highlands", "Chorro El Macho, El Valle", "", "photo"),
     mixcard("/articles/boquete", "e", "Highlands", "Boquete — cloud forest, coffee, Volcán Barú", "The highland town that runs on coffee, rivers, and fog — plus the country’s best day hikes from town.", "split"),
-    mixcard("/articles/panama-city", "f", "Capital", "Panama City", "", "photo", "/images/v2/panama-city-panama-hero-1280.webp"),
+    mixcard("/articles/panama-city", "f", "Capital", "Panama City", "", "photo", "/images/v2/skyscrapers-catch-the-last-light-at-13842831-hero-1280.webp"),
     mixcard("/articles/playa-venao-panama", "g", "Pacific coast", "Playa Venao and the Azuero coast", "", "photo"),
 ])
 def fresh(u):
