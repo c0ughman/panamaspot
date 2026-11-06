@@ -33,10 +33,10 @@ def title_of(href):
 CSS = """
 .hx-hero { height: clamp(300px, 27vw, 400px); }
 /* homepage hero: the original layout (50vh, min 480px, wordmark bottom-left), new-template details */
-.hx-home { height: auto; min-height: max(400px, 44vh); grid-template-rows: auto 1fr; }
+.hx-home { height: clamp(440px, 46vh, 540px); min-height: 0; grid-template-rows: auto 1fr; }
 .hx-home::before { background: linear-gradient(180deg, rgba(3,10,30,.42) 0%, rgba(3,10,30,0) 34%, rgba(3,10,30,.1) 60%, rgba(3,10,30,.5) 100%); }
 .hx-home .hx-c { align-self: end; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding-top: 32px; padding-bottom: 54px; }
-.hx-home .hx-mark { font: 400 clamp(64px, 11vw, 160px)/.86 var(--serif); letter-spacing: -0.02em; color: #fff; margin: 0; text-shadow: 0 2px 30px rgba(0,0,0,.18); }
+.hx-home .hx-mark { font: 400 clamp(60px, 9.6vw, 140px)/.86 var(--serif); letter-spacing: -0.02em; color: #fff; margin: 0; text-shadow: 0 2px 30px rgba(0,0,0,.18); }
 .hx-mark .a { color: var(--red); }
 .hx-mark .pd { display: inline-block; width: .17em; height: .17em; border-radius: 50%; background: var(--red); margin-left: .03em; }
 .hx-home .hx-dek { font: 400 16px/1.55 var(--sans); color: rgba(255,255,255,.88); max-width: 56ch; text-shadow: 0 1px 12px rgba(0,0,0,.3); }
@@ -224,7 +224,7 @@ a.hx-search kbd { margin-left: auto; font: 600 12px/1 var(--sans); padding: 6px 
 .hx-band > .hx-sec:first-child { padding-top: 76px; }
 .hx-band + .hx-sec { padding-top: 72px; }
 .foot > .f-mid:first-child { padding-top: 56px; }
-#cat-regions.hx-sec { padding-top: 52px; }
+#cat-regions.hx-sec { padding-top: 34px; }
 #cat-regions .band-h { margin-bottom: 18px; }
 .hx-sec { padding-block: 112px 0; scroll-margin-top: 20px; }
 .hx-sec:last-of-type { padding-bottom: 112px; }
@@ -397,7 +397,7 @@ def menu_html(lang):
     M = MENU[lang]; home = "/es" if lang == "es" else "/"
     def panel(i, label, kind, items):
         if kind == "dest":
-            inner = ('<div class="mm-dest">' + "".join(f'<a href="{u}"><img alt="" loading="lazy" src="{_foot_photo(ph)}"/><b>{n}</b><small>{s}</small></a>' for n, s, u, ph in items)
+            inner = ('<div class="mm-dest">' + "".join(f'<a href="{u}"><img alt="" loading="lazy" src="{_foot_photo(ph)}"/><b>{n}</b></a>' for n, s, u, ph in items)
                      + '</div>')
         else:
             inner = '<ul class="mm-list">' + "".join(f'<li><a href="{u}"><img alt="" loading="lazy" src="{img_of(u)}"/><span>{n}</span></a></li>' for n, u in items) + "</ul>"
@@ -406,7 +406,7 @@ def menu_html(lang):
     desk = '<nav class="links mm" aria-label="Main">' + "".join(panel(i, *g) for i, g in enumerate(M["groups"])) + "</nav>"
     # phones: one button, the same three groups in one sheet
     sheet = "".join(f'<section><h3>{label}</h3>'
-                    + ('<div class="mm-dest">' + "".join(f'<a href="{u}"><img alt="" loading="lazy" src="{_foot_photo(ph)}"/><b>{n}</b><small>{s}</small></a>' for n, s, u, ph in items) + "</div>"
+                    + ('<div class="mm-dest">' + "".join(f'<a href="{u}"><img alt="" loading="lazy" src="{_foot_photo(ph)}"/><b>{n}</b></a>' for n, s, u, ph in items) + "</div>"
                        if kind == "dest" else '<ul class="mm-list">' + "".join(f'<li><a href="{u}"><img alt="" loading="lazy" src="{img_of(u)}"/><span>{n}</span></a></li>' for n, u in items) + "</ul>")
                     + "</section>" for label, kind, items in M["groups"])
     mob = (f'<button type="button" class="mm-burger glass" aria-expanded="false" aria-controls="mm-sheet" aria-label="{M["btn"]}"><i></i><i></i></button>'
