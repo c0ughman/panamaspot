@@ -233,7 +233,12 @@ a.hx-search kbd { margin-left: auto; font: 600 12px/1 var(--sans); padding: 6px 
 @media (max-width: 760px) { .hx-sec { padding-top: 72px; } .hx-sec:last-of-type { padding-bottom: 72px; } .hx-band, .hx-band.bento { margin-top: 56px; padding-bottom: 56px; } .hx-band > .hx-sec:first-child { padding-top: 56px; } .hx-band + .hx-sec, #cat-regions.hx-sec { padding-top: 56px; } .foot > .f-mid:first-child { padding-top: 56px; } }
 .hx-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .hx-dest { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
-.hx-d { position: relative; border-radius: 22px; overflow: hidden; aspect-ratio: 5/4; color: #fff; text-decoration: none; isolation: isolate; }
+.hx-dest.hx-do { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.hx-do .hx-d b { display: flex; align-items: center; gap: 8px; }
+.hx-do .hx-d b::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--red); flex: none; }
+@media (max-width: 1000px) { .hx-dest.hx-do { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .hx-dest.hx-do { grid-template-columns: 1fr 1fr; } }
+.hx-d { position: relative; border-radius: 22px; overflow: hidden; aspect-ratio: 3/4; color: #fff; text-decoration: none; isolation: isolate; }
 .hx-d img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .7s; z-index: -2; }
 .hx-d::after { content: ""; position: absolute; inset: 40% 0 0; background: linear-gradient(180deg, rgba(3,10,30,0), rgba(3,10,30,.7)); z-index: -1; }
 .hx-d:hover img { transform: scale(1.04); }
@@ -422,7 +427,8 @@ MENU_CSS = """
 #mm-1 .mm-list { grid-template-columns: 1fr 1fr; min-width: 480px; }
 .mm-list a { display: flex; align-items: center; gap: 12px; padding: 8px 12px 8px 8px; border-radius: 14px; color: #fff; text-decoration: none; font: 600 14.5px/1.2 var(--sans); transition: background .2s; }
 .mm-list a:hover { background: rgba(255,255,255,.14); }
-.mm-list span::after, .mm-sheet .mm-list span::after { content: ""; display: inline-block; width: .3em; height: .3em; margin-left: .12em; border-radius: 50%; background: var(--red); vertical-align: baseline; }
+.mm-list span { display: inline-flex; align-items: center; gap: 8px; }
+.mm-list span::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--red); flex: none; }
 .mm-list img { width: 40px; height: 40px; border-radius: 11px; object-fit: cover; flex: none; }
 @keyframes mm-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 .mm-burger { display: none; width: 40px; height: 40px; border: 0; border-radius: 50%; padding: 0; cursor: pointer; place-items: center; align-content: center; gap: 5px; }
@@ -747,6 +753,29 @@ def act_photo(t):
     t = ACT_ES.get(t, t)
     return ACT_PHOTO.get(t) or img_of(act_img[t])
 
+PLACES = {
+ "en": [("Panama City", "Capital and canal", "/articles/panama-city", None), ("Boquete", "Coffee highlands", "/articles/boquete", None),
+        ("El Valle de Antón", "Volcanic crater", "/articles/el-valle-de-anton", None), ("Bocas del Toro", "Caribbean islands", "/articles/bocas-del-toro", None),
+        ("San Blas", "Guna Yala", "/articles/san-blas-islands-panama-guna-yala-guide", None), ("Pearl Islands", "Pacific islands", "/articles/pearl-islands-panama-guide", None),
+        ("Playa Venao", "Surf coast", "/articles/playa-venao-panama", None)],
+ "es": [("Ciudad de Panamá", "Capital y canal", "/es/articles/panama-city", None), ("Boquete", "Tierras altas del café", "/es/articles/boquete", None),
+        ("El Valle de Antón", "Cráter volcánico", "/es/articles/el-valle-de-anton", None), ("Bocas del Toro", "Islas del Caribe", "/es/articles/como-llegar-a-bocas-del-toro-desde-ciudad-de-panama", None),
+        ("San Blas", "Guna Yala", "/es/articles/san-blas-guna-yala-guia-tours-islas", None), ("Casco Viejo", "Barrio histórico", "/es/articles/casco-viejo-restaurantes-donde-comer-beber-hospedarse", None),
+        ("Coiba", "Parque marino", "/es/articles/isla-coiba-buceo-parque-nacional", "/images/v2/isla-canales-de-afuera-shallows-2063365818-gallery.webp")]}
+# (title, where it is, link, photo key in act_photo)
+DOING = {
+ "en": [("Hiking", "El Valle and Boquete", "/articles/hiking-in-panama-best-trails", "Hiking & Trails"),
+        ("Birding and wildlife", "El Valle de Antón", "/articles/birding-el-valle-de-anton-trails-lodges-season", "Wildlife & Birding"),
+        ("Surf and dive", "Venao and Santa Catalina", "/articles/panama-surf-camps", "Surf & Dive"),
+        ("Food and coffee", "Boquete", "/articles/geisha-coffee-boquete-where-to-taste", "Food & Coffee"),
+        ("City and culture", "Casco Viejo, Panama City", "/articles/casco-viejo-panama-walking-guide", "Cities & Culture"),
+        ("Islands and beaches", "San Blas and Guna Yala", "/articles/san-blas-islands-panama-guna-yala-guide", "Islands & Beaches")],
+ "es": [("Senderismo", "Boquete", "/es/articles/senderos-en-boquete-guia-completa", "Hiking & Trails"),
+        ("Fauna y aves", "El Valle de Antón", "/es/articles/avistamiento-de-aves-el-valle-de-anton", "Wildlife & Birding"),
+        ("Surf y buceo", "Coiba", "/es/articles/isla-coiba-buceo-parque-nacional", "Surf & Dive"),
+        ("Comida y café", "Boquete", "/es/articles/tour-de-cafe-boquete-fincas-precios-reservar", "Food & Coffee"),
+        ("Ciudad y cultura", "Ciudad de Panamá", "/es/articles/que-hacer-en-ciudad-de-panama", "Cities & Culture"),
+        ("Islas y playas", "San Blas y Guna Yala", "/es/articles/san-blas-guna-yala-guia-tours-islas", "Islands & Beaches")]}
 L = {"en": dict(file="home.html", title="Preview: Panama Spot homepage", en="/preview/home.html", es="/preview/home-es.html",
                 dek="The complete guide to traveling in Panama — ten provinces, two coasts, written by people who live here.", cta="Start exploring →",
                 where="Where in Panama?", what="What will you do?", fresh_h="Fresh guides", new="New guide", all="All guides →", guides="guides", read="Read the guide",
@@ -838,9 +867,9 @@ def build_home(lang):
   </div>
 </header>
 <section class="wrap hx-sec" id="cat-regions"><div class="band-h"><div><h2>{C["where"]}</h2></div></div>
-<div class="hx-dest">{"".join(f'<a class="hx-d" href="{u}"><img alt="" loading="lazy" src="{dest_img(u)}"/><span class="chip glass">{count(u)} {C["guides"]}</span><span class="ft"><b>{n}</b><small>{s}</small></span></a>' for n, s, u in C["dest"])}</div></section>
+<div class="hx-g7">{"".join(f'<a class="hx-t" href="{u}"><span class="ph"><img alt="" loading="lazy" src="{ph or (dest_img(u) if (u in HUBS or u in ES_TWIN) else img_of(u))}"/></span><b>{n}</b><span class="c"><i class="dot"></i>{t}</span></a>' for n, t, u, ph in PLACES[lang])}</div></section>
 <div class="hx-band"><section class="wrap hx-sec" id="cat-activities"><div class="band-h"><div><h2>{C["what"]}</h2></div></div>
-<div class="hx-acts">{"".join(f'<a class="hx-act" href="{u}"><img alt="" loading="lazy" src="{act_photo(html.unescape(t))}"/><b>{E(t)}</b></a>' for t, g, u in acts)}</div></section>
+<div class="hx-dest hx-do">{"".join(f'<a class="hx-d" href="{u}"><img alt="" loading="lazy" src="{act_photo(k)}"/><span class="ft"><b>{n}</b><small>{w}</small></span></a>' for n, w, u, k in DOING[lang])}</div></section>
 <section class="wrap hx-sec"><div class="band-h"><div><h2>{C["fresh_h"]}</h2></div></div>
 <div class="hx-new">{"".join(fresh(u) for u in C["new_list"])}</div></section></div>
 {rows}

@@ -666,7 +666,12 @@ a.hx-search kbd { margin-left: auto; font: 600 12px/1 var(--sans); padding: 6px 
 @media (max-width: 760px) { .hx-sec { padding-top: 72px; } .hx-sec:last-of-type { padding-bottom: 72px; } .hx-band, .hx-band.bento { margin-top: 56px; padding-bottom: 56px; } .hx-band > .hx-sec:first-child { padding-top: 56px; } .hx-band + .hx-sec, #cat-regions.hx-sec { padding-top: 56px; } .foot > .f-mid:first-child { padding-top: 56px; } }
 .hx-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .hx-dest { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
-.hx-d { position: relative; border-radius: 22px; overflow: hidden; aspect-ratio: 5/4; color: #fff; text-decoration: none; isolation: isolate; }
+.hx-dest.hx-do { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.hx-do .hx-d b { display: flex; align-items: center; gap: 8px; }
+.hx-do .hx-d b::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--red); flex: none; }
+@media (max-width: 1000px) { .hx-dest.hx-do { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .hx-dest.hx-do { grid-template-columns: 1fr 1fr; } }
+.hx-d { position: relative; border-radius: 22px; overflow: hidden; aspect-ratio: 3/4; color: #fff; text-decoration: none; isolation: isolate; }
 .hx-d img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .7s; z-index: -2; }
 .hx-d::after { content: ""; position: absolute; inset: 40% 0 0; background: linear-gradient(180deg, rgba(3,10,30,0), rgba(3,10,30,.7)); z-index: -1; }
 .hx-d:hover img { transform: scale(1.04); }
@@ -760,7 +765,8 @@ a.hx-search kbd { margin-left: auto; font: 600 12px/1 var(--sans); padding: 6px 
 #mm-1 .mm-list { grid-template-columns: 1fr 1fr; min-width: 480px; }
 .mm-list a { display: flex; align-items: center; gap: 12px; padding: 8px 12px 8px 8px; border-radius: 14px; color: #fff; text-decoration: none; font: 600 14.5px/1.2 var(--sans); transition: background .2s; }
 .mm-list a:hover { background: rgba(255,255,255,.14); }
-.mm-list span::after, .mm-sheet .mm-list span::after { content: ""; display: inline-block; width: .3em; height: .3em; margin-left: .12em; border-radius: 50%; background: var(--red); vertical-align: baseline; }
+.mm-list span { display: inline-flex; align-items: center; gap: 8px; }
+.mm-list span::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--red); flex: none; }
 .mm-list img { width: 40px; height: 40px; border-radius: 11px; object-fit: cover; flex: none; }
 @keyframes mm-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 .mm-burger { display: none; width: 40px; height: 40px; border: 0; border-radius: 50%; padding: 0; cursor: pointer; place-items: center; align-content: center; gap: 5px; }
