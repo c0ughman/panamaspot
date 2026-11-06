@@ -219,15 +219,17 @@ a.hx-search svg { flex: none; opacity: .9; }
 a.hx-search kbd { margin-left: auto; font: 600 12px/1 var(--sans); padding: 6px 9px; border-radius: 8px; background: rgba(255,255,255,.18); }
 .hx-quick { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
 .hx-quick a { text-decoration: none; }
-.hx-band { background: var(--beige); margin-top: 112px; padding-bottom: 112px; }
-.hx-band > .hx-sec:first-child { padding-top: 96px; }
-.hx-band + .hx-sec, .hx-band + .foot { margin-top: 0; }
-.foot > .f-mid:first-child { padding-top: 72px; }
+.hx-band { background: var(--beige); margin-top: 88px; padding-bottom: 72px; }
+.hx-band.bento { margin-top: 64px; padding-bottom: 64px; }
+.hx-band > .hx-sec:first-child { padding-top: 76px; }
+.hx-band + .hx-sec { padding-top: 72px; }
+.foot > .f-mid:first-child { padding-top: 56px; }
+#cat-regions.hx-sec { padding-top: 96px; }
 .hx-sec { padding-block: 112px 0; scroll-margin-top: 20px; }
 .hx-sec:last-of-type { padding-bottom: 112px; }
 .hx-sec .band-h { margin-bottom: 26px; }
 .hx-sec .band-h h2 { font-size: clamp(28px, 2.3vw, 34px); }
-@media (max-width: 760px) { .hx-sec { padding-top: 72px; } .hx-sec:last-of-type { padding-bottom: 72px; } .hx-band { margin-top: 72px; padding-bottom: 72px; } .hx-band > .hx-sec:first-child { padding-top: 64px; } .foot > .f-mid:first-child { padding-top: 56px; } }
+@media (max-width: 760px) { .hx-sec { padding-top: 72px; } .hx-sec:last-of-type { padding-bottom: 72px; } .hx-band, .hx-band.bento { margin-top: 56px; padding-bottom: 56px; } .hx-band > .hx-sec:first-child { padding-top: 56px; } .hx-band + .hx-sec, #cat-regions.hx-sec { padding-top: 56px; } .foot > .f-mid:first-child { padding-top: 56px; } }
 .hx-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .hx-dest { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
 .hx-d { position: relative; border-radius: 22px; overflow: hidden; aspect-ratio: 3/4; color: #fff; text-decoration: none; isolation: isolate; }
@@ -256,7 +258,8 @@ a.hx-search kbd { margin-left: auto; font: 600 12px/1 var(--sans); padding: 6px 
 .hx-act img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform .6s; }
 .hx-act::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(3,10,30,0) 40%, rgba(3,10,30,.62)); z-index: -1; }
 .hx-act:hover img { transform: scale(1.05); }
-.hx-act b { font: 700 16px/1.2 var(--sans); }
+.hx-act b { font: 700 16px/1.2 var(--sans); display: flex; align-items: center; gap: 8px; }
+.hx-act b::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--red); flex: none; }
 .hx-intro { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: clamp(32px, 5vw, 80px); align-items: start; }
 .hx-intro p { font-size: clamp(19px, 1.5vw, 21px); line-height: 1.62; color: var(--ink); }
 .hx-intro p + p { margin-top: 16px; }
@@ -327,22 +330,139 @@ def page(title, body, hero_preload, lang="en"):
 <title>{title}</title><meta name="robots" content="noindex, nofollow">
 <link rel="preload" as="image" href="{hero_preload}" fetchpriority="high"/>
 {D["font"]}
-{D["style"].replace("</style>", R.EXTRA_CSS + CSS.replace("ARWVAL", ARW) + "</style>")}
+{D["style"].replace("</style>", R.EXTRA_CSS + CSS.replace("ARWVAL", ARW) + MENU_CSS + "</style>")}
 <!--evx:css--><link rel="stylesheet" href="/css/evalley-cta.css"><!--/evx:css-->
 </head><body>
 {body}
 {D["foot"]}
 {D["js"].replace('var art = document.getElementById("article")', 'var art = document.getElementById("article") || document.body')}
 <script src="/js/search.js" defer></script>
+{MENU_JS}
 </body></html>
 """)
 
+
+# ---------------- Main menu (frosted dropdowns) ----------------
+def _foot_photo(href):
+    m = re.search(r'<a class="fc" href="' + re.escape(href) + r'"><img class="ph"[^>]*src="([^"]+)"', D["foot"])
+    return m[1].replace(SITE, "") if m else img_of(href)
+MENU = {
+ "en": dict(btn="Menu", close="Close", all_dest="All destinations", groups=[
+   ("Destinations", "dest", [("Panama City", "Capital and canal", "/articles/panama-city", "/articles/panama-city"),
+                             ("Boquete", "Coffee highlands", "/articles/boquete", "/articles/boquete"),
+                             ("El Valle de Antón", "Volcanic crater", "/articles/el-valle-de-anton", "/articles/el-valle-de-anton"),
+                             ("Bocas del Toro", "Caribbean islands", "/articles/bocas-del-toro", "/articles/bocas-del-toro"),
+                             ("San Blas", "Guna Yala", "/articles/san-blas-islands-panama-guna-yala-guide", "/articles/san-blas-islands-panama-guna-yala-guide")]),
+   ("Things to do", "list", [("Hiking", "/articles/hiking-in-panama-best-trails"), ("Waterfalls", "/articles/best-waterfalls-in-panama-where-to-see-several"),
+                             ("Birding and wildlife", "/articles/birding-el-valle-de-anton-trails-lodges-season"), ("Islands and beaches", "/articles/san-blas-islands-panama-guna-yala-guide"),
+                             ("Surfing", "/articles/panama-surf-camps"), ("Diving", "/articles/diving-in-panama"),
+                             ("Coffee", "/articles/geisha-coffee-boquete-where-to-taste"), ("The old quarter", "/articles/casco-viejo-panama-walking-guide")]),
+   ("Plan your trip", "list", [("Best time to visit", "/articles/best-time-to-visit-panama"), ("Is Panama safe?", "/articles/is-panama-safe"),
+                               ("Renting a car", "/articles/renting-a-car-in-panama"), ("Panama City to Boquete", "/articles/panama-city-to-boquete"),
+                               ("Day trips from the city", "/articles/day-trips-from-panama-city"), ("El Valle or Boquete?", "/articles/el-valle-de-anton-vs-boquete")])]),
+ "es": dict(btn="Menú", close="Cerrar", all_dest="Todos los destinos", groups=[
+   ("Destinos", "dest", [("Ciudad de Panamá", "Capital y canal", "/es/articles/panama-city", "/articles/panama-city"),
+                         ("Boquete", "Tierras altas del café", "/es/articles/boquete", "/articles/boquete"),
+                         ("El Valle de Antón", "Cráter volcánico", "/es/articles/el-valle-de-anton", "/articles/el-valle-de-anton"),
+                         ("Bocas del Toro", "Islas del Caribe", "/es/articles/como-llegar-a-bocas-del-toro-desde-ciudad-de-panama", "/articles/bocas-del-toro"),
+                         ("San Blas", "Guna Yala", "/es/articles/san-blas-guna-yala-guia-tours-islas", "/articles/san-blas-islands-panama-guna-yala-guide")]),
+   ("Qué hacer", "list", [("Senderismo", "/es/articles/senderismo-en-panama-mejores-senderos-ciudad"), ("Cascadas", "/es/articles/cascadas-en-panama-mejores-como-llegar"),
+                          ("Aves y quetzales", "/es/articles/sendero-los-quetzales-quetzal-boquete"), ("Islas y playas", "/es/articles/san-blas-guna-yala-guia-tours-islas"),
+                          ("Buceo en Coiba", "/es/articles/isla-coiba-buceo-parque-nacional"), ("Rafting", "/es/articles/rafting-boquete-rio-chiriqui"),
+                          ("Café", "/es/articles/tour-de-cafe-boquete-fincas-precios-reservar"), ("La ciudad", "/es/articles/que-hacer-en-ciudad-de-panama")]),
+   ("Planifica tu viaje", "list", [("Boquete sin carro", "/es/articles/como-llegar-a-boquete-sin-carro"), ("Cuánto cuesta Boquete", "/es/articles/cuanto-cuesta-boquete-presupuesto-semana"),
+                                   ("El Valle desde la capital", "/es/articles/el-valle-de-anton-desde-ciudad-de-panama"), ("Cómo llegar a Bocas", "/es/articles/como-llegar-a-bocas-del-toro-desde-ciudad-de-panama"),
+                                   ("Fin de semana en El Valle", "/es/articles/fin-de-semana-el-valle-de-anton-2-dias"), ("El Valle en un día", "/es/articles/el-valle-de-anton-en-un-dia-itinerario")])])}
+CHEV = '<svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+def menu_html(lang):
+    M = MENU[lang]; home = "/es" if lang == "es" else "/"
+    def panel(i, label, kind, items):
+        if kind == "dest":
+            inner = ('<div class="mm-dest">' + "".join(f'<a href="{u}"><img alt="" loading="lazy" src="{_foot_photo(ph)}"/><b>{n}</b><small>{s}</small></a>' for n, s, u, ph in items)
+                     + f'</div><a class="mm-all" href="{home}#cat-regions">{M["all_dest"]} →</a>')
+        else:
+            inner = '<ul class="mm-list">' + "".join(f'<li><a href="{u}"><img alt="" loading="lazy" src="{img_of(u)}"/><span>{n}</span></a></li>' for n, u in items) + "</ul>"
+        return (f'<div class="mm-item"><button type="button" class="mm-btn" aria-expanded="false" aria-controls="mm-{i}">{label}{CHEV}</button>'
+                f'<div class="mm-panel mm-p-{kind}" id="mm-{i}" hidden>{inner}</div></div>')
+    desk = '<nav class="links mm" aria-label="Main">' + "".join(panel(i, *g) for i, g in enumerate(M["groups"])) + "</nav>"
+    # phones: one button, the same three groups in one sheet
+    sheet = "".join(f'<section><h3>{label}</h3>'
+                    + ('<div class="mm-dest">' + "".join(f'<a href="{u}"><img alt="" loading="lazy" src="{_foot_photo(ph)}"/><b>{n}</b><small>{s}</small></a>' for n, s, u, ph in items) + "</div>"
+                       if kind == "dest" else '<ul class="mm-list">' + "".join(f'<li><a href="{u}"><img alt="" loading="lazy" src="{img_of(u)}"/><span>{n}</span></a></li>' for n, u in items) + "</ul>")
+                    + "</section>" for label, kind, items in M["groups"])
+    mob = (f'<button type="button" class="mm-burger glass" aria-expanded="false" aria-controls="mm-sheet" aria-label="{M["btn"]}"><i></i><i></i></button>'
+           f'<div class="mm-sheet" id="mm-sheet" hidden><div class="mm-sheet-in">{sheet}</div></div>')
+    return desk, mob
+MENU_CSS = """
+/* main menu: frosted glass dropdowns (preview) */
+.nav, .hero > .wrap.nav { position: relative; z-index: 60; }
+.nav .links.mm { gap: clamp(8px, 1.4vw, 22px); align-items: center; }
+.mm-item { position: relative; }
+.mm-btn { display: inline-flex; align-items: center; gap: 7px; padding: 10px 14px; border: 0; border-radius: 999px; background: transparent; color: #fff; font: 500 15px/1 var(--sans); cursor: pointer; transition: background .25s; text-shadow: 0 1px 10px rgba(0,0,0,.35); }
+.mm-btn:hover, .mm-btn[aria-expanded=true] { background: rgba(255,255,255,.16); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); text-shadow: none; }
+.mm-btn .chev { width: 12px; height: 12px; transition: transform .35s cubic-bezier(.2,.8,.2,1); opacity: .85; }
+.mm-btn[aria-expanded=true] .chev { transform: rotate(180deg); }
+.mm-panel, .mm-sheet-in { color: #fff; border-radius: 26px; background: linear-gradient(rgba(12,22,44,.32), rgba(12,22,44,.32)), rgba(255,255,255,.14);
+  -webkit-backdrop-filter: blur(26px) saturate(1.5); backdrop-filter: blur(26px) saturate(1.5); box-shadow: inset 0 0 0 1px rgba(255,255,255,.22), 0 24px 70px rgba(2,8,24,.35); }
+.mm-panel { position: fixed; z-index: 80; padding: 14px; opacity: 0; transform: translateY(-8px) scale(.975); transform-origin: top center; transition: opacity .22s ease, transform .38s cubic-bezier(.2,.9,.25,1.02); }
+.mm-panel.open { opacity: 1; transform: none; }
+.mm-panel[hidden] { display: block; visibility: hidden; pointer-events: none; }
+.mm-dest { display: grid; grid-template-columns: repeat(5, 132px); gap: 10px; }
+.mm-dest a { display: grid; gap: 2px; color: #fff; text-decoration: none; }
+.mm-dest img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 16px; margin-bottom: 8px; transition: transform .5s cubic-bezier(.2,.8,.2,1); }
+.mm-dest a:hover img { transform: scale(1.04); }
+.mm-dest b { font: 700 14.5px/1.2 var(--sans); }
+.mm-dest small { font: 500 12.5px/1.2 var(--sans); color: rgba(255,255,255,.72); }
+.mm-all { display: inline-flex; margin: 14px 4px 2px; font: 600 13.5px/1 var(--sans); color: #fff; text-decoration: none; opacity: .9; }
+.mm-all:hover { opacity: 1; }
+.mm-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; min-width: 260px; }
+#mm-1 .mm-list { grid-template-columns: 1fr 1fr; min-width: 480px; }
+.mm-list a { display: flex; align-items: center; gap: 12px; padding: 8px 12px 8px 8px; border-radius: 14px; color: #fff; text-decoration: none; font: 600 14.5px/1.2 var(--sans); transition: background .2s; }
+.mm-list a:hover { background: rgba(255,255,255,.14); }
+.mm-list img { width: 40px; height: 40px; border-radius: 11px; object-fit: cover; flex: none; }
+@keyframes mm-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.mm-burger { display: none; width: 40px; height: 40px; border: 0; border-radius: 50%; padding: 0; cursor: pointer; place-items: center; align-content: center; gap: 5px; }
+.mm-burger i { display: block; width: 16px; height: 1.6px; background: #fff; border-radius: 2px; transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+.mm-burger[aria-expanded=true] i:first-child { transform: translateY(3.3px) rotate(45deg); } .mm-burger[aria-expanded=true] i:last-child { transform: translateY(-3.3px) rotate(-45deg); }
+.mm-sheet { position: fixed; inset: 70px 10px auto; z-index: 80; }
+.mm-sheet[hidden] { display: none; }
+.mm-sheet-in { max-height: calc(100dvh - 90px); overflow-y: auto; padding: 18px 16px 8px; animation: mm-in .38s cubic-bezier(.2,.8,.2,1) both; }
+.mm-sheet h3 { font: 600 12.5px/1 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.7); margin: 4px 4px 12px; }
+.mm-sheet section + section { margin-top: 18px; }
+.mm-sheet .mm-dest { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.mm-sheet .mm-list { grid-template-columns: 1fr 1fr; min-width: 0; }
+.mm-sheet .mm-list a { padding: 6px; font-size: 14px; }
+.mm-sheet .mm-list img { width: 34px; height: 34px; }
+@media (max-width: 900px) { .nav .links.mm { display: none; } .mm-burger { display: grid; } }
+.nav .links .mm-panel a, .mm-sheet a { text-shadow: none; text-decoration: none; opacity: 1; }
+.nav .links .mm-panel .mm-list a { font: 600 14.5px/1.2 var(--sans); }
+.nav .links .mm-panel .mm-all { font: 600 13.5px/1 var(--sans); }
+.nav .links .mm-panel a:hover { text-decoration: none; opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .mm-panel, .mm-btn .chev { transition: none; } .mm-sheet-in { animation: none; } }
+"""
+MENU_JS = """<script>(function(){var items=[].slice.call(document.querySelectorAll(".mm-item")),open=null,t;
+function place(it){var b=it.querySelector(".mm-btn").getBoundingClientRect(),p=it.querySelector(".mm-panel"),w=p.offsetWidth;p.style.top=(b.bottom+10)+"px";p.style.left=Math.max(12,Math.min(innerWidth-w-12,b.left+b.width/2-w/2))+"px";}
+function show(it){if(open&&open!==it)hide(open);clearTimeout(t);var p=it.querySelector(".mm-panel");p.hidden=false;place(it);requestAnimationFrame(function(){p.classList.add("open")});it.querySelector(".mm-btn").setAttribute("aria-expanded","true");open=it;}
+function hide(it){var p=it.querySelector(".mm-panel");p.classList.remove("open");it.querySelector(".mm-btn").setAttribute("aria-expanded","false");setTimeout(function(){if(!p.classList.contains("open"))p.hidden=true},260);if(open===it)open=null;}
+items.forEach(function(it){var b=it.querySelector(".mm-btn"),p=it.querySelector(".mm-panel");
+b.addEventListener("click",function(){open===it?hide(it):show(it)});
+if(matchMedia("(hover: hover)").matches){[b,p].forEach(function(el){el.addEventListener("mouseenter",function(){clearTimeout(t);if(open!==it)t=setTimeout(function(){show(it)},open?0:90)});el.addEventListener("mouseleave",function(){clearTimeout(t);t=setTimeout(function(){if(open===it)hide(it)},180)})});}});
+document.addEventListener("click",function(e){if(open&&!open.contains(e.target))hide(open)});
+addEventListener("keydown",function(e){if(e.key==="Escape"){if(open){var b=open.querySelector(".mm-btn");hide(open);b.focus()}closeSheet()}});
+addEventListener("scroll",function(){if(open)hide(open)},{passive:true});addEventListener("resize",function(){if(open)place(open)});
+var bg=document.querySelector(".mm-burger"),sh=document.getElementById("mm-sheet");
+function closeSheet(){if(!bg)return;bg.setAttribute("aria-expanded","false");sh.hidden=true}
+if(bg){bg.addEventListener("click",function(e){e.stopPropagation();var o=bg.getAttribute("aria-expanded")==="true";bg.setAttribute("aria-expanded",String(!o));sh.hidden=o});
+document.addEventListener("click",function(e){if(!sh.hidden&&!sh.contains(e.target))closeSheet()});}})();</script>"""
 
 def nav(en, es, lang="en"):
     n = donors(lang)["nav"]
     on = lambda l: ' class="on"' if l == lang else ""
     n = re.sub(r'<span class="lang glass">.*?</span>', f'<span class="lang glass"><a{on("en")} href="{en}" hreflang="en">EN</a><a{on("es")} href="{es}" hreflang="es">ES</a></span>', n, flags=re.S)
-    return re.sub(r'<span class="search glass">(.*?)</span></span>', lambda m: f'<a class="search glass" href="/#cat-regions" data-search aria-haspopup="dialog">{m[1]}</span></a>', n, flags=re.S)
+    desk, mob = menu_html(lang)
+    n = re.sub(r'<nav class="links"[^>]*>.*?</nav>', lambda m: desk, n, count=1, flags=re.S)
+    n = re.sub(r'<span class="search glass">(.*?)</span></span>', lambda m: f'<a class="search glass" href="{"/es" if lang == "es" else "/"}#cat-regions" data-search aria-haspopup="dialog">{m[1]}</span></a>', n, flags=re.S)
+    return n.replace('<span class="lang glass">', mob + '<span class="lang glass">', 1)
 
 
 def ptile(u, t, label, im=None, desc=""):
@@ -718,7 +838,7 @@ def build_home(lang):
 <section class="wrap hx-sec"><div class="band-h"><div><h2>{C["fresh_h"]}</h2></div></div>
 <div class="hx-new">{"".join(fresh(u) for u in C["new_list"])}</div></section></div>
 {rows}
-<div class="hx-band"><section class="wrap hx-sec"><div class="band-h"><div><h2>{C["bento"]}</h2></div></div><div class="hx-mix">{"".join(mixcard(*m) for m in C["mix"])}</div></section></div>
+<div class="hx-band bento"><section class="wrap hx-sec"><div class="band-h"><div><h2>{C["bento"]}</h2></div></div><div class="hx-mix">{"".join(mixcard(*m) for m in C["mix"])}</div></section></div>
 """
     out = page(C["title"], body + ROTJS, HOME_BG, lang)
     # the footer's opening band ("Find your spot in Panama", Start exploring, Where to next?) repeats the hero and "Where in Panama?" on the homepage
