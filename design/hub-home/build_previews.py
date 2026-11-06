@@ -406,12 +406,14 @@ def look(im):
 HUBS = {"/articles/boquete", "/articles/el-valle-de-anton", "/articles/panama-city", "/articles/bocas-del-toro"}
 def seven(name, group):
     cands = [(html.unescape(t), g, u) for t, g, u in (cards_of(name) if name else [])] + [(html.unescape(t), "Guide", u) for u, t in FOOT_GROUPS.get(group, [])]
-    for strict in (12, 4):   # prefer clearly different photos; relax only if a row would come up short
+    for strict in (12, 4):
+        if strict == 4: cands = cands[:]  # second pass: hubs allowed   # prefer clearly different photos; relax only if a row would come up short
         out, seen, pics = [], set(), []
         for t, g, u in cands:
             if len(out) >= 7: break
-            im = img_of(u)
-            if u in seen or not im or u in HUBS: continue  # the "All guides" link already goes to the hub
+            if u in HUBS and strict > 4: continue  # the "All guides" link already goes to the hub; use it only to fill a short row
+            im = dest_img(u) if u in HUBS else img_of(u)
+            if u in seen or not im: continue
             key = look(im)
             if any(bin(key ^ k).count("1") <= strict for k in pics): continue
             seen.add(u); pics.append(key); out.append((t, g, u))
@@ -424,7 +426,7 @@ for name, group, h2, allhref in [("BOQUETE_GUIDES", "Boquete", "Explore Boquete"
     cs = seven(name, group)
     if len(cs) < 7: continue
     rows += (f'<section class="wrap hx-sec"><div class="band-h"><div><span class="lbl">Destination</span><h2>{h2}</h2></div><a href="{allhref}">All guides →</a></div>'
-             f'<div class="hx-g7">{"".join(f'<a class="hx-t" href="{u}"><span class="ph"><img alt="" loading="lazy" src="{img_of(u)}"/></span><b>{E(t)}</b><span class="c"><i class="dot"></i>{E(g)}</span></a>' for t, g, u in cs)}</div></section>')
+             f'<div class="hx-g7">{"".join(f'<a class="hx-t" href="{u}"><span class="ph"><img alt="" loading="lazy" src="{dest_img(u) if u in HUBS else img_of(u)}"/></span><b>{E(t)}</b><span class="c"><i class="dot"></i>{E(g)}</span></a>' for t, g, u in cs)}</div></section>')
 feat = [("/articles/bocas-del-toro", "Caribbean", "Bocas del Toro — nine islands, slow boats, sloths", "Surfers’ capital of the Caribbean coast, Afro-Antillean kitchens, and the country’s easiest place to wake up on the water."),
         ("/articles/panama-city", "Capital", "Panama City", ""),
         ("/articles/el-valle-de-anton", "Highlands", "El Valle de Antón — a town inside an extinct volcano.", ""),
