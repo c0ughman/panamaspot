@@ -33,7 +33,7 @@ def title_of(href):
 CSS = """
 .hx-hero { height: clamp(300px, 27vw, 400px); }
 /* homepage hero: the original layout (50vh, min 480px, wordmark bottom-left), new-template details */
-.hx-home { height: auto; min-height: max(480px, 50vh); grid-template-rows: auto 1fr; }
+.hx-home { height: auto; min-height: max(440px, 48vh); grid-template-rows: auto 1fr; }
 .hx-home::before { background: linear-gradient(180deg, rgba(3,10,30,.42) 0%, rgba(3,10,30,0) 34%, rgba(3,10,30,.1) 60%, rgba(3,10,30,.5) 100%); }
 .hx-home .hx-c { align-self: end; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding-top: 40px; padding-bottom: 64px; }
 .hx-home .hx-mark { font: 400 clamp(64px, 11vw, 160px)/.86 var(--serif); letter-spacing: -0.02em; color: #fff; margin: 0; text-shadow: 0 2px 30px rgba(0,0,0,.18); }
@@ -224,7 +224,8 @@ a.hx-search kbd { margin-left: auto; font: 600 12px/1 var(--sans); padding: 6px 
 .hx-band > .hx-sec:first-child { padding-top: 76px; }
 .hx-band + .hx-sec { padding-top: 72px; }
 .foot > .f-mid:first-child { padding-top: 56px; }
-#cat-regions.hx-sec { padding-top: 96px; }
+#cat-regions.hx-sec { padding-top: 52px; }
+#cat-regions .band-h { margin-bottom: 18px; }
 .hx-sec { padding-block: 112px 0; scroll-margin-top: 20px; }
 .hx-sec:last-of-type { padding-bottom: 112px; }
 .hx-sec .band-h { margin-bottom: 26px; }
@@ -232,7 +233,7 @@ a.hx-search kbd { margin-left: auto; font: 600 12px/1 var(--sans); padding: 6px 
 @media (max-width: 760px) { .hx-sec { padding-top: 72px; } .hx-sec:last-of-type { padding-bottom: 72px; } .hx-band, .hx-band.bento { margin-top: 56px; padding-bottom: 56px; } .hx-band > .hx-sec:first-child { padding-top: 56px; } .hx-band + .hx-sec, #cat-regions.hx-sec { padding-top: 56px; } .foot > .f-mid:first-child { padding-top: 56px; } }
 .hx-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .hx-dest { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
-.hx-d { position: relative; border-radius: 22px; overflow: hidden; aspect-ratio: 3/4; color: #fff; text-decoration: none; isolation: isolate; }
+.hx-d { position: relative; border-radius: 22px; overflow: hidden; aspect-ratio: 5/4; color: #fff; text-decoration: none; isolation: isolate; }
 .hx-d img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .7s; z-index: -2; }
 .hx-d::after { content: ""; position: absolute; inset: 40% 0 0; background: linear-gradient(180deg, rgba(3,10,30,0), rgba(3,10,30,.7)); z-index: -1; }
 .hx-d:hover img { transform: scale(1.04); }
@@ -343,7 +344,9 @@ def page(title, body, hero_preload, lang="en"):
 
 
 # ---------------- Main menu (frosted dropdowns) ----------------
+EV_PHOTO = "/images/v2/the-flat-floor-of-the-el-f491c24a-hero-960.webp"
 def _foot_photo(href):
+    if href == "/articles/el-valle-de-anton": return EV_PHOTO
     m = re.search(r'<a class="fc" href="' + re.escape(href) + r'"><img class="ph"[^>]*src="([^"]+)"', D["foot"])
     return m[1].replace(SITE, "") if m else img_of(href)
 MENU = {
@@ -382,7 +385,7 @@ def menu_html(lang):
                      + f'</div><a class="mm-all" href="{home}#cat-regions">{M["all_dest"]} →</a>')
         else:
             inner = '<ul class="mm-list">' + "".join(f'<li><a href="{u}"><img alt="" loading="lazy" src="{img_of(u)}"/><span>{n}</span></a></li>' for n, u in items) + "</ul>"
-        return (f'<div class="mm-item"><button type="button" class="mm-btn" aria-expanded="false" aria-controls="mm-{i}">{label}{CHEV}</button>'
+        return (f'<div class="mm-item"><button type="button" class="mm-btn" aria-expanded="false" aria-controls="mm-{i}">{label}</button>'
                 f'<div class="mm-panel mm-p-{kind}" id="mm-{i}" hidden>{inner}</div></div>')
     desk = '<nav class="links mm" aria-label="Main">' + "".join(panel(i, *g) for i, g in enumerate(M["groups"])) + "</nav>"
     # phones: one button, the same three groups in one sheet
@@ -398,8 +401,8 @@ MENU_CSS = """
 .nav, .hero > .wrap.nav { position: relative; z-index: 60; }
 .nav .links.mm { gap: clamp(8px, 1.4vw, 22px); align-items: center; }
 .mm-item { position: relative; }
-.mm-btn { display: inline-flex; align-items: center; gap: 7px; padding: 10px 14px; border: 0; border-radius: 999px; background: transparent; color: #fff; font: 500 15px/1 var(--sans); cursor: pointer; transition: background .25s; text-shadow: 0 1px 10px rgba(0,0,0,.35); }
-.mm-btn:hover, .mm-btn[aria-expanded=true] { background: rgba(255,255,255,.16); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); text-shadow: none; }
+.mm-btn { display: inline-flex; align-items: center; gap: 7px; padding: 10px 14px; border: 0; border-radius: 999px; background: transparent; color: #fff; font: 500 15px/1 var(--sans); cursor: pointer; transition: text-shadow .3s ease; text-shadow: 0 1px 10px rgba(0,0,0,.35); }
+.mm-btn:hover, .mm-btn[aria-expanded=true] { text-shadow: 0 0 14px rgba(255,255,255,.75), 0 0 2px rgba(255,255,255,.4); }
 .mm-btn .chev { width: 12px; height: 12px; transition: transform .35s cubic-bezier(.2,.8,.2,1); opacity: .85; }
 .mm-btn[aria-expanded=true] .chev { transform: rotate(180deg); }
 .mm-panel, .mm-sheet-in { color: #fff; border-radius: 26px; background: linear-gradient(rgba(12,22,44,.32), rgba(12,22,44,.32)), rgba(255,255,255,.14);
@@ -419,6 +422,7 @@ MENU_CSS = """
 #mm-1 .mm-list { grid-template-columns: 1fr 1fr; min-width: 480px; }
 .mm-list a { display: flex; align-items: center; gap: 12px; padding: 8px 12px 8px 8px; border-radius: 14px; color: #fff; text-decoration: none; font: 600 14.5px/1.2 var(--sans); transition: background .2s; }
 .mm-list a:hover { background: rgba(255,255,255,.14); }
+.mm-list span::after, .mm-sheet .mm-list span::after { content: ""; display: inline-block; width: .3em; height: .3em; margin-left: .12em; border-radius: 50%; background: var(--red); vertical-align: baseline; }
 .mm-list img { width: 40px; height: 40px; border-radius: 11px; object-fit: cover; flex: none; }
 @keyframes mm-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 .mm-burger { display: none; width: 40px; height: 40px; border: 0; border-radius: 50%; padding: 0; cursor: pointer; place-items: center; align-content: center; gap: 5px; }
@@ -592,7 +596,7 @@ def build_hub(rel, out, cfg):
     start_html = "".join(ptile(u, R.text(t), T["read_first"], local(im) or img_of(u), desc=R.text(d)) for (u, t, d), im in zip(start, start_img))
     body = f"""<div class="guide-progress" id="prog" aria-hidden="true"></div>
 <header class="hero hb-hero">
-  <img class="hero-img" alt="{html.escape(html.unescape(HB[2]))}" fetchpriority="high" src="{hero}" style="object-position:center {cfg.get("focus", 45)}%"/>
+  <img class="hero-img" alt="{html.escape(cfg.get("hero_alt") or html.unescape(HB[2]))}" fetchpriority="high" src="{hero}" style="object-position:center {cfg.get("focus", 45)}%"/>
   {nav(cfg["en"], cfg["es"], lang)}
   <div class="wrap"><div class="hb-c">
     <span class="lbl">{eyebrow}</span>
@@ -641,7 +645,8 @@ build_hub("articles/boquete", "boquete-hub.html", dict(
              ("/images/boquete/boquete-market.webp", "Fruit and vegetables for sale at a market stall in Boquete."),
              ("/images/v2/view-from-restaurant-covered-los-molinos-hero-1280.webp", "Storm light over the green canyons around Boquete.")]))
 build_hub("es/articles/el-valle-de-anton", "el-valle-hub-es.html", dict(
-    en="/articles/el-valle-de-anton", es="/preview/el-valle-hub-es.html", short="El Valle", region="Provincia de Coclé", focus=55,
+    en="/articles/el-valle-de-anton", es="/preview/el-valle-hub-es.html", short="El Valle", region="Provincia de Coclé", focus=58,
+    hero="/images/v2/the-flat-floor-of-the-el-f491c24a-hero-1920.webp", hero_alt="El fondo plano del cráter de El Valle de Antón, con los cerros detrás.",
     icons=[("mountain", "600 m", "De altura"), ("pin", "Coclé", "Provincia"), ("crater", "5 km", "De cráter de lado a lado"), ("bus", "2 h", "Desde la capital"), ("book", "29 guías", "En esta biblioteca")],
     glance=[("Cómo llegar", "2½ h en bus", "desde Albrook; 2 h en carro"), ("Cuándo ir", "Dic–abr", "la temporada seca"),
             ("Cuánto quedarse", "Un día", "dos noches, mejor"), ("Cómo moverse", "En bici", "senderos a 10–25 min")],
@@ -717,6 +722,7 @@ DEST_PHOTO = {k: re.search(r'<a class="fc" href="' + re.escape(k) + r'"><img cla
               for k in ["/articles/panama-city", "/articles/boquete", "/articles/el-valle-de-anton", "/articles/bocas-del-toro", "/articles/san-blas-islands-panama-guna-yala-guide"]}
 ES_TWIN = {"/es/articles/panama-city": "/articles/panama-city", "/es/articles/boquete": "/articles/boquete", "/es/articles/el-valle-de-anton": "/articles/el-valle-de-anton",
            "/es/articles/como-llegar-a-bocas-del-toro-desde-ciudad-de-panama": "/articles/bocas-del-toro", "/es/articles/san-blas-guna-yala-guia-tours-islas": "/articles/san-blas-islands-panama-guna-yala-guide"}
+DEST_PHOTO["/articles/el-valle-de-anton"] = EV_PHOTO
 def dest_img(href):
     return DEST_PHOTO.get(ES_TWIN.get(href, href)) or img_of(href)
 def count(href):
