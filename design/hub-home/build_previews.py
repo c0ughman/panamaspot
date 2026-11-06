@@ -33,9 +33,9 @@ def title_of(href):
 CSS = """
 .hx-hero { height: clamp(300px, 27vw, 400px); }
 /* homepage hero: the original layout (50vh, min 480px, wordmark bottom-left), new-template details */
-.hx-home { height: auto; min-height: max(440px, 48vh); grid-template-rows: auto 1fr; }
+.hx-home { height: auto; min-height: max(400px, 44vh); grid-template-rows: auto 1fr; }
 .hx-home::before { background: linear-gradient(180deg, rgba(3,10,30,.42) 0%, rgba(3,10,30,0) 34%, rgba(3,10,30,.1) 60%, rgba(3,10,30,.5) 100%); }
-.hx-home .hx-c { align-self: end; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding-top: 40px; padding-bottom: 64px; }
+.hx-home .hx-c { align-self: end; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding-top: 32px; padding-bottom: 54px; }
 .hx-home .hx-mark { font: 400 clamp(64px, 11vw, 160px)/.86 var(--serif); letter-spacing: -0.02em; color: #fff; margin: 0; text-shadow: 0 2px 30px rgba(0,0,0,.18); }
 .hx-mark .a { color: var(--red); }
 .hx-mark .pd { display: inline-block; width: .17em; height: .17em; border-radius: 50%; background: var(--red); margin-left: .03em; }
@@ -352,6 +352,7 @@ def page(title, body, hero_preload, lang="en"):
 EV_PHOTO = "/images/v2/the-flat-floor-of-the-el-f491c24a-hero-960.webp"
 def _foot_photo(href):
     if href == "/articles/el-valle-de-anton": return EV_PHOTO
+    if href.startswith("/images/"): return href
     m = re.search(r'<a class="fc" href="' + re.escape(href) + r'"><img class="ph"[^>]*src="([^"]+)"', D["foot"])
     return m[1].replace(SITE, "") if m else img_of(href)
 MENU = {
@@ -360,7 +361,12 @@ MENU = {
                              ("Boquete", "Coffee highlands", "/articles/boquete", "/articles/boquete"),
                              ("El Valle de Antón", "Volcanic crater", "/articles/el-valle-de-anton", "/articles/el-valle-de-anton"),
                              ("Bocas del Toro", "Caribbean islands", "/articles/bocas-del-toro", "/articles/bocas-del-toro"),
-                             ("San Blas", "Guna Yala", "/articles/san-blas-islands-panama-guna-yala-guide", "/articles/san-blas-islands-panama-guna-yala-guide")]),
+                             ("San Blas", "Guna Yala", "/articles/san-blas-islands-panama-guna-yala-guide", "/articles/san-blas-islands-panama-guna-yala-guide"),
+                             ("Casco Viejo", "The old quarter", "/articles/casco-viejo-panama-walking-guide", "/articles/casco-viejo-panama-walking-guide"),
+                             ("Pearl Islands", "Pacific islands", "/articles/pearl-islands-panama-guide", "/articles/pearl-islands-panama-guide"),
+                             ("Contadora", "Pearl Islands ferry", "/articles/contadora-ferry-from-panama-city", "/articles/contadora-ferry-from-panama-city"),
+                             ("Playa Venao", "Surf coast", "/articles/playa-venao-panama", "/articles/playa-venao-panama"),
+                             ("Cayos Zapatillas", "Bocas reef cays", "/articles/cayos-zapatillas-snorkelling-bocas-del-toro", "/articles/cayos-zapatillas-snorkelling-bocas-del-toro")]),
    ("Things to do", "list", [("Hiking", "/articles/hiking-in-panama-best-trails"), ("Waterfalls", "/articles/best-waterfalls-in-panama-where-to-see-several"),
                              ("Birding and wildlife", "/articles/birding-el-valle-de-anton-trails-lodges-season"), ("Islands and beaches", "/articles/san-blas-islands-panama-guna-yala-guide"),
                              ("Surfing", "/articles/panama-surf-camps"), ("Diving", "/articles/diving-in-panama"),
@@ -373,7 +379,12 @@ MENU = {
                          ("Boquete", "Tierras altas del café", "/es/articles/boquete", "/articles/boquete"),
                          ("El Valle de Antón", "Cráter volcánico", "/es/articles/el-valle-de-anton", "/articles/el-valle-de-anton"),
                          ("Bocas del Toro", "Islas del Caribe", "/es/articles/como-llegar-a-bocas-del-toro-desde-ciudad-de-panama", "/articles/bocas-del-toro"),
-                         ("San Blas", "Guna Yala", "/es/articles/san-blas-guna-yala-guia-tours-islas", "/articles/san-blas-islands-panama-guna-yala-guide")]),
+                         ("San Blas", "Guna Yala", "/es/articles/san-blas-guna-yala-guia-tours-islas", "/articles/san-blas-islands-panama-guna-yala-guide"),
+                         ("Casco Viejo", "Barrio histórico", "/es/articles/casco-viejo-restaurantes-donde-comer-beber-hospedarse", "/es/articles/casco-viejo-restaurantes-donde-comer-beber-hospedarse"),
+                         ("Coiba", "Parque marino", "/es/articles/isla-coiba-buceo-parque-nacional", "/images/v2/isla-canales-de-afuera-shallows-2063365818-gallery.webp"),
+                         ("Cinta Costera", "Mercado y malecón", "/es/articles/cinta-costera-panama-mercado-mariscos-panama-viejo", "/es/articles/cinta-costera-panama-mercado-mariscos-panama-viejo"),
+                         ("Chiriquí", "Montañas y playas", "/es/articles/lugares-turisticos-chiriqui", "/es/articles/lugares-turisticos-chiriqui"),
+                         ("Coclé", "Cráter y playas", "/es/articles/lugares-turisticos-de-cocle", "/es/articles/lugares-turisticos-de-cocle")]),
    ("Qué hacer", "list", [("Senderismo", "/es/articles/senderismo-en-panama-mejores-senderos-ciudad"), ("Cascadas", "/es/articles/cascadas-en-panama-mejores-como-llegar"),
                           ("Aves y quetzales", "/es/articles/sendero-los-quetzales-quetzal-boquete"), ("Islas y playas", "/es/articles/san-blas-guna-yala-guia-tours-islas"),
                           ("Buceo en Coiba", "/es/articles/isla-coiba-buceo-parque-nacional"), ("Rafting", "/es/articles/rafting-boquete-rio-chiriqui"),
@@ -387,7 +398,7 @@ def menu_html(lang):
     def panel(i, label, kind, items):
         if kind == "dest":
             inner = ('<div class="mm-dest">' + "".join(f'<a href="{u}"><img alt="" loading="lazy" src="{_foot_photo(ph)}"/><b>{n}</b><small>{s}</small></a>' for n, s, u, ph in items)
-                     + f'</div><a class="mm-all" href="{home}#cat-regions">{M["all_dest"]} →</a>')
+                     + '</div>')
         else:
             inner = '<ul class="mm-list">' + "".join(f'<li><a href="{u}"><img alt="" loading="lazy" src="{img_of(u)}"/><span>{n}</span></a></li>' for n, u in items) + "</ul>"
         return (f'<div class="mm-item"><button type="button" class="mm-btn" aria-expanded="false" aria-controls="mm-{i}">{label}</button>'
@@ -415,12 +426,12 @@ MENU_CSS = """
 .mm-panel { position: fixed; z-index: 80; padding: 14px; opacity: 0; transform: translateY(-8px) scale(.975); transform-origin: top center; transition: opacity .22s ease, transform .38s cubic-bezier(.2,.9,.25,1.02); }
 .mm-panel.open { opacity: 1; transform: none; }
 .mm-panel[hidden] { display: block; visibility: hidden; pointer-events: none; }
-.mm-dest { display: grid; grid-template-columns: repeat(5, 132px); gap: 10px; }
+.mm-dest { display: grid; grid-template-columns: repeat(5, 112px); gap: 14px 10px; }
 .mm-dest a { display: grid; gap: 2px; color: #fff; text-decoration: none; }
-.mm-dest img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 16px; margin-bottom: 8px; transition: transform .5s cubic-bezier(.2,.8,.2,1); }
+.mm-dest img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 12px; margin-bottom: 6px; transition: transform .5s cubic-bezier(.2,.8,.2,1); }
 .mm-dest a:hover img { transform: scale(1.04); }
-.mm-dest b { font: 700 14.5px/1.2 var(--sans); }
-.mm-dest small { font: 500 12.5px/1.2 var(--sans); color: rgba(255,255,255,.72); }
+.mm-dest b { font: 700 13.5px/1.2 var(--sans); }
+.mm-dest small { font: 500 11.5px/1.25 var(--sans); color: rgba(255,255,255,.72); }
 .mm-all { display: inline-flex; margin: 14px 4px 2px; font: 600 13.5px/1 var(--sans); color: #fff; text-decoration: none; opacity: .9; }
 .mm-all:hover { opacity: 1; }
 .mm-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; min-width: 260px; }
@@ -439,7 +450,10 @@ MENU_CSS = """
 .mm-sheet-in { max-height: calc(100dvh - 90px); overflow-y: auto; padding: 18px 16px 8px; animation: mm-in .38s cubic-bezier(.2,.8,.2,1) both; }
 .mm-sheet h3 { font: 600 12.5px/1 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.7); margin: 4px 4px 12px; }
 .mm-sheet section + section { margin-top: 18px; }
-.mm-sheet .mm-dest { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.mm-sheet .mm-dest { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px 6px; }
+.mm-sheet .mm-dest b { font-size: 11px; }
+.mm-sheet .mm-dest small { display: none; }
+.mm-sheet .mm-dest img { aspect-ratio: 1; border-radius: 10px; }
 .mm-sheet .mm-list { grid-template-columns: 1fr 1fr; min-width: 0; }
 .mm-sheet .mm-list a { padding: 6px; font-size: 14px; }
 .mm-sheet .mm-list img { width: 34px; height: 34px; }
