@@ -70,11 +70,13 @@ a.hx-btn:hover { transform: translateY(-1px); }
 .hx-pt::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(3,10,30,0) 35%, rgba(3,10,30,.74)); z-index: -1; }
 .hx-pt:hover img { transform: scale(1.04); }
 .hx-pt .lbl { color: #fff; font-size: 13px; }
-.hx-pt b { font: 650 clamp(24px, 2vw, 30px)/1.08 var(--serif); padding-right: 56px; }
+.hx-pt b { font: 700 clamp(18px, 1.5vw, 22px)/1.2 var(--sans); letter-spacing: -0.015em; padding-right: 56px; }
 .hx-pt .ar { position: absolute; right: 18px; bottom: 18px; width: 40px; height: 40px; }
 .hx-pt p { font: 400 14px/1.45 var(--sans); color: rgba(255,255,255,.88); padding-right: 56px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 /* red arrow circle; the glyph comes from --arw so the preview can swap styles */
-:root { --arw: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 5.5 6.5 6.5L9 18.5'/%3E%3C/svg%3E"); }
+:root { --arw: ARWVAL; }
+.ia { display: inline-block; width: 1em; height: 1em; margin-left: .35em; vertical-align: -.14em; background: currentColor; -webkit-mask: var(--arw) center / contain no-repeat; mask: var(--arw) center / contain no-repeat; }
+.ar .ia { display: none; }
 .ar { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--red); flex: none; font-size: 0; }
 .ar::before { content: ""; width: 50%; height: 50%; background: #fff; -webkit-mask: var(--arw) center / contain no-repeat; mask: var(--arw) center / contain no-repeat; }
 .arw-pick { position: fixed; left: 16px; bottom: 16px; z-index: 900; display: flex; align-items: center; gap: 6px; padding: 8px 10px; border-radius: 999px; background: rgba(5,24,63,.82); color: #fff; font: 600 12.5px/1 var(--sans); box-shadow: 0 10px 30px rgba(0,0,0,.25); }
@@ -88,7 +90,7 @@ a.hx-btn:hover { transform: translateY(-1px); }
 .m-a { grid-area: a; } .m-b { grid-area: b; } .m-c { grid-area: c; } .m-d { grid-area: d; } .m-e { grid-area: e; } .m-f { grid-area: f; } .m-g { grid-area: g; }
 .hx-navy { position: relative; display: grid; align-content: end; gap: 10px; padding: 26px; border-radius: 22px; background: var(--navy); color: #fff; text-decoration: none; }
 .hx-navy .lbl { color: rgba(255,255,255,.75); }
-.hx-navy b { font: 650 clamp(26px, 2.4vw, 36px)/1.08 var(--serif); padding-right: 60px; }
+.hx-navy b { font: 700 clamp(20px, 1.7vw, 25px)/1.2 var(--sans); letter-spacing: -0.015em; padding-right: 60px; }
 .hx-navy p { font-size: 15px; line-height: 1.5; color: rgba(255,255,255,.75); max-width: 46ch; }
 .hx-navy .ar { position: absolute; right: 22px; bottom: 22px; width: 44px; height: 44px; }
 .hx-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 10px; padding: 10px; border-radius: 22px; background: var(--beige); box-shadow: inset 0 0 0 1px var(--line); text-decoration: none; color: var(--ink); }
@@ -102,6 +104,28 @@ a.hx-btn:hover { transform: translateY(-1px); }
 .hx-split img { width: 100%; height: 100%; object-fit: cover; display: block; }
 @media (max-width: 900px) { .hx-mix { grid-template-columns: 1fr 1fr; grid-template-rows: none; grid-auto-rows: 260px; grid-template-areas: "a a" "b d" "c c" "e e" "f g"; } }
 @media (max-width: 560px) { .hx-mix { grid-template-columns: 1fr; grid-template-areas: "a" "b" "d" "c" "e" "f" "g"; } .hx-split { grid-template-columns: 1fr; } .hx-split .ph { min-height: 180px; } }
+/* hub: topic tabs */
+.hb-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 26px; }
+.hb-tabs button { display: flex; align-items: center; gap: 12px; padding: 6px 18px 6px 6px; border: 0; border-radius: 999px; background: var(--beige); box-shadow: inset 0 0 0 1px var(--line); color: var(--ink); font: inherit; text-align: left; cursor: pointer; transition: background .2s, color .2s; }
+.hb-tabs button img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+.hb-tabs button b { display: block; font: 700 15px/1.2 var(--sans); color: inherit; }
+.hb-tabs button small { display: block; font: 500 12.5px/1.2 var(--sans); color: var(--muted); }
+.hb-tabs button[aria-selected=true] { background: var(--navy); color: #fff; box-shadow: none; }
+.hb-tabs button[aria-selected=true] small { color: rgba(255,255,255,.7); }
+.hb-panel { display: grid; gap: 18px; }
+.hb-panel[hidden] { display: none; }
+.hb-ph { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; flex-wrap: wrap; }
+.hb-ph h3 { font: 700 22px/1.2 var(--sans); color: var(--navy); }
+.hb-ph p { font-size: 16px; line-height: 1.5; color: var(--muted); max-width: 64ch; }
+.hb-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.hb-tile { position: relative; display: grid; align-content: end; aspect-ratio: 4/3; padding: 16px 60px 16px 16px; border-radius: 18px; overflow: hidden; color: #fff; text-decoration: none; isolation: isolate; }
+.hb-tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform .7s; }
+.hb-tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(3,10,30,0) 40%, rgba(3,10,30,.72)); z-index: -1; }
+.hb-tile:hover img { transform: scale(1.05); }
+.hb-tile b { font: 700 16.5px/1.25 var(--sans); }
+.hb-tile .ar { position: absolute; right: 14px; bottom: 14px; }
+@media (max-width: 1000px) { .hb-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .hb-tiles { grid-template-columns: 1fr 1fr; } .hb-tabs button { padding-right: 14px; } }
 /* hub: icon facts */
 .hb-icons { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; margin-top: 36px; text-align: center; max-width: 720px; }
 .hb-icons > div { display: grid; justify-items: center; gap: 10px; }
@@ -281,22 +305,28 @@ PICK = ('<div class="arw-pick" aria-label="Preview only: arrow style">Arrow' + "
     f'<button type="button" title="{n}" data-arw=\'{svg_url(p, w)}\'{" class=on" if i == 0 else ""} style=\'--g:{svg_url(p, w)}\'><i></i></button>' for i, (n, p, w) in enumerate(ARROWS5)) + "</div>"
     + """<script>(function(){var b=[].slice.call(document.querySelectorAll("[data-arw]"));function set(i){document.documentElement.style.setProperty("--arw",b[i].dataset.arw);b.forEach(function(x,j){x.classList.toggle("on",i==j)});try{localStorage.setItem("arw",i)}catch(e){}}
 b.forEach(function(x,i){x.onclick=function(){set(i)}});try{var k=+localStorage.getItem("arw");if(k>0&&b[k])set(k)}catch(e){}})();</script>""")
+ARW = svg_url(ARROWS5[1][1], ARROWS5[1][2])
+def arrows(html_text):
+    """Every text arrow becomes the same short arrow glyph as the red circles."""
+    head, body_ = html_text.split("<body>", 1)
+    body_ = re.sub(r"\s*→", '<i class="ia" aria-hidden="true"></i>', body_)
+    body_ = body_.replace('<span class="ar"><i class="ia" aria-hidden="true"></i></span>', '<span class="ar"></span>')
+    return head + "<body>" + body_
 def page(title, body, hero_preload, lang="en"):
-    return f"""<!doctype html>
+    return arrows(f"""<!doctype html>
 <html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>{title}</title><meta name="robots" content="noindex, nofollow">
 <link rel="preload" as="image" href="{hero_preload}" fetchpriority="high"/>
 {D["font"]}
-{D["style"].replace("</style>", R.EXTRA_CSS + CSS + "</style>")}
+{D["style"].replace("</style>", R.EXTRA_CSS + CSS.replace("ARWVAL", ARW) + "</style>")}
 <!--evx:css--><link rel="stylesheet" href="/css/evalley-cta.css"><!--/evx:css-->
 </head><body>
 {body}
 {D["foot"]}
-{PICK}
 {D["js"].replace('var art = document.getElementById("article")', 'var art = document.getElementById("article") || document.body')}
 <script src="/js/search.js" defer></script>
 </body></html>
-"""
+""")
 
 
 def nav(en, es, lang="en"):
@@ -377,6 +407,14 @@ for gi, g in enumerate(groups):
         cells += "".join(gcard(u, t, d, ' hidden data-x') for u, t, d in it[3:])
     groups_html += (f'<div class="hb-cat"><div class="num">{gi + 1:02d} · {E(g["h2"])}</div><div class="hb-bento{" flip" if gi % 2 else ""}"><div class="hb-feat"><img alt="{html.escape(html.unescape(g["alt"]))}" loading="lazy" src="{g["img"]}"/>'
                     f'<span class="lbl">{n} guides</span><h2>{g["h2"]}</h2><p>{g["blurb"]}</p></div><div class="hb-side">{cells}</div></div></div>')
+def tile(u, t):
+    return f'<a class="hb-tile" href="{u}"><img alt="" loading="lazy" src="{img_of(u)}"/><b>{t}</b><span class="ar"></span></a>'
+TABS = '<div class="hb-tabs" role="tablist">' + "".join(
+    f'<button type="button" role="tab" id="tab-{i}" aria-controls="panel-{i}" aria-selected="{str(i == 0).lower()}"><img alt="" src="{g["img"]}"/><span><b>{g["h2"].split(":")[0]}</b><small>{len(g["items"])} guides</small></span></button>'
+    for i, g in enumerate(groups)) + "</div>" + "".join(
+    f'<div class="hb-panel" role="tabpanel" id="panel-{i}" aria-labelledby="tab-{i}"{" hidden" if i else ""}><div class="hb-ph"><h3>{g["h2"]}</h3><p>{g["blurb"]}</p></div>'
+    f'<div class="hb-tiles">{"".join(tile(u, t) for u, t, d in g["items"])}</div></div>' for i, g in enumerate(groups))
+TABJS = """<script>(function(){var t=[].slice.call(document.querySelectorAll(".hb-tabs [role=tab]"));t.forEach(function(b,i){b.addEventListener("click",function(){t.forEach(function(x,j){x.setAttribute("aria-selected",i==j);document.getElementById("panel-"+j).hidden=i!=j;});});});})();</script>"""
 MOREJS = """<script>document.querySelectorAll("[data-more]").forEach(function(b){b.addEventListener("click",function(){b.parentElement.querySelectorAll("[data-x]").forEach(function(a){a.hidden=false;});b.remove();});});</script>"""
 GAL = [("/images/v2/volcan-baru-emerging-through-clouds-d35d9b87-hero-1280.webp", "Volcán Barú rising through cloud above forested slopes."),
        ("/images/v2/resplendent-quetzal-646deb1a-gallery.webp", "A resplendent quetzal, the bird most birders come to Boquete for."),
@@ -401,14 +439,14 @@ hub = f"""<div class="guide-progress" id="prog" aria-hidden="true"></div>
 <aside class="glance hb-glance" aria-label="At a glance"><h2>At a glance <span><i class="dot"></i>Chiriquí highlands</span></h2><div class="gg">{"".join(f'<div><span class="k">{k}</span><b class="sm">{v}</b><span class="s">{x}</span></div>' for k, v, x in GLANCE)}</div></aside></div></section>
 <section class="wrap hb-sec"><div class="hb-head"><span class="lbl">Start here</span><h2>{s_head[1]}</h2><p>{s_head[2]}</p></div>
 <div class="hb-start">{"".join(ptile(u, R.text(t), "Read first", im) for (u, t, d), im in zip(start, start_img))}</div></section>
-<section class="wrap hb-sec"><div class="hb-head"><span class="lbl">By topic</span><h2>Find your guide</h2></div>{groups_html}</section>
+<section class="wrap hb-sec" id="topics"><div class="hb-head"><span class="lbl">By topic</span><h2>Find your guide</h2></div>{TABS}</section>
 <section class="wrap hb-sec">{cta["banner"]}</section>
 <section class="wrap hb-sec"><div class="band-h"><div><span class="lbl">In pictures</span><h2>Boquete in pictures</h2></div></div><div class="gal hb-gal">{gal_html}</div></section>
 <section class="wrap hb-sec last" id="all-guides"><div class="band-h"><div><span class="lbl">{idx_h[1]}</span><h2>{idx_h[2]}</h2></div><span class="band-sub">{len(idx)} guides</span></div>
 <ol class="hx-idx">{"".join(f'<li><a href="{u}"><span class="n">{n}</span><span>{t}</span><span class="cat">{c}</span></a></li>' for u, n, t, c in idx)}</ol>
 <div class="hx-es"><span class="bdg">ES</span><div><b>{es_t[1]}</b><p>{es_t[2]}</p></div><a href="/es/articles/boquete">Ver en español →</a></div></section>
 {ROLL.JS_M[0]}{ROLL.TRACK}{ROLL.JS_M[1]}
-{MOREJS}
+{TABJS}
 """
 (OUT / "boquete-hub.html").write_text(page("Preview: Boquete hub", hub, HB[1]))
 
@@ -478,8 +516,7 @@ def seven(name, group):
     return out
 rows = ""
 for name, group, h2, allhref in [("BOQUETE_GUIDES", "Boquete", "Explore Boquete", "/articles/boquete"), ("EL_VALLE_GUIDES", "El Valle de Antón", "Explore El Valle de Antón", "/articles/el-valle-de-anton"),
-                                 ("PANAMA_CITY_GUIDES", "Panama City", "Explore Panama City", "/articles/panama-city"), (None, "Bocas del Toro", "Explore Bocas del Toro", "/articles/bocas-del-toro"),
-                                 (None, "Islands and sea", "Explore San Blas and the islands", "/articles/san-blas-islands-panama-guna-yala-guide")]:
+                                 ("PANAMA_CITY_GUIDES", "Panama City", "Explore Panama City", "/articles/panama-city"), ]:
     cs = seven(name, group)
     if len(cs) < 7: continue
     rows += (f'<section class="wrap hx-sec"><div class="band-h"><div><span class="lbl">Destination</span><h2>{h2}</h2></div><a href="{allhref}">All guides →</a></div>'
@@ -496,13 +533,13 @@ def mixcard(u, area, label, t, d, kind):
     return (f'<a class="hx-split m-{area}" href="{u}"><span class="tx"><span class="c"><i class="dot"></i>{label}</span><b>{t}</b><p>{d}</p>'
             f'<span class="go">Read the guide <span class="ar"></span></span></span><span class="ph"><img alt="" loading="lazy" src="{im}"/></span></a>')
 MIX = "".join([
-    mixcard("/articles/bocas-del-toro", "a", "Caribbean", "Bocas del Toro — nine islands, slow boats, sloths", "Surfers’ capital of the Caribbean coast, Afro-Antillean kitchens, and the country’s easiest place to wake up on the water.", "photo"),
-    mixcard("/articles/san-blas-islands-panama-guna-yala-guide", "b", "Caribbean", "San Blas and Guna Yala", dek_of("/articles/san-blas-islands-panama-guna-yala-guide"), "photo"),
+    mixcard("/articles/bocas-del-toro", "a", "Caribbean", "Bocas del Toro — nine islands, slow boats, sloths", "", "photo"),
+    mixcard("/articles/san-blas-islands-panama-guna-yala-guide", "b", "Caribbean", "San Blas and Guna Yala", "", "photo"),
     mixcard("/articles/el-valle-de-anton", "c", "Highlands", "El Valle de Antón — a town inside an extinct volcano.", "Waterfalls, hot springs and the India Dormida ridge, two hours from the capital.", "navy"),
-    mixcard("/articles/pearl-islands-panama-guide", "d", "Pacific", "The Pearl Islands", dek_of("/articles/pearl-islands-panama-guide"), "photo"),
+    mixcard("/articles/chorro-el-macho-waterfall-el-valle-de-anton", "d", "Highlands", "Chorro El Macho, El Valle", "", "photo"),
     mixcard("/articles/boquete", "e", "Highlands", "Boquete — cloud forest, coffee, Volcán Barú", "The highland town that runs on coffee, rivers, and fog — plus the country’s best day hikes from town.", "split"),
-    mixcard("/articles/panama-city", "f", "Capital", "Panama City", "Casco Viejo, the canal and the causeway, and the best day trips out of town.", "photo"),
-    mixcard("/articles/playa-venao-panama", "g", "Pacific coast", "Playa Venao and the Azuero coast", dek_of("/articles/playa-venao-panama"), "photo"),
+    mixcard("/articles/panama-city", "f", "Capital", "Panama City", "", "photo"),
+    mixcard("/articles/playa-venao-panama", "g", "Pacific coast", "Playa Venao and the Azuero coast", "", "photo"),
 ])
 new = ["/articles/geisha-coffee-boquete-where-to-taste", "/articles/chorro-las-mozas-swimming-falls-el-valle", "/articles/san-blas-tours-from-panama-city",
        "/articles/playa-venao-panama", "/articles/panama-canal-boat-tours", "/articles/el-pianista-trail-boquete"]
