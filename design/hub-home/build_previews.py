@@ -113,28 +113,16 @@ a.hx-btn:hover { transform: translateY(-1px); }
 .hb-pills small { display: block; font: 500 12.5px/1.2 var(--sans); color: var(--muted); }
 .hb-pills a:hover { background: var(--navy); color: #fff; box-shadow: none; }
 .hb-pills a:hover small { color: rgba(255,255,255,.7); }
-.hb-topic { padding-top: 92px; scroll-margin-top: 0; }
-.hb-pills + .hb-topic { padding-top: 56px; }
-.hb-in .n { font: 700 13px/1 var(--sans); color: var(--red); letter-spacing: .04em; }
-.hb-tg { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
-.hb-in { display: grid; align-content: center; gap: 10px; padding-right: 22px; min-width: 0; }
-.hb-in h2 { font: 650 clamp(27px, 2.5vw, 36px)/1.08 var(--serif); color: var(--navy); }
-.hb-in p { font-size: 16px; line-height: 1.5; color: var(--muted); max-width: 62ch; }
+.hx-fr { display: grid; align-content: start; gap: 8px; color: var(--ink); text-decoration: none; min-width: 0; }
+.hx-fr .hx-pt { margin-bottom: 4px; }
+.hx-fr .c, .hx-fr p { margin-inline: 16px; }
+.hx-fr .c { display: inline-flex; align-items: center; gap: 7px; font: 600 13px/1 var(--sans); color: var(--muted); }
+.hx-fr p { font-size: 15px; line-height: 1.5; color: var(--body); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+@media (max-width: 760px) { .hb-pills a { padding-right: 14px; } .hb-start .hx-pt { aspect-ratio: 1/1; } }
 .hb-start .hx-pt { aspect-ratio: 4/5; }
 .hb-start .hx-pt::after { background: linear-gradient(180deg, rgba(3,10,30,0) 38%, rgba(3,10,30,.84)); }
 .hb-start .hx-pt p { -webkit-line-clamp: 3; }
-@media (max-width: 1000px) { .hb-tg { grid-template-columns: 1fr 1fr; } .hb-in { grid-column: 1 / -1 !important; padding: 0 0 6px; } }
-@media (max-width: 760px) { .hb-pills a { padding-right: 14px; } .hb-topic { padding-top: 64px; } .hb-start .hx-pt { aspect-ratio: 1/1; } }
-.hb-tile { position: relative; display: grid; align-content: end; aspect-ratio: 4/3; min-width: 0; padding: 16px 60px 16px 16px; border-radius: 18px; overflow: hidden; color: #fff; text-decoration: none; isolation: isolate; }
-.hb-tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform .7s; }
-.hb-tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(3,10,30,0) 40%, rgba(3,10,30,.72)); z-index: -1; }
-.hb-tile:hover img { transform: scale(1.05); }
-.hb-tile b { font: 700 16.5px/1.25 var(--sans); }
-.hb-tile .ar { position: absolute; right: 14px; bottom: 14px; }
-.hx-fr { display: grid; align-content: start; gap: 8px; color: var(--ink); text-decoration: none; min-width: 0; }
-.hx-fr .hx-pt { margin-bottom: 4px; }
-.hx-fr .c { display: inline-flex; align-items: center; gap: 7px; font: 600 13px/1 var(--sans); color: var(--muted); }
-.hx-fr p { font-size: 15px; line-height: 1.5; color: var(--body); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+@media (max-width: 760px) { .hb-pills a { padding-right: 14px; } .hb-start .hx-pt { aspect-ratio: 1/1; } }
 /* hub: icon facts */
 .hb-icons { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; margin-top: 36px; text-align: center; max-width: 720px; }
 .hb-icons > div { display: grid; justify-items: center; gap: 10px; }
@@ -204,18 +192,27 @@ a.hx-btn:hover { transform: translateY(-1px); }
 .hb-head { display: grid; gap: 10px; margin-bottom: 28px; }
 .hb-head h2 { font: 650 clamp(34px, 3.2vw, 46px)/1.04 var(--serif); }
 .hb-head p { font-size: 17px; color: var(--body); max-width: 62ch; }
-.hb-group { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 4vw, 64px); align-items: center; }
-.hb-group + .hb-group { margin-top: 64px; }
-.hb-group .gi img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 22px; display: block; }
+.hb-group { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 4vw, 64px); scroll-margin-top: 24px; }
+.hb-group + .hb-group { margin-top: 80px; }
+.hb-pills + .hb-group { margin-top: 44px; }
+.hb-group.flip { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+.hb-group.flip .gi { order: 2; }
+.hb-group .gi { position: relative; min-height: 380px; border-radius: 22px; overflow: hidden; }
+.hb-group .gi img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.hb-group .gt { min-width: 0; align-self: center; }
 .hb-group h2 { font: 650 clamp(30px, 2.8vw, 40px)/1.05 var(--serif); }
-.hb-group .bl { font-size: 17px; line-height: 1.55; color: var(--body); margin: 10px 0 18px; max-width: 56ch; }
-.hb-list { list-style: none; padding: 0; margin: 0; border-top: 2px solid var(--navy); }
-.hb-list a { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr) 28px; gap: 18px; align-items: baseline; padding: 14px 6px; border-bottom: 1px solid var(--line); text-decoration: none; transition: background .2s; }
-.hb-list a:hover { background: var(--beige); }
+.hb-group .bl { font-size: 17px; line-height: 1.55; color: var(--body); margin: 10px 0 16px; max-width: 56ch; }
+.hb-list { list-style: none; padding: 0; margin: 0; }
+.hb-list li + li { border-top: 1px solid var(--line); }
+.hb-list a { display: grid; grid-template-columns: 68px minmax(0, 1fr) 24px; gap: 16px; align-items: center; padding: 12px 8px 12px 0; text-decoration: none; }
+.hb-list img { width: 68px; height: 68px; border-radius: 14px; object-fit: cover; display: block; transition: transform .5s; }
+.hb-list a:hover img { transform: scale(1.05); }
+.hb-list .t { display: grid; gap: 2px; min-width: 0; }
 .hb-list b { font: 700 16.5px/1.3 var(--sans); color: var(--navy); }
-.hb-list span { font-size: 14.5px; line-height: 1.45; color: var(--muted); }
-.hb-list i { font-style: normal; color: var(--red); justify-self: end; }
-@media (max-width: 900px) { .hb-orient, .hb-group { grid-template-columns: 1fr; } .hb-list a { grid-template-columns: 1fr 24px; } .hb-list span { grid-column: 1; } .hb-list i { grid-row: 1; grid-column: 2; } }
+.hb-list .t span { font-size: 14.5px; line-height: 1.45; color: var(--muted); }
+.hb-list .go { color: var(--red); justify-self: end; font-size: 18px; }
+.hb-list .go .ia { margin: 0; }
+@media (max-width: 900px) { .hb-orient, .hb-group, .hb-group.flip { grid-template-columns: 1fr; } .hb-group.flip .gi { order: 0; } .hb-group .gi { min-height: 0; aspect-ratio: 16/10; } .hb-group + .hb-group { margin-top: 56px; } .hb-list a { grid-template-columns: 56px minmax(0, 1fr) 20px; gap: 12px; } .hb-list img { width: 56px; height: 56px; } }
 a.hx-search { display: flex; align-items: center; gap: 14px; width: min(620px, 100%); padding: 18px 22px; border-radius: 999px; color: #fff; text-decoration: none; font: 500 17px/1.2 var(--sans); margin-top: 8px; }
 a.hx-search svg { flex: none; opacity: .9; }
 a.hx-search kbd { margin-left: auto; font: 600 12px/1 var(--sans); padding: 6px 9px; border-radius: 8px; background: rgba(255,255,255,.18); }
@@ -421,16 +418,14 @@ def fresh_photo(u):
         if k and not any(bin(k ^ x).count("1") <= 12 for x in USED):
             USED.append(k); return im
     return img_of(u)
-def tile(u, t):
-    return f'<a class="hb-tile" href="{u}"><img alt="" loading="lazy" src="{fresh_photo(u)}"/><b>{t}</b><span class="ar"></span></a>'
 PILLS = '<nav class="hb-pills" aria-label="Boquete guides by topic">' + "".join(
     f'<a href="#topic-{i + 1}"><img alt="" src="{g["img"]}"/><span><b>{g["h2"].split(":")[0]}</b><small>{len(g["items"])} guides</small></span></a>'
     for i, g in enumerate(groups)) + "</nav>"
 TOPICS = ""
 for i, g in enumerate(groups):
-    span = 2  # user: title and description always take the first two of four spots; the rest flows right, then below
-    TOPICS += (f'<div class="hb-topic" id="topic-{i + 1}"><div class="hb-tg"><div class="hb-in" style="grid-column: span {span}"><span class="n">{i + 1:02d}</span><h2>{g["h2"]}</h2><p>{g["blurb"]}</p></div>'
-               + "".join(tile(u, t) for u, t, d in g["items"]) + "</div></div>")
+    rows = "".join(f'<li><a href="{u}"><img alt="" loading="lazy" src="{fresh_photo(u)}"/><span class="t"><b>{n}</b><span>{d}</span></span><span class="go">→</span></a></li>' for u, n, d in g["items"])
+    TOPICS += (f'<div class="hb-group{" flip" if i % 2 else ""}" id="topic-{i + 1}"><div class="gi"><img alt="{html.escape(html.unescape(g["alt"]))}" loading="lazy" src="{g["img"]}"/></div>'
+               f'<div class="gt"><h2>{g["h2"]}</h2><p class="bl">{g["blurb"]}</p><ul class="hb-list">{rows}</ul></div></div>')
 GAL = [("/images/v2/volcan-baru-emerging-through-clouds-d35d9b87-hero-1280.webp", "Volcán Barú rising through cloud above forested slopes."),
        ("/images/v2/resplendent-quetzal-646deb1a-gallery.webp", "A resplendent quetzal, the bird most birders come to Boquete for."),
        ("/images/v2/finca-lerida-boquete-panama-wide.webp", "Finca Lérida, one of the Boquete farms that pours Geisha."),
@@ -538,12 +533,12 @@ def mixcard(u, area, label, t, d, kind, im=None):
     return (f'<a class="hx-split m-{area}" href="{u}"><span class="tx"><span class="c"><i class="dot"></i>{label}</span><b>{t}</b><p>{d}</p>'
             f'<span class="go">Read the guide <span class="ar"></span></span></span><span class="ph"><img alt="" loading="lazy" src="{im}"/></span></a>')
 MIX = "".join([
-    mixcard("/articles/bocas-del-toro", "a", "Caribbean", "Bocas del Toro — nine islands, slow boats, sloths", "", "photo", "/images/v2/curly-sunset-bastimentos-bocas-del-toro-4076411765-wide.webp"),
-    mixcard("/articles/san-blas-islands-panama-guna-yala-guide", "b", "Caribbean", "San Blas and Guna Yala", "", "photo", "/images/v2/sailing-in-san-blas-panama-8395179124-wide.webp"),
+    mixcard("/articles/bocas-del-toro", "a", "Caribbean", "Bocas del Toro — nine islands, slow boats, sloths", "", "photo", "/images/v2/nyara-bocas-del-toro-panama-hero-1280.webp"),
+    mixcard("/articles/san-blas-islands-panama-guna-yala-guide", "b", "Caribbean", "San Blas and Guna Yala", "", "photo", "/images/v2/x-diadup-kuna-yala-panam-c3-a1-hero-1280.webp"),
     mixcard("/articles/el-valle-de-anton", "c", "Highlands", "El Valle de Antón — a town inside an extinct volcano.", "Waterfalls, hot springs and the India Dormida ridge, two hours from the capital.", "navy"),
     mixcard("/articles/chorro-el-macho-waterfall-el-valle-de-anton", "d", "Highlands", "Chorro El Macho, El Valle", "", "photo"),
     mixcard("/articles/boquete", "e", "Highlands", "Boquete — cloud forest, coffee, Volcán Barú", "The highland town that runs on coffee, rivers, and fog — plus the country’s best day hikes from town.", "split"),
-    mixcard("/articles/panama-city", "f", "Capital", "Panama City", "", "photo", "/images/v2/casco-viejo-at-dusk-panama-city-54316063007-wide.webp"),
+    mixcard("/articles/panama-city", "f", "Capital", "Panama City", "", "photo", "/images/v2/casco-viejo-panama-city-panama-54319827771-hero-1280.webp"),
     mixcard("/articles/playa-venao-panama", "g", "Pacific coast", "Playa Venao and the Azuero coast", "", "photo"),
 ])
 def fresh(u):
