@@ -33,9 +33,9 @@ def title_of(href):
 CSS = """
 .hx-hero { height: clamp(300px, 27vw, 400px); }
 /* homepage hero: the original layout (50vh, min 480px, wordmark bottom-left), new-template details */
-.hx-home { height: 50vh; min-height: 480px; grid-template-rows: auto 1fr; }
+.hx-home { height: auto; min-height: max(480px, 50vh); grid-template-rows: auto 1fr; }
 .hx-home::before { background: linear-gradient(180deg, rgba(3,10,30,.42) 0%, rgba(3,10,30,0) 34%, rgba(3,10,30,.1) 60%, rgba(3,10,30,.5) 100%); }
-.hx-home .hx-c { align-self: end; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding-bottom: 56px; }
+.hx-home .hx-c { align-self: end; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding-top: 40px; padding-bottom: 64px; }
 .hx-home .hx-mark { font: 400 clamp(64px, 11vw, 160px)/.86 var(--serif); letter-spacing: -0.02em; color: #fff; margin: 0; text-shadow: 0 2px 30px rgba(0,0,0,.18); }
 .hx-mark .a { color: var(--red); }
 .hx-mark .pd { display: inline-block; width: .17em; height: .17em; border-radius: 50%; background: var(--red); margin-left: .03em; }
@@ -219,11 +219,15 @@ a.hx-search svg { flex: none; opacity: .9; }
 a.hx-search kbd { margin-left: auto; font: 600 12px/1 var(--sans); padding: 6px 9px; border-radius: 8px; background: rgba(255,255,255,.18); }
 .hx-quick { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
 .hx-quick a { text-decoration: none; }
+.hx-band { background: var(--beige); margin-top: 112px; padding-bottom: 112px; }
+.hx-band > .hx-sec:first-child { padding-top: 96px; }
+.hx-band + .hx-sec, .hx-band + .foot { margin-top: 0; }
+.foot > .f-mid:first-child { padding-top: 72px; }
 .hx-sec { padding-block: 112px 0; scroll-margin-top: 20px; }
 .hx-sec:last-of-type { padding-bottom: 112px; }
 .hx-sec .band-h { margin-bottom: 26px; }
 .hx-sec .band-h h2 { font-size: clamp(28px, 2.3vw, 34px); }
-@media (max-width: 760px) { .hx-sec { padding-top: 72px; } .hx-sec:last-of-type { padding-bottom: 72px; } }
+@media (max-width: 760px) { .hx-sec { padding-top: 72px; } .hx-sec:last-of-type { padding-bottom: 72px; } .hx-band { margin-top: 72px; padding-bottom: 72px; } .hx-band > .hx-sec:first-child { padding-top: 64px; } .foot > .f-mid:first-child { padding-top: 56px; } }
 .hx-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .hx-dest { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
 .hx-d { position: relative; border-radius: 22px; overflow: hidden; aspect-ratio: 3/4; color: #fff; text-decoration: none; isolation: isolate; }
@@ -709,12 +713,12 @@ def build_home(lang):
 </header>
 <section class="wrap hx-sec" id="cat-regions"><div class="band-h"><div><h2>{C["where"]}</h2></div></div>
 <div class="hx-dest">{"".join(f'<a class="hx-d" href="{u}"><img alt="" loading="lazy" src="{dest_img(u)}"/><span class="chip glass">{count(u)} {C["guides"]}</span><span class="ft"><b>{n}</b><small>{s}</small></span></a>' for n, s, u in C["dest"])}</div></section>
-<section class="wrap hx-sec" id="cat-activities"><div class="band-h"><div><h2>{C["what"]}</h2></div></div>
+<div class="hx-band"><section class="wrap hx-sec" id="cat-activities"><div class="band-h"><div><h2>{C["what"]}</h2></div></div>
 <div class="hx-acts">{"".join(f'<a class="hx-act" href="{u}"><img alt="" loading="lazy" src="{act_photo(html.unescape(t))}"/><b>{E(t)}</b></a>' for t, g, u in acts)}</div></section>
 <section class="wrap hx-sec"><div class="band-h"><div><h2>{C["fresh_h"]}</h2></div></div>
-<div class="hx-new">{"".join(fresh(u) for u in C["new_list"])}</div></section>
+<div class="hx-new">{"".join(fresh(u) for u in C["new_list"])}</div></section></div>
 {rows}
-<section class="wrap hx-sec"><div class="band-h"><div><h2>{C["bento"]}</h2></div></div><div class="hx-mix">{"".join(mixcard(*m) for m in C["mix"])}</div></section>
+<div class="hx-band"><section class="wrap hx-sec"><div class="band-h"><div><h2>{C["bento"]}</h2></div></div><div class="hx-mix">{"".join(mixcard(*m) for m in C["mix"])}</div></section></div>
 """
     out = page(C["title"], body + ROTJS, HOME_BG, lang)
     # the footer's opening band ("Find your spot in Panama", Start exploring, Where to next?) repeats the hero and "Where in Panama?" on the homepage
