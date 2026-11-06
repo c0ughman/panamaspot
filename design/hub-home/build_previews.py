@@ -16,7 +16,7 @@ def img_of(href):
     """A guide's own hero photo, at tile size when one exists."""
     f = P / (href.lstrip("/") + ".html")
     h = f.read_text(errors="ignore") if f.exists() else ""
-    m = re.search(r'<img\b[^>]*class="hero-img"[^>]*>', h)
+    m = re.search(r'<img\b[^>]*class="hero-img"[^>]*>', h) or re.search(r'hub-hero-img"><img\b[^>]*>', h)
     if not m: return ""
     src = re.search(r'\bsrc="([^"]+)"', m[0])[1].replace(SITE, "")
     base = re.sub(r"-hero-\d+\.webp$", "", src)
@@ -49,6 +49,55 @@ a.hx-btn:hover { transform: translateY(-1px); }
 .hx-arr.l { left: -14px; } .hx-arr.r { right: -14px; }
 .hx-arr[disabled] { opacity: 0; pointer-events: none; }
 @media (max-width: 700px) { .hx-arr { display: none; } }
+/* homepage: rotating hero photos */
+.hx-home .hx-rot { opacity: 0; transition: opacity 1.6s ease; }
+.hx-home .hx-rot.on { opacity: 1; }
+/* homepage: 7-column destination grids */
+.hx-g7 { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 14px; }
+.hx-t { display: grid; gap: 10px; text-decoration: none; color: var(--ink); min-width: 0; }
+.hx-t .ph { display: block; aspect-ratio: 4/5; border-radius: 16px; overflow: hidden; background: var(--beige); }
+.hx-t img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s; }
+.hx-t:hover img { transform: scale(1.05); }
+.hx-t b { font: 700 15.5px/1.3 var(--sans); color: var(--navy); }
+.hx-t .c { font: 600 12px/1 var(--sans); color: var(--muted); display: inline-flex; gap: 6px; align-items: center; }
+.hx-bx2 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
+.hx-bx2 .hx-card .ph { aspect-ratio: 16/10; }
+@media (max-width: 1100px) { .hx-g7 { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .hx-g7 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .hx-bx2 { grid-template-columns: 1fr; } }
+/* hub: icon facts */
+.hb-icons { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 28px; }
+.hb-icons div { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 12px; align-items: center; padding: 14px 16px; border-radius: 18px; background: var(--beige); }
+.hb-icons svg { width: 40px; height: 40px; padding: 9px; border-radius: 12px; background: var(--white); color: var(--red); box-shadow: inset 0 0 0 1px var(--line); }
+.hb-icons b { display: block; font: 700 18px/1.15 var(--sans); color: var(--navy); }
+.hb-icons span { display: block; font: 500 13px/1.3 var(--sans); color: var(--muted); }
+/* hub: topic groups as photo bentos, alternating sides */
+.hb-bento { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.hb-bento + .hb-bento { margin-top: 48px; }
+.hb-side { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-content: start; }
+.hb-bento.flip .hb-feat { order: 2; }
+.hb-more { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.hb-g.s2 { grid-column: span 2; } .hb-g.s4 { grid-column: span 4; }
+.hb-g.wide { grid-template-columns: minmax(0, 44%) minmax(0, 1fr); grid-template-rows: none; gap: 10px; }
+.hb-g.wide .ph { aspect-ratio: auto; position: relative; min-height: 128px; }
+.hb-g.wide .ph img { position: absolute; inset: 0; }
+.hb-side.fill { grid-auto-rows: 1fr; align-content: stretch; }
+.hb-g.wide .tx { align-content: center; }
+.hb-feat { position: relative; border-radius: 24px; overflow: hidden; min-height: 380px; color: #fff; display: grid; align-content: end; padding: 26px; isolation: isolate; }
+.hb-feat img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+.hb-feat::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(3,10,30,0) 30%, rgba(3,10,30,.78)); z-index: -1; }
+.hb-feat .lbl { color: #fff; }
+.hb-feat h2 { font: 650 clamp(30px, 2.8vw, 42px)/1.04 var(--serif); color: #fff; margin: 10px 0 8px; }
+.hb-feat p { font-size: 16px; line-height: 1.5; color: rgba(255,255,255,.9); max-width: 46ch; }
+.hb-g { display: grid; grid-template-rows: auto 1fr; gap: 4px; padding: 8px; border-radius: 20px; background: var(--beige); box-shadow: inset 0 0 0 1px var(--line); text-decoration: none; color: var(--ink); min-width: 0; }
+.hb-g .ph { display: block; aspect-ratio: 16/10; border-radius: 14px; overflow: hidden; }
+.hb-g img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s; }
+.hb-g:hover img { transform: scale(1.04); }
+.hb-g .tx { display: grid; gap: 5px; padding: 10px 8px 6px; align-content: start; }
+.hb-g b { font: 700 16px/1.25 var(--sans); color: var(--navy); }
+.hb-g span.d { font-size: 14px; line-height: 1.4; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.hb-g i { font-style: normal; color: var(--red); font-weight: 700; }
+@media (max-width: 1000px) { .hb-bento { grid-template-columns: 1fr; } .hb-bento.flip .hb-feat { order: 0; } .hb-feat { min-height: 320px; } .hb-more { grid-template-columns: 1fr 1fr; } .hb-g.s4 { grid-column: span 2; } .hb-icons { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .hb-side, .hb-more { grid-template-columns: 1fr; grid-auto-rows: auto; } .hb-g.s2, .hb-g.s4 { grid-column: auto; } }
 /* hub: the original layout, restyled */
 .hb-hero { height: clamp(420px, 38vw, 540px); grid-template-rows: auto 1fr; }
 .hb-hero::before { background: linear-gradient(180deg, rgba(3,10,30,.45) 0%, rgba(3,10,30,.05) 30%, rgba(3,10,30,.25) 58%, rgba(3,10,30,.72) 100%); }
@@ -58,8 +107,9 @@ a.hx-btn:hover { transform: translateY(-1px); }
 .hb-hero h1 { font: 650 clamp(56px, 6.4vw, 96px)/.95 var(--serif); color: #fff; letter-spacing: -0.01em; }
 .hb-hero p { font: 400 clamp(17px, 1.4vw, 20px)/1.55 var(--sans); color: rgba(255,255,255,.92); max-width: 52ch; }
 .hb-hero .hb-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
-.hb-sec { padding-block: 64px; }
-.hb-sec + .hb-sec { border-top: 1px solid var(--line); }
+.hb-sec { padding-block: 56px 0; }
+.hb-sec.first { padding-top: 48px; }
+.hb-sec.last { padding-bottom: 72px; }
 .hb-orient { display: grid; grid-template-columns: minmax(0, 1fr) 420px; gap: clamp(32px, 6vw, 96px); align-items: start; }
 .hb-orient .lead p { font-size: clamp(18px, 1.4vw, 20px); line-height: 1.65; color: var(--ink); }
 .hb-orient .lead p + p { margin-top: 18px; }
@@ -220,11 +270,37 @@ start_img = re.findall(r'<a class="hub-card" href="[^"]+"><div class="hub-card-i
 def hcard(u, t, d, im):
     return (f'<a class="hx-card" href="{u}"><span class="ph"><img alt="" loading="lazy" src="{im}"/></span><span class="tx"><span class="c"><i class="dot"></i>Guide</span>'
             f'<h3>{t}</h3><p>{d}</p><span class="go">Read the guide <i>→</i></span></span></a>')
-groups_html = "".join(
-    f'<div class="hb-group"><div class="gi"><img alt="{html.escape(html.unescape(g["alt"]))}" loading="lazy" src="{g["img"]}"/></div><div><span class="lbl">{len(g["items"])} guides</span>'
-    f'<h2>{g["h2"]}</h2><p class="bl">{g["blurb"]}</p><ul class="hb-list">'
-    + "".join(f'<li><a href="{u}"><b>{n}</b><span>{d}</span><i>→</i></a></li>' for u, n, d in g["items"]) + "</ul></div></div>"
-    for g in groups)
+ICO = {
+ "mountain": '<path d="m3 20 6.5-11 4 6.5 2.5-4L21 20Z"/>',
+ "pin": '<path d="M12 21s7-6.2 7-11.5a7 7 0 0 0-14 0C5 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/>',
+ "bus": '<rect x="4" y="3" width="16" height="15" rx="3"/><path d="M4 11h16M8 21v-3M16 21v-3"/><circle cx="8" cy="14.5" r=".8"/><circle cx="16" cy="14.5" r=".8"/>',
+ "sun": '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+ "cal": '<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+ "book": '<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2Z"/><path d="M4 19V5"/>'}
+icon = lambda k: f'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{ICO[k]}</svg>'
+# every value below is taken from the hub's own text
+ICONS = [("mountain", "1,200 m", "Elevation"), ("pin", "Chiriquí", "Province"), ("bus", "7 hrs", "By bus from Panama City"),
+         ("sun", "Dec–Apr", "Driest months"), ("cal", "3–4 days", "Coffee, a hike, hot springs, Barú"), ("book", f"{len(idx)} guides", "In this library")]
+icons_html = '<div class="hb-icons">' + "".join(f"<div>{icon(k)}<span><b>{v}</b><span>{l}</span></span></div>" for k, v, l in ICONS) + "</div>"
+def gcard(u, n, d, cls=""):
+    return f'<a class="hb-g{cls}" href="{u}"><span class="ph"><img alt="" loading="lazy" src="{img_of(u)}"/></span><span class="tx"><b>{n}</b><span class="d">{d}</span><i>→</i></span></a>'
+SIDE = {1: [" s2 wide"], 2: [" s2 wide", " s2 wide"], 3: ["", "", " s2 wide"], 4: ["", "", "", ""]}
+MORE = {1: [" s4 wide"], 2: [" s2 wide", " s2 wide"], 3: ["", "", " s2 wide"], 4: ["", "", "", ""]}
+groups_html = ""
+for gi, g in enumerate(groups):
+    it = g["items"]; side, rest = it[:4], it[4:]
+    side_html = "".join(gcard(u, n, d, c) for (u, n, d), c in zip(side, SIDE[len(side)]))
+    more_html = ""
+    for k in range(0, len(rest), 4):
+        chunk = rest[k:k + 4]
+        more_html += "".join(gcard(u, n, d, c) for (u, n, d), c in zip(chunk, MORE[len(chunk)]))
+    groups_html += (f'<div class="hb-bento{" flip" if gi % 2 else ""}"><div class="hb-feat"><img alt="{html.escape(html.unescape(g["alt"]))}" loading="lazy" src="{g["img"]}"/>'
+                    f'<span class="lbl">{len(it)} guides</span><h2>{g["h2"]}</h2><p>{g["blurb"]}</p></div><div class="hb-side{" fill" if len(side) <= 2 else ""}">{side_html}</div>'
+                    + (f'<div class="hb-more">{more_html}</div>' if more_html else "") + "</div>")
+GAL = [("boquete-aerial2", "The river canyon below Boquete, seen from the air."), ("boquete-bird", "A hummingbird feeding at a red flower."),
+       ("boquete-cafeview2", "A café window looking out over the valley."), ("boquete-rafting", "Rafters in yellow boats on a river near Boquete."),
+       ("boquete-cabins", "Timber A-frame cabins on a hillside above Boquete.")]
+gal_html = "".join(f'<figure><img class="ph" alt="{a}" loading="lazy" src="/images/boquete/{n}.webp"/><figcaption>{a}</figcaption></figure>' for n, a in GAL)
 hub = f"""<div class="guide-progress" id="prog" aria-hidden="true"></div>
 <header class="hero hb-hero">
   <img class="hero-img" alt="{html.escape(html.unescape(HB[2]))}" fetchpriority="high" src="{HB[1]}" style="object-position:center 45%"/>
@@ -236,13 +312,14 @@ hub = f"""<div class="guide-progress" id="prog" aria-hidden="true"></div>
     <div class="hb-pills">{"".join(f'<span class="chip glass">{E(p)}</span>' for p in pills)}</div>
   </div></div>
 </header>
-<section class="wrap hb-sec"><div class="hb-orient"><div class="lead">{"".join(f"<p>{l}</p>" for l in leads[:2])}</div>
+<section class="wrap hb-sec first"><div class="hb-orient"><div class="lead">{"".join(f"<p>{l}</p>" for l in leads[:2])}{icons_html}</div>
 <aside class="glance" aria-label="At a glance"><h2>At a glance <span><i class="dot"></i>Chiriquí highlands</span></h2><div class="hf">{"".join(f'<div><span class="k">{k}</span><span class="v">{v}</span></div>' for k, v in facts)}</div></aside></div></section>
 <section class="wrap hb-sec"><div class="hb-head"><span class="lbl">Start here</span><h2>{s_head[1]}</h2><p>{s_head[2]}</p></div>
 <div class="hx-grid">{"".join(hcard(u, t, d, im) for (u, t, d), im in zip(start, start_img))}</div></section>
-<section class="wrap hb-sec">{groups_html}</section>
-<div class="wrap">{cta["banner"]}</div>
-<section class="wrap hb-sec"><div class="band-h"><div><span class="lbl">{idx_h[1]}</span><h2>{idx_h[2]}</h2></div><span class="band-sub">{len(idx)} guides</span></div>
+<section class="wrap hb-sec"><div class="hb-head"><span class="lbl">By topic</span><h2>Find your guide</h2></div>{groups_html}</section>
+<section class="wrap hb-sec">{cta["banner"]}</section>
+<section class="band gband hb-sec"><div class="wrap band-h"><div><span class="lbl">In pictures</span><h2>Boquete in pictures</h2></div></div><div class="gal">{gal_html}</div></section>
+<section class="wrap hb-sec last"><div class="band-h"><div><span class="lbl">{idx_h[1]}</span><h2>{idx_h[2]}</h2></div><span class="band-sub">{len(idx)} guides</span></div>
 <ol class="hx-idx">{"".join(f'<li><a href="{u}"><span class="n">{n}</span><span>{t}</span><span class="cat">{c}</span></a></li>' for u, n, t, c in idx)}</ol>
 <div class="hx-es"><span class="bdg">ES</span><div><b>{es_t[1]}</b><p>{es_t[2]}</p></div><a href="/es/articles/boquete">Ver en español →</a></div></section>
 {ROLL.JS_M[0]}{ROLL.TRACK}{ROLL.JS_M[1]}
@@ -264,6 +341,16 @@ def cards_of(name):
     return out
 H = "/images/v2/playa-blanca-saboga-hero"
 HOME_BG = "https://images.pexels.com/photos/2474690/pexels-photo-2474690.jpeg?auto=compress&cs=tinysrgb&w=2400"
+ROT_IMGS = [(HOME_BG, "", 50)] + [(f"/images/v2/{n}-hero-1920.webp", a, y) for n, a, y in [
+    ("playa-blanca-saboga", "Palm trees over Playa Blanca on Isla Saboga, Pearl Islands.", 62),
+    ("volcan-baru-emerging-through-clouds-d35d9b87", "Volcán Barú rising through cloud above forested slopes.", 40),
+    ("isla-en-guna-yala", "A palm-lined beach on an island in Guna Yala.", 55),
+    ("panama-city-skyline-from-the-waterfront-17477516", "The Panama City skyline seen across the water.", 55),
+    ("aerial-view-of-boquete-panama-ed675378", "Boquete in its river valley, seen from the air.", 55),
+    ("late-light-on-the-crater-wall-a262b398", "Late light on the crater wall above El Valle de Antón.", 60)]]
+ROT = "".join(f'<img class="hero-img hx-rot{" on" if i == 0 else ""}" alt="{a}" {"fetchpriority=" + chr(34) + "high" + chr(34) + " src" if i == 0 else "data-src"}="{u}" style="object-position:center {y}%"/>' for i, (u, a, y) in enumerate(ROT_IMGS))
+ROTJS = """<script>(function(){var im=[].slice.call(document.querySelectorAll(".hx-rot"));if(im.length<2||matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+addEventListener("load",function(){im.forEach(function(i){if(i.dataset.src)i.src=i.dataset.src;});var k=0;setInterval(function(){var n=(k+1)%im.length;if(!im[n].complete)return;im[k].classList.remove("on");im[n].classList.add("on");k=n;},6000);});})();</script>"""
 dest = [("Panama City", "Capital and canal", "/articles/panama-city"), ("Boquete", "Coffee highlands", "/articles/boquete"),
         ("El Valle de Antón", "Volcanic crater", "/articles/el-valle-de-anton"), ("Bocas del Toro", "Caribbean islands", "/articles/bocas-del-toro"),
         ("San Blas", "Guna Yala", "/articles/san-blas-islands-panama-guna-yala-guide")]
@@ -276,11 +363,25 @@ def count(href):
 acts = cards_of("ACTIVITIES")
 act_img = {"Hiking & Trails": "/articles/hikes-in-boquete", "Wildlife & Birding": "/articles/birding-el-valle-de-anton-trails-lodges-season", "Surf & Dive": "/articles/panama-surf-camps",
            "Food & Coffee": "/articles/geisha-coffee-boquete-where-to-taste", "Eco-tourism": "/articles/finca-lerida-los-quetzales-trail-birdwatching-boquete", "Cities & Culture": "/articles/casco-viejo-panama-walking-guide", "Islands & Beaches": "/articles/san-blas-islands-panama-guna-yala-guide"}
+FOOT_GROUPS = {n: re.findall(r'href="(/articles/[^"]+)">(.*?)</a>', ul) for n, ul in re.findall(r"<h4>(.*?)</h4><ul>(.*?)</ul>", D["foot"], re.S)}
+def seven(name, group):
+    out, seen, pics = [], set(), set()
+    cands = [(html.unescape(t), g, u) for t, g, u in (cards_of(name) if name else [])] + [(html.unescape(t), "Guide", u) for u, t in FOOT_GROUPS.get(group, [])]
+    for t, g, u in cands:
+        if len(out) >= 7: break
+        im = img_of(u)
+        key = (re.search(r"\d{5,}", im) or [re.sub(r"-(hero-\d+|tile|stamp|card|wide|gallery)$", "", Path(im).stem)])[0]
+        if u in seen or not im or key in pics: continue
+        seen.add(u); pics.add(key); out.append((t, g, u))
+    return out
 rows = ""
-for name, h2, allhref in [("PANAMA_CITY_GUIDES", "Explore Panama City", "/articles/panama-city"), ("BOQUETE_GUIDES", "Explore Boquete", "/articles/boquete"), ("EL_VALLE_GUIDES", "Explore El Valle de Antón", "/articles/el-valle-de-anton")]:
-    cs = cards_of(name)
-    rows += (f'<section class="wrap hx-sec"><div class="band-h"><div><span class="lbl">Destination</span><h2>{h2}</h2></div><a href="{allhref}">All {h2.replace("Explore ", "")} guides →</a></div>'
-             f'<div class="hx-rw"><button class="hx-arr l" type="button" aria-label="Previous">‹</button><div class="hx-row">{"".join(card(u, t, chip=g) for t, g, u in cs)}</div><button class="hx-arr r" type="button" aria-label="Next">›</button></div></section>')
+for name, group, h2, allhref in [("BOQUETE_GUIDES", "Boquete", "Explore Boquete", "/articles/boquete"), ("EL_VALLE_GUIDES", "El Valle de Antón", "Explore El Valle de Antón", "/articles/el-valle-de-anton"),
+                                 ("PANAMA_CITY_GUIDES", "Panama City", "Explore Panama City", "/articles/panama-city"), (None, "Bocas del Toro", "Explore Bocas del Toro", "/articles/bocas-del-toro"),
+                                 (None, "Islands and sea", "Explore San Blas and the islands", "/articles/san-blas-islands-panama-guna-yala-guide")]:
+    cs = seven(name, group)
+    if len(cs) < 7: continue
+    rows += (f'<section class="wrap hx-sec"><div class="band-h"><div><span class="lbl">Destination</span><h2>{h2}</h2></div><a href="{allhref}">All guides →</a></div>'
+             f'<div class="hx-g7">{"".join(f'<a class="hx-t" href="{u}"><span class="ph"><img alt="" loading="lazy" src="{img_of(u)}"/></span><span class="c"><i class="dot"></i>{E(g)}</span><b>{E(t)}</b></a>' for t, g, u in cs)}</div></section>')
 feat = [("/articles/bocas-del-toro", "Caribbean", "Bocas del Toro — nine islands, slow boats, sloths", "Surfers’ capital of the Caribbean coast, Afro-Antillean kitchens, and the country’s easiest place to wake up on the water."),
         ("/articles/panama-city", "Capital", "Panama City", ""),
         ("/articles/el-valle-de-anton", "Highlands", "El Valle de Antón — a town inside an extinct volcano.", ""),
@@ -290,14 +391,18 @@ bx = (f'<a class="bt t-a" href="{a[0]}"><span class="ph"><img alt="" loading="la
       f'<a class="bt t-b" href="{b2[0]}"><span class="ph"><img alt="" loading="lazy" src="{dest_img(b2[0])}"/></span><span class="tx"><span class="c"><i class="dot"></i>{b2[1]}</span><h3>{b2[2]}</h3></span></a>'
       f'<a class="bt t-c" href="{c[0]}"><span class="tx"><span class="c"><i class="dot"></i>{c[1]}</span><h3>{c[2]}</h3></span><span class="go">→</span></a>'
       f'<a class="bt t-d" href="{d[0]}"><span class="tx"><span class="c"><i class="dot"></i>{d[1]}</span><h3>{d[2]}</h3><p class="lead">{d[3]}</p><span class="more">Read the guide <i>→</i></span></span><span class="ph"><img alt="" loading="lazy" src="{dest_img(d[0])}"/></span></a>')
-new = ["/articles/geisha-coffee-boquete-where-to-taste", "/articles/chorro-las-mozas-swimming-falls-el-valle", "/articles/san-blas-tours-from-panama-city",
-       "/articles/playa-venao-panama", "/articles/panama-canal-boat-tours", "/articles/el-pianista-trail-boquete"]
 def dek_of(href):
     t = (P / (href.lstrip("/") + ".html")).read_text(errors="ignore"); m = re.search(r'<p class="dek">(.*?)</p>', t, re.S); s = R.text(m[1]) if m else ""
     return s if len(s) < 150 else s[:150].rsplit(" ", 1)[0] + "…"
+BX2 = "".join(card(u, t, dek_of(u), chip=c, label="Field report", more=True) for u, t, c in [
+    ("/articles/san-blas-islands-panama-guna-yala-guide", "San Blas and Guna Yala", "Caribbean"),
+    ("/articles/pearl-islands-panama-guide", "The Pearl Islands", "Pacific"),
+    ("/articles/playa-venao-panama", "Playa Venao and the Azuero coast", "Pacific coast")])
+new = ["/articles/geisha-coffee-boquete-where-to-taste", "/articles/chorro-las-mozas-swimming-falls-el-valle", "/articles/san-blas-tours-from-panama-city",
+       "/articles/playa-venao-panama", "/articles/panama-canal-boat-tours", "/articles/el-pianista-trail-boquete"]
 home = f"""<div class="guide-progress" id="prog" aria-hidden="true"></div>
 <header class="hero hx-home">
-  <img class="hero-img" alt="" fetchpriority="high" src="{HOME_BG}" style="object-position:center 50%"/>
+  {ROT}
   {nav("/preview/home.html", "/es")}
   <div class="wrap hx-c">
     <h1 class="hx-mark">Panam<span class="a">á</span><i class="pd"></i></h1>
@@ -309,11 +414,11 @@ home = f"""<div class="guide-progress" id="prog" aria-hidden="true"></div>
 <div class="hx-dest">{"".join(f'<a class="hx-d" href="{u}"><img alt="" loading="lazy" src="{dest_img(u)}"/><span class="chip glass">{count(u)} guides</span><span class="ft"><b>{n}</b><small>{s}</small></span></a>' for n, s, u in dest)}</div></section>
 <section class="wrap hx-sec" id="cat-activities"><div class="band-h"><div><span class="lbl">Activities</span><h2>What will you do?</h2></div></div>
 <div class="hx-acts">{"".join(f'<a class="hx-act" href="{u}"><img alt="" loading="lazy" src="{img_of(act_img.get(html.unescape(t), u))}"/><b>{E(t)}</b></a>' for t, g, u in acts)}</div></section>
-<section class="wrap hx-sec"><div class="explore"><div class="band-h"><div><span class="lbl">Field reports from the ground</span><h2>Seven Panamas, one isthmus.</h2></div><a href="/#cat-regions">All destinations →</a></div><div class="bx">{bx}</div></div></section>
+<section class="wrap hx-sec"><div class="explore"><div class="band-h"><div><span class="lbl">Field reports from the ground</span><h2>Seven Panamas, one isthmus.</h2></div><a href="/#cat-regions">All destinations →</a></div><div class="bx">{bx}</div><div class="hx-bx2">{BX2}</div></div></section>
 <section class="wrap hx-sec"><figure class="hx-quote"><blockquote>We don’t have one country here. We have a coast that faces Cuba, a coast that faces Ecuador, and a mountain range between them that hides whatever it wants to hide.</blockquote><figcaption>— Almirante, Bocas del Toro</figcaption></figure></section>
 <section class="wrap hx-sec"><div class="band-h"><div><span class="lbl">New on Panama Spot</span><h2>Fresh guides</h2></div></div>
 <div class="hx-new">{"".join(card(u, title_of(u), dek_of(u), more=True) for u in new)}</div></section>
 {rows}
 """
-(OUT / "home.html").write_text(page("Preview: Panama Spot homepage", home + ARROWS, HOME_BG))
+(OUT / "home.html").write_text(page("Preview: Panama Spot homepage", home + ROTJS, HOME_BG))
 print("wrote", OUT / "boquete-hub.html", OUT / "home.html")
