@@ -314,6 +314,7 @@ def arrows(html_text):
     body_ = body_.replace('<span class="ar"><i class="ia" aria-hidden="true"></i></span>', '<span class="ar"></span>')
     return head + "<body>" + body_
 def page(title, body, hero_preload, lang="en"):
+    D = donors(lang)
     return arrows(f"""<!doctype html>
 <html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>{title}</title><meta name="robots" content="noindex, nofollow">
@@ -331,8 +332,9 @@ def page(title, body, hero_preload, lang="en"):
 
 
 def nav(en, es, lang="en"):
-    n = D["nav"]
-    n = re.sub(r'<span class="lang glass">.*?</span>', f'<span class="lang glass"><a class="on" href="{en}" hreflang="en">EN</a><a href="{es}" hreflang="es">ES</a></span>', n, flags=re.S)
+    n = donors(lang)["nav"]
+    on = lambda l: ' class="on"' if l == lang else ""
+    n = re.sub(r'<span class="lang glass">.*?</span>', f'<span class="lang glass"><a{on("en")} href="{en}" hreflang="en">EN</a><a{on("es")} href="{es}" hreflang="es">ES</a></span>', n, flags=re.S)
     return re.sub(r'<span class="search glass">(.*?)</span></span>', lambda m: f'<a class="search glass" href="/#cat-regions" data-search aria-haspopup="dialog">{m[1]}</span></a>', n, flags=re.S)
 
 
@@ -346,55 +348,28 @@ def card(href, title, desc="", chip="", label="Guide", more=False):
             + (f"<p>{E(desc)}</p>" if desc else "") + ('<span class="go">Read the guide <span class="ar"></span></span>' if more else "") + "</span></a>")
 
 
-# ---------------- Boquete hub ----------------
-h = (P / "articles/boquete.html").read_text()
-b = h[h.index("<body"):]
-dek = re.search(r'<p class="hub-hero-dek">(.*?)</p>', b, re.S)[1]
-pills = re.findall(r'<span class="hub-pill">(.*?)</span>', b)
-leads = re.findall(r'<p class="hub-lead">(.*?)</p>', b, re.S)
-facts = re.findall(r'<div class="hub-fact"><dt>(.*?)</dt><dd>(.*?)</dd></div>', b, re.S)
-start = re.findall(r'<a class="hub-card" href="([^"]+)">.*?<h3>(.*?)</h3><p>(.*?)</p>', b, re.S)
-s_head = re.search(r'<p class="hub-eyebrow">Start here</p>\s*<h2 class="hub-h2">(.*?)</h2>\s*<p class="hub-lead[^"]*">(.*?)</p>', b, re.S)
-groups = []
-for g in re.findall(r'<div class="hub-group">(.*?)</ul>', b, re.S):
-    im = re.search(r'<img src="([^"]+)"[^>]*alt="([^"]*)"', g)
-    groups.append(dict(img=im[1], alt=im[2], h2=re.search(r"<h2>(.*?)</h2>", g, re.S)[1], blurb=re.search(r'<p class="hub-group-blurb">(.*?)</p>', g, re.S)[1],
-                       items=re.findall(r'<a href="([^"]+)"><span class="n">(.*?)</span><span class="d">(.*?)</span>', g, re.S)))
-idx = re.findall(r'<li><a href="([^"]+)"><span class="num">(\d+)</span><span class="ttl">(.*?)</span><span class="cat">(.*?)</span>', b, re.S)
-idx_h = re.search(r'<p class="hub-eyebrow">(The full library)</p>\s*<h2 class="hub-h2">(.*?)</h2>', b, re.S)
-es_t = re.search(r'<p class="hub-lang-t">(.*?)</p><p class="hub-lang-d">(.*?)</p>', b, re.S)
-HERO = "/images/v2/aerial-view-of-boquete-panama-ed675378-hero"
-cta = B.blocks("boquete-en")
-# hub only: the waterfall photo in the banner; the riders photo is overused (live guide CTAs are unchanged)
-cta["banner"] = cta["banner"].replace("evalley-boquete-ebike-trail", "evalley-boquete-ebike-hero").replace("Two riders on E-Valley e-bikes on a farm track in Boquete", "Two riders with e-bikes in front of a waterfall near Boquete").replace('class="ev-ph"', 'class="ev-ph hb-ev-ph"')
-group_html = ""
-for i, g in enumerate(groups):
-    rows = "".join(f'<a class="hx-li" href="{u}"><img alt="" loading="lazy" src="{img_of(u)}"/><span><b>{E(n)}</b><span>{E(d)}</span></span><i>→</i></a>' for u, n, d in g["items"])
-    group_html += (f'<section class="wrap hx-sec"><div class="hx-group"><div class="gm"><span class="lbl">{len(g["items"])} guides</span>'
-                   f'<h2>{g["h2"]}</h2><p>{g["blurb"]}</p><img alt="{html.escape(html.unescape(g["alt"]))}" loading="lazy" src="{g["img"]}"/></div><div class="hx-list">{rows}</div></div></section>')
-    if i == 1: group_html += f'<div class="wrap hx-sec">{cta["banner"]}</div>'
-gal = "".join(f'<figure><img class="ph" alt="{html.escape(html.unescape(g["alt"]))}" loading="lazy" src="{g["img"]}"/><figcaption>{E(g["alt"])}</figcaption></figure>' for g in groups[:5])
-HB = re.search(r'<div class="hub-hero-img"><img src="([^"]+)"[^>]*alt="([^"]*)"', b)
-eyebrow = re.search(r'<p class="hub-eyebrow">(.*?)</p>', b)[1]
-start_img = re.findall(r'<a class="hub-card" href="[^"]+"><div class="hub-card-img"><img src="([^"]+)"', b)
-def hcard(u, t, d, im):
-    return (f'<a class="hx-card" href="{u}"><span class="ph"><img alt="" loading="lazy" src="{im}"/></span><span class="tx"><span class="c"><i class="dot"></i>Guide</span>'
-            f'<h3>{t}</h3><p>{d}</p><span class="go">Read the guide <i>→</i></span></span></a>')
+# ---------------- Hubs ----------------
+DD = {"en": D}
+def donors(lang):
+    if lang not in DD: DD[lang] = R.donor_parts(lang)
+    return DD[lang]
+UI = {"en": dict(by_topic="By topic", find="Find your guide", in_pics="In pictures", pics="{} in pictures", read_first="Read first", guides="guides",
+                 glance="At a glance", aria="{} guides by topic"),
+      "es": dict(by_topic="Por tema", find="Encuentra tu guía", in_pics="En imágenes", pics="{} en imágenes", read_first="Lee primero", guides="guías",
+                 glance="De un vistazo", aria="Guías de {} por tema")}
 ICO = {
  "mountain": '<path d="m3 20 6.5-11 4 6.5 2.5-4L21 20Z"/>',
  "pin": '<path d="M12 21s7-6.2 7-11.5a7 7 0 0 0-14 0C5 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/>',
  "bus": '<rect x="4" y="3" width="16" height="15" rx="3"/><path d="M4 11h16M8 21v-3M16 21v-3"/><circle cx="8" cy="14.5" r=".8"/><circle cx="16" cy="14.5" r=".8"/>',
  "sun": '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
  "cal": '<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/>',
- "book": '<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2Z"/><path d="M4 19V5"/>'}
-ICO["peak"] = '<path d="m2 20 7-12 3.5 5.5L15 10l7 10Z"/><path d="M7.5 11.5 9 13l1.5-1.5"/>'
+ "book": '<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2Z"/><path d="M4 19V5"/>',
+ "peak": '<path d="m2 20 7-12 3.5 5.5L15 10l7 10Z"/><path d="M7.5 11.5 9 13l1.5-1.5"/>',
+ "crater": '<path d="M2 18c3-7 5-10 7-10s2.5 3 3 3 1-3 3-3 4 3 7 10"/><path d="M7 18c1.5-2 3-3 5-3s3.5 1 5 3"/>',
+ "plane": '<path d="M10.5 21 12 16l6.5 2.5L20 17l-6-5V6a2 2 0 0 0-4 0v6l-6 5 1.5 1.5L12 16"/>',
+ "city": '<path d="M3 21h18M5 21V9l5-3v15M10 21V4l6 3v14M16 21V11l3 1.5V21"/><path d="M7 12h1M7 15h1M12.5 9h1M12.5 12h1M12.5 15h1"/>',
+ "island": '<path d="M2 20c3-1.5 6-1.5 9 0s6 1.5 9 0"/><path d="M12 18c0-4-.5-7-2-10"/><path d="M10 8C8 6 5 6 4 7.5c2-.5 4 0 6 .5ZM10 8c1-2.5 4-3.5 6-2.5-2 .3-4.2 1.2-6 2.5ZM10 8c2.5-.5 5.5.5 6.5 2.5-2-1-4.3-1.8-6.5-2.5Z"/>'}
 icon = lambda k: f'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{ICO[k]}</svg>'
-# every value below is taken from the hub's own text
-ICONS = [("mountain", "1,200 m", "Elevation"), ("pin", "Chiriquí", "Province"), ("peak", "3,475 m", "Volcán Barú"),
-         ("bus", "1 hr", "To the Costa Rican border"), ("book", f"{len(idx)} guides", "In this library")]
-GLANCE = [("Getting there", "Fly to David", "then 45 min by road; 7 hrs by bus"), ("When to go", "Dec–Apr", "driest months; mist any time"),
-          ("How long", "3 days", "a fourth for Volcán Barú"), ("Getting around", "Walk town", "bike, taxi or car beyond it")]
-icons_html = '<div class="hb-icons">' + "".join(f"<div><span class=\"ic\">{icon(k)}</span><span><b>{v}</b><span>{l}</span></span></div>" for k, v, l in ICONS) + "</div>"
 import subprocess
 _HASH = {}
 def look(im):
@@ -405,70 +380,178 @@ def look(im):
         avg = sum(px) / len(px) if px else 0
         _HASH[im] = int("".join("1" if b > avg else "0" for b in px) or "0", 2)
     return _HASH[im]
+def same(a, b): return bin(look(a) ^ look(b)).count("1") <= 12
 def photos_of(u):
     """A guide's hero first, then the other photos in the guide, so a repeated hero can be swapped."""
     h = (P / (u.lstrip("/") + ".html")).read_text(errors="ignore")
     rest = re.findall(r'src="(?:' + re.escape(SITE) + r')?(/images/v2/[^"]+?-(?:wide|gallery)\.webp)"', h)
     return [img_of(u)] + rest
-USED = []
-TILE_PHOTO = {"/articles/boquete-cycling-routes": "/images/v2/evalley-boquete-ebike-riders-640.webp"}  # a parked bike: the riders photo is overused
-def fresh_photo(u):
-    if u in TILE_PHOTO:
-        USED.append(look(TILE_PHOTO[u])); return TILE_PHOTO[u]
-    for im in photos_of(u):
-        if "-map-" in im: continue  # route maps make poor tiles
-        k = look(im)
-        if k and not any(bin(k ^ x).count("1") <= 12 for x in USED):
-            USED.append(k); return im
-    return img_of(u)
-def _group(start):
-    return next(g for g in groups if html.unescape(g["h2"]).startswith(start))
-_hot, _wheels = _group("Hot water"), _group("On two wheels")
-_tours = next(x for x in _hot["items"] if "Tours" in x[1])
-_hot["items"].remove(_tours); _wheels["items"].append(_tours)
-_hot["h2"] = "Hot water and rivers"
-_g = _group("Trails"); _g["img"] = "/images/v2/volcan-baru-in-a-cloud-shroud-wide.webp"; _g["alt"] = "Volcán Barú's summit above a band of cloud, seen across highland forest and pasture."
-_g = _group("Coffee"); _g["img"] = "/images/v2/al-in-los-quetzales-national-park-photo-hero-1280.webp"; _g["alt"] = "A resplendent quetzal perched on a mossy branch."
-PILLS = '<nav class="hb-pills" aria-label="Boquete guides by topic">' + "".join(
-    f'<a href="#topic-{i + 1}"><img alt="" src="{"/images/v2/boquete-ebike-hero-tile.webp" if g is _wheels else g["img"]}"/><span><b>{g["h2"].split(":")[0]}</b><small>{len(g["items"])} guides</small></span></a>'
-    for i, g in enumerate(groups)) + "</nav>"
-USED.extend(look(g["img"]) for g in groups)
-TOPICS = ""
-for i, g in enumerate(groups):
-    rows = "".join(f'<li><a href="{u}"><img alt="" loading="lazy" src="{fresh_photo(u)}"/><span class="t"><b>{n}</b><span>{d}</span></span><span class="go">→</span></a></li>' for u, n, d in g["items"])
-    TOPICS += (f'<div class="hb-group{" flip" if i % 2 else ""}" id="topic-{i + 1}"><div class="gi"><img alt="{html.escape(html.unescape(g["alt"]))}" loading="lazy" src="{g["img"]}"/></div>'
-               f'<div class="gt"><h2>{g["h2"]}</h2><p class="bl">{g["blurb"]}</p><ul class="hb-list">{rows}</ul></div></div>')
-GAL = [("/images/v2/volcan-baru-emerging-through-clouds-d35d9b87-hero-1280.webp", "Volcán Barú rising through cloud above forested slopes."),
-       ("/images/v2/resplendent-quetzal-646deb1a-gallery.webp", "A resplendent quetzal, the bird most birders come to Boquete for."),
-       ("/images/v2/red-coffee-cherries-at-peak-ripeness-35629753-wide.webp", "Red coffee cherries at peak ripeness on the slopes of Volcán Barú."),
-       ("/images/boquete/boquete-rafting.webp", "Rafters in yellow boats on a river near Boquete."),
-       ("/images/boquete/boquete-cabins.webp", "Timber A-frame cabins on a hillside above Boquete."),
-       ("/images/boquete/boquete-market.webp", "Fruit and vegetables for sale at a market stall in Boquete."),
-       ("/images/v2/view-from-restaurant-covered-los-molinos-hero-1280.webp", "Storm light over the green canyons around Boquete.")]
-gal_html = "".join(f'<figure><img class="ph" alt="{a}" loading="lazy" src="{u}"/><figcaption>{a}</figcaption></figure>' for u, a in GAL)
-hub = f"""<div class="guide-progress" id="prog" aria-hidden="true"></div>
+def hero_alt(u):
+    h = (P / (u.lstrip("/") + ".html")).read_text(errors="ignore")
+    m = re.search(r'<img\b[^>]*class="hero-img"[^>]*>', h)
+    a = re.search(r'\balt="([^"]*)"', m[0]) if m else None
+    return html.unescape(a[1]) if a else ""
+# photos the live hubs load from other sites, mapped to the same photo already self-hosted
+LOCAL = {"17477516": "/images/v2/panama-city-skyline-from-the-waterfront-17477516-hero-1920.webp",
+         "18049699": "/images/v2/narrow-street-in-casco-viejo-with-18049699-hero-1920.webp",
+         "Panama_Canal_Gatun_Locks": "/images/v2/gatun-locks-of-the-panama-canal-f75c6691-hero-1920.webp",
+         "Red_Frog_Beach_Bastimentos.jpg": "/images/v2/red-frog-beach-bastimentos-wide.webp"}
+def local(src):
+    src = src.replace(SITE, "")
+    if src.startswith("/"): return src
+    return next((v for k, v in LOCAL.items() if k in src), None)
+
+def build_hub(rel, out, cfg):
+    lang = "es" if rel.startswith("es/") else "en"; T = UI[lang]
+    b = (P / f"{rel}.html").read_text(); b = b[b.index("<body"):]
+    name = re.sub("<[^>]+>", "", re.search(r"<h1[^>]*>(.*?)</h1>", b, re.S)[1]).strip()
+    short = cfg.get("short", name)
+    dek = re.search(r'<p class="hub-hero-dek">(.*?)</p>', b, re.S)[1]
+    leads = re.findall(r'<p class="hub-lead">(.*?)</p>', b, re.S)
+    eyebrow = re.search(r'<p class="hub-eyebrow">(.*?)</p>', b)[1]
+    pairs = re.findall(r'<p class="hub-eyebrow">([^<]*)</p>\s*<h2 class="hub-h2">([^<]*)</h2>(?:\s*<p class="hub-lead[^"]*">([^<]*)</p>)?', b)
+    s_head, idx_h = pairs[0], pairs[-1]
+    start = re.findall(r'<a class="hub-card" href="([^"]+)">.*?<h3>(.*?)</h3><p>(.*?)</p>', b, re.S)
+    start_img = re.findall(r'<a class="hub-card" href="[^"]+"><div class="hub-card-img"><img src="([^"]+)"', b)
+    groups = []
+    for g in re.findall(r'<div class="hub-group">(.*?)</ul>', b, re.S):
+        im = re.search(r'<img src="([^"]+)"[^>]*alt="([^"]*)"', g)
+        groups.append(dict(img=local(im[1]), alt=im[2], h2=re.search(r"<h2>(.*?)</h2>", g, re.S)[1], blurb=re.search(r'<p class="hub-group-blurb">(.*?)</p>', g, re.S)[1],
+                           items=re.findall(r'<a href="([^"]+)"><span class="n">(.*?)</span><span class="d">(.*?)</span>', g, re.S)))
+    idx = re.findall(r'<li><a href="([^"]+)"><span class="num">(\d+)</span><span class="ttl">(.*?)</span><span class="cat">(.*?)</span>', b, re.S)
+    HB = re.search(r'<div class="hub-hero-img"><img src="([^"]+)"[^>]*alt="([^"]*)"', b)
+    hero = cfg.get("hero") or local(HB[1])
+    pill_img = {}
+    if cfg.get("tweak"): cfg["tweak"](groups, pill_img)
+    # a topic photo that is missing or repeats an earlier one becomes the first fresh hero among its own guides
+    seen = [img_of(u) for u, t, d in start] + [x for x in map(local, start_img) if x]
+    for i, im in cfg.get("topic_img", {}).items(): groups[i]["img"], groups[i]["alt"] = im
+    for gi, g in enumerate(groups):
+        if not g["img"] or (gi not in cfg.get("topic_img", {}) and any(same(g["img"], x) for x in seen)):
+            dist = lambda u: min([bin(look(img_of(u)) ^ look(x)).count("1") for x in seen] or [64]) if img_of(u) else -1
+            alt = max((u for u, n, d in g["items"]), key=dist)  # the guide photo least like anything already on the page
+            g["img"], g["alt"] = img_of(alt), hero_alt(alt)
+        seen.append(g["img"])
+    used = [look(g["img"]) for g in groups] + ([] if cfg.get("hero_in_thumbs") else [look(hero)])
+    tile_photo = cfg.get("tile_photo", {})
+    def fresh_photo(u):
+        if u in tile_photo:
+            used.append(look(tile_photo[u])); return tile_photo[u]
+        for im in photos_of(u):
+            if "-map-" in im: continue  # route maps make poor tiles
+            k = look(im)
+            if k and not any(bin(k ^ x).count("1") <= 12 for x in used):
+                used.append(k); return im
+        return img_of(u)
+    icons_html = '<div class="hb-icons">' + "".join(f"<div><span class=\"ic\">{icon(k)}</span><span><b>{v}</b><span>{l}</span></span></div>" for k, v, l in cfg["icons"]) + "</div>"
+    pills_html = f'<nav class="hb-pills" aria-label="{T["aria"].format(short)}">' + "".join(
+        f'<a href="#topic-{i + 1}"><img alt="" src="{pill_img.get(i, g["img"])}"/><span><b>{g["h2"].split(":")[0]}</b><small>{len(g["items"])} {T["guides"]}</small></span></a>'
+        for i, g in enumerate(groups)) + "</nav>"
+    topics = ""
+    for i, g in enumerate(groups):
+        rows = "".join(f'<li><a href="{u}"><img alt="" loading="lazy" src="{fresh_photo(u)}"/><span class="t"><b>{n}</b><span>{d}</span></span><span class="go">→</span></a></li>' for u, n, d in g["items"])
+        topics += (f'<div class="hb-group{" flip" if i % 2 else ""}" id="topic-{i + 1}"><div class="gi"><img alt="{html.escape(html.unescape(g["alt"]))}" loading="lazy" src="{g["img"]}"/></div>'
+                   f'<div class="gt"><h2>{g["h2"]}</h2><p class="bl">{g["blurb"]}</p><ul class="hb-list">{rows}</ul></div></div>')
+    gal = cfg.get("gallery")
+    if gal is None:  # the best photos the hub's own guides use as heroes, none repeated from higher up the page
+        taken = [g["img"] for g in groups] + [hero]; gal = []
+        for u, n, t, c in idx:
+            im = img_of(u)
+            if im and not any(same(im, x) for x in taken):
+                taken.append(im); gal.append((im, hero_alt(u)))
+            if len(gal) == 7: break
+    gal_html = "".join(f'<figure><img class="ph" alt="{html.escape(a)}" loading="lazy" src="{u}"/><figcaption>{E(a)}</figcaption></figure>' for u, a in gal)
+    cta = cfg.get("cta", "")
+    start_html = "".join(ptile(u, R.text(t), T["read_first"], local(im) or img_of(u), desc=R.text(d)) for (u, t, d), im in zip(start, start_img))
+    body = f"""<div class="guide-progress" id="prog" aria-hidden="true"></div>
 <header class="hero hb-hero">
-  <img class="hero-img" alt="{html.escape(html.unescape(HB[2]))}" fetchpriority="high" src="/images/v2/boquete-hills-hero-1920.webp" style="object-position:center 45%"/>
-  {nav("/preview/boquete-hub.html", "/es/articles/boquete")}
+  <img class="hero-img" alt="{html.escape(html.unescape(HB[2]))}" fetchpriority="high" src="{hero}" style="object-position:center {cfg.get("focus", 45)}%"/>
+  {nav(cfg["en"], cfg["es"], lang)}
   <div class="wrap"><div class="hb-c">
     <span class="lbl">{eyebrow}</span>
-    <h1>Boquete</h1>
+    <h1>{name}</h1>
     <p>{dek}</p>
   </div></div>
 </header>
 <section class="wrap hb-sec first"><div class="hb-orient"><div class="lead">{"".join(f"<p>{l}</p>" for l in leads[:1])}{icons_html}</div>
-<aside class="glance hb-glance" aria-label="At a glance"><h2>At a glance <span><i class="dot"></i>Chiriquí highlands</span></h2><div class="gg">{"".join(f'<div><span class="k">{k}</span><b class="sm">{v}</b><span class="s">{x}</span></div>' for k, v, x in GLANCE)}</div></aside></div></section>
-<section class="wrap hb-sec"><div class="hb-head"><span class="lbl">Start here</span><h2>{s_head[1]}</h2><p>{s_head[2]}</p></div>
-<div class="hb-start">{"".join(ptile(u, R.text(t), "Read first", im, desc=R.text(d)) for (u, t, d), im in zip(start, start_img))}</div></section>
-<section class="wrap hb-sec" id="topics"><div class="hb-head"><span class="lbl">By topic</span><h2>Find your guide</h2></div>{PILLS}{TOPICS}</section>
-<section class="wrap hb-sec">{cta["banner"]}</section>
-<section class="band gband hb-sec"><div class="wrap band-h"><div><span class="lbl">In pictures</span><h2>Boquete in pictures</h2></div></div><div class="gal hb-gal">{gal_html}</div></section>
-<section class="wrap hb-sec last" id="all-guides"><div class="band-h"><div><span class="lbl">{idx_h[1]}</span><h2>{idx_h[2]}</h2></div><span class="band-sub">{len(idx)} guides</span></div>
+<aside class="glance hb-glance" aria-label="{T["glance"]}"><h2>{T["glance"]} <span><i class="dot"></i>{cfg["region"]}</span></h2><div class="gg">{"".join(f'<div><span class="k">{k}</span><b class="sm">{v}</b><span class="s">{x}</span></div>' for k, v, x in cfg["glance"])}</div></aside></div></section>
+<section class="wrap hb-sec"><div class="hb-head"><span class="lbl">{s_head[0]}</span><h2>{s_head[1]}</h2><p>{s_head[2]}</p></div>
+<div class="hb-start">{start_html}</div></section>
+<section class="wrap hb-sec" id="topics"><div class="hb-head"><span class="lbl">{T["by_topic"]}</span><h2>{T["find"]}</h2></div>{pills_html}{topics}</section>
+{f'<section class="wrap hb-sec">{cta}</section>' if cta else ""}
+<section class="band gband hb-sec"><div class="wrap band-h"><div><span class="lbl">{T["in_pics"]}</span><h2>{T["pics"].format(short)}</h2></div></div><div class="gal hb-gal">{gal_html}</div></section>
+<section class="wrap hb-sec last" id="all-guides"><div class="band-h"><div><span class="lbl">{idx_h[0]}</span><h2>{idx_h[1]}</h2></div><span class="band-sub">{len(idx)} {T["guides"]}</span></div>
 <ol class="hx-idx">{"".join(f'<li><a href="{u}"><span class="n">{n}</span><span>{t}</span><span class="cat">{c}</span></a></li>' for u, n, t, c in idx)}</ol>
 </section>
-{ROLL.JS_M[0]}{ROLL.TRACK}{ROLL.JS_M[1]}
+{(ROLL.JS_M[0] + ROLL.TRACK + ROLL.JS_M[1]) if cta else ""}
 """
-(OUT / "boquete-hub.html").write_text(page("Preview: Boquete hub", hub, HB[1]))
+    (OUT / out).write_text(page(f"Preview: {name} hub", body, hero, lang))
+    print("wrote", OUT / out)
+
+def _boquete(groups, pill_img):
+    g = lambda s: next(x for x in groups if html.unescape(x["h2"]).startswith(s))
+    hot, wheels = g("Hot water"), g("On two wheels")
+    tours = next(x for x in hot["items"] if "Tours" in x[1]); hot["items"].remove(tours); wheels["items"].append(tours)
+    hot["h2"] = "Hot water and rivers"
+    t = g("Trails"); t["img"] = "/images/v2/volcan-baru-in-a-cloud-shroud-wide.webp"; t["alt"] = "Volcán Barú's summit above a band of cloud, seen across highland forest and pasture."
+    c = g("Coffee"); c["img"] = "/images/v2/al-in-los-quetzales-national-park-photo-hero-1280.webp"; c["alt"] = "A resplendent quetzal perched on a mossy branch."
+    pill_img[groups.index(wheels)] = "/images/v2/boquete-ebike-hero-tile.webp"
+_bq_cta = B.blocks("boquete-en")["banner"]
+# hub only: the waterfall photo in the banner; the riders photo is overused (live guide CTAs are unchanged)
+_bq_cta = _bq_cta.replace("evalley-boquete-ebike-trail", "evalley-boquete-ebike-hero").replace("Two riders on E-Valley e-bikes on a farm track in Boquete", "Two riders with e-bikes in front of a waterfall near Boquete").replace('class="ev-ph"', 'class="ev-ph hb-ev-ph"')
+# every value in icons and glance is taken from that hub's own text
+build_hub("articles/boquete", "boquete-hub.html", dict(
+    en="/preview/boquete-hub.html", es="/es/articles/boquete", region="Chiriquí highlands", hero="/images/v2/boquete-hills-hero-1920.webp",
+    icons=[("mountain", "1,200 m", "Elevation"), ("pin", "Chiriquí", "Province"), ("peak", "3,475 m", "Volcán Barú"), ("bus", "1 hr", "To the Costa Rican border"), ("book", "24 guides", "In this library")],
+    glance=[("Getting there", "Fly to David", "then 45 min by road; 7 hrs by bus"), ("When to go", "Dec–Apr", "driest months; mist any time"),
+            ("How long", "3 days", "a fourth for Volcán Barú"), ("Getting around", "Walk town", "bike, taxi or car beyond it")],
+    tweak=_boquete, cta=_bq_cta, hero_in_thumbs=True, tile_photo={"/articles/boquete-cycling-routes": "/images/v2/evalley-boquete-ebike-riders-640.webp"},
+    gallery=[("/images/v2/volcan-baru-emerging-through-clouds-d35d9b87-hero-1280.webp", "Volcán Barú rising through cloud above forested slopes."),
+             ("/images/v2/resplendent-quetzal-646deb1a-gallery.webp", "A resplendent quetzal, the bird most birders come to Boquete for."),
+             ("/images/v2/red-coffee-cherries-at-peak-ripeness-35629753-wide.webp", "Red coffee cherries at peak ripeness on the slopes of Volcán Barú."),
+             ("/images/boquete/boquete-rafting.webp", "Rafters in yellow boats on a river near Boquete."),
+             ("/images/boquete/boquete-cabins.webp", "Timber A-frame cabins on a hillside above Boquete."),
+             ("/images/boquete/boquete-market.webp", "Fruit and vegetables for sale at a market stall in Boquete."),
+             ("/images/v2/view-from-restaurant-covered-los-molinos-hero-1280.webp", "Storm light over the green canyons around Boquete.")]))
+build_hub("es/articles/el-valle-de-anton", "el-valle-hub-es.html", dict(
+    en="/articles/el-valle-de-anton", es="/preview/el-valle-hub-es.html", short="El Valle", region="Provincia de Coclé", focus=55,
+    icons=[("mountain", "600 m", "De altura"), ("pin", "Coclé", "Provincia"), ("crater", "5 km", "De cráter de lado a lado"), ("bus", "2 h", "Desde la capital"), ("book", "29 guías", "En esta biblioteca")],
+    glance=[("Cómo llegar", "2½ h en bus", "desde Albrook; 2 h en carro"), ("Cuándo ir", "Dic–abr", "la temporada seca"),
+            ("Cuánto quedarse", "Un día", "dos noches, mejor"), ("Cómo moverse", "En bici", "senderos a 10–25 min")],
+    cta=B.blocks("elvalle-es")["banner"],
+    topic_img={2: ("/images/v2/jaguar-at-el-nispero-12861718-hero-1280.webp", "Un jaguar en el Zoológico El Níspero."),
+               3: ("/images/el-valle/elvalle-flowermarket.webp", "Plantas y flores a la venta bajo el techo del mercado de El Valle"), 4: ('/images/v2/la-entrada-al-valle-por-carretera-d9c1199f-wide.webp', 'La entrada al valle por carretera, con el cerro cerrando el fondo — los últimos kilómetros de la subida.')},
+    gallery=[('/images/v2/cortinas-de-agua-sobre-roca-cubierta-f60dd697-hero-1280.webp', 'Cortinas de agua sobre roca en el Chorro El Macho.'),
+             ('/images/v2/dusk-settling-over-el-valle-from-22d3aa14-wide.webp', 'El Valle al anochecer desde el borde del cráter.'),
+             ('/images/v2/una-heliconius-charithonia-alimentandose-de-flores-4cb016d1-wide.webp', 'Una Heliconius charithonia en flores amarillas.'),
+             ('/images/v2/pinas-y-naranjas-apiladas-en-cajas-2281d6e3-wide.webp', 'Piñas y naranjas de las fincas del cráter.'),
+             ('/images/v2/elvalle-panorama-wide.webp', 'La ladera boscosa del cráter vista desde el valle.'),
+             ('/images/v2/artesania-pintada-a-mano-colgada-en-df5c68cf-wide.webp', 'Artesanía pintada a mano en el mercado.'),
+             ('/images/v2/things-to-do-el-valle-hero-1280.webp', 'Flores bajo una pérgola en El Valle de Antón.')]))
+build_hub("articles/panama-city", "panama-city-hub.html", dict(
+    en="/preview/panama-city-hub.html", es="/es/articles/panama-city", region="Pacific coast", focus=50,
+    icons=[("pin", "Pacific", "Coast"), ("city", "350 years", "The walled old quarter"), ("plane", "Tocumen", "Main airport (PTY)"), ("cal", "2–3 days", "For the city and the canal"), ("book", "9 guides", "In this library")],
+    glance=[("Getting there", "Tocumen (PTY)", "Metro Line 2 reaches it"), ("When to go", "Dec–Apr", "dry; the canal works any time"),
+            ("How long", "2 days", "three for the canal"), ("Getting around", "Metro + Uber", "skip driving in Casco")],
+    gallery=[('/images/v2/casco-viejo-at-night-with-city-33803474-wide.webp', 'Casco Viejo at night, with the skyline behind it.'),
+             ('/images/v2/panama-city-skyline-33803476-wide.webp', 'The skyline across the bay after dark.'),
+             ('/images/v2/metropolitan-cathedral-of-panama-city-1d602aa6-wide.webp', 'The Metropolitan Cathedral in Casco Viejo.'),
+             ('/images/v2/three-toed-sloth-on-ancon-hill-35179277-wide.webp', 'A three-toed sloth on Ancón Hill.'),
+             ('/images/v2/casco-antiguo-san-felipe-21af3ff1-gallery.webp', 'Casco Antiguo from the air.'),
+             ('/images/v2/cruise-ship-passing-miraflores-locks-2019-10-gallery.webp', 'A cruise ship inside a Miraflores Locks chamber.'),
+             ('/images/v2/islands-of-the-amador-causeway-994a1080-wide.webp', 'The islands at the end of the Amador Causeway.')]))
+build_hub("articles/bocas-del-toro", "bocas-hub.html", dict(
+    en="/preview/bocas-hub.html", es="/es", region="Caribbean coast", focus=50,
+    icons=[("pin", "Caribbean", "Coast"), ("island", "9 islands", "The main ones"), ("plane", "1 hr", "Flight from Panama City"), ("sun", "Sep–Oct", "Calmest, clearest water"), ("book", "7 guides", "In this library")],
+    glance=[("Getting there", "1-hr flight", "or overnight bus + water taxi"), ("When to go", "Sep–Oct", "or February to April"),
+            ("How long", "3 nights", "a week for the outer cays"), ("Getting around", "Water taxi", "$6–$35 per crossing")],
+    gallery=[('/images/v2/red-frog-beach-island-resort-wide.webp', 'Red Frog Beach from the air.'),
+             ('/images/v2/a-three-toed-sloth-peers-from-7200626-wide.webp', 'A three-toed sloth on a tree trunk.'),
+             ('/images/v2/bocas-scene-ef3a4170-wide.webp', 'Bocas Town on Isla Colón from the air.'),
+             ('/images/v2/a-quiet-stretch-of-pale-sand-9a4453d2-wide.webp', 'Pale sand and calm water on a quiet beach.'),
+             ('/images/v2/two-round-thatched-roof-structures-stand-33990238-gallery.webp', 'Thatched huts at the end of a dock over shallow water.'),
+             ('/images/v2/whitewater-rolls-onto-a-sandy-shore-5f05bf22-wide.webp', 'Surf rolling onto a forest-backed beach.'),
+             ('/images/v2/an-aerial-view-of-turquoise-channels-9f639d6b-wide.webp', 'Turquoise channels through low mangrove islets.')]))
 
 ARROWS = """<script>document.querySelectorAll(".hx-rw").forEach(function(w){var r=w.querySelector(".hx-row"),l=w.querySelector(".hx-arr.l"),n=w.querySelector(".hx-arr.r");
 function st(){l.disabled=r.scrollLeft<4;n.disabled=r.scrollLeft+r.clientWidth>=r.scrollWidth-4;}
@@ -550,7 +633,7 @@ MIX = "".join([
     mixcard("/articles/el-valle-de-anton", "c", "Highlands", "El Valle de Antón — a town inside an extinct volcano.", "Waterfalls, hot springs and the India Dormida ridge, two hours from the capital.", "navy"),
     mixcard("/articles/chorro-el-macho-waterfall-el-valle-de-anton", "d", "Highlands", "Chorro El Macho, El Valle", "", "photo"),
     mixcard("/articles/boquete", "e", "Highlands", "Boquete — cloud forest, coffee, Volcán Barú", "The highland town that runs on coffee, rivers, and fog — plus the country’s best day hikes from town.", "split"),
-    mixcard("/articles/panama-city", "f", "Capital", "Panama City", "", "photo", "/images/v2/skyscrapers-catch-the-last-light-at-13842831-hero-1280.webp"),
+    mixcard("/articles/panama-city", "f", "Capital", "Panama City", "", "photo", "/images/v2/panama-city-skyline-from-the-waterfront-17477516-hero-1280.webp"),
     mixcard("/articles/playa-venao-panama", "g", "Pacific coast", "Playa Venao and the Azuero coast", "", "photo"),
 ])
 def fresh(u):
