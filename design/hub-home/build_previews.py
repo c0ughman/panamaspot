@@ -626,7 +626,12 @@ def build_hub(rel, out, cfg):
             if len(gal) == 7: break
     gal_html = "".join(f'<figure><img class="ph" alt="{html.escape(a)}" loading="lazy" src="{u}"/><figcaption>{E(a)}</figcaption></figure>' for u, a in gal)
     cta = cfg.get("cta", "")
-    start_html = "".join(ptile(u, R.text(t), T["read_first"], local(im) or img_of(u), desc=R.text(d)) for (u, t, d), im in zip(start, start_img))
+    def start_photo(u, im):
+        im = cfg.get("start_photo", {}).get(u) or local(im) or img_of(u)
+        if same(im, hero):
+            im = next((x for x in photos_of(u)[1:] if not same(x, hero)), im)
+        return im
+    start_html = "".join(ptile(u, R.text(t), T["read_first"], start_photo(u, im), desc=R.text(d)) for (u, t, d), im in zip(start, start_img))
     body = f"""<div class="guide-progress" id="prog" aria-hidden="true"></div>
 <header class="hero hb-hero">
   <img class="hero-img" alt="{html.escape(cfg.get("hero_alt") or html.unescape(HB[2]))}" fetchpriority="high" src="{hero}" style="object-position:center {cfg.get("focus", 45)}%"/>
@@ -679,12 +684,13 @@ build_hub("articles/boquete", "boquete-hub.html", dict(dek="A cool, green coffee
              ("/images/v2/view-from-restaurant-covered-los-molinos-hero-1280.webp", "Storm light over the green canyons around Boquete.")]))
 build_hub("es/articles/el-valle-de-anton", "el-valle-hub-es.html", dict(dek="Un pueblo dentro de un volcán, a dos horas de la capital y más fresco que la costa.",
     en="/preview/el-valle-hub.html", es="/preview/el-valle-hub-es.html", short="El Valle", region="Provincia de Coclé", focus=58,
-    hero="/images/v2/the-flat-floor-of-the-el-f491c24a-hero-1920.webp", hero_alt="El fondo plano del cráter de El Valle de Antón, con los cerros detrás.",
+    hero="/images/v2/late-light-on-the-crater-wall-a262b398-hero-1920.webp", hero_alt="Luz de la tarde sobre la pared del cráter de El Valle de Antón.",
     icons=[("mountain", "600 m", "De altura"), ("pin", "Coclé", "Provincia"), ("crater", "5 km", "De cráter de lado a lado"), ("bus", "2 h", "Desde la capital"), ("book", "29 guías", "En esta biblioteca")],
     glance=[("Cómo llegar", "2½ h en bus", "desde Albrook; 2 h en carro"), ("Cuándo ir", "Dic–abr", "la temporada seca"),
             ("Cuánto quedarse", "Un día", "dos noches, mejor"), ("Cómo moverse", "En bici", "senderos a 10–25 min")],
     cta=B.blocks("elvalle-es")["banner"],
-    topic_img={2: ("/images/v2/jaguar-at-el-nispero-12861718-hero-1280.webp", "Un jaguar en el Zoológico El Níspero."),
+    topic_img={0: ("/images/v2/forested-foothills-rising-toward-the-cerro-c28c8ac8-hero-1280.webp", "Laderas boscosas que suben hacia el Cerro Gaital."),
+               2: ("/images/v2/jaguar-at-el-nispero-12861718-hero-1280.webp", "Un jaguar en el Zoológico El Níspero."),
                3: ("/images/el-valle/elvalle-flowermarket.webp", "Plantas y flores a la venta bajo el techo del mercado de El Valle"), 4: ('/images/v2/la-entrada-al-valle-por-carretera-d9c1199f-wide.webp', 'La entrada al valle por carretera, con el cerro cerrando el fondo — los últimos kilómetros de la subida.')},
     gallery=[('/images/v2/cortinas-de-agua-sobre-roca-cubierta-f60dd697-hero-1280.webp', 'Cortinas de agua sobre roca en el Chorro El Macho.'),
              ('/images/v2/dusk-settling-over-el-valle-from-22d3aa14-wide.webp', 'El Valle al anochecer desde el borde del cráter.'),
@@ -695,6 +701,7 @@ build_hub("es/articles/el-valle-de-anton", "el-valle-hub-es.html", dict(dek="Un 
              ('/images/v2/things-to-do-el-valle-hero-1280.webp', 'Flores bajo una pérgola en El Valle de Antón.')]))
 build_hub("articles/panama-city", "panama-city-hub.html", dict(dek="A glass skyline on one side of the bay, a 350-year-old walled quarter on the other.",
     en="/preview/panama-city-hub.html", es="/preview/panama-city-hub-es.html", region="Pacific coast", focus=50,
+    topic_img={0: ("/images/v2/string-lights-between-balconies-in-casco-2564872-wide.webp", "String lights between balconies in Casco Viejo.")},
     icons=[("pin", "Pacific", "Coast"), ("city", "350 years", "The walled old quarter"), ("plane", "Tocumen", "Main airport (PTY)"), ("cal", "2–3 days", "For the city and the canal"), ("book", "9 guides", "In this library")],
     glance=[("Getting there", "Tocumen (PTY)", "Metro Line 2 reaches it"), ("When to go", "Dec–Apr", "dry; the canal works any time"),
             ("How long", "2 days", "three for the canal"), ("Getting around", "Metro + Uber", "skip driving in Casco")],
@@ -707,6 +714,7 @@ build_hub("articles/panama-city", "panama-city-hub.html", dict(dek="A glass skyl
              ('/images/v2/islands-of-the-amador-causeway-994a1080-wide.webp', 'The islands at the end of the Amador Causeway.')]))
 build_hub("articles/bocas-del-toro", "bocas-hub.html", dict(dek="Hundreds of islands off the Caribbean coast: warm sea, mangroves and reef.",
     en="/preview/bocas-hub.html", es="/es", region="Caribbean coast", focus=50,
+    hero="/images/v2/nyara-bocas-del-toro-panama-hero-1920.webp", hero_alt="Thatched overwater bungalows on stilts over calm water in Bocas del Toro.",
     icons=[("pin", "Caribbean", "Coast"), ("island", "9 islands", "The main ones"), ("plane", "1 hr", "Flight from Panama City"), ("sun", "Sep–Oct", "Calmest, clearest water"), ("book", "7 guides", "In this library")],
     glance=[("Getting there", "1-hr flight", "or overnight bus + water taxi"), ("When to go", "Sep–Oct", "or February to April"),
             ("How long", "3 nights", "a week for the outer cays"), ("Getting around", "Water taxi", "$6–$35 per crossing")],
@@ -738,11 +746,12 @@ build_hub("es/articles/boquete", "boquete-hub-es.html", dict(dek="Un pueblo cafe
              ("/images/v2/view-from-restaurant-covered-los-molinos-hero-1280.webp", "Luz de tormenta sobre los cañones verdes de Boquete.")]))
 build_hub("articles/el-valle-de-anton", "el-valle-hub.html", dict(dek="A town inside a volcano, two hours from Panama City and cooler than the coast.",
     en="/preview/el-valle-hub.html", es="/preview/el-valle-hub-es.html", short="El Valle", region="Coclé province", focus=58,
-    hero="/images/v2/the-flat-floor-of-the-el-f491c24a-hero-1920.webp", hero_alt="The flat floor of the El Valle de Antón crater, with the hills behind.",
+    hero="/images/v2/late-light-on-the-crater-wall-a262b398-hero-1920.webp", hero_alt="Late light on the crater wall above El Valle de Antón.",
     icons=[("mountain", "600 m", "Elevation"), ("pin", "Coclé", "Province"), ("crater", "5 km", "Crater, rim to rim"), ("bus", "2 hrs", "From Panama City"), ("book", "19 guides", "In this library")],
     glance=[("Getting there", "2½ hrs by bus", "from Albrook; 2 hrs by car"), ("When to go", "Dec–Apr", "the dry season"),
             ("How long", "A day", "two nights is better"), ("Getting around", "By bike", "trails 10–25 min away")],
     cta=B.blocks("elvalle-en")["banner"],
+    topic_img={0: ("/images/v2/forested-foothills-rising-toward-the-cerro-c28c8ac8-hero-1280.webp", "Forested foothills rising toward Cerro Gaital.")},
     gallery=[('/images/v2/cortinas-de-agua-sobre-roca-cubierta-f60dd697-hero-1280.webp', 'Curtains of water over rock at Chorro El Macho.'),
              ('/images/v2/dusk-settling-over-el-valle-from-22d3aa14-wide.webp', 'El Valle at dusk from the crater rim.'),
              ('/images/v2/una-heliconius-charithonia-alimentandose-de-flores-4cb016d1-wide.webp', 'A zebra longwing butterfly on yellow flowers.'),
@@ -752,6 +761,7 @@ build_hub("articles/el-valle-de-anton", "el-valle-hub.html", dict(dek="A town in
              ('/images/v2/things-to-do-el-valle-hero-1280.webp', 'Flowers under a pergola in El Valle de Antón.')]))
 build_hub("es/articles/panama-city", "panama-city-hub-es.html", dict(dek="Rascacielos de vidrio a un lado de la bahía y un casco amurallado de 350 años al otro.",
     en="/preview/panama-city-hub.html", es="/preview/panama-city-hub-es.html", region="Costa del Pacífico", focus=50,
+    topic_img={0: ("/images/v2/string-lights-between-balconies-in-casco-2564872-wide.webp", "Luces colgadas entre balcones en el Casco Viejo.")},
     icons=[("pin", "Pacífico", "Costa"), ("city", "350 años", "El casco amurallado"), ("plane", "Tocumen", "Aeropuerto principal (PTY)"), ("cal", "2–3 días", "Para la ciudad y el canal"), ("book", "5 guías", "En esta biblioteca")],
     glance=[("Cómo llegar", "Tocumen (PTY)", "la Línea 2 del metro llega"), ("Cuándo ir", "Dic–abr", "seco; el canal, todo el año"),
             ("Cuánto quedarse", "2 días", "tres con el canal"), ("Cómo moverse", "Metro + Uber", "no manejes en el Casco")],
@@ -780,7 +790,7 @@ def hub_src(name, dek, hero, hero_alt, lead, start, groups, idx, idx_h2):
 _SB = ("/articles/san-blas-islands-panama-guna-yala-guide", "/articles/san-blas-tours-from-panama-city", "/articles/san-blas-sailing-panama-to-colombia")
 build_hub("articles/san-blas", "san-blas-hub.html", dict(
     src=hub_src("San Blas", "Palm cays and turquoise water on the Caribbean, home of the Guna people.",
-        "/images/v2/isla-en-guna-yala-hero-1920.webp", "A white sand beach lined with coconut palms beside calm turquoise water in Guna Yala.",
+        "/images/v2/x-diadup-kuna-yala-panam-c3-a1-hero-1920.webp", "A leaning palm on a white sand beach facing turquoise water in Guna Yala.",
         "San Blas is the Comarca Guna Yala: 365 islands and cays off Panama's Caribbean coast, governed by the Guna. You get there by 4x4 from Panama City to the port of Cartí, then by boat, and most people come for a day trip or a night or two on an island.",
         [(_SB[0], "/images/v2/coconut-palms-lean-over-a-white-10490913-wide.webp", "San Blas: The Complete Guide", "Getting there, day trip or overnight, 2026 prices and the Guna Yala rules."),
          (_SB[1], "/images/v2/caba-c3-b1as-guna-yala-hero-960.webp", "Tours From Panama City", "Day trips, one and two-night tours and private trips, compared with prices."),
@@ -795,7 +805,7 @@ build_hub("articles/san-blas", "san-blas-hub.html", dict(
     icons=[("island", "365", "Islands and cays"), ("pin", "Guna Yala", "Comarca"), ("bus", "2.5–3 hrs", "By 4x4 to Cartí"), ("sun", "Dec–Apr", "The sunniest months"), ("book", "3 guides", "In this library")],
     glance=[("Getting there", "4x4 + boat", "2.5–3 hrs to Cartí, then the boat"), ("When to go", "Dec–Apr", "February and March driest"),
             ("How long", "1–2 nights", "or a day trip from the city"), ("Entry fee", "$22 cash", "foreigners, at the checkpoint")],
-    topic_img={0: ("/images/v2/isla-pelicano-san-blas-panama-sg105536-wide.webp", "A thatched Guna hut under leaning palms on a small sandy island."),
+    topic_img={0: ("/images/v2/a-small-sand-cay-with-a-9122911-gallery.webp", "A small sand cay with a cluster of coconut palms in clear blue water."),
                1: ("/images/v2/a-dark-rock-outcrop-breaks-the-36095905-wide.webp", "Two sailboats at anchor in calm water off the San Blas cays.")},
     gallery=[("/images/v2/san-blas-islands-wide.webp", "An island crowded with thatched and tin-roofed houses in San Blas."),
              ("/images/v2/a-green-roofed-boat-crosses-turquoise-30826587-wide.webp", "A boat crosses turquoise water toward a palm-covered island."),
@@ -803,16 +813,16 @@ build_hub("articles/san-blas", "san-blas-hub.html", dict(
              ("/images/v2/morrodub-cayos-holandeses-san-blas-panam-c3-wide.webp", "Leaning coconut palms on a small island in the Cayos Holandeses."),
              ("/images/v2/bathers-wade-on-a-pale-sandbar-e71210b9-wide.webp", "Bathers wading on a pale sandbar in turquoise shallows."),
              ("/images/v2/a-dense-palm-cay-ringed-by-5b275fca-wide.webp", "A dense palm cay ringed by white sand and thatched shelters."),
-             ("/images/v2/x-diadup-kuna-yala-panam-c3-a1-gallery.webp", "A leaning palm on a white sand beach facing turquoise water.")]))
+             ("/images/v2/a-palm-lined-white-sand-beach-10490919-gallery.webp", "A palm-lined white sand beach curving along turquoise water.")]))
 
 _PA = ("/articles/pearl-islands-panama-guide", "/articles/contadora-ferry-from-panama-city", "/articles/playa-venao-panama", "/articles/panama-surf-camps", "/articles/diving-in-panama")
 build_hub("articles/pacific-coast", "pacific-hub.html", dict(
     src=hub_src("Pacific Coast", "Island ferries, surf beaches and Coiba's reefs, all south and west of the city.",
-        "/images/v2/playa-blanca-saboga-hero-1920.webp", "Palm trees lean over the sand at Playa Blanca on Isla Saboga, in the Pearl Islands.",
+        "/images/v2/contadora-beach-wreck-hero-1920.webp", "A wrecked passenger boat stranded on a long sandy beach on Isla Contadora, from the air.",
         "Panama's Pacific side runs from the Pearl Islands in the Gulf of Panama, 90 minutes from the city by ferry, to the surf beaches of the Azuero coast and the dive sites of Coiba National Park. Unlike the Caribbean, it has a real dry season, from December to April.",
-        [(_PA[0], "/images/v2/pearl-islands-aerial-wide.webp", "The Pearl Islands", "Ferry, flights and an honest island-by-island breakdown."),
-         (_PA[2], "/images/v2/panam-c3-a1-playa-hero-960.webp", "Playa Venao", "The surf, where to stay and how to get there from Panama City."),
-         (_PA[4], "/images/v2/king-cotton-2058177216-hero-960.webp", "Diving in Panama", "Coiba, Portobelo and Bocas compared, with prices.")],
+        [(_PA[0], "/images/v2/contadora-cove-gallery.webp", "The Pearl Islands", "Ferry, flights and an honest island-by-island breakdown."),
+         (_PA[2], "/images/v2/surferriomarbeachpanama-hero-960.webp", "Playa Venao", "The surf, where to stay and how to get there from Panama City."),
+         (_PA[4], "/images/v2/gnathanodon-speciosus-wide.webp", "Diving in Panama", "Coiba, Portobelo and Bocas compared, with prices.")],
         [("/images/v2/contadora-aerial-wide.webp", "Roads, houses and beaches on Isla Contadora, seen from the air.", "The Pearl Islands", "Contadora, Saboga and the rest: the ferry, which island to pick, and the whales.",
           [(_PA[0], "Which Island to Pick", "Contadora, Saboga, Isla del Rey and beyond, with budgets."), (_PA[1], "The Contadora Ferry", "Schedule, price, the departure dock and how to book.")]),
          ("/images/v2/santa-catalina-panama-151666813-wide.webp", "Aerial view of the Santa Catalina coastline and its rocky reef break.", "Surf and the Azuero coast", "Playa Venao's beach break and the surf camps along the Pacific.",
@@ -826,16 +836,16 @@ build_hub("articles/pacific-coast", "pacific-hub.html", dict(
     icons=[("island", "200+", "Pearl Islands and islets"), ("pin", "90 min", "Ferry to Contadora"), ("sun", "Dec–Apr", "The dry season"), ("cal", "Jul–Oct", "Humpback whales"), ("book", "5 guides", "In this library")],
     glance=[("Pearl Islands", "Ferry, 90 min", "daily 7:30 AM from Amador"), ("Playa Venao", "5 hrs by car", "or fly to Pedasí in 35 min"),
             ("When to go", "Dec–Apr", "dry; whales July to October"), ("Coiba", "Dive trips", "from Santa Catalina, certified divers")],
-    topic_img={0: ("/images/v2/contadora-aerial-wide.webp", "Roads, houses and beaches on Isla Contadora, seen from the air."),
-               1: ("/images/v2/santa-catalina-panama-151666813-wide.webp", "Aerial view of the Santa Catalina coastline and its rocky reef break."),
-               2: ("/images/v2/reef-shark-2062040192-gallery.webp", "A whitetip reef shark swims over sand near the reef.")},
-    gallery=[("/images/v2/contadora-long-beach-gallery.webp", "A long curve of sand and green water on Isla Contadora."),
-             ("/images/v2/pavona-gigantea-pearl-islands-gallery.webp", "A rounded Pavona gigantea coral on a reef in the Pearl Islands."),
-             ("/images/v2/isla-iguana-wide.webp", "Swimmers in the turquoise shallows at Isla Iguana, near Pedasí."),
-             ("/images/v2/x-the-beach-at-santa-catalina-panama-gallery.webp", "Gentle waves on the dark-sand beach at Santa Catalina."),
-             ("/images/v2/coiba-panama-26822070175-gallery.webp", "A rocky shoreline with a white sand beach and a boat at anchor, Coiba."),
-             ("/images/v2/arothron-meleagris-gallery.webp", "A yellow guineafowl puffer resting on a rocky reef."),
-             ("/images/v2/pedas-c3-ad-pedas-c3-ad-panama-wide.webp", "Aerial view of the town of Pedasí and the farmland around it.")]))
+    topic_img={0: ("/images/v2/sailboats-and-a-dark-motor-yacht-3754442-wide.webp", "Sailboats and a motor yacht at anchor off a low, tree-lined shore."),
+               1: ("/images/v2/surfer-boy-playa-el-palmar-gallery.webp", "A young surfer carries his board out of the water at Playa El Palmar."),
+               2: ("/images/v2/star-attraction-wide.webp", "A red-studded sea star on the reef, lit by an underwater strobe, Coiba.")},
+    gallery=[("/images/v2/isla-saboga-shore-wide.webp", "A wave breaks on the shore of Isla Saboga behind the silhouette of a tree."),
+             ("/images/v2/snowflake-in-panama-2072311431-hero-1280.webp", "A snowflake moray eel among red coral on a Pacific reef."),
+             ("/images/v2/porites-lobata-saboga-wide.webp", "A lumpy Porites lobata coral on the reef at Isla Saboga."),
+             ("/images/v2/playa-el-palmar-02-gallery.webp", "Waves roll in over a rocky shelf at Playa El Palmar."),
+             ("/images/v2/coiba-panama-152311733-gallery.webp", "A boat pulled up on a rocky beach on Coiba, with small islands offshore."),
+             ("/images/v2/santa-catalina-panama-26666487621-wide.webp", "Santa Catalina and its coastline from the air."),
+             ("/images/v2/playa-casaya-gallery.webp", "The pale strip of Playa Casaya on the horizon, seen from the sea.")]))
 
 ARROWS = """<script>document.querySelectorAll(".hx-rw").forEach(function(w){var r=w.querySelector(".hx-row"),l=w.querySelector(".hx-arr.l"),n=w.querySelector(".hx-arr.r");
 function st(){l.disabled=r.scrollLeft<4;n.disabled=r.scrollLeft+r.clientWidth>=r.scrollWidth-4;}
