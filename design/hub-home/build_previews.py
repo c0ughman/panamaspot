@@ -55,7 +55,8 @@ a.hx-btn:hover { transform: translateY(-1px); }
 .hx-home .hx-rot.on { opacity: 1; }
 /* homepage: 7-column destination grids */
 .hx-g7 { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 18px 26px; }
-.hx-g7.g6 { grid-template-columns: repeat(6, minmax(0, 1fr)); column-gap: 52px; }
+/* five places: tiles sized by screen height so the row always fits the first screen, spread across the width */
+.hx-g7.g6 { grid-template-columns: repeat(5, minmax(0, 23vh)); justify-content: space-between; column-gap: 26px; }
 @media (max-width: 1100px) { .hx-g7.g6 { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 26px; } }
 @media (max-width: 700px) { .hx-g7.g6 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .hx-t { display: grid; gap: 4px; align-content: start; text-decoration: none; color: var(--ink); min-width: 0; }
@@ -378,7 +379,7 @@ MENU = {
                              ("San Blas", "Guna Yala", "/preview/san-blas-hub.html", "/articles/san-blas-islands-panama-guna-yala-guide"),
                              ("Casco Viejo", "The old quarter", "/articles/casco-viejo-panama-walking-guide", "/articles/casco-viejo-panama-walking-guide"),
                              ("Pearl Islands", "Pacific islands", "/articles/pearl-islands-panama-guide", "/articles/pearl-islands-panama-guide"),
-                             ("Pacific coast", "Islands and surf", "/preview/pacific-hub.html", "/articles/pearl-islands-panama-guide"),
+                             ("Contadora", "Pearl Islands ferry", "/articles/contadora-ferry-from-panama-city", "/articles/contadora-ferry-from-panama-city"),
                              ("Playa Venao", "Surf coast", "/articles/playa-venao-panama", "/articles/playa-venao-panama"),
                              ("Cayos Zapatillas", "Bocas reef cays", "/articles/cayos-zapatillas-snorkelling-bocas-del-toro", "/articles/cayos-zapatillas-snorkelling-bocas-del-toro")]),
    ("Things to do", "list", [("Hiking", "/articles/hiking-in-panama-best-trails"), ("Waterfalls", "/articles/best-waterfalls-in-panama-where-to-see-several"),
@@ -815,37 +816,6 @@ build_hub("articles/san-blas", "san-blas-hub.html", dict(
              ("/images/v2/a-dense-palm-cay-ringed-by-5b275fca-wide.webp", "A dense palm cay ringed by white sand and thatched shelters."),
              ("/images/v2/a-palm-lined-white-sand-beach-10490919-gallery.webp", "A palm-lined white sand beach curving along turquoise water.")]))
 
-_PA = ("/articles/pearl-islands-panama-guide", "/articles/contadora-ferry-from-panama-city", "/articles/playa-venao-panama", "/articles/panama-surf-camps", "/articles/diving-in-panama")
-build_hub("articles/pacific-coast", "pacific-hub.html", dict(
-    src=hub_src("Pacific Coast", "Island ferries, surf beaches and Coiba's reefs, all south and west of the city.",
-        "/images/v2/contadora-beach-wreck-hero-1920.webp", "A wrecked passenger boat stranded on a long sandy beach on Isla Contadora, from the air.",
-        "Panama's Pacific side runs from the Pearl Islands in the Gulf of Panama, 90 minutes from the city by ferry, to the surf beaches of the Azuero coast and the dive sites of Coiba National Park. Unlike the Caribbean, it has a real dry season, from December to April.",
-        [(_PA[0], "/images/v2/contadora-cove-gallery.webp", "The Pearl Islands", "Ferry, flights and an honest island-by-island breakdown."),
-         (_PA[2], "/images/v2/surferriomarbeachpanama-hero-960.webp", "Playa Venao", "The surf, where to stay and how to get there from Panama City."),
-         (_PA[4], "/images/v2/gnathanodon-speciosus-wide.webp", "Diving in Panama", "Coiba, Portobelo and Bocas compared, with prices.")],
-        [("/images/v2/contadora-aerial-wide.webp", "Roads, houses and beaches on Isla Contadora, seen from the air.", "The Pearl Islands", "Contadora, Saboga and the rest: the ferry, which island to pick, and the whales.",
-          [(_PA[0], "Which Island to Pick", "Contadora, Saboga, Isla del Rey and beyond, with budgets."), (_PA[1], "The Contadora Ferry", "Schedule, price, the departure dock and how to book.")]),
-         ("/images/v2/santa-catalina-panama-151666813-wide.webp", "Aerial view of the Santa Catalina coastline and its rocky reef break.", "Surf and the Azuero coast", "Playa Venao's beach break and the surf camps along the Pacific.",
-          [(_PA[2], "Playa Venao", "The break, the seasons, where to stay and the road from the city."), (_PA[3], "Surf Camps Compared", "Santa Catalina, Venao and Bocas: price, level and who each suits.")]),
-         ("/images/v2/reef-shark-2062040192-gallery.webp", "A whitetip reef shark swims over sand near the reef.", "Under the water", "Coiba from Santa Catalina, the Pearl Islands, and the Caribbean side for comparison.",
-          [(_PA[4], "Diving in Panama", "Coiba vs Portobelo vs Bocas, courses and the seasons by coast.")])],
-        [(_PA[0], "Pearl Islands: Ferry, Flights and Which Island to Pick", "Islands"), (_PA[1], "Contadora Ferry From Panama City", "Getting there"),
-         (_PA[2], "Playa Venao: Surf, Where to Stay and How to Get There", "Surf"), (_PA[3], "Panama Surf Camps Compared", "Surf"), (_PA[4], "Diving in Panama: Coiba vs Portobelo vs Bocas", "Diving")],
-        "Every Pacific coast guide"),
-    en="/preview/pacific-hub.html", es="/es", short="Pacific coast", region="Pacific coast", focus=50,
-    icons=[("island", "200+", "Pearl Islands and islets"), ("pin", "90 min", "Ferry to Contadora"), ("sun", "Dec–Apr", "The dry season"), ("cal", "Jul–Oct", "Humpback whales"), ("book", "5 guides", "In this library")],
-    glance=[("Pearl Islands", "Ferry, 90 min", "daily 7:30 AM from Amador"), ("Playa Venao", "5 hrs by car", "or fly to Pedasí in 35 min"),
-            ("When to go", "Dec–Apr", "dry; whales July to October"), ("Coiba", "Dive trips", "from Santa Catalina, certified divers")],
-    topic_img={0: ("/images/v2/sailboats-and-a-dark-motor-yacht-3754442-wide.webp", "Sailboats and a motor yacht at anchor off a low, tree-lined shore."),
-               1: ("/images/v2/surfer-boy-playa-el-palmar-gallery.webp", "A young surfer carries his board out of the water at Playa El Palmar."),
-               2: ("/images/v2/star-attraction-wide.webp", "A red-studded sea star on the reef, lit by an underwater strobe, Coiba.")},
-    gallery=[("/images/v2/isla-saboga-shore-wide.webp", "A wave breaks on the shore of Isla Saboga behind the silhouette of a tree."),
-             ("/images/v2/snowflake-in-panama-2072311431-hero-1280.webp", "A snowflake moray eel among red coral on a Pacific reef."),
-             ("/images/v2/porites-lobata-saboga-wide.webp", "A lumpy Porites lobata coral on the reef at Isla Saboga."),
-             ("/images/v2/playa-el-palmar-02-gallery.webp", "Waves roll in over a rocky shelf at Playa El Palmar."),
-             ("/images/v2/coiba-panama-152311733-gallery.webp", "A boat pulled up on a rocky beach on Coiba, with small islands offshore."),
-             ("/images/v2/santa-catalina-panama-26666487621-wide.webp", "Santa Catalina and its coastline from the air."),
-             ("/images/v2/playa-casaya-gallery.webp", "The pale strip of Playa Casaya on the horizon, seen from the sea.")]))
 
 ARROWS = """<script>document.querySelectorAll(".hx-rw").forEach(function(w){var r=w.querySelector(".hx-row"),l=w.querySelector(".hx-arr.l"),n=w.querySelector(".hx-arr.r");
 function st(){l.disabled=r.scrollLeft<4;n.disabled=r.scrollLeft+r.clientWidth>=r.scrollWidth-4;}
@@ -912,12 +882,10 @@ def act_photo(t):
 PLACES = {
  "en": [("Panama City", "Capital and canal", "/articles/panama-city", None), ("Boquete", "Coffee highlands", "/articles/boquete", None),
         ("El Valle de Antón", "Volcanic crater", "/articles/el-valle-de-anton", None), ("Bocas del Toro", "Caribbean islands", "/articles/bocas-del-toro", None),
-        ("San Blas", "Guna Yala", "/preview/san-blas-hub.html", img_of("/articles/san-blas-islands-panama-guna-yala-guide")),
-        ("Pacific coast", "Islands and surf", "/preview/pacific-hub.html", img_of("/articles/pearl-islands-panama-guide"))],
+        ("San Blas", "Guna Yala", "/preview/san-blas-hub.html", img_of("/articles/san-blas-islands-panama-guna-yala-guide"))],
  "es": [("Ciudad de Panamá", "Capital y canal", "/es/articles/panama-city", None), ("Boquete", "Tierras altas del café", "/es/articles/boquete", None),
         ("El Valle de Antón", "Cráter volcánico", "/es/articles/el-valle-de-anton", None), ("Bocas del Toro", "Islas del Caribe", "/es/articles/como-llegar-a-bocas-del-toro-desde-ciudad-de-panama", None),
-        ("San Blas", "Guna Yala", "/es/articles/san-blas-guna-yala-guia-tours-islas", None),
-        ("Coiba", "Costa del Pacífico", "/es/articles/isla-coiba-buceo-parque-nacional", "/images/v2/isla-canales-de-afuera-shallows-2063365818-gallery.webp")]}
+        ("San Blas", "Guna Yala", "/es/articles/san-blas-guna-yala-guia-tours-islas", None)]}
 # (title, where it is, link, photo key in act_photo)
 DOING = {
  "en": [("Hiking", "El Valle and Boquete", "/articles/hiking-in-panama-best-trails", "Hiking & Trails"),
