@@ -550,7 +550,7 @@ def build_hub(rel, out, cfg):
 <section class="wrap hb-sec" id="topics"><div class="hb-head"><span class="lbl">{T["by_topic"]}</span><h2>{T["find"]}</h2></div>{pills_html}{topics}</section>
 {f'<section class="wrap hb-sec">{cta}</section>' if cta else ""}
 <section class="band gband hb-sec"><div class="wrap band-h"><div><span class="lbl">{T["in_pics"]}</span><h2>{T["pics"].format(short)}</h2></div></div><div class="gal hb-gal">{gal_html}</div></section>
-<section class="wrap hb-sec last" id="all-guides"><div class="band-h"><div><span class="lbl">{idx_h[0]}</span><h2>{idx_h[1]}</h2></div><span class="band-sub">{len(idx)} {T["guides"]}</span></div>
+<section class="wrap hb-sec last" id="all-guides"><div class="band-h"><div><span class="lbl">{idx_h[0]}</span><h2>{("Todas las guías de " + name) if lang == "es" and idx_h[1].startswith("Every ") else idx_h[1]}</h2></div><span class="band-sub">{len(idx)} {T["guides"]}</span></div>
 <ol class="hx-idx">{"".join(f'<li><a href="{u}"><span class="n">{n}</span><span>{t}</span><span class="cat">{c}</span></a></li>' for u, n, t, c in idx)}</ol>
 </section>
 {(ROLL.JS_M[0] + ROLL.TRACK + ROLL.JS_M[1]) if cta else ""}
@@ -772,7 +772,11 @@ def cards_of(name, lang="en"):
         href = m[3].strip('"') if m[3].startswith('"') else re.search(r"const " + m[3] + r' = "([^"]+)"', src)[1]
         out.append((m[1], m[2], href))
     return out
-HOME_BG = "https://images.pexels.com/photos/2474690/pexels-photo-2474690.jpeg?auto=compress&cs=tinysrgb&w=2400"
+HOME_BG = "/images/v2/home-hero-casco-night-1920.webp"
+HERO_ALT = {"en": "Casco Viejo at night: the cathedral's white towers and the lit streets of the old quarter.",
+            "es": "El Casco Viejo de noche: las torres blancas de la catedral y las calles iluminadas del barrio antiguo."}
+def still(lang):
+    return f'<img class="hero-img" alt="{HERO_ALT[lang]}" fetchpriority="high" src="{HOME_BG}" style="object-position:center 55%"/>'
 ROT_IMGS = [(HOME_BG, "", 50)] + [(f"/images/v2/{n}-hero-1920.webp", a, y) for n, a, y in [
     ("playa-blanca-saboga", "Palm trees over Playa Blanca on Isla Saboga, Pearl Islands.", 62),
     ("volcan-baru-emerging-through-clouds-d35d9b87", "Volcán Barú rising through cloud above forested slopes.", 40),
@@ -867,7 +871,7 @@ L = {"en": dict(file="home.html", title="Preview: Panama Spot homepage", en="/pr
                      ("/articles/panama-city", "f", "Capital", "Panama City", "", "photo", "/images/v2/panama-city-skyline-from-the-waterfront-17477516-hero-1280.webp"),
                      ("/articles/playa-venao-panama", "g", "Pacific coast", "Playa Venao and the Azuero coast", "", "photo", None)]),
      "es": dict(file="home-es.html", title="Vista previa: portada de Panama Spot", en="/preview/home.html", es="/preview/home-es.html",
-                dek="La guía completa para viajar por Panamá — nueve provincias, tres costas, escrita por quienes vivimos aquí.", cta="Empieza a explorar →",
+                dek="La guía completa para viajar por Panamá — diez provincias, dos costas, escrita por quienes vivimos aquí.", cta="Empieza a explorar →",
                 where="¿En qué parte de Panamá?", what="¿Qué vas a hacer?", fresh_h="Guías nuevas", new="Guía nueva", all="Todas las guías →", guides="guías", read="Leer la guía",
                 bento="Siete Panamás, un istmo.", guide_tag="Guía",
                 dest=[("Ciudad de Panamá", "Capital y canal", "/es/articles/panama-city"), ("Boquete", "Tierras altas del café", "/es/articles/boquete"),
@@ -932,7 +936,7 @@ def build_home(lang, video=False):
     acts = cards_of("ACTIVITIES", lang)
     body = f"""<div class="guide-progress" id="prog" aria-hidden="true"></div>
 <header class="hero hx-home{" vid" if video else ""}">
-  {VIDEO if video else rot(lang)}
+  {VIDEO if video else still(lang)}
   {nav(C["en"], C["es"], lang)}
   <div class="wrap hx-c">
     <h1 class="hx-mark">Panam<span class="a">á</span><i class="pd"></i></h1>
@@ -949,7 +953,7 @@ def build_home(lang, video=False):
 {rows}
 <div class="hx-band bento"><section class="wrap hx-sec"><div class="band-h"><div><h2>{C["bento"]}</h2></div></div><div class="hx-mix">{"".join(mixcard(*m) for m in C["mix"])}</div></section></div>
 """
-    out = page(C["title"], body + ("" if video else ROTJS), "/images/v2/home-hero-video-poster.webp" if video else HOME_BG, lang,
+    out = page(C["title"], body, "/images/v2/home-hero-video-poster.webp" if video else HOME_BG, lang,
                head="<!--SEO-HEAD-->")
     # the footer's opening band ("Find your spot in Panama", Start exploring, Where to next?) repeats the hero and "Where in Panama?" on the homepage
     out = re.sub(r'<div class="wrap f-top">.*?</div>', "", out, count=1, flags=re.S)
@@ -957,4 +961,4 @@ def build_home(lang, video=False):
     f = HOME_OUT / ("index.html" if lang == "en" else "es.html")
     f.write_text(finalize(out))
     print("wrote", f)
-build_home("en", video=True); build_home("es", video=True)  # video=False brings back the rotating photos
+build_home("en"); build_home("es")  # video=True puts the hero video back

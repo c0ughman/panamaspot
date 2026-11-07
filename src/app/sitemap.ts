@@ -158,7 +158,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date("2026-11-07"),
       changeFrequency: "weekly",
       priority: 0.9,
-      images: [xmlSafe(`${siteConfig.url}/images/v2/x-diadup-kuna-yala-panam-c3-a1-hero-1920.webp`)],
+      images: safeImages(pageImages["/articles/san-blas"]),
     },
     // ── Destination hubs ────────────────────────────────────────────────────
     ...hub(
