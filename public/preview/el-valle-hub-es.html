@@ -5,6 +5,8 @@
 <link rel="preload" as="font" type="font/woff2" href="/fonts/GildaC-650.woff2" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
+<link rel="preload" as="font" type="font/woff2" href="/fonts/GildaC-450.woff2" crossorigin>
+<style>.fw .hero > .wrap, .fw #cat-regions .band-h, .fw .hx-t b, .fw .hx-t .c { opacity: 0; } .hero > .wrap, #cat-regions .band-h, .hx-t b, .hx-t .c { transition: opacity .18s; }</style>
 <style>
 @font-face{font-family:"GildaC";font-weight:450;font-display:swap;src:url("/fonts/GildaC-450.woff2") format("woff2")}
 @font-face{font-family:"GildaC";font-weight:650;font-display:swap;src:url("/fonts/GildaC-650.woff2") format("woff2")}
@@ -471,6 +473,7 @@ a.search { color: inherit; text-decoration: none; cursor: pointer; }
 .hx-home .hx-c { align-self: end; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding-top: 32px; padding-bottom: 54px; }
 .hx-home .hx-mark { font: 400 clamp(64px, 11vw, 160px)/.86 var(--serif); letter-spacing: -0.02em; color: #fff; margin: 0; text-shadow: 0 2px 30px rgba(0,0,0,.18); }
 .hx-mark .a { color: var(--red); }
+.hx-home .hx-mark { margin-bottom: -.09em; }
 .hx-mark .pd { display: inline-block; width: .17em; height: .17em; border-radius: 50%; background: var(--red); margin-left: .03em; }
 .hx-home .hx-dek { font: 400 16px/1.55 var(--sans); color: rgba(255,255,255,.88); max-width: 56ch; text-shadow: 0 1px 12px rgba(0,0,0,.3); }
 a.hx-btn { margin-top: 12px; display: inline-flex; align-items: center; gap: 10px; background: #fff; color: var(--ink); padding: 14px 28px; border-radius: 999px; font: 600 14.5px/1 var(--sans); text-decoration: none; transition: transform .2s; }
@@ -612,7 +615,7 @@ a.hx-btn:hover { transform: translateY(-1px); }
 .hb-hero::before { background: linear-gradient(180deg, rgba(3,10,30,.42) 0%, rgba(3,10,30,0) 26%, rgba(3,10,30,.28) 50%, rgba(3,10,30,.72) 76%, rgba(3,10,30,.94) 100%); }
 .hb-hero > .wrap:last-of-type { align-self: end; }
 .hb-ev-ph img { object-position: center 34% !important; }
-.hb-hero .hb-c { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 46ch); align-items: end; gap: 14px 56px; padding-bottom: 44px; margin: 0; }
+.hb-hero .hb-c { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 34ch); align-items: end; gap: 14px 56px; padding-bottom: 44px; margin: 0; }
 .hb-hero .hb-t { display: grid; gap: 14px; }
 .hb-hero .hb-c > p { padding-bottom: 6px; }
 @media (max-width: 860px) { .hb-hero .hb-c { grid-template-columns: 1fr; } .hb-hero .hb-c > p { padding-bottom: 0; } }
@@ -797,6 +800,9 @@ a.hx-search kbd { margin-left: auto; font: 600 12px/1 var(--sans); padding: 6px 
 .nav .links .mm-panel a:hover { text-decoration: none; opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .mm-panel, .mm-btn .chev { transition: none; } .mm-sheet-in { animation: none; } }
 </style>
+<script>(function(){var d=document.documentElement,f=document.fonts;if(!f||!f.load)return;d.classList.add("fw");var done=function(){d.classList.remove("fw")};
+Promise.all(["400 1em GildaC","650 1em GildaC","700 1em GildaC","400 1em 'Hanken Grotesk'","500 1em 'Hanken Grotesk'","600 1em 'Hanken Grotesk'","700 1em 'Hanken Grotesk'"].map(function(x){return f.load(x)})).then(done,done);setTimeout(done,1500)})();</script>
+<noscript><style>.fw .hero > .wrap { opacity: 1; }</style></noscript>
 <!--evx:css--><link rel="stylesheet" href="/css/evalley-cta.css"><!--/evx:css-->
 </head><body>
 <div class="guide-progress" id="prog" aria-hidden="true"></div>
@@ -806,7 +812,7 @@ a.hx-search kbd { margin-left: auto; font: 600 12px/1 var(--sans); padding: 6px 
   <div class="wrap"><div class="hb-c">
     <div class="hb-t"><span class="lbl">Guía de destino</span>
     <h1>El Valle de Antón</h1></div>
-    <p>Un pueblo de 7,000 habitantes dentro de la caldera de un volcán que hizo erupción hace unos 200,000 años. A dos horas de la capital, 600 metros de altura y unos diez grados más fresco que la costa.</p>
+    <p>Un pueblo dentro de un volcán, a dos horas de la capital y más fresco que la costa.</p>
   </div></div>
 </header>
 <section class="wrap hb-sec first"><div class="hb-orient"><div class="lead"><p>El Valle de Antón está sobre el piso plano de un cráter volcánico de unos cinco kilómetros de ancho — una de las pocas calderas habitadas del mundo. Las paredes que se ven desde la calle principal son el borde del cráter.</p><div class="hb-icons"><div><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 20 6.5-11 4 6.5 2.5-4L21 20Z"/></svg></span><span><b>600 m</b><span>De altura</span></span></div><div><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5a7 7 0 0 0-14 0C5 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><span><b>Coclé</b><span>Provincia</span></span></div><div><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 18c3-7 5-10 7-10s2.5 3 3 3 1-3 3-3 4 3 7 10"/><path d="M7 18c1.5-2 3-3 5-3s3.5 1 5 3"/></svg></span><span><b>5 km</b><span>De cráter de lado a lado</span></span></div><div><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="15" rx="3"/><path d="M4 11h16M8 21v-3M16 21v-3"/><circle cx="8" cy="14.5" r=".8"/><circle cx="16" cy="14.5" r=".8"/></svg></span><span><b>2 h</b><span>Desde la capital</span></span></div><div><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2Z"/><path d="M4 19V5"/></svg></span><span><b>29 guías</b><span>En esta biblioteca</span></span></div></div></div>

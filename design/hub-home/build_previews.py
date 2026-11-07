@@ -38,6 +38,7 @@ CSS = """
 .hx-home .hx-c { align-self: end; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding-top: 32px; padding-bottom: 54px; }
 .hx-home .hx-mark { font: 400 clamp(64px, 11vw, 160px)/.86 var(--serif); letter-spacing: -0.02em; color: #fff; margin: 0; text-shadow: 0 2px 30px rgba(0,0,0,.18); }
 .hx-mark .a { color: var(--red); }
+.hx-home .hx-mark { margin-bottom: -.09em; }
 .hx-mark .pd { display: inline-block; width: .17em; height: .17em; border-radius: 50%; background: var(--red); margin-left: .03em; }
 .hx-home .hx-dek { font: 400 16px/1.55 var(--sans); color: rgba(255,255,255,.88); max-width: 56ch; text-shadow: 0 1px 12px rgba(0,0,0,.3); }
 a.hx-btn { margin-top: 12px; display: inline-flex; align-items: center; gap: 10px; background: #fff; color: var(--ink); padding: 14px 28px; border-radius: 999px; font: 600 14.5px/1 var(--sans); text-decoration: none; transition: transform .2s; }
@@ -179,7 +180,7 @@ a.hx-btn:hover { transform: translateY(-1px); }
 .hb-hero::before { background: linear-gradient(180deg, rgba(3,10,30,.42) 0%, rgba(3,10,30,0) 26%, rgba(3,10,30,.28) 50%, rgba(3,10,30,.72) 76%, rgba(3,10,30,.94) 100%); }
 .hb-hero > .wrap:last-of-type { align-self: end; }
 .hb-ev-ph img { object-position: center 34% !important; }
-.hb-hero .hb-c { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 46ch); align-items: end; gap: 14px 56px; padding-bottom: 44px; margin: 0; }
+.hb-hero .hb-c { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 34ch); align-items: end; gap: 14px 56px; padding-bottom: 44px; margin: 0; }
 .hb-hero .hb-t { display: grid; gap: 14px; }
 .hb-hero .hb-c > p { padding-bottom: 6px; }
 @media (max-width: 860px) { .hb-hero .hb-c { grid-template-columns: 1fr; } .hb-hero .hb-c > p { padding-bottom: 0; } }
@@ -342,7 +343,12 @@ def page(title, body, hero_preload, lang="en"):
 <title>{title}</title><meta name="robots" content="noindex, nofollow">
 <link rel="preload" as="image" href="{hero_preload}" fetchpriority="high"/>
 {D["font"]}
+<link rel="preload" as="font" type="font/woff2" href="/fonts/GildaC-450.woff2" crossorigin>
+<style>.fw .hero > .wrap, .fw #cat-regions .band-h, .fw .hx-t b, .fw .hx-t .c {{ opacity: 0; }} .hero > .wrap, #cat-regions .band-h, .hx-t b, .hx-t .c {{ transition: opacity .18s; }}</style>
 {D["style"].replace("</style>", R.EXTRA_CSS + CSS.replace("ARWVAL", ARW) + MENU_CSS + "</style>")}
+<script>(function(){{var d=document.documentElement,f=document.fonts;if(!f||!f.load)return;d.classList.add("fw");var done=function(){{d.classList.remove("fw")}};
+Promise.all(["400 1em GildaC","650 1em GildaC","700 1em GildaC","400 1em 'Hanken Grotesk'","500 1em 'Hanken Grotesk'","600 1em 'Hanken Grotesk'","700 1em 'Hanken Grotesk'"].map(function(x){{return f.load(x)}})).then(done,done);setTimeout(done,1500)}})();</script>
+<noscript><style>.fw .hero > .wrap {{ opacity: 1; }}</style></noscript>
 <!--evx:css--><link rel="stylesheet" href="/css/evalley-cta.css"><!--/evx:css-->
 </head><body>
 {body}
@@ -563,7 +569,7 @@ def build_hub(rel, out, cfg):
     b = (P / f"{rel}.html").read_text(); b = b[b.index("<body"):]
     name = re.sub("<[^>]+>", "", re.search(r"<h1[^>]*>(.*?)</h1>", b, re.S)[1]).strip()
     short = cfg.get("short", name)
-    dek = re.search(r'<p class="hub-hero-dek">(.*?)</p>', b, re.S)[1]
+    dek = cfg.get("dek") or re.search(r'<p class="hub-hero-dek">(.*?)</p>', b, re.S)[1]
     leads = re.findall(r'<p class="hub-lead">(.*?)</p>', b, re.S)
     eyebrow = re.search(r'<p class="hub-eyebrow">(.*?)</p>', b)[1]
     pairs = re.findall(r'<p class="hub-eyebrow">([^<]*)</p>\s*<h2 class="hub-h2">([^<]*)</h2>(?:\s*<p class="hub-lead[^"]*">([^<]*)</p>)?', b)
@@ -657,7 +663,7 @@ _bq_cta = B.blocks("boquete-en")["banner"]
 # hub only: the waterfall photo in the banner; the riders photo is overused (live guide CTAs are unchanged)
 _bq_cta = _bq_cta.replace("evalley-boquete-ebike-trail", "evalley-boquete-ebike-hero").replace("Two riders on E-Valley e-bikes on a farm track in Boquete", "Two riders with e-bikes in front of a waterfall near Boquete").replace('class="ev-ph"', 'class="ev-ph hb-ev-ph"').replace('class="evx ev-banner"', 'class="evx ev-dark ev-banner hb-ev-dark"')
 # every value in icons and glance is taken from that hub's own text
-build_hub("articles/boquete", "boquete-hub.html", dict(
+build_hub("articles/boquete", "boquete-hub.html", dict(dek="A cool, green coffee town in the Chiriquí highlands, an hour from Costa Rica.",
     en="/preview/boquete-hub.html", es="/es/articles/boquete", region="Chiriquí highlands", hero="/images/v2/boquete-hills-hero-1920.webp",
     icons=[("mountain", "1,200 m", "Elevation"), ("pin", "Chiriquí", "Province"), ("peak", "3,475 m", "Volcán Barú"), ("bus", "1 hr", "To the Costa Rican border"), ("book", "24 guides", "In this library")],
     glance=[("Getting there", "Fly to David", "then 45 min by road; 7 hrs by bus"), ("When to go", "Dec–Apr", "driest months; mist any time"),
@@ -670,7 +676,7 @@ build_hub("articles/boquete", "boquete-hub.html", dict(
              ("/images/boquete/boquete-cabins.webp", "Timber A-frame cabins on a hillside above Boquete."),
              ("/images/boquete/boquete-market.webp", "Fruit and vegetables for sale at a market stall in Boquete."),
              ("/images/v2/view-from-restaurant-covered-los-molinos-hero-1280.webp", "Storm light over the green canyons around Boquete.")]))
-build_hub("es/articles/el-valle-de-anton", "el-valle-hub-es.html", dict(
+build_hub("es/articles/el-valle-de-anton", "el-valle-hub-es.html", dict(dek="Un pueblo dentro de un volcán, a dos horas de la capital y más fresco que la costa.",
     en="/articles/el-valle-de-anton", es="/preview/el-valle-hub-es.html", short="El Valle", region="Provincia de Coclé", focus=58,
     hero="/images/v2/the-flat-floor-of-the-el-f491c24a-hero-1920.webp", hero_alt="El fondo plano del cráter de El Valle de Antón, con los cerros detrás.",
     icons=[("mountain", "600 m", "De altura"), ("pin", "Coclé", "Provincia"), ("crater", "5 km", "De cráter de lado a lado"), ("bus", "2 h", "Desde la capital"), ("book", "29 guías", "En esta biblioteca")],
@@ -686,7 +692,7 @@ build_hub("es/articles/el-valle-de-anton", "el-valle-hub-es.html", dict(
              ('/images/v2/elvalle-panorama-wide.webp', 'La ladera boscosa del cráter vista desde el valle.'),
              ('/images/v2/artesania-pintada-a-mano-colgada-en-df5c68cf-wide.webp', 'Artesanía pintada a mano en el mercado.'),
              ('/images/v2/things-to-do-el-valle-hero-1280.webp', 'Flores bajo una pérgola en El Valle de Antón.')]))
-build_hub("articles/panama-city", "panama-city-hub.html", dict(
+build_hub("articles/panama-city", "panama-city-hub.html", dict(dek="A glass skyline on one side of the bay, a 350-year-old walled quarter on the other.",
     en="/preview/panama-city-hub.html", es="/es/articles/panama-city", region="Pacific coast", focus=50,
     icons=[("pin", "Pacific", "Coast"), ("city", "350 years", "The walled old quarter"), ("plane", "Tocumen", "Main airport (PTY)"), ("cal", "2–3 days", "For the city and the canal"), ("book", "9 guides", "In this library")],
     glance=[("Getting there", "Tocumen (PTY)", "Metro Line 2 reaches it"), ("When to go", "Dec–Apr", "dry; the canal works any time"),
@@ -698,7 +704,7 @@ build_hub("articles/panama-city", "panama-city-hub.html", dict(
              ('/images/v2/casco-antiguo-san-felipe-21af3ff1-gallery.webp', 'Casco Antiguo from the air.'),
              ('/images/v2/cruise-ship-passing-miraflores-locks-2019-10-gallery.webp', 'A cruise ship inside a Miraflores Locks chamber.'),
              ('/images/v2/islands-of-the-amador-causeway-994a1080-wide.webp', 'The islands at the end of the Amador Causeway.')]))
-build_hub("articles/bocas-del-toro", "bocas-hub.html", dict(
+build_hub("articles/bocas-del-toro", "bocas-hub.html", dict(dek="Hundreds of islands off the Caribbean coast: warm sea, mangroves and reef.",
     en="/preview/bocas-hub.html", es="/es", region="Caribbean coast", focus=50,
     icons=[("pin", "Caribbean", "Coast"), ("island", "9 islands", "The main ones"), ("plane", "1 hr", "Flight from Panama City"), ("sun", "Sep–Oct", "Calmest, clearest water"), ("book", "7 guides", "In this library")],
     glance=[("Getting there", "1-hr flight", "or overnight bus + water taxi"), ("When to go", "Sep–Oct", "or February to April"),
