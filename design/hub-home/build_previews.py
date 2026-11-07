@@ -224,7 +224,10 @@ a.hx-search kbd { margin-left: auto; font: 600 12px/1 var(--sans); padding: 6px 
 .hx-quick a { text-decoration: none; }
 .hx-band { background: var(--beige); margin-top: 88px; padding-bottom: 72px; }
 .hx-band.bento { margin-top: 64px; padding-bottom: 0; }
-.hx-band.bento .hx-sec { padding-bottom: 8px; }
+.hx-band.bento .hx-sec { padding-bottom: 30px; }
+/* the last Explore row: half the space down to the bento (176px -> 88px; phones 128px -> 64px) */
+section.hx-sec:has(+ .hx-band.bento) { padding-bottom: 24px; }
+@media (max-width: 760px) { section.hx-sec:has(+ .hx-band.bento) { padding-bottom: 8px; } }
 /* no zoom on image hover anywhere */
 .fc:hover .ph { transform: none; }
 .hx-band > .hx-sec:first-child { padding-top: 76px; }
