@@ -491,6 +491,10 @@ a.search { color: inherit; text-decoration: none; cursor: pointer; }
 .nav .links .mm-panel a, .mm-sheet a { text-shadow: none; text-decoration: none; opacity: 1; }
 .nav .links .mm-panel .mm-list a { font: 600 14.5px/1.2 var(--sans); }
 .nav .links .mm-panel a:hover { text-decoration: none; opacity: 1; }
+/* the logo dot always sits right after the last letter: never on a line of its own, never under "Panamá" */
+.logo, .hx-mark { white-space: nowrap; }
+.logo.stair { display: inline-flex; align-items: baseline; gap: .26em; line-height: 1; }
+.logo.stair > span:last-child { justify-self: auto; margin-right: 0; }
 /* the language switch is one link to the other language */
 a.lang { text-decoration: none; cursor: pointer; }
 a.lang span { color: #fff; transition: background .2s; }

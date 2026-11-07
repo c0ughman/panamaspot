@@ -58,6 +58,8 @@ CSS = """
 /* homepage hero: the original layout (50vh, min 480px, wordmark bottom-left), new-template details */
 .hx-home { height: clamp(468px, 48vh, 560px); min-height: 0; grid-template-rows: auto 1fr; }
 .hx-home::before { background: linear-gradient(180deg, rgba(3,10,30,.42) 0%, rgba(3,10,30,0) 34%, rgba(3,10,30,.1) 60%, rgba(3,10,30,.5) 100%); }
+/* the video is darker footage than the photos, so it gets a lighter veil: just enough for the menu and the wordmark */
+.hx-home.vid::before { background: linear-gradient(180deg, rgba(3,10,30,.28) 0%, rgba(3,10,30,0) 24%, rgba(3,10,30,0) 58%, rgba(3,10,30,.3) 100%); }
 .hx-home .hx-c { align-self: end; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding-top: 32px; padding-bottom: 54px; }
 .hx-home .hx-mark { font: 400 clamp(64px, 11vw, 160px)/.86 var(--serif); letter-spacing: -0.02em; color: #fff; margin: 0; text-shadow: 0 2px 30px rgba(0,0,0,.18); }
 .hx-mark .a { color: var(--red); }
@@ -929,7 +931,7 @@ def build_home(lang, video=False):
                 f'<span class="c"><i class="dot"></i>{C["new"]}</span><p>{E(dek_of(u))}</p></a>')
     acts = cards_of("ACTIVITIES", lang)
     body = f"""<div class="guide-progress" id="prog" aria-hidden="true"></div>
-<header class="hero hx-home">
+<header class="hero hx-home{" vid" if video else ""}">
   {VIDEO if video else rot(lang)}
   {nav(C["en"], C["es"], lang)}
   <div class="wrap hx-c">
@@ -948,12 +950,11 @@ def build_home(lang, video=False):
 <div class="hx-band bento"><section class="wrap hx-sec"><div class="band-h"><div><h2>{C["bento"]}</h2></div></div><div class="hx-mix">{"".join(mixcard(*m) for m in C["mix"])}</div></section></div>
 """
     out = page(C["title"], body + ("" if video else ROTJS), "/images/v2/home-hero-video-poster.webp" if video else HOME_BG, lang,
-               head='<title>Preview: homepage with hero video</title><meta name="robots" content="noindex, nofollow">' if video else "<!--SEO-HEAD-->")
+               head="<!--SEO-HEAD-->")
     # the footer's opening band ("Find your spot in Panama", Start exploring, Where to next?) repeats the hero and "Where in Panama?" on the homepage
     out = re.sub(r'<div class="wrap f-top">.*?</div>', "", out, count=1, flags=re.S)
     out = re.sub(r'<div class="wrap f-dest">.*?</div></div>', "", out, count=1, flags=re.S)
-    f = (P / "preview" / "home-video.html") if video else HOME_OUT / ("index.html" if lang == "en" else "es.html")
-    f.parent.mkdir(exist_ok=True)
+    f = HOME_OUT / ("index.html" if lang == "en" else "es.html")
     f.write_text(finalize(out))
     print("wrote", f)
-build_home("en"); build_home("es"); build_home("en", video=True)  # the video hero, for review before it replaces the photos
+build_home("en", video=True); build_home("es", video=True)  # video=False brings back the rotating photos

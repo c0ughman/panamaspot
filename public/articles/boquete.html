@@ -470,6 +470,8 @@ a.search { color: inherit; text-decoration: none; cursor: pointer; }
 /* homepage hero: the original layout (50vh, min 480px, wordmark bottom-left), new-template details */
 .hx-home { height: clamp(468px, 48vh, 560px); min-height: 0; grid-template-rows: auto 1fr; }
 .hx-home::before { background: linear-gradient(180deg, rgba(3,10,30,.42) 0%, rgba(3,10,30,0) 34%, rgba(3,10,30,.1) 60%, rgba(3,10,30,.5) 100%); }
+/* the video is darker footage than the photos, so it gets a lighter veil: just enough for the menu and the wordmark */
+.hx-home.vid::before { background: linear-gradient(180deg, rgba(3,10,30,.28) 0%, rgba(3,10,30,0) 24%, rgba(3,10,30,0) 58%, rgba(3,10,30,.3) 100%); }
 .hx-home .hx-c { align-self: end; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding-top: 32px; padding-bottom: 54px; }
 .hx-home .hx-mark { font: 400 clamp(64px, 11vw, 160px)/.86 var(--serif); letter-spacing: -0.02em; color: #fff; margin: 0; text-shadow: 0 2px 30px rgba(0,0,0,.18); }
 .hx-mark .a { color: var(--red); }
@@ -801,6 +803,10 @@ Promise.all(["400 1em GildaC","650 1em GildaC","700 1em GildaC","400 1em 'Hanken
 .nav .links .mm-panel a, .mm-sheet a { text-shadow: none; text-decoration: none; opacity: 1; }
 .nav .links .mm-panel .mm-list a { font: 600 14.5px/1.2 var(--sans); }
 .nav .links .mm-panel a:hover { text-decoration: none; opacity: 1; }
+/* the logo dot always sits right after the last letter: never on a line of its own, never under "Panamá" */
+.logo, .hx-mark { white-space: nowrap; }
+.logo.stair { display: inline-flex; align-items: baseline; gap: .26em; line-height: 1; }
+.logo.stair > span:last-child { justify-self: auto; margin-right: 0; }
 /* the language switch is one link to the other language */
 a.lang { text-decoration: none; cursor: pointer; }
 a.lang span { color: #fff; transition: background .2s; }
