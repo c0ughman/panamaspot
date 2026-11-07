@@ -685,7 +685,7 @@ build_hub("articles/boquete", "boquete-hub.html", dict(dek="A cool, green coffee
              ("/images/v2/view-from-restaurant-covered-los-molinos-hero-1280.webp", "Storm light over the green canyons around Boquete.")]))
 build_hub("es/articles/el-valle-de-anton", "el-valle-hub-es.html", dict(dek="Un pueblo dentro de un volcán, a dos horas de la capital y más fresco que la costa.",
     en="/preview/el-valle-hub.html", es="/preview/el-valle-hub-es.html", short="El Valle", region="Provincia de Coclé", focus=58,
-    hero="/images/v2/late-light-on-the-crater-wall-a262b398-hero-1920.webp", hero_alt="Luz de la tarde sobre la pared del cráter de El Valle de Antón.",
+    hero="/images/v2/the-el-valle-de-anton-crater-829139d1-hero-1920.webp", hero_alt="El valle del cráter de El Valle de Antón, rodeado de cerros verdes.",
     icons=[("mountain", "600 m", "De altura"), ("pin", "Coclé", "Provincia"), ("crater", "5 km", "De cráter de lado a lado"), ("bus", "2 h", "Desde la capital"), ("book", "29 guías", "En esta biblioteca")],
     glance=[("Cómo llegar", "2½ h en bus", "desde Albrook; 2 h en carro"), ("Cuándo ir", "Dic–abr", "la temporada seca"),
             ("Cuánto quedarse", "Un día", "dos noches, mejor"), ("Cómo moverse", "En bici", "senderos a 10–25 min")],
@@ -714,7 +714,7 @@ build_hub("articles/panama-city", "panama-city-hub.html", dict(dek="A glass skyl
              ('/images/v2/cruise-ship-passing-miraflores-locks-2019-10-gallery.webp', 'A cruise ship inside a Miraflores Locks chamber.'),
              ('/images/v2/islands-of-the-amador-causeway-994a1080-wide.webp', 'The islands at the end of the Amador Causeway.')]))
 build_hub("articles/bocas-del-toro", "bocas-hub.html", dict(dek="Hundreds of islands off the Caribbean coast: warm sea, mangroves and reef.",
-    en="/preview/bocas-hub.html", es="/es", region="Caribbean coast", focus=50,
+    en="/preview/bocas-hub.html", es="/preview/home-es.html", region="Caribbean coast", focus=50,
     hero="/images/v2/nyara-bocas-del-toro-panama-hero-1920.webp", hero_alt="Thatched overwater bungalows on stilts over calm water in Bocas del Toro.",
     icons=[("pin", "Caribbean", "Coast"), ("island", "9 islands", "The main ones"), ("plane", "1 hr", "Flight from Panama City"), ("sun", "Sep–Oct", "Calmest, clearest water"), ("book", "7 guides", "In this library")],
     glance=[("Getting there", "1-hr flight", "or overnight bus + water taxi"), ("When to go", "Sep–Oct", "or February to April"),
@@ -747,7 +747,7 @@ build_hub("es/articles/boquete", "boquete-hub-es.html", dict(dek="Un pueblo cafe
              ("/images/v2/view-from-restaurant-covered-los-molinos-hero-1280.webp", "Luz de tormenta sobre los cañones verdes de Boquete.")]))
 build_hub("articles/el-valle-de-anton", "el-valle-hub.html", dict(dek="A town inside a volcano, two hours from Panama City and cooler than the coast.",
     en="/preview/el-valle-hub.html", es="/preview/el-valle-hub-es.html", short="El Valle", region="Coclé province", focus=58,
-    hero="/images/v2/late-light-on-the-crater-wall-a262b398-hero-1920.webp", hero_alt="Late light on the crater wall above El Valle de Antón.",
+    hero="/images/v2/the-el-valle-de-anton-crater-829139d1-hero-1920.webp", hero_alt="The El Valle de Antón crater valley ringed by green peaks.",
     icons=[("mountain", "600 m", "Elevation"), ("pin", "Coclé", "Province"), ("crater", "5 km", "Crater, rim to rim"), ("bus", "2 hrs", "From Panama City"), ("book", "19 guides", "In this library")],
     glance=[("Getting there", "2½ hrs by bus", "from Albrook; 2 hrs by car"), ("When to go", "Dec–Apr", "the dry season"),
             ("How long", "A day", "two nights is better"), ("Getting around", "By bike", "trails 10–25 min away")],
@@ -802,7 +802,7 @@ build_hub("articles/san-blas", "san-blas-hub.html", dict(
           [(_SB[2], "Panama to Colombia by Boat", "Itinerary, monohull or catamaran, operators and seasickness.")])],
         [(_SB[0], "San Blas Islands (Guna Yala): The Complete Guide", "Overview"), (_SB[1], "San Blas Tours From Panama City", "Tours"), (_SB[2], "San Blas Sailing, Panama to Colombia", "Sailing")],
         "Every San Blas guide"),
-    en="/preview/san-blas-hub.html", es="/es", region="Caribbean coast", focus=55,
+    en="/preview/san-blas-hub.html", es="/preview/home-es.html", region="Caribbean coast", focus=55,
     icons=[("island", "365", "Islands and cays"), ("pin", "Guna Yala", "Comarca"), ("bus", "2.5–3 hrs", "By 4x4 to Cartí"), ("sun", "Dec–Apr", "The sunniest months"), ("book", "3 guides", "In this library")],
     glance=[("Getting there", "4x4 + boat", "2.5–3 hrs to Cartí, then the boat"), ("When to go", "Dec–Apr", "February and March driest"),
             ("How long", "1–2 nights", "or a day trip from the city"), ("Entry fee", "$22 cash", "foreigners, at the checkpoint")],
