@@ -175,11 +175,17 @@ a.hx-btn:hover { transform: translateY(-1px); }
 @media (max-width: 1000px) { .hb-bento { grid-template-columns: 1fr; } .hb-bento.flip .hb-feat { order: 0; } .hb-feat { min-height: 320px; } .hb-more { grid-template-columns: 1fr 1fr; } .hb-g.s4 { grid-column: span 2; } .hb-icons { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .hb-side, .hb-more { grid-template-columns: 1fr; grid-auto-rows: auto; } .hb-g.s2, .hb-g.s4 { grid-column: auto; } }
 /* hub: the original layout, restyled */
-.hb-hero { height: clamp(420px, 38vw, 540px); grid-template-rows: auto 1fr; }
+.hb-hero { height: clamp(370px, calc(38vw - 50px), 490px); grid-template-rows: auto 1fr; }
 .hb-hero::before { background: linear-gradient(180deg, rgba(3,10,30,.42) 0%, rgba(3,10,30,0) 26%, rgba(3,10,30,.28) 50%, rgba(3,10,30,.72) 76%, rgba(3,10,30,.94) 100%); }
 .hb-hero > .wrap:last-of-type { align-self: end; }
 .hb-ev-ph img { object-position: center 34% !important; }
-.hb-hero .hb-c { display: grid; gap: 14px; padding-bottom: 44px; max-width: 760px; margin: 0; }
+.hb-hero .hb-c { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 46ch); align-items: end; gap: 14px 56px; padding-bottom: 44px; margin: 0; }
+.hb-hero .hb-t { display: grid; gap: 14px; }
+.hb-hero .hb-c > p { padding-bottom: 6px; }
+@media (max-width: 860px) { .hb-hero .hb-c { grid-template-columns: 1fr; } .hb-hero .hb-c > p { padding-bottom: 0; } }
+/* Boquete hub: the e-bike banner on the dark spruce green */
+.hb-ev-dark.ev-banner { background: var(--ev-deep); }
+.hb-ev-dark .ev-p strong { color: #fff; }
 .hb-hero .lbl { color: #fff; }
 .hb-hero h1 { font: 650 clamp(56px, 6.4vw, 96px)/.95 var(--serif); color: #fff; letter-spacing: -0.01em; }
 .hb-hero p { font: 400 clamp(17px, 1.4vw, 20px)/1.55 var(--sans); color: rgba(255,255,255,.92); max-width: 52ch; }
@@ -619,8 +625,8 @@ def build_hub(rel, out, cfg):
   <img class="hero-img" alt="{html.escape(cfg.get("hero_alt") or html.unescape(HB[2]))}" fetchpriority="high" src="{hero}" style="object-position:center {cfg.get("focus", 45)}%"/>
   {nav(cfg["en"], cfg["es"], lang)}
   <div class="wrap"><div class="hb-c">
-    <span class="lbl">{eyebrow}</span>
-    <h1>{name}</h1>
+    <div class="hb-t"><span class="lbl">{eyebrow}</span>
+    <h1>{name}</h1></div>
     <p>{dek}</p>
   </div></div>
 </header>
@@ -649,7 +655,7 @@ def _boquete(groups, pill_img):
     pill_img[groups.index(wheels)] = "/images/v2/boquete-ebike-hero-tile.webp"
 _bq_cta = B.blocks("boquete-en")["banner"]
 # hub only: the waterfall photo in the banner; the riders photo is overused (live guide CTAs are unchanged)
-_bq_cta = _bq_cta.replace("evalley-boquete-ebike-trail", "evalley-boquete-ebike-hero").replace("Two riders on E-Valley e-bikes on a farm track in Boquete", "Two riders with e-bikes in front of a waterfall near Boquete").replace('class="ev-ph"', 'class="ev-ph hb-ev-ph"')
+_bq_cta = _bq_cta.replace("evalley-boquete-ebike-trail", "evalley-boquete-ebike-hero").replace("Two riders on E-Valley e-bikes on a farm track in Boquete", "Two riders with e-bikes in front of a waterfall near Boquete").replace('class="ev-ph"', 'class="ev-ph hb-ev-ph"').replace('class="evx ev-banner"', 'class="evx ev-dark ev-banner hb-ev-dark"')
 # every value in icons and glance is taken from that hub's own text
 build_hub("articles/boquete", "boquete-hub.html", dict(
     en="/preview/boquete-hub.html", es="/es/articles/boquete", region="Chiriquí highlands", hero="/images/v2/boquete-hills-hero-1920.webp",
