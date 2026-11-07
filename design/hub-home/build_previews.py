@@ -818,13 +818,19 @@ def act_photo(t):
     t = ACT_ES.get(t, t)
     return ACT_PHOTO.get(t) or img_of(act_img[t])
 
+# the seven places in "Where in Panama?": the five hubs, then two places with a single guide.
+# El Valle, Bocas and San Blas show their hub's hero photo.
+EVT, BQT, SBT = ("/images/v2/the-el-valle-de-anton-crater-829139d1-gallery.webp", "/images/v2/nyara-bocas-del-toro-panama-hero-960.webp",
+                 "/images/v2/x-diadup-kuna-yala-panam-c3-a1-hero-960.webp")
 PLACES = {
  "en": [("Panama City", "Capital and canal", "/articles/panama-city", None), ("Boquete", "Coffee highlands", "/articles/boquete", None),
-        ("El Valle de Antón", "Volcanic crater", "/articles/el-valle-de-anton", None), ("Bocas del Toro", "Caribbean islands", "/articles/bocas-del-toro", None),
-        ("San Blas", "Guna Yala", "/preview/san-blas-hub.html", img_of("/articles/san-blas-islands-panama-guna-yala-guide"))],
+        ("El Valle de Antón", "Volcanic crater", "/articles/el-valle-de-anton", EVT), ("Bocas del Toro", "Caribbean islands", "/articles/bocas-del-toro", BQT),
+        ("San Blas", "Guna Yala", "/articles/san-blas", SBT), ("Casco Viejo", "The old quarter", "/articles/casco-viejo-panama-walking-guide", None),
+        ("Playa Venao", "Surf coast", "/articles/playa-venao-panama", None)],
  "es": [("Ciudad de Panamá", "Capital y canal", "/es/articles/panama-city", None), ("Boquete", "Tierras altas del café", "/es/articles/boquete", None),
-        ("El Valle de Antón", "Cráter volcánico", "/es/articles/el-valle-de-anton", None), ("Bocas del Toro", "Islas del Caribe", "/es/articles/como-llegar-a-bocas-del-toro-desde-ciudad-de-panama", None),
-        ("San Blas", "Guna Yala", "/es/articles/san-blas-guna-yala-guia-tours-islas", None)]}
+        ("El Valle de Antón", "Cráter volcánico", "/es/articles/el-valle-de-anton", EVT), ("Bocas del Toro", "Islas del Caribe", "/es/articles/como-llegar-a-bocas-del-toro-desde-ciudad-de-panama", BQT),
+        ("San Blas", "Guna Yala", "/es/articles/san-blas-guna-yala-guia-tours-islas", SBT), ("Casco Viejo", "Barrio histórico", "/es/articles/casco-viejo-restaurantes-donde-comer-beber-hospedarse", None),
+        ("Coiba", "Parque marino", "/es/articles/isla-coiba-buceo-parque-nacional", "/images/v2/isla-canales-de-afuera-shallows-2063365818-gallery.webp")]}
 # (title, where it is, link, photo key in act_photo)
 DOING = {
  "en": [("Hiking", "El Valle and Boquete", "/articles/hiking-in-panama-best-trails", "Hiking & Trails"),
@@ -882,7 +888,10 @@ L = {"en": dict(file="home.html", title="Preview: Panama Spot homepage", en="/pr
                      ("/es/articles/panama-city", "f", "Capital", "Ciudad de Panamá", "", "photo", "/images/v2/panama-city-skyline-from-the-waterfront-17477516-hero-1280.webp"),
                      ("/es/articles/isla-coiba-buceo-parque-nacional", "g", "Pacífico", "Coiba y su parque nacional", "", "photo", None)])}
 
-def build_home(lang):
+VIDEO = """<video class="hero-img hx-vid" autoplay muted loop playsinline preload="auto" poster="/images/v2/home-hero-video-poster.webp" aria-hidden="true">
+<source src="/video/home-hero-540.mp4" type="video/mp4" media="(max-width: 760px)"><source src="/video/home-hero-900.mp4" type="video/mp4"></video>
+<script>(function(){var v=document.querySelector(".hx-vid");if(v&&matchMedia("(prefers-reduced-motion: reduce)").matches){v.removeAttribute("autoplay");v.pause();}})();</script>"""
+def build_home(lang, video=False):
     C = L[lang]; foot = donors(lang)["foot"]
     groups_ = {n: re.findall(r'href="(/(?:es/)?articles/[^"]+)">(.*?)</a>', ul) for n, ul in re.findall(r"<h4>(.*?)</h4><ul>(.*?)</ul>", foot, re.S)}
     def tile_img(u): return ROW_PHOTO.get(u) or (dest_img(u) if u in HUBS else img_of(u))
@@ -921,7 +930,7 @@ def build_home(lang):
     acts = cards_of("ACTIVITIES", lang)
     body = f"""<div class="guide-progress" id="prog" aria-hidden="true"></div>
 <header class="hero hx-home">
-  {rot(lang)}
+  {VIDEO if video else rot(lang)}
   {nav(C["en"], C["es"], lang)}
   <div class="wrap hx-c">
     <h1 class="hx-mark">Panam<span class="a">á</span><i class="pd"></i></h1>
@@ -930,7 +939,7 @@ def build_home(lang):
   </div>
 </header>
 <section class="wrap hx-sec" id="cat-regions"><div class="band-h"><div><h2>{C["where"]}</h2></div></div>
-<div class="hx-g7 g6">{"".join(f'<a class="hx-t" href="{u}"><span class="ph"><img alt="" loading="lazy" src="{ph or (dest_img(u) if (u in HUBS or u in ES_TWIN) else img_of(u))}"/></span><b>{n}</b><span class="c"><i class="dot"></i>{t}</span></a>' for n, t, u, ph in PLACES[lang])}</div></section>
+<div class="hx-g7">{"".join(f'<a class="hx-t" href="{u}"><span class="ph"><img alt="" loading="lazy" src="{ph or (dest_img(u) if (u in HUBS or u in ES_TWIN) else img_of(u))}"/></span><b>{n}</b><span class="c"><i class="dot"></i>{t}</span></a>' for n, t, u, ph in PLACES[lang])}</div></section>
 <div class="hx-band"><section class="wrap hx-sec" id="cat-activities"><div class="band-h"><div><h2>{C["what"]}</h2></div></div>
 <div class="hx-dest hx-do">{"".join(f'<a class="hx-d" href="{u}"><img alt="" loading="lazy" src="{act_photo(k)}"/><span class="ft"><b>{n}</b><small>{w}</small></span></a>' for n, w, u, k in DOING[lang])}</div></section>
 <section class="wrap hx-sec"><div class="band-h"><div><h2>{C["fresh_h"]}</h2></div></div>
@@ -938,11 +947,13 @@ def build_home(lang):
 {rows}
 <div class="hx-band bento"><section class="wrap hx-sec"><div class="band-h"><div><h2>{C["bento"]}</h2></div></div><div class="hx-mix">{"".join(mixcard(*m) for m in C["mix"])}</div></section></div>
 """
-    out = page(C["title"], body + ROTJS, HOME_BG, lang, head="<!--SEO-HEAD-->")
+    out = page(C["title"], body + ("" if video else ROTJS), "/images/v2/home-hero-video-poster.webp" if video else HOME_BG, lang,
+               head='<title>Preview: homepage with hero video</title><meta name="robots" content="noindex, nofollow">' if video else "<!--SEO-HEAD-->")
     # the footer's opening band ("Find your spot in Panama", Start exploring, Where to next?) repeats the hero and "Where in Panama?" on the homepage
     out = re.sub(r'<div class="wrap f-top">.*?</div>', "", out, count=1, flags=re.S)
     out = re.sub(r'<div class="wrap f-dest">.*?</div></div>', "", out, count=1, flags=re.S)
-    f = HOME_OUT / ("index.html" if lang == "en" else "es.html")
+    f = (P / "preview" / "home-video.html") if video else HOME_OUT / ("index.html" if lang == "en" else "es.html")
+    f.parent.mkdir(exist_ok=True)
     f.write_text(finalize(out))
     print("wrote", f)
-build_home("en"); build_home("es")
+build_home("en"); build_home("es"); build_home("en", video=True)  # the video hero, for review before it replaces the photos
