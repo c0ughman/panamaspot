@@ -1,20 +1,43 @@
-"""Preview of the Boquete hub and the homepage in the new guide template (not linked anywhere, noindex).
-Content comes from the live hub and homepage; only the design changes.
-  python3 design/hub-home/build_previews.py   ->  public/preview/boquete-hub.html, public/preview/home.html
+"""Builds the live homepage (EN + ES) and the five destination hubs in the guide template.
+
+  python3 design/hub-home/build_previews.py
+    -> public/articles/{boquete,el-valle-de-anton,panama-city,bocas-del-toro,san-blas}.html
+       public/es/articles/{boquete,el-valle-de-anton,panama-city}.html
+       site-pages/index.html, site-pages/es.html  (scripts/build-static.mjs swaps these in for the Next homepage
+                                                   and keeps the Next page's title, meta, canonical, hreflang and JSON-LD)
+
+Hub content (guide lists, intro, blurbs) and each hub's <head> SEO tags come from the old hub pages, kept in
+design/hub-home/source/ (the hubs in public/ are this script's output, so they can't be its input).
+The header (menus, search, EN/ES switch) comes from scripts/site_menu.py and config/site-menu.json.
 """
 import html, re, importlib.util
 from pathlib import Path
-ROOT = Path(__file__).resolve().parents[2]; P = ROOT / "public"; OUT = P / "preview"; OUT.mkdir(exist_ok=True)
+ROOT = Path(__file__).resolve().parents[2]; P = ROOT / "public"; HUBSRC = ROOT / "design/hub-home/source"; HOME_OUT = ROOT / "site-pages"; HOME_OUT.mkdir(exist_ok=True)
+def srcf(href):
+    """The source HTML for a page: the old hub when it is one of the rebuilt hubs, otherwise the live page."""
+    rel = href.lstrip("/"); s = HUBSRC / f"{rel}.html"
+    return s if s.exists() else P / f"{rel}.html"
 sp = importlib.util.spec_from_file_location("r", ROOT / "scripts/reskin_old_guides.py"); R = importlib.util.module_from_spec(sp); sp.loader.exec_module(R)
 sp = importlib.util.spec_from_file_location("b", ROOT / "design/evalley-cta/build.py"); B = importlib.util.module_from_spec(sp); sp.loader.exec_module(B)
 sp = importlib.util.spec_from_file_location("roll", ROOT / "scripts/evalley_cta_rollout.py"); ROLL = importlib.util.module_from_spec(sp); sp.loader.exec_module(ROLL)
+sp = importlib.util.spec_from_file_location("sm", ROOT / "scripts/site_menu.py"); SM = importlib.util.module_from_spec(sp); sp.loader.exec_module(SM)
+# preview addresses used while designing -> the real ones
+URLMAP = {"/preview/home-es.html": "/es", "/preview/home.html": "/",
+          "/preview/boquete-hub-es.html": "/es/articles/boquete", "/preview/boquete-hub.html": "/articles/boquete",
+          "/preview/el-valle-hub-es.html": "/es/articles/el-valle-de-anton", "/preview/el-valle-hub.html": "/articles/el-valle-de-anton",
+          "/preview/panama-city-hub-es.html": "/es/articles/panama-city", "/preview/panama-city-hub.html": "/articles/panama-city",
+          "/preview/bocas-hub.html": "/articles/bocas-del-toro", "/preview/san-blas-hub.html": "/articles/san-blas"}
+def finalize(h):
+    for a, b in URLMAP.items(): h = h.replace(f'"{a}"', f'"{b}"')
+    assert "/preview/" not in h, "a preview link survived"
+    return h
 D = R.donor_parts("en"); SITE = "https://panamaspot.com"
 E = lambda s: html.escape(html.unescape(s), quote=False)
 
 
 def img_of(href):
     """A guide's own hero photo, at tile size when one exists."""
-    f = P / (href.lstrip("/") + ".html")
+    f = srcf(href)
     h = f.read_text(errors="ignore") if f.exists() else ""
     m = re.search(r'<img\b[^>]*class="hero-img"[^>]*>', h) or re.search(r'hub-hero-img"><img\b[^>]*>', h)
     if not m: return ""
@@ -26,7 +49,7 @@ def img_of(href):
 
 
 def title_of(href):
-    f = P / (href.lstrip("/") + ".html"); h = f.read_text(errors="ignore")
+    f = srcf(href); h = f.read_text(errors="ignore")
     return R.text(re.search(r"<h1[^>]*>(.*?)</h1>", h, re.S)[1])
 
 
@@ -339,16 +362,17 @@ def arrows(html_text):
     body_ = re.sub(r"\s*→", '<i class="ia" aria-hidden="true"></i>', body_)
     body_ = body_.replace('<span class="ar"><i class="ia" aria-hidden="true"></i></span>', '<span class="ar"></span>')
     return head + "<body>" + body_
-def page(title, body, hero_preload, lang="en"):
+def page(title, body, hero_preload, lang="en", head=None):
     D = donors(lang)
     return arrows(f"""<!doctype html>
 <html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>{title}</title><meta name="robots" content="noindex, nofollow">
+{head or f'<title>{title}</title><meta name="robots" content="noindex, nofollow">'}
 <link rel="preload" as="image" href="{hero_preload}" fetchpriority="high"/>
 {D["font"]}
 <link rel="preload" as="font" type="font/woff2" href="/fonts/GildaC-450.woff2" crossorigin>
 <style>.fw .hero > .wrap, .fw #cat-regions .band-h, .fw .hx-t b, .fw .hx-t .c {{ opacity: 0; }} .hero > .wrap, #cat-regions .band-h, .hx-t b, .hx-t .c {{ transition: opacity .18s; }}</style>
-{D["style"].replace("</style>", R.EXTRA_CSS + CSS.replace("ARWVAL", ARW) + MENU_CSS + "</style>")}
+{D["style"].replace("</style>", R.EXTRA_CSS + CSS.replace("ARWVAL", ARW) + "</style>")}
+{SM.css_block()}
 <script>(function(){{var d=document.documentElement,f=document.fonts;if(!f||!f.load)return;d.classList.add("fw");var done=function(){{d.classList.remove("fw")}};
 Promise.all(["400 1em GildaC","650 1em GildaC","700 1em GildaC","400 1em 'Hanken Grotesk'","500 1em 'Hanken Grotesk'","600 1em 'Hanken Grotesk'","700 1em 'Hanken Grotesk'"].map(function(x){{return f.load(x)}})).then(done,done);setTimeout(done,1500)}})();</script>
 <noscript><style>.fw .hero > .wrap {{ opacity: 1; }}</style></noscript>
@@ -358,7 +382,7 @@ Promise.all(["400 1em GildaC","650 1em GildaC","700 1em GildaC","400 1em 'Hanken
 {D["foot"]}
 {D["js"].replace('var art = document.getElementById("article")', 'var art = document.getElementById("article") || document.body')}
 <script src="/js/search.js" defer></script>
-{MENU_JS}
+{SM.js_block()}
 </body></html>
 """)
 
@@ -370,137 +394,10 @@ def _foot_photo(href):
     if href.startswith("/images/"): return href
     m = re.search(r'<a class="fc" href="' + re.escape(href) + r'"><img class="ph"[^>]*src="([^"]+)"', D["foot"])
     return m[1].replace(SITE, "") if m else img_of(href)
-MENU = {
- "en": dict(btn="Menu", close="Close", all_dest="All destinations", groups=[
-   ("Destinations", "dest", [("Panama City", "Capital and canal", "/articles/panama-city", "/articles/panama-city"),
-                             ("Boquete", "Coffee highlands", "/articles/boquete", "/articles/boquete"),
-                             ("El Valle de Antón", "Volcanic crater", "/articles/el-valle-de-anton", "/articles/el-valle-de-anton"),
-                             ("Bocas del Toro", "Caribbean islands", "/articles/bocas-del-toro", "/articles/bocas-del-toro"),
-                             ("San Blas", "Guna Yala", "/preview/san-blas-hub.html", "/articles/san-blas-islands-panama-guna-yala-guide"),
-                             ("Casco Viejo", "The old quarter", "/articles/casco-viejo-panama-walking-guide", "/articles/casco-viejo-panama-walking-guide"),
-                             ("Pearl Islands", "Pacific islands", "/articles/pearl-islands-panama-guide", "/articles/pearl-islands-panama-guide"),
-                             ("Contadora", "Pearl Islands ferry", "/articles/contadora-ferry-from-panama-city", "/articles/contadora-ferry-from-panama-city"),
-                             ("Playa Venao", "Surf coast", "/articles/playa-venao-panama", "/articles/playa-venao-panama"),
-                             ("Cayos Zapatillas", "Bocas reef cays", "/articles/cayos-zapatillas-snorkelling-bocas-del-toro", "/articles/cayos-zapatillas-snorkelling-bocas-del-toro")]),
-   ("Things to do", "list", [("Hiking", "/articles/hiking-in-panama-best-trails"), ("Waterfalls", "/articles/best-waterfalls-in-panama-where-to-see-several"),
-                             ("Birding and wildlife", "/articles/birding-el-valle-de-anton-trails-lodges-season"), ("Islands and beaches", "/articles/san-blas-islands-panama-guna-yala-guide"),
-                             ("Surfing", "/articles/panama-surf-camps"), ("Diving", "/articles/diving-in-panama"),
-                             ("Coffee", "/articles/geisha-coffee-boquete-where-to-taste"), ("The old quarter", "/articles/casco-viejo-panama-walking-guide")]),
-   ("Plan your trip", "list", [("Best time to visit", "/articles/best-time-to-visit-panama"), ("Is Panama safe?", "/articles/is-panama-safe"),
-                               ("Renting a car", "/articles/renting-a-car-in-panama"), ("Panama City to Boquete", "/articles/panama-city-to-boquete"),
-                               ("Day trips from the city", "/articles/day-trips-from-panama-city"), ("El Valle or Boquete?", "/articles/el-valle-de-anton-vs-boquete")])]),
- "es": dict(btn="Menú", close="Cerrar", all_dest="Todos los destinos", groups=[
-   ("Destinos", "dest", [("Ciudad de Panamá", "Capital y canal", "/es/articles/panama-city", "/articles/panama-city"),
-                         ("Boquete", "Tierras altas del café", "/es/articles/boquete", "/articles/boquete"),
-                         ("El Valle de Antón", "Cráter volcánico", "/es/articles/el-valle-de-anton", "/articles/el-valle-de-anton"),
-                         ("Bocas del Toro", "Islas del Caribe", "/es/articles/como-llegar-a-bocas-del-toro-desde-ciudad-de-panama", "/articles/bocas-del-toro"),
-                         ("San Blas", "Guna Yala", "/es/articles/san-blas-guna-yala-guia-tours-islas", "/articles/san-blas-islands-panama-guna-yala-guide"),
-                         ("Casco Viejo", "Barrio histórico", "/es/articles/casco-viejo-restaurantes-donde-comer-beber-hospedarse", "/es/articles/casco-viejo-restaurantes-donde-comer-beber-hospedarse"),
-                         ("Coiba", "Parque marino", "/es/articles/isla-coiba-buceo-parque-nacional", "/images/v2/isla-canales-de-afuera-shallows-2063365818-gallery.webp"),
-                         ("Cinta Costera", "Mercado y malecón", "/es/articles/cinta-costera-panama-mercado-mariscos-panama-viejo", "/es/articles/cinta-costera-panama-mercado-mariscos-panama-viejo"),
-                         ("Chiriquí", "Montañas y playas", "/es/articles/lugares-turisticos-chiriqui", "/es/articles/lugares-turisticos-chiriqui"),
-                         ("Coclé", "Cráter y playas", "/es/articles/lugares-turisticos-de-cocle", "/es/articles/lugares-turisticos-de-cocle")]),
-   ("Qué hacer", "list", [("Senderismo", "/es/articles/senderismo-en-panama-mejores-senderos-ciudad"), ("Cascadas", "/es/articles/cascadas-en-panama-mejores-como-llegar"),
-                          ("Aves y quetzales", "/es/articles/sendero-los-quetzales-quetzal-boquete"), ("Islas y playas", "/es/articles/san-blas-guna-yala-guia-tours-islas"),
-                          ("Buceo en Coiba", "/es/articles/isla-coiba-buceo-parque-nacional"), ("Rafting", "/es/articles/rafting-boquete-rio-chiriqui"),
-                          ("Café", "/es/articles/tour-de-cafe-boquete-fincas-precios-reservar"), ("La ciudad", "/es/articles/que-hacer-en-ciudad-de-panama")]),
-   ("Planifica tu viaje", "list", [("Boquete sin carro", "/es/articles/como-llegar-a-boquete-sin-carro"), ("Cuánto cuesta Boquete", "/es/articles/cuanto-cuesta-boquete-presupuesto-semana"),
-                                   ("El Valle desde la capital", "/es/articles/el-valle-de-anton-desde-ciudad-de-panama"), ("Cómo llegar a Bocas", "/es/articles/como-llegar-a-bocas-del-toro-desde-ciudad-de-panama"),
-                                   ("Fin de semana en El Valle", "/es/articles/fin-de-semana-el-valle-de-anton-2-dias"), ("El Valle en un día", "/es/articles/el-valle-de-anton-en-un-dia-itinerario")])])}
-CHEV = '<svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
-def menu_html(lang):
-    M = MENU[lang]; home = "/es" if lang == "es" else "/"
-    def panel(i, label, kind, items):
-        if kind == "dest":
-            inner = ('<div class="mm-dest">' + "".join(f'<a href="{u}"><img alt="" loading="lazy" src="{_foot_photo(ph)}"/><b>{n}</b></a>' for n, s, u, ph in items)
-                     + '</div>')
-        else:
-            inner = '<ul class="mm-list">' + "".join(f'<li><a href="{u}"><img alt="" loading="lazy" src="{img_of(u)}"/><span>{n}</span></a></li>' for n, u in items) + "</ul>"
-        return (f'<div class="mm-item"><button type="button" class="mm-btn" aria-expanded="false" aria-controls="mm-{i}">{label}</button>'
-                f'<div class="mm-panel mm-p-{kind}" id="mm-{i}" hidden>{inner}</div></div>')
-    desk = '<nav class="links mm" aria-label="Main">' + "".join(panel(i, *g) for i, g in enumerate(M["groups"])) + "</nav>"
-    # phones: one button, the same three groups in one sheet
-    sheet = "".join(f'<section><h3>{label}</h3>'
-                    + ('<div class="mm-dest">' + "".join(f'<a href="{u}"><img alt="" loading="lazy" src="{_foot_photo(ph)}"/><b>{n}</b></a>' for n, s, u, ph in items) + "</div>"
-                       if kind == "dest" else '<ul class="mm-list">' + "".join(f'<li><a href="{u}"><img alt="" loading="lazy" src="{img_of(u)}"/><span>{n}</span></a></li>' for n, u in items) + "</ul>")
-                    + "</section>" for label, kind, items in M["groups"])
-    mob = (f'<button type="button" class="mm-burger glass" aria-expanded="false" aria-controls="mm-sheet" aria-label="{M["btn"]}"><i></i><i></i></button>'
-           f'<div class="mm-sheet" id="mm-sheet" hidden><div class="mm-sheet-in">{sheet}</div></div>')
-    return desk, mob
-MENU_CSS = """
-/* main menu: frosted glass dropdowns (preview) */
-.nav, .hero > .wrap.nav { position: relative; z-index: 60; }
-.nav .links.mm { gap: clamp(8px, 1.4vw, 22px); align-items: center; }
-.mm-item { position: relative; }
-.mm-btn { display: inline-flex; align-items: center; gap: 7px; padding: 10px 14px; border: 0; border-radius: 999px; background: transparent; color: #fff; font: 500 15px/1 var(--sans); cursor: pointer; transition: text-shadow .3s ease; text-shadow: 0 1px 10px rgba(0,0,0,.35); }
-.mm-btn:hover, .mm-btn[aria-expanded=true] { text-shadow: 0 0 14px rgba(255,255,255,.75), 0 0 2px rgba(255,255,255,.4); }
-.mm-btn .chev { width: 12px; height: 12px; transition: transform .35s cubic-bezier(.2,.8,.2,1); opacity: .85; }
-.mm-btn[aria-expanded=true] .chev { transform: rotate(180deg); }
-.mm-panel, .mm-sheet-in { color: #fff; border-radius: 26px; background: linear-gradient(rgba(12,22,44,.32), rgba(12,22,44,.32)), rgba(255,255,255,.14);
-  -webkit-backdrop-filter: blur(26px) saturate(1.5); backdrop-filter: blur(26px) saturate(1.5); box-shadow: inset 0 0 0 1px rgba(255,255,255,.22), 0 24px 70px rgba(2,8,24,.35); }
-.mm-panel { position: fixed; z-index: 80; padding: 14px; opacity: 0; transform: translateY(-8px) scale(.975); transform-origin: top center; transition: opacity .22s ease, transform .38s cubic-bezier(.2,.9,.25,1.02); }
-.mm-panel.open { opacity: 1; transform: none; }
-.mm-panel[hidden] { display: block; visibility: hidden; pointer-events: none; }
-.mm-dest { display: grid; grid-template-columns: repeat(5, 112px); gap: 14px 10px; }
-.mm-dest a { display: grid; gap: 2px; color: #fff; text-decoration: none; }
-.mm-dest img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 12px; margin-bottom: 6px; transition: transform .5s cubic-bezier(.2,.8,.2,1); }
-.mm-dest b { font: 700 13.5px/1.2 var(--sans); }
-.mm-dest small { font: 500 11.5px/1.25 var(--sans); color: rgba(255,255,255,.72); }
-.mm-all { display: inline-flex; margin: 14px 4px 2px; font: 600 13.5px/1 var(--sans); color: #fff; text-decoration: none; opacity: .9; }
-.mm-all:hover { opacity: 1; }
-.mm-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; min-width: 260px; }
-#mm-1 .mm-list { grid-template-columns: 1fr 1fr; min-width: 480px; }
-.mm-list a { display: flex; align-items: center; gap: 12px; padding: 8px 12px 8px 8px; border-radius: 14px; color: #fff; text-decoration: none; font: 600 14.5px/1.2 var(--sans); transition: background .2s; }
-.mm-list a:hover { background: rgba(255,255,255,.14); }
-.mm-list span { display: inline-flex; align-items: center; gap: 8px; }
-.mm-list span::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--red); flex: none; }
-.mm-list img { width: 40px; height: 40px; border-radius: 11px; object-fit: cover; flex: none; }
-@keyframes mm-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-.mm-burger { display: none; width: 40px; height: 40px; border: 0; border-radius: 50%; padding: 0; cursor: pointer; place-items: center; align-content: center; gap: 5px; }
-.mm-burger i { display: block; width: 16px; height: 1.6px; background: #fff; border-radius: 2px; transition: transform .35s cubic-bezier(.2,.8,.2,1); }
-.mm-burger[aria-expanded=true] i:first-child { transform: translateY(3.3px) rotate(45deg); } .mm-burger[aria-expanded=true] i:last-child { transform: translateY(-3.3px) rotate(-45deg); }
-.mm-sheet { position: fixed; inset: 70px 10px auto; z-index: 80; }
-.mm-sheet[hidden] { display: none; }
-.mm-sheet-in { max-height: calc(100dvh - 90px); overflow-y: auto; padding: 18px 16px 8px; animation: mm-in .38s cubic-bezier(.2,.8,.2,1) both; }
-.mm-sheet h3 { font: 600 12.5px/1 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.7); margin: 4px 4px 12px; }
-.mm-sheet section + section { margin-top: 18px; }
-.mm-sheet .mm-dest { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px 6px; }
-.mm-sheet .mm-dest b { font-size: 11px; }
-.mm-sheet .mm-dest small { display: none; }
-.mm-sheet .mm-dest img { aspect-ratio: 1; border-radius: 10px; }
-.mm-sheet .mm-list { grid-template-columns: 1fr 1fr; min-width: 0; }
-.mm-sheet .mm-list a { padding: 6px; font-size: 14px; }
-.mm-sheet .mm-list img { width: 34px; height: 34px; }
-@media (max-width: 900px) { .nav .links.mm { display: none; } .mm-burger { display: grid; } }
-.nav .links .mm-panel a, .mm-sheet a { text-shadow: none; text-decoration: none; opacity: 1; }
-.nav .links .mm-panel .mm-list a { font: 600 14.5px/1.2 var(--sans); }
-.nav .links .mm-panel .mm-all { font: 600 13.5px/1 var(--sans); }
-.nav .links .mm-panel a:hover { text-decoration: none; opacity: 1; }
-@media (prefers-reduced-motion: reduce) { .mm-panel, .mm-btn .chev { transition: none; } .mm-sheet-in { animation: none; } }
-"""
-MENU_JS = """<script>(function(){var items=[].slice.call(document.querySelectorAll(".mm-item")),open=null,t;
-function place(it){var b=it.querySelector(".mm-btn").getBoundingClientRect(),p=it.querySelector(".mm-panel"),w=p.offsetWidth;p.style.top=(b.bottom+10)+"px";p.style.left=Math.max(12,Math.min(innerWidth-w-12,b.left+b.width/2-w/2))+"px";}
-function show(it){if(open&&open!==it)hide(open);clearTimeout(t);var p=it.querySelector(".mm-panel");p.hidden=false;place(it);requestAnimationFrame(function(){p.classList.add("open")});it.querySelector(".mm-btn").setAttribute("aria-expanded","true");open=it;}
-function hide(it){var p=it.querySelector(".mm-panel");p.classList.remove("open");it.querySelector(".mm-btn").setAttribute("aria-expanded","false");setTimeout(function(){if(!p.classList.contains("open"))p.hidden=true},260);if(open===it)open=null;}
-items.forEach(function(it){var b=it.querySelector(".mm-btn"),p=it.querySelector(".mm-panel");
-b.addEventListener("click",function(){open===it?hide(it):show(it)});
-if(matchMedia("(hover: hover)").matches){[b,p].forEach(function(el){el.addEventListener("mouseenter",function(){clearTimeout(t);if(open!==it)t=setTimeout(function(){show(it)},open?0:90)});el.addEventListener("mouseleave",function(){clearTimeout(t);t=setTimeout(function(){if(open===it)hide(it)},180)})});}});
-document.addEventListener("click",function(e){if(open&&!open.contains(e.target))hide(open)});
-addEventListener("keydown",function(e){if(e.key==="Escape"){if(open){var b=open.querySelector(".mm-btn");hide(open);b.focus()}closeSheet()}});
-addEventListener("scroll",function(){if(open)hide(open)},{passive:true});addEventListener("resize",function(){if(open)place(open)});
-var bg=document.querySelector(".mm-burger"),sh=document.getElementById("mm-sheet");
-function closeSheet(){if(!bg)return;bg.setAttribute("aria-expanded","false");sh.hidden=true}
-if(bg){bg.addEventListener("click",function(e){e.stopPropagation();var o=bg.getAttribute("aria-expanded")==="true";bg.setAttribute("aria-expanded",String(!o));sh.hidden=o});
-document.addEventListener("click",function(e){if(!sh.hidden&&!sh.contains(e.target))closeSheet()});}})();</script>"""
-
 def nav(en, es, lang="en"):
-    n = donors(lang)["nav"]
-    on = lambda l: ' class="on"' if l == lang else ""
-    n = re.sub(r'<span class="lang glass">.*?</span>', f'<span class="lang glass"><a{on("en")} href="{en}" hreflang="en">EN</a><a{on("es")} href="{es}" hreflang="es">ES</a></span>', n, flags=re.S)
-    desk, mob = menu_html(lang)
-    n = re.sub(r'<nav class="links"[^>]*>.*?</nav>', lambda m: desk, n, count=1, flags=re.S)
-    n = re.sub(r'<span class="search glass">(.*?)</span></span>', lambda m: f'<a class="search glass" href="{"/es" if lang == "es" else "/"}#cat-regions" data-search aria-haspopup="dialog">{m[1]}</span></a>', n, flags=re.S)
-    return n.replace('<span class="lang glass">', mob + '<span class="lang glass">', 1)
+    """The site header, shared with every guide (scripts/site_menu.py)."""
+    return SM.nav_html(lang, en, es)
+
 
 
 def ptile(u, t, label, im=None, desc=""):
@@ -548,11 +445,11 @@ def look(im):
 def same(a, b): return bin(look(a) ^ look(b)).count("1") <= 12
 def photos_of(u):
     """A guide's hero first, then the other photos in the guide, so a repeated hero can be swapped."""
-    h = (P / (u.lstrip("/") + ".html")).read_text(errors="ignore")
+    h = srcf(u).read_text(errors="ignore")
     rest = re.findall(r'src="(?:' + re.escape(SITE) + r')?(/images/v2/[^"]+?-(?:wide|gallery)\.webp)"', h)
     return [img_of(u)] + rest
 def hero_alt(u):
-    h = (P / (u.lstrip("/") + ".html")).read_text(errors="ignore")
+    h = srcf(u).read_text(errors="ignore")
     m = re.search(r'<img\b[^>]*class="hero-img"[^>]*>', h)
     a = re.search(r'\balt="([^"]*)"', m[0]) if m else None
     return html.unescape(a[1]) if a else ""
@@ -568,7 +465,7 @@ def local(src):
 
 def build_hub(rel, out, cfg):
     lang = "es" if rel.startswith("es/") else "en"; T = UI[lang]
-    b = cfg.get("src") or (P / f"{rel}.html").read_text(); b = b[b.index("<body"):]
+    b = cfg.get("src") or srcf(rel).read_text(); b = b[b.index("<body"):]
     name = re.sub("<[^>]+>", "", re.search(r"<h1[^>]*>(.*?)</h1>", b, re.S)[1]).strip()
     short = cfg.get("short", name)
     dek = cfg.get("dek") or re.search(r'<p class="hub-hero-dek">(.*?)</p>', b, re.S)[1]
@@ -655,8 +552,27 @@ def build_hub(rel, out, cfg):
 </section>
 {(ROLL.JS_M[0] + ROLL.TRACK + ROLL.JS_M[1]) if cta else ""}
 """
-    (OUT / out).write_text(page(f"Preview: {name} hub", body, hero, lang))
-    print("wrote", OUT / out)
+    dest = URLMAP["/preview/" + out].lstrip("/")
+    head = cfg.get("head") or hub_head(rel, hero, cfg.get("hero_alt") or html.unescape(HB[2]))
+    (P / f"{dest}.html").write_text(finalize(page(name, body, hero, lang, head=head)))
+    print("wrote", P / f"{dest}.html")
+
+def hub_head(rel, hero, alt):
+    """The old hub's own SEO tags (title, description, robots, canonical, hreflang, Open Graph, JSON-LD), with the share image updated."""
+    h = (HUBSRC / f"{rel}.html").read_text(); head = h[:h.index("</head>")]
+    keep = []
+    for m in re.finditer(r'<title>.*?</title>|<script type="application/ld\+json">.*?</script>|<meta\b[^>]*>|<link\b[^>]*>', head, re.S):
+        t = m[0]
+        if t.startswith("<meta") and re.search(r'charset|name="viewport"|"viewport"|next-size-adjust', t): continue
+        if t.startswith("<link") and not re.search(r'rel="(?:canonical|alternate|icon)"', t): continue
+        keep.append(t)
+    out = "".join(keep)
+    old = re.search(r'<meta property="og:image" content="([^"]+)"', out)
+    if old:
+        new = SITE + hero
+        for v in {old[1], html.unescape(old[1])}: out = out.replace(v, new)
+    out = re.sub(r'(<meta property="og:image:alt" content=")[^"]*', lambda m: m[1] + html.escape(alt), out)
+    return out
 
 def _boquete(groups, pill_img):
     g = lambda s: next(x for x in groups if html.unescape(x["h2"]).startswith(s))
@@ -789,7 +705,29 @@ def hub_src(name, dek, hero, hero_alt, lead, start, groups, idx, idx_h2):
             + "".join(f'<li><a href="{u}"><span class="num">{i + 1}</span><span class="ttl">{E2(t)}</span><span class="cat">{c}</span></a></li>' for i, (u, t, c) in enumerate(idx)) + "</body>")
 
 _SB = ("/articles/san-blas-islands-panama-guna-yala-guide", "/articles/san-blas-tours-from-panama-city", "/articles/san-blas-sailing-panama-to-colombia")
-build_hub("articles/san-blas", "san-blas-hub.html", dict(
+import json as _json
+def _sb_head():
+    url = SITE + "/articles/san-blas"; img = SITE + "/images/v2/x-diadup-kuna-yala-panam-c3-a1-hero-1920.webp"
+    t = "San Blas (Guna Yala): Every Guide to the Islands"
+    d = "All our San Blas guides in one place: the complete Guna Yala island guide, tours from Panama City compared, and sailing to Colombia."
+    items = [("/articles/san-blas-islands-panama-guna-yala-guide", "San Blas Islands (Guna Yala): The Complete Guide"),
+             ("/articles/san-blas-tours-from-panama-city", "San Blas Tours From Panama City"), ("/articles/san-blas-sailing-panama-to-colombia", "San Blas Sailing, Panama to Colombia")]
+    ld = [{"@context": "https://schema.org", "@type": "Organization", "@id": SITE + "/#organization", "name": "PanamaSpot", "url": SITE,
+           "logo": {"@type": "ImageObject", "url": SITE + "/logo.png", "width": 512, "height": 512}, "sameAs": ["https://www.instagram.com/panamaspot", "https://twitter.com/panamaspot"]},
+          {"@context": "https://schema.org", "@type": "WebSite", "@id": SITE + "/#website", "name": "PanamaSpot", "url": SITE, "publisher": {"@id": SITE + "/#organization"}},
+          {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/"}, {"@type": "ListItem", "position": 2, "name": "San Blas"}]},
+          {"@context": "https://schema.org", "@type": "CollectionPage", "@id": url + "#collection", "url": url, "name": t, "description": d, "inLanguage": "en-US",
+           "isPartOf": {"@id": SITE + "/#website"}, "primaryImageOfPage": {"@type": "ImageObject", "url": img},
+           "mainEntity": {"@type": "ItemList", "numberOfItems": len(items), "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": SITE + u, "name": n} for i, (u, n) in enumerate(items)]}}]
+    e = lambda x: html.escape(x, quote=True)
+    return (f'<meta content="#ffffff" name="theme-color"/><title>{e(t)}</title><meta name="description" content="{e(d)}"/><meta content="PanamaSpot" name="application-name"/>'
+            f'<meta content="index, follow" name="robots"/><link href="{url}" rel="canonical"/><link href="{url}" hreflang="en" rel="alternate"/><link href="{url}" hreflang="x-default" rel="alternate"/>'
+            f'<meta property="og:title" content="{e(t)}"/><meta property="og:description" content="{e(d)}"/><meta property="og:url" content="{url}"/><meta content="PanamaSpot" property="og:site_name"/>'
+            f'<meta property="og:locale" content="en_US"/><meta property="og:image" content="{img}"/><meta property="og:image:alt" content="A leaning palm on a white sand beach facing turquoise water in Guna Yala."/>'
+            f'<meta property="og:type" content="website"/><meta content="summary_large_image" name="twitter:card"/><meta content="@panamaspot" name="twitter:site"/>'
+            f'<meta name="twitter:title" content="{e(t)}"/><meta name="twitter:description" content="{e(d)}"/><meta name="twitter:image" content="{img}"/><link href="/favicon.ico" rel="icon"/>'
+            + "".join(f'<script type="application/ld+json">{_json.dumps(x, ensure_ascii=False)}</script>' for x in ld))
+build_hub("articles/san-blas", "san-blas-hub.html", dict(head=_sb_head(),
     src=hub_src("San Blas", "Palm cays and turquoise water on the Caribbean, home of the Guna people.",
         "/images/v2/x-diadup-kuna-yala-panam-c3-a1-hero-1920.webp", "A leaning palm on a white sand beach facing turquoise water in Guna Yala.",
         "San Blas is the Comarca Guna Yala: 365 islands and cays off Panama's Caribbean coast, governed by the Guna. You get there by 4x4 from Panama City to the port of Cartí, then by boat, and most people come for a day trip or a night or two on an island.",
@@ -858,7 +796,7 @@ DEST_PHOTO["/articles/el-valle-de-anton"] = EV_PHOTO
 def dest_img(href):
     return DEST_PHOTO.get(ES_TWIN.get(href, href)) or img_of(href)
 def count(href):
-    f = P / (href.lstrip("/") + ".html"); t = f.read_text(errors="ignore")
+    f = srcf(href); t = f.read_text(errors="ignore")
     pre = "/es/articles/" if href.startswith("/es/") else "/articles/"
     return len(set(re.findall(r'href="(' + pre + r'[^"#]+)"', t[t.find("<body"):t.find("<footer")])))
 HUBS = {"/articles/boquete", "/articles/el-valle-de-anton", "/articles/panama-city", "/articles/bocas-del-toro",
@@ -868,7 +806,7 @@ ROW_PHOTO = {"/articles/tours-in-boquete-panama": "/images/v2/grupo-disfrutando-
              "/es/articles/tours-en-boquete-panama": "/images/v2/boquete-zipline-rider-hero-1280.webp",
              "/es/articles/panama-city": "/images/v2/skyscrapers-catch-the-last-light-at-13842831-hero-1280.webp"}
 def dek_of(href):
-    t = (P / (href.lstrip("/") + ".html")).read_text(errors="ignore"); m = re.search(r'<p class="dek">(.*?)</p>', t, re.S); s = R.text(m[1]) if m else ""
+    t = srcf(href).read_text(errors="ignore"); m = re.search(r'<p class="dek">(.*?)</p>', t, re.S); s = R.text(m[1]) if m else ""
     return s if len(s) < 150 else s[:150].rsplit(" ", 1)[0] + "…"
 ACT_PHOTO = {"Eco-tourism": "/images/v2/mist-drifts-through-the-cloud-forest-36345390-wide.webp"}
 act_img = {"Hiking & Trails": "/articles/hikes-in-boquete", "Wildlife & Birding": "/articles/birding-el-valle-de-anton-trails-lodges-season", "Surf & Dive": "/articles/panama-surf-camps",
@@ -999,10 +937,11 @@ def build_home(lang):
 {rows}
 <div class="hx-band bento"><section class="wrap hx-sec"><div class="band-h"><div><h2>{C["bento"]}</h2></div></div><div class="hx-mix">{"".join(mixcard(*m) for m in C["mix"])}</div></section></div>
 """
-    out = page(C["title"], body + ROTJS, HOME_BG, lang)
+    out = page(C["title"], body + ROTJS, HOME_BG, lang, head="<!--SEO-HEAD-->")
     # the footer's opening band ("Find your spot in Panama", Start exploring, Where to next?) repeats the hero and "Where in Panama?" on the homepage
     out = re.sub(r'<div class="wrap f-top">.*?</div>', "", out, count=1, flags=re.S)
     out = re.sub(r'<div class="wrap f-dest">.*?</div></div>', "", out, count=1, flags=re.S)
-    (OUT / C["file"]).write_text(out)
-    print("wrote", OUT / C["file"])
+    f = HOME_OUT / ("index.html" if lang == "en" else "es.html")
+    f.write_text(finalize(out))
+    print("wrote", f)
 build_home("en"); build_home("es")

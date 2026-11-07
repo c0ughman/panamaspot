@@ -124,6 +124,8 @@ const HUB_SLUGS = {
   "el-valle-de-anton": "elvalle",
   boquete: "boquete",
   "panama-city": "panama-city",
+  "bocas-del-toro": "bocas",
+  "san-blas": "san-blas",
 };
 
 function pageIdentity(relPath) {
@@ -263,6 +265,40 @@ async function purgeEmptyDirs(dir) {
   if (after.length === 0) await rm(dir, { recursive: true, force: true });
 }
 
+/* The homepages are designed and built outside Next (design/hub-home/build_previews.py writes
+   site-pages/index.html and site-pages/es.html). Next still renders /, /es and their <head>, so the
+   title, description, robots, canonical, hreflang, Open Graph and JSON-LD stay defined in one place
+   (src/app/layout.tsx and the page metadata). Here the designed page replaces the Next page and takes
+   those SEO tags from it, into its <!--SEO-HEAD--> slot. */
+const SITE_PAGES = new URL("../site-pages/", import.meta.url).pathname;
+const SEO_TAG = /<title>[\s\S]*?<\/title>|<script type="application\/ld\+json">[\s\S]*?<\/script>|<meta\b[^>]*>|<link\b[^>]*>/g;
+
+function seoHead(nextHtml) {
+  const head = nextHtml.slice(0, nextHtml.indexOf("</head>"));
+  const keep = [];
+  for (const m of head.matchAll(SEO_TAG)) {
+    const t = m[0];
+    if (t.startsWith("<meta") && /charset|name="viewport"|next-size-adjust/i.test(t)) continue;
+    if (t.startsWith("<link") && !/rel="(?:canonical|alternate|icon)"/.test(t)) continue;
+    keep.push(t);
+  }
+  return keep.join("");
+}
+
+async function swapHomepages() {
+  for (const name of ["index.html", "es.html"]) {
+    const designed = readFileSync(join(SITE_PAGES, name), "utf8");
+    const nextPage = await readFile(join(ROOT, name), "utf8");
+    const head = seoHead(nextPage);
+    if (!designed.includes("<!--SEO-HEAD-->") || !/rel="canonical"/.test(head) || !/<title>/.test(head)) {
+      console.error(`\n✗ Homepage swap failed for ${name}: missing SEO slot, canonical or title.`);
+      process.exit(1);
+    }
+    await writeFile(join(ROOT, name), designed.replace("<!--SEO-HEAD-->", head), "utf8");
+  }
+  console.log("Homepages swapped in from site-pages/ with the Next <head> SEO tags.");
+}
+
 async function main() {
   try {
     await stat(ROOT);
@@ -270,6 +306,8 @@ async function main() {
     console.error(`out/ not found — run \`next build\` first.`);
     process.exit(1);
   }
+
+  await swapHomepages();
 
   let total = 0;
   let changed = 0;

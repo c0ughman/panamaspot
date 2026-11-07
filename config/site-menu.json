@@ -1,0 +1,240 @@
+{
+  "en": {
+    "menu": "Menu",
+    "search": "Search guides",
+    "groups": [
+      {
+        "label": "Destinations",
+        "kind": "dest",
+        "items": [
+          {
+            "name": "Panama City",
+            "href": "/articles/panama-city",
+            "photo": "/images/v2/the-skyline-of-panama-city-s-17477516-card.webp"
+          },
+          {
+            "name": "Boquete",
+            "href": "/articles/boquete",
+            "photo": "/images/v2/boquete-hills-card.webp"
+          },
+          {
+            "name": "El Valle de Antón",
+            "href": "/articles/el-valle-de-anton",
+            "photo": "/images/v2/the-flat-floor-of-the-el-f491c24a-hero-960.webp"
+          },
+          {
+            "name": "Bocas del Toro",
+            "href": "/articles/bocas-del-toro",
+            "photo": "/images/v2/red-frog-beach-bastimentos-card.webp"
+          },
+          {
+            "name": "San Blas",
+            "href": "/articles/san-blas",
+            "photo": "/images/v2/isla-en-guna-yala-hero-960.webp"
+          }
+        ]
+      },
+      {
+        "label": "Things to do",
+        "kind": "list",
+        "items": [
+          {
+            "name": "Hiking",
+            "href": "/articles/hiking-in-panama-best-trails",
+            "photo": "/images/v2/rope-bridge-near-cerro-el-macho-waterfall-hero-960.webp"
+          },
+          {
+            "name": "Waterfalls",
+            "href": "/articles/best-waterfalls-in-panama-where-to-see-several",
+            "photo": "/images/v2/chorro-marcho-el-valle-panama-03-hero-960.webp"
+          },
+          {
+            "name": "Birding and wildlife",
+            "href": "/articles/birding-el-valle-de-anton-trails-lodges-season",
+            "photo": "/images/v2/ed-honeycreeper-cyanerpes-cyaneus-carneipes-male-2-hero-960.webp"
+          },
+          {
+            "name": "Islands and beaches",
+            "href": "/articles/san-blas-islands-panama-guna-yala-guide",
+            "photo": "/images/v2/isla-en-guna-yala-hero-960.webp"
+          },
+          {
+            "name": "Surfing",
+            "href": "/articles/panama-surf-camps",
+            "photo": "/images/v2/surferriomarbeachpanama-hero-960.webp"
+          },
+          {
+            "name": "Diving",
+            "href": "/articles/diving-in-panama",
+            "photo": "/images/v2/king-cotton-2058177216-hero-960.webp"
+          },
+          {
+            "name": "Coffee",
+            "href": "/articles/geisha-coffee-boquete-where-to-taste",
+            "photo": "/images/v2/clusters-of-ripe-red-coffee-cherries-14776857-hero-960.webp"
+          },
+          {
+            "name": "The old quarter",
+            "href": "/articles/casco-viejo-panama-walking-guide",
+            "photo": "/images/v2/narrow-street-in-casco-viejo-with-18049699-tile.webp"
+          }
+        ]
+      },
+      {
+        "label": "Plan your trip",
+        "kind": "list",
+        "items": [
+          {
+            "name": "Best time to visit",
+            "href": "/articles/best-time-to-visit-panama",
+            "photo": "/images/v2/skyscrapers-catch-the-last-light-at-13842831-tile.webp"
+          },
+          {
+            "name": "Is Panama safe?",
+            "href": "/articles/is-panama-safe",
+            "photo": "/images/v2/a-lit-up-colonial-peninsula-of-33803476-tile.webp"
+          },
+          {
+            "name": "Renting a car",
+            "href": "/articles/renting-a-car-in-panama",
+            "photo": "/images/v2/cars-travel-a-concrete-barriered-highway-87d4f017-hero-960.webp"
+          },
+          {
+            "name": "Panama City to Boquete",
+            "href": "/articles/panama-city-to-boquete",
+            "photo": "/images/v2/a-forested-mountain-range-with-antennas-0be55863-tile.webp"
+          },
+          {
+            "name": "Day trips from the city",
+            "href": "/articles/day-trips-from-panama-city",
+            "photo": "/images/v2/day-trips-from-panama-city-the-fd074d43-tile.webp"
+          },
+          {
+            "name": "El Valle or Boquete?",
+            "href": "/articles/el-valle-de-anton-vs-boquete",
+            "photo": "/images/v2/late-light-on-the-crater-wall-a262b398-hero-960.webp"
+          }
+        ]
+      }
+    ]
+  },
+  "es": {
+    "menu": "Menú",
+    "search": "Buscar guías",
+    "groups": [
+      {
+        "label": "Destinos",
+        "kind": "dest",
+        "items": [
+          {
+            "name": "Ciudad de Panamá",
+            "href": "/es/articles/panama-city",
+            "photo": "/images/v2/the-skyline-of-panama-city-s-17477516-card.webp"
+          },
+          {
+            "name": "Boquete",
+            "href": "/es/articles/boquete",
+            "photo": "/images/v2/boquete-hills-card.webp"
+          },
+          {
+            "name": "El Valle de Antón",
+            "href": "/es/articles/el-valle-de-anton",
+            "photo": "/images/v2/the-flat-floor-of-the-el-f491c24a-hero-960.webp"
+          },
+          {
+            "name": "Bocas del Toro",
+            "href": "/es/articles/como-llegar-a-bocas-del-toro-desde-ciudad-de-panama",
+            "photo": "/images/v2/red-frog-beach-bastimentos-card.webp"
+          },
+          {
+            "name": "San Blas",
+            "href": "/es/articles/san-blas-guna-yala-guia-tours-islas",
+            "photo": "/images/v2/isla-perro-en-la-comarca-guna-yala-card.webp"
+          }
+        ]
+      },
+      {
+        "label": "Qué hacer",
+        "kind": "list",
+        "items": [
+          {
+            "name": "Senderismo",
+            "href": "/es/articles/senderismo-en-panama-mejores-senderos-ciudad",
+            "photo": "/images/v2/toed-sloth-cerro-ancon-panama-city-48454787316-hero-960.webp"
+          },
+          {
+            "name": "Cascadas",
+            "href": "/es/articles/cascadas-en-panama-mejores-como-llegar",
+            "photo": "/images/v2/chorro-marcho-el-valle-panama-03-hero-960.webp"
+          },
+          {
+            "name": "Aves y quetzales",
+            "href": "/es/articles/sendero-los-quetzales-quetzal-boquete",
+            "photo": "/images/v2/al-in-los-quetzales-national-park-photo-hero-960.webp"
+          },
+          {
+            "name": "Islas y playas",
+            "href": "/es/articles/san-blas-guna-yala-guia-tours-islas",
+            "photo": "/images/v2/x-diadup-kuna-yala-panam-c3-a1-hero-960.webp"
+          },
+          {
+            "name": "Buceo en Coiba",
+            "href": "/es/articles/isla-coiba-buceo-parque-nacional",
+            "photo": "/images/v2/snowflake-in-panama-2072311431-hero-960.webp"
+          },
+          {
+            "name": "Rafting",
+            "href": "/es/articles/rafting-boquete-rio-chiriqui",
+            "photo": "/images/v2/grupo-disfrutando-de-aguas-rapidas-emocionantes-36791113-hero-960.webp"
+          },
+          {
+            "name": "Café",
+            "href": "/es/articles/tour-de-cafe-boquete-fincas-precios-reservar",
+            "photo": "/images/v2/finca-lerida-boquete-panama-hero-960.webp"
+          },
+          {
+            "name": "La ciudad",
+            "href": "/es/articles/que-hacer-en-ciudad-de-panama",
+            "photo": "/images/v2/skyline-de-ciudad-de-panama-desde-17477516-tile.webp"
+          }
+        ]
+      },
+      {
+        "label": "Planifica tu viaje",
+        "kind": "list",
+        "items": [
+          {
+            "name": "Boquete sin carro",
+            "href": "/es/articles/como-llegar-a-boquete-sin-carro",
+            "photo": "/images/v2/boquete-aerial2-tile.webp"
+          },
+          {
+            "name": "Cuánto cuesta Boquete",
+            "href": "/es/articles/cuanto-cuesta-boquete-presupuesto-semana",
+            "photo": "/images/v2/boquete-cabins-hero-960.webp"
+          },
+          {
+            "name": "El Valle desde la capital",
+            "href": "/es/articles/el-valle-de-anton-desde-ciudad-de-panama",
+            "photo": "/images/v2/elvalle-panorama-tile.webp"
+          },
+          {
+            "name": "Cómo llegar a Bocas",
+            "href": "/es/articles/como-llegar-a-bocas-del-toro-desde-ciudad-de-panama",
+            "photo": "/images/v2/como-llegar-a-bocas-del-toro-16146741-tile.webp"
+          },
+          {
+            "name": "Fin de semana en El Valle",
+            "href": "/es/articles/fin-de-semana-el-valle-de-anton-2-dias",
+            "photo": "/images/v2/a-two-story-hotel-with-wood-13058771-tile.webp"
+          },
+          {
+            "name": "El Valle en un día",
+            "href": "/es/articles/el-valle-de-anton-en-un-dia-itinerario",
+            "photo": "/images/v2/house-and-landscape-el-valle-02-hero-960.webp"
+          }
+        ]
+      }
+    ]
+  }
+}

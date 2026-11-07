@@ -152,6 +152,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
       images: safeImages(pageImages["/articles/bocas-del-toro"]),
     },
+    {
+      // San Blas hub (2026-11-07): English-only like Bocas, indexes the three San Blas guides.
+      url: `${siteConfig.url}/articles/san-blas`,
+      lastModified: new Date("2026-11-07"),
+      changeFrequency: "weekly",
+      priority: 0.9,
+      images: [xmlSafe(`${siteConfig.url}/images/v2/x-diadup-kuna-yala-panam-c3-a1-hero-1920.webp`)],
+    },
     // ── Destination hubs ────────────────────────────────────────────────────
     ...hub(
       "articles/panama-city",
