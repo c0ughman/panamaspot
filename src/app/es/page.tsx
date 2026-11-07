@@ -7,8 +7,8 @@ import { SiteFooter } from "@/components/site-footer";
 import { HtmlLang } from "@/components/html-lang";
 import { CategorySection, pexels, type Card } from "@/components/home-sections";
 
-// Share image for the homepage (Casco Viejo at night, 1200x630). The page body itself is site-pages/*.html.
-const HERO_BG = "https://panamaspot.com/images/v2/home-share-casco-night.jpg";
+// Share image for the homepage (Casco Viejo from the air with the skyline behind, 1200x630). The page body itself is site-pages/*.html.
+const HERO_BG = "https://panamaspot.com/images/v2/home-share-casco-day.jpg";
 
 export const metadata: Metadata = buildMetadata({
   title: "Guía de Viajes de Panamá: Destinos, Qué Hacer y Consejos Locales",

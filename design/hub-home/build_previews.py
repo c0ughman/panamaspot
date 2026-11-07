@@ -57,7 +57,7 @@ CSS = """
 .hx-hero { height: clamp(300px, 27vw, 400px); }
 /* homepage hero: the original layout (50vh, min 480px, wordmark bottom-left), new-template details */
 .hx-home { height: clamp(468px, 48vh, 560px); min-height: 0; grid-template-rows: auto 1fr; }
-.hx-home::before { background: linear-gradient(180deg, rgba(3,10,30,.42) 0%, rgba(3,10,30,0) 34%, rgba(3,10,30,.1) 60%, rgba(3,10,30,.5) 100%); }
+.hx-home::before { background: linear-gradient(90deg, rgba(3,10,30,.62) 0%, rgba(3,10,30,.38) 30%, rgba(3,10,30,0) 58%), linear-gradient(180deg, rgba(3,10,30,.42) 0%, rgba(3,10,30,0) 34%, rgba(3,10,30,.1) 60%, rgba(3,10,30,.5) 100%); }
 /* the video is darker footage than the photos, so it gets a lighter veil: just enough for the menu and the wordmark */
 .hx-home.vid::before { background: linear-gradient(180deg, rgba(3,10,30,.28) 0%, rgba(3,10,30,0) 24%, rgba(3,10,30,0) 58%, rgba(3,10,30,.3) 100%); }
 .hx-home .hx-c { align-self: end; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding-top: 32px; padding-bottom: 54px; }
@@ -772,11 +772,11 @@ def cards_of(name, lang="en"):
         href = m[3].strip('"') if m[3].startswith('"') else re.search(r"const " + m[3] + r' = "([^"]+)"', src)[1]
         out.append((m[1], m[2], href))
     return out
-HOME_BG = "/images/v2/home-hero-casco-night-1920.webp"
-HERO_ALT = {"en": "Casco Viejo at night: the cathedral's white towers and the lit streets of the old quarter.",
-            "es": "El Casco Viejo de noche: las torres blancas de la catedral y las calles iluminadas del barrio antiguo."}
+HOME_BG = "/images/v2/home-hero-casco-day-1920.webp"  # a frame from Pexels video 35257070
+HERO_ALT = {"en": "Casco Viejo from the air, with the Panama City skyline across the bay.",
+            "es": "El Casco Viejo desde el aire, con los rascacielos de Ciudad de Panamá al otro lado de la bahía."}
 def still(lang):
-    return f'<img class="hero-img" alt="{HERO_ALT[lang]}" fetchpriority="high" src="{HOME_BG}" style="object-position:center 55%"/>'
+    return f'<img class="hero-img" alt="{HERO_ALT[lang]}" fetchpriority="high" src="{HOME_BG}" style="object-position:center 60%"/>'
 ROT_IMGS = [(HOME_BG, "", 50)] + [(f"/images/v2/{n}-hero-1920.webp", a, y) for n, a, y in [
     ("playa-blanca-saboga", "Palm trees over Playa Blanca on Isla Saboga, Pearl Islands.", 62),
     ("volcan-baru-emerging-through-clouds-d35d9b87", "Volcán Barú rising through cloud above forested slopes.", 40),
