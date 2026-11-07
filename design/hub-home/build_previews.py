@@ -58,7 +58,6 @@ a.hx-btn:hover { transform: translateY(-1px); }
 .hx-t { display: grid; gap: 4px; align-content: start; text-decoration: none; color: var(--ink); min-width: 0; }
 .hx-t .ph { display: block; aspect-ratio: 1/1; border-radius: 24px; overflow: hidden; background: var(--beige); }
 .hx-t img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s; }
-.hx-t:hover img { transform: scale(1.05); }
 .hx-t b { font: 700 15.5px/1.3 var(--sans); color: var(--navy); margin-top: 8px; }
 .hx-t .c { font: 600 12px/1 var(--sans); color: var(--muted); display: inline-flex; gap: 6px; align-items: center; }
 .hx-bx2 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
@@ -69,7 +68,6 @@ a.hx-btn:hover { transform: translateY(-1px); }
 .hx-pt { position: relative; display: grid; align-content: end; gap: 6px; aspect-ratio: 4/3; padding: 20px; border-radius: 22px; overflow: hidden; color: #fff; text-decoration: none; isolation: isolate; }
 .hx-pt img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform .7s; }
 .hx-pt::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(3,10,30,0) 35%, rgba(3,10,30,.74)); z-index: -1; }
-.hx-pt:hover img { transform: scale(1.04); }
 .hx-pt .lbl { color: #fff; font-size: 13px; }
 .hx-pt b { font: 700 clamp(18px, 1.5vw, 22px)/1.2 var(--sans); letter-spacing: -0.015em; padding-right: 56px; }
 .hx-pt .ar { position: absolute; right: 18px; bottom: 18px; width: 40px; height: 40px; }
@@ -153,7 +151,6 @@ a.hx-btn:hover { transform: translateY(-1px); }
 .hb-g { display: grid; grid-template-rows: auto 1fr; gap: 10px; text-decoration: none; color: var(--ink); min-width: 0; }
 .hb-g .ph { position: relative; display: block; aspect-ratio: 16/10; border-radius: 16px; overflow: hidden; }
 .hb-g img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s; }
-.hb-g:hover img { transform: scale(1.04); }
 .hb-g .ph .ar { position: absolute; right: 10px; bottom: 10px; }
 .hb-all { display: grid; align-content: end; gap: 6px; padding: 20px; border-radius: 16px; border: 0; background: var(--navy); color: #fff; text-align: left; text-decoration: none; cursor: pointer; position: relative; font: 650 22px/1.15 var(--serif); min-height: 180px; }
 .hb-all small { font: 500 13px/1 var(--sans); color: rgba(255,255,255,.7); }
@@ -214,7 +211,6 @@ a.hx-btn:hover { transform: translateY(-1px); }
 .hb-list li + li { border-top: 1px solid var(--line); }
 .hb-list a { display: grid; grid-template-columns: 68px minmax(0, 1fr) 24px; gap: 16px; align-items: center; padding: 12px 8px 12px 0; text-decoration: none; }
 .hb-list img { width: 68px; height: 68px; border-radius: 14px; object-fit: cover; display: block; transition: transform .5s; }
-.hb-list a:hover img { transform: scale(1.05); }
 .hb-list .t { display: grid; gap: 2px; min-width: 0; }
 .hb-list b { font: 700 16.5px/1.3 var(--sans); color: var(--navy); }
 .hb-list .t span { font-size: 14.5px; line-height: 1.45; color: var(--muted); }
@@ -227,7 +223,10 @@ a.hx-search kbd { margin-left: auto; font: 600 12px/1 var(--sans); padding: 6px 
 .hx-quick { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
 .hx-quick a { text-decoration: none; }
 .hx-band { background: var(--beige); margin-top: 88px; padding-bottom: 72px; }
-.hx-band.bento { margin-top: 64px; padding-bottom: 64px; }
+.hx-band.bento { margin-top: 64px; padding-bottom: 0; }
+.hx-band.bento .hx-sec { padding-bottom: 8px; }
+/* no zoom on image hover anywhere */
+.fc:hover .ph { transform: none; }
 .hx-band > .hx-sec:first-child { padding-top: 76px; }
 .hx-band + .hx-sec { padding-top: 72px; }
 .foot > .f-mid:first-child { padding-top: 56px; }
@@ -237,7 +236,7 @@ a.hx-search kbd { margin-left: auto; font: 600 12px/1 var(--sans); padding: 6px 
 .hx-sec:last-of-type { padding-bottom: 112px; }
 .hx-sec .band-h { margin-bottom: 26px; }
 .hx-sec .band-h h2 { font-size: clamp(28px, 2.3vw, 34px); }
-@media (max-width: 760px) { .hx-sec { padding-top: 72px; } .hx-sec:last-of-type { padding-bottom: 72px; } .hx-band, .hx-band.bento { margin-top: 56px; padding-bottom: 56px; } .hx-band > .hx-sec:first-child { padding-top: 56px; } .hx-band + .hx-sec, #cat-regions.hx-sec { padding-top: 56px; } .foot > .f-mid:first-child { padding-top: 56px; } }
+@media (max-width: 760px) { .hx-sec { padding-top: 72px; } .hx-sec:last-of-type { padding-bottom: 72px; } .hx-band, .hx-band.bento { margin-top: 56px; padding-bottom: 56px; } .hx-band > .hx-sec:first-child { padding-top: 56px; } .hx-band + .hx-sec, #cat-regions.hx-sec { padding-top: 56px; } .foot > .f-mid:first-child { padding-top: 56px; } .hx-band.bento { padding-bottom: 0; } }
 .hx-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .hx-dest { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
 .hx-dest.hx-do { grid-template-columns: repeat(6, minmax(0, 1fr)); }
@@ -248,7 +247,6 @@ a.hx-search kbd { margin-left: auto; font: 600 12px/1 var(--sans); padding: 6px 
 .hx-d { position: relative; border-radius: 22px; overflow: hidden; aspect-ratio: 3/4; color: #fff; text-decoration: none; isolation: isolate; }
 .hx-d img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .7s; z-index: -2; }
 .hx-d::after { content: ""; position: absolute; inset: 40% 0 0; background: linear-gradient(180deg, rgba(3,10,30,0), rgba(3,10,30,.7)); z-index: -1; }
-.hx-d:hover img { transform: scale(1.04); }
 .hx-d .chip { position: absolute; top: 14px; left: 14px; }
 .hx-d .ft { position: absolute; left: 18px; right: 18px; bottom: 16px; display: grid; gap: 4px; }
 .hx-d b { font: 650 clamp(20px, 1.6vw, 24px)/1.05 var(--serif); }
@@ -258,7 +256,6 @@ a.hx-search kbd { margin-left: auto; font: 600 12px/1 var(--sans); padding: 6px 
 .hx-card { display: grid; grid-template-rows: auto 1fr; gap: 4px; padding: 10px; border-radius: 24px; background: var(--beige); box-shadow: inset 0 0 0 1px var(--line); text-decoration: none; color: var(--ink); min-width: 0; }
 .hx-card .ph { position: relative; display: block; border-radius: 16px; overflow: hidden; aspect-ratio: 4/3; }
 .hx-card .ph img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s; }
-.hx-card:hover .ph img { transform: scale(1.04); }
 .hx-card .ph .chip { position: absolute; left: 10px; bottom: 10px; font-size: 12.5px; padding: 7px 12px; }
 .hx-card .tx { display: grid; gap: 8px; align-content: start; padding: 14px 12px 10px; }
 .hx-card .c { font: 600 13px/1 var(--sans); color: var(--muted); display: inline-flex; gap: 7px; align-items: center; }
@@ -270,7 +267,6 @@ a.hx-search kbd { margin-left: auto; font: 600 12px/1 var(--sans); padding: 6px 
 .hx-act { position: relative; border-radius: 18px; overflow: hidden; aspect-ratio: 1; color: #fff; text-decoration: none; isolation: isolate; display: grid; align-content: end; padding: 14px; }
 .hx-act img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform .6s; }
 .hx-act::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(3,10,30,0) 40%, rgba(3,10,30,.62)); z-index: -1; }
-.hx-act:hover img { transform: scale(1.05); }
 .hx-act b { font: 700 16px/1.2 var(--sans); display: flex; align-items: center; gap: 8px; }
 .hx-act b::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--red); flex: none; }
 .hx-intro { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: clamp(32px, 5vw, 80px); align-items: start; }
@@ -441,7 +437,6 @@ MENU_CSS = """
 .mm-dest { display: grid; grid-template-columns: repeat(5, 112px); gap: 14px 10px; }
 .mm-dest a { display: grid; gap: 2px; color: #fff; text-decoration: none; }
 .mm-dest img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 12px; margin-bottom: 6px; transition: transform .5s cubic-bezier(.2,.8,.2,1); }
-.mm-dest a:hover img { transform: scale(1.04); }
 .mm-dest b { font: 700 13.5px/1.2 var(--sans); }
 .mm-dest small { font: 500 11.5px/1.25 var(--sans); color: rgba(255,255,255,.72); }
 .mm-all { display: inline-flex; margin: 14px 4px 2px; font: 600 13.5px/1 var(--sans); color: #fff; text-decoration: none; opacity: .9; }
@@ -664,7 +659,7 @@ _bq_cta = B.blocks("boquete-en")["banner"]
 _bq_cta = _bq_cta.replace("evalley-boquete-ebike-trail", "evalley-boquete-ebike-hero").replace("Two riders on E-Valley e-bikes on a farm track in Boquete", "Two riders with e-bikes in front of a waterfall near Boquete").replace('class="ev-ph"', 'class="ev-ph hb-ev-ph"').replace('class="evx ev-banner"', 'class="evx ev-dark ev-banner hb-ev-dark"')
 # every value in icons and glance is taken from that hub's own text
 build_hub("articles/boquete", "boquete-hub.html", dict(dek="A cool, green coffee town in the Chiriquí highlands, an hour from Costa Rica.",
-    en="/preview/boquete-hub.html", es="/es/articles/boquete", region="Chiriquí highlands", hero="/images/v2/boquete-hills-hero-1920.webp",
+    en="/preview/boquete-hub.html", es="/preview/boquete-hub-es.html", region="Chiriquí highlands", hero="/images/v2/boquete-hills-hero-1920.webp",
     icons=[("mountain", "1,200 m", "Elevation"), ("pin", "Chiriquí", "Province"), ("peak", "3,475 m", "Volcán Barú"), ("bus", "1 hr", "To the Costa Rican border"), ("book", "24 guides", "In this library")],
     glance=[("Getting there", "Fly to David", "then 45 min by road; 7 hrs by bus"), ("When to go", "Dec–Apr", "driest months; mist any time"),
             ("How long", "3 days", "a fourth for Volcán Barú"), ("Getting around", "Walk town", "bike, taxi or car beyond it")],
@@ -677,7 +672,7 @@ build_hub("articles/boquete", "boquete-hub.html", dict(dek="A cool, green coffee
              ("/images/boquete/boquete-market.webp", "Fruit and vegetables for sale at a market stall in Boquete."),
              ("/images/v2/view-from-restaurant-covered-los-molinos-hero-1280.webp", "Storm light over the green canyons around Boquete.")]))
 build_hub("es/articles/el-valle-de-anton", "el-valle-hub-es.html", dict(dek="Un pueblo dentro de un volcán, a dos horas de la capital y más fresco que la costa.",
-    en="/articles/el-valle-de-anton", es="/preview/el-valle-hub-es.html", short="El Valle", region="Provincia de Coclé", focus=58,
+    en="/preview/el-valle-hub.html", es="/preview/el-valle-hub-es.html", short="El Valle", region="Provincia de Coclé", focus=58,
     hero="/images/v2/the-flat-floor-of-the-el-f491c24a-hero-1920.webp", hero_alt="El fondo plano del cráter de El Valle de Antón, con los cerros detrás.",
     icons=[("mountain", "600 m", "De altura"), ("pin", "Coclé", "Provincia"), ("crater", "5 km", "De cráter de lado a lado"), ("bus", "2 h", "Desde la capital"), ("book", "29 guías", "En esta biblioteca")],
     glance=[("Cómo llegar", "2½ h en bus", "desde Albrook; 2 h en carro"), ("Cuándo ir", "Dic–abr", "la temporada seca"),
@@ -693,7 +688,7 @@ build_hub("es/articles/el-valle-de-anton", "el-valle-hub-es.html", dict(dek="Un 
              ('/images/v2/artesania-pintada-a-mano-colgada-en-df5c68cf-wide.webp', 'Artesanía pintada a mano en el mercado.'),
              ('/images/v2/things-to-do-el-valle-hero-1280.webp', 'Flores bajo una pérgola en El Valle de Antón.')]))
 build_hub("articles/panama-city", "panama-city-hub.html", dict(dek="A glass skyline on one side of the bay, a 350-year-old walled quarter on the other.",
-    en="/preview/panama-city-hub.html", es="/es/articles/panama-city", region="Pacific coast", focus=50,
+    en="/preview/panama-city-hub.html", es="/preview/panama-city-hub-es.html", region="Pacific coast", focus=50,
     icons=[("pin", "Pacific", "Coast"), ("city", "350 years", "The walled old quarter"), ("plane", "Tocumen", "Main airport (PTY)"), ("cal", "2–3 days", "For the city and the canal"), ("book", "9 guides", "In this library")],
     glance=[("Getting there", "Tocumen (PTY)", "Metro Line 2 reaches it"), ("When to go", "Dec–Apr", "dry; the canal works any time"),
             ("How long", "2 days", "three for the canal"), ("Getting around", "Metro + Uber", "skip driving in Casco")],
@@ -716,6 +711,51 @@ build_hub("articles/bocas-del-toro", "bocas-hub.html", dict(dek="Hundreds of isl
              ('/images/v2/two-round-thatched-roof-structures-stand-33990238-gallery.webp', 'Thatched huts at the end of a dock over shallow water.'),
              ('/images/v2/whitewater-rolls-onto-a-sandy-shore-5f05bf22-wide.webp', 'Surf rolling onto a forest-backed beach.'),
              ('/images/v2/an-aerial-view-of-turquoise-channels-9f639d6b-wide.webp', 'Turquoise channels through low mangrove islets.')]))
+
+# the other language of each hub (same photos and facts, taken from that hub's own text)
+_bq_cta_es = B.blocks("boquete-es")["banner"].replace("evalley-boquete-ebike-trail", "evalley-boquete-ebike-hero").replace('class="ev-ph"', 'class="ev-ph hb-ev-ph"').replace('class="evx ev-banner"', 'class="evx ev-dark ev-banner hb-ev-dark"')
+_bq_cta_es = re.sub(r'(<img[^>]*evalley-boquete-ebike-hero[^>]*alt=")[^"]*', r'\1Dos ciclistas con e-bikes frente a una cascada cerca de Boquete', _bq_cta_es)
+build_hub("es/articles/boquete", "boquete-hub-es.html", dict(dek="Un pueblo cafetero fresco y verde en las tierras altas de Chiriquí, a una hora de Costa Rica.",
+    en="/preview/boquete-hub.html", es="/preview/boquete-hub-es.html", region="Tierras altas de Chiriquí", hero="/images/v2/boquete-hills-hero-1920.webp",
+    icons=[("mountain", "1,200 m", "De altura"), ("pin", "Chiriquí", "Provincia"), ("peak", "3,475 m", "Volcán Barú"), ("bus", "1 h", "A la frontera con Costa Rica"), ("book", "24 guías", "En esta biblioteca")],
+    glance=[("Cómo llegar", "Vuelo a David", "y 45 min por carretera; 7 h en bus"), ("Cuándo ir", "Dic–abr", "los meses más secos; neblina siempre"),
+            ("Cuánto quedarse", "3 días", "un cuarto para el Volcán Barú"), ("Cómo moverse", "A pie", "bici, taxi o carro fuera del pueblo")],
+    cta=_bq_cta_es, hero_in_thumbs=True,
+    topic_img={0: ("/images/v2/volcan-baru-in-a-cloud-shroud-wide.webp", "La cumbre del Volcán Barú sobre una franja de nubes."),
+               1: ("/images/v2/al-in-los-quetzales-national-park-photo-hero-1280.webp", "Un quetzal posado en una rama cubierta de musgo.")},
+    gallery=[("/images/v2/volcan-baru-emerging-through-clouds-d35d9b87-hero-1280.webp", "El Volcán Barú entre las nubes, sobre laderas de bosque."),
+             ("/images/v2/resplendent-quetzal-646deb1a-gallery.webp", "Un quetzal, el ave por la que vienen casi todos los observadores a Boquete."),
+             ("/images/v2/red-coffee-cherries-at-peak-ripeness-35629753-wide.webp", "Granos de café rojos y maduros en las faldas del Volcán Barú."),
+             ("/images/boquete/boquete-rafting.webp", "Balsas amarillas en un río cerca de Boquete."),
+             ("/images/boquete/boquete-cabins.webp", "Cabañas de madera en una ladera sobre Boquete."),
+             ("/images/boquete/boquete-market.webp", "Frutas y verduras en un puesto del mercado de Boquete."),
+             ("/images/v2/view-from-restaurant-covered-los-molinos-hero-1280.webp", "Luz de tormenta sobre los cañones verdes de Boquete.")]))
+build_hub("articles/el-valle-de-anton", "el-valle-hub.html", dict(dek="A town inside a volcano, two hours from Panama City and cooler than the coast.",
+    en="/preview/el-valle-hub.html", es="/preview/el-valle-hub-es.html", short="El Valle", region="Coclé province", focus=58,
+    hero="/images/v2/the-flat-floor-of-the-el-f491c24a-hero-1920.webp", hero_alt="The flat floor of the El Valle de Antón crater, with the hills behind.",
+    icons=[("mountain", "600 m", "Elevation"), ("pin", "Coclé", "Province"), ("crater", "5 km", "Crater, rim to rim"), ("bus", "2 hrs", "From Panama City"), ("book", "19 guides", "In this library")],
+    glance=[("Getting there", "2½ hrs by bus", "from Albrook; 2 hrs by car"), ("When to go", "Dec–Apr", "the dry season"),
+            ("How long", "A day", "two nights is better"), ("Getting around", "By bike", "trails 10–25 min away")],
+    cta=B.blocks("elvalle-en")["banner"],
+    gallery=[('/images/v2/cortinas-de-agua-sobre-roca-cubierta-f60dd697-hero-1280.webp', 'Curtains of water over rock at Chorro El Macho.'),
+             ('/images/v2/dusk-settling-over-el-valle-from-22d3aa14-wide.webp', 'El Valle at dusk from the crater rim.'),
+             ('/images/v2/una-heliconius-charithonia-alimentandose-de-flores-4cb016d1-wide.webp', 'A zebra longwing butterfly on yellow flowers.'),
+             ('/images/v2/pinas-y-naranjas-apiladas-en-cajas-2281d6e3-wide.webp', 'Pineapples and oranges from the crater farms.'),
+             ('/images/v2/elvalle-panorama-wide.webp', 'The forested crater wall seen from the valley.'),
+             ('/images/v2/artesania-pintada-a-mano-colgada-en-df5c68cf-wide.webp', 'Hand-painted crafts at the market.'),
+             ('/images/v2/things-to-do-el-valle-hero-1280.webp', 'Flowers under a pergola in El Valle de Antón.')]))
+build_hub("es/articles/panama-city", "panama-city-hub-es.html", dict(dek="Rascacielos de vidrio a un lado de la bahía y un casco amurallado de 350 años al otro.",
+    en="/preview/panama-city-hub.html", es="/preview/panama-city-hub-es.html", region="Costa del Pacífico", focus=50,
+    icons=[("pin", "Pacífico", "Costa"), ("city", "350 años", "El casco amurallado"), ("plane", "Tocumen", "Aeropuerto principal (PTY)"), ("cal", "2–3 días", "Para la ciudad y el canal"), ("book", "5 guías", "En esta biblioteca")],
+    glance=[("Cómo llegar", "Tocumen (PTY)", "la Línea 2 del metro llega"), ("Cuándo ir", "Dic–abr", "seco; el canal, todo el año"),
+            ("Cuánto quedarse", "2 días", "tres con el canal"), ("Cómo moverse", "Metro + Uber", "no manejes en el Casco")],
+    gallery=[('/images/v2/casco-viejo-at-night-with-city-33803474-wide.webp', 'El Casco Viejo de noche, con los rascacielos detrás.'),
+             ('/images/v2/panama-city-skyline-33803476-wide.webp', 'Los rascacielos al otro lado de la bahía, de noche.'),
+             ('/images/v2/metropolitan-cathedral-of-panama-city-1d602aa6-wide.webp', 'La Catedral Metropolitana en el Casco Viejo.'),
+             ('/images/v2/three-toed-sloth-on-ancon-hill-35179277-wide.webp', 'Un perezoso de tres dedos en el Cerro Ancón.'),
+             ('/images/v2/casco-antiguo-san-felipe-21af3ff1-gallery.webp', 'El Casco Antiguo desde el aire.'),
+             ('/images/v2/cruise-ship-passing-miraflores-locks-2019-10-gallery.webp', 'Un crucero dentro de una cámara de las Esclusas de Miraflores.'),
+             ('/images/v2/islands-of-the-amador-causeway-994a1080-wide.webp', 'Las islas al final de la Calzada de Amador.')]))
 
 ARROWS = """<script>document.querySelectorAll(".hx-rw").forEach(function(w){var r=w.querySelector(".hx-row"),l=w.querySelector(".hx-arr.l"),n=w.querySelector(".hx-arr.r");
 function st(){l.disabled=r.scrollLeft<4;n.disabled=r.scrollLeft+r.clientWidth>=r.scrollWidth-4;}
