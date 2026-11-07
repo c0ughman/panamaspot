@@ -40,7 +40,8 @@ def _search_icon():
 def _inner(kind, items):
     if kind == "dest":
         return '<div class="mm-dest">' + "".join(
-            f'<a href="{_e(i["href"])}"><img alt="" loading="lazy" src="{_e(i["photo"])}"/><b>{_e(i["name"])}</b></a>' for i in items) + "</div>"
+            f'<a href="{_e(i["href"])}"><img alt="" loading="lazy" src="{_e(i["photo"])}"/><b>{_e(i["name"])}</b>'
+            + (f'<small>{_e(i["note"])}</small>' if i.get("note") else "") + "</a>" for i in items) + "</div>"
     return '<ul class="mm-list">' + "".join(
         f'<li><a href="{_e(i["href"])}"><img alt="" loading="lazy" src="{_e(i["photo"])}"/><span>{_e(i["name"])}</span></a></li>' for i in items) + "</ul>"
 
@@ -76,10 +77,11 @@ CSS = """
 .mm-panel { position: fixed; z-index: 80; padding: 14px; opacity: 0; transform: translateY(-8px) scale(.975); transform-origin: top center; transition: opacity .22s ease, transform .38s cubic-bezier(.2,.9,.25,1.02); }
 .mm-panel.open { opacity: 1; transform: none; }
 .mm-panel[hidden] { display: block; visibility: hidden; pointer-events: none; }
-.mm-dest { display: grid; grid-template-columns: repeat(5, 112px); gap: 14px 10px; }
+.mm-dest { display: grid; grid-template-columns: repeat(5, 132px); gap: 10px; }
 .mm-dest a { display: grid; gap: 2px; color: #fff; text-decoration: none; }
-.mm-dest img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 12px; margin-bottom: 6px; }
-.mm-dest b { font: 700 13.5px/1.2 var(--sans); }
+.mm-dest img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 16px; margin-bottom: 8px; }
+.mm-dest b { font: 700 14.5px/1.2 var(--sans); }
+.mm-dest small { font: 500 12.5px/1.2 var(--sans); color: rgba(255,255,255,.72); }
 .mm-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; min-width: 260px; }
 #mm-1 .mm-list { grid-template-columns: 1fr 1fr; min-width: 480px; }
 .mm-list a { display: flex; align-items: center; gap: 12px; padding: 8px 12px 8px 8px; border-radius: 14px; color: #fff; text-decoration: none; font: 600 14.5px/1.2 var(--sans); transition: background .2s; }
@@ -98,6 +100,7 @@ CSS = """
 .mm-sheet section + section { margin-top: 18px; }
 .mm-sheet .mm-dest { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px 6px; }
 .mm-sheet .mm-dest b { font-size: 11px; }
+.mm-sheet .mm-dest small { display: none; }
 .mm-sheet .mm-dest img { aspect-ratio: 1; border-radius: 10px; }
 .mm-sheet .mm-list { grid-template-columns: 1fr 1fr; min-width: 0; }
 .mm-sheet .mm-list a { padding: 6px; font-size: 14px; }

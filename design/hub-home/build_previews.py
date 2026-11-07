@@ -78,8 +78,9 @@ a.hx-btn:hover { transform: translateY(-1px); }
 .hx-home .hx-rot.on { opacity: 1; }
 /* homepage: 7-column destination grids */
 .hx-g7 { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 18px 26px; }
-/* five places: tiles sized by screen height so the row always fits the first screen, spread across the width */
-.hx-g7.g6 { grid-template-columns: repeat(5, minmax(0, 23vh)); justify-content: space-between; column-gap: 26px; }
+/* five places: wider 4:3 tiles that fill the row with the usual gap */
+.hx-g7.g6 { grid-template-columns: repeat(5, minmax(0, 1fr)); column-gap: 24px; }
+.hx-g7.g6 .ph { aspect-ratio: 4/3; }
 @media (max-width: 1100px) { .hx-g7.g6 { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 26px; } }
 @media (max-width: 700px) { .hx-g7.g6 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .hx-t { display: grid; gap: 4px; align-content: start; text-decoration: none; color: var(--ink); min-width: 0; }

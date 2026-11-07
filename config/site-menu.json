@@ -10,27 +10,32 @@
           {
             "name": "Panama City",
             "href": "/articles/panama-city",
-            "photo": "/images/v2/the-skyline-of-panama-city-s-17477516-card.webp"
+            "photo": "/images/v2/the-skyline-of-panama-city-s-17477516-card.webp",
+            "note": "Capital and canal"
           },
           {
             "name": "Boquete",
             "href": "/articles/boquete",
-            "photo": "/images/v2/boquete-hills-card.webp"
+            "photo": "/images/v2/boquete-hills-card.webp",
+            "note": "Coffee highlands"
           },
           {
             "name": "El Valle de Antón",
             "href": "/articles/el-valle-de-anton",
-            "photo": "/images/v2/the-flat-floor-of-the-el-f491c24a-hero-960.webp"
+            "photo": "/images/v2/the-flat-floor-of-the-el-f491c24a-hero-960.webp",
+            "note": "Volcanic crater"
           },
           {
             "name": "Bocas del Toro",
             "href": "/articles/bocas-del-toro",
-            "photo": "/images/v2/red-frog-beach-bastimentos-card.webp"
+            "photo": "/images/v2/red-frog-beach-bastimentos-card.webp",
+            "note": "Caribbean islands"
           },
           {
             "name": "San Blas",
             "href": "/articles/san-blas",
-            "photo": "/images/v2/isla-en-guna-yala-hero-960.webp"
+            "photo": "/images/v2/isla-en-guna-yala-hero-960.webp",
+            "note": "Guna Yala"
           }
         ]
       },
@@ -129,27 +134,32 @@
           {
             "name": "Ciudad de Panamá",
             "href": "/es/articles/panama-city",
-            "photo": "/images/v2/the-skyline-of-panama-city-s-17477516-card.webp"
+            "photo": "/images/v2/the-skyline-of-panama-city-s-17477516-card.webp",
+            "note": "Capital y canal"
           },
           {
             "name": "Boquete",
             "href": "/es/articles/boquete",
-            "photo": "/images/v2/boquete-hills-card.webp"
+            "photo": "/images/v2/boquete-hills-card.webp",
+            "note": "Tierras altas del café"
           },
           {
             "name": "El Valle de Antón",
             "href": "/es/articles/el-valle-de-anton",
-            "photo": "/images/v2/the-flat-floor-of-the-el-f491c24a-hero-960.webp"
+            "photo": "/images/v2/the-flat-floor-of-the-el-f491c24a-hero-960.webp",
+            "note": "Cráter volcánico"
           },
           {
             "name": "Bocas del Toro",
             "href": "/es/articles/como-llegar-a-bocas-del-toro-desde-ciudad-de-panama",
-            "photo": "/images/v2/red-frog-beach-bastimentos-card.webp"
+            "photo": "/images/v2/red-frog-beach-bastimentos-card.webp",
+            "note": "Islas del Caribe"
           },
           {
             "name": "San Blas",
             "href": "/es/articles/san-blas-guna-yala-guia-tours-islas",
-            "photo": "/images/v2/isla-perro-en-la-comarca-guna-yala-card.webp"
+            "photo": "/images/v2/isla-perro-en-la-comarca-guna-yala-card.webp",
+            "note": "Guna Yala"
           }
         ]
       },
