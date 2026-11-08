@@ -57,10 +57,11 @@ def nav_html(lang, en_href, es_href):
     sheet = "".join(f'<section><h3>{_e(g["label"])}</h3>{_inner(g["kind"], g["items"])}</section>' for g in M["groups"])
     mob = (f'<button type="button" class="mm-burger glass" aria-expanded="false" aria-controls="mm-sheet" aria-label="{_e(M["menu"])}"><i></i><i></i></button>'
            f'<div class="mm-sheet" id="mm-sheet" hidden><div class="mm-sheet-in">{sheet}</div></div>')
-    search = f'<a class="search glass" href="{home}#cat-regions" data-search aria-haspopup="dialog">{_search_icon()}<span>{_e(M["search"])}</span></a>'
+    search = f'<a class="search glass" href="{home}#cat-regions" data-search aria-haspopup="dialog" aria-label="{_e(M["search"])}">{_search_icon()}<span>{_e(M["search"])}</span></a>'
     other, olang = (es_href, "es") if lang == "en" else (en_href, "en")
-    switch = (f'<a class="lang glass" href="{_e(other)}" hreflang="{olang}" aria-label="{"Español" if olang == "es" else "English"}">'
-              f'<span{" class=\"on\"" if lang == "en" else ""}>EN</span><span{" class=\"on\"" if lang == "es" else ""}>ES</span></a>')
+    switch = (f'<a class="lang glass" href="{_e(other)}" hreflang="{olang}">'
+              f'<span{" class=\"on\"" if lang == "en" else ""}>EN</span><span{" class=\"on\"" if lang == "es" else ""}>ES</span>'
+              f'<span class="sr">, {"Español" if olang == "es" else "English"}</span></a>')
     return (f'<div class="wrap nav"><a class="logo" href="{home}">Panam<span class="a">á</span><i class="pd"></i></a>{desk}'
             f'<div class="tools">{search}{mob}{switch}</div></div>')
 
@@ -115,6 +116,7 @@ CSS = """
 .logo.stair > span:last-child { justify-self: auto; margin-right: 0; }
 /* the language switch is one link to the other language */
 a.lang { text-decoration: none; cursor: pointer; }
+a.lang span.sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 a.lang span { color: #fff; transition: background .2s; }
 a.lang span.on { color: var(--navy); }
 a.lang:hover span:not(.on) { background: rgba(255,255,255,.18); }

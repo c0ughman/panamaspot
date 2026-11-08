@@ -657,7 +657,7 @@ build_hub("es/articles/el-valle-de-anton", "el-valle-hub-es.html", dict(dek="Un 
              ('/images/v2/dusk-settling-over-el-valle-from-22d3aa14-wide.webp', 'El Valle al anochecer desde el borde del cráter.'),
              ('/images/v2/una-heliconius-charithonia-alimentandose-de-flores-4cb016d1-wide.webp', 'Una Heliconius charithonia en flores amarillas.'),
              ('/images/v2/pinas-y-naranjas-apiladas-en-cajas-2281d6e3-wide.webp', 'Piñas y naranjas de las fincas del cráter.'),
-             ('/images/v2/elvalle-panorama-wide.webp', 'La ladera boscosa del cráter vista desde el valle.'),
+             ('/images/v2/elvalle-panorama-wide.webp', 'Un tucán posado entre las hojas de un árbol alto en el bosque de El Valle de Antón.'),
              ('/images/v2/artesania-pintada-a-mano-colgada-en-df5c68cf-wide.webp', 'Artesanía pintada a mano en el mercado.'),
              ('/images/v2/things-to-do-el-valle-hero-1280.webp', 'Flores bajo una pérgola en El Valle de Antón.')]))
 build_hub("articles/panama-city", "panama-city-hub.html", dict(dek="A glass skyline on one side of the bay, a 350-year-old walled quarter on the other.",
@@ -717,7 +717,7 @@ build_hub("articles/el-valle-de-anton", "el-valle-hub.html", dict(dek="A town in
              ('/images/v2/dusk-settling-over-el-valle-from-22d3aa14-wide.webp', 'El Valle at dusk from the crater rim.'),
              ('/images/v2/una-heliconius-charithonia-alimentandose-de-flores-4cb016d1-wide.webp', 'A zebra longwing butterfly on yellow flowers.'),
              ('/images/v2/pinas-y-naranjas-apiladas-en-cajas-2281d6e3-wide.webp', 'Pineapples and oranges from the crater farms.'),
-             ('/images/v2/elvalle-panorama-wide.webp', 'The forested crater wall seen from the valley.'),
+             ('/images/v2/elvalle-panorama-wide.webp', 'A toucan perched among the leaves of a tall tree in the El Valle de Antón forest.'),
              ('/images/v2/artesania-pintada-a-mano-colgada-en-df5c68cf-wide.webp', 'Hand-painted crafts at the market.'),
              ('/images/v2/things-to-do-el-valle-hero-1280.webp', 'Flowers under a pergola in El Valle de Antón.')]))
 build_hub("es/articles/panama-city", "panama-city-hub-es.html", dict(dek="Rascacielos de vidrio a un lado de la bahía y un casco amurallado de 350 años al otro.",
@@ -1158,7 +1158,7 @@ ICON_REFRESH = '<path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><pa
 ICON_SCALE = '<path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/>'
 ICON_CAM = '<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/>'
 ABOUT2_CSS = """<style>
-.ab-hero { height: clamp(520px, 64vh, 660px); }
+.ab-hero { height: clamp(500px, 62vh, 640px); margin: clamp(10px, 1.2vw, 16px) clamp(10px, 1.2vw, 16px) 0; border-radius: clamp(20px, 2.2vw, 30px); }
 .ab-hero .hero-img { object-position: 50% 50%; }
 .ab-hero::before { background: linear-gradient(90deg, rgba(3,10,30,.62) 0%, rgba(3,10,30,.36) 38%, rgba(3,10,30,0) 66%), linear-gradient(180deg, rgba(3,10,30,.42) 0%, rgba(3,10,30,0) 30%, rgba(3,10,30,.08) 58%, rgba(3,10,30,.4) 100%); }
 @media (max-width: 700px) { .ab-hero::before { background: linear-gradient(180deg, rgba(3,10,30,.45) 0%, rgba(3,10,30,.12) 28%, rgba(3,10,30,.42) 55%, rgba(3,10,30,.62) 100%); } }
@@ -1208,7 +1208,6 @@ def build_about_mock():
     <p class="hx-dek ab-goal">Our goal is to be the most comprehensive, robust resource for tourism in Panama.</p>
     <a class="hx-btn" href="#how-we-make">How we make our guides</a></div>
 </header>
-<script>/* preview only: ?h=2 or ?h=3 tries another hero photo */(function(){{var m=location.search.match(/[?&]h=(\\d)/),o={{"2":["/images/v2/boquete-rainbow-canopy-hero-1920.webp","A rainbow over the cloud forest near Boquete","50% 45%"],"3":["/images/v2/late-light-on-the-crater-wall-a262b398-hero-1920.webp","Late afternoon light in El Valle de Antón, with the crater rim behind","50% 60%"]}};if(!m||!o[m[1]])return;var i=document.querySelector(".ab-hero .hero-img");i.removeAttribute("srcset");i.src=o[m[1]][0];i.alt=o[m[1]][1];i.style.objectPosition=o[m[1]][2]}})();</script>
 {ABOUT_CSS}{TRUST_CSS}{ABOUT2_CSS}
 {ld("AboutPage", "/about", "About Panamá Spot", "Who makes Panamá Spot, how the guides are researched and checked, how we correct mistakes, and how the site is funded.")}
 <section class="wrap ab-sec ab-first"><div class="ab-row">
@@ -1268,3 +1267,155 @@ def build_about_mock():
         print("wrote", P / "preview" / f"{name}.html")
 
 build_about_mock()
+
+
+# ---------------- Privacy policy + 404 (mockups at /preview/privacy and /preview/404, noindex) ----------------
+PV_CSS = """<style>
+.pv-hero { height: auto; min-height: 0; background: var(--navy); padding-bottom: clamp(40px, 5vw, 64px); }
+.pv-hero::before { display: none; }
+.pv-hero .hx-c { padding-top: clamp(28px, 4vw, 56px); padding-bottom: 0; }
+.pv-hero .ab-mark { font-size: clamp(48px, 6vw, 88px); }
+.pv-hero .ab-goal { color: rgba(255,255,255,.78); }
+.pv-wrap { display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
+.pv-toc { position: sticky; top: 24px; display: grid; gap: 2px; }
+.pv-toc b { font: 600 13.5px/1 var(--sans); color: var(--ink); margin-bottom: 10px; display: flex; gap: 8px; align-items: center; }
+.pv-toc b::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--red); }
+.pv-toc a { padding: 7px 0; font: 500 14.5px/1.3 var(--sans); color: var(--muted); text-decoration: none; }
+.pv-toc a:hover { color: var(--navy); }
+.pv-body { max-width: 70ch; }
+.pv-short { background: var(--beige); border-radius: 24px; padding: clamp(24px, 3vw, 34px); display: grid; grid-template-columns: 1fr 1fr; gap: 22px 28px; margin-bottom: clamp(36px, 4vw, 52px); }
+.pv-short h2 { grid-column: 1 / -1; font: 600 22px/1.2 var(--sans); color: var(--navy); margin: 0; }
+.pv-short div { display: grid; grid-template-columns: 30px 1fr; gap: 12px; align-items: start; font-size: 15.5px; line-height: 1.55; color: var(--body); }
+.pv-short .ic { color: var(--red); line-height: 0; padding-top: 1px; }
+.pv-short .ic svg { width: 26px; height: 26px; }
+.pv-body section { scroll-margin-top: 24px; margin-bottom: clamp(34px, 4vw, 46px); }
+.pv-body h2 { font: 600 clamp(22px, 2.2vw, 27px)/1.2 var(--sans); color: var(--navy); margin: 0 0 14px; }
+.pv-body h3 { font: 600 17px/1.35 var(--sans); color: var(--ink); margin: 22px 0 8px; }
+.pv-body p, .pv-body li { font-size: 16.5px; line-height: 1.7; color: var(--body); }
+.pv-body p { margin: 0 0 14px; }
+.pv-body ul { margin: 0 0 14px; padding-left: 20px; display: grid; gap: 6px; }
+.pv-body a { color: var(--navy); }
+.pv-tbl { width: 100%; border-collapse: collapse; font-size: 15px; margin: 6px 0 14px; }
+.pv-tbl th { text-align: left; font: 600 13.5px/1.3 var(--sans); color: var(--muted); padding: 0 12px 10px 0; }
+.pv-tbl td { padding: 12px 12px 12px 0; border-top: 1px solid var(--line); vertical-align: top; line-height: 1.5; color: var(--body); }
+.pv-tbl code { font: 600 14px/1 var(--sans); color: var(--ink); }
+@media (max-width: 900px) { .pv-wrap { grid-template-columns: 1fr; } .pv-toc { position: static; } .pv-short { grid-template-columns: 1fr; } .pv-tbl th:nth-child(4), .pv-tbl td:nth-child(4) { display: none; } }
+/* 404 */
+.nf-hero { height: clamp(480px, 60vh, 600px); }
+.nf-hero .hx-c { gap: 14px; }
+.nf-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+.nf-row .hx-btn { margin: 0; border: 0; cursor: pointer; }
+.nf-row .glass { display: inline-flex; align-items: center; padding: 14px 26px; border-radius: 999px; font: 600 14.5px/1 var(--sans); color: #fff; text-decoration: none; }
+</style>"""
+
+ICON_NOSELL = '<circle cx="12" cy="12" r="9"/><path d="m5.7 5.7 12.6 12.6"/>'
+ICON_CHART = '<path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/>'
+ICON_AD = '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 15l2.5-6 2.5 6M7.8 13h3.4M15 9v6h1.5a2.5 2.5 0 0 0 0-6Z"/>'
+ICON_MAIL = '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>'
+PV_UPDATED = ("2026-11-08", "8 November 2026")
+
+def build_privacy_mock():
+    mail = f'<a href="mailto:{EMAIL}">{EMAIL}</a>'
+    toc = [("who", "Who we are"), ("collect", "What we collect"), ("use", "How we use it"), ("cookies", "Cookies"), ("third", "Other companies involved"),
+           ("transfer", "Where data is processed"), ("keep", "How long we keep it"), ("rights", "Your choices and rights"), ("children", "Children"), ("changes", "Changes"), ("contact", "Contact")]
+    body = f"""<div class="guide-progress" id="prog" aria-hidden="true"></div>
+<header class="hero hx-home ab-hero pv-hero">
+  {nav("/preview/privacy", "/es", "en")}
+  <div class="wrap hx-c"><span class="lbl">Privacy</span>
+    <h1 class="ab-mark">Privacy policy<i class="pd"></i></h1>
+    <p class="hx-dek ab-goal">What Panamá Spot collects when you read our guides, why, and the choices you have. Last updated {PV_UPDATED[1]}.</p></div>
+</header>
+{ABOUT_CSS}{TRUST_CSS}{ABOUT2_CSS}{PV_CSS}
+<div class="wrap ab-sec ab-first"><div class="pv-wrap">
+<nav class="pv-toc" aria-label="On this page"><b>On this page</b>{"".join(f'<a href="#{i}">{t}</a>' for i, t in toc)}</nav>
+<div class="pv-body">
+<div class="pv-short"><h2>The short version</h2>
+  <div><span class="ic">{icon(ICON_NOSELL)}</span><span>There are no accounts on Panamá Spot, and we never sell or rent personal information.</span></div>
+  <div><span class="ic">{icon(ICON_CHART)}</span><span>We use Google Analytics to see which guides people read, so we know what to improve.</span></div>
+  <div><span class="ic">{icon(ICON_AD)}</span><span>We run some Google Ads, and measure whether an ad led someone to get in touch.</span></div>
+  <div><span class="ic">{icon(ICON_MAIL)}</span><span>If you email us, we use your address only to reply.</span></div>
+</div>
+
+<section id="who"><h2>Who we are</h2>
+<p>Panamá Spot (panamaspot.com) is an independent travel guide to Panama. In this policy, "we" and "us" mean Panamá Spot. If you have a question about your data, write to {mail}.</p></section>
+
+<section id="collect"><h2>What we collect</h2>
+<h3>When you read the site</h3>
+<p>We use Google Analytics 4 to understand how the site is used. It collects information such as the pages you view, how you arrived (for example from a search engine, a link or an ad), roughly where you are (country and city, worked out from your IP address), your device, browser, language and screen size, how long you stay, and clicks on some links, such as links to partner pages or to WhatsApp. Google Analytics 4 does not log or store IP addresses. It uses cookies to recognise a returning browser; it does not tell us your name or who you are.</p>
+<h3>When you arrive from an ad</h3>
+<p>Some of our pages are advertised on Google. When you click one of those ads, the link carries a click identifier. On a few pages about our local partners, the Google Ads conversion tag records whether someone who arrived from an ad then tapped the button to contact the partner on WhatsApp. This tells us whether the ad worked; it does not tell us who you are or what you wrote.</p>
+<h3>When you email us</h3>
+<p>If you write to us, we receive your email address, your name if you include it, and whatever is in your message.</p>
+<h3>To run the site</h3>
+<p>Our hosting provider processes technical information, such as your IP address and browser type, to deliver pages and protect the site from abuse. Some pages load fonts from Google Fonts, which means your browser connects to Google's servers to fetch them.</p>
+<p>We don't have accounts, comment forms or payments, so we don't collect passwords or payment details.</p></section>
+
+<section id="use"><h2>How we use it</h2>
+<ul><li>To see which guides are useful, find broken pages and decide what to write or update next.</li>
+<li>To measure whether our ads bring readers and lead to enquiries.</li>
+<li>To reply to your messages and fix mistakes you report.</li>
+<li>To keep the site secure and working.</li></ul>
+<p>We don't sell or rent personal information, and we don't share it with our partners.</p></section>
+
+<section id="cookies"><h2>Cookies</h2>
+<p>Cookies are small files your browser stores. These are the ones set on panamaspot.com:</p>
+<table class="pv-tbl"><thead><tr><th>Cookie</th><th>Set by</th><th>What it does</th><th>Lasts</th></tr></thead><tbody>
+<tr><td><code>_ga</code></td><td>Google Analytics</td><td>Tells one browser apart from another, to count visitors</td><td>2 years</td></tr>
+<tr><td><code>_ga_*</code></td><td>Google Analytics</td><td>Keeps track of your current visit</td><td>2 years</td></tr>
+<tr><td><code>_gcl_*</code></td><td>Google Ads</td><td>Links a visit to the ad that brought it, on pages with the Google Ads tag</td><td>90 days</td></tr>
+</tbody></table>
+<p>You can block or delete cookies in your browser settings. The site still works without them.</p></section>
+
+<section id="third"><h2>Other companies involved</h2>
+<ul><li><b>Google</b> provides Google Analytics, Google Ads and Google Fonts. Google's use of this data is covered by the <a href="https://policies.google.com/privacy" rel="noopener">Google Privacy Policy</a>; see also <a href="https://policies.google.com/technologies/partner-sites" rel="noopener">how Google uses information from sites that use its services</a>.</li>
+<li><b>Our hosting provider</b> serves the site and keeps technical logs.</li>
+<li><b>WhatsApp.</b> Some pages have buttons that open WhatsApp to message a local business. That conversation happens on WhatsApp, under <a href="https://www.whatsapp.com/legal/privacy-policy" rel="noopener">WhatsApp's privacy policy</a>, and goes to that business, not to us.</li>
+<li><b>Other websites.</b> Our guides link to official sites, operators and partners. Once you leave panamaspot.com, their privacy policies apply.</li></ul></section>
+
+<section id="transfer"><h2>Where data is processed</h2>
+<p>Google and our hosting provider run servers in the United States and other countries, so the information described here may be processed outside the country you live in.</p></section>
+
+<section id="keep"><h2>How long we keep it</h2>
+<p>Google Analytics keeps visit data for a limited period set in our account, and then deletes it automatically; reports only show totals. We keep emails for as long as we need them to deal with your message, and delete them when asked.</p></section>
+
+<section id="rights"><h2>Your choices and rights</h2>
+<ul><li>Block or delete cookies in your browser.</li>
+<li>Install the <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener">Google Analytics opt-out browser add-on</a>.</li>
+<li>Manage how Google personalises ads in <a href="https://myadcenter.google.com" rel="noopener">My Ad Center</a>.</li></ul>
+<p>Depending on where you live, including under Panama's Law 81 of 2019, the EU and UK GDPR and some US state laws, you may have the right to ask what personal information we hold about you, and to have it corrected or deleted, or to object to how it is used. Write to {mail} and we will respond. Analytics data is not linked to your name, so in most cases we can't find it from an email address alone. You can also complain to your data protection authority; in Panama, that is the Autoridad Nacional de Transparencia y Acceso a la Información (ANTAI).</p></section>
+
+<section id="children"><h2>Children</h2>
+<p>Panamá Spot is written for adults planning travel. We don't knowingly collect personal information from children.</p></section>
+
+<section id="changes"><h2>Changes to this policy</h2>
+<p>If we change what we collect or how we use it, we will update this page and the date at the top.</p></section>
+
+<section id="contact"><h2>Contact</h2>
+<p>Questions or requests about your data: {mail}. You can also reach us through our <a href="/preview/contact">contact page</a>.</p></section>
+<p class="ab-rev"><i class="dot"></i>Last updated {PV_UPDATED[1]}.</p>
+</div></div></div>
+"""
+    out = page("Privacy policy · Panamá Spot", body, "/images/v2/home-hero-video-poster.webp", "en")
+    (P / "preview" / "privacy.html").write_text(out); print("wrote", P / "preview" / "privacy.html")
+
+def build_404_mock():
+    img = "/images/v2/la-carretera-que-entra-al-crater-d9c1199f-hero-1920.webp"
+    popular = [("/articles/best-time-to-visit-panama", "Best time to visit Panama"), ("/articles/is-panama-safe", "Is Panama safe?"),
+               ("/articles/panama-city-to-boquete", "Panama City to Boquete"), ("/articles/san-blas-islands-panama-guna-yala-guide", "San Blas islands"),
+               ("/articles/day-trips-from-panama-city", "Day trips from Panama City"), ("/articles/el-valle-de-anton-vs-boquete", "El Valle or Boquete?")]
+    body = f"""<header class="hero hx-home ab-hero nf-hero">
+  <img class="hero-img" alt="A road winding down into the El Valle de Antón crater" fetchpriority="high" src="{img}"{hero_srcset(img)} style="object-position:50% 55%"/>
+  {nav("/", "/es", "en")}
+  <div class="wrap hx-c"><span class="lbl">Error 404</span>
+    <h1 class="ab-mark">Wrong turn<i class="pd"></i></h1>
+    <p class="hx-dek ab-goal">We couldn't find that page. The link may be old, or the page may have moved. Search the guides or start from one of the places below.</p>
+    <div class="nf-row"><button type="button" class="hx-btn" data-search>Search guides</button><a class="glass" href="/">Go to the homepage</a></div></div>
+</header>
+{ABOUT_CSS}{TRUST_CSS}{ABOUT2_CSS}{PV_CSS}
+<section class="wrap ab-sec ab-first"><div class="ab-h"><h2>Popular guides</h2><p>Where most readers start.</p></div>
+<div class="hx-grid">{"".join(card(u, t, more=True) for u, t in popular)}</div></section>
+"""
+    out = page("Page not found · Panamá Spot", body, img, "en")
+    (P / "preview" / "404.html").write_text(out); print("wrote", P / "preview" / "404.html")
+
+build_privacy_mock(); build_404_mock()

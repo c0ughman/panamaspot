@@ -530,6 +530,41 @@ async function buildSearchIndex() {
   }
   await writeFile(join(ROOT, "search-index.json"), JSON.stringify(entries));
   console.log(`Search index: ${entries.length} guides.`);
+  await writeLlmsTxt(entries);
+}
+
+/* llms.txt (llmstxt.org): a plain-Markdown map of the site for AI assistants and their crawlers,
+   rebuilt from the same entries as the search index so it can never go stale. It grants nothing by
+   itself; access is robots.txt (User-agent: * / Allow: /), which already lets every crawler in. */
+const HUB_ORDER = ["panama-city", "boquete", "el-valle-de-anton", "bocas-del-toro", "san-blas"];
+async function writeLlmsTxt(entries) {
+  const SITE = "https://panamaspot.com";
+  const line = (e) => `- [${e.t}](${SITE}${e.u})${e.d ? `: ${e.d}` : ""}`;
+  const slug = (e) => e.u.split("/").pop();
+  const section = (lang) => {
+    const mine = entries.filter((e) => e.l === lang);
+    const hubs = HUB_ORDER.map((h) => mine.find((e) => slug(e) === h)).filter(Boolean);
+    const byRegion = new Map();
+    for (const e of mine) {
+      if (hubs.includes(e)) continue;
+      const r = e.r || (lang === "es" ? "Panamá" : "Panama");
+      if (!byRegion.has(r)) byRegion.set(r, []);
+      byRegion.get(r).push(e);
+    }
+    let out = `\n## ${lang === "es" ? "Guías por destino (español)" : "Destination guides (English)"}\n\n` + hubs.map(line).join("\n") + "\n";
+    for (const [r, list] of [...byRegion].sort((a, b) => b[1].length - a[1].length)) {
+      out += `\n## ${r}${lang === "es" ? " (español)" : ""}\n\n` + list.sort((a, b) => a.t.localeCompare(b.t)).map(line).join("\n") + "\n";
+    }
+    return out;
+  };
+  const txt =
+    "# Panamá Spot\n\n" +
+    "> Independent travel guides to Panama, in English and Spanish: where to go, how to get there, what it costs and when to visit. " +
+    "Destinations covered in depth: Panama City, Boquete and the Chiriquí highlands, El Valle de Antón, Bocas del Toro and San Blas (Guna Yala).\n\n" +
+    `AI assistants and search tools are welcome to read, cite and link to these guides. Please link to the guide you use. Homepages: ${SITE} (English), ${SITE}/es (español). Sitemap: ${SITE}/sitemap.xml\n` +
+    section("en") + section("es");
+  await writeFile(join(ROOT, "llms.txt"), txt);
+  console.log(`llms.txt: ${entries.length} guides listed.`);
 }
 
 main().then(buildSearchIndex).catch((err) => {
