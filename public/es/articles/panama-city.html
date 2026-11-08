@@ -473,6 +473,9 @@ a.search { color: inherit; text-decoration: none; cursor: pointer; }
 /* the video is darker footage than the photos, so it gets a lighter veil: just enough for the menu and the wordmark */
 .hx-home.vid::before { background: linear-gradient(180deg, rgba(3,10,30,.28) 0%, rgba(3,10,30,0) 24%, rgba(3,10,30,0) 58%, rgba(3,10,30,.3) 100%); }
 .hx-home .hx-c { align-self: end; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding-top: 32px; padding-bottom: 54px; }
+/* a barely-there dark glow behind the wordmark and the line under it, so they read over bright shots */
+.hx-home.vid .hx-c { position: relative; isolation: isolate; }
+.hx-home.vid .hx-c::before { content: ""; position: absolute; z-index: -1; left: -4%; top: 4%; width: min(820px, 104%); height: 82%; background: radial-gradient(closest-side, rgba(3,10,30,.18), rgba(3,10,30,0)); pointer-events: none; }
 .hx-home .hx-mark { font: 400 clamp(64px, 11vw, 160px)/.86 var(--serif); letter-spacing: -0.02em; color: #fff; margin: 0; text-shadow: 0 2px 30px rgba(0,0,0,.18); }
 .hx-mark .a { color: var(--red); }
 .hx-home .hx-mark { margin-bottom: -.09em; }
