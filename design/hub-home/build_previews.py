@@ -1157,7 +1157,6 @@ def icon(paths):
 ICON_REFRESH = '<path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/>'
 ICON_SCALE = '<path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/>'
 ICON_CAM = '<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/>'
-WAVES = "data:image/svg+xml," + "%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 64'%3E%3Cpath d='M2 10q7-7 14 0t14 0 14 0 14 0 14 0 14 0 14 0 14 0M2 32q7-7 14 0t14 0 14 0 14 0 14 0 14 0 14 0 14 0M2 54q7-7 14 0t14 0 14 0 14 0 14 0 14 0 14 0 14 0' fill='none' stroke='%23da121a' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E"
 ABOUT2_CSS = """<style>
 .ab-hero { height: clamp(520px, 64vh, 660px); }
 .ab-hero .hero-img { object-position: 50% 62%; }
@@ -1179,16 +1178,15 @@ ABOUT2_CSS = """<style>
 .ab-pano img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 60%; }
 .ab-pol3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .ab-pol3 > div { position: relative; background: var(--beige); border-radius: 24px; padding: 30px 26px 28px; display: grid; gap: 12px; align-content: start; scroll-margin-top: 24px; overflow: hidden; }
-.ab-pol3 > div::after { content: ""; position: absolute; top: 26px; right: -14px; width: 120px; height: 64px; background: url("WAVESURL") no-repeat center / contain; opacity: .16; pointer-events: none; }
 .ab-pol3 .ic { display: block; color: var(--red); line-height: 0; margin-bottom: 6px; }
 .ab-pol3 .ic svg { width: 34px; height: 34px; }
-.ab-pol3 h3 { margin: 0; font: 400 25px/1.15 var(--serif); color: var(--navy); }
+.ab-pol3 h3 { margin: 0; font: 600 19px/1.3 var(--sans); color: var(--navy); }
 .ab-pol3 p { margin: 0; font-size: 15.5px; line-height: 1.62; color: var(--body); }
 .ab-pol3 a { color: var(--navy); }
 @media (max-width: 900px) {
   .ab-row, .ab-pol3 { grid-template-columns: 1fr; }
 }
-</style>""".replace("WAVESURL", WAVES)
+</style>"""
 
 def build_about_mock():
     regions = [("/articles/panama-city", "Panama City", "Capital and canal", "/images/v2/the-skyline-of-panama-city-s-17477516-stamp.webp"),
@@ -1232,6 +1230,8 @@ def build_about_mock():
   <div id="photos"><span class="ic">{icon(ICON_CAM)}</span><h3>Photos and credits</h3><p>Photos are captioned with what is in the frame. Photos from outside photographers are credited, with their licence, under the guide's gallery. When we can't confirm exactly where a photo was taken, we don't name a place for it.</p></div>
 </div>
 <p class="ab-rev"><i class="dot"></i>This page was last reviewed on {REVIEWED[1]}.</p></section>
+<section class="wrap ab-sec" style="padding-top:0"><div class="ab-h"><h2>Where we cover</h2><p>Five regions so far, each with its own set of guides.</p></div>
+<div class="ab-stamps">{stamps}</div></section>
 """
     contact = ab_hero("/images/v2/a-single-sailboat-glides-across-a-36117831-hero-1920.webp", "A single sailboat on calm turquoise sea under a clear sky.", 62,
                       "Contact", "Contact", "Questions, corrections, or an idea for working together. We read every message.",
@@ -1239,7 +1239,7 @@ def build_about_mock():
 {ABOUT_CSS}{TRUST_CSS}
 {ld("ContactPage", "/contact", "Contact Panamá Spot", "How to reach the Panamá Spot editors: corrections, partnerships and general questions, in English or Spanish.")}
 <section class="wrap ab-sec first"><div class="pc">
-  <div class="pc-front"><img alt="Palm trees leaning over a white-sand beach in Guna Yala" loading="lazy" src="/images/v2/isla-en-guna-yala-hero-1280.webp"/><div class="glass"><small>Greetings from</small>Panamá</div></div>
+  <div class="pc-front"><img alt="A palm tree leaning over a white-sand beach in Guna Yala" loading="lazy" src="/images/v2/x-diadup-kuna-yala-panam-c3-a1-hero-1280.webp"/><div class="glass"><small>Greetings from</small>Panamá</div></div>
   <div class="pc-back">
     {stamp("/images/v2/turquoise-water-fronts-a-palm-lined-30826590-stamp.webp")}
     {postmark("PANAMÁ SPOT · CONTACTO · 2026 ·")}
