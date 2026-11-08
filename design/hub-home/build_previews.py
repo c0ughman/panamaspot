@@ -967,3 +967,183 @@ def build_home(lang, video=False):
     f.write_text(finalize(out))
     print("wrote", f)
 build_home("en", video=True); build_home("es", video=True)  # video=False goes back to the still photo (still())
+
+
+# ---------------- About + Contact (mockups at /preview/about and /preview/contact, noindex) ----------------
+ABOUT_CSS = """<style>
+.ab-sec { padding-block: clamp(56px, 7vw, 96px); }
+.ab-sec.first { padding-top: clamp(44px, 5vw, 64px); }
+.ab-h { display: grid; gap: 10px; max-width: 46rem; margin-bottom: clamp(28px, 3.4vw, 44px); }
+.ab-h h2 { font: 600 clamp(28px, 3vw, 40px)/1.12 var(--sans); color: var(--navy); letter-spacing: -0.015em; margin: 0; }
+.ab-h p { font-size: 17.5px; line-height: 1.6; color: var(--body); margin: 0; }
+.ab-intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 380px); gap: clamp(32px, 6vw, 96px); align-items: start; }
+.ab-intro .lead p { margin: 0 0 18px; }
+.ab-intro .lead p:last-child { font-size: 17.5px; line-height: 1.65; color: var(--body); }
+.ab-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-radius: 22px; background: #fff; box-shadow: 0 0 0 1px var(--line), 0 18px 40px -26px rgba(3,10,30,.35); overflow: hidden; }
+.ab-facts div { padding: 20px 22px; display: grid; gap: 4px; }
+.ab-facts div:nth-child(odd) { border-right: 1px solid var(--line); } .ab-facts div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+.ab-facts b { font: 400 34px/1 var(--serif); color: var(--navy); }
+.ab-facts span { font-size: 13.5px; color: var(--muted); }
+.ab-facts .hd { grid-column: 1 / -1; display: flex; align-items: center; gap: 8px; padding: 14px 22px; background: var(--beige-2); border: 0 !important; font: 600 13.5px/1 var(--sans); color: var(--ink); }
+.ab-facts .hd .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--red); display: inline-block; }
+.ab-split { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 88px); align-items: center; }
+.ab-photo { position: relative; margin: 0; }
+.ab-photo img { display: block; width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 28px; }
+.ab-photo figcaption { position: absolute; left: 16px; bottom: 16px; padding: 9px 14px; border-radius: 999px; font: 500 13px/1.2 var(--sans); }
+.ab-steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 26px; counter-reset: s; }
+.ab-steps li { display: grid; grid-template-columns: 34px 1fr; gap: 16px; counter-increment: s; }
+.ab-steps li::before { content: counter(s); width: 34px; height: 34px; border-radius: 50%; background: var(--red); color: #fff; font: 700 15px/34px var(--sans); text-align: center; }
+.ab-steps b { display: block; font: 600 18.5px/1.3 var(--sans); color: var(--navy); margin: 5px 0 6px; }
+.ab-steps p { margin: 0; font-size: 16px; line-height: 1.6; color: var(--body); }
+.ab-band { background: var(--beige); }
+.ab-indep { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: center; max-width: 980px; }
+.ab-indep .pm svg { width: clamp(150px, 16vw, 210px); }
+.ab-indep .ab-h { margin: 0; }
+.ab-stamps { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(16px, 2.4vw, 34px); }
+.ab-stamps a { display: grid; gap: 14px; justify-items: center; text-decoration: none; color: var(--navy); }
+.ab-stamps .sw { display: block; width: 100%; max-width: 220px; transition: transform .3s; }
+.ab-stamps a:nth-child(odd) .sw { transform: rotate(-2.5deg); } .ab-stamps a:nth-child(even) .sw { transform: rotate(2deg); }
+.ab-stamps a:hover .sw { transform: rotate(0) translateY(-4px); }
+.ab-stamps b { font: 400 21px/1.15 var(--serif); text-align: center; }
+.ab-stamps small { display: block; font: 500 13px/1.3 var(--sans); color: var(--muted); text-align: center; margin-top: 4px; }
+.ab-cta { position: relative; border-radius: 28px; overflow: hidden; min-height: 340px; display: grid; align-items: end; }
+.ab-cta > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ab-cta::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(3,10,30,.45), rgba(3,10,30,0) 60%); }
+.ab-cta .glass { position: relative; z-index: 1; margin: clamp(18px, 3vw, 36px); padding: clamp(22px, 3vw, 32px); border-radius: 22px; max-width: 520px; display: grid; gap: 12px; text-shadow: 0 1px 2px rgba(3,10,30,.25); }
+.ab-cta h2 { font: 400 clamp(28px, 3vw, 38px)/1.1 var(--serif); margin: 0; color: #fff; }
+.ab-cta p { margin: 0; font-size: 16.5px; line-height: 1.55; color: rgba(255,255,255,.92); }
+.ab-btn { justify-self: start; display: inline-flex; align-items: center; gap: 10px; background: #fff; color: var(--ink); padding: 14px 26px; border-radius: 999px; font: 600 14.5px/1 var(--sans); text-decoration: none; box-shadow: 0 1px 2px rgba(3,10,30,.1), 0 6px 18px -6px rgba(3,10,30,.28); text-shadow: none; }
+/* contact: a postcard */
+.pc { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); background: #fff; border-radius: 26px; overflow: hidden; box-shadow: 0 0 0 1px var(--line), 0 30px 70px -34px rgba(3,10,30,.4); }
+.pc-front { position: relative; min-height: 460px; }
+.pc-front img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.pc-front .glass { position: absolute; left: 22px; bottom: 22px; padding: 14px 20px; border-radius: 18px; font: 400 clamp(26px, 2.6vw, 34px)/1.05 var(--serif); }
+.pc-front .glass small { display: block; font: 500 13px/1.3 var(--sans); opacity: .9; margin-bottom: 6px; }
+.pc-back { position: relative; padding: clamp(28px, 3.4vw, 44px); display: grid; align-content: space-between; gap: 30px; background: #fff; }
+.pc-back .sw { position: absolute; top: 24px; right: 24px; width: 104px; transform: rotate(3deg); }
+.pc-back .pm { position: absolute; top: 46px; right: 84px; pointer-events: none; }
+.pc-back .pm svg { width: 132px; opacity: .82; transform: rotate(-14deg); }
+.pc-msg { max-width: 30ch; display: grid; gap: 12px; padding-top: 8px; }
+.pc-msg h2 { font: 400 clamp(30px, 3vw, 40px)/1.08 var(--serif); color: var(--navy); margin: 0; }
+.pc-msg p { margin: 0; font-size: 16.5px; line-height: 1.6; color: var(--body); }
+.pc-to { display: grid; gap: 0; }
+.pc-to span { display: block; padding: 12px 0 10px; border-bottom: 1px solid var(--line); font-size: 15px; color: var(--muted); }
+.pc-to a { font: 600 clamp(20px, 2vw, 26px)/1.2 var(--sans); color: var(--navy); text-decoration: none; }
+.pc-to a:hover { color: var(--red); }
+.pc-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.pc-copy { border: 0; cursor: pointer; background: var(--beige-2); color: var(--ink); padding: 11px 18px; border-radius: 999px; font: 600 13.5px/1 var(--sans); }
+.pc-copy:hover { background: var(--line); }
+.ab-why { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.ab-why > div { background: var(--beige); border-radius: 22px; padding: 26px 24px; display: grid; gap: 10px; align-content: start; }
+.ab-why .ic { width: 42px; height: 42px; border-radius: 50%; background: #fff; display: grid; place-items: center; color: var(--red); box-shadow: 0 0 0 1px var(--line); }
+.ab-why b { font: 600 18px/1.3 var(--sans); color: var(--navy); }
+.ab-why p { margin: 0; font-size: 15.5px; line-height: 1.6; color: var(--body); }
+.ab-note { margin-top: 26px; font-size: 14.5px; color: var(--muted); }
+@media (max-width: 900px) {
+  .ab-intro, .ab-split, .pc { grid-template-columns: 1fr; }
+  .ab-indep { grid-template-columns: 1fr; justify-items: start; }
+  .ab-stamps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .ab-why { grid-template-columns: 1fr; }
+  .pc-front { min-height: 300px; }
+  .ab-photo img { aspect-ratio: 4/3; }
+}
+@media (max-width: 560px) { .ab-stamps { grid-template-columns: 1fr 1fr; } .pc-back { padding-top: 132px; } .pc-back .sw { width: 84px; top: 22px; } .pc-back .pm { top: 34px; right: 64px; } .pc-back .pm svg { width: 108px; } }
+</style>"""
+
+def postmark(text):
+    return ('<div class="pm"><svg viewBox="0 0 330 200" aria-hidden="true"><defs><path id="pmr-ab" d="M100,100 m-70,0 a70,70 0 1,1 140,0 a70,70 0 1,1 -140,0"/></defs>'
+            '<circle cx="100" cy="100" r="92" fill="none" stroke="currentColor" stroke-width="5"/><circle cx="100" cy="100" r="50" fill="none" stroke="currentColor" stroke-width="3"/>'
+            f'<text fill="currentColor" style="font:800 19px var(--sans)"><textPath href="#pmr-ab" textLength="430" lengthAdjust="spacing">{text}</textPath></text>'
+            '<text x="96" y="122" text-anchor="middle" fill="currentColor" style="font:550 68px var(--serif)">á</text><circle cx="124" cy="117" r="6" fill="currentColor"/>'
+            '<path d="M206 58 q 14 -12 28 0 t 28 0 t 28 0 t 28 0 M206 86 q 14 -12 28 0 t 28 0 t 28 0 t 28 0 M206 114 q 14 -12 28 0 t 28 0 t 28 0 t 28 0 M206 142 q 14 -12 28 0 t 28 0 t 28 0 t 28 0" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg></div>')
+
+def stamp(src):
+    return f'<span class="sw"><span class="stamp"><img class="in" alt="" loading="lazy" src="{src}" width="360" height="450"/></span></span>'
+
+def ab_hero(img, alt, focus, lbl, h1, dek, en, es):
+    return f"""<div class="guide-progress" id="prog" aria-hidden="true"></div>
+<header class="hero hb-hero">
+  <img class="hero-img" alt="{alt}" fetchpriority="high" src="{img}" style="object-position:center {focus}%"/>
+  {nav(en, es, "en")}
+  <div class="wrap"><div class="hb-c">
+    <div class="hb-t"><span class="lbl">{lbl}</span><h1>{h1}</h1></div>
+    <p>{dek}</p>
+  </div></div>
+</header>"""
+
+EMAIL = "hola@panamaspot.com"
+ICON_PEN = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>'
+ICON_SHOP = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l1.5-5h15L21 9"/><path d="M4 9v11h16V9"/><path d="M9 20v-6h6v6"/></svg>'
+ICON_HI = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>'
+
+def build_about_mock():
+    regions = [("/articles/panama-city", "Panama City", "Capital and canal", "/images/v2/the-skyline-of-panama-city-s-17477516-stamp.webp"),
+               ("/articles/boquete", "Boquete", "Coffee highlands", "/images/v2/boquete-hills-stamp.webp"),
+               ("/articles/el-valle-de-anton", "El Valle de Antón", "Volcanic crater", "/images/v2/the-flat-floor-of-the-el-f491c24a-stamp.webp"),
+               ("/articles/bocas-del-toro", "Bocas del Toro", "Caribbean islands", "/images/v2/red-frog-beach-bastimentos-stamp.webp"),
+               ("/articles/san-blas", "San Blas", "Guna Yala", "/images/v2/a-pale-sandbar-curls-beside-dark-37208428-stamp.webp")]
+    stamps = "".join(f'<a href="{u}">{stamp(s)}<span><b>{n}</b><small>{d} · {count(u)} guides</small></span></a>' for u, n, d, s in regions)
+    about = ab_hero("/images/v2/home-hero-casco-day-1920.webp", "Casco Viejo from the air, with the Panama City skyline across the bay.", 58,
+                    "About", "About Panamá Spot", "Independent travel guides to Panama, from the canal to the cloud forest. In English and Spanish.",
+                    "/preview/about", "/es") + f"""
+{ABOUT_CSS}
+<section class="wrap ab-sec first"><div class="ab-intro">
+  <div class="lead"><p><strong>Panamá Spot is an independent travel guide to Panama.</strong> We write for people planning a trip: where to go, how to get there, what it costs, and what is worth skipping. Every guide answers the question first, then gives you the detail.</p>
+  <p>We started in 2026 with the places travellers ask about most, Panama City, Boquete, El Valle de Antón, Bocas del Toro and San Blas, and we keep adding more of the country.</p></div>
+  <div class="ab-facts" aria-label="Panamá Spot at a glance"><div class="hd"><i class="dot"></i>At a glance</div>
+    <div><b>2026</b><span>Founded</span></div><div><b>140+</b><span>Guides</span></div>
+    <div><b>EN · ES</b><span>Two languages</span></div><div><b>5</b><span>Regions, and growing</span></div></div>
+</div></section>
+<section class="wrap ab-sec" style="padding-top:0"><div class="ab-split">
+  <figure class="ab-photo"><img alt="Travellers with backpacks walking a narrow street in Casco Viejo" loading="lazy" src="/images/v2/narrow-street-in-casco-viejo-with-18049699-hero-1280.webp"/><figcaption class="glass">Casco Viejo, Panama City</figcaption></figure>
+  <div><div class="ab-h"><h2>How we make our guides</h2><p>The same five steps for every page, from a day trip to a visa question.</p></div>
+  <ol class="ab-steps">
+    <li><div><b>Start with the question</b><p>What a traveller actually needs to decide, answered in the first lines.</p></div></li>
+    <li><div><b>Go to the source</b><p>Official sites, timetables, and the operators and businesses themselves.</p></div></li>
+    <li><div><b>Check every number</b><p>Prices, hours and schedules carry the date we checked them.</p></div></li>
+    <li><div><b>Show the real place</b><p>Photos are captioned with what they show. If we can't confirm where a photo was taken, we don't say.</p></div></li>
+    <li><div><b>Keep it current</b><p>We update guides when things change, and fix mistakes as soon as we hear about them.</p></div></li>
+  </ol></div>
+</div></section>
+<section class="ab-band ab-sec"><div class="wrap"><div class="ab-indep">
+  {postmark("PANAMÁ SPOT · DESDE 2026 ·")}
+  <div class="ab-h"><h2>Independent, with a few local partners</h2><p>Panamá Spot is independent. We work with a small number of local partners, and some links on the site lead to them. Partners never decide what we recommend, how we rank things, or what we write.</p></div>
+</div></div></section>
+<section class="wrap ab-sec"><div class="ab-h"><h2>Where we cover</h2><p>Five regions so far, each with its own set of guides.</p></div>
+<div class="ab-stamps">{stamps}</div></section>
+<section class="wrap ab-sec" style="padding-top:0"><div class="ab-cta"><img alt="" loading="lazy" src="/images/v2/isla-en-guna-yala-hero-1280.webp"/>
+  <div class="glass"><h2>Spotted something out of date?</h2><p>Prices and timetables in Panama change. If a guide is wrong, tell us and we'll fix it.</p><a class="ab-btn" href="/preview/contact">Contact us →</a></div></div></section>
+"""
+    contact = ab_hero("/images/v2/a-single-sailboat-glides-across-a-36117831-hero-1920.webp", "A single sailboat on calm turquoise sea under a clear sky.", 62,
+                      "Contact", "Contact", "Questions, corrections, or an idea for working together. We read every message.",
+                      "/preview/contact", "/es") + f"""
+{ABOUT_CSS}
+<section class="wrap ab-sec first"><div class="pc">
+  <div class="pc-front"><img alt="Palm trees leaning over a white-sand beach in Guna Yala" loading="lazy" src="/images/v2/isla-en-guna-yala-hero-1280.webp"/><div class="glass"><small>Greetings from</small>Panamá</div></div>
+  <div class="pc-back">
+    {stamp("/images/v2/turquoise-water-fronts-a-palm-lined-30826590-stamp.webp")}
+    {postmark("PANAMÁ SPOT · CONTACTO · 2026 ·")}
+    <div class="pc-msg"><h2>Write to us</h2><p>One inbox for everything. Tell us what you need and, if it's about a guide, which page.</p></div>
+    <div class="pc-to"><span>To: Panamá Spot</span><span><a href="mailto:{EMAIL}">{EMAIL}</a></span><span>Panamá</span></div>
+    <div class="pc-row"><a class="ab-btn" style="background:var(--navy);color:#fff" href="mailto:{EMAIL}">Send an email →</a><button type="button" class="pc-copy" data-copy="{EMAIL}">Copy address</button></div>
+  </div>
+</div></section>
+<section class="wrap ab-sec" style="padding-top:0"><div class="ab-h"><h2>What to write about</h2></div>
+<div class="ab-why">
+  <div><span class="ic">{ICON_PEN}</span><b>Spotted a mistake?</b><p>Tell us the page and what has changed. Prices, hours and routes move often, and we fix errors as soon as we can.</p></div>
+  <div><span class="ic">{ICON_SHOP}</span><b>Run a business in Panama?</b><p>Tours, stays, transport or services: if you'd like to work with us, tell us about what you do.</p></div>
+  <div><span class="ic">{ICON_HI}</span><b>Anything else</b><p>Press, ideas, or a place you think we should cover next. Just say hola.</p></div>
+</div>
+<p class="ab-note">We're a travel guide, not a booking agency. For reservations, contact the business directly.</p></section>
+<script>document.addEventListener("click",function(e){{var b=e.target.closest("[data-copy]");if(!b)return;navigator.clipboard&&navigator.clipboard.writeText(b.dataset.copy).then(function(){{var t=b.textContent;b.textContent="Copied";setTimeout(function(){{b.textContent=t}},1600)}})}});</script>
+"""
+    (P / "preview").mkdir(exist_ok=True)
+    for name, body, hero in (("about", about, "/images/v2/home-hero-casco-day-1920.webp"), ("contact", contact, "/images/v2/a-single-sailboat-glides-across-a-36117831-hero-1920.webp")):
+        title = "About Panamá Spot" if name == "about" else "Contact Panamá Spot"
+        out = page(title, body, hero, "en")
+        if name == "about":  # the footer's "Where to next?" band repeats the five region stamps just above it
+            out = re.sub(r'<div class="wrap f-top">.*?</div>', "", out, count=1, flags=re.S)
+        (P / "preview" / f"{name}.html").write_text(out)
+        print("wrote", P / "preview" / f"{name}.html")
+
+build_about_mock()
