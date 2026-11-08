@@ -61,15 +61,17 @@ CSS = """
 /* the video is darker footage than the photos, so it gets a lighter veil: just enough for the menu and the wordmark */
 .hx-home.vid::before { background: linear-gradient(180deg, rgba(3,10,30,.28) 0%, rgba(3,10,30,0) 24%, rgba(3,10,30,0) 58%, rgba(3,10,30,.3) 100%); }
 .hx-home .hx-c { align-self: end; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding-top: 32px; padding-bottom: 54px; }
+/* the white page sits on top of the video: a soft shadow cast up onto its bottom edge */
+.hx-home.vid::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 56px; z-index: 1; pointer-events: none; background: linear-gradient(0deg, rgba(3,10,30,.16) 0, rgba(3,10,30,.05) 14px, rgba(3,10,30,0) 100%); }
 /* a barely-there dark glow behind the wordmark and the line under it, so they read over bright shots */
 .hx-home.vid .hx-c { position: relative; isolation: isolate; }
 .hx-home.vid .hx-c::before { content: ""; position: absolute; z-index: -1; left: -4%; top: 4%; width: min(820px, 104%); height: 82%; background: radial-gradient(closest-side, rgba(3,10,30,.18), rgba(3,10,30,0)); pointer-events: none; }
-.hx-home .hx-mark { font: 400 clamp(64px, 11vw, 160px)/.86 var(--serif); letter-spacing: -0.02em; color: #fff; margin: 0; text-shadow: 0 2px 30px rgba(0,0,0,.18); }
+.hx-home .hx-mark { font: 400 clamp(64px, 11vw, 160px)/.86 var(--serif); letter-spacing: -0.02em; color: #fff; margin: 0; text-shadow: 0 1px 2px rgba(3,10,30,.14), 0 2px 30px rgba(0,0,0,.18); }
 .hx-mark .a { color: var(--red); }
 .hx-home .hx-mark { margin-bottom: -.09em; }
 .hx-mark .pd { display: inline-block; width: .17em; height: .17em; border-radius: 50%; background: var(--red); margin-left: .03em; }
-.hx-home .hx-dek { font: 400 16px/1.55 var(--sans); color: rgba(255,255,255,.88); max-width: 56ch; text-shadow: 0 1px 12px rgba(0,0,0,.3); }
-a.hx-btn { margin-top: 12px; display: inline-flex; align-items: center; gap: 10px; background: #fff; color: var(--ink); padding: 14px 28px; border-radius: 999px; font: 600 14.5px/1 var(--sans); text-decoration: none; transition: transform .2s; }
+.hx-home .hx-dek { font: 400 16px/1.55 var(--sans); color: rgba(255,255,255,.88); max-width: 56ch; text-shadow: 0 1px 1px rgba(3,10,30,.16), 0 1px 12px rgba(0,0,0,.3); }
+a.hx-btn { margin-top: 12px; display: inline-flex; align-items: center; gap: 10px; background: #fff; color: var(--ink); padding: 14px 28px; border-radius: 999px; font: 600 14.5px/1 var(--sans); text-decoration: none; transition: transform .2s; box-shadow: 0 1px 2px rgba(3,10,30,.10), 0 6px 18px -6px rgba(3,10,30,.28); }
 a.hx-btn:hover { transform: translateY(-1px); }
 .hx-rw { position: relative; }
 .hx-row { scrollbar-width: none; }
