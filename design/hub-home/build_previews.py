@@ -1393,55 +1393,61 @@ def build_privacy_mock():
     (P / "preview" / "privacy.html").write_text(out); print("wrote", P / "preview" / "privacy.html")
 
 NF_CSS = """<style>
-.nf { position: relative; margin: clamp(10px, 1.2vw, 16px) clamp(10px, 1.2vw, 16px) clamp(28px, 3vw, 44px); border-radius: clamp(20px, 2.2vw, 30px); color: #fff; overflow: hidden;
-  background: radial-gradient(ellipse 60% 55% at 50% 52%, #0c2a63 0%, rgba(12,42,99,0) 70%), var(--navy); }
-.nf .nav { position: relative; z-index: 3; }
-.nf-stage { position: relative; height: clamp(640px, 80vh, 800px); }
-.nf-c { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; text-align: center; gap: 14px; padding: 0 24px 40px; z-index: 2; pointer-events: none; }
+/* white page: the shared header was drawn for photo heroes, so give it dark ink here */
+.nfw { background: #fff; }
+.nfw .nav .logo { color: var(--navy); text-shadow: none; }
+.nfw .mm-btn { color: var(--ink); text-shadow: none; }
+.nfw .mm-btn:hover, .nfw .mm-btn[aria-expanded=true] { text-shadow: none; color: var(--red); }
+.nfw .search.glass, .nfw .lang.glass, .nfw .mm-burger.glass { background: var(--beige-2); color: var(--ink); box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.nfw a.lang span { color: var(--muted); }
+.nfw a.lang span.on { background: #fff; color: var(--navy); }
+.nfw a.lang:hover span:not(.on) { background: rgba(3,10,30,.06); }
+.nfw .mm-burger i { background: var(--ink); }
+.nfw .mm-panel, .nfw .mm-sheet { background: rgba(5,24,63,.9); color: #fff; }
+.nf-stage { position: relative; height: clamp(560px, calc(100vh - 96px), 720px); margin-bottom: clamp(32px, 4vw, 56px); }
+.nf-c { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; text-align: center; gap: 10px; padding: 0 24px; z-index: 2; pointer-events: none; }
 .nf-c > * { pointer-events: auto; }
-.nf-c h1 { margin: 0; display: grid; justify-items: center; gap: 6px; font-weight: 400; }
-.nf-c .n { font: 400 clamp(130px, 17vw, 250px)/.8 var(--serif); letter-spacing: -0.03em; color: #fff; text-shadow: 0 2px 40px rgba(0,0,0,.25); }
+.nf-c h1 { margin: 0; display: grid; justify-items: center; gap: 8px; font-weight: 400; }
+.nf-c .n { font: 400 clamp(84px, 9vw, 136px)/.85 var(--serif); letter-spacing: -0.02em; color: var(--navy); }
 .nf-c .n .pd { display: inline-block; width: .13em; height: .13em; border-radius: 50%; background: var(--red); margin-left: .02em; }
-.nf-c .t { font: 400 clamp(30px, 3.2vw, 46px)/1 var(--serif); color: #fff; }
-.nf-c p { margin: 4px 0 6px; max-width: 40ch; font-size: 16.5px; line-height: 1.55; color: rgba(255,255,255,.76); }
-.nf-c .hx-btn { margin: 0; border: 0; cursor: pointer; display: inline-flex; align-items: center; background: #fff; color: var(--ink); padding: 14px 28px; border-radius: 999px; font: 600 14.5px/1 var(--sans); box-shadow: 0 1px 2px rgba(3,10,30,.10), 0 6px 18px -6px rgba(3,10,30,.4); }
-.nf-s { position: absolute; top: var(--y); left: var(--x); width: clamp(92px, 9vw, 136px); display: grid; gap: 10px; justify-items: center; text-decoration: none; z-index: 1; }
+.nf-c .t { font: 400 clamp(24px, 2.2vw, 30px)/1.1 var(--serif); color: var(--navy); }
+.nf-c p { margin: 6px 0 10px; max-width: 36ch; font-size: 16px; line-height: 1.55; color: var(--muted); }
+.nf-c .nf-btn { border: 0; cursor: pointer; display: inline-flex; align-items: center; background: var(--navy); color: #fff; padding: 13px 24px; border-radius: 999px; font: 600 14px/1 var(--sans); }
+.nf-c .nf-btn:hover { background: var(--ink); }
+.nf-s { position: absolute; top: var(--y); left: var(--x); width: clamp(84px, 7.4vw, 116px); display: grid; gap: 9px; justify-items: center; text-decoration: none; z-index: 1; }
 .nf-s.r { left: auto; right: var(--x); }
-.nf-s .sw { display: block; width: 100%; transform: rotate(var(--r)); transition: transform .3s; filter: drop-shadow(0 14px 22px rgba(0,0,0,.35)); }
-.nf-s:hover .sw { transform: rotate(0deg) translateY(-6px) scale(1.04); }
-.nf-s b { font: 400 16px/1.15 var(--serif); color: #fff; text-align: center; opacity: .9; }
-.nf-s:hover b { opacity: 1; }
+.nf-s .sw { display: block; width: 100%; transform: rotate(var(--r)); transition: transform .3s; filter: none; }
+.nf-s:hover .sw { transform: rotate(0deg) translateY(-4px); }
+.nf-s b { font: 400 15px/1.15 var(--serif); color: var(--navy); text-align: center; }
 @media (max-width: 900px) {
-  .nf-stage { height: auto; padding: 24px 16px 36px; display: grid; gap: 34px; }
-  .nf-c { position: static; padding: 24px 0 0; }
-  .nf-ss { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px 16px; }
+  .nf-stage { height: auto; padding: 40px 16px 8px; display: grid; gap: 40px; }
+  .nf-c { position: static; padding: 0; }
+  .nf-ss { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px 12px; }
   .nf-s, .nf-s.r { position: static; width: auto; }
-  .nf-s b { font-size: 14.5px; }
-  .nf-s:nth-child(10) { display: none; }
+  .nf-s b { font-size: 13px; }
 }
-@media (max-width: 600px) { .nf-ss { gap: 18px 12px; } .nf-s b { font-size: 13px; } .nf-s .sw { filter: drop-shadow(0 8px 14px rgba(0,0,0,.3)); } }
 </style>"""
 
 def build_404_mock():
     hub_img = {"/articles/panama-city": "/images/v2/the-skyline-of-panama-city-s-17477516-card.webp", "/articles/boquete": "/images/v2/boquete-hills-card.webp",
                "/articles/el-valle-de-anton": "/images/v2/the-el-valle-de-anton-crater-829139d1-gallery.webp",
                "/articles/bocas-del-toro": "/images/v2/nyara-bocas-del-toro-panama-hero-960.webp", "/articles/san-blas": "/images/v2/x-diadup-kuna-yala-panam-c3-a1-hero-960.webp"}
-    # (href, name, side, x, y, rotation): five places on the left and right edges, five more around them
-    S = [("/articles/panama-city", "Panama City", "l", "3%", "4%", -7), ("/articles/casco-viejo-panama-walking-guide", "Casco Viejo", "l", "16%", "24%", 6),
-         ("/articles/boquete", "Boquete", "l", "4%", "48%", 4), ("/articles/volcan-baru-hike-sunrise-summit-guide", "Volcán Barú", "l", "17%", "66%", -5),
-         ("/articles/el-valle-de-anton", "El Valle de Antón", "l", "31%", "64%", 3),
-         ("/articles/bocas-del-toro", "Bocas del Toro", "r", "3%", "5%", 6), ("/articles/san-blas", "San Blas", "r", "16%", "25%", -6),
-         ("/articles/panama-canal-tour-miraflores-locks-visitor-guide", "Panama Canal", "r", "4%", "49%", -3),
-         ("/articles/pearl-islands-panama-guide", "Pearl Islands", "r", "17%", "67%", 5), ("/articles/playa-venao-panama", "Playa Venao", "r", "31%", "65%", -4)]
+    # (href, name, side, x, y, rotation): four down each side in a mirrored zig-zag, tilted outwards in turn
+    L = [("/articles/panama-city", "Panama City"), ("/articles/casco-viejo-panama-walking-guide", "Casco Viejo"),
+         ("/articles/boquete", "Boquete"), ("/articles/volcan-baru-hike-sunrise-summit-guide", "Volcán Barú")]
+    R = [("/articles/bocas-del-toro", "Bocas del Toro"), ("/articles/san-blas", "San Blas"),
+         ("/articles/el-valle-de-anton", "El Valle de Antón"), ("/articles/panama-canal-tour-miraflores-locks-visitor-guide", "Panama Canal")]
+    spots = [("5%", "5%", -6), ("15%", "28%", 5), ("5%", "51%", -4), ("15%", "74%", 6)]
+    S = [(u, n, "l", x, y, r) for (u, n), (x, y, r) in zip(L, spots)] + [(u, n, "r", x, y, -r) for (u, n), (x, y, r) in zip(R, spots)]
     for u, *_ in S: assert (P / u.lstrip("/")).with_suffix(".html").exists(), u
     stamps = "".join(f'<a class="nf-s{" r" if side == "r" else ""}" href="{u}" style="--x:{x};--y:{y};--r:{r}deg">{stamp(hub_img.get(u) or img_of(u))}<b>{n}</b></a>'
                      for u, n, side, x, y, r in S)
-    body = f"""<div class="nf">
+    body = f"""<div class="nfw">
   {nav("/", "/es", "en")}
   <div class="nf-stage">
     <div class="nf-c"><h1><span class="n">404<i class="pd"></i></span><span class="t">Not found</span></h1>
       <p>This page doesn't exist, or it has moved. Pick a place, or search the guides.</p>
-      <button type="button" class="hx-btn" data-search>Search guides</button></div>
+      <button type="button" class="nf-btn" data-search>Search guides</button></div>
     <div class="nf-ss">{stamps}</div>
   </div>
 </div>
