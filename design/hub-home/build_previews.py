@@ -1299,12 +1299,12 @@ PV_CSS = """<style>
 .pv-tbl th { text-align: left; font: 600 13.5px/1.3 var(--sans); color: var(--muted); padding: 0 12px 10px 0; }
 .pv-tbl td { padding: 12px 12px 12px 0; border-top: 1px solid var(--line); vertical-align: top; line-height: 1.5; color: var(--body); }
 .pv-tbl code { font: 600 14px/1 var(--sans); color: var(--ink); }
-@media (max-width: 900px) { .pv-wrap { grid-template-columns: 1fr; } .pv-toc { position: static; } .pv-short { grid-template-columns: 1fr; } .pv-tbl th:nth-child(4), .pv-tbl td:nth-child(4) { display: none; } }
+@media (max-width: 900px) { .pv-wrap { grid-template-columns: 1fr; } .pv-toc { display: none; } .pv-short { grid-template-columns: 1fr; } .pv-tbl th:nth-child(4), .pv-tbl td:nth-child(4) { display: none; } }
 /* 404 */
 .nf-hero { height: clamp(480px, 60vh, 600px); }
 .nf-hero .hx-c { gap: 14px; }
 .nf-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
-.nf-row .hx-btn { margin: 0; border: 0; cursor: pointer; }
+.nf-row .hx-btn { margin: 0; border: 0; cursor: pointer; display: inline-flex; align-items: center; background: #fff; color: var(--ink); padding: 14px 28px; border-radius: 999px; font: 600 14.5px/1 var(--sans); box-shadow: 0 1px 2px rgba(3,10,30,.10), 0 6px 18px -6px rgba(3,10,30,.28); }
 .nf-row .glass { display: inline-flex; align-items: center; padding: 14px 26px; border-radius: 999px; font: 600 14.5px/1 var(--sans); color: #fff; text-decoration: none; }
 </style>"""
 
@@ -1408,7 +1408,7 @@ def build_404_mock():
   {nav("/", "/es", "en")}
   <div class="wrap hx-c"><span class="lbl">Error 404</span>
     <h1 class="ab-mark">Wrong turn<i class="pd"></i></h1>
-    <p class="hx-dek ab-goal">We couldn't find that page. The link may be old, or the page may have moved. Search the guides or start from one of the places below.</p>
+    <p class="hx-dek ab-goal">We couldn't find that page. The link may be old, or the page may have moved. Search the guides, or pick up from one of these.</p>
     <div class="nf-row"><button type="button" class="hx-btn" data-search>Search guides</button><a class="glass" href="/">Go to the homepage</a></div></div>
 </header>
 {ABOUT_CSS}{TRUST_CSS}{ABOUT2_CSS}{PV_CSS}
