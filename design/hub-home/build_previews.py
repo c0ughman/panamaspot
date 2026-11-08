@@ -1027,7 +1027,7 @@ ABOUT_CSS = """<style>
 .pc-msg h2 { font: 400 clamp(30px, 3vw, 40px)/1.08 var(--serif); color: var(--navy); margin: 0; }
 .pc-msg p { margin: 0; font-size: 16.5px; line-height: 1.6; color: var(--body); }
 .pc-to { display: grid; gap: 0; }
-.pc-to span { display: block; padding: 12px 0 10px; border-bottom: 1px solid var(--line); font-size: 15px; color: var(--muted); }
+.pc-to span { display: block; padding: 6px 0; font-size: 15px; color: var(--muted); }
 .pc-to a { font: 600 clamp(20px, 2vw, 26px)/1.2 var(--sans); color: var(--navy); text-decoration: none; }
 .pc-to a:hover { color: var(--red); }
 .pc-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
@@ -1111,6 +1111,57 @@ TRUST_CSS = """<style>
 @media (max-width: 900px) { .ab-pol { grid-template-columns: 1fr; } }
 </style>"""
 
+def icon(paths):
+    return f'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{paths}</svg>'
+ICON_REFRESH = '<path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/>'
+ICON_SCALE = '<path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/>'
+ICON_CAM = '<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/>'
+WAVES = "data:image/svg+xml," + "%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 64'%3E%3Cpath d='M2 10q7-7 14 0t14 0 14 0 14 0 14 0 14 0 14 0 14 0M2 32q7-7 14 0t14 0 14 0 14 0 14 0 14 0 14 0 14 0M2 54q7-7 14 0t14 0 14 0 14 0 14 0 14 0 14 0 14 0' fill='none' stroke='%23da121a' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E"
+ABOUT2_CSS = """<style>
+.ab-top { position: relative; background: var(--navy); color: #fff; }
+.ab-top-c { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 420px); gap: clamp(32px, 6vw, 110px); align-items: end; padding-top: clamp(20px, 3.4vw, 48px); }
+.ab-top-t { display: grid; gap: 18px; padding-bottom: clamp(52px, 6vw, 92px); }
+.ab-top .lbl { color: #fff; }
+.ab-top h1 { font: 650 clamp(52px, 6vw, 88px)/.95 var(--serif); color: #fff; letter-spacing: -0.01em; margin: 0; }
+.ab-goal { font: 400 clamp(22px, 2.2vw, 30px)/1.28 var(--serif); color: #fff; max-width: 26ch; margin: 6px 0 0; }
+.ab-sub { font-size: 17px; line-height: 1.55; color: rgba(255,255,255,.72); margin: 0; max-width: 46ch; }
+.ab-arch { position: relative; margin: 0 0 -84px; z-index: 2; }
+.ab-arch img { display: block; width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: 62% center; border-radius: 999px 999px 26px 26px; box-shadow: 0 34px 60px -34px rgba(3,10,30,.55); }
+.ab-arch .sw { position: absolute; left: -46px; bottom: 54px; width: 112px; transform: rotate(-7deg); filter: drop-shadow(0 10px 18px rgba(3,10,30,.25)); }
+.ab-arch figcaption { position: absolute; right: 16px; bottom: 16px; padding: 9px 14px; border-radius: 999px; font: 500 13px/1.2 var(--sans); }
+.ab-first { padding-top: clamp(64px, 7vw, 104px); }
+.ab-row { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: clamp(24px, 6vw, 96px); align-items: start; max-width: 1060px; }
+.ab-row h2 { font: 600 clamp(28px, 3vw, 40px)/1.12 var(--sans); color: var(--navy); letter-spacing: -0.015em; margin: 0; }
+.ab-txt { max-width: 62ch; }
+.ab-txt p { margin: 0 0 18px; font-size: 18px; line-height: 1.7; color: var(--body); }
+.ab-txt p:last-child { margin: 0; }
+.ab-pano { margin: 0 0 0; height: clamp(240px, 30vw, 440px); }
+.ab-pano img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 60%; }
+.ab-pol3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.ab-pol3 > div { position: relative; background: var(--beige); border-radius: 24px; padding: 30px 26px 28px; display: grid; gap: 12px; align-content: start; scroll-margin-top: 24px; overflow: hidden; }
+.ab-pol3 > div::after { content: ""; position: absolute; top: 26px; right: -14px; width: 120px; height: 64px; background: url("WAVESURL") no-repeat center / contain; opacity: .16; pointer-events: none; }
+.ab-pol3 .ic { width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; color: var(--red); background: #fff; border: 2px solid var(--red); outline: 1.5px solid var(--red); outline-offset: 4px; margin: 6px 0 10px 6px; }
+.ab-pol3 h3 { margin: 0; font: 400 25px/1.15 var(--serif); color: var(--navy); }
+.ab-pol3 p { margin: 0; font-size: 15.5px; line-height: 1.62; color: var(--body); }
+.ab-pol3 a { color: var(--navy); }
+.ab-cta2 { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); border-radius: 28px; overflow: hidden; background: var(--beige); min-height: 330px; }
+.ab-cta2 > img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.ab-cta2 .tx { padding: clamp(28px, 4vw, 56px); display: grid; gap: 14px; align-content: center; justify-items: start; }
+.ab-cta2 h2 { font: 400 clamp(28px, 3vw, 38px)/1.1 var(--serif); margin: 0; color: var(--navy); }
+.ab-cta2 p { margin: 0; font-size: 16.5px; line-height: 1.6; color: var(--body); max-width: 36ch; }
+.ab-cta2 .ab-btn { background: var(--navy); color: #fff; margin-top: 6px; }
+@media (max-width: 900px) {
+  .ab-top-c { grid-template-columns: 1fr; gap: 8px; }
+  .ab-top-t { padding-bottom: 28px; }
+  .ab-arch { width: min(100%, 380px); margin: 0 auto -60px; }
+  .ab-arch .sw { left: -2px; bottom: 36px; width: 84px; }
+  .ab-arch img { aspect-ratio: 1/1; }
+  .ab-row, .ab-pol3, .ab-cta2 { grid-template-columns: 1fr; }
+  .ab-cta2 > img { height: 220px; }
+  .ab-first { padding-top: 96px; }
+}
+</style>""".replace("WAVESURL", WAVES)
+
 def build_about_mock():
     regions = [("/articles/panama-city", "Panama City", "Capital and canal", "/images/v2/the-skyline-of-panama-city-s-17477516-stamp.webp"),
                ("/articles/boquete", "Boquete", "Coffee highlands", "/images/v2/boquete-hills-stamp.webp"),
@@ -1119,46 +1170,48 @@ def build_about_mock():
                ("/articles/san-blas", "San Blas", "Guna Yala", "/images/v2/a-pale-sandbar-curls-beside-dark-37208428-stamp.webp")]
     stamps = "".join(f'<a href="{u}">{stamp(s)}<span><b>{n}</b><small>{d} · {count(u)} guides</small></span></a>' for u, n, d, s in regions)
     mail = f'<a href="mailto:{EMAIL}">{EMAIL}</a>'
-    about = ab_hero("/images/v2/home-hero-casco-day-1920.webp", "Casco Viejo from the air, with the Panama City skyline across the bay.", 58,
-                    "About", "About Panamá Spot", "Independent travel guides to Panama, from the canal to the cloud forest. In English and Spanish.",
-                    "/preview/about", "/es") + f"""
-{ABOUT_CSS}{TRUST_CSS}
+    ARCH = "/images/v2/volcan-baru-emerging-through-clouds-d35d9b87-hero-1280.webp"
+    about = f"""<div class="guide-progress" id="prog" aria-hidden="true"></div>
+<header class="ab-top">
+  {nav("/preview/about", "/es", "en")}
+  <div class="wrap ab-top-c">
+    <div class="ab-top-t"><span class="lbl">About</span><h1>About Panamá Spot</h1>
+      <p class="ab-goal">Our goal is to be the most comprehensive, robust resource for tourism in Panama.</p>
+      <p class="ab-sub">Independent travel guides, from the canal to the cloud forest. In English and Spanish.</p></div>
+    <figure class="ab-arch"><img alt="The forested slopes of Volcán Barú rising through the clouds" fetchpriority="high" src="{ARCH}"/>
+      {stamp("/images/v2/a-female-resplendent-quetzal-perches-on-16017280-stamp.webp")}<figcaption class="glass">Volcán Barú, Chiriquí</figcaption></figure>
+  </div>
+</header>
+{ABOUT_CSS}{TRUST_CSS}{ABOUT2_CSS}
 {ld("AboutPage", "/about", "About Panamá Spot", "Who makes Panamá Spot, how the guides are researched and checked, how we correct mistakes, and how the site is funded.")}
-<section class="wrap ab-sec first"><div class="ab-intro">
-  <div class="lead"><p><strong>Panamá Spot is an independent travel guide to Panama.</strong> We write for people planning a trip: where to go, how to get there, what it costs, and what is worth skipping. Every guide answers the question first, then gives you the detail.</p>
-  <p>We started in 2026 with the places travellers ask about most, Panama City, Boquete, El Valle de Antón, Bocas del Toro and San Blas, and we keep adding more of the country. Panamá Spot is independently owned and edited, and every guide is published in English, Spanish or both.</p></div>
-  <div class="ab-facts" aria-label="Panamá Spot at a glance"><div class="hd"><i class="dot"></i>At a glance</div>
-    <div><b>2026</b><span>Founded</span></div><div><b>140+</b><span>Guides</span></div>
-    <div><b>EN · ES</b><span>Two languages</span></div><div><b>5</b><span>Regions, and growing</span></div></div>
-</div>
-<nav class="ab-jump" aria-label="On this page"><a href="#how-we-make">How we make our guides</a><a href="#independence">Ownership and funding</a><a href="#corrections">Corrections</a><a href="#advice">Visas, property and health</a><a href="#photos">Photos</a><a href="/preview/contact">Contact</a></nav>
-</section>
-<section class="wrap ab-sec" id="how-we-make" style="padding-top:0"><div class="ab-split">
-  <figure class="ab-photo"><img alt="Travellers with backpacks walking a narrow street in Casco Viejo" loading="lazy" src="/images/v2/narrow-street-in-casco-viejo-with-18049699-hero-1280.webp"/><figcaption class="glass">Casco Viejo, Panama City</figcaption></figure>
-  <div><div class="ab-h"><h2>How we make our guides</h2><p>Our editorial standards: the same five steps for every page, from a day trip to a visa question.</p></div>
-  <ol class="ab-steps">
-    <li><div><b>Start with the question</b><p>What a traveller actually needs to decide, answered in the first lines.</p></div></li>
-    <li><div><b>Go to the source</b><p>Official sites, timetables, and the operators and businesses themselves. Where it matters, guides list their sources at the end.</p></div></li>
-    <li><div><b>Check every number</b><p>Prices, hours and schedules carry the date we checked them, and our guides show when they were last updated.</p></div></li>
-    <li><div><b>Show the real place</b><p>Photos are captioned with what they show, and outside photographers are credited.</p></div></li>
-    <li><div><b>Keep it current</b><p>We revisit guides when things change, and fix mistakes as soon as we hear about them.</p></div></li>
-  </ol></div>
+<section class="wrap ab-sec ab-first"><div class="ab-row">
+  <h2>An independent guide to Panama</h2>
+  <div class="ab-txt"><p><strong>Panamá Spot is an independent travel guide to Panama.</strong> We write for people planning a trip: where to go, how to get there, what it costs, and what is worth skipping. Every guide answers the question first, then gives you the detail.</p>
+  <p>We started in 2026 with the places travellers ask about most, Panama City, Boquete, El Valle de Antón, Bocas del Toro and San Blas, and we keep adding more of the country, one guide at a time. Panamá Spot is independently owned and edited, and every guide is published in English, Spanish or both.</p></div>
 </div></section>
+<section class="wrap ab-sec" id="how-we-make" style="padding-top:0"><div class="ab-row">
+  <h2>How we make our guides</h2>
+  <div class="ab-txt"><p>Every guide starts with the question a traveller actually needs answered, and answers it in the first lines. From there we go to the source: official sites, timetables, and the operators and businesses themselves. Where it matters, guides list their sources at the end.</p>
+  <p>Prices, hours and schedules carry the date we checked them, and our guides show when they were last updated. Photos are captioned with what they show, and outside photographers are credited. When things change, we revisit the guide, and when we get something wrong, we fix it as soon as we hear about it.</p></div>
+</div></section>
+<figure class="ab-pano"><img alt="Sailboats anchored in the bay with the Panama City skyline behind" loading="lazy" src="/images/v2/veleros-anclados-en-la-bahia-5005136-hero-1920.webp"/></figure>
 <section class="ab-band ab-sec" id="independence"><div class="wrap"><div class="ab-indep">
   {postmark("PANAMÁ SPOT · DESDE 2026 ·")}
   <div class="ab-h"><h2>Independent, with a few local partners</h2><p>Panamá Spot is independently owned. It is not part of a tour operator, hotel or government office. We work with a small number of local partners, and some links on the site lead to them; on our guides their boxes are labelled <b>Local partner</b>. Partners never decide what we recommend, how we rank things, or what we write.</p></div>
 </div></div></section>
 <section class="wrap ab-sec"><div class="ab-h"><h2>Our policies</h2><p>What you can expect from every page on Panamá Spot.</p></div>
-<div class="ab-pol">
-  <div id="corrections"><h3><i class="dot"></i>Corrections and updates</h3><p>Panama changes fast: fees go up, bus times move, trails close. If something in a guide is wrong, write to {mail} with the page and what has changed. We check it against the source, fix the guide itself and update its date.</p></div>
-  <div id="advice"><h3><i class="dot"></i>Visas, property and health</h3><p>Our guides on residency, buying property, healthcare and medical treatment are general information, not legal, financial or medical advice. Rules and prices change, so we point you to the official source, and you should confirm with a licensed professional before you decide.</p></div>
-  <div id="photos"><h3><i class="dot"></i>Photos and credits</h3><p>Photos are captioned with what is in the frame. Photos from outside photographers are credited, with their licence, under the guide's gallery. When we can't confirm exactly where a photo was taken, we don't name a place for it.</p></div>
+<div class="ab-pol3">
+  <div id="corrections"><span class="ic">{icon(ICON_REFRESH)}</span><h3>Corrections and updates</h3><p>Panama changes fast: fees go up, bus times move, trails close. If something in a guide is wrong, write to {mail} with the page and what has changed. We check it against the source, fix the guide itself and update its date.</p></div>
+  <div id="advice"><span class="ic">{icon(ICON_SCALE)}</span><h3>Visas, property and health</h3><p>Our guides on residency, buying property, healthcare and medical treatment are general information, not legal, financial or medical advice. Rules and prices change, so we point you to the official source; confirm with a licensed professional before you decide.</p></div>
+  <div id="photos"><span class="ic">{icon(ICON_CAM)}</span><h3>Photos and credits</h3><p>Photos are captioned with what is in the frame. Photos from outside photographers are credited, with their licence, under the guide's gallery. When we can't confirm exactly where a photo was taken, we don't name a place for it.</p></div>
 </div>
 <p class="ab-rev"><i class="dot"></i>This page was last reviewed on {REVIEWED[1]}.</p></section>
 <section class="wrap ab-sec" style="padding-top:0"><div class="ab-h"><h2>Where we cover</h2><p>Five regions so far, each with its own set of guides.</p></div>
 <div class="ab-stamps">{stamps}</div></section>
-<section class="wrap ab-sec" style="padding-top:0"><div class="ab-cta"><img alt="" loading="lazy" src="/images/v2/isla-en-guna-yala-hero-1280.webp"/>
-  <div class="glass"><h2>Spotted something out of date?</h2><p>Prices and timetables in Panama change. If a guide is wrong, tell us and we'll fix it.</p><a class="ab-btn" href="/preview/contact">Contact us →</a></div></div></section>
+<section class="wrap ab-sec" style="padding-top:0"><div class="ab-cta2">
+  <img alt="A palm tree leaning over a white-sand beach in Guna Yala" loading="lazy" src="/images/v2/x-diadup-kuna-yala-panam-c3-a1-hero-1280.webp"/>
+  <div class="tx"><h2>Spotted something out of date?</h2><p>Prices and timetables in Panama change. If a guide is wrong, tell us and we'll fix it.</p><a class="ab-btn" href="/preview/contact">Contact us →</a></div>
+</div></section>
 """
     contact = ab_hero("/images/v2/a-single-sailboat-glides-across-a-36117831-hero-1920.webp", "A single sailboat on calm turquoise sea under a clear sky.", 62,
                       "Contact", "Contact", "Questions, corrections, or an idea for working together. We read every message.",
@@ -1181,16 +1234,11 @@ def build_about_mock():
   <div><span class="ic">{ICON_SHOP}</span><b>Run a business in Panama?</b><p>Tours, stays, transport or services: if you'd like to work with us, tell us about what you do. Partners never get to edit our guides; <a href="/preview/about#independence">here's how partnerships work</a>.</p></div>
   <div><span class="ic">{ICON_HI}</span><b>Anything else</b><p>Press, ideas, or a place you think we should cover next. Just say hola.</p></div>
 </div>
-<div class="ab-pol" style="margin-top:18px">
-  <div><h3><i class="dot"></i>Bookings</h3><p>We're a travel guide, not a booking agency, so we can't make or change reservations. For bookings, contact the business directly.</p></div>
-  <div><h3><i class="dot"></i>Your message</h3><p>We only use your email address to reply to you. We don't add it to a mailing list or share it.</p></div>
-  <div><h3><i class="dot"></i>How we work</h3><p>Read <a href="/preview/about#how-we-make">how we make our guides</a>, <a href="/preview/about#corrections">how we handle corrections</a> and <a href="/preview/about#independence">who funds the site</a>.</p></div>
-</div>
-<p class="ab-rev"><i class="dot"></i>This page was last reviewed on {REVIEWED[1]}.</p></section>
+</section>
 <script>document.addEventListener("click",function(e){{var b=e.target.closest("[data-copy]");if(!b)return;navigator.clipboard&&navigator.clipboard.writeText(b.dataset.copy).then(function(){{var t=b.textContent;b.textContent="Copied";setTimeout(function(){{b.textContent=t}},1600)}})}});</script>
 """
     (P / "preview").mkdir(exist_ok=True)
-    for name, body, hero in (("about", about, "/images/v2/home-hero-casco-day-1920.webp"), ("contact", contact, "/images/v2/a-single-sailboat-glides-across-a-36117831-hero-1920.webp")):
+    for name, body, hero in (("about", about, ARCH), ("contact", contact, "/images/v2/a-single-sailboat-glides-across-a-36117831-hero-1920.webp")):
         title = "About Panamá Spot" if name == "about" else "Contact Panamá Spot"
         out = page(title, body, hero, "en")
         if name == "about":  # the footer's "Where to next?" band repeats the five region stamps just above it
