@@ -1159,8 +1159,9 @@ ICON_SCALE = '<path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path 
 ICON_CAM = '<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/>'
 ABOUT2_CSS = """<style>
 .ab-hero { height: clamp(520px, 64vh, 660px); }
-.ab-hero .hero-img { object-position: 50% 62%; }
-.ab-hero::before { background: linear-gradient(90deg, rgba(3,10,30,.55) 0%, rgba(3,10,30,.3) 34%, rgba(3,10,30,0) 62%), linear-gradient(180deg, rgba(3,10,30,.42) 0%, rgba(3,10,30,0) 30%, rgba(3,10,30,0) 62%, rgba(3,10,30,.32) 100%); }
+.ab-hero .hero-img { object-position: 50% 55%; }
+.ab-hero::before { background: linear-gradient(90deg, rgba(3,10,30,.62) 0%, rgba(3,10,30,.36) 38%, rgba(3,10,30,0) 66%), linear-gradient(180deg, rgba(3,10,30,.42) 0%, rgba(3,10,30,0) 30%, rgba(3,10,30,.08) 58%, rgba(3,10,30,.4) 100%); }
+@media (max-width: 700px) { .ab-hero::before { background: linear-gradient(180deg, rgba(3,10,30,.45) 0%, rgba(3,10,30,.12) 28%, rgba(3,10,30,.42) 55%, rgba(3,10,30,.62) 100%); } }
 .ab-hero .hx-c { position: relative; isolation: isolate; gap: 14px; }
 .ab-hero .hx-c::before { content: ""; position: absolute; z-index: -1; left: -4%; top: 0; width: min(860px, 104%); height: 92%; background: radial-gradient(closest-side, rgba(3,10,30,.2), rgba(3,10,30,0)); pointer-events: none; }
 .ab-hero .lbl { color: #fff; }
@@ -1190,17 +1191,17 @@ ABOUT2_CSS = """<style>
 </style>"""
 
 def build_about_mock():
-    regions = [("/articles/panama-city", "Panama City", "Capital and canal", "/images/v2/the-skyline-of-panama-city-s-17477516-stamp.webp"),
-               ("/articles/boquete", "Boquete", "Coffee highlands", "/images/v2/boquete-hills-stamp.webp"),
-               ("/articles/el-valle-de-anton", "El Valle de Antón", "Volcanic crater", "/images/v2/the-flat-floor-of-the-el-f491c24a-stamp.webp"),
-               ("/articles/bocas-del-toro", "Bocas del Toro", "Caribbean islands", "/images/v2/red-frog-beach-bastimentos-stamp.webp"),
-               ("/articles/san-blas", "San Blas", "Guna Yala", "/images/v2/a-pale-sandbar-curls-beside-dark-37208428-stamp.webp")]
+    regions = [("/articles/panama-city", "Panama City", "Capital and canal", "/images/v2/the-skyline-of-panama-city-s-17477516-card.webp"),
+               ("/articles/boquete", "Boquete", "Coffee highlands", "/images/v2/boquete-hills-card.webp"),
+               ("/articles/el-valle-de-anton", "El Valle de Antón", "Volcanic crater", "/images/v2/the-el-valle-de-anton-crater-829139d1-gallery.webp"),
+               ("/articles/bocas-del-toro", "Bocas del Toro", "Caribbean islands", "/images/v2/nyara-bocas-del-toro-panama-hero-960.webp"),
+               ("/articles/san-blas", "San Blas", "Guna Yala", "/images/v2/x-diadup-kuna-yala-panam-c3-a1-hero-960.webp")]
     stamps = "".join(f'<a href="{u}">{stamp(s)}<span><b>{n}</b><small>{d} · {count(u)} guides</small></span></a>' for u, n, d, s in regions)
     mail = f'<a href="mailto:{EMAIL}">{EMAIL}</a>'
-    ARCH = "/images/v2/a-pale-sandbar-curls-beside-dark-37208428-hero-1920.webp"
+    ARCH = "/images/v2/skyscrapers-catch-the-last-light-at-13842831-hero-1920.webp"
     about = f"""<div class="guide-progress" id="prog" aria-hidden="true"></div>
 <header class="hero hx-home ab-hero">
-  <img class="hero-img" alt="A pale sandbar curving through turquoise water beside a dark reef in Guna Yala" fetchpriority="high" src="{ARCH}"{hero_srcset(ARCH)}/>
+  <img class="hero-img" alt="Panama City skyscrapers catching the last light of the day, with green hills behind" fetchpriority="high" src="{ARCH}"{hero_srcset(ARCH)}/>
   {nav("/preview/about", "/es", "en")}
   <div class="wrap hx-c"><span class="lbl">About us</span>
     <h1 class="ab-mark">About Panam<span class="a">á</span> <span class="nw">Spot<i class="pd"></i></span></h1>
@@ -1240,7 +1241,7 @@ def build_about_mock():
 {ABOUT_CSS}{TRUST_CSS}
 {ld("ContactPage", "/contact", "Contact Panamá Spot", "How to reach the Panamá Spot editors: corrections, partnerships and general questions, in English or Spanish.")}
 <section class="wrap ab-sec first"><div class="pc">
-  <div class="pc-front"><img alt="The forested slopes of Volcán Barú rising through the clouds" loading="lazy" src="/images/v2/volcan-baru-emerging-through-clouds-d35d9b87-hero-1280.webp"/><div class="glass"><small>Greetings from</small>Panamá</div></div>
+  <div class="pc-front"><img alt="The forested slopes of Volcán Barú rising through the clouds" loading="lazy" src="/images/v2/volcan-baru-emerging-through-clouds-d35d9b87-hero-1280.webp"/></div>
   <div class="pc-back">
     {stamp("/images/v2/turquoise-water-fronts-a-palm-lined-30826590-stamp.webp")}
     {postmark("PANAMÁ SPOT · CONTACTO · 2026 ·")}
