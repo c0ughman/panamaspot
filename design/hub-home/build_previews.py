@@ -1300,12 +1300,6 @@ PV_CSS = """<style>
 .pv-tbl td { padding: 12px 12px 12px 0; border-top: 1px solid var(--line); vertical-align: top; line-height: 1.5; color: var(--body); }
 .pv-tbl code { font: 600 14px/1 var(--sans); color: var(--ink); }
 @media (max-width: 900px) { .pv-wrap { grid-template-columns: 1fr; } .pv-toc { display: none; } .pv-short { grid-template-columns: 1fr; } .pv-tbl th:nth-child(4), .pv-tbl td:nth-child(4) { display: none; } }
-/* 404 */
-.nf-hero { height: clamp(480px, 60vh, 600px); }
-.nf-hero .hx-c { gap: 14px; }
-.nf-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
-.nf-row .hx-btn { margin: 0; border: 0; cursor: pointer; display: inline-flex; align-items: center; background: #fff; color: var(--ink); padding: 14px 28px; border-radius: 999px; font: 600 14.5px/1 var(--sans); box-shadow: 0 1px 2px rgba(3,10,30,.10), 0 6px 18px -6px rgba(3,10,30,.28); }
-.nf-row .glass { display: inline-flex; align-items: center; padding: 14px 26px; border-radius: 999px; font: 600 14.5px/1 var(--sans); color: #fff; text-decoration: none; }
 </style>"""
 
 ICON_NOSELL = '<circle cx="12" cy="12" r="9"/><path d="m5.7 5.7 12.6 12.6"/>'
@@ -1398,24 +1392,62 @@ def build_privacy_mock():
     out = page("Privacy policy · Panamá Spot", body, "/images/v2/home-hero-video-poster.webp", "en")
     (P / "preview" / "privacy.html").write_text(out); print("wrote", P / "preview" / "privacy.html")
 
+NF_CSS = """<style>
+.nf { position: relative; margin: clamp(10px, 1.2vw, 16px) clamp(10px, 1.2vw, 16px) clamp(28px, 3vw, 44px); border-radius: clamp(20px, 2.2vw, 30px); color: #fff; overflow: hidden;
+  background: radial-gradient(ellipse 60% 55% at 50% 52%, #0c2a63 0%, rgba(12,42,99,0) 70%), var(--navy); }
+.nf .nav { position: relative; z-index: 3; }
+.nf-stage { position: relative; height: clamp(640px, 80vh, 800px); }
+.nf-c { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; text-align: center; gap: 14px; padding: 0 24px 40px; z-index: 2; pointer-events: none; }
+.nf-c > * { pointer-events: auto; }
+.nf-c h1 { margin: 0; display: grid; justify-items: center; gap: 6px; font-weight: 400; }
+.nf-c .n { font: 400 clamp(130px, 17vw, 250px)/.8 var(--serif); letter-spacing: -0.03em; color: #fff; text-shadow: 0 2px 40px rgba(0,0,0,.25); }
+.nf-c .n .pd { display: inline-block; width: .13em; height: .13em; border-radius: 50%; background: var(--red); margin-left: .02em; }
+.nf-c .t { font: 400 clamp(30px, 3.2vw, 46px)/1 var(--serif); color: #fff; }
+.nf-c p { margin: 4px 0 6px; max-width: 40ch; font-size: 16.5px; line-height: 1.55; color: rgba(255,255,255,.76); }
+.nf-c .hx-btn { margin: 0; border: 0; cursor: pointer; display: inline-flex; align-items: center; background: #fff; color: var(--ink); padding: 14px 28px; border-radius: 999px; font: 600 14.5px/1 var(--sans); box-shadow: 0 1px 2px rgba(3,10,30,.10), 0 6px 18px -6px rgba(3,10,30,.4); }
+.nf-s { position: absolute; top: var(--y); left: var(--x); width: clamp(92px, 9vw, 136px); display: grid; gap: 10px; justify-items: center; text-decoration: none; z-index: 1; }
+.nf-s.r { left: auto; right: var(--x); }
+.nf-s .sw { display: block; width: 100%; transform: rotate(var(--r)); transition: transform .3s; filter: drop-shadow(0 14px 22px rgba(0,0,0,.35)); }
+.nf-s:hover .sw { transform: rotate(0deg) translateY(-6px) scale(1.04); }
+.nf-s b { font: 400 16px/1.15 var(--serif); color: #fff; text-align: center; opacity: .9; }
+.nf-s:hover b { opacity: 1; }
+@media (max-width: 900px) {
+  .nf-stage { height: auto; padding: 24px 16px 36px; display: grid; gap: 34px; }
+  .nf-c { position: static; padding: 24px 0 0; }
+  .nf-ss { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px 16px; }
+  .nf-s, .nf-s.r { position: static; width: auto; }
+  .nf-s b { font-size: 14.5px; }
+  .nf-s:nth-child(10) { display: none; }
+}
+@media (max-width: 600px) { .nf-ss { gap: 18px 12px; } .nf-s b { font-size: 13px; } .nf-s .sw { filter: drop-shadow(0 8px 14px rgba(0,0,0,.3)); } }
+</style>"""
+
 def build_404_mock():
-    img = "/images/v2/la-carretera-que-entra-al-crater-d9c1199f-hero-1920.webp"
-    popular = [("/articles/best-time-to-visit-panama", "Best time to visit Panama"), ("/articles/is-panama-safe", "Is Panama safe?"),
-               ("/articles/panama-city-to-boquete", "Panama City to Boquete"), ("/articles/san-blas-islands-panama-guna-yala-guide", "San Blas islands"),
-               ("/articles/day-trips-from-panama-city", "Day trips from Panama City"), ("/articles/el-valle-de-anton-vs-boquete", "El Valle or Boquete?")]
-    body = f"""<header class="hero hx-home ab-hero nf-hero">
-  <img class="hero-img" alt="A road winding down into the El Valle de Antón crater" fetchpriority="high" src="{img}"{hero_srcset(img)} style="object-position:50% 55%"/>
+    hub_img = {"/articles/panama-city": "/images/v2/the-skyline-of-panama-city-s-17477516-card.webp", "/articles/boquete": "/images/v2/boquete-hills-card.webp",
+               "/articles/el-valle-de-anton": "/images/v2/the-el-valle-de-anton-crater-829139d1-gallery.webp",
+               "/articles/bocas-del-toro": "/images/v2/nyara-bocas-del-toro-panama-hero-960.webp", "/articles/san-blas": "/images/v2/x-diadup-kuna-yala-panam-c3-a1-hero-960.webp"}
+    # (href, name, side, x, y, rotation): five places on the left and right edges, five more around them
+    S = [("/articles/panama-city", "Panama City", "l", "3%", "4%", -7), ("/articles/casco-viejo-panama-walking-guide", "Casco Viejo", "l", "16%", "24%", 6),
+         ("/articles/boquete", "Boquete", "l", "4%", "48%", 4), ("/articles/volcan-baru-hike-sunrise-summit-guide", "Volcán Barú", "l", "17%", "66%", -5),
+         ("/articles/el-valle-de-anton", "El Valle de Antón", "l", "31%", "64%", 3),
+         ("/articles/bocas-del-toro", "Bocas del Toro", "r", "3%", "5%", 6), ("/articles/san-blas", "San Blas", "r", "16%", "25%", -6),
+         ("/articles/panama-canal-tour-miraflores-locks-visitor-guide", "Panama Canal", "r", "4%", "49%", -3),
+         ("/articles/pearl-islands-panama-guide", "Pearl Islands", "r", "17%", "67%", 5), ("/articles/playa-venao-panama", "Playa Venao", "r", "31%", "65%", -4)]
+    for u, *_ in S: assert (P / u.lstrip("/")).with_suffix(".html").exists(), u
+    stamps = "".join(f'<a class="nf-s{" r" if side == "r" else ""}" href="{u}" style="--x:{x};--y:{y};--r:{r}deg">{stamp(hub_img.get(u) or img_of(u))}<b>{n}</b></a>'
+                     for u, n, side, x, y, r in S)
+    body = f"""<div class="nf">
   {nav("/", "/es", "en")}
-  <div class="wrap hx-c"><span class="lbl">Error 404</span>
-    <h1 class="ab-mark">Wrong turn<i class="pd"></i></h1>
-    <p class="hx-dek ab-goal">We couldn't find that page. The link may be old, or the page may have moved. Search the guides, or pick up from one of these.</p>
-    <div class="nf-row"><button type="button" class="hx-btn" data-search>Search guides</button><a class="glass" href="/">Go to the homepage</a></div></div>
-</header>
-{ABOUT_CSS}{TRUST_CSS}{ABOUT2_CSS}{PV_CSS}
-<section class="wrap ab-sec ab-first"><div class="ab-h"><h2>Popular guides</h2><p>Where most readers start.</p></div>
-<div class="hx-grid">{"".join(card(u, t, more=True) for u, t in popular)}</div></section>
+  <div class="nf-stage">
+    <div class="nf-c"><h1><span class="n">404<i class="pd"></i></span><span class="t">Not found</span></h1>
+      <p>This page doesn't exist, or it has moved. Pick a place, or search the guides.</p>
+      <button type="button" class="hx-btn" data-search>Search guides</button></div>
+    <div class="nf-ss">{stamps}</div>
+  </div>
+</div>
+{NF_CSS}
 """
-    out = page("Page not found · Panamá Spot", body, img, "en")
+    out = page("Page not found · Panamá Spot", body, "/images/v2/the-skyline-of-panama-city-s-17477516-card.webp", "en")
     (P / "preview" / "404.html").write_text(out); print("wrote", P / "preview" / "404.html")
 
 build_privacy_mock(); build_404_mock()
