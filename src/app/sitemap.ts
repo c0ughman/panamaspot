@@ -1,4 +1,6 @@
 import type { MetadataRoute } from "next";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { siteConfig } from "@/lib/site-config";
 import { pageImages } from "./page-images";
 
@@ -29,8 +31,37 @@ const xmlSafe = (u: string) =>
 const safeImages = (urls: readonly string[] | undefined) =>
   urls?.map(xmlSafe);
 
+/**
+ * lastmod = the page's own article:modified_time (2026-11 SEO pass).
+ *
+ * The dates below were typed by hand per batch and drifted: 72 guides told Google they were older
+ * than the date on the page itself, and the homepages used the build time, so every deploy claimed
+ * a change. Google stops trusting lastmod that is wrong that often. Each guide's date now comes from
+ * its own <meta property="article:modified_time">; pages without one (hubs, homepages) keep the
+ * date set here. Bump HOME_UPDATED / hubsLastMod only when their content really changes.
+ */
+const HOME_UPDATED = new Date("2026-11-08");
+function pageModified(url: string): Date | undefined {
+  const path = url.slice(siteConfig.url.length).replace(/^\//, "");
+  if (!path) return undefined;
+  try {
+    const html = readFileSync(join(process.cwd(), "public", `${path}.html`), "utf8");
+    const m =
+      html.match(/<meta[^>]*property="article:modified_time"[^>]*content="([^"]+)"/) ??
+      html.match(/<meta[^>]*content="([^"]+)"[^>]*property="article:modified_time"/);
+    const d = m ? new Date(m[1]) : undefined;
+    return d && !Number.isNaN(d.getTime()) ? d : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
+  return entries().map((e) => ({ ...e, lastModified: pageModified(e.url) ?? e.lastModified }));
+}
+
+function entries(): MetadataRoute.Sitemap {
+  const now = HOME_UPDATED;
   // The two homepages are language equivalents → declare them as hreflang
   // alternates of each other so Google serves the right one per market.
   const homeAlternates = {
@@ -104,7 +135,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Destination hubs — curated indexes of a whole cluster. Higher priority than
   // an individual guide because they are the entry point Google should prefer.
-  const hubsLastMod = new Date("2026-08-31");
+  const hubsLastMod = new Date("2026-11-07"); // rebuilt with new content at the 2026-11-07 launch
   const hub = (
     en: string,
     es: string,

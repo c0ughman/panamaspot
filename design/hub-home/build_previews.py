@@ -375,7 +375,7 @@ def page(title, body, hero_preload, lang="en", head=None):
     return arrows(f"""<!doctype html>
 <html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 {head or f'<title>{title}</title><meta name="robots" content="noindex, nofollow">'}
-<link rel="preload" as="image" href="{hero_preload}" fetchpriority="high"/>
+<link rel="preload" as="image" href="{hero_preload}"{hero_srcset(hero_preload, "imagesrcset", "imagesizes")} fetchpriority="high"/>
 {D["font"]}
 <link rel="preload" as="font" type="font/woff2" href="/fonts/GildaC-450.woff2" crossorigin>
 <style>.fw .hero > .wrap, .fw #cat-regions .band-h, .fw .hx-t b, .fw .hx-t .c {{ opacity: 0; }} .hero > .wrap, #cat-regions .band-h, .hx-t b, .hx-t .c {{ transition: opacity .18s; }}</style>
@@ -515,7 +515,7 @@ def build_hub(rel, out, cfg):
         return img_of(u)
     icons_html = '<div class="hb-icons">' + "".join(f"<div><span class=\"ic\">{icon(k)}</span><span><b>{v}</b><span>{l}</span></span></div>" for k, v, l in cfg["icons"]) + "</div>"
     pills_html = f'<nav class="hb-pills" aria-label="{T["aria"].format(short)}">' + "".join(
-        f'<a href="#topic-{i + 1}"><img alt="" src="{pill_img.get(i, g["img"])}"/><span><b>{g["h2"].split(":")[0]}</b><small>{len(g["items"])} {T["guides"]}</small></span></a>'
+        f'<a href="#topic-{i + 1}"><img alt="" src="{pill_thumb(pill_img.get(i, g["img"]))}" width="44" height="44"/><span><b>{g["h2"].split(":")[0]}</b><small>{len(g["items"])} {T["guides"]}</small></span></a>'
         for i, g in enumerate(groups)) + "</nav>"
     topics = ""
     for i, g in enumerate(groups):
@@ -540,7 +540,7 @@ def build_hub(rel, out, cfg):
     start_html = "".join(ptile(u, R.text(t), T["read_first"], start_photo(u, im), desc=R.text(d)) for (u, t, d), im in zip(start, start_img))
     body = f"""<div class="guide-progress" id="prog" aria-hidden="true"></div>
 <header class="hero hb-hero">
-  <img class="hero-img" alt="{html.escape(cfg.get("hero_alt") or html.unescape(HB[2]))}" fetchpriority="high" src="{hero}" style="object-position:center {cfg.get("focus", 45)}%"/>
+  <img class="hero-img" alt="{html.escape(cfg.get("hero_alt") or html.unescape(HB[2]))}" fetchpriority="high" src="{hero}"{hero_srcset(hero)} style="object-position:center {cfg.get("focus", 45)}%"/>
   {nav(cfg["en"], cfg["es"], lang)}
   <div class="wrap"><div class="hb-c">
     <div class="hb-t"><span class="lbl">{eyebrow}</span>
@@ -562,8 +562,44 @@ def build_hub(rel, out, cfg):
 """
     dest = URLMAP["/preview/" + out].lstrip("/")
     head = cfg.get("head") or hub_head(rel, hero, cfg.get("hero_alt") or html.unescape(HB[2]))
+    head = share_card(head, dest, hero, cfg.get("hero_alt") or html.unescape(HB[2]), cfg.get("focus", 45))
     (P / f"{dest}.html").write_text(finalize(page(name, body, hero, lang, head=head)))
     print("wrote", P / f"{dest}.html")
+
+def pill_thumb(src):
+    """The topic pills are 44px circles but loaded the full photo (up to 845 KB, 2048px; Lighthouse 2026-11).
+    Serve a 132px square (sharp at 3x) cut from the centre, made once next to the original."""
+    f = P / (src or "").lstrip("/")
+    if not src or not f.exists() or not src.startswith("/images/"): return src
+    t = f.with_name(f"{f.stem}-pill132.webp")
+    if not t.exists() or t.stat().st_mtime < f.stat().st_mtime:
+        subprocess.run(["magick", str(f), "-resize", "132x132^", "-gravity", "center", "-extent", "132x132", "-strip", "-quality", "82", str(t)], check=True)
+    return "/" + str(t.relative_to(P))
+
+def hero_srcset(src, attr="srcset", sizes_attr="sizes"):
+    """Phones were downloading the 1920px hub hero (up to 500 KB; Boquete hub LCP 7.1 s on mobile).
+    When the -960/-1280 siblings of a -hero-1920.webp exist, offer them; otherwise nothing changes."""
+    m = re.fullmatch(r"(/images/v2/.+-hero-)1920\.webp", src or "")
+    if not m or not all((P / f"{m[1]}{w}.webp".lstrip("/")).exists() for w in (960, 1280)): return ""
+    return f' {attr}="' + ", ".join(f"{m[1]}{w}.webp {w}w" for w in (960, 1280, 1920)) + f'" {sizes_attr}="100vw"'
+
+def share_card(head, dest, hero, alt, focus):
+    """Hub share image: a real 1200x630 JPG cut from the hero at the hero's own focus (the WebP 1920 hero
+    did not preview reliably on WhatsApp/LinkedIn and is the wrong shape), plus a correct og:image:alt
+    (the old pattern only matched property-before-content, so the snapshot's stale alt survived)."""
+    slug = dest.replace("/", "-").replace("es-articles-", "es-").replace("articles-", "")
+    rel = f"/images/social/hub-{slug}-share.jpg"; out = P / rel.lstrip("/"); src = P / hero.lstrip("/")
+    if src.exists() and (not out.exists() or out.stat().st_mtime < src.stat().st_mtime):
+        out.parent.mkdir(parents=True, exist_ok=True)
+        w, h = map(int, subprocess.run(["magick", "identify", "-format", "%w %h", str(src)], capture_output=True, text=True, check=True).stdout.split())
+        rh = round(h * 1200 / w); y = round(max(0, rh - 630) * focus / 100)
+        subprocess.run(["magick", str(src), "-resize", "1200x", "-crop", f"1200x630+0+{y}", "+repage", "-strip", "-quality", "84", str(out)], check=True)
+    url = SITE + rel
+    head = re.sub(r'(<meta (?:property="og:image" content|name="twitter:image" content)=")[^"]*', lambda m: m[1] + url, head)
+    head = re.sub(r'<meta\b[^>]*property="og:image:(?:alt|width|height|type)"[^>]*>', "", head)
+    tags = (f'<meta property="og:image:type" content="image/jpeg"/><meta property="og:image:width" content="1200"/>'
+            f'<meta property="og:image:height" content="630"/><meta property="og:image:alt" content="{html.escape(alt)}"/>')
+    return re.sub(r'(<meta property="og:image" content="[^"]*"/>)', lambda m: m[1] + tags, head, count=1)
 
 def hub_head(rel, hero, alt):
     """The old hub's own SEO tags (title, description, robots, canonical, hreflang, Open Graph, JSON-LD), with the share image updated."""
@@ -899,9 +935,14 @@ L = {"en": dict(file="home.html", title="Preview: Panama Spot homepage", en="/pr
                      ("/es/articles/panama-city", "f", "Capital", "Ciudad de Panamá", "", "photo", "/images/v2/panama-city-skyline-from-the-waterfront-17477516-hero-1280.webp"),
                      ("/es/articles/isla-coiba-buceo-parque-nacional", "g", "Pacífico", "Coiba y su parque nacional", "", "photo", None)])}
 
-VIDEO = """<video class="hero-img hx-vid" autoplay muted loop playsinline preload="auto" poster="/images/v2/home-hero-video-poster.webp" aria-hidden="true">
-<source src="/video/home-hero-540.mp4" type="video/mp4" media="(max-width: 760px)"><source src="/video/home-hero-900.mp4" type="video/mp4"></video>
-<script>(function(){var v=document.querySelector(".hx-vid");if(v&&matchMedia("(prefers-reduced-motion: reduce)").matches){v.removeAttribute("autoplay");v.pause();}})();</script>"""
+# The poster paints first; the video file is attached after window load so its 2.7-6.5 MB download does not
+# compete with the first paint (Lighthouse 2026-11: homepage LCP 3.1 s on mobile, the video was the LCP element).
+# <source media> is only read at load time, so the right file (540 on phones, 900 otherwise) is picked as before.
+VIDEO = """<video class="hero-img hx-vid" muted loop playsinline preload="none" poster="/images/v2/home-hero-video-poster.webp" aria-hidden="true">
+<source data-src="/video/home-hero-540.mp4" type="video/mp4" media="(max-width: 760px)"><source data-src="/video/home-hero-900.mp4" type="video/mp4"></video>
+<script>(function(){var v=document.querySelector(".hx-vid");if(!v||matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+function go(){v.querySelectorAll("source[data-src]").forEach(function(s){s.src=s.getAttribute("data-src")});v.preload="auto";v.load();var p=v.play();if(p&&p.catch)p.catch(function(){})}
+if(document.readyState==="complete")go();else addEventListener("load",go)})();</script>"""
 def build_home(lang, video=False):
     C = L[lang]; foot = donors(lang)["foot"]
     groups_ = {n: re.findall(r'href="(/(?:es/)?articles/[^"]+)">(.*?)</a>', ul) for n, ul in re.findall(r"<h4>(.*?)</h4><ul>(.*?)</ul>", foot, re.S)}

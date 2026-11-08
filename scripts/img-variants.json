@@ -1,0 +1,676 @@
+{
+"/images/boquete/boquete-cabins.webp": {
+"w": 2048,
+"variants": [
+480,
+960
+]
+},
+"/images/boquete/boquete-ebike-trail.webp": {
+"w": 1400,
+"variants": [
+480
+]
+},
+"/images/boquete/boquete-flowers2.webp": {
+"w": 1536,
+"variants": [
+480
+]
+},
+"/images/boquete/boquete-market.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/boquete/boquete-rafting.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/boquete/boquete-river2.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/boquete/boquete-town2.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/el-valle/elvalle-bridge.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/el-valle/elvalle-church.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/el-valle/elvalle-flowermarket.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/el-valle/elvalle-town.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/a-coconut-palm-leans-out-over-12831944-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/a-green-roofed-boat-crosses-turquoise-30826587-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/a-palm-lined-curve-of-white-2be830a9-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/a-palm-lined-white-sand-beach-10490919-gallery.webp": {
+"w": 1400,
+"variants": [
+480
+]
+},
+"/images/v2/a-quiet-stretch-of-pale-sand-9a4453d2-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/a-resplendent-quetzal-with-a-green-aed733ea-hero-960.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/a-river-cuts-through-a-green-ed675378-tile.webp": {
+"w": 900,
+"variants": [
+480
+]
+},
+"/images/v2/a-small-sand-cay-with-a-9122911-gallery.webp": {
+"w": 1400,
+"variants": [
+480
+]
+},
+"/images/v2/a-three-toed-sloth-peers-from-7200626-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/a-waterfall-falls-into-a-amber-34937418-hero-960.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/aerial-view-of-boquete-panama-ed675378-tile.webp": {
+"w": 900,
+"variants": [
+480
+]
+},
+"/images/v2/an-elevated-panorama-takes-in-the-bb7c28cd-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/artesania-pintada-a-mano-colgada-en-df5c68cf-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/bathers-wade-on-a-pale-sandbar-e71210b9-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/boquete-aerial2-tile.webp": {
+"w": 900,
+"variants": [
+480
+]
+},
+"/images/v2/boquete-aerial2-wide.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/boquete-cabins-hero-960.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/boquete-cafeview-gallery.webp": {
+"w": 1050,
+"variants": [
+480
+]
+},
+"/images/v2/boquete-food2-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/boquete-forest-wide.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/boquete-losquetzales-wide.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/boquete-pond-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/boquete-town-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/boquete-town2-wide.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/boquete-zipline-rider-hero-1280.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/boquete-zipline-rider-hero-960.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/caldera-hot-springs-boquete-everything-you-14511967-hero-960.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/casco-antiguo-san-felipe-21af3ff1-gallery.webp": {
+"w": 1400,
+"variants": [
+480
+]
+},
+"/images/v2/casco-viejo-at-night-with-city-33803474-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/casco-viejo-panama-city-panama-54319827771-hero-1280.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/chorro-marcho-el-valle-panama-03-hero-960.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/clusters-of-ripe-red-coffee-cherries-14776857-hero-960.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/coasters-and-long-distance-buses-lined-e2745b4d-hero-960.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/coconut-palms-lean-over-a-white-10490913-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/colonial-building-with-ornate-windows-in-18183895-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/cortinas-de-agua-sobre-roca-cubierta-f60dd697-hero-1280.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/cruise-ship-passing-miraflores-locks-2019-10-gallery.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/cuatro-ninos-con-mochilas-se-detienen-5036679-hero-960.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/el-macho-falls-panoramio-hero-960.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/el-rio-caldera-corre-junto-a-443ebe2c-hero-960.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/el-rotulo-de-un-hotel-pequeno-5a846c80-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/elvalle-elmachowaterfall-wide.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/elvalle-panorama-tile.webp": {
+"w": 900,
+"variants": [
+480
+]
+},
+"/images/v2/elvalle-panorama-wide.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/elvalle-town-wide.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/finca-lerida-boquete-panama-hero-960.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/forested-foothills-rising-toward-the-cerro-c28c8ac8-hero-1280.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/forested-foothills-rising-toward-the-cerro-c28c8ac8-hero-960.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/four-children-stand-on-a-sandy-5036679-tile.webp": {
+"w": 900,
+"variants": [
+480
+]
+},
+"/images/v2/gatun-locks-of-the-panama-canal-f75c6691-hero-1920.webp": {
+"w": 1920,
+"variants": [
+480,
+960
+]
+},
+"/images/v2/grupo-disfrutando-de-aguas-rapidas-emocionantes-36791113-hero-1280.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/grupo-disfrutando-de-aguas-rapidas-emocionantes-36791113-hero-960.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/hikes-boquete-tile.webp": {
+"w": 900,
+"variants": [
+480
+]
+},
+"/images/v2/house-and-landscape-el-valle-02-hero-960.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/isla-pelicano-san-blas-panama-sg105536-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/islaperico-causeway-amador-hero-960.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/jaguar-at-el-nispero-12861718-hero-1280.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/la-caseta-de-entrada-a-chorro-b0916415-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/la-entrada-al-valle-por-carretera-d9c1199f-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/la-piedra-pintada-un-gran-bloque-db68b418-tile.webp": {
+"w": 900,
+"variants": [
+480
+]
+},
+"/images/v2/large-smooth-boulders-fill-a-dry-e48cb4ae-hero-960.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/late-light-on-the-crater-wall-a262b398-hero-960.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/looking-straight-down-foaming-waves-break-40d2d9a7-hero-960.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/lost-waterfalls-boquete-the-definitive-hiking-2024457-hero-960.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/metropolitan-cathedral-of-panama-city-1d602aa6-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/miraflores-visitor-center-panama-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/morrodub-cayos-holandeses-san-blas-panam-c3-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/panam-c3-a1-playa-hero-960.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/pecari-en-el-nispero-25489812-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/petroglifoelvalle-hero-960.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/pinas-y-naranjas-apiladas-en-cajas-2281d6e3-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/quetzales-trail-baru-volcano-national-park-panama-hero-960.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/red-frog-beach-island-resort-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/resplendent-quetzal-646deb1a-gallery.webp": {
+"w": 1400,
+"variants": [
+480
+]
+},
+"/images/v2/restaurant-dining-sunset-los-molinos-hero-960.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/rope-bridge-near-cerro-el-macho-waterfall-hero-960.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/rvn06957-tile.webp": {
+"w": 900,
+"variants": [
+480
+]
+},
+"/images/v2/senderochorromachoelvalle-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/skyscrapers-catch-the-last-light-at-13842831-hero-1280.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/snowflake-in-panama-2072311431-hero-960.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/string-lights-between-balconies-in-casco-2564872-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/the-el-valle-de-anton-crater-829139d1-gallery.webp": {
+"w": 1400,
+"variants": [
+480
+]
+},
+"/images/v2/the-flat-floor-of-the-el-f491c24a-hero-960.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/the-valley-floor-and-ridgelines-of-b88481d5-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/things-to-do-boquete-tile.webp": {
+"w": 900,
+"variants": [
+480
+]
+},
+"/images/v2/things-to-do-el-valle-hero-1280.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/things-to-do-el-valle-tile.webp": {
+"w": 900,
+"variants": [
+480
+]
+},
+"/images/v2/turquoise-water-fronts-a-palm-lined-30826590-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/two-round-thatched-roof-structures-stand-33990238-gallery.webp": {
+"w": 1400,
+"variants": [
+480
+]
+},
+"/images/v2/un-panorama-en-altura-abarca-todo-bb7c28cd-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/valle-de-ant-c3-b3n-la-mochila-tile.webp": {
+"w": 900,
+"variants": [
+480
+]
+},
+"/images/v2/view-from-restaurant-covered-los-molinos-hero-1280.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/volcan-baru-emerging-through-clouds-d35d9b87-hero-1280.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/volcan-baru-emerging-through-clouds-d35d9b87-tile.webp": {
+"w": 900,
+"variants": [
+480
+]
+},
+"/images/v2/volcan-baru-in-a-cloud-shroud-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/volcan-baru-summit-visible-from-the-463cf38d-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/wasserfall-bei-boquete-26701686043-hero-960.webp": {
+"w": 960,
+"variants": [
+480
+]
+},
+"/images/v2/whitewater-rolls-onto-a-sandy-shore-5f05bf22-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/wild-boar-at-el-nispero-25489812-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/x-bocas-del-toro-province-panama-panoramio-wide.webp": {
+"w": 1280,
+"variants": [
+480
+]
+},
+"/images/v2/x-diadup-kuna-yala-panam-c3-a1-hero-1280.webp": {
+"w": 1280,
+"variants": [
+480
+]
+}
+}

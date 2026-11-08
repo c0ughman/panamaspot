@@ -21,7 +21,7 @@
 */
 
 import { readdir, readFile, writeFile, stat, rm, unlink } from "node:fs/promises";
-import { readFileSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 import { join, relative, basename } from "node:path";
 
 const ROOT = new URL("../out/", import.meta.url).pathname;
@@ -109,6 +109,73 @@ function stripNextRuntime(html) {
 function fixSpanishLang(html, relPath) {
   if (!relPath.startsWith("es/") && relPath !== "es.html") return html;
   return html.replace(/<html([^>]*?)\blang="en"/i, '<html$1lang="es"');
+}
+
+/* Body font, self-hosted (2026-11 SEO pass). The Google Fonts stylesheet was render-blocking on
+   every guide and hub (~1.1 s on mobile in Lighthouse): the browser had to reach two more hosts
+   before it could paint. Hanken Grotesk is a variable font (OFL), so one file per subset covers
+   400-700; latin + latin-ext cover English and Spanish. Same family name, so page CSS and the
+   hubs' document.fonts.load() calls keep working unchanged. Done here, not in the page sources,
+   because several generators write those heads and any of them could bring the link back. */
+const GOOGLE_HANKEN =
+  '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap">';
+const LOCAL_HANKEN =
+  '<link rel="preload" as="font" type="font/woff2" href="/fonts/HankenGrotesk-latin.woff2" crossorigin>' +
+  "<style>" +
+  "@font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:400 700;font-display:swap;" +
+  "src:url(/fonts/HankenGrotesk-latin-ext.woff2) format('woff2');" +
+  "unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}" +
+  "@font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:400 700;font-display:swap;" +
+  "src:url(/fonts/HankenGrotesk-latin.woff2) format('woff2');" +
+  "unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}" +
+  "</style>";
+const GOOGLE_PRECONNECTS =
+  /<link rel="preconnect" href="https:\/\/fonts\.googleapis\.com"><link rel="preconnect" href="https:\/\/fonts\.gstatic\.com" crossorigin>\n?/;
+
+function selfHostFonts(html) {
+  if (!html.includes(GOOGLE_HANKEN)) return html;
+  html = html.replace(GOOGLE_HANKEN, LOCAL_HANKEN);
+  // The preconnects only served Google Fonts; drop them if nothing else on the page uses Google Fonts.
+  if (!html.includes("fonts.googleapis.com/css")) html = html.replace(GOOGLE_PRECONNECTS, "");
+  return html;
+}
+
+/* Robots meta normalisation (2026-11 SEO pass).
+   - Indexable pages also allow large image previews in Search and Discover (Google's default
+     without it is a small thumbnail). Half the guides had it, half didn't.
+   - The 404 pages got Next's own noindex AND the layout's "index, follow"; keep only the noindex. */
+function normaliseRobots(html, relPath) {
+  if (relPath === "404.html" || relPath === "_not-found.html") {
+    return html.replace(/<meta name="robots" content="index, follow"\/>/, "");
+  }
+  return html.replace(
+    /(<meta\b[^>]*?)content="index, ?follow"([^>]*name="robots"[^>]*>)|(<meta name="robots" )content="index, ?follow"/,
+    (m, a, b, c) => (c ? `${c}content="index, follow, max-image-preview:large"` : `${a}content="index, follow, max-image-preview:large"${b}`),
+  );
+}
+
+/* Responsive copies for big photos shown small (2026-11 SEO pass). scripts/make_img_variants.py writes
+   <name>-w480.webp / -w960.webp and lists them in scripts/img-variants.json. Lazy <img> tags without a
+   srcset get one, with sizes="auto, 100vw": Chrome sizes it from the rendered box; browsers without
+   sizes=auto use 100vw and fetch what they fetched before. */
+const VARIANTS = (() => {
+  try {
+    return JSON.parse(readFileSync(new URL("./img-variants.json", import.meta.url), "utf8"));
+  } catch {
+    return {};
+  }
+})();
+
+function addImageVariants(html) {
+  return html.replace(/<img\b[^>]*>/g, (tag) => {
+    if (tag.includes("srcset=") || !tag.includes('loading="lazy"')) return tag;
+    const m = tag.match(/\ssrc="((?:https:\/\/panamaspot\.com)?(\/images\/[^"]+)\.webp)"/);
+    const v = m && VARIANTS[`${m[2]}.webp`];
+    if (!v) return tag;
+    const prefix = m[1].slice(0, -5);
+    const set = [...v.variants.map((w) => `${prefix}-w${w}.webp ${w}w`), `${m[1]} ${v.w}w`].join(", ");
+    return tag.replace(/\s?\/?>$/, ` srcset="${set}" sizes="auto, 100vw"$&`);
+  });
 }
 
 function injectAppJs(html) {
@@ -214,6 +281,9 @@ async function processFile(path) {
   let html = original;
   html = stripNextRuntime(html);
   html = fixSpanishLang(html, relPath);
+  html = selfHostFonts(html);
+  html = normaliseRobots(html, relPath);
+  html = addImageVariants(html);
   html = injectAppJs(html);
   html = injectAnalytics(html, relPath);
   if (html !== original) await writeFile(path, html, "utf8");
@@ -244,6 +314,9 @@ function isDeadWeight(absPath) {
   // The companion index.txt next to every index.html (React Flight payload).
   // robots.txt and sitemap.xml live at the root and are NOT named index.txt.
   if (name === "index.txt") return true;
+  // Same payload for flat pages (es.txt next to es.html, _not-found.txt…). These were publicly
+  // served and crawlable. robots.txt and verification files have no .html twin, so they stay.
+  if (name.endsWith(".txt") && existsSync(absPath.slice(0, -4) + ".html")) return true;
   // _next/static/chunks/*.js — the JS we stripped references to.
   if (rel.startsWith("_next/static/chunks/") && name.endsWith(".js")) return true;
   // Build-manifest folders: _next/static/<build-id>/{_buildManifest.js,...}.
@@ -356,6 +429,26 @@ async function main() {
   }
 
   assertSitemapIsWellFormed();
+  await assertShareImagesExist();
+}
+
+/* Every og:image must ship. .gitignore excludes public/images/**\/*.jpg, so a share card that is not
+   force-added exists locally but 404s on Netlify: in 2026-11 eleven guides shared on WhatsApp and
+   Facebook with no picture and nothing noticed. On Netlify the file is simply absent, so fail there. */
+async function assertShareImagesExist() {
+  const missing = [];
+  for await (const file of walkHtml(ROOT)) {
+    const html = await readFile(file, "utf8");
+    const m = html.match(/<meta[^>]*property="og:image"[^>]*content="https:\/\/panamaspot\.com(\/[^"?]+)"|<meta[^>]*content="https:\/\/panamaspot\.com(\/[^"?]+)"[^>]*property="og:image"/);
+    const path = m && (m[1] || m[2]);
+    if (path && !existsSync(join(ROOT, decodeURIComponent(path)))) missing.push(`${relative(ROOT, file)} → ${path}`);
+  }
+  if (missing.length) {
+    console.error(`\n✗ ${missing.length} share images (og:image) are missing from the build:\n` + missing.map((x) => `    ${x}`).join("\n") +
+      `\n  If they exist locally, they are probably git-ignored: git add -f public/images/...`);
+    process.exit(1);
+  }
+  console.log("Share images (og:image) present for every page.");
 }
 
 /* The sitemap is generated by Next, which interpolates every URL into the XML
