@@ -1,0 +1,168 @@
+{
+ "note": "Homepage hero video (public/video/home-hero-900.mp4 = 1600x900, home-hero-540.mp4 = 960x540), hard cuts, no sound. Pexels / Pixabay licences: free use, no credit required. start/len in seconds; speed 2 = twice as fast; rev = played backwards. Poster = second 4 of px-15445919.",
+ "shots": [
+  {
+   "clip": "px-15445919",
+   "len": 1,
+   "rev": true,
+   "speed": 3,
+   "start": 6,
+   "label": "Palm island in turquoise water",
+   "source": "https://www.pexels.com/video/15445919/"
+  },
+  {
+   "clip": "px-2314024",
+   "len": 1,
+   "start": 1.6,
+   "label": "F&F tower and the winged tower",
+   "source": "https://www.pexels.com/video/2314024/"
+  },
+  {
+   "clip": "px-32237118",
+   "len": 1,
+   "start": 0.4,
+   "label": "Tamarin monkey on a mossy trunk",
+   "source": "https://www.pexels.com/video/32237118/"
+  },
+  {
+   "clip": "px-31776128",
+   "len": 1,
+   "start": 2.5,
+   "label": "Pollera dancer twirling",
+   "source": "https://www.pexels.com/video/31776128/"
+  },
+  {
+   "clip": "px-32237338",
+   "len": 1,
+   "start": 10,
+   "label": "Flag-lined seafront avenue",
+   "source": "https://www.pexels.com/video/32237338/"
+  },
+  {
+   "clip": "px-17897477",
+   "len": 1,
+   "start": 9,
+   "label": "Bridge of the Americas with a ship",
+   "source": "https://www.pexels.com/video/17897477/"
+  },
+  {
+   "clip": "px-30057768",
+   "len": 1,
+   "start": 2.5,
+   "label": "Surfer on a long wave from above",
+   "source": "https://www.pexels.com/video/30057768/"
+  },
+  {
+   "clip": "px-35257068",
+   "len": 1,
+   "start": 3.6,
+   "label": "Casco Viejo and the bay from the air",
+   "source": "https://www.pexels.com/video/35257068/"
+  },
+  {
+   "clip": "px-32210910",
+   "len": 1,
+   "start": 6,
+   "label": "Cargo ship in the Miraflores locks",
+   "source": "https://www.pexels.com/video/32210910/"
+  },
+  {
+   "clip": "px-13898933",
+   "len": 1,
+   "start": 4.1,
+   "label": "Keel-billed toucan in the trees",
+   "source": "https://www.pexels.com/video/13898933/"
+  },
+  {
+   "clip": "px-2316938",
+   "len": 1,
+   "start": 9.1,
+   "label": "Canoe speeding up a narrow river",
+   "source": "https://www.pexels.com/video/2316938/"
+  },
+  {
+   "clip": "px-2402371",
+   "len": 1,
+   "start": 2.2,
+   "label": "Cargo ship in the canal, morning haze",
+   "source": "https://www.pexels.com/video/2402371/"
+  },
+  {
+   "clip": "px-16229987",
+   "len": 1,
+   "start": 12,
+   "label": "Drone over palms out to the reef",
+   "source": "https://www.pexels.com/video/16229987/"
+  },
+  {
+   "clip": "px-16230968",
+   "len": 1,
+   "start": 6,
+   "label": "Catamaran on turquoise shallows",
+   "source": "https://www.pexels.com/video/16230968/"
+  },
+  {
+   "clip": "px-31776189",
+   "len": 1,
+   "start": 1.7,
+   "label": "Pollera dancer in white",
+   "source": "https://www.pexels.com/video/31776189/"
+  },
+  {
+   "clip": "pb-383097",
+   "len": 1,
+   "start": 4,
+   "label": "Sailboat on open sea",
+   "source": "https://pixabay.com/videos/id-383097/"
+  },
+  {
+   "clip": "px-29549057",
+   "len": 1,
+   "start": 2.8,
+   "label": "Cinta Costera at sunset",
+   "source": "https://www.pexels.com/video/29549057/"
+  },
+  {
+   "clip": "px-16392664",
+   "len": 1,
+   "start": 3,
+   "label": "Dugout canoe on a jungle river",
+   "source": "https://www.pexels.com/video/16392664/"
+  },
+  {
+   "clip": "px-33857176",
+   "len": 1,
+   "start": 1.2,
+   "label": "Skyline from the air, dusk",
+   "source": "https://www.pexels.com/video/33857176/"
+  },
+  {
+   "clip": "px-18021219",
+   "len": 1,
+   "start": 11.4,
+   "label": "Picachos de Olá at sunset",
+   "source": "https://www.pexels.com/video/18021219/"
+  },
+  {
+   "clip": "pb-346372",
+   "len": 1,
+   "start": 15,
+   "label": "Bocas del Toro sunset",
+   "source": "https://pixabay.com/videos/id-346372/"
+  },
+  {
+   "clip": "px-33811930",
+   "len": 1,
+   "start": 1.2,
+   "label": "Skyline from the air, night",
+   "source": "https://www.pexels.com/video/33811930/"
+  },
+  {
+   "clip": "px-33811924",
+   "len": 4,
+   "start": 9.7,
+   "label": "Night city time-lapse",
+   "source": "https://www.pexels.com/video/33811924/"
+  }
+ ]
+}

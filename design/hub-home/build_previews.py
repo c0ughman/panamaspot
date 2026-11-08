@@ -961,4 +961,4 @@ def build_home(lang, video=False):
     f = HOME_OUT / ("index.html" if lang == "en" else "es.html")
     f.write_text(finalize(out))
     print("wrote", f)
-build_home("en"); build_home("es")  # video=True puts the hero video back
+build_home("en", video=True); build_home("es", video=True)  # video=False goes back to the still photo (still())
