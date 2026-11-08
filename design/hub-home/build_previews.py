@@ -1159,18 +1159,17 @@ ICON_SCALE = '<path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path 
 ICON_CAM = '<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/>'
 WAVES = "data:image/svg+xml," + "%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 64'%3E%3Cpath d='M2 10q7-7 14 0t14 0 14 0 14 0 14 0 14 0 14 0 14 0M2 32q7-7 14 0t14 0 14 0 14 0 14 0 14 0 14 0 14 0M2 54q7-7 14 0t14 0 14 0 14 0 14 0 14 0 14 0 14 0' fill='none' stroke='%23da121a' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E"
 ABOUT2_CSS = """<style>
-.ab-top { position: relative; background: var(--navy); color: #fff; }
-.ab-top-c { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 420px); gap: clamp(32px, 6vw, 110px); align-items: end; padding-top: clamp(20px, 3.4vw, 48px); }
-.ab-top-t { display: grid; gap: 18px; padding-bottom: clamp(52px, 6vw, 92px); }
-.ab-top .lbl { color: #fff; }
-.ab-top h1 { font: 650 clamp(52px, 6vw, 88px)/.95 var(--serif); color: #fff; letter-spacing: -0.01em; margin: 0; }
-.ab-goal { font: 400 clamp(22px, 2.2vw, 30px)/1.28 var(--serif); color: #fff; max-width: 26ch; margin: 6px 0 0; }
-.ab-sub { font-size: 17px; line-height: 1.55; color: rgba(255,255,255,.72); margin: 0; max-width: 46ch; }
-.ab-arch { position: relative; margin: 0 0 -84px; z-index: 2; }
-.ab-arch img { display: block; width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: 62% center; border-radius: 999px 999px 26px 26px; box-shadow: 0 34px 60px -34px rgba(3,10,30,.55); }
-.ab-arch .sw { position: absolute; left: -46px; bottom: 54px; width: 112px; transform: rotate(-7deg); filter: drop-shadow(0 10px 18px rgba(3,10,30,.25)); }
-.ab-arch figcaption { position: absolute; right: 16px; bottom: 16px; padding: 9px 14px; border-radius: 999px; font: 500 13px/1.2 var(--sans); }
-.ab-first { padding-top: clamp(64px, 7vw, 104px); }
+.ab-hero { height: clamp(520px, 64vh, 660px); }
+.ab-hero .hero-img { object-position: 50% 62%; }
+.ab-hero::before { background: linear-gradient(90deg, rgba(3,10,30,.55) 0%, rgba(3,10,30,.3) 34%, rgba(3,10,30,0) 62%), linear-gradient(180deg, rgba(3,10,30,.42) 0%, rgba(3,10,30,0) 30%, rgba(3,10,30,0) 62%, rgba(3,10,30,.32) 100%); }
+.ab-hero .hx-c { position: relative; isolation: isolate; gap: 14px; }
+.ab-hero .hx-c::before { content: ""; position: absolute; z-index: -1; left: -4%; top: 0; width: min(860px, 104%); height: 92%; background: radial-gradient(closest-side, rgba(3,10,30,.2), rgba(3,10,30,0)); pointer-events: none; }
+.ab-hero .lbl { color: #fff; }
+.ab-mark { font: 400 clamp(54px, 7.4vw, 112px)/.92 var(--serif); letter-spacing: -0.02em; color: #fff; margin: 0; text-shadow: 0 1px 2px rgba(3,10,30,.14), 0 2px 30px rgba(0,0,0,.18); }
+.ab-mark .a { color: var(--red); }
+.ab-mark .pd { display: inline-block; width: .17em; height: .17em; border-radius: 50%; background: var(--red); margin-left: .03em; }
+.ab-hero .ab-goal { font: 400 clamp(17px, 1.5vw, 20px)/1.5 var(--sans); max-width: 40ch; color: rgba(255,255,255,.94); }
+.ab-first { padding-top: clamp(56px, 6vw, 88px); }
 .ab-row { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: clamp(24px, 6vw, 96px); align-items: start; max-width: 1060px; }
 .ab-row h2 { font: 600 clamp(28px, 3vw, 40px)/1.12 var(--sans); color: var(--navy); letter-spacing: -0.015em; margin: 0; }
 .ab-txt { max-width: 62ch; }
@@ -1181,25 +1180,13 @@ ABOUT2_CSS = """<style>
 .ab-pol3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .ab-pol3 > div { position: relative; background: var(--beige); border-radius: 24px; padding: 30px 26px 28px; display: grid; gap: 12px; align-content: start; scroll-margin-top: 24px; overflow: hidden; }
 .ab-pol3 > div::after { content: ""; position: absolute; top: 26px; right: -14px; width: 120px; height: 64px; background: url("WAVESURL") no-repeat center / contain; opacity: .16; pointer-events: none; }
-.ab-pol3 .ic { width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; color: var(--red); background: #fff; border: 2px solid var(--red); outline: 1.5px solid var(--red); outline-offset: 4px; margin: 6px 0 10px 6px; }
+.ab-pol3 .ic { display: block; color: var(--red); line-height: 0; margin-bottom: 6px; }
+.ab-pol3 .ic svg { width: 34px; height: 34px; }
 .ab-pol3 h3 { margin: 0; font: 400 25px/1.15 var(--serif); color: var(--navy); }
 .ab-pol3 p { margin: 0; font-size: 15.5px; line-height: 1.62; color: var(--body); }
 .ab-pol3 a { color: var(--navy); }
-.ab-cta2 { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); border-radius: 28px; overflow: hidden; background: var(--beige); min-height: 330px; }
-.ab-cta2 > img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.ab-cta2 .tx { padding: clamp(28px, 4vw, 56px); display: grid; gap: 14px; align-content: center; justify-items: start; }
-.ab-cta2 h2 { font: 400 clamp(28px, 3vw, 38px)/1.1 var(--serif); margin: 0; color: var(--navy); }
-.ab-cta2 p { margin: 0; font-size: 16.5px; line-height: 1.6; color: var(--body); max-width: 36ch; }
-.ab-cta2 .ab-btn { background: var(--navy); color: #fff; margin-top: 6px; }
 @media (max-width: 900px) {
-  .ab-top-c { grid-template-columns: 1fr; gap: 8px; }
-  .ab-top-t { padding-bottom: 28px; }
-  .ab-arch { width: min(100%, 380px); margin: 0 auto -60px; }
-  .ab-arch .sw { left: -2px; bottom: 36px; width: 84px; }
-  .ab-arch img { aspect-ratio: 1/1; }
-  .ab-row, .ab-pol3, .ab-cta2 { grid-template-columns: 1fr; }
-  .ab-cta2 > img { height: 220px; }
-  .ab-first { padding-top: 96px; }
+  .ab-row, .ab-pol3 { grid-template-columns: 1fr; }
 }
 </style>""".replace("WAVESURL", WAVES)
 
@@ -1211,17 +1198,15 @@ def build_about_mock():
                ("/articles/san-blas", "San Blas", "Guna Yala", "/images/v2/a-pale-sandbar-curls-beside-dark-37208428-stamp.webp")]
     stamps = "".join(f'<a href="{u}">{stamp(s)}<span><b>{n}</b><small>{d} · {count(u)} guides</small></span></a>' for u, n, d, s in regions)
     mail = f'<a href="mailto:{EMAIL}">{EMAIL}</a>'
-    ARCH = "/images/v2/volcan-baru-emerging-through-clouds-d35d9b87-hero-1280.webp"
+    ARCH = "/images/v2/a-pale-sandbar-curls-beside-dark-37208428-hero-1920.webp"
     about = f"""<div class="guide-progress" id="prog" aria-hidden="true"></div>
-<header class="ab-top">
+<header class="hero hx-home ab-hero">
+  <img class="hero-img" alt="A pale sandbar curving through turquoise water beside a dark reef in Guna Yala" fetchpriority="high" src="{ARCH}"{hero_srcset(ARCH)}/>
   {nav("/preview/about", "/es", "en")}
-  <div class="wrap ab-top-c">
-    <div class="ab-top-t"><span class="lbl">About</span><h1>About Panamá Spot</h1>
-      <p class="ab-goal">Our goal is to be the most comprehensive, robust resource for tourism in Panama.</p>
-      <p class="ab-sub">Independent travel guides, from the canal to the cloud forest. In English and Spanish.</p></div>
-    <figure class="ab-arch"><img alt="The forested slopes of Volcán Barú rising through the clouds" fetchpriority="high" src="{ARCH}"/>
-      {stamp("/images/v2/a-female-resplendent-quetzal-perches-on-16017280-stamp.webp")}<figcaption class="glass">Volcán Barú, Chiriquí</figcaption></figure>
-  </div>
+  <div class="wrap hx-c"><span class="lbl">About us</span>
+    <h1 class="ab-mark">About Panam<span class="a">á</span> Spot<i class="pd"></i></h1>
+    <p class="hx-dek ab-goal">Our goal is to be the most comprehensive, robust resource for tourism in Panama.</p>
+    <a class="hx-btn" href="#how-we-make">How we make our guides</a></div>
 </header>
 {ABOUT_CSS}{TRUST_CSS}{ABOUT2_CSS}
 {ld("AboutPage", "/about", "About Panamá Spot", "Who makes Panamá Spot, how the guides are researched and checked, how we correct mistakes, and how the site is funded.")}
@@ -1238,7 +1223,7 @@ def build_about_mock():
 <figure class="ab-pano"><img alt="Sailboats anchored in the bay with the Panama City skyline behind" loading="lazy" src="/images/v2/veleros-anclados-en-la-bahia-5005136-hero-1920.webp"/></figure>
 <section class="ab-band ab-sec" id="independence"><div class="wrap"><div class="ab-indep">
   {postmark("PANAMÁ SPOT · DESDE 2026 ·")}
-  <div class="ab-h"><h2>Independent, with a few local partners</h2><p>Panamá Spot is independently owned. It is not part of a tour operator, hotel or government office. We work with a small number of local partners, and some links on the site lead to them; on our guides their boxes are labelled <b>Local partner</b>. Partners never decide what we recommend, how we rank things, or what we write.</p></div>
+  <div class="ab-h"><h2>Independent, with a few local partners</h2><p>Panamá Spot is independently owned. It is not part of a tour operator, hotel or government office. We work with a small number of local partners, and some links on the site lead to them; on our guides their boxes are labelled <b>Local partner</b>.</p></div>
 </div></div></section>
 <section class="wrap ab-sec"><div class="ab-h"><h2>Our policies</h2><p>What you can expect from every page on Panamá Spot.</p></div>
 <div class="ab-pol3">
@@ -1247,12 +1232,6 @@ def build_about_mock():
   <div id="photos"><span class="ic">{icon(ICON_CAM)}</span><h3>Photos and credits</h3><p>Photos are captioned with what is in the frame. Photos from outside photographers are credited, with their licence, under the guide's gallery. When we can't confirm exactly where a photo was taken, we don't name a place for it.</p></div>
 </div>
 <p class="ab-rev"><i class="dot"></i>This page was last reviewed on {REVIEWED[1]}.</p></section>
-<section class="wrap ab-sec" style="padding-top:0"><div class="ab-h"><h2>Where we cover</h2><p>Five regions so far, each with its own set of guides.</p></div>
-<div class="ab-stamps">{stamps}</div></section>
-<section class="wrap ab-sec" style="padding-top:0"><div class="ab-cta2">
-  <img alt="A palm tree leaning over a white-sand beach in Guna Yala" loading="lazy" src="/images/v2/x-diadup-kuna-yala-panam-c3-a1-hero-1280.webp"/>
-  <div class="tx"><h2>Spotted something out of date?</h2><p>Prices and timetables in Panama change. If a guide is wrong, tell us and we'll fix it.</p><a class="ab-btn" href="/preview/contact">Contact us →</a></div>
-</div></section>
 """
     contact = ab_hero("/images/v2/a-single-sailboat-glides-across-a-36117831-hero-1920.webp", "A single sailboat on calm turquoise sea under a clear sky.", 62,
                       "Contact", "Contact", "Questions, corrections, or an idea for working together. We read every message.",
@@ -1264,7 +1243,7 @@ def build_about_mock():
   <div class="pc-back">
     {stamp("/images/v2/turquoise-water-fronts-a-palm-lined-30826590-stamp.webp")}
     {postmark("PANAMÁ SPOT · CONTACTO · 2026 ·")}
-    <div class="pc-msg"><h2>Write to us</h2><p>One inbox for everything, in English or Spanish. Tell us what you need and, if it's about a guide, which page.</p></div>
+    <div class="pc-msg"><h2>Write to us</h2><p>One inbox for everything, in English or Spanish. Tell us what you need, and we will respond.</p></div>
     <div class="pc-to"><span>To: Panamá Spot editors</span><span><a href="mailto:{EMAIL}">{EMAIL}</a></span><span>Panamá</span></div>
     <div class="pc-row"><a class="ab-btn" style="background:var(--navy);color:#fff" href="mailto:{EMAIL}">Send an email →</a><button type="button" class="pc-copy" data-copy="{EMAIL}">Copy address</button></div>
   </div>
@@ -1272,7 +1251,7 @@ def build_about_mock():
 <section class="wrap ab-sec" style="padding-top:0"><div class="ab-h"><h2>What to write about</h2></div>
 <div class="ab-why">
   <div id="corrections"><span class="ic">{ICON_PEN}</span><b>Spotted a mistake?</b><p>Prices, hours and routes move often. To help us fix it fast, include:</p><ol class="pc-steps"><li>the page link</li><li>what is wrong, and what it should say</li><li>where you saw it, if you can (a sign, a receipt, the operator's site)</li></ol></div>
-  <div><span class="ic">{ICON_SHOP}</span><b>Run a business in Panama?</b><p>Tours, stays, transport or services: if you'd like to work with us, tell us about what you do. Partners never get to edit our guides; <a href="/preview/about#independence">here's how partnerships work</a>.</p></div>
+  <div><span class="ic">{ICON_SHOP}</span><b>Run a business in Panama?</b><p>Tours, stays, transport or services: get in touch for a proposal, or to find out how we can work together.</p></div>
   <div><span class="ic">{ICON_HI}</span><b>Anything else</b><p>Press, ideas, or a place you think we should cover next. Just say hola.</p></div>
 </div>
 </section>
@@ -1282,8 +1261,6 @@ def build_about_mock():
     for name, body, hero in (("about", about, ARCH), ("contact", contact, "/images/v2/a-single-sailboat-glides-across-a-36117831-hero-1920.webp")):
         title = "About Panamá Spot" if name == "about" else "Contact Panamá Spot"
         out = page(title, body, hero, "en")
-        if name == "about":  # the footer's "Where to next?" band repeats the five region stamps just above it
-            out = re.sub(r'<div class="wrap f-top">.*?</div>', "", out, count=1, flags=re.S)
         (P / "preview" / f"{name}.html").write_text(out)
         print("wrote", P / "preview" / f"{name}.html")
 
