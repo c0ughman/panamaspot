@@ -1166,6 +1166,7 @@ ABOUT2_CSS = """<style>
 .ab-hero .lbl { color: #fff; }
 .ab-mark { font: 400 clamp(54px, 7.4vw, 112px)/.92 var(--serif); letter-spacing: -0.02em; color: #fff; margin: 0; text-shadow: 0 1px 2px rgba(3,10,30,.14), 0 2px 30px rgba(0,0,0,.18); }
 .ab-mark .a { color: var(--red); }
+.ab-mark .nw { white-space: nowrap; }
 .ab-mark .pd { display: inline-block; width: .17em; height: .17em; border-radius: 50%; background: var(--red); margin-left: .03em; }
 .ab-hero .ab-goal { font: 400 clamp(17px, 1.5vw, 20px)/1.5 var(--sans); max-width: 40ch; color: rgba(255,255,255,.94); }
 .ab-first { padding-top: clamp(56px, 6vw, 88px); }
@@ -1202,7 +1203,7 @@ def build_about_mock():
   <img class="hero-img" alt="A pale sandbar curving through turquoise water beside a dark reef in Guna Yala" fetchpriority="high" src="{ARCH}"{hero_srcset(ARCH)}/>
   {nav("/preview/about", "/es", "en")}
   <div class="wrap hx-c"><span class="lbl">About us</span>
-    <h1 class="ab-mark">About Panam<span class="a">á</span> Spot<i class="pd"></i></h1>
+    <h1 class="ab-mark">About Panam<span class="a">á</span> <span class="nw">Spot<i class="pd"></i></span></h1>
     <p class="hx-dek ab-goal">Our goal is to be the most comprehensive, robust resource for tourism in Panama.</p>
     <a class="hx-btn" href="#how-we-make">How we make our guides</a></div>
 </header>
@@ -1239,7 +1240,7 @@ def build_about_mock():
 {ABOUT_CSS}{TRUST_CSS}
 {ld("ContactPage", "/contact", "Contact Panamá Spot", "How to reach the Panamá Spot editors: corrections, partnerships and general questions, in English or Spanish.")}
 <section class="wrap ab-sec first"><div class="pc">
-  <div class="pc-front"><img alt="A palm tree leaning over a white-sand beach in Guna Yala" loading="lazy" src="/images/v2/x-diadup-kuna-yala-panam-c3-a1-hero-1280.webp"/><div class="glass"><small>Greetings from</small>Panamá</div></div>
+  <div class="pc-front"><img alt="The forested slopes of Volcán Barú rising through the clouds" loading="lazy" src="/images/v2/volcan-baru-emerging-through-clouds-d35d9b87-hero-1280.webp"/><div class="glass"><small>Greetings from</small>Panamá</div></div>
   <div class="pc-back">
     {stamp("/images/v2/turquoise-water-fronts-a-palm-lined-30826590-stamp.webp")}
     {postmark("PANAMÁ SPOT · CONTACTO · 2026 ·")}
