@@ -9,12 +9,10 @@ export const siteConfig = {
   locale: "en_US",
   defaultOgImage: "/og-default.jpg",
   logo: "/logo.png",
-  twitterHandle: "@panamaspot",
+  // No social accounts exist yet. Only add a handle or profile here once it is real and owned by Panamá Spot.
+  twitterHandle: undefined as string | undefined,
   // Public profiles for Organization `sameAs`. Add real URLs as they go live.
-  sameAs: [
-    "https://www.instagram.com/panamaspot",
-    "https://twitter.com/panamaspot",
-  ] as string[],
+  sameAs: [] as string[],
 } as const;
 
 export type SiteConfig = typeof siteConfig;
