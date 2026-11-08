@@ -1159,7 +1159,7 @@ ICON_SCALE = '<path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path 
 ICON_CAM = '<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/>'
 ABOUT2_CSS = """<style>
 .ab-hero { height: clamp(520px, 64vh, 660px); }
-.ab-hero .hero-img { object-position: 50% 55%; }
+.ab-hero .hero-img { object-position: 50% 50%; }
 .ab-hero::before { background: linear-gradient(90deg, rgba(3,10,30,.62) 0%, rgba(3,10,30,.36) 38%, rgba(3,10,30,0) 66%), linear-gradient(180deg, rgba(3,10,30,.42) 0%, rgba(3,10,30,0) 30%, rgba(3,10,30,.08) 58%, rgba(3,10,30,.4) 100%); }
 @media (max-width: 700px) { .ab-hero::before { background: linear-gradient(180deg, rgba(3,10,30,.45) 0%, rgba(3,10,30,.12) 28%, rgba(3,10,30,.42) 55%, rgba(3,10,30,.62) 100%); } }
 .ab-hero .hx-c { position: relative; isolation: isolate; gap: 14px; }
@@ -1198,16 +1198,17 @@ def build_about_mock():
                ("/articles/san-blas", "San Blas", "Guna Yala", "/images/v2/x-diadup-kuna-yala-panam-c3-a1-hero-960.webp")]
     stamps = "".join(f'<a href="{u}">{stamp(s)}<span><b>{n}</b><small>{d} · {count(u)} guides</small></span></a>' for u, n, d, s in regions)
     mail = f'<a href="mailto:{EMAIL}">{EMAIL}</a>'
-    ARCH = "/images/v2/skyscrapers-catch-the-last-light-at-13842831-hero-1920.webp"
+    ARCH = "/images/v2/gatun-locks-of-the-panama-canal-f75c6691-hero-1920.webp"
     about = f"""<div class="guide-progress" id="prog" aria-hidden="true"></div>
 <header class="hero hx-home ab-hero">
-  <img class="hero-img" alt="Panama City skyscrapers catching the last light of the day, with green hills behind" fetchpriority="high" src="{ARCH}"{hero_srcset(ARCH)}/>
+  <img class="hero-img" alt="The Gatún Locks on the Panama Canal, seen from above" fetchpriority="high" src="{ARCH}"{hero_srcset(ARCH)}/>
   {nav("/preview/about", "/es", "en")}
   <div class="wrap hx-c"><span class="lbl">About us</span>
     <h1 class="ab-mark">About Panam<span class="a">á</span> <span class="nw">Spot<i class="pd"></i></span></h1>
     <p class="hx-dek ab-goal">Our goal is to be the most comprehensive, robust resource for tourism in Panama.</p>
     <a class="hx-btn" href="#how-we-make">How we make our guides</a></div>
 </header>
+<script>/* preview only: ?h=2 or ?h=3 tries another hero photo */(function(){{var m=location.search.match(/[?&]h=(\\d)/),o={{"2":["/images/v2/boquete-rainbow-canopy-hero-1920.webp","A rainbow over the cloud forest near Boquete","50% 45%"],"3":["/images/v2/late-light-on-the-crater-wall-a262b398-hero-1920.webp","Late afternoon light in El Valle de Antón, with the crater rim behind","50% 60%"]}};if(!m||!o[m[1]])return;var i=document.querySelector(".ab-hero .hero-img");i.removeAttribute("srcset");i.src=o[m[1]][0];i.alt=o[m[1]][1];i.style.objectPosition=o[m[1]][2]}})();</script>
 {ABOUT_CSS}{TRUST_CSS}{ABOUT2_CSS}
 {ld("AboutPage", "/about", "About Panamá Spot", "Who makes Panamá Spot, how the guides are researched and checked, how we correct mistakes, and how the site is funded.")}
 <section class="wrap ab-sec ab-first"><div class="ab-row">
