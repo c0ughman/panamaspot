@@ -1191,11 +1191,47 @@ ABOUT2_CSS = """<style>
 </style>"""
 
 # ---------------- About, Contact, Privacy, 404: English + Spanish mockups under /preview (noindex) ----------------
-# Paths while in preview. At launch: /about /contact /privacy + /es/sobre-nosotros /es/contacto /es/privacidad, and the 404s.
-PV = {"en": {"about": "/preview/about", "contact": "/preview/contact", "privacy": "/preview/privacy", "404": "/preview/404", "home": "/"},
-      "es": {"about": "/preview/es/sobre-nosotros", "contact": "/preview/es/contacto", "privacy": "/preview/es/privacidad", "404": "/preview/es/404", "home": "/es"}}
+# Live since 2026-11-08. The English 404 goes to site-pages/404.html and scripts/build-static.mjs swaps it in for
+# Next's out/404.html; the Spanish one is public/es/404.html, served by the "/es/*  /es/404.html  404" rule.
+PV = {"en": {"about": "/about", "contact": "/contact", "privacy": "/privacy", "404": "/404", "home": "/"},
+      "es": {"about": "/es/sobre-nosotros", "contact": "/es/contacto", "privacy": "/es/privacidad", "404": "/es/404", "home": "/es"}}
 def pv_file(lang, key):
-    return P / (PV[lang][key].lstrip("/") + ".html")
+    return HOME_OUT / "404.html" if (lang, key) == ("en", "404") else P / (PV[lang][key].lstrip("/") + ".html")
+
+SHARE = {"about": ("/images/social/about-share.jpg", "/images/v2/gatun-locks-of-the-panama-canal-f75c6691-hero-1920.webp", 50),
+         "contact": ("/images/social/contact-share.jpg", "/images/v2/a-single-sailboat-glides-across-a-36117831-hero-1920.webp", 62)}
+SHARE["privacy"] = SHARE["about"]
+def share_jpg(key):
+    rel, src, focus = SHARE[key]; out = P / rel.lstrip("/"); src = P / src.lstrip("/")
+    if not out.exists() or out.stat().st_mtime < src.stat().st_mtime:
+        out.parent.mkdir(parents=True, exist_ok=True)
+        w, h = map(int, subprocess.run(["magick", "identify", "-format", "%w %h", str(src)], capture_output=True, text=True, check=True).stdout.split())
+        y = round(max(0, round(h * 1200 / w) - 630) * focus / 100)
+        subprocess.run(["magick", str(src), "-resize", "1200x", "-crop", f"1200x630+0+{y}", "+repage", "-strip", "-quality", "84", str(out)], check=True)
+    return rel
+
+def seo_head(lang, key, title, desc, img_alt):
+    en, es = SITE + PV["en"][key], SITE + PV["es"][key]; url = en if lang == "en" else es
+    q = lambda x: html.escape(x, quote=True); img = SITE + share_jpg(key)
+    return (f'<title>{q(title)}</title><meta name="description" content="{q(desc)}"/><meta content="#ffffff" name="theme-color"/>'
+            f'<meta content="PanamaSpot" name="application-name"/><meta content="index, follow" name="robots"/><link href="{url}" rel="canonical"/>'
+            f'<link href="{en}" hreflang="en" rel="alternate"/><link href="{es}" hreflang="es" rel="alternate"/><link href="{en}" hreflang="x-default" rel="alternate"/>'
+            f'<meta property="og:title" content="{q(title)}"/><meta property="og:description" content="{q(desc)}"/><meta property="og:url" content="{url}"/>'
+            f'<meta content="PanamaSpot" property="og:site_name"/><meta property="og:locale" content="{"en_US" if lang == "en" else "es_PA"}"/>'
+            f'<meta property="og:image" content="{img}"/><meta property="og:image:type" content="image/jpeg"/><meta property="og:image:width" content="1200"/>'
+            f'<meta property="og:image:height" content="630"/><meta property="og:image:alt" content="{q(img_alt)}"/><meta property="og:type" content="website"/>'
+            f'<meta content="summary_large_image" name="twitter:card"/><meta name="twitter:title" content="{q(title)}"/><meta name="twitter:description" content="{q(desc)}"/>'
+            f'<meta name="twitter:image" content="{img}"/><link href="/favicon.ico" rel="icon"/>')
+
+# Search titles and descriptions (the visible H1s stay as designed)
+META = {
+ ("en", "about"): ("About Panamá Spot: independent travel guides to Panama", "Who makes Panamá Spot, how our Panama travel guides are researched and checked, how we correct mistakes, and how the site is funded."),
+ ("es", "about"): ("Sobre Panamá Spot: guías de viaje independientes de Panamá", "Quién hace Panamá Spot, cómo investigamos y revisamos nuestras guías de viaje de Panamá, cómo corregimos errores y cómo se financia el sitio."),
+ ("en", "contact"): ("Contact Panamá Spot", "Write to the Panamá Spot editors at hola@panamaspot.com: report a mistake in a guide, ask about working together, or send a question, in English or Spanish."),
+ ("es", "contact"): ("Contacto · Panamá Spot", "Escribe a los editores de Panamá Spot en hola@panamaspot.com: reporta un error en una guía, pregunta cómo trabajar juntos o envía una consulta, en español o en inglés."),
+ ("en", "privacy"): ("Privacy policy · Panamá Spot", "What Panamá Spot collects when you read our guides (Google Analytics, Google Ads), why, which cookies we use, and your choices and rights."),
+ ("es", "privacy"): ("Política de privacidad · Panamá Spot", "Qué recopila Panamá Spot cuando lees nuestras guías (Google Analytics, Google Ads), para qué, qué cookies usamos y tus opciones y derechos."),
+}
 HUB_IMG = {"Panama City": "/images/v2/the-skyline-of-panama-city-s-17477516-card.webp", "Boquete": "/images/v2/boquete-hills-card.webp",
            "El Valle": "/images/v2/the-el-valle-de-anton-crater-829139d1-gallery.webp",
            "Bocas": "/images/v2/nyara-bocas-del-toro-panama-hero-960.webp", "San Blas": "/images/v2/x-diadup-kuna-yala-panam-c3-a1-hero-960.webp"}
@@ -1221,13 +1257,14 @@ def ld2(lang, page_type, key, name, desc):
     g = [ORG, {"@type": "WebSite", "@id": SITE + "/#website", "name": "PanamaSpot", "url": SITE, "publisher": {"@id": SITE + "/#organization"}, "inLanguage": ["en", "es"]},
          {"@type": page_type, "@id": url + "#webpage", "url": url, "name": name, "description": desc, "inLanguage": lang, "isPartOf": {"@id": SITE + "/#website"},
           "about": {"@id": SITE + "/#organization"}, "mainEntity": {"@id": SITE + "/#organization"}, "dateModified": REVIEWED[0],
-          "breadcrumb": {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home" if lang == "en" else "Inicio", "item": SITE + PV[lang]["home"].rstrip("/") + "/"},
+          "breadcrumb": {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home" if lang == "en" else "Inicio", "item": SITE + ("/" if lang == "en" else "/es")},
                                                                        {"@type": "ListItem", "position": 2, "name": name, "item": url}]}}]
     return '<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@graph": g}, ensure_ascii=False) + "</script>"
 
-def write_pv(lang, key, title, body, hero):
+def write_pv(lang, key, title, body, hero, img_alt=""):
     f = pv_file(lang, key); f.parent.mkdir(parents=True, exist_ok=True)
-    f.write_text(page(title, body, hero, lang)); print("wrote", f)
+    head = seo_head(lang, key, *META[(lang, key)], img_alt) if (lang, key) in META else None  # 404s keep the noindex default
+    f.write_text(finalize(page(title, body, hero, lang, head=head))); print("wrote", f)
 
 REV_TXT = {"en": REVIEWED[1], "es": "8 de noviembre de 2026"}
 
@@ -1304,7 +1341,7 @@ def build_about(lang):
 <section class="wrap ab-sec" style="padding-top:0"><div class="ab-h"><h2>{T['h_where']}</h2><p>{T['p_where']}</p></div>
 <div class="ab-stamps">{region_stamps(lang)}</div></section>
 """
-    write_pv(lang, "about", T["title"], body, ABOUT_HERO)
+    write_pv(lang, "about", T["title"], body, ABOUT_HERO, T["alt"])
 
 # ---------- Contact ----------
 CONTACT_HERO = "/images/v2/a-single-sailboat-glides-across-a-36117831-hero-1920.webp"
@@ -1357,7 +1394,7 @@ def build_contact(lang):
 </section>
 <script>document.addEventListener("click",function(e){{var b=e.target.closest("[data-copy]");if(!b)return;navigator.clipboard&&navigator.clipboard.writeText(b.dataset.copy).then(function(){{var t=b.textContent;b.textContent="{T['copied']}";setTimeout(function(){{b.textContent=t}},1600)}})}});</script>
 """
-    write_pv(lang, "contact", T["title"], body, CONTACT_HERO)
+    write_pv(lang, "contact", T["title"], body, CONTACT_HERO, T["alt"])
 
 # ---------- Privacy ----------
 PV_CSS = """<style>
@@ -1556,7 +1593,7 @@ def build_privacy(lang):
 <p class="ab-rev"><i class="dot"></i>{T['last'].format(d=d)}</p>
 </div></div></div>
 """
-    write_pv(lang, "privacy", T["title"], body, "/images/v2/home-hero-video-poster.webp")
+    write_pv(lang, "privacy", T["title"], body, "/images/v2/home-hero-video-poster.webp", AB[lang]["alt"])
 
 # ---------- 404 ----------
 NF_CSS = """<style>

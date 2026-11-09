@@ -1,3 +1,10 @@
+# Trust-page previews went live at their real URLs on 2026-11-08.
+/preview/about                 /about                 301
+/preview/contact               /contact               301
+/preview/privacy               /privacy               301
+/preview/es/sobre-nosotros     /es/sobre-nosotros     301
+/preview/es/contacto           /es/contacto           301
+/preview/es/privacidad         /es/privacidad         301
 # Old English El Valle Ads landing page, removed 2026-11-08: no Google Ads traffic in 90 days (GA4);
 # El Valle ads run to the Spanish page, so old links and bookmarks go there.
 /funnels/evalley_elvalle        /funnels/evalley_elvalle_es  301

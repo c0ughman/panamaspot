@@ -41,6 +41,7 @@ const safeImages = (urls: readonly string[] | undefined) =>
  * date set here. Bump HOME_UPDATED / hubsLastMod only when their content really changes.
  */
 const HOME_UPDATED = new Date("2026-11-08");
+const TRUST_UPDATED = new Date("2026-11-08"); // bump when About/Contact/Privacy really change
 function pageModified(url: string): Date | undefined {
   const path = url.slice(siteConfig.url.length).replace(/^\//, "");
   if (!path) return undefined;
@@ -173,6 +174,27 @@ function entries(): MetadataRoute.Sitemap {
       priority: 1,
       alternates: homeAlternates,
     },
+    // Trust pages (live 2026-11-08): About, Contact, Privacy, each an EN/ES hreflang pair.
+    ...([
+      ["about", "es/sobre-nosotros"],
+      ["contact", "es/contacto"],
+      ["privacy", "es/privacidad"],
+    ] as const).flatMap(([en, es]) => {
+      const alternates = {
+        languages: {
+          en: `${siteConfig.url}/${en}`,
+          es: `${siteConfig.url}/${es}`,
+          "x-default": `${siteConfig.url}/${en}`,
+        },
+      };
+      return [en, es].map((path) => ({
+        url: `${siteConfig.url}/${path}`,
+        lastModified: TRUST_UPDATED,
+        changeFrequency: "yearly" as const,
+        priority: 0.4,
+        alternates,
+      }));
+    }),
     {
       // Bocas is a destination hub like the other three, but English-only for
       // now (the Spanish cluster is a single article), so it cannot use hub()
