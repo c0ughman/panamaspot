@@ -1,3 +1,7 @@
+# Old English El Valle Ads landing page, removed 2026-11-08: no Google Ads traffic in 90 days (GA4);
+# El Valle ads run to the Spanish page, so old links and bookmarks go there.
+/funnels/evalley_elvalle        /funnels/evalley_elvalle_es  301
+/funnels/evalley_elvalle.html   /funnels/evalley_elvalle_es  301
 # Misspelled and invented URLs that Google (often via AI answers) and visitors
 # have reached, each sent to the page it was clearly meant to be.
 # Source: Search Console pages export + GA4 landing paths, 22 Oct 2026.

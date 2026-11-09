@@ -1190,86 +1190,176 @@ ABOUT2_CSS = """<style>
 }
 </style>"""
 
-def build_about_mock():
-    regions = [("/articles/panama-city", "Panama City", "Capital and canal", "/images/v2/the-skyline-of-panama-city-s-17477516-card.webp"),
-               ("/articles/boquete", "Boquete", "Coffee highlands", "/images/v2/boquete-hills-card.webp"),
-               ("/articles/el-valle-de-anton", "El Valle de Antón", "Volcanic crater", "/images/v2/the-el-valle-de-anton-crater-829139d1-gallery.webp"),
-               ("/articles/bocas-del-toro", "Bocas del Toro", "Caribbean islands", "/images/v2/nyara-bocas-del-toro-panama-hero-960.webp"),
-               ("/articles/san-blas", "San Blas", "Guna Yala", "/images/v2/x-diadup-kuna-yala-panam-c3-a1-hero-960.webp")]
-    stamps = "".join(f'<a href="{u}">{stamp(s)}<span><b>{n}</b><small>{d} · {count(u)} guides</small></span></a>' for u, n, d, s in regions)
+# ---------------- About, Contact, Privacy, 404: English + Spanish mockups under /preview (noindex) ----------------
+# Paths while in preview. At launch: /about /contact /privacy + /es/sobre-nosotros /es/contacto /es/privacidad, and the 404s.
+PV = {"en": {"about": "/preview/about", "contact": "/preview/contact", "privacy": "/preview/privacy", "404": "/preview/404", "home": "/"},
+      "es": {"about": "/preview/es/sobre-nosotros", "contact": "/preview/es/contacto", "privacy": "/preview/es/privacidad", "404": "/preview/es/404", "home": "/es"}}
+def pv_file(lang, key):
+    return P / (PV[lang][key].lstrip("/") + ".html")
+HUB_IMG = {"Panama City": "/images/v2/the-skyline-of-panama-city-s-17477516-card.webp", "Boquete": "/images/v2/boquete-hills-card.webp",
+           "El Valle": "/images/v2/the-el-valle-de-anton-crater-829139d1-gallery.webp",
+           "Bocas": "/images/v2/nyara-bocas-del-toro-panama-hero-960.webp", "San Blas": "/images/v2/x-diadup-kuna-yala-panam-c3-a1-hero-960.webp"}
+# (photo key, EN link, EN name, EN descriptor, ES link, ES name, ES descriptor). Bocas and San Blas have no Spanish hub yet:
+# the Spanish homepage links its best Spanish guide for each, so these do the same.
+REGIONS = [("Panama City", "/articles/panama-city", "Panama City", "Capital and canal", "/es/articles/panama-city", "Ciudad de Panamá", "Capital y canal"),
+           ("Boquete", "/articles/boquete", "Boquete", "Coffee highlands", "/es/articles/boquete", "Boquete", "Tierras altas del café"),
+           ("El Valle", "/articles/el-valle-de-anton", "El Valle de Antón", "Volcanic crater", "/es/articles/el-valle-de-anton", "El Valle de Antón", "Cráter volcánico"),
+           ("Bocas", "/articles/bocas-del-toro", "Bocas del Toro", "Caribbean islands", "/es/articles/como-llegar-a-bocas-del-toro-desde-ciudad-de-panama", "Bocas del Toro", "Islas del Caribe"),
+           ("San Blas", "/articles/san-blas", "San Blas", "Guna Yala", "/es/articles/san-blas-guna-yala-guia-tours-islas", "San Blas", "Guna Yala")]
+
+def region_stamps(lang):
+    out = []
+    for k, eu, en, ed, su, sn, sd in REGIONS:
+        u, n, d = (eu, en, ed) if lang == "en" else (su, sn, sd)
+        hub = u in HUBS or u == "/articles/san-blas"
+        c = f" · {count(u)} {'guides' if lang == 'en' else 'guías'}" if hub else ""
+        out.append(f'<a href="{u}">{stamp(HUB_IMG[k])}<span><b>{n}</b><small>{d}{c}</small></span></a>')
+    return "".join(out)
+
+def ld2(lang, page_type, key, name, desc):
+    url = SITE + PV[lang][key]
+    g = [ORG, {"@type": "WebSite", "@id": SITE + "/#website", "name": "PanamaSpot", "url": SITE, "publisher": {"@id": SITE + "/#organization"}, "inLanguage": ["en", "es"]},
+         {"@type": page_type, "@id": url + "#webpage", "url": url, "name": name, "description": desc, "inLanguage": lang, "isPartOf": {"@id": SITE + "/#website"},
+          "about": {"@id": SITE + "/#organization"}, "mainEntity": {"@id": SITE + "/#organization"}, "dateModified": REVIEWED[0],
+          "breadcrumb": {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home" if lang == "en" else "Inicio", "item": SITE + PV[lang]["home"].rstrip("/") + "/"},
+                                                                       {"@type": "ListItem", "position": 2, "name": name, "item": url}]}}]
+    return '<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@graph": g}, ensure_ascii=False) + "</script>"
+
+def write_pv(lang, key, title, body, hero):
+    f = pv_file(lang, key); f.parent.mkdir(parents=True, exist_ok=True)
+    f.write_text(page(title, body, hero, lang)); print("wrote", f)
+
+REV_TXT = {"en": REVIEWED[1], "es": "8 de noviembre de 2026"}
+
+# ---------- About ----------
+ABOUT_HERO = "/images/v2/gatun-locks-of-the-panama-canal-f75c6691-hero-1920.webp"
+AB = {
+ "en": dict(title="About Panamá Spot", alt="The Gatún Locks on the Panama Canal, seen from above", lbl="About us", h1="About",
+   goal="Our goal is to be the most comprehensive, robust resource for tourism in Panama.", btn="How we make our guides",
+   ld_name="About Panamá Spot", ld_desc="Who makes Panamá Spot, how the guides are researched and checked, how we correct mistakes, and how the site is funded.",
+   h_ind="An independent guide to Panama",
+   p_ind=["<strong>Panamá Spot is an independent travel guide to Panama.</strong> We write for people planning a trip: where to go, how to get there, what it costs, and what is worth skipping. Every guide answers the question first, then gives you the detail.",
+          "We started in 2026 with the places travellers ask about most, Panama City, Boquete, El Valle de Antón, Bocas del Toro and San Blas, and we keep adding more of the country, one guide at a time. Panamá Spot is independently owned and edited, and every guide is published in English, Spanish or both."],
+   h_how="How we make our guides",
+   p_how=["Every guide starts with the question a traveller actually needs answered, and answers it in the first lines. From there we go to the source: official sites, timetables, and the operators and businesses themselves. Where it matters, guides list their sources at the end.",
+          "Prices, hours and schedules carry the date we checked them, and our guides show when they were last updated. Photos are captioned with what they show, and outside photographers are credited. When things change, we revisit the guide, and when we get something wrong, we fix it as soon as we hear about it."],
+   pano_alt="Sailboats anchored in the bay with the Panama City skyline behind", pm="PANAMÁ SPOT · DESDE 2026 ·",
+   h_part="Independent, with a few local partners",
+   p_part="Panamá Spot is independently owned. It is not part of a tour operator, hotel or government office. We work with a small number of local partners, and some links on the site lead to them; on our guides their boxes are labelled <b>Local partner</b>.",
+   h_pol="Our policies", p_pol="What you can expect from every page on Panamá Spot.",
+   pol=[("corrections", ICON_REFRESH, "Corrections and updates", "Panama changes fast: fees go up, bus times move, trails close. If something in a guide is wrong, write to {mail} with the page and what has changed. We check it against the source, fix the guide itself and update its date."),
+        ("advice", ICON_SCALE, "Visas, property and health", "Our guides on residency, buying property, healthcare and medical treatment are general information, not legal, financial or medical advice. Rules and prices change, so we point you to the official source; confirm with a licensed professional before you decide."),
+        ("photos", ICON_CAM, "Photos and credits", "Photos are captioned with what is in the frame. Photos from outside photographers are credited, with their licence, under the guide's gallery. When we can't confirm exactly where a photo was taken, we don't name a place for it.")],
+   rev="This page was last reviewed on {d}.", h_where="Where we cover", p_where="Five regions so far, each with its own set of guides."),
+ "es": dict(title="Sobre Panamá Spot", alt="Las esclusas de Gatún del Canal de Panamá, vistas desde arriba", lbl="Sobre nosotros", h1="Sobre",
+   goal="Nuestro objetivo es ser el recurso más completo y sólido sobre turismo en Panamá.", btn="Cómo hacemos nuestras guías",
+   ld_name="Sobre Panamá Spot", ld_desc="Quién hace Panamá Spot, cómo se investigan y revisan las guías, cómo corregimos errores y cómo se financia el sitio.",
+   h_ind="Una guía independiente de Panamá",
+   p_ind=["<strong>Panamá Spot es una guía de viaje independiente sobre Panamá.</strong> Escribimos para quienes planean un viaje: adónde ir, cómo llegar, cuánto cuesta y qué vale la pena saltarse. Cada guía responde primero la pregunta y después te da los detalles.",
+          "Empezamos en 2026 con los lugares por los que más preguntan los viajeros (Ciudad de Panamá, Boquete, El Valle de Antón, Bocas del Toro y San Blas) y seguimos sumando el resto del país, guía por guía. Panamá Spot es de propiedad y edición independientes, y cada guía se publica en español, en inglés o en ambos."],
+   h_how="Cómo hacemos nuestras guías",
+   p_how=["Cada guía parte de la pregunta que un viajero realmente necesita resolver y la responde en las primeras líneas. Después vamos a la fuente: sitios oficiales, horarios y los propios operadores y negocios. Cuando importa, las guías indican sus fuentes al final.",
+          "Los precios, horarios e itinerarios llevan la fecha en que los revisamos, y nuestras guías muestran cuándo se actualizaron por última vez. Cada foto lleva un pie con lo que muestra, y damos crédito a los fotógrafos externos. Cuando algo cambia, revisamos la guía, y cuando nos equivocamos, lo corregimos en cuanto nos enteramos."],
+   pano_alt="Veleros anclados en la bahía con los rascacielos de Ciudad de Panamá al fondo", pm="PANAMÁ SPOT · DESDE 2026 ·",
+   h_part="Independientes, con algunos socios locales",
+   p_part="Panamá Spot es de propiedad independiente. No forma parte de ningún operador turístico, hotel ni oficina de gobierno. Trabajamos con un número reducido de socios locales, y algunos enlaces del sitio llevan a ellos; en nuestras guías, sus recuadros llevan la etiqueta <b>Socio local</b>.",
+   h_pol="Nuestras políticas", p_pol="Lo que puedes esperar de cada página de Panamá Spot.",
+   pol=[("corrections", ICON_REFRESH, "Correcciones y actualizaciones", "Panamá cambia rápido: suben las tarifas, cambian los horarios de los buses, se cierran senderos. Si algo en una guía está mal, escríbenos a {mail} con la página y lo que cambió. Lo verificamos con la fuente, corregimos la guía y actualizamos su fecha."),
+        ("advice", ICON_SCALE, "Visas, propiedades y salud", "Nuestras guías sobre residencia, compra de propiedades, atención médica y tratamientos son información general, no asesoría legal, financiera ni médica. Las normas y los precios cambian, así que te remitimos a la fuente oficial; confirma con un profesional autorizado antes de decidir."),
+        ("photos", ICON_CAM, "Fotos y créditos", "Cada foto lleva un pie con lo que aparece en la imagen. Las fotos de fotógrafos externos llevan su crédito y su licencia debajo de la galería de la guía. Cuando no podemos confirmar dónde se tomó una foto, no le asignamos un lugar.")],
+   rev="Esta página se revisó por última vez el {d}.", h_where="Dónde estamos", p_where="Cinco regiones por ahora, cada una con sus propias guías."),
+}
+
+def build_about(lang):
+    T = AB[lang]; en, es = PV["en"]["about"], PV["es"]["about"]
     mail = f'<a href="mailto:{EMAIL}">{EMAIL}</a>'
-    ARCH = "/images/v2/gatun-locks-of-the-panama-canal-f75c6691-hero-1920.webp"
-    about = f"""<div class="guide-progress" id="prog" aria-hidden="true"></div>
+    pol = "".join(f'<div id="{i}"><span class="ic">{icon(ic)}</span><h3>{h}</h3><p>{p.format(mail=mail)}</p></div>' for i, ic, h, p in T["pol"])
+    body = f"""<div class="guide-progress" id="prog" aria-hidden="true"></div>
 <header class="hero hx-home ab-hero">
-  <img class="hero-img" alt="The Gatún Locks on the Panama Canal, seen from above" fetchpriority="high" src="{ARCH}"{hero_srcset(ARCH)}/>
-  {nav("/preview/about", "/es", "en")}
-  <div class="wrap hx-c"><span class="lbl">About us</span>
-    <h1 class="ab-mark">About Panam<span class="a">á</span> <span class="nw">Spot<i class="pd"></i></span></h1>
-    <p class="hx-dek ab-goal">Our goal is to be the most comprehensive, robust resource for tourism in Panama.</p>
-    <a class="hx-btn" href="#how-we-make">How we make our guides</a></div>
+  <img class="hero-img" alt="{T['alt']}" fetchpriority="high" src="{ABOUT_HERO}"{hero_srcset(ABOUT_HERO)}/>
+  {nav(en, es, lang)}
+  <div class="wrap hx-c"><span class="lbl">{T['lbl']}</span>
+    <h1 class="ab-mark">{T['h1']} Panam<span class="a">á</span> <span class="nw">Spot<i class="pd"></i></span></h1>
+    <p class="hx-dek ab-goal">{T['goal']}</p>
+    <a class="hx-btn" href="#how-we-make">{T['btn']}</a></div>
 </header>
 {ABOUT_CSS}{TRUST_CSS}{ABOUT2_CSS}
-{ld("AboutPage", "/about", "About Panamá Spot", "Who makes Panamá Spot, how the guides are researched and checked, how we correct mistakes, and how the site is funded.")}
+{ld2(lang, "AboutPage", "about", T['ld_name'], T['ld_desc'])}
 <section class="wrap ab-sec ab-first"><div class="ab-row">
-  <h2>An independent guide to Panama</h2>
-  <div class="ab-txt"><p><strong>Panamá Spot is an independent travel guide to Panama.</strong> We write for people planning a trip: where to go, how to get there, what it costs, and what is worth skipping. Every guide answers the question first, then gives you the detail.</p>
-  <p>We started in 2026 with the places travellers ask about most, Panama City, Boquete, El Valle de Antón, Bocas del Toro and San Blas, and we keep adding more of the country, one guide at a time. Panamá Spot is independently owned and edited, and every guide is published in English, Spanish or both.</p></div>
+  <h2>{T['h_ind']}</h2>
+  <div class="ab-txt">{"".join(f"<p>{p}</p>" for p in T['p_ind'])}</div>
 </div></section>
 <section class="wrap ab-sec" id="how-we-make" style="padding-top:0"><div class="ab-row">
-  <h2>How we make our guides</h2>
-  <div class="ab-txt"><p>Every guide starts with the question a traveller actually needs answered, and answers it in the first lines. From there we go to the source: official sites, timetables, and the operators and businesses themselves. Where it matters, guides list their sources at the end.</p>
-  <p>Prices, hours and schedules carry the date we checked them, and our guides show when they were last updated. Photos are captioned with what they show, and outside photographers are credited. When things change, we revisit the guide, and when we get something wrong, we fix it as soon as we hear about it.</p></div>
+  <h2>{T['h_how']}</h2>
+  <div class="ab-txt">{"".join(f"<p>{p}</p>" for p in T['p_how'])}</div>
 </div></section>
-<figure class="ab-pano"><img alt="Sailboats anchored in the bay with the Panama City skyline behind" loading="lazy" src="/images/v2/veleros-anclados-en-la-bahia-5005136-hero-1920.webp"/></figure>
+<figure class="ab-pano"><img alt="{T['pano_alt']}" loading="lazy" src="/images/v2/veleros-anclados-en-la-bahia-5005136-hero-1920.webp"/></figure>
 <section class="ab-band ab-sec" id="independence"><div class="wrap"><div class="ab-indep">
-  {postmark("PANAMÁ SPOT · DESDE 2026 ·")}
-  <div class="ab-h"><h2>Independent, with a few local partners</h2><p>Panamá Spot is independently owned. It is not part of a tour operator, hotel or government office. We work with a small number of local partners, and some links on the site lead to them; on our guides their boxes are labelled <b>Local partner</b>.</p></div>
+  {postmark(T['pm'])}
+  <div class="ab-h"><h2>{T['h_part']}</h2><p>{T['p_part']}</p></div>
 </div></div></section>
-<section class="wrap ab-sec"><div class="ab-h"><h2>Our policies</h2><p>What you can expect from every page on Panamá Spot.</p></div>
-<div class="ab-pol3">
-  <div id="corrections"><span class="ic">{icon(ICON_REFRESH)}</span><h3>Corrections and updates</h3><p>Panama changes fast: fees go up, bus times move, trails close. If something in a guide is wrong, write to {mail} with the page and what has changed. We check it against the source, fix the guide itself and update its date.</p></div>
-  <div id="advice"><span class="ic">{icon(ICON_SCALE)}</span><h3>Visas, property and health</h3><p>Our guides on residency, buying property, healthcare and medical treatment are general information, not legal, financial or medical advice. Rules and prices change, so we point you to the official source; confirm with a licensed professional before you decide.</p></div>
-  <div id="photos"><span class="ic">{icon(ICON_CAM)}</span><h3>Photos and credits</h3><p>Photos are captioned with what is in the frame. Photos from outside photographers are credited, with their licence, under the guide's gallery. When we can't confirm exactly where a photo was taken, we don't name a place for it.</p></div>
-</div>
-<p class="ab-rev"><i class="dot"></i>This page was last reviewed on {REVIEWED[1]}.</p></section>
-<section class="wrap ab-sec" style="padding-top:0"><div class="ab-h"><h2>Where we cover</h2><p>Five regions so far, each with its own set of guides.</p></div>
-<div class="ab-stamps">{stamps}</div></section>
+<section class="wrap ab-sec"><div class="ab-h"><h2>{T['h_pol']}</h2><p>{T['p_pol']}</p></div>
+<div class="ab-pol3">{pol}</div>
+<p class="ab-rev"><i class="dot"></i>{T['rev'].format(d=REV_TXT[lang])}</p></section>
+<section class="wrap ab-sec" style="padding-top:0"><div class="ab-h"><h2>{T['h_where']}</h2><p>{T['p_where']}</p></div>
+<div class="ab-stamps">{region_stamps(lang)}</div></section>
 """
-    contact = ab_hero("/images/v2/a-single-sailboat-glides-across-a-36117831-hero-1920.webp", "A single sailboat on calm turquoise sea under a clear sky.", 62,
-                      "Contact", "Contact", "Questions, corrections, or an idea for working together. We read every message.",
-                      "/preview/contact", "/es") + f"""
+    write_pv(lang, "about", T["title"], body, ABOUT_HERO)
+
+# ---------- Contact ----------
+CONTACT_HERO = "/images/v2/a-single-sailboat-glides-across-a-36117831-hero-1920.webp"
+CT = {
+ "en": dict(title="Contact Panamá Spot", alt="A single sailboat on calm turquoise sea under a clear sky.", lbl="Contact", h1="Contact",
+   dek="Questions, corrections, or an idea for working together. We read every message.",
+   ld_name="Contact Panamá Spot", ld_desc="How to reach the Panamá Spot editors: corrections, partnerships and general questions, in English or Spanish.",
+   front_alt="The forested slopes of Volcán Barú rising through the clouds", pm="PANAMÁ SPOT · CONTACTO · 2026 ·",
+   h_msg="Write to us", p_msg="One inbox for everything, in English or Spanish. Tell us what you need, and we will respond.",
+   to="To: Panamá Spot editors", send="Send an email →", copy="Copy address", copied="Copied",
+   h_why="What to write about",
+   mistake=("Spotted a mistake?", "Prices, hours and routes move often. To help us fix it fast, include:",
+            ["the page link", "what is wrong, and what it should say", "where you saw it, if you can (a sign, a receipt, the operator's site)"]),
+   biz=("Run a business in Panama?", "Tours, stays, transport or services: get in touch for a proposal, or to find out how we can work together."),
+   other=("Anything else", "Press, ideas, or a place you think we should cover next. Just say hola.")),
+ "es": dict(title="Contacto · Panamá Spot", alt="Un velero solitario sobre un mar turquesa en calma, bajo un cielo despejado.", lbl="Contacto", h1="Contacto",
+   dek="Preguntas, correcciones o una idea para trabajar juntos. Leemos todos los mensajes.",
+   ld_name="Contacto de Panamá Spot", ld_desc="Cómo escribir a los editores de Panamá Spot: correcciones, alianzas y preguntas generales, en español o en inglés.",
+   front_alt="Las laderas boscosas del Volcán Barú entre las nubes", pm="PANAMÁ SPOT · CONTACTO · 2026 ·",
+   h_msg="Escríbenos", p_msg="Un solo buzón para todo, en español o en inglés. Cuéntanos qué necesitas y te responderemos.",
+   to="Para: editores de Panamá Spot", send="Enviar un correo →", copy="Copiar dirección", copied="Copiada",
+   h_why="Sobre qué escribirnos",
+   mistake=("¿Viste un error?", "Los precios, horarios y rutas cambian a menudo. Para corregirlo rápido, incluye:",
+            ["el enlace de la página", "qué está mal y qué debería decir", "dónde lo viste, si puedes (un letrero, un recibo, el sitio del operador)"]),
+   biz=("¿Tienes un negocio en Panamá?", "Tours, hospedaje, transporte o servicios: escríbenos para pedir una propuesta o para saber cómo podemos trabajar juntos."),
+   other=("Cualquier otra cosa", "Prensa, ideas o un lugar que crees que deberíamos cubrir. Solo di hola.")),
+}
+
+def build_contact(lang):
+    T = CT[lang]; en, es = PV["en"]["contact"], PV["es"]["contact"]
+    body = ab_hero(CONTACT_HERO, T["alt"], 62, T["lbl"], T["h1"], T["dek"], en, es).replace(nav(en, es, "en"), nav(en, es, lang)) + f"""
 {ABOUT_CSS}{TRUST_CSS}
-{ld("ContactPage", "/contact", "Contact Panamá Spot", "How to reach the Panamá Spot editors: corrections, partnerships and general questions, in English or Spanish.")}
+{ld2(lang, "ContactPage", "contact", T['ld_name'], T['ld_desc'])}
 <section class="wrap ab-sec first"><div class="pc">
-  <div class="pc-front"><img alt="The forested slopes of Volcán Barú rising through the clouds" loading="lazy" src="/images/v2/volcan-baru-emerging-through-clouds-d35d9b87-hero-1280.webp"/></div>
+  <div class="pc-front"><img alt="{T['front_alt']}" loading="lazy" src="/images/v2/volcan-baru-emerging-through-clouds-d35d9b87-hero-1280.webp"/></div>
   <div class="pc-back">
     {stamp("/images/v2/turquoise-water-fronts-a-palm-lined-30826590-stamp.webp")}
-    {postmark("PANAMÁ SPOT · CONTACTO · 2026 ·")}
-    <div class="pc-msg"><h2>Write to us</h2><p>One inbox for everything, in English or Spanish. Tell us what you need, and we will respond.</p></div>
-    <div class="pc-to"><span>To: Panamá Spot editors</span><span><a href="mailto:{EMAIL}">{EMAIL}</a></span><span>Panamá</span></div>
-    <div class="pc-row"><a class="ab-btn" style="background:var(--navy);color:#fff" href="mailto:{EMAIL}">Send an email →</a><button type="button" class="pc-copy" data-copy="{EMAIL}">Copy address</button></div>
+    {postmark(T['pm'])}
+    <div class="pc-msg"><h2>{T['h_msg']}</h2><p>{T['p_msg']}</p></div>
+    <div class="pc-to"><span>{T['to']}</span><span><a href="mailto:{EMAIL}">{EMAIL}</a></span><span>Panamá</span></div>
+    <div class="pc-row"><a class="ab-btn" style="background:var(--navy);color:#fff" href="mailto:{EMAIL}">{T['send']}</a><button type="button" class="pc-copy" data-copy="{EMAIL}">{T['copy']}</button></div>
   </div>
 </div></section>
-<section class="wrap ab-sec" style="padding-top:0"><div class="ab-h"><h2>What to write about</h2></div>
+<section class="wrap ab-sec" style="padding-top:0"><div class="ab-h"><h2>{T['h_why']}</h2></div>
 <div class="ab-why">
-  <div id="corrections"><span class="ic">{ICON_PEN}</span><b>Spotted a mistake?</b><p>Prices, hours and routes move often. To help us fix it fast, include:</p><ol class="pc-steps"><li>the page link</li><li>what is wrong, and what it should say</li><li>where you saw it, if you can (a sign, a receipt, the operator's site)</li></ol></div>
-  <div><span class="ic">{ICON_SHOP}</span><b>Run a business in Panama?</b><p>Tours, stays, transport or services: get in touch for a proposal, or to find out how we can work together.</p></div>
-  <div><span class="ic">{ICON_HI}</span><b>Anything else</b><p>Press, ideas, or a place you think we should cover next. Just say hola.</p></div>
+  <div id="corrections"><span class="ic">{ICON_PEN}</span><b>{T['mistake'][0]}</b><p>{T['mistake'][1]}</p><ol class="pc-steps">{"".join(f"<li>{x}</li>" for x in T['mistake'][2])}</ol></div>
+  <div><span class="ic">{ICON_SHOP}</span><b>{T['biz'][0]}</b><p>{T['biz'][1]}</p></div>
+  <div><span class="ic">{ICON_HI}</span><b>{T['other'][0]}</b><p>{T['other'][1]}</p></div>
 </div>
 </section>
-<script>document.addEventListener("click",function(e){{var b=e.target.closest("[data-copy]");if(!b)return;navigator.clipboard&&navigator.clipboard.writeText(b.dataset.copy).then(function(){{var t=b.textContent;b.textContent="Copied";setTimeout(function(){{b.textContent=t}},1600)}})}});</script>
+<script>document.addEventListener("click",function(e){{var b=e.target.closest("[data-copy]");if(!b)return;navigator.clipboard&&navigator.clipboard.writeText(b.dataset.copy).then(function(){{var t=b.textContent;b.textContent="{T['copied']}";setTimeout(function(){{b.textContent=t}},1600)}})}});</script>
 """
-    (P / "preview").mkdir(exist_ok=True)
-    for name, body, hero in (("about", about, ARCH), ("contact", contact, "/images/v2/a-single-sailboat-glides-across-a-36117831-hero-1920.webp")):
-        title = "About Panamá Spot" if name == "about" else "Contact Panamá Spot"
-        out = page(title, body, hero, "en")
-        (P / "preview" / f"{name}.html").write_text(out)
-        print("wrote", P / "preview" / f"{name}.html")
+    write_pv(lang, "contact", T["title"], body, CONTACT_HERO)
 
-build_about_mock()
-
-
-# ---------------- Privacy policy + 404 (mockups at /preview/privacy and /preview/404, noindex) ----------------
+# ---------- Privacy ----------
 PV_CSS = """<style>
 .pv-hero { height: auto; min-height: 0; background: var(--navy); padding-bottom: clamp(40px, 5vw, 64px); }
 .pv-hero::before { display: none; }
@@ -1301,36 +1391,15 @@ PV_CSS = """<style>
 .pv-tbl code { font: 600 14px/1 var(--sans); color: var(--ink); }
 @media (max-width: 900px) { .pv-wrap { grid-template-columns: 1fr; } .pv-toc { display: none; } .pv-short { grid-template-columns: 1fr; } .pv-tbl th:nth-child(4), .pv-tbl td:nth-child(4) { display: none; } }
 </style>"""
-
 ICON_NOSELL = '<circle cx="12" cy="12" r="9"/><path d="m5.7 5.7 12.6 12.6"/>'
 ICON_CHART = '<path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/>'
 ICON_AD = '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 15l2.5-6 2.5 6M7.8 13h3.4M15 9v6h1.5a2.5 2.5 0 0 0 0-6Z"/>'
 ICON_MAIL = '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>'
 PV_UPDATED = ("2026-11-08", "8 November 2026")
 
-def build_privacy_mock():
-    mail = f'<a href="mailto:{EMAIL}">{EMAIL}</a>'
-    toc = [("who", "Who we are"), ("collect", "What we collect"), ("use", "How we use it"), ("cookies", "Cookies"), ("third", "Other companies involved"),
-           ("transfer", "Where data is processed"), ("keep", "How long we keep it"), ("rights", "Your choices and rights"), ("children", "Children"), ("changes", "Changes"), ("contact", "Contact")]
-    body = f"""<div class="guide-progress" id="prog" aria-hidden="true"></div>
-<header class="hero hx-home ab-hero pv-hero">
-  {nav("/preview/privacy", "/es", "en")}
-  <div class="wrap hx-c"><span class="lbl">Privacy</span>
-    <h1 class="ab-mark">Privacy policy<i class="pd"></i></h1>
-    <p class="hx-dek ab-goal">What Panamá Spot collects when you read our guides, why, and the choices you have. Last updated {PV_UPDATED[1]}.</p></div>
-</header>
-{ABOUT_CSS}{TRUST_CSS}{ABOUT2_CSS}{PV_CSS}
-<div class="wrap ab-sec ab-first"><div class="pv-wrap">
-<nav class="pv-toc" aria-label="On this page"><b>On this page</b>{"".join(f'<a href="#{i}">{t}</a>' for i, t in toc)}</nav>
-<div class="pv-body">
-<div class="pv-short"><h2>The short version</h2>
-  <div><span class="ic">{icon(ICON_NOSELL)}</span><span>There are no accounts on Panamá Spot, and we never sell or rent personal information.</span></div>
-  <div><span class="ic">{icon(ICON_CHART)}</span><span>We use Google Analytics to see which guides people read, so we know what to improve.</span></div>
-  <div><span class="ic">{icon(ICON_AD)}</span><span>We run some Google Ads, and measure whether an ad led someone to get in touch.</span></div>
-  <div><span class="ic">{icon(ICON_MAIL)}</span><span>If you email us, we use your address only to reply.</span></div>
-</div>
-
-<section id="who"><h2>Who we are</h2>
+def privacy_body(lang, mail, contact_url):
+    if lang == "en":
+        return f"""<section id="who"><h2>Who we are</h2>
 <p>Panamá Spot (panamaspot.com) is an independent travel guide to Panama. In this policy, "we" and "us" mean Panamá Spot. If you have a question about your data, write to {mail}.</p></section>
 
 <section id="collect"><h2>What we collect</h2>
@@ -1385,13 +1454,111 @@ def build_privacy_mock():
 <p>If we change what we collect or how we use it, we will update this page and the date at the top.</p></section>
 
 <section id="contact"><h2>Contact</h2>
-<p>Questions or requests about your data: {mail}. You can also reach us through our <a href="/preview/contact">contact page</a>.</p></section>
-<p class="ab-rev"><i class="dot"></i>Last updated {PV_UPDATED[1]}.</p>
+<p>Questions or requests about your data: {mail}. You can also reach us through our <a href="{contact_url}">contact page</a>.</p></section>"""
+    return f"""<section id="who"><h2>Quiénes somos</h2>
+<p>Panamá Spot (panamaspot.com) es una guía de viaje independiente sobre Panamá. En esta política, "nosotros" se refiere a Panamá Spot. Si tienes una pregunta sobre tus datos, escríbenos a {mail}.</p></section>
+
+<section id="collect"><h2>Qué recopilamos</h2>
+<h3>Cuando lees el sitio</h3>
+<p>Usamos Google Analytics 4 para entender cómo se usa el sitio. Recopila datos como las páginas que ves, cómo llegaste (por ejemplo, desde un buscador, un enlace o un anuncio), dónde estás aproximadamente (país y ciudad, deducidos de tu dirección IP), tu dispositivo, navegador, idioma y tamaño de pantalla, cuánto tiempo te quedas y los clics en algunos enlaces, como los que llevan a páginas de socios o a WhatsApp. Google Analytics 4 no registra ni almacena direcciones IP. Usa cookies para reconocer un navegador que vuelve; no nos dice tu nombre ni quién eres.</p>
+<h3>Cuando llegas desde un anuncio</h3>
+<p>Algunas de nuestras páginas se anuncian en Google. Cuando haces clic en uno de esos anuncios, el enlace lleva un identificador de clic. En unas pocas páginas sobre nuestros socios locales, la etiqueta de conversión de Google Ads registra si alguien que llegó desde un anuncio tocó después el botón para contactar al socio por WhatsApp. Eso nos dice si el anuncio funcionó; no nos dice quién eres ni qué escribiste.</p>
+<h3>Cuando nos escribes</h3>
+<p>Si nos escribes, recibimos tu dirección de correo, tu nombre si lo incluyes y el contenido de tu mensaje.</p>
+<h3>Para que el sitio funcione</h3>
+<p>Nuestro proveedor de alojamiento procesa datos técnicos, como tu dirección IP y el tipo de navegador, para entregar las páginas y proteger el sitio contra abusos. Algunas páginas cargan fuentes desde Google Fonts, lo que significa que tu navegador se conecta a los servidores de Google para descargarlas.</p>
+<p>No tenemos cuentas de usuario, formularios de comentarios ni pagos, así que no recopilamos contraseñas ni datos de pago.</p></section>
+
+<section id="use"><h2>Cómo lo usamos</h2>
+<ul><li>Para ver qué guías son útiles, encontrar páginas rotas y decidir qué escribir o actualizar.</li>
+<li>Para medir si nuestros anuncios atraen lectores y generan consultas.</li>
+<li>Para responder tus mensajes y corregir los errores que nos reportas.</li>
+<li>Para mantener el sitio seguro y funcionando.</li></ul>
+<p>No vendemos ni alquilamos información personal, y no la compartimos con nuestros socios.</p></section>
+
+<section id="cookies"><h2>Cookies</h2>
+<p>Las cookies son pequeños archivos que guarda tu navegador. Estas son las que se usan en panamaspot.com:</p>
+<table class="pv-tbl"><thead><tr><th>Cookie</th><th>La crea</th><th>Para qué sirve</th><th>Duración</th></tr></thead><tbody>
+<tr><td><code>_ga</code></td><td>Google Analytics</td><td>Distingue un navegador de otro, para contar visitantes</td><td>2 años</td></tr>
+<tr><td><code>_ga_*</code></td><td>Google Analytics</td><td>Mantiene el registro de tu visita actual</td><td>2 años</td></tr>
+<tr><td><code>_gcl_*</code></td><td>Google Ads</td><td>Relaciona una visita con el anuncio que la trajo, en páginas con la etiqueta de Google Ads</td><td>90 días</td></tr>
+</tbody></table>
+<p>Puedes bloquear o borrar las cookies en la configuración de tu navegador. El sitio sigue funcionando sin ellas.</p></section>
+
+<section id="third"><h2>Otras empresas involucradas</h2>
+<ul><li><b>Google</b> provee Google Analytics, Google Ads y Google Fonts. El uso que Google hace de estos datos se rige por la <a href="https://policies.google.com/privacy?hl=es" rel="noopener">Política de privacidad de Google</a>; consulta también <a href="https://policies.google.com/technologies/partner-sites?hl=es" rel="noopener">cómo usa Google la información de los sitios que usan sus servicios</a>.</li>
+<li><b>Nuestro proveedor de alojamiento</b> sirve el sitio y guarda registros técnicos.</li>
+<li><b>WhatsApp.</b> Algunas páginas tienen botones que abren WhatsApp para escribirle a un negocio local. Esa conversación ocurre en WhatsApp, bajo la <a href="https://www.whatsapp.com/legal/privacy-policy" rel="noopener">política de privacidad de WhatsApp</a>, y va a ese negocio, no a nosotros.</li>
+<li><b>Otros sitios web.</b> Nuestras guías enlazan a sitios oficiales, operadores y socios. Cuando sales de panamaspot.com, se aplican sus políticas de privacidad.</li></ul></section>
+
+<section id="transfer"><h2>Dónde se procesan los datos</h2>
+<p>Google y nuestro proveedor de alojamiento tienen servidores en Estados Unidos y otros países, así que la información descrita aquí puede procesarse fuera del país donde vives.</p></section>
+
+<section id="keep"><h2>Cuánto tiempo lo conservamos</h2>
+<p>Google Analytics conserva los datos de visitas durante un período limitado definido en nuestra cuenta y luego los borra automáticamente; los informes solo muestran totales. Conservamos los correos el tiempo necesario para atender tu mensaje y los borramos si nos lo pides.</p></section>
+
+<section id="rights"><h2>Tus opciones y derechos</h2>
+<ul><li>Bloquear o borrar las cookies en tu navegador.</li>
+<li>Instalar el <a href="https://tools.google.com/dlpage/gaoptout?hl=es" rel="noopener">complemento de inhabilitación de Google Analytics</a>.</li>
+<li>Elegir cómo personaliza Google sus anuncios en <a href="https://myadcenter.google.com" rel="noopener">Mi Centro de anuncios</a>.</li></ul>
+<p>Según dónde vivas, incluso bajo la Ley 81 de 2019 de Panamá sobre protección de datos personales, el RGPD de la Unión Europea y del Reino Unido y algunas leyes estatales de EE. UU., puedes tener derecho a saber qué información personal tenemos sobre ti, a pedir que se corrija o se borre, o a oponerte a cómo se usa. Escríbenos a {mail} y te responderemos. Los datos de Analytics no están vinculados a tu nombre, así que en la mayoría de los casos no podemos encontrarlos solo con una dirección de correo. También puedes presentar una queja ante tu autoridad de protección de datos; en Panamá, es la Autoridad Nacional de Transparencia y Acceso a la Información (ANTAI).</p></section>
+
+<section id="children"><h2>Menores de edad</h2>
+<p>Panamá Spot está escrito para adultos que planean un viaje. No recopilamos a sabiendas información personal de menores.</p></section>
+
+<section id="changes"><h2>Cambios en esta política</h2>
+<p>Si cambiamos lo que recopilamos o cómo lo usamos, actualizaremos esta página y la fecha de arriba.</p></section>
+
+<section id="contact"><h2>Contacto</h2>
+<p>Preguntas o solicitudes sobre tus datos: {mail}. También puedes escribirnos desde nuestra <a href="{contact_url}">página de contacto</a>.</p></section>"""
+
+PRV = {
+ "en": dict(title="Privacy policy · Panamá Spot", lbl="Privacy", h1="Privacy policy",
+   dek="What Panamá Spot collects when you read our guides, why, and the choices you have. Last updated {d}.", toc_h="On this page",
+   toc=[("who", "Who we are"), ("collect", "What we collect"), ("use", "How we use it"), ("cookies", "Cookies"), ("third", "Other companies involved"),
+        ("transfer", "Where data is processed"), ("keep", "How long we keep it"), ("rights", "Your choices and rights"), ("children", "Children"), ("changes", "Changes"), ("contact", "Contact")],
+   short_h="The short version",
+   short=[(ICON_NOSELL, "There are no accounts on Panamá Spot, and we never sell or rent personal information."),
+          (ICON_CHART, "We use Google Analytics to see which guides people read, so we know what to improve."),
+          (ICON_AD, "We run some Google Ads, and measure whether an ad led someone to get in touch."),
+          (ICON_MAIL, "If you email us, we use your address only to reply.")],
+   last="Last updated {d}."),
+ "es": dict(title="Política de privacidad · Panamá Spot", lbl="Privacidad", h1="Política de privacidad",
+   dek="Qué recopila Panamá Spot cuando lees nuestras guías, para qué y qué opciones tienes. Última actualización: {d}.", toc_h="En esta página",
+   toc=[("who", "Quiénes somos"), ("collect", "Qué recopilamos"), ("use", "Cómo lo usamos"), ("cookies", "Cookies"), ("third", "Otras empresas involucradas"),
+        ("transfer", "Dónde se procesan los datos"), ("keep", "Cuánto tiempo lo conservamos"), ("rights", "Tus opciones y derechos"), ("children", "Menores de edad"), ("changes", "Cambios"), ("contact", "Contacto")],
+   short_h="En resumen",
+   short=[(ICON_NOSELL, "Panamá Spot no tiene cuentas de usuario, y nunca vendemos ni alquilamos información personal."),
+          (ICON_CHART, "Usamos Google Analytics para ver qué guías lee la gente y saber qué mejorar."),
+          (ICON_AD, "Publicamos algunos anuncios en Google Ads y medimos si un anuncio llevó a alguien a contactar."),
+          (ICON_MAIL, "Si nos escribes, usamos tu dirección solo para responderte.")],
+   last="Última actualización: {d}."),
+}
+
+def build_privacy(lang):
+    T = PRV[lang]; en, es = PV["en"]["privacy"], PV["es"]["privacy"]; d = REV_TXT[lang]
+    mail = f'<a href="mailto:{EMAIL}">{EMAIL}</a>'
+    body = f"""<div class="guide-progress" id="prog" aria-hidden="true"></div>
+<header class="hero hx-home ab-hero pv-hero">
+  {nav(en, es, lang)}
+  <div class="wrap hx-c"><span class="lbl">{T['lbl']}</span>
+    <h1 class="ab-mark">{T['h1']}<i class="pd"></i></h1>
+    <p class="hx-dek ab-goal">{T['dek'].format(d=d)}</p></div>
+</header>
+{ABOUT_CSS}{TRUST_CSS}{ABOUT2_CSS}{PV_CSS}
+<div class="wrap ab-sec ab-first"><div class="pv-wrap">
+<nav class="pv-toc" aria-label="{T['toc_h']}"><b>{T['toc_h']}</b>{"".join(f'<a href="#{i}">{t}</a>' for i, t in T['toc'])}</nav>
+<div class="pv-body">
+<div class="pv-short"><h2>{T['short_h']}</h2>
+{"".join(f'  <div><span class="ic">{icon(ic)}</span><span>{t}</span></div>' for ic, t in T['short'])}
+</div>
+{privacy_body(lang, mail, PV[lang]['contact'])}
+<p class="ab-rev"><i class="dot"></i>{T['last'].format(d=d)}</p>
 </div></div></div>
 """
-    out = page("Privacy policy · Panamá Spot", body, "/images/v2/home-hero-video-poster.webp", "en")
-    (P / "preview" / "privacy.html").write_text(out); print("wrote", P / "preview" / "privacy.html")
+    write_pv(lang, "privacy", T["title"], body, "/images/v2/home-hero-video-poster.webp")
 
+# ---------- 404 ----------
 NF_CSS = """<style>
 /* white page: the shared header was drawn for photo heroes, so give it dark ink here */
 .nfw { background: #fff; }
@@ -1404,57 +1571,73 @@ NF_CSS = """<style>
 .nfw a.lang:hover span:not(.on) { background: rgba(3,10,30,.06); }
 .nfw .mm-burger i { background: var(--ink); }
 .nfw .mm-panel, .nfw .mm-sheet { background: rgba(5,24,63,.9); color: #fff; }
-.nf-stage { position: relative; height: clamp(620px, calc(100vh - 96px), 760px); margin-bottom: clamp(32px, 4vw, 56px); }
-.nf-c { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; text-align: center; gap: 10px; padding: 0 24px; z-index: 2; pointer-events: none; }
-.nf-c > * { pointer-events: auto; }
+/* a grid, not absolute positions: the stamps can never sit on the text. Sides arc in "(" and ")", two more below. */
+.nf-stage { --st: clamp(80px, 6.6vw, 98px); --arc: clamp(18px, 2.6vw, 44px);
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 440px) minmax(0, 1fr); grid-template-areas: "l c r" "l b r";
+  column-gap: clamp(16px, 3vw, 48px); row-gap: clamp(36px, 4vw, 56px);
+  padding: clamp(28px, 3vw, 44px) clamp(16px, 3vw, 48px) clamp(56px, 6vw, 88px); }
+.nf-c { grid-area: c; align-self: end; display: grid; justify-items: center; text-align: center; gap: 10px; padding-top: clamp(40px, 6vh, 80px); }
 .nf-c h1 { margin: 0; display: grid; justify-items: center; gap: 8px; font-weight: 400; }
 .nf-c .n { font: 400 clamp(84px, 9vw, 136px)/.85 var(--serif); letter-spacing: -0.02em; color: var(--navy); }
 .nf-c .n .pd { display: inline-block; width: .13em; height: .13em; border-radius: 50%; background: var(--red); margin-left: .02em; }
 .nf-c .t { font: 400 clamp(24px, 2.2vw, 30px)/1.1 var(--serif); color: var(--navy); }
 .nf-c p { margin: 6px 0 10px; max-width: 36ch; font-size: 16px; line-height: 1.55; color: var(--muted); }
-.nf-c .nf-btn { border: 0; cursor: pointer; display: inline-flex; align-items: center; background: var(--navy); color: #fff; padding: 13px 24px; border-radius: 999px; font: 600 14px/1 var(--sans); }
-.nf-c .nf-btn:hover { background: var(--ink); }
-.nf-s { position: absolute; top: var(--y); left: var(--x); transform: translate(-50%, -50%); width: clamp(80px, 7vw, 108px); display: grid; gap: 9px; justify-items: center; text-decoration: none; z-index: 1; }
+.nf-btn { border: 0; cursor: pointer; display: inline-flex; align-items: center; background: var(--navy); color: #fff; padding: 13px 24px; border-radius: 999px; font: 600 14px/1 var(--sans); }
+.nf-btn:hover { background: var(--ink); }
+.nf-l, .nf-r { display: grid; align-content: center; gap: clamp(18px, 2.4vw, 30px); }
+.nf-l { grid-area: l; justify-items: end; }
+.nf-r { grid-area: r; justify-items: start; }
+.nf-b { grid-area: b; align-self: start; display: flex; justify-content: center; gap: clamp(56px, 7vw, 110px); }
+.nf-l .nf-s:nth-child(2) { translate: calc(-1 * var(--arc)) 0; }
+.nf-r .nf-s:nth-child(2) { translate: var(--arc) 0; }
+.nf-s { width: var(--st); display: grid; gap: 9px; justify-items: center; text-decoration: none; }
 .nf-s .sw { display: block; width: 100%; transform: rotate(var(--r)); transition: transform .3s; filter: none; }
 .nf-s:hover .sw { transform: rotate(0deg) translateY(-4px); }
 .nf-s b { font: 400 15px/1.15 var(--serif); color: var(--navy); text-align: center; }
 @media (max-width: 900px) {
-  .nf-stage { height: auto; padding: 40px 16px 8px; display: grid; gap: 40px; }
-  .nf-c { position: static; padding: 0; }
-  .nf-ss { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px 12px; }
-  .nf-s { position: static; width: auto; transform: none; }
+  .nf-stage { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-areas: none; gap: 20px 12px; padding: 40px 16px 48px; }
+  .nf-c { grid-area: auto; grid-column: 1 / -1; padding: 0 0 20px; }
+  .nf-l, .nf-r, .nf-b { display: contents; }
+  .nf-s { width: auto; translate: none !important; }
   .nf-s b { font-size: 13px; }
 }
 </style>"""
 
-def build_404_mock():
-    hub_img = {"/articles/panama-city": "/images/v2/the-skyline-of-panama-city-s-17477516-card.webp", "/articles/boquete": "/images/v2/boquete-hills-card.webp",
-               "/articles/el-valle-de-anton": "/images/v2/the-el-valle-de-anton-crater-829139d1-gallery.webp",
-               "/articles/bocas-del-toro": "/images/v2/nyara-bocas-del-toro-panama-hero-960.webp", "/articles/san-blas": "/images/v2/x-diadup-kuna-yala-panam-c3-a1-hero-960.webp"}
-    # eight stamps on an ellipse round the 404, starting at the top and going clockwise, tilting alternately
-    import math
-    RING = [("/articles/panama-city", "Panama City"), ("/articles/bocas-del-toro", "Bocas del Toro"), ("/articles/san-blas", "San Blas"),
-            ("/articles/panama-canal-tour-miraflores-locks-visitor-guide", "Panama Canal"), ("/articles/el-valle-de-anton", "El Valle de Antón"),
-            ("/articles/volcan-baru-hike-sunrise-summit-guide", "Volcán Barú"), ("/articles/boquete", "Boquete"), ("/articles/casco-viejo-panama-walking-guide", "Casco Viejo")]
-    S = []
-    for i, (u, n) in enumerate(RING):
-        t = math.radians(-90 + i * 45)
-        S.append((u, n, f"{50 + 33 * math.cos(t):.1f}%", f"{50 + 37 * math.sin(t):.1f}%", (-6, 5, -4, 6, -5, 4, -6, 5)[i]))
-    for u, *_ in S: assert (P / u.lstrip("/")).with_suffix(".html").exists(), u
-    stamps = "".join(f'<a class="nf-s" href="{u}" style="--x:{x};--y:{y};--r:{r}deg">{stamp(hub_img.get(u) or img_of(u))}<b>{n}</b></a>'
-                     for u, n, x, y, r in S)
+# (EN link, EN name, ES link, ES name, photo). Left and right columns of three, two along the bottom.
+NF_L = [("/articles/panama-city", "Panama City", "/es/articles/panama-city", "Ciudad de Panamá", HUB_IMG["Panama City"]),
+        ("/articles/casco-viejo-panama-walking-guide", "Casco Viejo", "/es/articles/casco-viejo-restaurantes-donde-comer-beber-hospedarse", "Casco Viejo", None),
+        ("/articles/boquete", "Boquete", "/es/articles/boquete", "Boquete", HUB_IMG["Boquete"])]
+NF_R = [("/articles/bocas-del-toro", "Bocas del Toro", "/es/articles/como-llegar-a-bocas-del-toro-desde-ciudad-de-panama", "Bocas del Toro", HUB_IMG["Bocas"]),
+        ("/articles/san-blas", "San Blas", "/es/articles/san-blas-guna-yala-guia-tours-islas", "San Blas", HUB_IMG["San Blas"]),
+        ("/articles/panama-canal-tour-miraflores-locks-visitor-guide", "Panama Canal", "/es/articles/isla-coiba-buceo-parque-nacional", "Isla Coiba", None)]
+NF_B = [("/articles/el-valle-de-anton", "El Valle de Antón", "/es/articles/el-valle-de-anton", "El Valle de Antón", HUB_IMG["El Valle"]),
+        ("/articles/volcan-baru-hike-sunrise-summit-guide", "Volcán Barú", "/es/articles/volcan-baru-como-subir-cima-panama", "Volcán Barú", None)]
+NF_T = {"en": dict(title="Page not found · Panamá Spot", t="Not found", p="This page doesn't exist, or it has moved. Pick a place, or search the guides.", btn="Search guides"),
+        "es": dict(title="Página no encontrada · Panamá Spot", t="Página no encontrada", p="Esta página no existe o cambió de lugar. Elige un destino o busca en las guías.", btn="Buscar guías")}
+
+def build_404(lang):
+    T = NF_T[lang]
+    def group(items, tilts):
+        out = []
+        for (eu, en, su, sn, img), r in zip(items, tilts):
+            u, n = (eu, en) if lang == "en" else (su, sn)
+            assert (P / u.lstrip("/")).with_suffix(".html").exists(), u
+            out.append(f'<a class="nf-s" href="{u}" style="--r:{r}deg">{stamp(img or img_of(eu if lang == "en" else u))}<b>{n}</b></a>')
+        return "".join(out)
     body = f"""<div class="nfw">
-  {nav("/", "/es", "en")}
+  {nav("/", "/es", lang)}
   <div class="nf-stage">
-    <div class="nf-c"><h1><span class="n">404<i class="pd"></i></span><span class="t">Not found</span></h1>
-      <p>This page doesn't exist, or it has moved. Pick a place, or search the guides.</p>
-      <button type="button" class="nf-btn" data-search>Search guides</button></div>
-    <div class="nf-ss">{stamps}</div>
+    <div class="nf-c"><h1><span class="n">404<i class="pd"></i></span><span class="t">{T['t']}</span></h1>
+      <p>{T['p']}</p>
+      <button type="button" class="nf-btn" data-search>{T['btn']}</button></div>
+    <div class="nf-l">{group(NF_L, (-6, 5, -4))}</div>
+    <div class="nf-r">{group(NF_R, (6, -5, 4))}</div>
+    <div class="nf-b">{group(NF_B, (-5, 5))}</div>
   </div>
 </div>
 {NF_CSS}
 """
-    out = page("Page not found · Panamá Spot", body, "/images/v2/the-skyline-of-panama-city-s-17477516-card.webp", "en")
-    (P / "preview" / "404.html").write_text(out); print("wrote", P / "preview" / "404.html")
+    write_pv(lang, "404", T["title"], body, HUB_IMG["Panama City"])
 
-build_privacy_mock(); build_404_mock()
+for _lang in ("en", "es"):
+    build_about(_lang); build_contact(_lang); build_privacy(_lang); build_404(_lang)
