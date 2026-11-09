@@ -272,7 +272,10 @@
     var done = function () {
       host.classList.remove("on"); fades.forEach(function (f) { f.cancel(); });
       input.value = ""; list.innerHTML = ""; shown = 0;
-      if (trigger && trigger.focus) trigger.focus({ preventScroll: true, focusVisible: byKey });
+      /* Keyboard users get focus back on the pill; after a mouse-opened search nothing is focused, because
+         Safari ignores the focusVisible hint and drew the red focus outline round the pill on every close. */
+      if (byKey && trigger && trigger.focus) trigger.focus({ preventScroll: true, focusVisible: true });
+      else if (document.activeElement && document.activeElement !== document.body && document.activeElement.blur) document.activeElement.blur();
     };
     var back = function () { if (hidden) { hidden.style.visibility = ""; hidden = null; } };
     if (calm) { back(); done(); return; }

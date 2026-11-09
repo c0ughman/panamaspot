@@ -1404,7 +1404,7 @@ NF_CSS = """<style>
 .nfw a.lang:hover span:not(.on) { background: rgba(3,10,30,.06); }
 .nfw .mm-burger i { background: var(--ink); }
 .nfw .mm-panel, .nfw .mm-sheet { background: rgba(5,24,63,.9); color: #fff; }
-.nf-stage { position: relative; height: clamp(560px, calc(100vh - 96px), 720px); margin-bottom: clamp(32px, 4vw, 56px); }
+.nf-stage { position: relative; height: clamp(620px, calc(100vh - 96px), 760px); margin-bottom: clamp(32px, 4vw, 56px); }
 .nf-c { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; text-align: center; gap: 10px; padding: 0 24px; z-index: 2; pointer-events: none; }
 .nf-c > * { pointer-events: auto; }
 .nf-c h1 { margin: 0; display: grid; justify-items: center; gap: 8px; font-weight: 400; }
@@ -1414,8 +1414,7 @@ NF_CSS = """<style>
 .nf-c p { margin: 6px 0 10px; max-width: 36ch; font-size: 16px; line-height: 1.55; color: var(--muted); }
 .nf-c .nf-btn { border: 0; cursor: pointer; display: inline-flex; align-items: center; background: var(--navy); color: #fff; padding: 13px 24px; border-radius: 999px; font: 600 14px/1 var(--sans); }
 .nf-c .nf-btn:hover { background: var(--ink); }
-.nf-s { position: absolute; top: var(--y); left: var(--x); width: clamp(84px, 7.4vw, 116px); display: grid; gap: 9px; justify-items: center; text-decoration: none; z-index: 1; }
-.nf-s.r { left: auto; right: var(--x); }
+.nf-s { position: absolute; top: var(--y); left: var(--x); transform: translate(-50%, -50%); width: clamp(80px, 7vw, 108px); display: grid; gap: 9px; justify-items: center; text-decoration: none; z-index: 1; }
 .nf-s .sw { display: block; width: 100%; transform: rotate(var(--r)); transition: transform .3s; filter: none; }
 .nf-s:hover .sw { transform: rotate(0deg) translateY(-4px); }
 .nf-s b { font: 400 15px/1.15 var(--serif); color: var(--navy); text-align: center; }
@@ -1423,7 +1422,7 @@ NF_CSS = """<style>
   .nf-stage { height: auto; padding: 40px 16px 8px; display: grid; gap: 40px; }
   .nf-c { position: static; padding: 0; }
   .nf-ss { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px 12px; }
-  .nf-s, .nf-s.r { position: static; width: auto; }
+  .nf-s { position: static; width: auto; transform: none; }
   .nf-s b { font-size: 13px; }
 }
 </style>"""
@@ -1432,16 +1431,18 @@ def build_404_mock():
     hub_img = {"/articles/panama-city": "/images/v2/the-skyline-of-panama-city-s-17477516-card.webp", "/articles/boquete": "/images/v2/boquete-hills-card.webp",
                "/articles/el-valle-de-anton": "/images/v2/the-el-valle-de-anton-crater-829139d1-gallery.webp",
                "/articles/bocas-del-toro": "/images/v2/nyara-bocas-del-toro-panama-hero-960.webp", "/articles/san-blas": "/images/v2/x-diadup-kuna-yala-panam-c3-a1-hero-960.webp"}
-    # (href, name, side, x, y, rotation): four down each side in a mirrored zig-zag, tilted outwards in turn
-    L = [("/articles/panama-city", "Panama City"), ("/articles/casco-viejo-panama-walking-guide", "Casco Viejo"),
-         ("/articles/boquete", "Boquete"), ("/articles/volcan-baru-hike-sunrise-summit-guide", "Volcán Barú")]
-    R = [("/articles/bocas-del-toro", "Bocas del Toro"), ("/articles/san-blas", "San Blas"),
-         ("/articles/el-valle-de-anton", "El Valle de Antón"), ("/articles/panama-canal-tour-miraflores-locks-visitor-guide", "Panama Canal")]
-    spots = [("5%", "5%", -6), ("15%", "28%", 5), ("5%", "51%", -4), ("15%", "74%", 6)]
-    S = [(u, n, "l", x, y, r) for (u, n), (x, y, r) in zip(L, spots)] + [(u, n, "r", x, y, -r) for (u, n), (x, y, r) in zip(R, spots)]
+    # eight stamps on an ellipse round the 404, starting at the top and going clockwise, tilting alternately
+    import math
+    RING = [("/articles/panama-city", "Panama City"), ("/articles/bocas-del-toro", "Bocas del Toro"), ("/articles/san-blas", "San Blas"),
+            ("/articles/panama-canal-tour-miraflores-locks-visitor-guide", "Panama Canal"), ("/articles/el-valle-de-anton", "El Valle de Antón"),
+            ("/articles/volcan-baru-hike-sunrise-summit-guide", "Volcán Barú"), ("/articles/boquete", "Boquete"), ("/articles/casco-viejo-panama-walking-guide", "Casco Viejo")]
+    S = []
+    for i, (u, n) in enumerate(RING):
+        t = math.radians(-90 + i * 45)
+        S.append((u, n, f"{50 + 33 * math.cos(t):.1f}%", f"{50 + 37 * math.sin(t):.1f}%", (-6, 5, -4, 6, -5, 4, -6, 5)[i]))
     for u, *_ in S: assert (P / u.lstrip("/")).with_suffix(".html").exists(), u
-    stamps = "".join(f'<a class="nf-s{" r" if side == "r" else ""}" href="{u}" style="--x:{x};--y:{y};--r:{r}deg">{stamp(hub_img.get(u) or img_of(u))}<b>{n}</b></a>'
-                     for u, n, side, x, y, r in S)
+    stamps = "".join(f'<a class="nf-s" href="{u}" style="--x:{x};--y:{y};--r:{r}deg">{stamp(hub_img.get(u) or img_of(u))}<b>{n}</b></a>'
+                     for u, n, x, y, r in S)
     body = f"""<div class="nfw">
   {nav("/", "/es", "en")}
   <div class="nf-stage">
