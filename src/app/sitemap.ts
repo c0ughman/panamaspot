@@ -668,10 +668,6 @@ function entries(): MetadataRoute.Sitemap {
       "https://images.pexels.com/photos/33803480/pexels-photo-33803480.jpeg?auto=compress&cs=tinysrgb&w=1280",
     ),
     sepGuide(
-      "articles/boat-charter-panama",
-      "https://images.pexels.com/photos/3754442/pexels-photo-3754442.jpeg?auto=compress&cs=tinysrgb&w=1280",
-    ),
-    sepGuide(
       "articles/boquete-bike-rental",
       "https://images.pexels.com/photos/30774401/pexels-photo-30774401.jpeg?auto=compress&cs=tinysrgb&w=1280",
       { en: "articles/boquete-bike-rental", es: "es/articles/alquiler-de-bicicletas-boquete" },
@@ -820,377 +816,491 @@ function entries(): MetadataRoute.Sitemap {
     {
       ...guide(
         "articles/buying-property-in-panama-as-a-foreigner",
-        "https://panamaspot.com/images/v2/panama-city-panama-hero-1920.webp",
+        "https://panamaspot.com/images/social/buying-property-in-panama-as-a-foreigner-share.jpg",
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
+    },
+    {
+      ...guide(
+        "articles/living-in-panama-as-an-expat",
+        "https://panamaspot.com/images/social/living-in-panama-as-an-expat-share.jpg",
+      ),
+      lastModified: new Date("2026-11-12"),
+    },
+    {
+      ...guide(
+        "articles/boquete-real-estate",
+        "https://panamaspot.com/images/social/boquete-real-estate-share.jpg",
+      ),
+      lastModified: new Date("2026-11-12"),
+    },
+    {
+      ...guide(
+        "articles/coronado-panama-real-estate",
+        "https://panamaspot.com/images/social/coronado-panama-real-estate-share.jpg",
+      ),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "articles/panama-residency-visas",
-        "https://panamaspot.com/images/v2/the-skyline-of-panama-city-s-17477516-hero-1920.webp",
+        "https://panamaspot.com/images/social/panama-residency-visas-share.jpg",
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
+    },
+    {
+      ...guide(
+        "articles/bocas-del-toro-real-estate",
+        "https://panamaspot.com/images/social/bocas-del-toro-real-estate-share.jpg",
+      ),
+      lastModified: new Date("2026-11-12"),
+    },
+    {
+      ...guide(
+        "articles/panama-condos-for-sale-foreigners",
+        "https://panamaspot.com/images/social/panama-condos-for-sale-foreigners-share.jpg",
+      ),
+      lastModified: new Date("2026-11-12"),
+    },
+    {
+      ...guide(
+        "articles/panama-land-and-beachfront-property",
+        "https://panamaspot.com/images/social/panama-land-and-beachfront-property-share.jpg",
+      ),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "articles/retiring-in-panama",
-        "https://panamaspot.com/images/v2/boquete-houseclouds-hero-1920.webp",
+        "https://panamaspot.com/images/social/retiring-in-panama-share.jpg",
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
+    },
+    {
+      ...guide(
+        "articles/pedasi-playa-venao-real-estate",
+        "https://panamaspot.com/images/social/pedasi-playa-venao-real-estate-share.jpg",
+      ),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "articles/stem-cell-therapy-in-panama",
-        "https://panamaspot.com/images/v2/te-with-induced-pluripotent-stem-cells-46291373491-hero-1920.webp",
+        "https://panamaspot.com/images/social/stem-cell-therapy-in-panama-share.jpg",
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
+    },
+    {
+      ...guide(
+        "articles/stem-cell-institute-panama-review",
+        "https://panamaspot.com/images/social/stem-cell-institute-panama-review-share.jpg",
+      ),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "articles/healthcare-in-panama-for-foreigners",
-        "https://panamaspot.com/images/v2/doctor-nurse-patient-hero-1920.webp",
+        "https://panamaspot.com/images/social/healthcare-in-panama-for-foreigners-share.jpg",
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
+    },
+    {
+      ...guide(
+        "articles/stem-cell-therapy-cost-panama",
+        "https://panamaspot.com/images/social/stem-cell-therapy-cost-panama-share.jpg",
+      ),
+      lastModified: new Date("2026-11-12"),
+    },
+    {
+      ...guide(
+        "articles/plastic-surgery-in-panama",
+        "https://panamaspot.com/images/social/plastic-surgery-in-panama-share.jpg",
+      ),
+      lastModified: new Date("2026-11-12"),
+    },
+    {
+      ...guide(
+        "articles/stem-cell-therapy-autism-ms-panama",
+        "https://panamaspot.com/images/social/stem-cell-therapy-autism-ms-panama-share.jpg",
+      ),
+      lastModified: new Date("2026-11-12"),
+    },
+    {
+      ...guide(
+        "articles/san-blas-catamaran-charter",
+        "https://panamaspot.com/images/social/san-blas-catamaran-charter-share.jpg",
+      ),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "articles/san-blas-tours-from-panama-city",
-        "https://panamaspot.com/images/v2/caba-c3-b1as-guna-yala-hero-1920.webp",
+        "https://panamaspot.com/images/social/san-blas-tours-from-panama-city-share.jpg",
+      { en: "articles/san-blas-tours-from-panama-city", es: "es/articles/tours-a-san-blas-desde-ciudad-de-panama" },
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
+    },
+    {
+      ...guide(
+        "articles/panama-city-to-san-blas",
+        "https://panamaspot.com/images/social/panama-city-to-san-blas-share.jpg",
+      { en: "articles/panama-city-to-san-blas", es: "es/articles/como-llegar-a-san-blas" },
+      ),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "articles/contadora-ferry-from-panama-city",
-        "https://panamaspot.com/images/v2/islaperico-causeway-amador-hero-1920.webp",
+        "https://panamaspot.com/images/social/contadora-ferry-from-panama-city-share.jpg",
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
+    },
+    {
+      ...guide(
+        "es/articles/tours-a-san-blas-desde-ciudad-de-panama",
+        "https://panamaspot.com/images/social/tours-a-san-blas-desde-ciudad-de-panama-share.jpg",
+      { en: "articles/san-blas-tours-from-panama-city", es: "es/articles/tours-a-san-blas-desde-ciudad-de-panama" },
+      ),
+      lastModified: new Date("2026-11-12"),
+    },
+    {
+      ...guide(
+        "es/articles/hoteles-en-san-blas",
+        "https://panamaspot.com/images/social/hoteles-en-san-blas-share.jpg",
+      { en: "articles/where-to-stay-in-san-blas", es: "es/articles/hoteles-en-san-blas" },
+      ),
+      lastModified: new Date("2026-11-12"),
+    },
+    {
+      ...guide(
+        "articles/where-to-stay-in-san-blas",
+        "https://panamaspot.com/images/social/where-to-stay-in-san-blas-share.jpg",
+      { en: "articles/where-to-stay-in-san-blas", es: "es/articles/hoteles-en-san-blas" },
+      ),
+      lastModified: new Date("2026-11-12"),
+    },
+    {
+      ...guide(
+        "es/articles/como-llegar-a-san-blas",
+        "https://panamaspot.com/images/social/como-llegar-a-san-blas-share.jpg",
+      { en: "articles/panama-city-to-san-blas", es: "es/articles/como-llegar-a-san-blas" },
+      ),
+      lastModified: new Date("2026-11-12"),
+    },
+    {
+      ...guide(
+        "articles/panama-fishing-lodges",
+        "https://panamaspot.com/images/social/panama-fishing-lodges-share.jpg",
+      ),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "articles/panama-surf-camps",
-        "https://panamaspot.com/images/v2/surferriomarbeachpanama-hero-1920.webp",
+        "https://panamaspot.com/images/social/panama-surf-camps-share.jpg",
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
-        "articles/diving-in-panama",
-        "https://panamaspot.com/images/v2/king-cotton-2058177216-hero-1920.webp",
-      { en: "articles/diving-in-panama", es: "es/articles/isla-coiba-buceo-parque-nacional" },
+        "articles/diving-coiba-national-park",
+        "https://panamaspot.com/images/social/diving-coiba-national-park-share.jpg",
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "articles/playa-venao-panama",
-        "https://panamaspot.com/images/v2/panam-c3-a1-playa-hero-1920.webp",
+        "https://panamaspot.com/images/social/playa-venao-panama-share.jpg",
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
+    },
+    {
+      ...guide(
+        "articles/fishing-in-panama",
+        "https://panamaspot.com/images/social/fishing-in-panama-share.jpg",
+      { en: "articles/fishing-in-panama", es: "es/articles/pesca-en-panama" },
+      ),
+      lastModified: new Date("2026-11-12"),
+    },
+    {
+      ...guide(
+        "es/articles/pesca-en-panama",
+        "https://panamaspot.com/images/social/pesca-en-panama-share.jpg",
+      { en: "articles/fishing-in-panama", es: "es/articles/pesca-en-panama" },
+      ),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "articles/panama-all-inclusive-resorts",
-        "https://panamaspot.com/images/v2/playa-de-kobbe-la-mochila-hero-1920.webp",
+        "https://panamaspot.com/images/social/panama-all-inclusive-resorts-share.jpg",
+      { en: "articles/panama-all-inclusive-resorts", es: "es/articles/hoteles-todo-incluido-panama" },
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
+    },
+    {
+      ...guide(
+        "articles/best-boutique-hotels-casco-viejo",
+        "https://panamaspot.com/images/social/best-boutique-hotels-casco-viejo-share.jpg",
+      { en: "articles/best-boutique-hotels-casco-viejo", es: "es/articles/hoteles-en-casco-viejo" },
+      ),
+      lastModified: new Date("2026-11-12"),
+    },
+    {
+      ...guide(
+        "es/articles/hoteles-todo-incluido-panama",
+        "https://panamaspot.com/images/social/hoteles-todo-incluido-panama-share.jpg",
+      { en: "articles/panama-all-inclusive-resorts", es: "es/articles/hoteles-todo-incluido-panama" },
+      ),
+      lastModified: new Date("2026-11-12"),
+    },
+    {
+      ...guide(
+        "articles/panama-eco-jungle-lodges",
+        "https://panamaspot.com/images/social/panama-eco-jungle-lodges-share.jpg",
+      ),
+      lastModified: new Date("2026-11-12"),
+    },
+    {
+      ...guide(
+        "es/articles/hoteles-en-bocas-del-toro",
+        "https://panamaspot.com/images/social/hoteles-en-bocas-del-toro-share.jpg",
+      { en: "articles/which-bocas-del-toro-island-to-stay-on", es: "es/articles/hoteles-en-bocas-del-toro" },
+      ),
+      lastModified: new Date("2026-11-12"),
+    },
+    {
+      ...guide(
+        "articles/apartment-rentals-panama-city",
+        "https://panamaspot.com/images/social/apartment-rentals-panama-city-share.jpg",
+      ),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "articles/where-to-stay-in-panama-city",
-        "https://panamaspot.com/images/v2/panama-city-panama-hero-1920.webp",
+        "https://panamaspot.com/images/social/where-to-stay-in-panama-city-share.jpg",
+      { en: "articles/where-to-stay-in-panama-city", es: "es/articles/donde-hospedarse-en-ciudad-de-panama" },
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "es/articles/hoteles-en-casco-viejo",
-        "https://panamaspot.com/images/v2/casco-viejo-panama-city-panama-54319827771-hero-1920.webp",
+        "https://panamaspot.com/images/social/hoteles-en-casco-viejo-share.jpg",
+      { en: "articles/best-boutique-hotels-casco-viejo", es: "es/articles/hoteles-en-casco-viejo" },
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
+    },
+    {
+      ...guide(
+        "es/articles/todo-incluido-playa-blanca",
+        "https://panamaspot.com/images/social/todo-incluido-playa-blanca-share.jpg",
+      ),
+      lastModified: new Date("2026-11-12"),
+    },
+    {
+      ...guide(
+        "es/articles/donde-hospedarse-en-ciudad-de-panama",
+        "https://panamaspot.com/images/social/donde-hospedarse-en-ciudad-de-panama-share.jpg",
+      { en: "articles/where-to-stay-in-panama-city", es: "es/articles/donde-hospedarse-en-ciudad-de-panama" },
+      ),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "articles/panama-canal-boat-tours",
-        "https://panamaspot.com/images/v2/container-vessel-hs-mozart-gatun-lake-panama-hero-1920.webp",
+        "https://panamaspot.com/images/social/panama-canal-boat-tours-share.jpg",
+      { en: "articles/panama-canal-boat-tours", es: "es/articles/tour-canal-de-panama-en-barco" },
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
+    },
+    {
+      ...guide(
+        "es/articles/tour-canal-de-panama-en-barco",
+        "https://panamaspot.com/images/social/tour-canal-de-panama-en-barco-share.jpg",
+      { en: "articles/panama-canal-boat-tours", es: "es/articles/tour-canal-de-panama-en-barco" },
+      ),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "es/articles/sendero-los-quetzales-quetzal-boquete",
-        "https://panamaspot.com/images/v2/al-in-los-quetzales-national-park-photo-hero-1920.webp",
+        "https://panamaspot.com/images/social/sendero-los-quetzales-quetzal-boquete-share.jpg",
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "articles/hiking-in-panama-best-trails",
-        "https://panamaspot.com/images/v2/rope-bridge-near-cerro-el-macho-waterfall-hero-1920.webp",
+        "https://panamaspot.com/images/social/hiking-in-panama-best-trails-share.jpg",
       { en: "articles/hiking-in-panama-best-trails", es: "es/articles/senderismo-en-panama-mejores-senderos-ciudad" },
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "es/articles/sendero-el-pianista-boquete-ruta-dificultad",
-        "https://panamaspot.com/images/v2/c3-ba-and-the-mountain-city-of-hero-1920.webp",
+        "https://panamaspot.com/images/social/sendero-el-pianista-boquete-ruta-dificultad-share.jpg",
       { en: "articles/el-pianista-trail-boquete", es: "es/articles/sendero-el-pianista-boquete-ruta-dificultad" },
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "es/articles/senderismo-en-panama-mejores-senderos-ciudad",
-        "https://panamaspot.com/images/v2/toed-sloth-cerro-ancon-panama-city-48454787316-hero-1920.webp",
+        "https://panamaspot.com/images/social/senderismo-en-panama-mejores-senderos-ciudad-share.jpg",
       { en: "articles/hiking-in-panama-best-trails", es: "es/articles/senderismo-en-panama-mejores-senderos-ciudad" },
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "articles/el-pianista-trail-boquete",
-        "https://panamaspot.com/images/v2/c3-ba-and-the-mountain-city-of-hero-1920.webp",
+        "https://panamaspot.com/images/social/el-pianista-trail-boquete-share.jpg",
       { en: "articles/el-pianista-trail-boquete", es: "es/articles/sendero-el-pianista-boquete-ruta-dificultad" },
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "articles/pipeline-trail-boquete-quetzal-hike",
-        "https://panamaspot.com/images/v2/quetzales-trail-baru-volcano-national-park-panama-hero-1920.webp",
+        "https://panamaspot.com/images/social/pipeline-trail-boquete-quetzal-hike-share.jpg",
       ),
-      lastModified: new Date("2026-11-03"),
-    },
-    {
-      ...guide(
-        "es/articles/cerro-gaital-cara-iguana-rutas-dificultad",
-        "https://panamaspot.com/images/v2/iguana-iguana-hero-1920.webp",
-      { en: "articles/cerro-gaital-cara-iguana-hike-el-valle", es: "es/articles/cerro-gaital-cara-iguana-rutas-dificultad" },
-      ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "es/articles/cascadas-perdidas-boquete-ruta-precio",
-        "https://panamaspot.com/images/v2/wasserfall-bei-boquete-26701686043-hero-1920.webp",
-      { en: "articles/lost-waterfalls-boquete-hiking-guide", es: "es/articles/cascadas-perdidas-boquete-ruta-precio" },
+        "https://panamaspot.com/images/social/cascadas-perdidas-boquete-ruta-precio-share.jpg",
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "es/articles/cerro-la-silla-sendero-amanecer-el-valle",
-        "https://panamaspot.com/images/v2/valle-de-ant-c3-b3n-la-mochila-hero-1920.webp",
+        "https://panamaspot.com/images/social/cerro-la-silla-sendero-amanecer-el-valle-share.jpg",
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "es/articles/canopy-en-boquete-tree-trek-y-opciones",
-        "https://panamaspot.com/images/v2/boquete-zipline-rider-hero-1920.webp",
+        "https://panamaspot.com/images/social/canopy-en-boquete-tree-trek-y-opciones-share.jpg",
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "articles/birding-el-valle-de-anton-trails-lodges-season",
-        "https://panamaspot.com/images/v2/ed-honeycreeper-cyanerpes-cyaneus-carneipes-male-2-hero-1920.webp",
+        "https://panamaspot.com/images/social/birding-el-valle-de-anton-trails-lodges-season-share.jpg",
       { en: "articles/birding-el-valle-de-anton-trails-lodges-season", es: "es/articles/avistamiento-de-aves-el-valle-de-anton" },
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "es/articles/tour-de-cafe-boquete-fincas-precios-reservar",
-        "https://panamaspot.com/images/v2/finca-lerida-boquete-panama-hero-1920.webp",
-      { en: "articles/boquete-coffee-farm-tour", es: "es/articles/tour-de-cafe-boquete-fincas-precios-reservar" },
+        "https://panamaspot.com/images/social/tour-de-cafe-boquete-fincas-precios-reservar-share.jpg",
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "es/articles/avistamiento-de-aves-el-valle-de-anton",
-        "https://panamaspot.com/images/v2/lemon-rumped-tanager-ramphocelus-icteronotus-male-hero-1920.webp",
+        "https://panamaspot.com/images/social/avistamiento-de-aves-el-valle-de-anton-share.jpg",
       { en: "articles/birding-el-valle-de-anton-trails-lodges-season", es: "es/articles/avistamiento-de-aves-el-valle-de-anton" },
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "articles/geisha-coffee-boquete-where-to-taste",
-        "https://panamaspot.com/images/v2/clusters-of-ripe-red-coffee-cherries-14776857-hero-1920.webp",
+        "https://panamaspot.com/images/social/geisha-coffee-boquete-where-to-taste-share.jpg",
       ),
-      lastModified: new Date("2026-11-03"),
-    },
-    {
-      ...guide(
-        "articles/el-valle-de-anton-hot-springs-prices-hours-getting-there",
-        "https://panamaspot.com/images/v2/steam-rises-over-a-bed-of-920270-hero-1920.webp",
-      { en: "articles/el-valle-de-anton-hot-springs-prices-hours-getting-there", es: "es/articles/aguas-termales-el-valle-de-anton" },
-      ),
-      lastModified: new Date("2026-11-03"),
-    },
-    {
-      ...guide(
-        "articles/boquete-flower-and-coffee-fair-visitor-guide",
-        "https://panamaspot.com/images/v2/rvn06957-hero-1920.webp",
-      { en: "articles/boquete-flower-and-coffee-fair-visitor-guide", es: "es/articles/feria-de-las-flores-y-del-cafe-boquete" },
-      ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "articles/boquete-to-bocas-del-toro-shuttle-bus-timing",
-        "https://panamaspot.com/images/v2/bocas-del-toro-water-taxis-hero-1920.webp",
+        "https://panamaspot.com/images/social/boquete-to-bocas-del-toro-shuttle-bus-timing-share.jpg",
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "es/articles/bajo-mono-boquete-circuito-y-senderos",
-        "https://panamaspot.com/images/v2/outside-dining-sunset-los-molinos-hero-1920.webp",
+        "https://panamaspot.com/images/social/bajo-mono-boquete-circuito-y-senderos-share.jpg",
       ),
-      lastModified: new Date("2026-11-03"),
-    },
-    {
-      ...guide(
-        "es/articles/el-valle-de-anton-con-ninos-familia",
-        "https://panamaspot.com/images/v2/four-children-stand-on-a-sandy-5036679-hero-1920.webp",
-      { en: "articles/el-valle-de-anton-with-kids", es: "es/articles/el-valle-de-anton-con-ninos-familia" },
-      ),
-      lastModified: new Date("2026-11-03"),
-    },
-    {
-      ...guide(
-        "articles/boquete-with-kids-family-guide",
-        "https://panamaspot.com/images/v2/four-children-stand-on-a-sandy-5036679-hero-1920.webp",
-      { en: "articles/boquete-with-kids-family-guide", es: "es/articles/boquete-con-ninos-guia-familiar" },
-      ),
-      lastModified: new Date("2026-11-03"),
-    },
-    {
-      ...guide(
-        "es/articles/el-valle-de-anton-en-un-dia-itinerario",
-        "https://panamaspot.com/images/v2/house-and-landscape-el-valle-02-hero-1920.webp",
-      { en: "articles/el-valle-de-anton-itinerary-one-day", es: "es/articles/el-valle-de-anton-en-un-dia-itinerario" },
-      ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "es/articles/fin-de-semana-el-valle-de-anton-2-dias",
-        "https://panamaspot.com/images/v2/a-two-story-hotel-with-wood-13058771-hero-1920.webp",
+        "https://panamaspot.com/images/social/fin-de-semana-el-valle-de-anton-2-dias-share.jpg",
       ),
-      lastModified: new Date("2026-11-03"),
-    },
-    {
-      ...guide(
-        "es/articles/donde-dormir-en-boquete-hoteles-cabanas-hospedaje",
-        "https://panamaspot.com/images/v2/boquete-houseclouds-hero-1920.webp",
-      { en: "articles/where-to-stay-in-boquete", es: "es/articles/donde-dormir-en-boquete-hoteles-cabanas-hospedaje" },
-      ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "es/articles/restaurantes-y-cafeterias-en-boquete",
-        "https://panamaspot.com/images/v2/outside-dining-sunset-los-molinos-hero-1920.webp",
+        "https://panamaspot.com/images/social/restaurantes-y-cafeterias-en-boquete-share.jpg",
       { en: "articles/where-to-eat-in-boquete", es: "es/articles/restaurantes-y-cafeterias-en-boquete" },
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "articles/where-to-eat-in-boquete",
-        "https://panamaspot.com/images/v2/restaurant-dining-sunset-los-molinos-hero-1920.webp",
+        "https://panamaspot.com/images/social/where-to-eat-in-boquete-share.jpg",
       { en: "articles/where-to-eat-in-boquete", es: "es/articles/restaurantes-y-cafeterias-en-boquete" },
       ),
-      lastModified: new Date("2026-11-03"),
-    },
-    {
-      ...guide(
-        "articles/where-to-eat-el-valle-de-anton",
-        "https://panamaspot.com/images/v2/lasnubes-camarones-hero-1920.webp",
-      { en: "articles/where-to-eat-el-valle-de-anton", es: "es/articles/donde-comer-en-el-valle-de-anton" },
-      ),
-      lastModified: new Date("2026-11-03"),
-    },
-    {
-      ...guide(
-        "articles/volcan-baru-national-park-entry-facts-active",
-        "https://panamaspot.com/images/v2/volcan-baru-up-close-and-clouded-hero-1920.webp",
-      { en: "articles/volcan-baru-national-park-entry-facts-active", es: "es/articles/el-volcan-baru-esta-activo" },
-      ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "es/articles/lugares-turisticos-chiriqui",
-        "https://panamaspot.com/images/v2/puesta-de-sol-la-mochila-hero-1920.webp",
+        "https://panamaspot.com/images/social/lugares-turisticos-chiriqui-share.jpg",
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "articles/best-waterfalls-in-panama-where-to-see-several",
-        "https://panamaspot.com/images/v2/chorro-marcho-el-valle-panama-03-hero-1920.webp",
+        "https://panamaspot.com/images/social/best-waterfalls-in-panama-where-to-see-several-share.jpg",
       { en: "articles/best-waterfalls-in-panama-where-to-see-several", es: "es/articles/cascadas-en-panama-mejores-como-llegar" },
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "es/articles/miradores-de-boquete-vistas-sin-subir-baru",
-        "https://panamaspot.com/images/v2/view-from-restaurant-covered-los-molinos-hero-1920.webp",
+        "https://panamaspot.com/images/social/miradores-de-boquete-vistas-sin-subir-baru-share.jpg",
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "es/articles/cascadas-en-panama-mejores-como-llegar",
-        "https://panamaspot.com/images/v2/chorro-marcho-el-valle-panama-03-hero-1920.webp",
+        "https://panamaspot.com/images/social/cascadas-en-panama-mejores-como-llegar-share.jpg",
       { en: "articles/best-waterfalls-in-panama-where-to-see-several", es: "es/articles/cascadas-en-panama-mejores-como-llegar" },
       ),
-      lastModified: new Date("2026-11-03"),
-    },
-    {
-      ...guide(
-        "es/articles/cascadas-el-valle-de-anton-como-llegar",
-        "https://panamaspot.com/images/v2/el-macho-falls-panoramio-hero-1920.webp",
-      { en: "articles/el-valle-de-anton-waterfalls", es: "es/articles/cascadas-el-valle-de-anton-como-llegar" },
-      ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "es/articles/lugares-turisticos-de-cocle",
-        "https://panamaspot.com/images/v2/an-bautista-por-el-sismo-de-7-hero-1920.webp",
+        "https://panamaspot.com/images/social/lugares-turisticos-de-cocle-share.jpg",
       ),
-      lastModified: new Date("2026-11-03"),
-    },
-    {
-      ...guide(
-        "articles/piedra-pintada-painted-rock-el-valle-de-anton",
-        "https://panamaspot.com/images/v2/petroglifoelvalle-hero-1920.webp",
-      { en: "articles/piedra-pintada-painted-rock-el-valle-de-anton", es: "es/articles/piedra-pintada-el-valle-de-anton" },
-      ),
-      lastModified: new Date("2026-11-03"),
-    },
-    {
-      ...guide(
-        "articles/chorro-las-mozas-swimming-falls-el-valle",
-        "https://panamaspot.com/images/v2/a-waterfall-falls-into-a-amber-34937418-hero-1920.webp",
-      { en: "articles/chorro-las-mozas-swimming-falls-el-valle", es: "es/articles/chorro-las-mozas-pozas-el-valle-de-anton" },
-      ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
     },
     {
       ...guide(
         "es/articles/miradores-el-valle-de-anton",
-        "https://panamaspot.com/images/v2/el-valle-1-1066c4-hero-1920.webp",
+        "https://panamaspot.com/images/social/miradores-el-valle-de-anton-share.jpg",
       ),
-      lastModified: new Date("2026-11-03"),
+      lastModified: new Date("2026-11-12"),
     },
     // ── /PS-V2 guides ──
   ];
