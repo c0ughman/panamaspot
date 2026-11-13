@@ -333,6 +333,7 @@ a { color: inherit; }
 .hero::before { z-index: 1; }
 .hero > *:not(.hero-img) { z-index: 2; }
 .fig img { display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 20px; background: var(--beige); }
+.farm .fig img { height: auto; }  /* a photo inside a card keeps its 16:9 frame (the height attribute would stretch it) */
 .fig figcaption .cr { color: #9aa0ab; }
 .gal img, .bt img.ph, .fc img.ph, .stamp img.in { display: block; width: 100%; height: 100%; object-fit: cover; }
 .gal figure > img { position: absolute; inset: 0; }
